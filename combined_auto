@@ -1,0 +1,4 @@
+VAR
+OutputMoveMode_0__Sf,InputMoveMode_0__Sf,Obstacle_0__Sf,InputMoveMode_1__INI,OutputMoveMode_1__Sf,OutputMoveMode_1__INI,OutputMoveMode_0__INI,InputMoveMode_0__INI,Obstacle_0__INI,InputMoveMode_1__Sf: BOOLEAN
+FORMULA
+!InputMoveMode_1__INI & !InputMoveMode_0__INI & !Obstacle_0__INI & !InputMoveMode_1__Sf & !InputMoveMode_0__Sf & !Obstacle_0__Sf & ((((Obstacle_0__INI->(OutputMoveMode_0__INI&!OutputMoveMode_1__INI))))) & ((((Obstacle_0__Sf->(OutputMoveMode_0__Sf&!OutputMoveMode_1__Sf))))) & ((((InputMoveMode_0__INI&!InputMoveMode_1__INI<->OutputMoveMode_0__INI&OutputMoveMode_1__INI)))) & ((((InputMoveMode_0__Sf&!InputMoveMode_1__Sf<->OutputMoveMode_0__Sf&OutputMoveMode_1__Sf))))

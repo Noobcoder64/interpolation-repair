@@ -1,0 +1,262 @@
+<project>
+  <signals>
+    <signal>
+      <name>b1</name>
+      <kind>E</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>b2</name>
+      <kind>E</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>b3</name>
+      <kind>E</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>f1</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>f2</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>f3</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+  </signals>
+  <requirements>
+    <requirement>
+      <name>e_init</name>
+      <property>!b1 &amp;&amp; !b2 &amp;&amp; !b3</property>
+      <kind>A</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>e_11</name>
+      <property>G((b1 &amp;&amp; f1) -&gt; X(!b1))</property>
+      <kind>A</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>e_12</name>
+      <property>G((b2 &amp;&amp; f2) -&gt; X(!b2))</property>
+      <kind>A</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>e_13</name>
+      <property>G((b3 &amp;&amp; f3) -&gt; X(!b3))</property>
+      <kind>A</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>e_21</name>
+      <property>G((b1 &amp;&amp; !f1) -&gt; X(b1))</property>
+      <kind>A</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>e_22</name>
+      <property>G((b2 &amp;&amp; !f2) -&gt; X(b2))</property>
+      <kind>A</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>e_23</name>
+      <property>G((b3 &amp;&amp; !f3) -&gt; X(b3))</property>
+      <kind>A</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>s_init</name>
+      <property>f1 &amp;&amp; !f2 &amp;&amp; !f3</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>s_1</name>
+      <property>G(!(f1 &amp;&amp; f2) &amp;&amp; !(f2 &amp;&amp; f3) &amp;&amp; !(f1 &amp;&amp; f3))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>0</toggled>
+    </requirement>
+    <requirement>
+      <name>s_23</name>
+      <property>G(f3 -&gt; (X(f2 || f3)))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>0</toggled>
+    </requirement>
+    <requirement>
+      <name>s_21</name>
+      <property>G(f1 -&gt; (X(f1 || f2)))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>s_3</name>
+      <property>G(((f1 &amp;&amp; X(f2)) || (f2 &amp;&amp; X(f3)) || (f3 &amp;&amp; X(f2)) || (f2 &amp;&amp; X(f1))) -&gt; (b1 || b2 || b3))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>s_41</name>
+      <property>G(F(b1 -&gt; f1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>0</toggled>
+    </requirement>
+    <requirement>
+      <name>s_42</name>
+      <property>G(F(b2 -&gt; f2))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>0</toggled>
+    </requirement>
+    <requirement>
+      <name>s_43</name>
+      <property>G(F(b3 -&gt; f3))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>0</toggled>
+    </requirement>
+    <requirement>
+      <name>trivial_assumption</name>
+      <property>G(F(TRUE))</property>
+      <kind>A</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>s_5</name>
+      <property>G(F(f1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>0</toggled>
+    </requirement>
+    <requirement>
+      <name>s_22</name>
+      <property>G(f2 -&gt; (X(f1 || f2 || f3)))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>0</toggled>
+    </requirement>
+    <requirement>
+      <name>s_6</name>
+      <property>G(F(f2))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>s_7</name>
+      <property>G(F(f3))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>0</toggled>
+    </requirement>
+    <requirement>
+      <name>ref_1</name>
+      <property>G(F(b1 | b2 | b3))</property>
+      <kind>A</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>0</toggled>
+    </requirement>
+    <requirement>
+      <name>ref_2</name>
+      <property>G((!b1 &amp; !b2 &amp; !b3) -&gt; X(b1 | b2 | b3))</property>
+      <kind>A</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>0</toggled>
+    </requirement>
+    <requirement>
+      <name>ref_3</name>
+      <property>b1 | b2 | b3</property>
+      <kind>A</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>0</toggled>
+    </requirement>
+  </requirements>
+  <property_assurance>
+    <possibilities/>
+    <assertions/>
+  </property_assurance>
+  <property_simulation/>
+  <categories>
+    <category>
+      <name>New</name>
+      <editable>no</editable>
+      <notes>This is the category of those traces that have been just created</notes>
+    </category>
+    <category>
+      <name>Default</name>
+      <editable>no</editable>
+      <notes>This is the default category for traces</notes>
+    </category>
+    <category>
+      <name>Out of Date</name>
+      <editable>no</editable>
+      <notes>Contains the traces whose dependencies might be no longer consistent</notes>
+    </category>
+    <category>
+      <name>Trash</name>
+      <editable>no</editable>
+      <notes>Contains the traces that have been deleted</notes>
+    </category>
+  </categories>
+  <automata/>
+  <active_view>ga</active_view>
+  <notes></notes>
+</project>

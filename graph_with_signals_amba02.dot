@@ -1,0 +1,26 @@
+digraph G {
+  rankdir=LR;
+  node [shape = record];
+  subgraph cluster1 {
+    A[label = "NodeName (see graph.info)|{all i such that\nenv_fairness[i]\nis fulfilled|the ix such that\nenv_fairness[ix]\nis met next}|{all j such that\nsys_fairness[j]\nis fulfilled|the jx such that\nsys_fairness[jx]\nis evaded}| the k, such that jx changes at \n most k times in the future|changing next input values"];
+    label = "Explanation";
+    color=blue;
+  }
+  A->S0[color=white];
+ConstantNextInputs[label="Constant next input values:\n hready=0\n hbusreq0=1\n hlock0=1\n hbusreq1=1\n hlock1=1\n hburst0=1\n hburst1=1\n "];
+  S0[label = "S0 | {0 | 0} | {0 | ?} | 1 | "];
+  S0 -> S1[label="hmastlock=0\n"];
+  S0 -> S4[label="hmastlock=1\n"];
+  S1[label = "S1 | {0 | 0} | { | ?} | 0 | "];
+  S1 -> S2[label="hmastlock=0\n"];
+  S1 -> S3[label="hmastlock=1\n"];
+  S2[label = "S2 | {0 | 0} | { | 0} | 0 | "];
+  S2 -> S2[label="hmastlock=0\n"];
+  S2 -> S3[label="hmastlock=1\n"];
+  S3[label = "S3 | {0 | 0} | { | 0} | 0 | "];
+  S3 -> S2[label="hmastlock=0\n"];
+  S3 -> S3[label="hmastlock=1\n"];
+  S4[label = "S4 | {0 | 0} | { | ?} | 0 | "];
+  S4 -> S2[label="hmastlock=0\n"];
+  S4 -> S3[label="hmastlock=1\n"];
+}

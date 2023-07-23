@@ -1,0 +1,470 @@
+<project>
+  <signals>
+    <signal>
+      <name>responded_0</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>Button_0</name>
+      <kind>E</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>Obstacle_0</name>
+      <kind>E</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>Noise_0</name>
+      <kind>E</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>Heading_0</name>
+      <kind>E</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>HeadMotor_0</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>HeadMotor_1</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>spec_turnState_0</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>spec_turnState_1</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>RightMotor_0</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>RightMotor_1</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>RightMotor_2</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>spec_nextMoveMode_0</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>spec_nextMoveMode_1</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>yBoolExpr_0</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>responded_1</name>
+      <kind>E</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>LeftMotor_0</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>LeftMotor_1</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>LeftMotor_2</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>spec_nextHead_0</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>spec_specState_0</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>spec_specState_1</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+  </signals>
+  <requirements>
+    <requirement>
+      <name>assum_0</name>
+      <property>G(F(responded_0))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>assum_1</name>
+      <property>G(X(responded_1) &lt;-&gt; (((Heading_0 &lt;-&gt; spec_nextHead_0) | (!spec_nextMoveMode_0 | spec_nextMoveMode_1)) | !(spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1)))</property>
+      <kind>A</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_0</name>
+      <property>!spec_specState_0 &amp; !spec_specState_1</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_1</name>
+      <property>!spec_turnState_0 &amp; !spec_turnState_1</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_2</name>
+      <property>spec_nextHead_0</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_3</name>
+      <property>!spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_4</name>
+      <property>G(F(!spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_5</name>
+      <property>G(Obstacle_0 -&gt;(spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_6</name>
+      <property>G((!spec_nextMoveMode_0 &amp; spec_nextMoveMode_1 &amp; X(!spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1)) &lt;-&gt; X(!LeftMotor_0 &amp; !LeftMotor_1 &amp; !LeftMotor_2 &amp; !RightMotor_0 &amp; !RightMotor_1 &amp; RightMotor_2))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_7</name>
+      <property>G((!spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1 &amp; X(!spec_nextMoveMode_0 &amp; spec_nextMoveMode_1)) &lt;-&gt; X(!LeftMotor_0 &amp; !LeftMotor_1 &amp; LeftMotor_2 &amp; !RightMotor_0 &amp; !RightMotor_1 &amp; !RightMotor_2))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_8</name>
+      <property>G(X(!spec_nextMoveMode_0 &amp; spec_nextMoveMode_1) -&gt;(!spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1 | !spec_nextMoveMode_0 &amp; spec_nextMoveMode_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_9</name>
+      <property>G(!spec_nextMoveMode_0 &amp; spec_nextMoveMode_1 -&gt; X(!spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1 | !spec_nextMoveMode_0 &amp; spec_nextMoveMode_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_10</name>
+      <property>G((!spec_specState_0 &amp; !spec_specState_1 &amp; !spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1 &amp; X(!spec_nextMoveMode_0 &amp; spec_nextMoveMode_1)) -&gt; X(!spec_specState_0 &amp; spec_specState_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_11</name>
+      <property>G((!spec_specState_0 &amp; spec_specState_1 &amp; !spec_nextMoveMode_0 &amp; spec_nextMoveMode_1 &amp; X(!spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1)) -&gt; X(spec_specState_0 &amp; !spec_specState_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_12</name>
+      <property>G(!(spec_specState_0 &amp; !spec_specState_1 &amp; !spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1 &amp; X(!spec_nextMoveMode_0 &amp; spec_nextMoveMode_1)))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_13</name>
+      <property>G((!spec_specState_0 &amp; spec_specState_1 &amp; X(!spec_nextMoveMode_0 &amp; spec_nextMoveMode_1)) -&gt; X(!spec_specState_0 &amp; spec_specState_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_14</name>
+      <property>G((spec_specState_0 &amp; !spec_specState_1 &amp; X(!spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1)) -&gt; X(spec_specState_0 &amp; !spec_specState_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_15</name>
+      <property>G(spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1 -&gt; X(!spec_specState_0 &amp; !spec_specState_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_16</name>
+      <property>G(Button_0 -&gt; X((spec_nextHead_0 &lt;-&gt; Heading_0)))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_17</name>
+      <property>G(!Button_0 -&gt; (spec_nextHead_0 &lt;-&gt; X(spec_nextHead_0)))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_18</name>
+      <property>G(X(responded_0) &lt;-&gt; (((Heading_0 &lt;-&gt; spec_nextHead_0)) | !(Noise_0)))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_19</name>
+      <property>G(X(!spec_turnState_0 &amp; !spec_turnState_1) -&gt;(!spec_turnState_0 &amp; !spec_turnState_1 | spec_turnState_0 &amp; spec_turnState_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_20</name>
+      <property>G((!spec_turnState_0 &amp; !spec_turnState_1 &amp;(!spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1)) -&gt; X(!spec_turnState_0 &amp; !spec_turnState_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_21</name>
+      <property>G((!spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1) &lt;-&gt; X(yBoolExpr_0))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_22</name>
+      <property>G((spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1 &amp; yBoolExpr_0 &amp; !spec_turnState_0 &amp; !spec_turnState_1) -&gt; X(!spec_turnState_0 &amp; spec_turnState_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_23</name>
+      <property>G(!spec_turnState_0 &amp; spec_turnState_1 -&gt;(X(spec_turnState_0 &amp; !spec_turnState_1) &amp; spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_24</name>
+      <property>G((spec_turnState_0 &amp; !spec_turnState_1 &amp; spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1) -&gt; X(!spec_turnState_0 &amp; spec_turnState_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_25</name>
+      <property>G((spec_turnState_0 &amp; !spec_turnState_1 &amp; !spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1) -&gt; X(spec_turnState_0 &amp; spec_turnState_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_26</name>
+      <property>G((spec_turnState_0 &amp; spec_turnState_1 &amp; !spec_nextMoveMode_0 &amp; !spec_nextMoveMode_1) -&gt; X(!spec_turnState_0 &amp; !spec_turnState_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_27</name>
+      <property>G((spec_turnState_0 &amp; spec_turnState_1 &amp; (spec_nextMoveMode_0 | spec_nextMoveMode_1)) -&gt; X(spec_turnState_0 &amp; !spec_turnState_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_28</name>
+      <property>G((!spec_turnState_0 &amp; !spec_turnState_1 &amp; X(!spec_turnState_0 &amp; spec_turnState_1)) &lt;-&gt;(LeftMotor_0 &amp; !LeftMotor_1 &amp; LeftMotor_2 &amp; RightMotor_0 &amp; !RightMotor_1 &amp; RightMotor_2))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_29</name>
+      <property>G(X(spec_turnState_0 &amp; !spec_turnState_1) &lt;-&gt;(!LeftMotor_0 &amp; !LeftMotor_1 &amp; !LeftMotor_2 &amp; !RightMotor_0 &amp; RightMotor_1 &amp; RightMotor_2))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_30</name>
+      <property>G(spec_turnState_0 &amp; !spec_turnState_1 &lt;-&gt;(!LeftMotor_0 &amp; !LeftMotor_1 &amp; LeftMotor_2 &amp; RightMotor_0 &amp; !RightMotor_1 &amp; !RightMotor_2))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_31</name>
+      <property>G((spec_turnState_0 &amp; spec_turnState_1 &amp; X(!spec_turnState_0 &amp; !spec_turnState_1)) &lt;-&gt;(LeftMotor_0 &amp; LeftMotor_1 &amp; !LeftMotor_2 &amp; RightMotor_0 &amp; RightMotor_1 &amp; !RightMotor_2))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_32</name>
+      <property>G(F(responded_1))</property>
+      <kind>A</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+  </requirements>
+  <property_assurance>
+    <possibilities/>
+    <assertions/>
+  </property_assurance>
+  <property_simulation/>
+  <categories>
+    <category>
+      <name>New</name>
+      <editable>no</editable>
+      <notes>This is the category of those traces that have been just created</notes>
+    </category>
+    <category>
+      <name>Default</name>
+      <editable>no</editable>
+      <notes>This is the default category for traces</notes>
+    </category>
+    <category>
+      <name>Out of Date</name>
+      <editable>no</editable>
+      <notes>Contains the traces whose dependencies might be no longer consistent</notes>
+    </category>
+    <category>
+      <name>Trash</name>
+      <editable>no</editable>
+      <notes>Contains the traces that have been deleted</notes>
+    </category>
+  </categories>
+  <automata/>
+  <active_view>ga</active_view>
+  <notes></notes>
+</project>

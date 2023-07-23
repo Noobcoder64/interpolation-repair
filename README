@@ -1,0 +1,1 @@
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ubuntu/InterpolationRepair/spectra-cli/tau.smlab.syntech.Spectra.cli/lib

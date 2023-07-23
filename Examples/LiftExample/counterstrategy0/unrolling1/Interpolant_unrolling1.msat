@@ -1,0 +1,18 @@
+VAR b31 : boolean
+VAR b21 : boolean
+VAR b11 : boolean
+VAR b30 : boolean
+VAR b20 : boolean
+VAR b10 : boolean
+DEFINE def_26 := !(b31)
+DEFINE def_19 := !(b21)
+DEFINE def_2 := !(b10)
+DEFINE def_4 := !(b20)
+DEFINE def_5 := (def_4 & def_2)
+DEFINE def_7 := !(b30)
+DEFINE def_8 := (def_7 & def_5)
+DEFINE def_12 := !(b11)
+DEFINE def_349 := (def_12 & def_8)
+DEFINE def_350 := (def_349 & def_19)
+DEFINE def_351 := (def_350 & def_26)
+FORMULA def_351

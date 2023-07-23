@@ -1,0 +1,15 @@
+digraph G {
+  rankdir=LR;
+  node [shape = record];
+  subgraph cluster1 {
+    A[label = "NodeName (see graph.info)|{all i such that\nenv_fairness[i]\nis fulfilled|the ix such that\nenv_fairness[ix]\nis met next}|{all j such that\nsys_fairness[j]\nis fulfilled|the jx such that\nsys_fairness[jx]\nis evaded}| the k, such that jx changes at \n most k times in the future|changing next input values"];
+    label = "Explanation";
+    color=blue;
+  }
+  A->S0[color=white];
+ConstantNextInputs[label="Constant next input values:\n b1=0\n b2=0\n b3=0\n "];
+  S0[label = "S0 | {0 | 0} | { | ?} | 0 | "];
+  S0 -> S1[label=""];
+  S1[label = "S1 | {0 | 0} | { | 0} | 0 | "];
+  S1 -> S1[label=""];
+}

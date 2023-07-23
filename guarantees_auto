@@ -1,0 +1,4 @@
+VAR
+cl__S0,val__INI,cl__INI,val__S0,gr__S0: BOOLEAN
+FORMULA
+(((((gr__S0&val__S0))))) & (((((cl__INI->!val__INI))))) & (((((cl__S0->!val__S0)))))

@@ -1,0 +1,26 @@
+VAR
+b10, b20, b30, b11, b21, b31: BOOLEAN
+f10, f20, f30, f11, f21, f31: BOOLEAN
+
+FORMULA
+
+# Assumptions in state 0
+(!b10 & !b20 & !b30) &
+((b10 & f10) -> !b11) &
+((b20 & f20) -> !b21) &
+((b30 & f30) -> !b31) &
+((b10 & !f10) -> b11) &
+((b20 & !f20) -> b21) &
+((b30 & !f30) -> b31) &
+
+# Assumptions in state 1
+((b11 & f11) -> !b11) &
+((b21 & f21) -> !b21) &
+((b31 & f31) -> !b31) &
+((b11 & !f11) -> b11) &
+((b21 & !f21) -> b21) &
+((b31 & !f31) -> b31) &
+
+# Counterstrategy
+#!b10 & !b20 & !b30 &
+!b11 & !b21 & !b31

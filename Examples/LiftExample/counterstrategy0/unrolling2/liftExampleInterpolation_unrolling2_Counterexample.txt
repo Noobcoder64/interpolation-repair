@@ -1,0 +1,44 @@
+VAR
+b10, b20, b30, b11, b21, b31, b12, b22, b32, b13, b23, b33: BOOLEAN
+f10, f20, f30, f11, f21, f31, f12, f22, f32, f13, f23, f33: BOOLEAN
+
+FORMULA
+# Assumptions in state 0
+!b10 & !b20 & !b30 &
+((b10 & f10) -> !b11) &
+((b20 & f20) -> !b21) &
+((b30 & f30) -> !b31) &
+((b10 & !f10) -> b11) &
+((b20 & !f20) -> b21) &
+((b30 & !f30) -> b31) &
+# Assumptions in state 1,1
+((b11 & f11) -> !b12) &
+((b21 & f21) -> !b22) &
+((b31 & f31) -> !b32) &
+((b11 & !f11) -> b12) &
+((b21 & !f21) -> b22) &
+((b31 & !f31) -> b32) &
+# Assumptions in state 1,2
+((b12 & f12) -> !b13) &
+((b22 & f22) -> !b23) &
+((b32 & f32) -> !b33) &
+((b12 & !f12) -> b13) &
+((b22 & !f22) -> b23) &
+((b32 & !f32) -> b33) &
+# Assumptions in state 1,loop
+((b13 & f13) -> !b13) &
+((b23 & f23) -> !b23) &
+((b33 & f33) -> !b33) &
+((b13 & !f13) -> b13) &
+((b23 & !f23) -> b23) &
+((b33 & !f33) -> b33) &
+
+# Counterstrategy
+# State 0
+!b10 & !b20 & !b30 &
+# State 1,1
+!b11 & !b21 & !b31 &
+# State 1,2
+!b12 & !b22 & !b32 &
+# State 1,loop
+!b13 & !b23 & !b33

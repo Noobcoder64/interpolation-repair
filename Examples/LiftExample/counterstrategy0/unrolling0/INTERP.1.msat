@@ -1,0 +1,9 @@
+VAR b30 : boolean
+VAR b20 : boolean
+VAR b10 : boolean
+DEFINE def_2 := !(b10)
+DEFINE def_4 := !(b20)
+DEFINE def_7 := !(b30)
+DEFINE def_223 := (def_7 & def_4)
+DEFINE def_224 := (def_223 & def_2)
+FORMULA def_224

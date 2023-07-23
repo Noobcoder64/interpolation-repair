@@ -1,0 +1,23 @@
+VAR
+b10, b20, b30, b11, b21, b31, b12, b22, b32, b13, b23, b33: BOOLEAN
+f10, f20, f30, f11, f21, f31, f12, f22, f32, f13, f23, f33: BOOLEAN
+
+FORMULA
+# Guarantees in state 0
+f10 & !f20 & !f30 &
+(f10 -> (f11 | f21)) &
+(((f10 & f21) | (f20 & f31) | (f30 & f21) | (f20 & f11)) -> b10 | b20 | b30) &
+
+# Guarantees in state 1,1
+(f11 -> (f12 | f22)) &
+(((f11 & f22) | (f21 & f32) | (f31 & f22) | (f21 & f12)) -> b11 | b21 | b31) &
+
+# Guarantees in state 1,2
+(f12 -> (f13 | f23)) &
+(((f12 & f23) | (f22 & f33) | (f32 & f23) | (f22 & f13)) -> b12 | b22 | b32) &
+
+# Guarantees in state 1,loop
+(f13 -> (f13 | f23)) &
+(((f13 & f23) | (f23 & f33) | (f33 & f23) | (f23 & f13)) -> b13 | b23 | b33) &
+
+(f23)

@@ -1,0 +1,15 @@
+spec LandingGear
+
+// INPUT VARIABLES
+
+env boolean handle_up;
+env boolean handle_down;
+
+// OUTPUT VARIABLES
+
+sys boolean gear_extended;
+
+// GUARANTEES
+
+gar alw handle_down -> next(!handle_down or gear_extended);
+gar alw handle_up -> next(!handle_up or !gear_extended);

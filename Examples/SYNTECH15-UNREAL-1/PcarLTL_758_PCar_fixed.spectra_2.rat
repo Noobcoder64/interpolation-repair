@@ -1,0 +1,294 @@
+<project>
+  <signals>
+    <signal>
+      <name>parkResult_0</name>
+      <kind>E</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>obstacle_0</name>
+      <kind>E</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>sideSense_0</name>
+      <kind>E</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>sideSense_1</name>
+      <kind>E</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>parkCommand_0</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>parkCommand_1</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>spec_policy_0</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>spec_policy_1</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>spec_policy_2</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>responded_0</name>
+      <kind>E</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>throttle_0</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>throttle_1</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>steer_0</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+    <signal>
+      <name>steer_1</name>
+      <kind>S</kind>
+      <type>boolean</type>
+      <auto_signal value="False"/>
+      <notes></notes>
+    </signal>
+  </signals>
+  <requirements>
+    <requirement>
+      <name>assum_0</name>
+      <property>G(X(responded_0) &lt;-&gt; ((!obstacle_0) | !(!throttle_0 &amp; throttle_1)))</property>
+      <kind>A</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_0</name>
+      <property>!spec_policy_0 &amp; !spec_policy_1 &amp; !spec_policy_2 |(!spec_policy_0 &amp; !spec_policy_1 &amp; spec_policy_2 &amp; !parkCommand_0 &amp; !parkCommand_1)</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_1</name>
+      <property>G(F(spec_policy_0 &amp; !spec_policy_1 &amp; spec_policy_2))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_2</name>
+      <property>G(((!spec_policy_0 &amp; !spec_policy_1 &amp; !spec_policy_2 | !spec_policy_0 &amp; !spec_policy_1 &amp; spec_policy_2) &amp; obstacle_0) -&gt; !throttle_0 &amp; throttle_1)</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_3</name>
+      <property>G(obstacle_0 -&gt;(throttle_0 &amp; !throttle_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_4</name>
+      <property>G(sideSense_0 &amp; !sideSense_1 -&gt;(!(!steer_0 &amp; !steer_1 &amp; !throttle_0 &amp; !throttle_1)))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_5</name>
+      <property>G((!spec_policy_0 &amp; !spec_policy_1 &amp; !spec_policy_2 &amp; sideSense_0 &amp; !sideSense_1) -&gt; (spec_policy_0 &lt;-&gt; X(spec_policy_0)) &amp; (spec_policy_1 &lt;-&gt; X(spec_policy_1)) &amp; (spec_policy_2 &lt;-&gt; X(spec_policy_2)))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_6</name>
+      <property>G((!spec_policy_0 &amp; !spec_policy_1 &amp; !spec_policy_2 &amp;(!sideSense_0 &amp; !sideSense_1 | !sideSense_0 &amp; sideSense_1) &amp; !obstacle_0) -&gt;(X(!spec_policy_0) &amp; X(!spec_policy_1) &amp; X(spec_policy_2) &amp; !throttle_0 &amp; !throttle_1 &amp; !parkCommand_0 &amp; !parkCommand_1 &amp; steer_0 &amp; !steer_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_7</name>
+      <property>G((!spec_policy_0 &amp; !spec_policy_1 &amp; spec_policy_2 &amp;(!sideSense_0 &amp; !sideSense_1 | !sideSense_0 &amp; sideSense_1) &amp; !obstacle_0 &amp; !parkResult_0) -&gt;((spec_policy_0 &lt;-&gt; X(spec_policy_0)) &amp; (spec_policy_1 &lt;-&gt; X(spec_policy_1)) &amp; (spec_policy_2 &lt;-&gt; X(spec_policy_2)) &amp; !throttle_0 &amp; !throttle_1 &amp; parkCommand_0 &amp; !parkCommand_1 &amp; steer_0 &amp; !steer_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_8</name>
+      <property>G((!spec_policy_0 &amp; !spec_policy_1 &amp; spec_policy_2 &amp;(!sideSense_0 &amp; !sideSense_1 | !sideSense_0 &amp; sideSense_1) &amp; !obstacle_0 &amp; parkResult_0) -&gt;(X(!spec_policy_0) &amp; X(spec_policy_1) &amp; X(!spec_policy_2) &amp; throttle_0 &amp; !throttle_1 &amp; !parkCommand_0 &amp; parkCommand_1 &amp; !steer_0 &amp; !steer_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_9</name>
+      <property>G((!spec_policy_0 &amp; !spec_policy_1 &amp; spec_policy_2 &amp; sideSense_0 &amp; !sideSense_1 &amp; !obstacle_0 &amp; parkResult_0) -&gt;(X(!spec_policy_0) &amp; X(spec_policy_1) &amp; X(!spec_policy_2) &amp; throttle_0 &amp; !throttle_1 &amp; !parkCommand_0 &amp; parkCommand_1 &amp; !steer_0 &amp; !steer_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_10</name>
+      <property>G((!spec_policy_0 &amp; !spec_policy_1 &amp; spec_policy_2 &amp; sideSense_0 &amp; !sideSense_1 &amp; !obstacle_0 &amp; !parkResult_0) -&gt;(X(!spec_policy_0) &amp; X(!spec_policy_1) &amp; X(!spec_policy_2) &amp; !throttle_0 &amp; !throttle_1 &amp; !parkCommand_0 &amp; parkCommand_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_11</name>
+      <property>G(!spec_policy_0 &amp; spec_policy_1 &amp; !spec_policy_2 -&gt;(X(!spec_policy_0) &amp; X(spec_policy_1) &amp; X(spec_policy_2) &amp; !throttle_0 &amp; throttle_1 &amp; !steer_0 &amp; !steer_1 &amp; !parkCommand_0 &amp; parkCommand_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_12</name>
+      <property>G(!spec_policy_0 &amp; spec_policy_1 &amp; spec_policy_2 -&gt;(X(spec_policy_0) &amp; X(!spec_policy_1) &amp; X(!spec_policy_2) &amp; throttle_0 &amp; !throttle_1 &amp; !steer_0 &amp; steer_1 &amp; !parkCommand_0 &amp; parkCommand_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_13</name>
+      <property>G(spec_policy_0 &amp; !spec_policy_1 &amp; !spec_policy_2 -&gt;(X(spec_policy_0) &amp; X(!spec_policy_1) &amp; X(spec_policy_2) &amp; !throttle_0 &amp; throttle_1 &amp; !steer_0 &amp; steer_1 &amp; !parkCommand_0 &amp; parkCommand_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_14</name>
+      <property>G(spec_policy_0 &amp; !spec_policy_1 &amp; spec_policy_2 -&gt;((spec_policy_0 &lt;-&gt; X(spec_policy_0)) &amp; (spec_policy_1 &lt;-&gt; X(spec_policy_1)) &amp; (spec_policy_2 &lt;-&gt; X(spec_policy_2)) &amp; throttle_0 &amp; !throttle_1 &amp; steer_0 &amp; !steer_1 &amp; !parkCommand_0 &amp; parkCommand_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_15</name>
+      <property>G((obstacle_0 &amp;(!(!spec_policy_0 &amp; spec_policy_1 &amp; !spec_policy_2 | !spec_policy_0 &amp; spec_policy_1 &amp; spec_policy_2 | spec_policy_0 &amp; !spec_policy_1 &amp; !spec_policy_2 | spec_policy_0 &amp; !spec_policy_1 &amp; spec_policy_2))) -&gt; X(!spec_policy_0) &amp; X(!spec_policy_1) &amp; X(!spec_policy_2))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_16</name>
+      <property>G(obstacle_0 -&gt; !parkCommand_0 &amp; parkCommand_1)</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_17</name>
+      <property>G(!spec_policy_0 &amp; !spec_policy_1 &amp; !spec_policy_2 -&gt; (!throttle_0 | throttle_1))</property>
+      <kind>G</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+    <requirement>
+      <name>guar_18</name>
+      <property>G(F(responded_0))</property>
+      <kind>A</kind>
+      <base_automaton_name></base_automaton_name>
+      <notes></notes>
+      <toggled>1</toggled>
+    </requirement>
+  </requirements>
+  <property_assurance>
+    <possibilities/>
+    <assertions/>
+  </property_assurance>
+  <property_simulation/>
+  <categories>
+    <category>
+      <name>New</name>
+      <editable>no</editable>
+      <notes>This is the category of those traces that have been just created</notes>
+    </category>
+    <category>
+      <name>Default</name>
+      <editable>no</editable>
+      <notes>This is the default category for traces</notes>
+    </category>
+    <category>
+      <name>Out of Date</name>
+      <editable>no</editable>
+      <notes>Contains the traces whose dependencies might be no longer consistent</notes>
+    </category>
+    <category>
+      <name>Trash</name>
+      <editable>no</editable>
+      <notes>Contains the traces that have been deleted</notes>
+    </category>
+  </categories>
+  <automata/>
+  <active_view>ga</active_view>
+  <notes></notes>
+</project>

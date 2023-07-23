@@ -1,0 +1,10 @@
+Filename;ExpandedNodes;TotalInterpolantsComputed;NoInterpolant;NonStateSeparable;TotalStateComponents;NonIOSeparableComponents;CounterstrategyNotComputed;NumSolutions
+amba_ahb_wo_ass_fairness_amba_ahb_3_interpolation-bfs_exptacas20_duplicatecheck.csv;1;1;0;0;0;0;0;0
+amba_ahb_w_guar_trans_amba_ahb_1_interpolation-bfs_exptacas20_duplicatecheck.csv;1;1;0;0;0;0;0;0
+amba_ahb_wo_ass_fairness_amba_ahb_2_interpolation-bfs_exptacas20_duplicatecheck.csv;1;1;0;0;0;0;0;0
+amba_ahb_w_guar_fairness_amba_ahb_1_interpolation-bfs_exptacas20_duplicatecheck.csv;1;1;0;0;0;0;0;1
+amba_ahb_wo_ass_fairness_amba_ahb_1_interpolation-bfs_exptacas20_duplicatecheck.csv;1;1;0;0;0;0;0;2
+amba_ahb_w_guar_trans_amba_ahb_2_interpolation-bfs_exptacas20_duplicatecheck.csv;1;1;0;0;0;0;0;0
+amba_ahb_w_guar_trans_amba_ahb_3_interpolation-bfs_exptacas20_duplicatecheck.csv;1;1;0;0;0;0;0;0
+amba_ahb_w_guar_fairness_amba_ahb_3_interpolation-bfs_exptacas20_duplicatecheck.csv;1;1;0;0;0;0;0;1
+amba_ahb_w_guar_fairness_amba_ahb_2_interpolation-bfs_exptacas20_duplicatecheck.csv;1;1;0;0;0;0;0;1
