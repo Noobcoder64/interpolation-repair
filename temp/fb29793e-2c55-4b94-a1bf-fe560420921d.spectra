@@ -1,0 +1,21 @@
+spec Protocol
+
+// INPUT VARIABLES
+
+env boolean req;
+env boolean cl;
+
+// OUTPUT VARIABLES
+
+sys boolean gr;
+sys boolean val;
+
+// ASSUMPTIONS
+
+asm alwEv ((!req));
+
+// GUARANTEES
+
+gar alw ((cl -> !val));
+gar alwEv ((gr & val));
+asm alwEv (!(cl));

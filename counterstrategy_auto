@@ -1,4 +1,4 @@
 VAR
-req__S0,cl__S0,cl__INI,req__INI: BOOLEAN
+req__S0,cl__INI,req__INI,cl__S0: BOOLEAN
 FORMULA
 (((((!req__S0))))) & cl__INI & !req__INI & cl__S0 & !req__S0

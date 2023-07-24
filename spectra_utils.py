@@ -2,7 +2,7 @@ import subprocess
 import re
 import specification as sp
 
-PATH_TO_CLI = "spectra-cli/tau.smlab.syntech.Spectra.cli/lib/spectra-cli.jar"
+PATH_TO_CLI = "spectra/spectra-cli.jar"
 
 def run_subprocess(cmd, newline, suppress=False, timeout=-1):
     # timed = timeout > 0
@@ -30,7 +30,7 @@ def extract_unrealizable_cores(specification):
     \nHad to edit file, so it takes input from args.\n
     :return: True if cores found, False otherwise.
     '''
-    path_to_jar = "spectra-cli/spectra_unrealizable_cores.jar"
+    path_to_jar = "spectra/spectra_unrealizable_cores.jar"
     cmd = "java -jar {} {}".format(path_to_jar, specification)
     output = run_subprocess(cmd, "\\r\\n")
     core_found = re.compile("at lines <([^>]*)>").search(output)
