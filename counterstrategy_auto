@@ -1,4 +1,4 @@
 VAR
-req__S0,cl__INI,req__INI,cl__S0: BOOLEAN
+LeftMotor_2__S4,Obstacle_0__S4,moveMode_0__S2,yBoolExpr_0__S4,yBoolExpr_0__S2,RightMotor_1__S2,HeadMotor_1__S4,Obstacle_0__INI,LeftMotor_1__S2,state_0__S2,RightMotor_1__S4,LeftMotor_1__S4,LeftMotor_0__S2,moveMode_1__S4,moveMode_0__S4,Obstacle_0__S2,moveMode_1__S2,HeadMotor_1__S2,responded_0__S4,RightMotor_2__S2,state_1__S2,responded_0__S2,state_0__S4,RightMotor_2__S4,LeftMotor_0__S4,RightMotor_0__S2,HeadMotor_0__S2,LeftMotor_2__S2,state_1__S4,RightMotor_0__S4,HeadMotor_0__S4: BOOLEAN
 FORMULA
-(((((!req__S0))))) & cl__INI & !req__INI & cl__S0 & !req__S0
+((((!Obstacle_0__S4)))) & Obstacle_0__INI & HeadMotor_0__S2 & !state_0__S2 & !RightMotor_0__S2 & !yBoolExpr_0__S2 & !responded_0__S2 & !Obstacle_0__S2 & state_1__S2 & HeadMotor_1__S2 & LeftMotor_1__S2 & !LeftMotor_2__S2 & LeftMotor_0__S2 & !RightMotor_2__S2 & RightMotor_1__S2 & moveMode_1__S2 & !moveMode_0__S2 & !HeadMotor_1__S4 & !RightMotor_1__S4 & HeadMotor_0__S4 & !state_0__S4 & !RightMotor_0__S4 & !yBoolExpr_0__S4 & LeftMotor_1__S4 & !Obstacle_0__S4 & state_1__S4 & !LeftMotor_2__S4 & responded_0__S4 & LeftMotor_0__S4 & RightMotor_2__S4 & moveMode_1__S4 & !moveMode_0__S4

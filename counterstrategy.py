@@ -591,13 +591,13 @@ class Counterstrategy:
                 self.states[curr_state]['input_valuation'][varname] = value
             
             # TODO: output valuation is of current state
-            # vars = re.compile("/\s*{(.*)}", ).search(transition).group(1).split(', ')
-            # for var in vars:
-            #     varname = var.split(":")[0]
-            #     value = int(var.split(":")[1] == 'true')
-            #     self.states[next_state]['output_valuation'][varname] = value
+            vars = re.compile("/\s*{(.*)}", ).search(transition).group(1).split(', ')
+            for var in vars:
+                varname = var.split(":")[0]
+                value = int(var.split(":")[1] == 'true')
+                self.states[curr_state]['output_valuation'][varname] = value
 
-            self.influential_output_valuations(transitions)
+            # self.influential_output_valuations(transitions)
 
             # vars = re.compile("{(.*)}\s*/", ).search(transition).group(1).split(', ')
             # for var in vars:
