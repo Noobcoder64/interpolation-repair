@@ -1,0 +1,2 @@
+Id;Refinement;UniqueRefinement;Timestamp;Length;Parent;NumChildren;IsRealizable;IsSatisfiable;IsSolution;TimeRealizabilityCheck;TimeSatisfiabilityCheck;TimeCounterstrategy;CounterstrategyNumStates;TimeRefine;TimeGenerationMethod
+7c2c1245-119d-4e56-9b37-f22b8fc868f9;[];[];0.0004767550001361087;0;N/A;0;False;N/A;False;2.601469321000195;N/A;2.68125609599997;N/A;1.1720001111825695e-06;2.379388003999793;

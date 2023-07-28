@@ -7,6 +7,7 @@ import definitions
 import syntax_utils as su
 import specification as sp
 import spectra_utils as spectra
+import experiment_properties as exp
 
 class NonStateSeparableException(BaseException):
     pass
@@ -170,46 +171,28 @@ def getRefinementsFromStateComponents(state_components,path,input_vars):
 
 
 def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,output_vars):
-    # specification = "Protocol.spectra"
-    # specification = "LandingGear.spectra"
-    # specification = "TrafficA1b.spectra"
     
-    print("=== COUNTERSTRATEGY ===")
-    print('\n'.join(c.counterstrategy))
-    print()
-    
-    # counter_strat_to_trace(counterstrategy)
-    
-    # c = Counterstrategy()
+    # print("=== COUNTERSTRATEGY ===")
+    # print('\n'.join(c.counterstrategy))
+    # print()
     
     path = c.extractRandomPath()
 
-    print()
-    print("=== COUNTERRUN ===")
-    print(path)
-    # for s in path.states:
-    #     print("State: "+path.states[s].id_state+" Valuation: "+path.states[s].get_valuation()+" Successor: "+str(path.states[s].successor))
-    print()
+    # print("=== COUNTERRUN ===")
+    # print(path)
+    # print()
 
-    # TODO: Translate spectra syntax assumptions to this form
     # assumptions_uc = []
-    # assumptions_uc = ['G(F(!req))']
-    # TODO: Translate spectra guarantees from file to this form
-    # guarantees_uc = spectra.extract_unrealizable_cores(specification)
-    print("=== UNREALIZABLE CORE ===")
-    for uc in guarantees_uc:
-        print(uc)
-    print()
-    # guarantees_uc = ['G(cl -> !val)', 'G(F(gr & val))']
-
-    # print("ASSUMPTIONS UC:", assumptions_uc)
+    
+    # print("=== UNREALIZABLE CORE ===")
+    # guarantees_uc = exp.guaranteesList
+    # for uc in guarantees_uc:
+    #     print(uc)
+    # print()
 
     assumptions_boolean = list(filter(None,[l2b.gr1LTL2Boolean(x,path) for x in assumptions_uc]))
-    # print("ASSUMPTIONS BOOLEAN:", assumptions_boolean)
-    # assumptions_boolean = ['(!req__S0)']
-    # TODO: Compare valuation to Boolean of TACAS17 and this one
+
     valuations_boolean = path.get_valuation()
-    # valuations_boolean = '(!req__INI & cl__INI) & (!req__S0 & cl__S0)' # & (!gr__INI & !val__INI) & (!gr__S0 & !val__S0)'
 
     if assumptions_boolean != []:
         assum_val_boolean = " & ".join(assumptions_boolean) + ((" & " + valuations_boolean) if valuations_boolean != "" else "")
@@ -217,21 +200,19 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
         assum_val_boolean = valuations_boolean
 
     guarantees_boolean = " & ".join(filter(None,[l2b.gr1LTL2Boolean(x, path) for x in guarantees_uc]))
-    # guarantees_boolean = '(cl__INI->!val__INI) & (cl__S0->!val__S0) & (gr__S0 & val__S0)'
 
-    print()
-    print("=== ASSUMPTIONS BOOLEAN ===")
-    print(" & ".join(assumptions_boolean))
-    print("=== VALUATIONS BOOLEAN ===")
-    print(valuations_boolean)
-    print("=== ASM VAL BOOLEAN ===")
-    print(assum_val_boolean)
-    print("=== GUARANTEES BOOLEAN ===")
-    print(guarantees_boolean)
-    print()
+    # print()
+    # print("=== ASSUMPTIONS BOOLEAN ===")
+    # print(" & ".join(assumptions_boolean))
+    # print("=== VALUATIONS BOOLEAN ===")
+    # print(valuations_boolean)
+    # print("=== ASM VAL BOOLEAN ===")
+    # print(assum_val_boolean)
+    # print("=== GUARANTEES BOOLEAN ===")
+    # print(guarantees_boolean)
+    # print()
 
     l2b.writePathToFile("path",path)
-    # l2b.writeMathsatFormulaToFile("combined_auto", assum_val_boolean + " & " + guarantees_boolean)
     l2b.writeMathsatFormulaToFile("counterstrategy_auto", assum_val_boolean)
     l2b.writeMathsatFormulaToFile("guarantees_auto", guarantees_boolean)
     

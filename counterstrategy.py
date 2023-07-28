@@ -592,10 +592,11 @@ class Counterstrategy:
             
             # TODO: output valuation is of current state
             vars = re.compile("/\s*{(.*)}", ).search(transition).group(1).split(', ')
-            for var in vars:
-                varname = var.split(":")[0]
-                value = int(var.split(":")[1] == 'true')
-                self.states[curr_state]['output_valuation'][varname] = value
+            if not vars == ['']:
+                for var in vars:
+                    varname = var.split(":")[0]
+                    value = int(var.split(":")[1] == 'true')
+                    self.states[curr_state]['output_valuation'][varname] = value
 
             # self.influential_output_valuations(transitions)
 
@@ -622,6 +623,9 @@ class Counterstrategy:
         initial_state = State("INI")
         for var in self.states["INI"]['input_valuation']:
             initial_state.add_to_valuation(var if self.states["INI"]['input_valuation'][var] == 1 else "!" + var)
+        # for var in self.states["INI"]['output_valuation']:
+        #     initial_state.add_to_valuation(var if self.states["INI"]['output_valuation'][var] == 1 else "!" + var)
+
 
         if len(visited_states)>1:
             initial_state.set_successor(visited_states[1])

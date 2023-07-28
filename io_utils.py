@@ -43,20 +43,12 @@ def extractAssumptionListWithNames( SpecFile ):
 def extractAssumptionList( SpecFile ):
     infile = sp.read_file(SpecFile)
     infile = sp.assumptions(infile)
-    print("ASSUMPTIONS:")
-    for asm in infile:
-        print(asm)
-    print()
     return infile
 
 # Returns a list with all guarantees in a .rat file
 def extractGuaranteesList( SpecFile ):
     infile = sp.read_file(SpecFile)
     infile = sp.guarantees(infile)
-    print("GUARANTEES:")
-    for asm in infile:
-        print(asm)
-    print()
     return infile
 
 # Extract variables from .rat file
@@ -84,8 +76,6 @@ def extractInputVariablesFromFile( SpecFile ):
         if match:
             variables.append(match.group(1))
 
-    print("INPUT VARIABLES:", variables)
-    print()
     return variables
 
     # # Variables are listed in the <signals> element
@@ -109,9 +99,7 @@ def extractOutputVariablesFromFile( SpecFile ):
         match = re.search(r'(?:sys)\s+boolean\s+(\w+)\s*;', line)
         if match:
             variables.append(match.group(1))
-
-    print("OUTPUT VARIABLES:", variables)
-    print()
+    
     return variables
 
 # Extract variables as a list from a string formula

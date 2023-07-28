@@ -36,18 +36,6 @@ def extract_unrealizable_cores(specification):
     core_found = re.compile("at lines <([^>]*)>").search(output)
     if core_found:
         line_nums = [int(x) for x in core_found.group(1).split(" ") if x != ""]
-        # line_nums = [26, 32, 37, 46]
-        # line_nums = [34, 37, 46, 47]
-        # line_nums = [33, 37, 46, 47]
-        # line_nums = [29, 32, 37, 45, 47]
-        # line_nums = [32, 37, 45, 46]
-        # line_nums = [26, 29, 32, 37, 47]
-        # line_nums = [29, 32, 33, 37, 40, 47]
-        # line_nums = [33, 37, 45, 46]
-        # line_nums = [29, 34, 37, 45, 47]
-        # line_nums = [29, 33, 34, 37, 42, 45]
-
-        print("LINES: ", line_nums)
         spec = sp.read_file(specification)
         spec = sp.format_spec(spec)
         spec = [re.sub(r'\s*;\n$', '', re.sub(r'\s', '', x)) for x in spec]
@@ -101,15 +89,9 @@ def check_satisfiability(specification):
     print("Spectra file in wrong format for CLI realizability check:")
     return None
 
-# def convertAssumption(assumption):
-#     return sp.unformat_spec([assumption])
-
 def addAssumption(specification, assumption):
-    # print("ASSUMPTION BEFORE:", assumption)
     assumption = sp.unformat_spec(assumption)
-    # print("ASSUMPTION AFTER:", assumption)
     specification.append(assumption)
-    # print("ADDED ASSUMPTION:", specification)
 
 def writeSpectrafile(filename, specification):
     pass

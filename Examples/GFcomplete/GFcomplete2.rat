@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<project>
+	<signals>
+		<signal>
+			<name>kval_0</name>
+			<kind>E</kind>
+			<type>boolean</type>
+			<notes/>
+		</signal>
+	</signals>
+	<requirements>
+		<requirement>
+			<name>guar_0</name>
+			<property>G(F(!kval_0))</property>
+			<kind>G</kind>
+			<notes/>
+			<toggled>1</toggled>
+		</requirement>
+		<requirement>
+			<name>guar_1</name>
+			<property>G(F(kval_0))</property>
+			<kind>G</kind>
+			<notes/>
+			<toggled>1</toggled>
+		</requirement>
+	</requirements>
+</project>

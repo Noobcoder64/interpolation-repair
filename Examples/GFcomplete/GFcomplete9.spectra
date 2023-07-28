@@ -1,0 +1,15 @@
+module GFcomplete9
+env boolean kval_0;
+env boolean kval_1;
+env boolean kval_2;
+env boolean kval_3;
+
+gar alwEv (!kval_0 & !kval_1 & !kval_2 & !kval_3);
+gar alwEv (!kval_0 & !kval_1 & !kval_2 & kval_3);
+gar alwEv (!kval_0 & !kval_1 & kval_2 & !kval_3);
+gar alwEv (!kval_0 & !kval_1 & kval_2 & kval_3);
+gar alwEv (!kval_0 & kval_1 & !kval_2 & !kval_3);
+gar alwEv (!kval_0 & kval_1 & !kval_2 & kval_3);
+gar alwEv (!kval_0 & kval_1 & kval_2 & !kval_3);
+gar alwEv (!kval_0 & kval_1 & kval_2 & kval_3);
+gar alwEv (kval_0 & !kval_1 & !kval_2 & !kval_3);

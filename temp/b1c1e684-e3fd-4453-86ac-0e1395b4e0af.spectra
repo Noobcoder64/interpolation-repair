@@ -1,0 +1,5 @@
+module GFcomplete2
+env boolean kval_0;
+
+gar alwEv (!kval_0);
+gar alwEv (kval_0);

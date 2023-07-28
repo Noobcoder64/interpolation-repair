@@ -1,0 +1,8 @@
+spec Misc			
+
+sys boolean a;
+env boolean b;
+		
+gar ini a;	
+gar alw a -> next(b);
+gar alw a -> next(!b);

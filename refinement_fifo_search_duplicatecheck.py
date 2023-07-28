@@ -69,6 +69,7 @@ def FifoDuplicateCheckRefinement():
             elif cur_node.isSatisfiable():
                 print("++ REALIZABLE REFINEMENT: SAT CHECK")
                 solutions.append(cur_node.gr1_units)
+                break
             else:
                 print("++ VACUOUS SOLUTION")
             # except Exception as e:
@@ -82,25 +83,25 @@ def FifoDuplicateCheckRefinement():
 
         elapsed_time = timeit.default_timer() - start_experiment
 
-    start_time_nonexpanded_nodes = timeit.default_timer()
-    print("++++ SAVING NON EXPANDED NODES DATA: "+str(len(partial_refinements_queue))+" nodes")
-    for i, nonexpanded_node in enumerate(partial_refinements_queue):
-        try:
-            print("++ Node "+str(i+1)+"/"+str(len(partial_refinements_queue)))
-            with open(nonexpanded_node.getNotesFileId(), "w") as notesfile:
-                notesfile.write("node not expanded")
-            if not (nonexpanded_node.ancestor_counterstrategies_eliminated_total, nonexpanded_node.unique_refinement) in explored_refs:
-                if timeit.default_timer() - start_time_nonexpanded_nodes < 1800: # Check realz. of nonexplored nodes only for extra 30 mins
-                    nonexpanded_node.isRealizable()
-                    if nonexpanded_node.isRealizable():
-                        nonexpanded_node.isSatisfiable()
-                nonexpanded_node.saveRefinementData(datafile, datafields)
-                explored_refs.append((nonexpanded_node.ancestor_counterstrategies_eliminated_total, nonexpanded_node.unique_refinement))
-            else:
-                print("++ DUPLICATE NODE")
-                duplicate_refs.append((nonexpanded_node.ancestor_counterstrategies_eliminated_total, nonexpanded_node.unique_refinement))
-        except Exception as e:
-            print(str(e))
+    # start_time_nonexpanded_nodes = timeit.default_timer()
+    # print("++++ SAVING NON EXPANDED NODES DATA: "+str(len(partial_refinements_queue))+" nodes")
+    # for i, nonexpanded_node in enumerate(partial_refinements_queue):
+    #     try:
+    #         print("++ Node "+str(i+1)+"/"+str(len(partial_refinements_queue)))
+    #         with open(nonexpanded_node.getNotesFileId(), "w") as notesfile:
+    #             notesfile.write("node not expanded")
+    #         if not (nonexpanded_node.ancestor_counterstrategies_eliminated_total, nonexpanded_node.unique_refinement) in explored_refs:
+    #             if timeit.default_timer() - start_time_nonexpanded_nodes < 1800: # Check realz. of nonexplored nodes only for extra 30 mins
+    #                 nonexpanded_node.isRealizable()
+    #                 if nonexpanded_node.isRealizable():
+    #                     nonexpanded_node.isSatisfiable()
+    #             nonexpanded_node.saveRefinementData(datafile, datafields)
+    #             explored_refs.append((nonexpanded_node.ancestor_counterstrategies_eliminated_total, nonexpanded_node.unique_refinement))
+    #         else:
+    #             print("++ DUPLICATE NODE")
+    #             duplicate_refs.append((nonexpanded_node.ancestor_counterstrategies_eliminated_total, nonexpanded_node.unique_refinement))
+    #     except Exception as e:
+    #         print(str(e))
 
     print("++++ SAVING SEARCH SUMMARY DATA")
     experimentstatsfile = open(exp.experimentstatsfile, "w")
