@@ -1,5 +1,5 @@
 #!/bin/bash
-for filepath in SYNTECH15-UNREAL/*.rat
+for filepath in AMBAss/*.rat
 do
         python RATSY2Spectra.py ${filepath}
 done

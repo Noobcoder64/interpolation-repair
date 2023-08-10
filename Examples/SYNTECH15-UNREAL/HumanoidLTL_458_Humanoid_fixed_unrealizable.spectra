@@ -1,27 +1,39 @@
 module HumanoidLTL_458_Humanoid_fixed_unrealizable
-env boolean Obstacle_0;
-env boolean InputMoveMode_0;
-env boolean InputMoveMode_1;
-sys boolean RightMotor_0;
-sys boolean RightMotor_1;
-sys boolean RightMotor_2;
-sys boolean HeadMotor_0;
-sys boolean HeadMotor_1;
-sys boolean LeftMotor_0;
-sys boolean LeftMotor_1;
-sys boolean LeftMotor_2;
-sys boolean OutputMoveMode_0;
-sys boolean OutputMoveMode_1;
+env boolean obstacle_0;
+env boolean inputMoveMode_0;
+env boolean inputMoveMode_1;
+sys boolean rightMotor_0;
+sys boolean rightMotor_1;
+sys boolean rightMotor_2;
+sys boolean headMotor_0;
+sys boolean headMotor_1;
+sys boolean leftMotor_0;
+sys boolean leftMotor_1;
+sys boolean leftMotor_2;
+sys boolean outputMoveMode_0;
+sys boolean outputMoveMode_1;
 
-gar alw ((!InputMoveMode_0 & !InputMoveMode_1 & Obstacle_0) ->(OutputMoveMode_0 & !OutputMoveMode_1 & LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & RightMotor_2));
-gar alw ((!InputMoveMode_0 & InputMoveMode_1 & !Obstacle_0) ->(!OutputMoveMode_0 & !OutputMoveMode_1 & !LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & RightMotor_2));
-gar alw ((!InputMoveMode_0 & !InputMoveMode_1 & !Obstacle_0) ->(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & !RightMotor_2));
-gar alw (Obstacle_0 ->(OutputMoveMode_0 & !OutputMoveMode_1));
-gar alw (InputMoveMode_0 & !InputMoveMode_1 <-> OutputMoveMode_0 & OutputMoveMode_1);
-gar alw (InputMoveMode_0 & !InputMoveMode_1 ->(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & RightMotor_1 & RightMotor_2));
-gar alw (InputMoveMode_0 & InputMoveMode_1 ->(!LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & !RightMotor_2));
-gar alw ((!(InputMoveMode_0 & !InputMoveMode_1 | InputMoveMode_0 & InputMoveMode_1)) ->(!(LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 | RightMotor_0 & !RightMotor_1 & !RightMotor_2 |(!LeftMotor_0 & LeftMotor_1 & LeftMotor_2 & !RightMotor_0 & RightMotor_1 & RightMotor_2))));
-gar alw ((InputMoveMode_0 & !InputMoveMode_1 | InputMoveMode_0 & InputMoveMode_1) -> HeadMotor_0 & !HeadMotor_1);
-gar alw ((InputMoveMode_0 & InputMoveMode_1 & (!OutputMoveMode_0 | OutputMoveMode_1)) ->(LeftMotor_0 & LeftMotor_1 & !LeftMotor_2 & RightMotor_0 & RightMotor_1 & !RightMotor_2));
-gar alw ((InputMoveMode_0 & InputMoveMode_1 & !Obstacle_0) -> !OutputMoveMode_0 & !OutputMoveMode_1);
-asm alwEv (TRUE);
+guarantee
+	G((!inputMoveMode_0 & !inputMoveMode_1 & obstacle_0) ->(outputMoveMode_0 & !outputMoveMode_1 & leftMotor_0 & !leftMotor_1 & leftMotor_2 & rightMotor_0 & !rightMotor_1 & rightMotor_2));
+guarantee
+	G((!inputMoveMode_0 & inputMoveMode_1 & !obstacle_0) ->(!outputMoveMode_0 & !outputMoveMode_1 & !leftMotor_0 & !leftMotor_1 & !leftMotor_2 & !rightMotor_0 & !rightMotor_1 & rightMotor_2));
+guarantee
+	G((!inputMoveMode_0 & !inputMoveMode_1 & !obstacle_0) ->(!leftMotor_0 & !leftMotor_1 & !leftMotor_2 & !rightMotor_0 & !rightMotor_1 & !rightMotor_2));
+guarantee
+	G(obstacle_0 ->(outputMoveMode_0 & !outputMoveMode_1));
+guarantee
+	G(inputMoveMode_0 & !inputMoveMode_1 <-> outputMoveMode_0 & outputMoveMode_1);
+guarantee
+	G(inputMoveMode_0 & !inputMoveMode_1 ->(!leftMotor_0 & !leftMotor_1 & !leftMotor_2 & !rightMotor_0 & rightMotor_1 & rightMotor_2));
+guarantee
+	G(inputMoveMode_0 & inputMoveMode_1 ->(!leftMotor_0 & !leftMotor_1 & leftMotor_2 & rightMotor_0 & !rightMotor_1 & !rightMotor_2));
+guarantee
+	G((!(inputMoveMode_0 & !inputMoveMode_1 | inputMoveMode_0 & inputMoveMode_1)) ->(!(leftMotor_0 & !leftMotor_1 & !leftMotor_2 | rightMotor_0 & !rightMotor_1 & !rightMotor_2 |(!leftMotor_0 & leftMotor_1 & leftMotor_2 & !rightMotor_0 & rightMotor_1 & rightMotor_2))));
+guarantee
+	G((inputMoveMode_0 & !inputMoveMode_1 | inputMoveMode_0 & inputMoveMode_1) -> headMotor_0 & !headMotor_1);
+guarantee
+	G((inputMoveMode_0 & inputMoveMode_1 & (!outputMoveMode_0 | outputMoveMode_1)) ->(leftMotor_0 & leftMotor_1 & !leftMotor_2 & rightMotor_0 & rightMotor_1 & !rightMotor_2));
+guarantee
+	G((inputMoveMode_0 & inputMoveMode_1 & !obstacle_0) -> !outputMoveMode_0 & !outputMoveMode_1);
+assumption
+	GF (TRUE);

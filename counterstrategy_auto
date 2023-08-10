@@ -1,4 +1,0 @@
-VAR
-kval_0__S0,kval_0__INI: BOOLEAN
-FORMULA
-(((!(kval_0__S0)))) & !kval_0__INI & !kval_0__S0

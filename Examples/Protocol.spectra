@@ -12,9 +12,12 @@ sys boolean val;
 
 // ASSUMPTIONS
 
-asm alwEv ((!req));
+assumption
+    GF ((!req));
 
 // GUARANTEES
 
-gar alw ((cl -> !val));
-gar alwEv ((gr & val));
+guarantee
+    G ((cl -> !val));
+guarantee
+    GF ((gr & val));

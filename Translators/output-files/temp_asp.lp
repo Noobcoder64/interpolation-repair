@@ -1,75 +1,55 @@
-t0 :-  not hlock0.
-t0 :- hbusreq0.
+t0 :-  not parkResult_0.
 st0 :- not t0.
 :- st0.
-{decide }.
-{hburst0 }.
-{hburst1 }.
-{hbusreq0 }.
-{hgrant0 }.
-{hlock0 }.
-{hlocked }.
-{hmaster0 }.
-{hmastlock }.
-{hready}.
-{start }.
-{stateA1_0 }.
-{stateG2_0 }.
-{stateG3_0 }.
-{stateG3_1 }.
-{stateG3_2 }.
-rule0 :-  not nextstateA1_0=false.
-rule1 :- stateA1_0=false.
-rule2 :- stateA1_0.
-rule3 :- stateA1_0.
-rule4 :- stateA1_0=false.
-rule5 :- start=false.
-rule6 :- stateG2_0=false.
-rule7 :- stateG2_0=false.
-rule8 :- stateG2_0=false.
-rule9 :- stateG2_0=false.
-rule10 :- stateG2_0=false.
-rule11 :- stateG2_0.
-rule12 :- stateG2_0.
-rule13 :- stateG2_0=false.
-rule14 :- stateG3_0=false.
-rule15 :- stateG3_0.
-rule16 :- stateG3_0=false.
-rule17 :- stateG3_0.
-rule18 :- stateG3_0=false.
-rule19 :- stateG3_0=false.
-rule20 :- stateG3_0.
-rule21 :- stateG3_0.
-rule22 :- stateG3_0=false.
-rule23 :- stateG3_0=false.
-rule24 :- stateG3_0=false.
-rule25 :-  not start=false.
-rule26 :-  not start=false.
-rule27 :-  not hgrant0.
-rule27 :- hlocked=false.
-rule28 :- hgrant0.
-rule29 :-  not hready.
-rule29 :- hgrant0<.
-rule30 :-  not hready.
-rule30 :- hlocked=false<.
-rule31 :-  not decide=false.
-rule31 :- hgrant0=false<.
-rule32 :-  not decide=false.
-rule32 :- hlocked=false<.
-:- rule0,rule1,rule2,rule3,rule4,rule5,rule6,rule7,rule8,rule9,rule10,rule11,rule12,rule13,rule14,rule15,rule16,rule17,rule18,rule19,rule20,rule21,rule22,rule23,rule24,rule25,rule26,rule27,rule28,rule29,rule30,rule31,rule32.
-#show decide /0.
-#show hburst0 /0.
-#show hburst1 /0.
-#show hbusreq0 /0.
-#show hgrant0 /0.
-#show hlock0 /0.
-#show hlocked /0.
-#show hmaster0 /0.
-#show hmastlock /0.
-#show hready/0.
-#show start /0.
-#show stateA1_0 /0.
-#show stateG2_0 /0.
-#show stateG3_0 /0.
-#show stateG3_1 /0.
-#show stateG3_2 /0.
+t1 :-  not  not obstacle_0.
+st1 :- not t1.
+:- st1.
+{obstacle_0}.
+{parkCommand_0}.
+{parkCommand_1}.
+{parkResult_0}.
+{responded_0}.
+{sideSense_0}.
+{spec_policy_0}.
+{spec_policy_1}.
+{spec_policy_2}.
+{steer_0}.
+{steer_1}.
+{throttle_0}.
+{throttle_1}.
+{yBoolExpr_0}.
+rule0 :- responded_0.
+rule0 :-  not responded_0.
+rule1 :-  not spec_policy_0, not spec_policy_1, not spec_policy_2.
+rule1 :-  not spec_policy_0, not spec_policy_1,spec_policy_2.
+rule1 :-  not spec_policy_0,spec_policy_1, not spec_policy_2.
+rule2 :-  not spec_policy_0, not spec_policy_1, not spec_policy_2.
+rule3 :- yBoolExpr_0.
+rule3 :-  not yBoolExpr_0.
+rule4 :-  not obstacle_0.
+rule4 :- throttle_0, not throttle_1.
+rule5 :-  not sideSense_0.
+rule5 :-  not  not steer_0, not steer_1, not throttle_0, not throttle_1.
+rule6 :-  not obstacle_0.
+rule6 :-  not parkCommand_0,parkCommand_1.
+rule7 :- spec_policy_0.
+rule7 :- spec_policy_1.
+rule7 :- spec_policy_2.
+rule7 :- parkResult_0.
+rule7 :-  not throttle_0.
+rule7 :- throttle_1.
+:- rule0,rule1,rule2,rule3,rule4,rule5,rule6,rule7.
+#show obstacle_0/0.
+#show parkCommand_0/0.
+#show parkCommand_1/0.
+#show parkResult_0/0.
+#show responded_0/0.
+#show sideSense_0/0.
+#show spec_policy_0/0.
+#show spec_policy_1/0.
+#show spec_policy_2/0.
+#show steer_0/0.
+#show steer_1/0.
+#show throttle_0/0.
+#show throttle_1/0.
+#show yBoolExpr_0/0.

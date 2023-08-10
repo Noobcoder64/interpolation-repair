@@ -1,7 +1,0 @@
-module GFcomplete2
-env boolean kval_0;
-
-gar alwEv (!kval_0);
-gar alwEv (kval_0);
-asm alw (kval_0 -> next(!(kval_0)));
-asm alwEv (!(!kval_0));

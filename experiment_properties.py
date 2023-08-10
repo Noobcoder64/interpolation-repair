@@ -2,6 +2,8 @@ import io_utils as io
 import timeit
 import random
 import os
+import specification as sp
+import re
 
 # Set random seed for repeatability
 # random.seed(1000)
@@ -40,11 +42,14 @@ uniquesolsfile = "DataFiles/" + case_study_name + "_"+refinement_method+"_exp"+s
 
 experimentstatsfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_expstats.csv"
 
-inputVarsList = io.extractInputVariablesFromFile(specfile)
-outputVarsList = io.extractOutputVariablesFromFile(specfile)
+spec = sp.read_file(specfile)
+spec = sp.interpolation_spec(spec)
+
+inputVarsList = io.extractInputVariablesFromFile(spec)
+outputVarsList = io.extractOutputVariablesFromFile(spec)
 varsList = inputVarsList + outputVarsList
-initialGR1Units = io.extractAssumptionList(specfile)
-guaranteesList = io.extractGuaranteesList(specfile)
+initialGR1Units = io.extractAssumptionList(spec)
+guaranteesList = io.extractGuaranteesList(spec)
 
 counterstrategies = [] # This list contains all observed counterstrategy bdds for use in the experiment
                        # Each element is a triple (marduk_instance, bdd_initial_states, bdd_transition)
@@ -90,11 +95,26 @@ def changeCaseStudy(specification):
 
     experimentstatsfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_expstats.csv"
 
-    inputVarsList = io.extractInputVariablesFromFile(specfile)
-    outputVarsList = io.extractOutputVariablesFromFile(specfile)
+    spec = sp.read_file(specfile)
+    spec = sp.interpolation_spec(spec)
+
+    inputVarsList = io.extractInputVariablesFromFile(spec)
+    print("=== INPUT VARS ===")
+    for var in inputVarsList:
+        print(var)
+    outputVarsList = io.extractOutputVariablesFromFile(spec)
+    print("=== OUTPUT VARS ===")
+    for var in outputVarsList:
+        print(var)
     varsList = inputVarsList + outputVarsList
-    initialGR1Units = io.extractAssumptionList(specfile)
-    guaranteesList = io.extractGuaranteesList(specfile)
+    initialGR1Units = io.extractAssumptionList(spec)
+    print("=== ASSUMPTIONS ===")
+    for asm in initialGR1Units:
+        print(asm)
+    guaranteesList = io.extractGuaranteesList(spec)
+    print("=== GUARANTEES ===")
+    for gar in guaranteesList:
+        print(gar)
 
     start_experiment = timeit.default_timer()
 
@@ -139,10 +159,14 @@ def changeGenerationMethod(generation_method):
 
     experimentstatsfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_expstats.csv"
 
-    inputVarsList = io.extractInputVariablesFromFile(specfile)
-    outputVarsList = io.extractOutputVariablesFromFile(specfile)
+    spec = sp.read_file(specfile)
+    spec = [re.sub(r"GF\s*\(([^\)]*)\)", r"G(F(\1))", line) for line in spec]
+    spec = [re.sub(";", "", line) for line in spec]
+
+    inputVarsList = io.extractInputVariablesFromFile(spec)
+    outputVarsList = io.extractOutputVariablesFromFile(spec)
     varsList = inputVarsList + outputVarsList
-    initialGR1Units = io.extractAssumptionList(specfile)
-    guaranteesList = io.extractGuaranteesList(specfile)
+    initialGR1Units = io.extractAssumptionList(spec)
+    guaranteesList = io.extractGuaranteesList(spec)
 
     start_experiment = timeit.default_timer()

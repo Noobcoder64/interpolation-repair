@@ -1,0 +1,829 @@
+module ColorSort
+env boolean color_RED;
+
+env boolean color_GREEN;
+
+env boolean color_BLUE;
+
+env boolean color_BLACK;
+
+env boolean color_YELLOW;
+
+env boolean color_WHITE;
+
+env boolean color_RED;
+
+env boolean color_GREEN;
+
+env boolean color_BLUE;
+
+env boolean color_BLACK;
+
+env boolean color_YELLOW;
+
+env boolean color_WHITE;
+
+env boolean detect_RED;
+
+env boolean detect_GREEN;
+
+env boolean detect_BLUE;
+
+env boolean detect_BLACK;
+
+env boolean detect_YELLOW;
+
+env boolean detect_WHITE;
+
+env boolean color_RED;
+
+env boolean color_GREEN;
+
+env boolean color_BLUE;
+
+env boolean color_BLACK;
+
+env boolean color_YELLOW;
+
+env boolean color_WHITE;
+
+env boolean detect_RED;
+
+env boolean detect_GREEN;
+
+env boolean detect_BLUE;
+
+env boolean detect_BLACK;
+
+env boolean detect_YELLOW;
+
+env boolean detect_WHITE;
+
+env boolean ack_ver_MOVE;
+
+env boolean ack_ver_SLEEP;
+
+env boolean color_RED;
+
+env boolean color_GREEN;
+
+env boolean color_BLUE;
+
+env boolean color_BLACK;
+
+env boolean color_YELLOW;
+
+env boolean color_WHITE;
+
+env boolean detect_RED;
+
+env boolean detect_GREEN;
+
+env boolean detect_BLUE;
+
+env boolean detect_BLACK;
+
+env boolean detect_YELLOW;
+
+env boolean detect_WHITE;
+
+env boolean ack_ver_MOVE;
+
+env boolean ack_ver_SLEEP;
+
+env boolean ack_hor_MOVE;
+
+env boolean ack_hor_SLEEP;
+
+env boolean color_RED;
+
+env boolean color_GREEN;
+
+env boolean color_BLUE;
+
+env boolean color_BLACK;
+
+env boolean color_YELLOW;
+
+env boolean color_WHITE;
+
+env boolean detect_RED;
+
+env boolean detect_GREEN;
+
+env boolean detect_BLUE;
+
+env boolean detect_BLACK;
+
+env boolean detect_YELLOW;
+
+env boolean detect_WHITE;
+
+env boolean ack_ver_MOVE;
+
+env boolean ack_ver_SLEEP;
+
+env boolean ack_hor_MOVE;
+
+env boolean ack_hor_SLEEP;
+
+env boolean ack_bot_MOVE;
+
+env boolean ack_bot_SLEEP;
+
+		
+		//ext haltButton: {PRESS, RELEASE};
+env boolean color_RED;
+
+env boolean color_GREEN;
+
+env boolean color_BLUE;
+
+env boolean color_BLACK;
+
+env boolean color_YELLOW;
+
+env boolean color_WHITE;
+
+env boolean detect_RED;
+
+env boolean detect_GREEN;
+
+env boolean detect_BLUE;
+
+env boolean detect_BLACK;
+
+env boolean detect_YELLOW;
+
+env boolean detect_WHITE;
+
+env boolean ack_ver_MOVE;
+
+env boolean ack_ver_SLEEP;
+
+env boolean ack_hor_MOVE;
+
+env boolean ack_hor_SLEEP;
+
+env boolean ack_bot_MOVE;
+
+env boolean ack_bot_SLEEP;
+
+env boolean speedButton_PRESS;
+
+env boolean speedButton_RELEASE;
+
+sys boolean color_RED;
+
+sys boolean color_GREEN;
+
+sys boolean color_BLUE;
+
+sys boolean color_BLACK;
+
+sys boolean color_YELLOW;
+
+sys boolean color_WHITE;
+
+sys boolean detect_RED;
+
+sys boolean detect_GREEN;
+
+sys boolean detect_BLUE;
+
+sys boolean detect_BLACK;
+
+sys boolean detect_YELLOW;
+
+sys boolean detect_WHITE;
+
+sys boolean ack_ver_MOVE;
+
+sys boolean ack_ver_SLEEP;
+
+sys boolean ack_hor_MOVE;
+
+sys boolean ack_hor_SLEEP;
+
+sys boolean ack_bot_MOVE;
+
+sys boolean ack_bot_SLEEP;
+
+sys boolean speedButton_PRESS;
+
+sys boolean speedButton_RELEASE;
+
+sys boolean verMot_MOVE;
+
+sys boolean verMot_SLEEP;
+
+sys boolean color_RED;
+
+sys boolean color_GREEN;
+
+sys boolean color_BLUE;
+
+sys boolean color_BLACK;
+
+sys boolean color_YELLOW;
+
+sys boolean color_WHITE;
+
+sys boolean detect_RED;
+
+sys boolean detect_GREEN;
+
+sys boolean detect_BLUE;
+
+sys boolean detect_BLACK;
+
+sys boolean detect_YELLOW;
+
+sys boolean detect_WHITE;
+
+sys boolean ack_ver_MOVE;
+
+sys boolean ack_ver_SLEEP;
+
+sys boolean ack_hor_MOVE;
+
+sys boolean ack_hor_SLEEP;
+
+sys boolean ack_bot_MOVE;
+
+sys boolean ack_bot_SLEEP;
+
+sys boolean speedButton_PRESS;
+
+sys boolean speedButton_RELEASE;
+
+sys boolean verMot_MOVE;
+
+sys boolean verMot_SLEEP;
+
+sys boolean horMot_MOVE;
+
+sys boolean horMot_SLEEP;
+
+sys boolean color_RED;
+
+sys boolean color_GREEN;
+
+sys boolean color_BLUE;
+
+sys boolean color_BLACK;
+
+sys boolean color_YELLOW;
+
+sys boolean color_WHITE;
+
+sys boolean detect_RED;
+
+sys boolean detect_GREEN;
+
+sys boolean detect_BLUE;
+
+sys boolean detect_BLACK;
+
+sys boolean detect_YELLOW;
+
+sys boolean detect_WHITE;
+
+sys boolean ack_ver_MOVE;
+
+sys boolean ack_ver_SLEEP;
+
+sys boolean ack_hor_MOVE;
+
+sys boolean ack_hor_SLEEP;
+
+sys boolean ack_bot_MOVE;
+
+sys boolean ack_bot_SLEEP;
+
+sys boolean speedButton_PRESS;
+
+sys boolean speedButton_RELEASE;
+
+sys boolean verMot_MOVE;
+
+sys boolean verMot_SLEEP;
+
+sys boolean horMot_MOVE;
+
+sys boolean horMot_SLEEP;
+
+sys boolean botMot_SEEK;
+
+sys boolean botMot_STOP;
+
+sys boolean botMot_RETURN;
+
+		
+sys boolean color_RED;
+
+sys boolean color_GREEN;
+
+sys boolean color_BLUE;
+
+sys boolean color_BLACK;
+
+sys boolean color_YELLOW;
+
+sys boolean color_WHITE;
+
+sys boolean detect_RED;
+
+sys boolean detect_GREEN;
+
+sys boolean detect_BLUE;
+
+sys boolean detect_BLACK;
+
+sys boolean detect_YELLOW;
+
+sys boolean detect_WHITE;
+
+sys boolean ack_ver_MOVE;
+
+sys boolean ack_ver_SLEEP;
+
+sys boolean ack_hor_MOVE;
+
+sys boolean ack_hor_SLEEP;
+
+sys boolean ack_bot_MOVE;
+
+sys boolean ack_bot_SLEEP;
+
+sys boolean speedButton_PRESS;
+
+sys boolean speedButton_RELEASE;
+
+sys boolean verMot_MOVE;
+
+sys boolean verMot_SLEEP;
+
+sys boolean horMot_MOVE;
+
+sys boolean horMot_SLEEP;
+
+sys boolean botMot_SEEK;
+
+sys boolean botMot_STOP;
+
+sys boolean botMot_RETURN;
+
+sys boolean motSpeed_LEVEL1;
+
+sys boolean motSpeed_LEVEL2;
+
+sys boolean motSpeed_LEVEL3;
+
+		
+sys boolean color_RED;
+
+sys boolean color_GREEN;
+
+sys boolean color_BLUE;
+
+sys boolean color_BLACK;
+
+sys boolean color_YELLOW;
+
+sys boolean color_WHITE;
+
+sys boolean detect_RED;
+
+sys boolean detect_GREEN;
+
+sys boolean detect_BLUE;
+
+sys boolean detect_BLACK;
+
+sys boolean detect_YELLOW;
+
+sys boolean detect_WHITE;
+
+sys boolean ack_ver_MOVE;
+
+sys boolean ack_ver_SLEEP;
+
+sys boolean ack_hor_MOVE;
+
+sys boolean ack_hor_SLEEP;
+
+sys boolean ack_bot_MOVE;
+
+sys boolean ack_bot_SLEEP;
+
+sys boolean speedButton_PRESS;
+
+sys boolean speedButton_RELEASE;
+
+sys boolean verMot_MOVE;
+
+sys boolean verMot_SLEEP;
+
+sys boolean horMot_MOVE;
+
+sys boolean horMot_SLEEP;
+
+sys boolean botMot_SEEK;
+
+sys boolean botMot_STOP;
+
+sys boolean botMot_RETURN;
+
+sys boolean motSpeed_LEVEL1;
+
+sys boolean motSpeed_LEVEL2;
+
+sys boolean motSpeed_LEVEL3;
+
+sys boolean spec_state_seek_S0;
+
+sys boolean spec_state_seek_S1;
+
+sys boolean spec_state_seek_S2;
+
+sys boolean spec_state_seek_S3;
+
+sys boolean color_RED;
+
+sys boolean color_GREEN;
+
+sys boolean color_BLUE;
+
+sys boolean color_BLACK;
+
+sys boolean color_YELLOW;
+
+sys boolean color_WHITE;
+
+sys boolean detect_RED;
+
+sys boolean detect_GREEN;
+
+sys boolean detect_BLUE;
+
+sys boolean detect_BLACK;
+
+sys boolean detect_YELLOW;
+
+sys boolean detect_WHITE;
+
+sys boolean ack_ver_MOVE;
+
+sys boolean ack_ver_SLEEP;
+
+sys boolean ack_hor_MOVE;
+
+sys boolean ack_hor_SLEEP;
+
+sys boolean ack_bot_MOVE;
+
+sys boolean ack_bot_SLEEP;
+
+sys boolean speedButton_PRESS;
+
+sys boolean speedButton_RELEASE;
+
+sys boolean verMot_MOVE;
+
+sys boolean verMot_SLEEP;
+
+sys boolean horMot_MOVE;
+
+sys boolean horMot_SLEEP;
+
+sys boolean botMot_SEEK;
+
+sys boolean botMot_STOP;
+
+sys boolean botMot_RETURN;
+
+sys boolean motSpeed_LEVEL1;
+
+sys boolean motSpeed_LEVEL2;
+
+sys boolean motSpeed_LEVEL3;
+
+sys boolean spec_state_seek_S0;
+
+sys boolean spec_state_seek_S1;
+
+sys boolean spec_state_seek_S2;
+
+sys boolean spec_state_seek_S3;
+
+sys boolean spec_state_return_S0;
+
+sys boolean spec_state_return_S1;
+
+sys boolean spec_state_return_S2;
+
+		
+sys boolean color_RED;
+
+sys boolean color_GREEN;
+
+sys boolean color_BLUE;
+
+sys boolean color_BLACK;
+
+sys boolean color_YELLOW;
+
+sys boolean color_WHITE;
+
+sys boolean detect_RED;
+
+sys boolean detect_GREEN;
+
+sys boolean detect_BLUE;
+
+sys boolean detect_BLACK;
+
+sys boolean detect_YELLOW;
+
+sys boolean detect_WHITE;
+
+sys boolean ack_ver_MOVE;
+
+sys boolean ack_ver_SLEEP;
+
+sys boolean ack_hor_MOVE;
+
+sys boolean ack_hor_SLEEP;
+
+sys boolean ack_bot_MOVE;
+
+sys boolean ack_bot_SLEEP;
+
+sys boolean speedButton_PRESS;
+
+sys boolean speedButton_RELEASE;
+
+sys boolean verMot_MOVE;
+
+sys boolean verMot_SLEEP;
+
+sys boolean horMot_MOVE;
+
+sys boolean horMot_SLEEP;
+
+sys boolean botMot_SEEK;
+
+sys boolean botMot_STOP;
+
+sys boolean botMot_RETURN;
+
+sys boolean motSpeed_LEVEL1;
+
+sys boolean motSpeed_LEVEL2;
+
+sys boolean motSpeed_LEVEL3;
+
+sys boolean spec_state_seek_S0;
+
+sys boolean spec_state_seek_S1;
+
+sys boolean spec_state_seek_S2;
+
+sys boolean spec_state_seek_S3;
+
+sys boolean spec_state_return_S0;
+
+sys boolean spec_state_return_S1;
+
+sys boolean spec_state_return_S2;
+
+sys boolean spec_currentColor_RED;
+
+sys boolean spec_currentColor_GREEN;
+
+sys boolean spec_currentColor_BLUE;
+
+sys boolean spec_currentColor_BLACK;
+
+sys boolean spec_currentColor_YELLOW;
+
+sys boolean spec_currentColor_WHITE;
+
+		sys boolean spec_dropping ;
+		
+		sys boolean spec_speedButtonValidPressed ;
+		/*ext spec_haltButtonValidPressed : boolean;
+		
+		ext spec_pausing : {PAUSE, GO};*/
+		
+		
+define -- allsleep is true iff all motors sleep
+	allsleep := verMot_SLEEP=true  & horMot_SLEEP=true & botMot_STOP=true;
+define -- nonemove is true iff no motor moves
+	nonemove := ack_ver_SLEEP=true & ack_hor_SLEEP=true & ack_bot_SLEEP=true;
+define -- nonemove is true iff no motor moves
+	onlybotmoves := ack_ver_SLEEP=true & ack_hor_SLEEP=true & ack_bot_MOVE=true;
+
+guarantee
+	G (spec_prevBotMotReturn<->PREV(botMot_RETURN=true));
+guarantee
+	G (spec_prevBotMotSeek<->PREV(botMot_SEEK=true));
+  
+  sys boolean spec_prevBotMotReturn ;
+  sys boolean spec_prevBotMotSeek ;
+
+guarantee -- only one motors moves at a time
+	G (verMot_MOVE=true -> (botMot_STOP=true & horMot_SLEEP=true));
+	
+guarantee 
+	G (horMot_MOVE=true -> (botMot_STOP=true & verMot_SLEEP=true));
+	
+guarantee 
+	G (botMot_STOP=false -> (verMot_SLEEP=true & horMot_SLEEP=true));
+
+guarantee
+	G (verMot_SLEEP=true -> spec_currentColor = next(spec_currentColor));
+	
+guarantee
+	G (spec_dropping = next(spec_dropping) <-> verMot_SLEEP=true & !(spec_prevBotMotReturn =true& ack_bot_SLEEP=true));
+
+guarantee
+	G (ack_ver_MOVE=true | ack_hor_MOVE=true -> allsleep);
+/*	
+LTLSPECENV
+	G (spec_dropping =false-> nonemove);
+	*/ 
+guarantee
+  respondsTo(color_BLACK=false,(horMot_MOVE=true&detect=spec_currentColor));
+
+guarantee
+  GF (horMot_MOVE=true);
+	
+-- running the robot
+
+guarantee
+	G (color_BLACK=true & spec_dropping =false-> allsleep);
+	
+guarantee
+	G (color_BLACK=false & spec_dropping =false-> verMot_MOVE=true & next(spec_currentColor) = color);
+
+guarantee
+	G (nonemove & spec_dropping =true& PREV(ack_ver_MOVE=true)-> botMot_SEEK=true);
+ 
+-- P19
+-- (spec_dropping =true& detect != spec_currentColor -> botMot_SEEK=true) is true between (spec_prevBotMotSeek =true& ack_bot_MOVE=true) and (spec_prevBotMotSeek =true& detect = spec_currentColor)
+guarantee -- initial assignments: initial spec_state_seek
+  spec_state_seek_S0=true;
+
+guarantee -- safety this and next spec_state_seek
+  G ((spec_state_seek_S0=true & ((!(spec_prevBotMotSeek =true& ack_bot_MOVE=true)) | ((spec_prevBotMotSeek =true& detect = spec_currentColor) & (spec_prevBotMotSeek =true& ack_bot_MOVE=true))) & next(spec_state_seek_S0=true)) |
+  (spec_state_seek_S0=true & (!(spec_prevBotMotSeek =true& detect = spec_currentColor) & (spec_dropping =true& detect != spec_currentColor -> botMot_SEEK=true) & (spec_prevBotMotSeek =true& ack_bot_MOVE=true)) & next(spec_state_seek_S1=true)) |
+  (spec_state_seek_S0=true & (!(spec_prevBotMotSeek =true& detect = spec_currentColor) & !(spec_dropping =true& detect != spec_currentColor -> botMot_SEEK=true) & (spec_prevBotMotSeek =true& ack_bot_MOVE=true)) & next(spec_state_seek_S3=true)) |
+  (spec_state_seek_S1=true & ((spec_prevBotMotSeek =true& detect = spec_currentColor)) & next(spec_state_seek_S0=true)) |
+  (spec_state_seek_S1=true & (!(spec_prevBotMotSeek =true& detect = spec_currentColor) & (spec_dropping =true& detect != spec_currentColor -> botMot_SEEK=true)) & next(spec_state_seek_S1=true)) |
+  (spec_state_seek_S1=true & (!(spec_prevBotMotSeek =true& detect = spec_currentColor) & !(spec_dropping =true& detect != spec_currentColor -> botMot_SEEK=true)) & next(spec_state_seek_S3=true)) |
+  (spec_state_seek_S2=true & next(spec_state_seek_S2=true)) |
+  (spec_state_seek_S3=true & ((spec_prevBotMotSeek =true& detect = spec_currentColor)) & next(spec_state_seek_S2=true)) |
+  (spec_state_seek_S3=true & (!(spec_prevBotMotSeek =true& detect = spec_currentColor)) & next(spec_state_seek_S3=true)));
+
+guarantee -- equivalence of satisfaction
+  GF (spec_state_seek_S0=true|spec_state_seek_S1=true|spec_state_seek_S3=true);
+
+guarantee
+	G (spec_dropping =true& onlybotmoves & detect = spec_currentColor & PREV(botMot_SEEK=true) <-> horMot_MOVE=true);
+ 	
+guarantee
+	G (nonemove & PREV(ack_hor_MOVE=true) & spec_dropping =true-> botMot_RETURN=true);
+-- P20
+-- (spec_dropping =true& onlybotmoves -> botMot_RETURN=true) is true after (spec_prevBotMotReturn =true& ack_bot_MOVE=true) until (spec_prevBotMotReturn =true& ack_bot_SLEEP=true)
+guarantee -- initial assignments: initial spec_state_return
+  spec_state_return_S0=true;
+
+guarantee -- safety this and next spec_state_return
+  G ((spec_state_return_S0=true & ((!(spec_prevBotMotReturn =true& ack_bot_MOVE=true) & !(spec_prevBotMotReturn =true& ack_bot_SLEEP=true)) | ((spec_prevBotMotReturn =true& ack_bot_SLEEP=true))) & next(spec_state_return_S0=true)) |
+  (spec_state_return_S0=true & ((spec_prevBotMotReturn =true& ack_bot_MOVE=true) & !(spec_dropping =true& onlybotmoves -> botMot_RETURN=true) & !(spec_prevBotMotReturn =true& ack_bot_SLEEP=true)) & next(spec_state_return_S1=true)) |
+  (spec_state_return_S0=true & ((spec_prevBotMotReturn =true& ack_bot_MOVE=true) & (spec_dropping =true& onlybotmoves -> botMot_RETURN=true) & !(spec_prevBotMotReturn =true& ack_bot_SLEEP=true)) & next(spec_state_return_S2=true)) |
+  (spec_state_return_S1=true & next(spec_state_return_S1=true)) |
+  (spec_state_return_S2=true & ((spec_prevBotMotReturn =true& ack_bot_SLEEP=true)) & next(spec_state_return_S0=true)) |
+  (spec_state_return_S2=true & (!(spec_dropping =true& onlybotmoves -> botMot_RETURN=true) & !(spec_prevBotMotReturn =true& ack_bot_SLEEP=true)) & next(spec_state_return_S1=true)) |
+  (spec_state_return_S2=true & ((spec_dropping =true& onlybotmoves -> botMot_RETURN=true) & !(spec_prevBotMotReturn =true& ack_bot_SLEEP=true)) & next(spec_state_return_S2=true)));
+
+guarantee -- equivalence of satisfaction
+  GF (spec_state_return_S0=true|spec_state_return_S2=true);
+ 
+guarantee
+	G (spec_prevBotMotReturn =true& ack_bot_SLEEP=true -> allsleep);
+
+-- speed button
+
+guarantee
+	motSpeed_LEVEL1=true & !spec_dropping;
+
+guarantee
+	G (speedButton_PRESS=true & PREV(speedButton_RELEASE=true) <-> spec_speedButtonValidPressed);
+
+
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed =true& PREV(motSpeed_LEVEL1=true) -> motSpeed_LEVEL2=true);
+	
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed =true& PREV(motSpeed_LEVEL2=true) -> motSpeed_LEVEL3=true);
+	
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed =true& PREV(motSpeed_LEVEL3=true) -> motSpeed_LEVEL1=true);
+	 
+	 
+guarantee -- if the speed button is released, the speed remains the same
+	G (spec_speedButtonValidPressed =false& PREV(motSpeed_LEVEL1=true) -> motSpeed_LEVEL1=true);
+	
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed =false& PREV(motSpeed_LEVEL2=true) -> motSpeed_LEVEL2=true);
+	
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed =false& PREV(motSpeed_LEVEL3=true) -> motSpeed_LEVEL3=true);
+/* 
+-- pause button
+
+LTLSPEC
+	G (haltButton = PRESS & PREV(haltButton = RELEASE) <-> spec_haltButtonValidPressed);
+
+LTLSPEC
+	G ((spec_haltButtonValidPressed & spec_pausing = GO) | (!spec_haltButtonValidPressed & spec_pausing = PAUSE)
+		-> next(spec_pausing) = PAUSE);
+	
+LTLSPEC
+	G ((!spec_haltButtonValidPressed & spec_pausing = GO) | (spec_haltButtonValidPressed & spec_pausing = PAUSE)
+		-> next(spec_pausing) = GO);
+
+LTLSPECENV -- no pause is eternal
+	G (spec_pausing = PAUSE -> F (spec_pausing = GO));
+*/
+-- Some environment specifications
+
+  sys boolean spec_waiting_ack_ver_mot;
+  sys boolean spec_waiting_ack_hor_mot;
+
+guarantee -- initial state
+  spec_waiting_ack_ver_mot=false; -- not waiting for acknowledgement (only sleeping is allowed)
+  
+guarantee -- transitions
+  G(spec_waiting_ack_ver_mot=false & verMot_MOVE=false -> next(spec_waiting_ack_ver_mot=false));
+guarantee
+  G (spec_waiting_ack_ver_mot=false & verMot_MOVE=true -> next(spec_waiting_ack_ver_mot=true));
+guarantee
+  G (spec_waiting_ack_ver_mot=true & ack_ver_SLEEP=true -> next(spec_waiting_ack_ver_mot=false));
+guarantee
+  G (spec_waiting_ack_ver_mot=true & ack_ver_SLEEP=false -> next(spec_waiting_ack_ver_mot=true));
+
+assumption -- while we are not waiting motor can only acknowledge sleeping
+  G(spec_waiting_ack_ver_mot=false -> ack_ver_SLEEP=true);
+assumption -- on move command acknowledge moving
+  G(verMot_MOVE=true -> next(ack_ver_MOVE=true));
+assumption -- if we are waiting motor has to eventually acknowledge finishing
+  respondsTo(spec_waiting_ack_ver_mot=true,(ack_ver_SLEEP=true));
+  
+  
+guarantee -- initial state
+  spec_waiting_ack_hor_mot=false; -- not waiting for acknowledgement (only sleeping is allowed)
+  
+guarantee -- transitions
+  G(spec_waiting_ack_hor_mot=false & horMot_MOVE=false -> next(spec_waiting_ack_hor_mot=false));
+guarantee
+  G (spec_waiting_ack_hor_mot=false & horMot_MOVE=true -> next(spec_waiting_ack_hor_mot=true));
+guarantee
+  G (spec_waiting_ack_hor_mot=true & ack_hor_SLEEP=true -> next(spec_waiting_ack_hor_mot=false));
+guarantee
+  G (spec_waiting_ack_hor_mot=true & ack_hor_SLEEP=false -> next(spec_waiting_ack_hor_mot=true));
+
+assumption -- while we are not waiting motor can only acknowledge sleeping
+  G(spec_waiting_ack_hor_mot=false -> ack_hor_SLEEP=true);
+assumption -- on move command acknowledge moving
+  G(horMot_MOVE=true -> next(ack_hor_MOVE=true));
+assumption -- if we are waiting motor has to eventually acknowledge finishing
+  respondsTo(spec_waiting_ack_hor_mot=true,(ack_hor_SLEEP=true));
+  
+/*   
+LTLSPECENV
+	G (ack_ver_MOVE=true -> F (ack_ver_SLEEP=true));
+LTLSPECENV
+	G (ack_hor_MOVE=true -> F (ack_hor_SLEEP=true));*/
+assumption
+  respondsTo(ack_bot_MOVE=true,(ack_bot_SLEEP=true));
+	/* 
+LTLSPECENV -- unfinisheds
+	G (botMot_SEEK=true );
+*/
+/* 
+LTLSPECENV
+	G F (ack_hor_MOVE=true);
+*/	
+assumption -- there will always be a cube
+  GF (color_BLACK=false);
+
+pattern respondsTo(trigger, response) {
+  var boolean responded;
+  responded;
+  G (next(responded) iff (response or responded and !trigger));
+  GF (responded);
+}

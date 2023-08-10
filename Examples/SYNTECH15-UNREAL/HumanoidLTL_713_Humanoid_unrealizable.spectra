@@ -1,22 +1,22 @@
 module HumanoidLTL_713_Humanoid_unrealizable
-env boolean Button_0;
-env boolean Obstacle_0;
-env boolean Noise_0;
-env boolean Heading_0;
-env boolean Heading_1;
-env boolean Heading_2;
+env boolean button_0;
+env boolean obstacle_0;
+env boolean noise_0;
+env boolean heading_0;
+env boolean heading_1;
+env boolean heading_2;
 sys boolean yBoolExpr_14;
-sys boolean RightMotor_0;
-sys boolean RightMotor_1;
-sys boolean RightMotor_2;
+sys boolean rightMotor_0;
+sys boolean rightMotor_1;
+sys boolean rightMotor_2;
 sys boolean next_head_0;
 sys boolean next_head_1;
 sys boolean next_head_2;
 sys boolean spec_state_0;
 sys boolean spec_state_1;
-sys boolean LeftMotor_0;
-sys boolean LeftMotor_1;
-sys boolean LeftMotor_2;
+sys boolean leftMotor_0;
+sys boolean leftMotor_1;
+sys boolean leftMotor_2;
 sys boolean yBoolExpr_2;
 sys boolean yBoolExpr_3;
 sys boolean yBoolExpr_0;
@@ -27,8 +27,8 @@ sys boolean yBoolExpr_4;
 sys boolean yBoolExpr_5;
 sys boolean yBoolExpr_8;
 sys boolean yBoolExpr_9;
-sys boolean HeadMotor_0;
-sys boolean HeadMotor_1;
+sys boolean headMotor_0;
+sys boolean headMotor_1;
 sys boolean yBoolExpr_15;
 sys boolean yBoolExpr_16;
 sys boolean yBoolExpr_10;
@@ -41,50 +41,97 @@ sys boolean responded_0;
 sys boolean responded_1;
 sys boolean spec_search_0;
 
-gar alw (next(responded_0) <-> (((Heading_0 <-> next_head_0) & (Heading_1 <-> next_head_1) & (Heading_2 <-> next_head_2)) | !(spec_search_0)));
-gar alw (((!spec_nextMoveMode_0 & !spec_nextMoveMode_1 | !spec_nextMoveMode_0 & spec_nextMoveMode_1) & ((Heading_0 <-> !next_head_0) | (Heading_1 <-> !next_head_1) | (Heading_2 <-> !next_head_2))) -> next(((Heading_0 <-> !next_head_0) | (Heading_1 <-> !next_head_1) | (Heading_2 <-> !next_head_2))));
-gar alw (next(responded_1) <-> ((!Obstacle_0) | !((spec_nextMoveMode_0 | spec_nextMoveMode_1))));
-asm alw ((!spec_nextMoveMode_0 & spec_nextMoveMode_1 & !Obstacle_0) -> next((!Obstacle_0)));
-asm alwEv (yBoolExpr_16 & !Obstacle_0);
-gar !spec_search_0 & !next_head_0 & !next_head_1 & !next_head_2;
-gar alw ((!spec_state_0 & !spec_state_1 & !spec_nextMoveMode_0 & !spec_nextMoveMode_1 & next(!spec_nextMoveMode_0 & spec_nextMoveMode_1)) -> next(!spec_state_0 & spec_state_1));
-gar alw ((!spec_state_0 & spec_state_1 & !spec_nextMoveMode_0 & spec_nextMoveMode_1 & next(!spec_nextMoveMode_0 & !spec_nextMoveMode_1)) -> next(spec_state_0 & !spec_state_1));
-gar alw (!(spec_state_0 & !spec_state_1 & !spec_nextMoveMode_0 & !spec_nextMoveMode_1 & next(!spec_nextMoveMode_0 & spec_nextMoveMode_1)));
-gar alw ((!spec_state_0 & spec_state_1 & next(!spec_nextMoveMode_0 & spec_nextMoveMode_1)) -> next(!spec_state_0 & spec_state_1));
-gar alw ((spec_state_0 & !spec_state_1 & next(!spec_nextMoveMode_0 & !spec_nextMoveMode_1)) -> next(spec_state_0 & !spec_state_1));
-gar alw ((spec_nextMoveMode_0 & !spec_nextMoveMode_1 | spec_nextMoveMode_0 & !spec_nextMoveMode_1) -> next(!spec_state_0 & !spec_state_1));
-gar G HeadMotor_0 & !HeadMotor_1;
-gar alw (Button_0 -> (next_head_0 <-> Heading_0) & (next_head_1 <-> Heading_1) & (next_head_2 <-> Heading_2));
-gar alw ((!spec_search_0 & !spec_nextMoveMode_0 & !spec_nextMoveMode_1 & Noise_0 & ((Heading_0 <-> !next_head_0) | (Heading_1 <-> !next_head_1) | (Heading_2 <-> !next_head_2))) -> next(spec_search_0));
-gar alw ((spec_search_0 & (Heading_0 <-> next_head_0) & (Heading_1 <-> next_head_1) & (Heading_2 <-> next_head_2)) -> next(!spec_search_0));
-gar alw ((spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_0));
-gar alw ((yBoolExpr_0) <-> next(yBoolExpr_1));
-gar alw ((Obstacle_0 &(!yBoolExpr_1)) ->(spec_nextMoveMode_0 & !spec_nextMoveMode_1));
-gar alw ((!spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_2));
-gar alw ((yBoolExpr_2 & !spec_nextMoveMode_0 & !spec_nextMoveMode_1) <->(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & RightMotor_2));
-gar alw ((!spec_nextMoveMode_0 & !spec_nextMoveMode_1) <-> next(yBoolExpr_3));
-gar alw ((yBoolExpr_3 & !spec_nextMoveMode_0 & spec_nextMoveMode_1) <->(!LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & !RightMotor_2));
-gar alwEv (!spec_nextMoveMode_0 & !spec_nextMoveMode_1);
-gar alw ((spec_nextMoveMode_0 & !spec_nextMoveMode_1) <-> next(yBoolExpr_4));
-gar alw (yBoolExpr_4 ->(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & RightMotor_1 & RightMotor_2));
-gar alw ((spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_5));
-gar alw (yBoolExpr_5 ->(!LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & !RightMotor_2));
-gar alw ((spec_nextMoveMode_0 & !spec_nextMoveMode_1) <-> next(yBoolExpr_6));
-gar alw (yBoolExpr_6 <-> spec_nextMoveMode_0 & spec_nextMoveMode_1);
-gar alw ((spec_nextMoveMode_0 & !spec_nextMoveMode_1) <-> next(yBoolExpr_7));
-gar alw ((spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_8));
-gar alw ((!(yBoolExpr_7 | yBoolExpr_8)) ->(!(LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 | RightMotor_0 & !RightMotor_1 & !RightMotor_2 | !LeftMotor_0 & LeftMotor_1 & LeftMotor_2 | !RightMotor_0 & RightMotor_1 & RightMotor_2)));
-gar alw ((!spec_nextMoveMode_0 & !spec_nextMoveMode_1) <-> next(yBoolExpr_9));
-gar alw ((!spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_10));
-gar alw (!spec_nextMoveMode_0 & spec_nextMoveMode_1 ->(yBoolExpr_9 | yBoolExpr_10));
-gar alw ((!spec_nextMoveMode_0 & !spec_nextMoveMode_1) <-> next(yBoolExpr_11));
-gar alw ((yBoolExpr_11 & spec_nextMoveMode_0 & !spec_nextMoveMode_1) <->(LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & RightMotor_2));
-gar alw ((!spec_nextMoveMode_0 & !spec_nextMoveMode_1) <-> next(yBoolExpr_12));
-gar alw ((spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_13));
-gar alw ((yBoolExpr_13) <-> next(yBoolExpr_14));
-gar alw ((yBoolExpr_12 & yBoolExpr_14) <->(LeftMotor_0 & LeftMotor_1 & !LeftMotor_2 & RightMotor_0 & RightMotor_1 & !RightMotor_2));
-gar alw ((!spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_15));
-gar alw (yBoolExpr_15 -> (!spec_nextMoveMode_0 | spec_nextMoveMode_1));
-gar alwEv (responded_0);
-gar alwEv (responded_1);
-gar alw ((spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_16));
+guarantee
+	G(next(responded_0) <-> (((heading_0 <-> next_head_0) & (heading_1 <-> next_head_1) & (heading_2 <-> next_head_2)) | !(spec_search_0)));
+guarantee
+	G(((!spec_nextMoveMode_0 & !spec_nextMoveMode_1 | !spec_nextMoveMode_0 & spec_nextMoveMode_1) & ((heading_0 <-> !next_head_0) | (heading_1 <-> !next_head_1) | (heading_2 <-> !next_head_2))) -> next(((heading_0 <-> !next_head_0) | (heading_1 <-> !next_head_1) | (heading_2 <-> !next_head_2))));
+guarantee
+	G(next(responded_1) <-> ((!obstacle_0) | !((spec_nextMoveMode_0 | spec_nextMoveMode_1))));
+assumption
+	G((!spec_nextMoveMode_0 & spec_nextMoveMode_1 & !obstacle_0) -> next((!obstacle_0)));
+assumption
+	GF (yBoolExpr_16 & !obstacle_0);
+guarantee
+	!spec_search_0 & !next_head_0 & !next_head_1 & !next_head_2;
+guarantee
+	G((!spec_state_0 & !spec_state_1 & !spec_nextMoveMode_0 & !spec_nextMoveMode_1 & next(!spec_nextMoveMode_0 & spec_nextMoveMode_1)) -> next(!spec_state_0 & spec_state_1));
+guarantee
+	G((!spec_state_0 & spec_state_1 & !spec_nextMoveMode_0 & spec_nextMoveMode_1 & next(!spec_nextMoveMode_0 & !spec_nextMoveMode_1)) -> next(spec_state_0 & !spec_state_1));
+guarantee
+	G(!(spec_state_0 & !spec_state_1 & !spec_nextMoveMode_0 & !spec_nextMoveMode_1 & next(!spec_nextMoveMode_0 & spec_nextMoveMode_1)));
+guarantee
+	G((!spec_state_0 & spec_state_1 & next(!spec_nextMoveMode_0 & spec_nextMoveMode_1)) -> next(!spec_state_0 & spec_state_1));
+guarantee
+	G((spec_state_0 & !spec_state_1 & next(!spec_nextMoveMode_0 & !spec_nextMoveMode_1)) -> next(spec_state_0 & !spec_state_1));
+guarantee
+	G((spec_nextMoveMode_0 & !spec_nextMoveMode_1 | spec_nextMoveMode_0 & !spec_nextMoveMode_1) -> next(!spec_state_0 & !spec_state_1));
+guarantee
+	G(headMotor_0 & !headMotor_1);
+guarantee
+	G(button_0 -> (next_head_0 <-> heading_0) & (next_head_1 <-> heading_1) & (next_head_2 <-> heading_2));
+guarantee
+	G((!spec_search_0 & !spec_nextMoveMode_0 & !spec_nextMoveMode_1 & noise_0 & ((heading_0 <-> !next_head_0) | (heading_1 <-> !next_head_1) | (heading_2 <-> !next_head_2))) -> next(spec_search_0));
+guarantee
+	G((spec_search_0 & (heading_0 <-> next_head_0) & (heading_1 <-> next_head_1) & (heading_2 <-> next_head_2)) -> next(!spec_search_0));
+guarantee
+	G((spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_0));
+guarantee
+	G((yBoolExpr_0) <-> next(yBoolExpr_1));
+guarantee
+	G((obstacle_0 &(!yBoolExpr_1)) ->(spec_nextMoveMode_0 & !spec_nextMoveMode_1));
+guarantee
+	G((!spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_2));
+guarantee
+	G((yBoolExpr_2 & !spec_nextMoveMode_0 & !spec_nextMoveMode_1) <->(!leftMotor_0 & !leftMotor_1 & !leftMotor_2 & !rightMotor_0 & !rightMotor_1 & rightMotor_2));
+guarantee
+	G((!spec_nextMoveMode_0 & !spec_nextMoveMode_1) <-> next(yBoolExpr_3));
+guarantee
+	G((yBoolExpr_3 & !spec_nextMoveMode_0 & spec_nextMoveMode_1) <->(!leftMotor_0 & !leftMotor_1 & leftMotor_2 & !rightMotor_0 & !rightMotor_1 & !rightMotor_2));
+guarantee
+	GF (!spec_nextMoveMode_0 & !spec_nextMoveMode_1);
+guarantee
+	G((spec_nextMoveMode_0 & !spec_nextMoveMode_1) <-> next(yBoolExpr_4));
+guarantee
+	G(yBoolExpr_4 ->(!leftMotor_0 & !leftMotor_1 & !leftMotor_2 & !rightMotor_0 & rightMotor_1 & rightMotor_2));
+guarantee
+	G((spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_5));
+guarantee
+	G(yBoolExpr_5 ->(!leftMotor_0 & !leftMotor_1 & leftMotor_2 & rightMotor_0 & !rightMotor_1 & !rightMotor_2));
+guarantee
+	G((spec_nextMoveMode_0 & !spec_nextMoveMode_1) <-> next(yBoolExpr_6));
+guarantee
+	G(yBoolExpr_6 <-> spec_nextMoveMode_0 & spec_nextMoveMode_1);
+guarantee
+	G((spec_nextMoveMode_0 & !spec_nextMoveMode_1) <-> next(yBoolExpr_7));
+guarantee
+	G((spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_8));
+guarantee
+	G((!(yBoolExpr_7 | yBoolExpr_8)) ->(!(leftMotor_0 & !leftMotor_1 & !leftMotor_2 | rightMotor_0 & !rightMotor_1 & !rightMotor_2 | !leftMotor_0 & leftMotor_1 & leftMotor_2 | !rightMotor_0 & rightMotor_1 & rightMotor_2)));
+guarantee
+	G((!spec_nextMoveMode_0 & !spec_nextMoveMode_1) <-> next(yBoolExpr_9));
+guarantee
+	G((!spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_10));
+guarantee
+	G(!spec_nextMoveMode_0 & spec_nextMoveMode_1 ->(yBoolExpr_9 | yBoolExpr_10));
+guarantee
+	G((!spec_nextMoveMode_0 & !spec_nextMoveMode_1) <-> next(yBoolExpr_11));
+guarantee
+	G((yBoolExpr_11 & spec_nextMoveMode_0 & !spec_nextMoveMode_1) <->(leftMotor_0 & !leftMotor_1 & leftMotor_2 & rightMotor_0 & !rightMotor_1 & rightMotor_2));
+guarantee
+	G((!spec_nextMoveMode_0 & !spec_nextMoveMode_1) <-> next(yBoolExpr_12));
+guarantee
+	G((spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_13));
+guarantee
+	G((yBoolExpr_13) <-> next(yBoolExpr_14));
+guarantee
+	G((yBoolExpr_12 & yBoolExpr_14) <->(leftMotor_0 & leftMotor_1 & !leftMotor_2 & rightMotor_0 & rightMotor_1 & !rightMotor_2));
+guarantee
+	G((!spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_15));
+guarantee
+	G(yBoolExpr_15 -> (!spec_nextMoveMode_0 | spec_nextMoveMode_1));
+guarantee
+	GF (responded_0);
+guarantee
+	GF (responded_1);
+guarantee
+	G((spec_nextMoveMode_0 & spec_nextMoveMode_1) <-> next(yBoolExpr_16));

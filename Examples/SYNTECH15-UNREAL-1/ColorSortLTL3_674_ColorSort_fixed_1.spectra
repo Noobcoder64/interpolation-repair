@@ -1,0 +1,137 @@
+module ColorSortLTL3_674_ColorSort_fixed_1
+env boolean detect_0;
+env boolean detect_1;
+env boolean detect_2;
+env boolean yBoolExpr_4;
+env boolean ack_bot_0;
+env boolean yBoolExpr_5;
+env boolean color_0;
+env boolean color_1;
+env boolean color_2;
+env boolean speedButton_0;
+env boolean nonemove;
+env boolean onlybotmoves;
+env boolean yBoolExpr_1;
+env boolean ack_ver_0;
+env boolean allsleep;
+env boolean ack_hor_0;
+sys boolean yBoolExpr_2;
+sys boolean yBoolExpr_3;
+sys boolean spec_dropping;
+sys boolean yBoolExpr_6;
+sys boolean spec_currentColor_0;
+sys boolean spec_currentColor_1;
+sys boolean spec_currentColor_2;
+sys boolean verMot_0;
+sys boolean yBoolExpr_8;
+sys boolean yBoolExpr_9;
+sys boolean spec_waiting_ack_ver_mot;
+sys boolean motSpeed_0;
+sys boolean motSpeed_1;
+sys boolean yBoolExpr_0;
+sys boolean spec_prevBotMotReturn;
+sys boolean yBoolExpr_7;
+sys boolean spec_speedButtonValidPressed;
+sys boolean horMot_0;
+sys boolean yBoolExpr_10;
+sys boolean yBoolExpr_11;
+sys boolean spec_waiting_ack_hor_mot;
+sys boolean spec_state_return_0;
+sys boolean spec_state_return_1;
+sys boolean botMot_0;
+sys boolean botMot_1;
+
+assumption
+	G(((ack_hor_0)) <-> next(yBoolExpr_1));
+assumption
+	G((!ack_hor_0) <-> next(yBoolExpr_4));
+assumption
+	G((speedButton_0) <-> next(yBoolExpr_5));
+guarantee
+	G((!spec_waiting_ack_ver_mot) -> ack_ver_0);
+guarantee
+	G((botMot_0 & !botMot_1) <-> next(yBoolExpr_0));
+guarantee
+	G(spec_prevBotMotReturn <-> yBoolExpr_0);
+guarantee
+	G(!verMot_0 ->(!botMot_0 & botMot_1 & horMot_0));
+guarantee
+	G(!horMot_0 ->(!botMot_0 & botMot_1 & verMot_0));
+guarantee
+	G((botMot_0 | !botMot_1) ->(verMot_0 & horMot_0));
+guarantee
+	G(verMot_0 -> (spec_currentColor_0 <-> next(spec_currentColor_0)) & (spec_currentColor_1 <-> next(spec_currentColor_1)) & (spec_currentColor_2 <-> next(spec_currentColor_2)));
+guarantee
+	G(spec_dropping <-> next(spec_dropping) <->(verMot_0 &(!(spec_prevBotMotReturn & nonemove))));
+guarantee
+	G((!ack_ver_0 | !ack_hor_0) -> allsleep);
+guarantee
+	G((!color_0 & color_1 & color_2 &(!spec_dropping)) -> allsleep);
+guarantee
+	G(((color_0 | !color_1 | !color_2) &(!spec_dropping)) ->(!verMot_0 & (color_0 <-> next(spec_currentColor_0)) & (color_1 <-> next(spec_currentColor_1)) & (color_2 <-> next(spec_currentColor_2))));
+guarantee
+	G((!botMot_0 & !botMot_1) <-> next(yBoolExpr_2));
+guarantee
+	G(((nonemove & spec_dropping & yBoolExpr_1) |(yBoolExpr_2 & onlybotmoves & ((detect_0 <-> !spec_currentColor_0) | (detect_1 <-> !spec_currentColor_1) | (detect_2 <-> !spec_currentColor_2)))) -> !botMot_0 & !botMot_1);
+guarantee
+	G((!botMot_0 & !botMot_1) <-> next(yBoolExpr_3));
+guarantee
+	G((spec_dropping & onlybotmoves & (detect_0 <-> spec_currentColor_0) & (detect_1 <-> spec_currentColor_1) & (detect_2 <-> spec_currentColor_2) & yBoolExpr_3) <-> !horMot_0);
+guarantee
+	G((nonemove & yBoolExpr_4 & spec_dropping) -> botMot_0 & !botMot_1);
+guarantee
+	!spec_state_return_0 & !spec_state_return_1;
+guarantee
+	G((!spec_state_return_0 & !spec_state_return_1 &((!(spec_prevBotMotReturn & !ack_bot_0)) |((spec_prevBotMotReturn & ack_bot_0) &(spec_prevBotMotReturn & !ack_bot_0))) & next(!spec_state_return_0 & !spec_state_return_1)) |(!spec_state_return_0 & !spec_state_return_1 &((!(spec_prevBotMotReturn & ack_bot_0)) &((spec_dropping & onlybotmoves) -> botMot_0 & !botMot_1) &(spec_prevBotMotReturn & !ack_bot_0)) & next(!spec_state_return_0 & spec_state_return_1)) |(!spec_state_return_0 & !spec_state_return_1 &((!(spec_prevBotMotReturn & ack_bot_0)) &(!((spec_dropping & onlybotmoves) -> botMot_0 & !botMot_1)) &(spec_prevBotMotReturn & !ack_bot_0)) & next(spec_state_return_0 & spec_state_return_1)) |(!spec_state_return_0 & spec_state_return_1 &(spec_prevBotMotReturn & ack_bot_0) & next(!spec_state_return_0 & !spec_state_return_1)) |(!spec_state_return_0 & spec_state_return_1 &((!(spec_prevBotMotReturn & ack_bot_0)) &((spec_dropping & onlybotmoves) -> botMot_0 & !botMot_1)) & next(!spec_state_return_0 & spec_state_return_1)) |(!spec_state_return_0 & spec_state_return_1 &((!(spec_prevBotMotReturn & ack_bot_0)) &(!((spec_dropping & onlybotmoves) -> botMot_0 & !botMot_1))) & next(spec_state_return_0 & spec_state_return_1)) |(spec_state_return_0 & !spec_state_return_1 & next(spec_state_return_0 & !spec_state_return_1)) |(spec_state_return_0 & spec_state_return_1 &(spec_prevBotMotReturn & ack_bot_0) & next(spec_state_return_0 & !spec_state_return_1)) |(spec_state_return_0 & spec_state_return_1 &(!(spec_prevBotMotReturn & ack_bot_0)) & next(spec_state_return_0 & spec_state_return_1)));
+guarantee
+	GF (!spec_state_return_0 & !spec_state_return_1 | !spec_state_return_0 & spec_state_return_1 | spec_state_return_0 & spec_state_return_1);
+guarantee
+	!motSpeed_0 & !motSpeed_1 &(!spec_dropping);
+guarantee
+	G((!speedButton_0 & yBoolExpr_5) <-> spec_speedButtonValidPressed);
+guarantee
+	G((!motSpeed_0 & !motSpeed_1) <-> next(yBoolExpr_6));
+guarantee
+	G((spec_speedButtonValidPressed & yBoolExpr_6) -> !motSpeed_0 & motSpeed_1);
+guarantee
+	G((!motSpeed_0 & motSpeed_1) <-> next(yBoolExpr_7));
+guarantee
+	G((spec_speedButtonValidPressed & yBoolExpr_7) -> motSpeed_0 & !motSpeed_1);
+guarantee
+	G((motSpeed_0 & !motSpeed_1) <-> next(yBoolExpr_8));
+guarantee
+	G((spec_speedButtonValidPressed & yBoolExpr_8) -> !motSpeed_0 & !motSpeed_1);
+guarantee
+	G((!motSpeed_0 & !motSpeed_1) <-> next(yBoolExpr_9));
+guarantee
+	G(((!spec_speedButtonValidPressed) & yBoolExpr_9) -> !motSpeed_0 & !motSpeed_1);
+guarantee
+	G((!motSpeed_0 & motSpeed_1) <-> next(yBoolExpr_10));
+guarantee
+	G(((!spec_speedButtonValidPressed) & yBoolExpr_10) -> !motSpeed_0 & motSpeed_1);
+guarantee
+	G((motSpeed_0 & !motSpeed_1) <-> next(yBoolExpr_11));
+guarantee
+	G(((!spec_speedButtonValidPressed) & yBoolExpr_11) -> motSpeed_0 & !motSpeed_1);
+guarantee
+	!spec_waiting_ack_ver_mot;
+guarantee
+	G(((!spec_waiting_ack_ver_mot) & (verMot_0)) -> next(!spec_waiting_ack_ver_mot));
+guarantee
+	G(((!spec_waiting_ack_ver_mot) & !verMot_0) -> next(spec_waiting_ack_ver_mot));
+guarantee
+	G((spec_waiting_ack_ver_mot & ack_ver_0) -> next(!spec_waiting_ack_ver_mot));
+guarantee
+	G((spec_waiting_ack_ver_mot & (!ack_ver_0)) -> next(spec_waiting_ack_ver_mot));
+guarantee
+	!spec_waiting_ack_hor_mot;
+guarantee
+	G(((!spec_waiting_ack_hor_mot) & (horMot_0)) -> next(!spec_waiting_ack_hor_mot));
+guarantee
+	G(((!spec_waiting_ack_hor_mot) & !horMot_0) -> next(spec_waiting_ack_hor_mot));
+guarantee
+	G((spec_waiting_ack_hor_mot & ack_hor_0) -> next(!spec_waiting_ack_hor_mot));
+guarantee
+	G((spec_waiting_ack_hor_mot & (!ack_hor_0)) -> next(spec_waiting_ack_hor_mot));
+assumption
+	GF (TRUE);

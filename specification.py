@@ -1,5 +1,6 @@
 import re
 import os
+import sys
 
 def read_file(spectra_file):
     file = open(spectra_file, 'r')
@@ -114,28 +115,22 @@ def remove_trivial_outer_brackets(output):
 def format_spec(spec):
     variables = strip_vars(spec)
     spec = word_sub(spec, "spec", "module")
-    spec = word_sub(spec, "alwEv", "G(F(")
-    # spec = [re.sub(r'GF\s*\(', "G(F(", x) for x in spec]
-    spec = word_sub(spec, "alw", "G((")
-    spec = word_sub(spec, "next", "X")
+    spec = word_sub(spec, "alwEv", "GF")
+    spec = word_sub(spec, "alw", "G")
     # I is later removed as not real Spectra syntax:
-    spec = word_sub(spec, "ini", "")
-    spec = word_sub(spec, "asm", "")
-    spec = word_sub(spec, "gar", "")
-    spec = word_sub(spec, "and", "&")
-    spec = word_sub(spec, "or", "|")
-    spec = [re.sub(r'(\w+)=true', '', x) for x in spec]
-    spec = [re.sub(r'(\w+)=false', r'!\1', x) for x in spec]
+    spec = word_sub(spec, "ini", "I")
+    spec = word_sub(spec, "asm", "assumption --")
+    spec = word_sub(spec, "gar", "guarantee --")
     new_vars = []
     # This bit deals with multi-valued 'enums'
-    spec = enumerate_spec(new_vars, spec)
+    # spec = enumerate_spec(new_vars, spec)
     for i, line in enumerate(spec):
         words = line.strip("\t").split(" ")
         words = [x for x in words if x != ""]
         # This bit fixes boolean style
         if words[0] not in ['env', 'sys', 'spec', 'assumption', 'guarantee', 'module']:
-            if len(re.findall(r"\(", line)) == len(re.findall(r"\)", line)) + 2:
-                line = line.replace(";", "));")
+            if len(re.findall(r"\(", line)) == len(re.findall(r"\)", line)) + 1:
+                line = line.replace(";", " ) ;")
             # This replaces next(A & B) with next(A) & next(B):
             line = spread_temporal_operator(line, "next")
             line = spread_temporal_operator(line, "PREV")
@@ -145,17 +140,34 @@ def format_spec(spec):
     # spec = [re.sub(r"\(\s*\((.*)\)\s*\)", r"(\1)", x) for x in spec]
     spec = [remove_trivial_outer_brackets(x) for x in spec]
     # This changes names that start with capital letters to lowercase so that ilasp/clingo knows they are not variables.
-    spec = [re.sub('--[A-Z]', lambda m: m.group(0).lower(), x) for x in spec]
-    spec = [re.sub(r';', '', re.sub(r'\s', '', x)) for x in spec]
+    # spec = [re.sub('--[A-Z]', lambda m: m.group(0).lower(), x) for x in spec]
+    return spec
+
+def interpolation_spec(spec):
+    spec = [re.sub(r"GF\s*\(([^\)]*)\)", r"G(F(\1))", line) for line in spec]
+    spec = word_sub(spec, "next", "X")
+    spec = [re.sub(r'(\w+)=true', '', x) for x in spec]
+    spec = [re.sub(r'(\w+)=false', r'!\1', x) for x in spec]
+    spec = [re.sub(";", "", line) for line in spec]
     return spec
 
 def unformat_spec(spec):
-    # spec = re.sub(r'G\(F\(', r'alwEv ', spec)
-    spec = re.sub(r"G\(F\(([^\)]*)\)", r"alwEv (\1", spec)
-    spec = re.sub(r"G\(([^\)]*)\)", r"alw \1", spec)
-    spec = re.sub(r"X\(([^\)]*)\)", r"next(\1)", spec)
-    spec = "asm " + spec + ";\n"
-    return spec    
+    spec = [re.sub(r"G\(F\(([^\)]*)\)", r"alwEv (\1", line) for line in spec]
+    spec = [re.sub(r"GF\s*\(([^\)]*)\)", r"alwEv (\1)", line) for line in spec]
+    spec = [re.sub(r"G\s*\(([^\)]*)\)", r"alw (\1)", line) for line in spec]
+    spec = [re.sub(r"X\(([^\)]*)\)", r"next(\1)", line) for line in spec]
+    spec = [re.sub(r"\s*;", r";", line) for line in spec]
+    return spec
+
+def unspectra(spec):
+    spec = [re.sub(r"alwEv\s*\(([^\)]*)\)", r"G(F(\1))", line) for line in spec]
+    spec = [re.sub(r"alw\s*\(([^\)]*)\)", r"G(\1)", line) for line in spec]
+    spec = [re.sub(r'(\w+)=true', '', x) for x in spec]
+    spec = [re.sub(r'(\w+)=false', r'!\1', x) for x in spec]
+    spec = [re.sub(r"next\(([^\)]*)\)", r"X(\1)", line) for line in spec]
+    spec = [re.sub(r"\s*;", "", line) for line in spec]
+
+    return spec
 
 def assumptions(spec):
     spec = [x for x in spec if 'asm' in x]
@@ -255,8 +267,8 @@ def negate(string):
 def spectra_to_DNF(formula):
     prefix = ""
     suffix = ";"
-    justice = re.search(r"G\((.*)\);", formula)
-    liveness = re.search(r"GF\((.*)\);", formula)
+    justice = re.search(r"G\s*\((.*)\)\s*;", formula)
+    liveness = re.search(r"GF\s*\((.*)\)\s*;", formula)
     if justice:
         prefix = "G("
         suffix = ");"
@@ -280,12 +292,16 @@ def extract_non_liveness(spec, exp_type):
     return [spectra_to_DNF(x) for x in output if not re.search("F", x)]
 
 
-def extract_expressions(file, counter_strat=False, guarantee_only=False):
-    spec = read_file(file)
+def extract_expressions(spec, counter_strat=False, guarantee_only=False):
     variables = strip_vars(spec)
     spec = simplify_assignments(spec, variables)
     assumptions = extract_non_liveness(spec, "assumption")
+    print("ASSUMPTIONS: ", assumptions)
     guarantees = extract_non_liveness(spec, "guarantee")
+    print("GUARANTEES ===============")
+    for gar in guarantees:
+        print(gar)
+
     if counter_strat:
         guarantees = []
     if guarantee_only:
@@ -299,10 +315,124 @@ def extract_expressions(file, counter_strat=False, guarantee_only=False):
     prevs = list(dict.fromkeys(prevs))
     variables += prevs
     variables.sort()
-
+    
     unprimed_expressions = [re.search(r"G\(([^F]*)\);", x).group(1) for x in assumptions + guarantees if
                             not re.search(r"PREV|next", x) and re.search(r"G\s*\(", x)]
     primed_expressions = [re.search(r"G\(([^F]*)\);", x).group(1) for x in assumptions + guarantees if
-                          re.search(r"PREV|next", x) and re.search("G", x)]
-    initial_expressions = [x.strip(";") for x in assumptions + guarantees if not re.search(r"G\(|GF\(", x)]
+                          re.search(r"PREV|next", x) and re.search(r"G\s*\(", x)]
+    initial_expressions = [x.strip(";") for x in assumptions + guarantees if not re.search(r"G\s*\(|GF\s*\(", x)]
     return initial_expressions, prevs, primed_expressions, unprimed_expressions, variables
+
+def generate_filename(spectra_file, replacement, output=False):
+    if output:
+        spectra_file = spectra_file.replace("input-files", "output-files")
+    return spectra_file.replace(".spectra", replacement)
+
+def lower_variables(spec, variables):
+    mapping = {var: var.lower() for var in variables}
+    for key in mapping.keys():
+        spec = [re.sub(r"\b" + re.escape(key) + r"\b", mapping[key], line) for line in spec]
+    return spec, list(mapping.values())
+
+def name_expressions(spec):
+    count = 0
+    for i, line in enumerate(spec):
+        exp_type = re.search(r"(assumption|guarantee)", line)
+        if exp_type:
+            if not re.search(r"(assumption|guarantee)\s*--\s*[a-zA-z]+", line):
+                exp = exp_type.group(1)
+                spec[i] = (exp + " -- " + exp + str(count) + '\n')
+                count += 1
+    return spec
+
+def parenthetic_contents_with_function(string, include_after=False):
+    """Generate parenthesized contents in string as pairs (level, contents)."""
+    stack = []
+    for i, c in enumerate(string):
+        if c == '(':
+            stack.append(i)
+        elif c == ')' and stack:
+            start = stack.pop()
+            pre = string[start - 1:start]
+            # if start == 0:
+            #     pre = string[0]
+            if include_after:
+                if i + 2 > len(string):
+                    post = ""
+                else:
+                    post = string[i + 1:i + 2]
+                yield (len(stack), pre, string[start + 1: i], post)
+            else:
+                yield (len(stack), pre, string[start + 1: i])
+
+
+def iff_to_dnf_sub(formula):
+    exp = re.search(r"(.*)<->(.*)", formula)
+    if (exp):
+        a = exp.group(1)
+        b = exp.group(2)
+        return "(" + a + "&" + b + "|" + negate(a) + "&" + negate(b) + ")"
+
+    # formula = "((FULL & next(FULL)|!FULL&!next(FULL)) &(EMPTY & next(EMPTY)|!EMPTY&!next(EMPTY)))"
+
+    return formula
+
+
+def iff_to_dnf(line):
+    # line = '\tG((ENQ <-> DEQ) -> ((FULL <-> next(FULL)) &(EMPTY <-> next(EMPTY))));\n'
+    if not re.search("<->", line):
+        return line
+    contents = list(parenthetic_contents_with_function(line))
+    levels = max([tup[0] for tup in contents]) + 1
+    for i in reversed(range(levels)):
+        for j, par in enumerate(contents):
+            if par[0] == i:
+                # replacement bit
+                one_up = [x for x in contents if x[0] == i + 1]
+                string = par[2]
+                for x in one_up:
+                    string = re.sub(re.escape(x[2]), x[3], string)
+                contents[j] = tuple(list(contents[j]) + [iff_to_dnf_sub(string)])
+    for tup in contents:
+        if tup[0] == 0:
+            line = re.sub(re.escape(tup[2]), tup[3], line)
+    return line
+    # exp = re.search(r"(G|GF)\s*\((.*)<->(.*)\s*\)\s*;", line)
+    # if (exp):
+    #     a = exp.group(2)
+    #     b = exp.group(3)
+    #     return "\t" + exp.group(1) + "(" + a + "&" + b + "|" + negate(a) + "&" + negate(b) + ");\n\n"
+    # return line
+
+
+def format_iff(spec):
+    # variables = strip_vars(spec)
+    # spec, variables = lower_variables(spec, variables)
+    spec = [re.sub(r"next\(([^\)]*)\)", r"(next(\1))", line) for line in spec]
+    # spec = format_spec(spec)
+    # spec = simplify_assignments(spec, variables)
+    # spec = name_expressions(spec)
+    spec = [iff_to_dnf(line) for line in spec]
+    # spec = [symplify(line, variables) for line in spec]
+    return spec
+
+# def main():
+#     spectra_file = "Examples/cimattiAnalyzing/amba_ahb_w_guar_trans_amba_ahb_1.spectra"
+#     format_iff(spectra_file)
+#     spec = read_file(spectra_file)
+#     # spec = format_spec(spec)
+#     spec = unformat_spec(spec)
+#     out_file = generate_filename(spectra_file, "_formatted.spectra")
+#     # spec = [line + "\n" for line in spec]
+#     write_file(spec, out_file)
+
+def main():
+    spectra_file = sys.argv[1]
+    spec = read_file(spectra_file)
+    spec = [re.sub('--[A-Z]', lambda m: m.group(0).lower(), x) for x in spec]
+    out_file = generate_filename(spectra_file, "_formatted.spectra")
+    # spec = [line + "\n" for line in spec]
+    write_file(spec, out_file)
+
+if __name__ == '__main__':
+    main()

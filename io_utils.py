@@ -40,16 +40,14 @@ def extractAssumptionListWithNames( SpecFile ):
     return assumptionDict
 
 # Returns a list with all assumptions in a .rat file
-def extractAssumptionList( SpecFile ):
-    infile = sp.read_file(SpecFile)
-    infile = sp.assumptions(infile)
-    return infile
+def extractAssumptionList(spec):
+    spec = [re.sub(r"\s", "", spec[i + 1]) for i, line in enumerate(spec) if re.search("asm|assumption", line)]
+    return spec
 
 # Returns a list with all guarantees in a .rat file
-def extractGuaranteesList( SpecFile ):
-    infile = sp.read_file(SpecFile)
-    infile = sp.guarantees(infile)
-    return infile
+def extractGuaranteesList(spec):
+    spec = [re.sub(r"\s", "", spec[i + 1]) for i, line in enumerate(spec) if re.search("gar|guarantee", line)]
+    return spec
 
 # Extract variables from .rat file
 def extractVariablesFromFile( SpecFile ):
@@ -67,12 +65,10 @@ def extractVariablesFromFile( SpecFile ):
     return variables
 
 # Extract input variables from .rat file
-def extractInputVariablesFromFile( SpecFile ):
-    infile = sp.read_file(SpecFile)
-
+def extractInputVariablesFromFile(spec):
     variables = []
-    for line in infile:
-        match = re.search(r'(?:env)\s+boolean\s+(\w+)\s*;', line)
+    for line in spec:
+        match = re.search(r'(?:env)\s+boolean\s+(\w+)\s*', line)
         if match:
             variables.append(match.group(1))
 
@@ -91,12 +87,10 @@ def extractInputVariablesFromFile( SpecFile ):
     # return variables
 
 # Extract output variables from .rat file
-def extractOutputVariablesFromFile( SpecFile ):
-    infile = sp.read_file(SpecFile)
-    
+def extractOutputVariablesFromFile(spec):
     variables = []
-    for line in infile:
-        match = re.search(r'(?:sys)\s+boolean\s+(\w+)\s*;', line)
+    for line in spec:
+        match = re.search(r'(?:sys)\s+boolean\s+(\w+)\s*', line)
         if match:
             variables.append(match.group(1))
     

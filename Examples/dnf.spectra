@@ -1,0 +1,11 @@
+spec Dnf
+
+sys boolean a;
+env boolean b;
+
+guarantee
+    a;
+guarantee
+    G (a <-> b);
+guarantee
+    G (a -> next(!b));

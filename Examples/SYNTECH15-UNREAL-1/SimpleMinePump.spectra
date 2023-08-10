@@ -1,0 +1,24 @@
+module SimpleMinePump
+env boolean methane;
+env boolean pumpOn;
+sys boolean switchPumpOn;
+sys boolean switchPumpOff;
+
+assumption
+	G(switchPumpOn -> next(pumpOn));
+assumption
+	G((pumpOn & !switchPumpOff) -> next(pumpOn));
+assumption
+	G(switchPumpOff -> next(!pumpOn));
+assumption
+	G(!pumpOn & !switchPumpOn -> next(!pumpOn));
+guarantee
+	G(methane -> !pumpOn);
+assumption
+	GF (TRUE);
+assumption
+	!pumpOn;
+guarantee
+	G(switchPumpOff -> !switchPumpOn);
+guarantee
+	GF (switchPumpOn);

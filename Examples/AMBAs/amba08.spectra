@@ -55,189 +55,375 @@ sys boolean stateG10_5;
 sys boolean stateG10_6;
 sys boolean stateG10_7;
 
-asm !hready;
-asm !hbusreq0;
-asm !hlock0;
-asm !hbusreq1;
-asm !hlock1;
-asm !hbusreq2;
-asm !hlock2;
-asm !hbusreq3;
-asm !hlock3;
-asm !hbusreq4;
-asm !hlock4;
-asm !hbusreq5;
-asm !hlock5;
-asm !hbusreq6;
-asm !hlock6;
-asm !hbusreq7;
-asm !hlock7;
-asm !hburst0;
-asm !hburst1;
-gar !hmaster0;
-gar !hmaster1;
-gar !hmaster2;
-gar !hmastlock;
-gar start;
-gar decide;
-gar !locked;
-gar hgrant0;
-gar !hgrant1;
-gar !hgrant2;
-gar !hgrant3;
-gar !hgrant4;
-gar !hgrant5;
-gar !hgrant6;
-gar !hgrant7;
-gar !busreq;
-gar !stateA1;
-gar !stateG2;
-gar !stateG2_0;
-gar !stateG2_1;
-gar !stateG2_2;
-gar !stateG2_3;
-gar !stateG2_4;
-gar !stateG2_5;
-gar !stateG2_6;
-gar !stateG2_7;
-gar !stateG3_0;
-gar !stateG3_1;
-gar !stateG3_2;
-gar !stateG10_1;
-gar !stateG10_2;
-gar !stateG10_3;
-gar !stateG10_4;
-gar !stateG10_5;
-gar !stateG10_6;
-gar !stateG10_7;
-asm alw (hlock0->hbusreq0);
-asm alw (hlock1->hbusreq1);
-asm alw (hlock2->hbusreq2);
-asm alw (hlock3->hbusreq3);
-asm alw (hlock4->hbusreq4);
-asm alw (hlock5->hbusreq5);
-asm alw (hlock6->hbusreq6);
-asm alw (hlock7->hbusreq7);
-gar alw ((!hmaster0)&(!hmaster1)&(!hmaster2)->(!hbusreq0<->!busreq));
-gar alw ((hmaster0)&(!hmaster1)&(!hmaster2)->(!hbusreq1<->!busreq));
-gar alw ((!hmaster0)&(hmaster1)&(!hmaster2)->(!hbusreq2<->!busreq));
-gar alw ((hmaster0)&(hmaster1)&(!hmaster2)->(!hbusreq3<->!busreq));
-gar alw ((!hmaster0)&(!hmaster1)&(hmaster2)->(!hbusreq4<->!busreq));
-gar alw ((hmaster0)&(!hmaster1)&(hmaster2)->(!hbusreq5<->!busreq));
-gar alw ((!hmaster0)&(hmaster1)&(hmaster2)->(!hbusreq6<->!busreq));
-gar alw ((hmaster0)&(hmaster1)&(hmaster2)->(!hbusreq7<->!busreq));
-gar alw (((!stateA1)&((!hmastlock)|(hburst0)|(hburst1)))->(next(!stateA1)));
-gar alw (((!stateA1)&(hmastlock)&(!hburst0)&(!hburst1))->(next(stateA1)));
-gar alw (((stateA1)&(busreq))->(next(stateA1)));
-gar alw (((stateA1)&(!busreq))->(next(!stateA1)));
-gar alw ((!hready)->(next(!start)));
-gar alw (((!stateG2)&((!hmastlock)|(!start)|(hburst0)|(hburst1)))->(next(!stateG2)));
-gar alw (((!stateG2)&(hmastlock)&(start)&(!hburst0)&(!hburst1))->(next(stateG2)));
-gar alw (((stateG2)&(!start)&(busreq))->(next(stateG2)));
-gar alw (((stateG2)&(start))->FALSE);
-gar alw (((stateG2)&(!start)&(!busreq))->(next(!stateG2)));
-gar alw (((!stateG3_0)&(!stateG3_1)&(!stateG3_2)&((!hmastlock)|(!start)|((hburst0)|(!hburst1))))->((next(!stateG3_0))&(next(!stateG3_1))&(next(!stateG3_2))));
-gar alw (((!stateG3_0)&(!stateG3_1)&(!stateG3_2)&((hmastlock)&(start)&((!hburst0)&(hburst1))&(!hready)))->((next(stateG3_0))&(next(!stateG3_1))&(next(!stateG3_2))));
-gar alw (((!stateG3_0)&(!stateG3_1)&(!stateG3_2)&((hmastlock)&(start)&((!hburst0)&(hburst1))&(hready)))->((next(!stateG3_0))&(next(stateG3_1))&(next(!stateG3_2))));
-gar alw (((stateG3_0)&(!stateG3_1)&(!stateG3_2)&((!start)&(!hready)))->((next(stateG3_0))&(next(!stateG3_1))&(next(!stateG3_2))));
-gar alw (((stateG3_0)&(!stateG3_1)&(!stateG3_2)&((!start)&(hready)))->((next(!stateG3_0))&(next(stateG3_1))&(next(!stateG3_2))));
-gar alw (((stateG3_0)&(!stateG3_1)&(!stateG3_2)&((start)))->FALSE);
-gar alw (((!stateG3_0)&(stateG3_1)&(!stateG3_2)&((!start)&(!hready)))->((next(!stateG3_0))&(next(stateG3_1))&(next(!stateG3_2))));
-gar alw (((!stateG3_0)&(stateG3_1)&(!stateG3_2)&((!start)&(hready)))->((next(stateG3_0))&(next(stateG3_1))&(next(!stateG3_2))));
-gar alw (((!stateG3_0)&(stateG3_1)&(!stateG3_2)&((start)))->FALSE);
-gar alw (((stateG3_0)&(stateG3_1)&(!stateG3_2)&((!start)&(!hready)))->((next(stateG3_0))&(next(stateG3_1))&(next(!stateG3_2))));
-gar alw (((stateG3_0)&(stateG3_1)&(!stateG3_2)&((!start)&(hready)))->((next(!stateG3_0))&(next(!stateG3_1))&(next(stateG3_2))));
-gar alw (((stateG3_0)&(stateG3_1)&(!stateG3_2)&((start)))->FALSE);
-gar alw (((!stateG3_0)&(!stateG3_1)&(stateG3_2)&((!start)&(!hready)))->((next(!stateG3_0))&(next(!stateG3_1))&(next(stateG3_2))));
-gar alw (((!stateG3_0)&(!stateG3_1)&(stateG3_2)&((!start)&(hready)))->((next(!stateG3_0))&(next(!stateG3_1))&(next(!stateG3_2))));
-gar alw (((!stateG3_0)&(!stateG3_1)&(stateG3_2)&((start)))->FALSE);
-gar alw ((hready)->((hgrant0)<->((next(!hmaster0))&(next(!hmaster1))&(next(!hmaster2)))));
-gar alw ((hready)->((hgrant1)<->((next(hmaster0))&(next(!hmaster1))&(next(!hmaster2)))));
-gar alw ((hready)->((hgrant2)<->((next(!hmaster0))&(next(hmaster1))&(next(!hmaster2)))));
-gar alw ((hready)->((hgrant3)<->((next(hmaster0))&(next(hmaster1))&(next(!hmaster2)))));
-gar alw ((hready)->((hgrant4)<->((next(!hmaster0))&(next(!hmaster1))&(next(hmaster2)))));
-gar alw ((hready)->((hgrant5)<->((next(hmaster0))&(next(!hmaster1))&(next(hmaster2)))));
-gar alw ((hready)->((hgrant6)<->((next(!hmaster0))&(next(hmaster1))&(next(hmaster2)))));
-gar alw ((hready)->((hgrant7)<->((next(hmaster0))&(next(hmaster1))&(next(hmaster2)))));
-gar alw ((hready)->(!locked<->(next(!hmastlock))));
-gar alw ((next(!start))->(((!hmaster0)&(!hmaster1)&(!hmaster2))<->((next(!hmaster0))&(next(!hmaster1))&(next(!hmaster2)))));
-gar alw ((next(!start))->(((hmaster0)&(!hmaster1)&(!hmaster2))<->((next(hmaster0))&(next(!hmaster1))&(next(!hmaster2)))));
-gar alw ((next(!start))->(((!hmaster0)&(hmaster1)&(!hmaster2))<->((next(!hmaster0))&(next(hmaster1))&(next(!hmaster2)))));
-gar alw ((next(!start))->(((hmaster0)&(hmaster1)&(!hmaster2))<->((next(hmaster0))&(next(hmaster1))&(next(!hmaster2)))));
-gar alw ((next(!start))->(((!hmaster0)&(!hmaster1)&(hmaster2))<->((next(!hmaster0))&(next(!hmaster1))&(next(hmaster2)))));
-gar alw ((next(!start))->(((hmaster0)&(!hmaster1)&(hmaster2))<->((next(hmaster0))&(next(!hmaster1))&(next(hmaster2)))));
-gar alw ((next(!start))->(((!hmaster0)&(hmaster1)&(hmaster2))<->((next(!hmaster0))&(next(hmaster1))&(next(hmaster2)))));
-gar alw ((next(!start))->(((hmaster0)&(hmaster1)&(hmaster2))<->((next(hmaster0))&(next(hmaster1))&(next(hmaster2)))));
-gar alw ((((next(!start))))->((hmastlock)<->(next(hmastlock))));
-gar alw ((decide&hlock0&(next(hgrant0)))->(next(locked)));
-gar alw ((decide&!hlock0&(next(hgrant0)))->(next(!locked)));
-gar alw ((decide&hlock1&(next(hgrant1)))->(next(locked)));
-gar alw ((decide&!hlock1&(next(hgrant1)))->(next(!locked)));
-gar alw ((decide&hlock2&(next(hgrant2)))->(next(locked)));
-gar alw ((decide&!hlock2&(next(hgrant2)))->(next(!locked)));
-gar alw ((decide&hlock3&(next(hgrant3)))->(next(locked)));
-gar alw ((decide&!hlock3&(next(hgrant3)))->(next(!locked)));
-gar alw ((decide&hlock4&(next(hgrant4)))->(next(locked)));
-gar alw ((decide&!hlock4&(next(hgrant4)))->(next(!locked)));
-gar alw ((decide&hlock5&(next(hgrant5)))->(next(locked)));
-gar alw ((decide&!hlock5&(next(hgrant5)))->(next(!locked)));
-gar alw ((decide&hlock6&(next(hgrant6)))->(next(locked)));
-gar alw ((decide&!hlock6&(next(hgrant6)))->(next(!locked)));
-gar alw ((decide&hlock7&(next(hgrant7)))->(next(locked)));
-gar alw ((decide&!hlock7&(next(hgrant7)))->(next(!locked)));
-gar alw ((!decide)->(((!hgrant0)<->(next(!hgrant0)))));
-gar alw ((!decide)->(((!hgrant1)<->(next(!hgrant1)))));
-gar alw ((!decide)->(((!hgrant2)<->(next(!hgrant2)))));
-gar alw ((!decide)->(((!hgrant3)<->(next(!hgrant3)))));
-gar alw ((!decide)->(((!hgrant4)<->(next(!hgrant4)))));
-gar alw ((!decide)->(((!hgrant5)<->(next(!hgrant5)))));
-gar alw ((!decide)->(((!hgrant6)<->(next(!hgrant6)))));
-gar alw ((!decide)->(((!hgrant7)<->(next(!hgrant7)))));
-gar alw ((!decide)->(!locked<->(next(!locked))));
-gar alw (((!stateG10_1)&(((hgrant1)|(hbusreq1))))->(next(!stateG10_1)));
-gar alw (((!stateG10_1)&((!hgrant1)&(!hbusreq1)))->(next(stateG10_1)));
-gar alw (((stateG10_1)&((!hgrant1)&(!hbusreq1)))->(next(stateG10_1)));
-gar alw (((stateG10_1)&(((hgrant1))&(!hbusreq1)))->FALSE);
-gar alw (((stateG10_1)&(hbusreq1))->(next(!stateG10_1)));
-gar alw (((!stateG10_2)&(((hgrant2)|(hbusreq2))))->(next(!stateG10_2)));
-gar alw (((!stateG10_2)&((!hgrant2)&(!hbusreq2)))->(next(stateG10_2)));
-gar alw (((stateG10_2)&((!hgrant2)&(!hbusreq2)))->(next(stateG10_2)));
-gar alw (((stateG10_2)&(((hgrant2))&(!hbusreq2)))->FALSE);
-gar alw (((stateG10_2)&(hbusreq2))->(next(!stateG10_2)));
-gar alw (((!stateG10_3)&(((hgrant3)|(hbusreq3))))->(next(!stateG10_3)));
-gar alw (((!stateG10_3)&((!hgrant3)&(!hbusreq3)))->(next(stateG10_3)));
-gar alw (((stateG10_3)&((!hgrant3)&(!hbusreq3)))->(next(stateG10_3)));
-gar alw (((stateG10_3)&(((hgrant3))&(!hbusreq3)))->FALSE);
-gar alw (((stateG10_3)&(hbusreq3))->(next(!stateG10_3)));
-gar alw (((!stateG10_4)&(((hgrant4)|(hbusreq4))))->(next(!stateG10_4)));
-gar alw (((!stateG10_4)&((!hgrant4)&(!hbusreq4)))->(next(stateG10_4)));
-gar alw (((stateG10_4)&((!hgrant4)&(!hbusreq4)))->(next(stateG10_4)));
-gar alw (((stateG10_4)&(((hgrant4))&(!hbusreq4)))->FALSE);
-gar alw (((stateG10_4)&(hbusreq4))->(next(!stateG10_4)));
-gar alw (((!stateG10_5)&(((hgrant5)|(hbusreq5))))->(next(!stateG10_5)));
-gar alw (((!stateG10_5)&((!hgrant5)&(!hbusreq5)))->(next(stateG10_5)));
-gar alw (((stateG10_5)&((!hgrant5)&(!hbusreq5)))->(next(stateG10_5)));
-gar alw (((stateG10_5)&(((hgrant5))&(!hbusreq5)))->FALSE);
-gar alw (((stateG10_5)&(hbusreq5))->(next(!stateG10_5)));
-gar alw (((!stateG10_6)&(((hgrant6)|(hbusreq6))))->(next(!stateG10_6)));
-gar alw (((!stateG10_6)&((!hgrant6)&(!hbusreq6)))->(next(stateG10_6)));
-gar alw (((stateG10_6)&((!hgrant6)&(!hbusreq6)))->(next(stateG10_6)));
-gar alw (((stateG10_6)&(((hgrant6))&(!hbusreq6)))->FALSE);
-gar alw (((stateG10_6)&(hbusreq6))->(next(!stateG10_6)));
-gar alw (((!stateG10_7)&(((hgrant7)|(hbusreq7))))->(next(!stateG10_7)));
-gar alw (((!stateG10_7)&((!hgrant7)&(!hbusreq7)))->(next(stateG10_7)));
-gar alw (((stateG10_7)&((!hgrant7)&(!hbusreq7)))->(next(stateG10_7)));
-gar alw (((stateG10_7)&(((hgrant7))&(!hbusreq7)))->FALSE);
-gar alw (((stateG10_7)&(hbusreq7))->(next(!stateG10_7)));
-gar alw ((decide&!hbusreq0&!hbusreq1&!hbusreq2&!hbusreq3&!hbusreq4&!hbusreq5&!hbusreq6&!hbusreq7)->(next(hgrant0)));
-asm alwEv (!stateA1);
-gar alwEv (!stateG2);
-gar alwEv ((!stateG3_0&(!stateG3_1)&(!stateG3_2)));
-gar alwEv (((!hmaster0&(!hmaster1)&(!hmaster2))|!hbusreq0));
-gar alwEv (((hmaster0&(!hmaster1)&(!hmaster2))|!hbusreq1));
-gar alwEv (((!hmaster0&(hmaster1)&(!hmaster2))|!hbusreq2));
-gar alwEv (((hmaster0&(hmaster1)&(!hmaster2))|!hbusreq3));
-gar alwEv (((!hmaster0&(!hmaster1)&(hmaster2))|!hbusreq4));
-gar alwEv (((hmaster0&(!hmaster1)&(hmaster2))|!hbusreq5));
-gar alwEv (((!hmaster0&(hmaster1)&(hmaster2))|!hbusreq6));
-gar alwEv (((hmaster0&(hmaster1)&(hmaster2))|!hbusreq7));
+assumption
+	!hready;
+assumption
+	!hbusreq0;
+assumption
+	!hlock0;
+assumption
+	!hbusreq1;
+assumption
+	!hlock1;
+assumption
+	!hbusreq2;
+assumption
+	!hlock2;
+assumption
+	!hbusreq3;
+assumption
+	!hlock3;
+assumption
+	!hbusreq4;
+assumption
+	!hlock4;
+assumption
+	!hbusreq5;
+assumption
+	!hlock5;
+assumption
+	!hbusreq6;
+assumption
+	!hlock6;
+assumption
+	!hbusreq7;
+assumption
+	!hlock7;
+assumption
+	!hburst0;
+assumption
+	!hburst1;
+guarantee
+	!hmaster0;
+guarantee
+	!hmaster1;
+guarantee
+	!hmaster2;
+guarantee
+	!hmastlock;
+guarantee
+	start;
+guarantee
+	decide;
+guarantee
+	!locked;
+guarantee
+	hgrant0;
+guarantee
+	!hgrant1;
+guarantee
+	!hgrant2;
+guarantee
+	!hgrant3;
+guarantee
+	!hgrant4;
+guarantee
+	!hgrant5;
+guarantee
+	!hgrant6;
+guarantee
+	!hgrant7;
+guarantee
+	!busreq;
+guarantee
+	!stateA1;
+guarantee
+	!stateG2;
+guarantee
+	!stateG2_0;
+guarantee
+	!stateG2_1;
+guarantee
+	!stateG2_2;
+guarantee
+	!stateG2_3;
+guarantee
+	!stateG2_4;
+guarantee
+	!stateG2_5;
+guarantee
+	!stateG2_6;
+guarantee
+	!stateG2_7;
+guarantee
+	!stateG3_0;
+guarantee
+	!stateG3_1;
+guarantee
+	!stateG3_2;
+guarantee
+	!stateG10_1;
+guarantee
+	!stateG10_2;
+guarantee
+	!stateG10_3;
+guarantee
+	!stateG10_4;
+guarantee
+	!stateG10_5;
+guarantee
+	!stateG10_6;
+guarantee
+	!stateG10_7;
+assumption
+	G(hlock0->hbusreq0);
+assumption
+	G(hlock1->hbusreq1);
+assumption
+	G(hlock2->hbusreq2);
+assumption
+	G(hlock3->hbusreq3);
+assumption
+	G(hlock4->hbusreq4);
+assumption
+	G(hlock5->hbusreq5);
+assumption
+	G(hlock6->hbusreq6);
+assumption
+	G(hlock7->hbusreq7);
+guarantee
+	G((!hmaster0)&(!hmaster1)&(!hmaster2)->(!hbusreq0<->!busreq));
+guarantee
+	G((hmaster0)&(!hmaster1)&(!hmaster2)->(!hbusreq1<->!busreq));
+guarantee
+	G((!hmaster0)&(hmaster1)&(!hmaster2)->(!hbusreq2<->!busreq));
+guarantee
+	G((hmaster0)&(hmaster1)&(!hmaster2)->(!hbusreq3<->!busreq));
+guarantee
+	G((!hmaster0)&(!hmaster1)&(hmaster2)->(!hbusreq4<->!busreq));
+guarantee
+	G((hmaster0)&(!hmaster1)&(hmaster2)->(!hbusreq5<->!busreq));
+guarantee
+	G((!hmaster0)&(hmaster1)&(hmaster2)->(!hbusreq6<->!busreq));
+guarantee
+	G((hmaster0)&(hmaster1)&(hmaster2)->(!hbusreq7<->!busreq));
+guarantee
+	G(((!stateA1)&((!hmastlock)|(hburst0)|(hburst1)))->(next(!stateA1)));
+guarantee
+	G(((!stateA1)&(hmastlock)&(!hburst0)&(!hburst1))->(next(stateA1)));
+guarantee
+	G(((stateA1)&(busreq))->(next(stateA1)));
+guarantee
+	G(((stateA1)&(!busreq))->(next(!stateA1)));
+guarantee
+	G((!hready)->(next(!start)));
+guarantee
+	G(((!stateG2)&((!hmastlock)|(!start)|(hburst0)|(hburst1)))->(next(!stateG2)));
+guarantee
+	G(((!stateG2)&(hmastlock)&(start)&(!hburst0)&(!hburst1))->(next(stateG2)));
+guarantee
+	G(((stateG2)&(!start)&(busreq))->(next(stateG2)));
+guarantee
+	G(((stateG2)&(start))->FALSE);
+guarantee
+	G(((stateG2)&(!start)&(!busreq))->(next(!stateG2)));
+guarantee
+	G(((!stateG3_0)&(!stateG3_1)&(!stateG3_2)&((!hmastlock)|(!start)|((hburst0)|(!hburst1))))->((next(!stateG3_0))&(next(!stateG3_1))&(next(!stateG3_2))));
+guarantee
+	G(((!stateG3_0)&(!stateG3_1)&(!stateG3_2)&((hmastlock)&(start)&((!hburst0)&(hburst1))&(!hready)))->((next(stateG3_0))&(next(!stateG3_1))&(next(!stateG3_2))));
+guarantee
+	G(((!stateG3_0)&(!stateG3_1)&(!stateG3_2)&((hmastlock)&(start)&((!hburst0)&(hburst1))&(hready)))->((next(!stateG3_0))&(next(stateG3_1))&(next(!stateG3_2))));
+guarantee
+	G(((stateG3_0)&(!stateG3_1)&(!stateG3_2)&((!start)&(!hready)))->((next(stateG3_0))&(next(!stateG3_1))&(next(!stateG3_2))));
+guarantee
+	G(((stateG3_0)&(!stateG3_1)&(!stateG3_2)&((!start)&(hready)))->((next(!stateG3_0))&(next(stateG3_1))&(next(!stateG3_2))));
+guarantee
+	G(((stateG3_0)&(!stateG3_1)&(!stateG3_2)&((start)))->FALSE);
+guarantee
+	G(((!stateG3_0)&(stateG3_1)&(!stateG3_2)&((!start)&(!hready)))->((next(!stateG3_0))&(next(stateG3_1))&(next(!stateG3_2))));
+guarantee
+	G(((!stateG3_0)&(stateG3_1)&(!stateG3_2)&((!start)&(hready)))->((next(stateG3_0))&(next(stateG3_1))&(next(!stateG3_2))));
+guarantee
+	G(((!stateG3_0)&(stateG3_1)&(!stateG3_2)&((start)))->FALSE);
+guarantee
+	G(((stateG3_0)&(stateG3_1)&(!stateG3_2)&((!start)&(!hready)))->((next(stateG3_0))&(next(stateG3_1))&(next(!stateG3_2))));
+guarantee
+	G(((stateG3_0)&(stateG3_1)&(!stateG3_2)&((!start)&(hready)))->((next(!stateG3_0))&(next(!stateG3_1))&(next(stateG3_2))));
+guarantee
+	G(((stateG3_0)&(stateG3_1)&(!stateG3_2)&((start)))->FALSE);
+guarantee
+	G(((!stateG3_0)&(!stateG3_1)&(stateG3_2)&((!start)&(!hready)))->((next(!stateG3_0))&(next(!stateG3_1))&(next(stateG3_2))));
+guarantee
+	G(((!stateG3_0)&(!stateG3_1)&(stateG3_2)&((!start)&(hready)))->((next(!stateG3_0))&(next(!stateG3_1))&(next(!stateG3_2))));
+guarantee
+	G(((!stateG3_0)&(!stateG3_1)&(stateG3_2)&((start)))->FALSE);
+guarantee
+	G((hready)->((hgrant0)<->((next(!hmaster0))&(next(!hmaster1))&(next(!hmaster2)))));
+guarantee
+	G((hready)->((hgrant1)<->((next(hmaster0))&(next(!hmaster1))&(next(!hmaster2)))));
+guarantee
+	G((hready)->((hgrant2)<->((next(!hmaster0))&(next(hmaster1))&(next(!hmaster2)))));
+guarantee
+	G((hready)->((hgrant3)<->((next(hmaster0))&(next(hmaster1))&(next(!hmaster2)))));
+guarantee
+	G((hready)->((hgrant4)<->((next(!hmaster0))&(next(!hmaster1))&(next(hmaster2)))));
+guarantee
+	G((hready)->((hgrant5)<->((next(hmaster0))&(next(!hmaster1))&(next(hmaster2)))));
+guarantee
+	G((hready)->((hgrant6)<->((next(!hmaster0))&(next(hmaster1))&(next(hmaster2)))));
+guarantee
+	G((hready)->((hgrant7)<->((next(hmaster0))&(next(hmaster1))&(next(hmaster2)))));
+guarantee
+	G((hready)->(!locked<->(next(!hmastlock))));
+guarantee
+	G((next(!start))->(((!hmaster0)&(!hmaster1)&(!hmaster2))<->((next(!hmaster0))&(next(!hmaster1))&(next(!hmaster2)))));
+guarantee
+	G((next(!start))->(((hmaster0)&(!hmaster1)&(!hmaster2))<->((next(hmaster0))&(next(!hmaster1))&(next(!hmaster2)))));
+guarantee
+	G((next(!start))->(((!hmaster0)&(hmaster1)&(!hmaster2))<->((next(!hmaster0))&(next(hmaster1))&(next(!hmaster2)))));
+guarantee
+	G((next(!start))->(((hmaster0)&(hmaster1)&(!hmaster2))<->((next(hmaster0))&(next(hmaster1))&(next(!hmaster2)))));
+guarantee
+	G((next(!start))->(((!hmaster0)&(!hmaster1)&(hmaster2))<->((next(!hmaster0))&(next(!hmaster1))&(next(hmaster2)))));
+guarantee
+	G((next(!start))->(((hmaster0)&(!hmaster1)&(hmaster2))<->((next(hmaster0))&(next(!hmaster1))&(next(hmaster2)))));
+guarantee
+	G((next(!start))->(((!hmaster0)&(hmaster1)&(hmaster2))<->((next(!hmaster0))&(next(hmaster1))&(next(hmaster2)))));
+guarantee
+	G((next(!start))->(((hmaster0)&(hmaster1)&(hmaster2))<->((next(hmaster0))&(next(hmaster1))&(next(hmaster2)))));
+guarantee
+	G((((next(!start))))->((hmastlock)<->(next(hmastlock))));
+guarantee
+	G((decide&hlock0&(next(hgrant0)))->(next(locked)));
+guarantee
+	G((decide&!hlock0&(next(hgrant0)))->(next(!locked)));
+guarantee
+	G((decide&hlock1&(next(hgrant1)))->(next(locked)));
+guarantee
+	G((decide&!hlock1&(next(hgrant1)))->(next(!locked)));
+guarantee
+	G((decide&hlock2&(next(hgrant2)))->(next(locked)));
+guarantee
+	G((decide&!hlock2&(next(hgrant2)))->(next(!locked)));
+guarantee
+	G((decide&hlock3&(next(hgrant3)))->(next(locked)));
+guarantee
+	G((decide&!hlock3&(next(hgrant3)))->(next(!locked)));
+guarantee
+	G((decide&hlock4&(next(hgrant4)))->(next(locked)));
+guarantee
+	G((decide&!hlock4&(next(hgrant4)))->(next(!locked)));
+guarantee
+	G((decide&hlock5&(next(hgrant5)))->(next(locked)));
+guarantee
+	G((decide&!hlock5&(next(hgrant5)))->(next(!locked)));
+guarantee
+	G((decide&hlock6&(next(hgrant6)))->(next(locked)));
+guarantee
+	G((decide&!hlock6&(next(hgrant6)))->(next(!locked)));
+guarantee
+	G((decide&hlock7&(next(hgrant7)))->(next(locked)));
+guarantee
+	G((decide&!hlock7&(next(hgrant7)))->(next(!locked)));
+guarantee
+	G((!decide)->(((!hgrant0)<->(next(!hgrant0)))));
+guarantee
+	G((!decide)->(((!hgrant1)<->(next(!hgrant1)))));
+guarantee
+	G((!decide)->(((!hgrant2)<->(next(!hgrant2)))));
+guarantee
+	G((!decide)->(((!hgrant3)<->(next(!hgrant3)))));
+guarantee
+	G((!decide)->(((!hgrant4)<->(next(!hgrant4)))));
+guarantee
+	G((!decide)->(((!hgrant5)<->(next(!hgrant5)))));
+guarantee
+	G((!decide)->(((!hgrant6)<->(next(!hgrant6)))));
+guarantee
+	G((!decide)->(((!hgrant7)<->(next(!hgrant7)))));
+guarantee
+	G((!decide)->(!locked<->(next(!locked))));
+guarantee
+	G(((!stateG10_1)&(((hgrant1)|(hbusreq1))))->(next(!stateG10_1)));
+guarantee
+	G(((!stateG10_1)&((!hgrant1)&(!hbusreq1)))->(next(stateG10_1)));
+guarantee
+	G(((stateG10_1)&((!hgrant1)&(!hbusreq1)))->(next(stateG10_1)));
+guarantee
+	G(((stateG10_1)&(((hgrant1))&(!hbusreq1)))->FALSE);
+guarantee
+	G(((stateG10_1)&(hbusreq1))->(next(!stateG10_1)));
+guarantee
+	G(((!stateG10_2)&(((hgrant2)|(hbusreq2))))->(next(!stateG10_2)));
+guarantee
+	G(((!stateG10_2)&((!hgrant2)&(!hbusreq2)))->(next(stateG10_2)));
+guarantee
+	G(((stateG10_2)&((!hgrant2)&(!hbusreq2)))->(next(stateG10_2)));
+guarantee
+	G(((stateG10_2)&(((hgrant2))&(!hbusreq2)))->FALSE);
+guarantee
+	G(((stateG10_2)&(hbusreq2))->(next(!stateG10_2)));
+guarantee
+	G(((!stateG10_3)&(((hgrant3)|(hbusreq3))))->(next(!stateG10_3)));
+guarantee
+	G(((!stateG10_3)&((!hgrant3)&(!hbusreq3)))->(next(stateG10_3)));
+guarantee
+	G(((stateG10_3)&((!hgrant3)&(!hbusreq3)))->(next(stateG10_3)));
+guarantee
+	G(((stateG10_3)&(((hgrant3))&(!hbusreq3)))->FALSE);
+guarantee
+	G(((stateG10_3)&(hbusreq3))->(next(!stateG10_3)));
+guarantee
+	G(((!stateG10_4)&(((hgrant4)|(hbusreq4))))->(next(!stateG10_4)));
+guarantee
+	G(((!stateG10_4)&((!hgrant4)&(!hbusreq4)))->(next(stateG10_4)));
+guarantee
+	G(((stateG10_4)&((!hgrant4)&(!hbusreq4)))->(next(stateG10_4)));
+guarantee
+	G(((stateG10_4)&(((hgrant4))&(!hbusreq4)))->FALSE);
+guarantee
+	G(((stateG10_4)&(hbusreq4))->(next(!stateG10_4)));
+guarantee
+	G(((!stateG10_5)&(((hgrant5)|(hbusreq5))))->(next(!stateG10_5)));
+guarantee
+	G(((!stateG10_5)&((!hgrant5)&(!hbusreq5)))->(next(stateG10_5)));
+guarantee
+	G(((stateG10_5)&((!hgrant5)&(!hbusreq5)))->(next(stateG10_5)));
+guarantee
+	G(((stateG10_5)&(((hgrant5))&(!hbusreq5)))->FALSE);
+guarantee
+	G(((stateG10_5)&(hbusreq5))->(next(!stateG10_5)));
+guarantee
+	G(((!stateG10_6)&(((hgrant6)|(hbusreq6))))->(next(!stateG10_6)));
+guarantee
+	G(((!stateG10_6)&((!hgrant6)&(!hbusreq6)))->(next(stateG10_6)));
+guarantee
+	G(((stateG10_6)&((!hgrant6)&(!hbusreq6)))->(next(stateG10_6)));
+guarantee
+	G(((stateG10_6)&(((hgrant6))&(!hbusreq6)))->FALSE);
+guarantee
+	G(((stateG10_6)&(hbusreq6))->(next(!stateG10_6)));
+guarantee
+	G(((!stateG10_7)&(((hgrant7)|(hbusreq7))))->(next(!stateG10_7)));
+guarantee
+	G(((!stateG10_7)&((!hgrant7)&(!hbusreq7)))->(next(stateG10_7)));
+guarantee
+	G(((stateG10_7)&((!hgrant7)&(!hbusreq7)))->(next(stateG10_7)));
+guarantee
+	G(((stateG10_7)&(((hgrant7))&(!hbusreq7)))->FALSE);
+guarantee
+	G(((stateG10_7)&(hbusreq7))->(next(!stateG10_7)));
+guarantee
+	G((decide&!hbusreq0&!hbusreq1&!hbusreq2&!hbusreq3&!hbusreq4&!hbusreq5&!hbusreq6&!hbusreq7)->(next(hgrant0)));
+assumption
+	GF (!stateA1);
+guarantee
+	GF (!stateG2);
+guarantee
+	GF ((!stateG3_0&(!stateG3_1)&(!stateG3_2)));
+guarantee
+	GF (((!hmaster0&(!hmaster1)&(!hmaster2))|!hbusreq0));
+guarantee
+	GF (((hmaster0&(!hmaster1)&(!hmaster2))|!hbusreq1));
+guarantee
+	GF (((!hmaster0&(hmaster1)&(!hmaster2))|!hbusreq2));
+guarantee
+	GF (((hmaster0&(hmaster1)&(!hmaster2))|!hbusreq3));
+guarantee
+	GF (((!hmaster0&(!hmaster1)&(hmaster2))|!hbusreq4));
+guarantee
+	GF (((hmaster0&(!hmaster1)&(hmaster2))|!hbusreq5));
+guarantee
+	GF (((!hmaster0&(hmaster1)&(hmaster2))|!hbusreq6));
+guarantee
+	GF (((hmaster0&(hmaster1)&(hmaster2))|!hbusreq7));

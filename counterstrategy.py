@@ -4,6 +4,7 @@ import re
 import spectra_utils as spectra
 import copy
 import specification as sp
+import experiment_properties as exp
 
 def var_to_asp(sys, timepoint):
     vars = re.split(",\s*", sys)
@@ -147,7 +148,9 @@ def generate_model(expressions, neg_expressions, variables, scratch=False, asp_r
         output = asp_restrictions + "\n"
     else:
         output = ""
+    print("EXPRESSION BEFORE: ", expressions)
     expressions = aspify(expressions)
+    print("EXPRESSIONS: ", expressions)
     for i, rule in enumerate(expressions):
         name = "t" + str(i)
         disjuncts = rule.split(";")
@@ -175,6 +178,7 @@ def generate_model(expressions, neg_expressions, variables, scratch=False, asp_r
     file = "./Translators/output-files/temp_asp.lp"
     sp.write_file(output, file)
     clingo_out = run_clingo_raw(file)
+    print(clingo_out)
     violation = True
 
     reg = re.search(r"Answer: 1(.*)SATISFIABLE", str(clingo_out))
@@ -190,11 +194,10 @@ def generate_model(expressions, neg_expressions, variables, scratch=False, asp_r
     return [state], violation
 
 
-
 def next_possible_assignments(new_state, primed_expressions_cleaned, primed_expressions_cleaned_s, unprimed_expressions,
                               unprimed_expressions_s, variables):
     unsat_next_exp = unsat_nexts(new_state, primed_expressions_cleaned)
-
+    print("UNE: ", unsat_next_exp)
     unsat_next_exp_s = unsat_nexts(new_state, primed_expressions_cleaned_s)
 
     if unsat_next_exp + unsat_next_exp_s + unprimed_expressions + unprimed_expressions_s == []:
@@ -221,15 +224,13 @@ def state_to_asp(state, trace, number):
     asp = [x + "," + timepoint + end for x in asp]
     return re.sub(r",[^,]*\)\.", end, trace) + '\n'.join(asp)
 
-def complete_deadlock_alt(trace, file, deadlock_number):
+def complete_deadlock(trace, file, deadlock_number):
     file = re.sub("_patterned", "", file)
     initial_expressions, prevs, primed_expressions, unprimed_expressions, variables = sp.extract_expressions(file,
                                                                                                           counter_strat=True)
     initial_expressions_s, prevs_s, primed_expressions_s, unprimed_expressions_s, variables_s = sp.extract_expressions(
         file,
         guarantee_only=True)
-
-    print(unprimed_expressions_s)
 
     primed_expressions_cleaned = [re.sub(r"PREV\((!*)([^\|^\(]*)\)", r"\1prev_\2", x) for x in primed_expressions]
     primed_expressions_cleaned_s = [re.sub(r"PREV\((!*)([^\|^\(]*)\)", r"\1prev_\2", x) for x in primed_expressions_s]
@@ -241,9 +242,35 @@ def complete_deadlock_alt(trace, file, deadlock_number):
         return None
     return state_to_asp(random.choice(assignments), trace, deadlock_number)
 
+def complete_deadlock_alt(last_state, file):
+    print("LAST STATE: ", last_state)
+    spec = sp.read_file(file)
+    spec = sp.format_spec(spec)
+    spec = sp.format_iff(spec)
+    search_type = "asm|assumption|gar|guarantee"
+    for i, line in enumerate(spec):
+        if re.search(search_type, line):
+            spec[i+1] = "\t" + sp.spectra_to_DNF(spec[i + 1]) + "\n"
+    sp.write_file(spec, "./deadlock.spectra")
 
-def complete_deadlock(trace, file, deadlock_number):
-    return complete_deadlock_alt(trace, file, deadlock_number)
+    initial_expressions, prevs, primed_expressions, unprimed_expressions, variables = sp.extract_expressions(spec,
+                                                                                                          counter_strat=True)
+    initial_expressions_s, prevs_s, primed_expressions_s, unprimed_expressions_s, variables_s = sp.extract_expressions(
+        spec,
+        guarantee_only=True)
+
+    primed_expressions_cleaned = [re.sub(r"PREV\((!*)([^\|^\(]*)\)", r"\1prev_\2", x) for x in primed_expressions]
+    primed_expressions_cleaned_s = [re.sub(r"PREV\((!*)([^\|^\(]*)\)", r"\1prev_\2", x) for x in primed_expressions_s]
+    print("UE: ", unprimed_expressions)
+    print("UES: ", unprimed_expressions_s)
+    print("PEC: ", primed_expressions_cleaned)
+    print("PECS: ", primed_expressions_cleaned_s)
+    assignments, is_violating = next_possible_assignments(last_state, primed_expressions_cleaned,
+                                                          primed_expressions_cleaned_s, unprimed_expressions,
+                                                          unprimed_expressions_s, variables)
+
+    return assignments
+
 
 def counter_strat_to_trace(lines=[], deadlock_required=[], cs_count=0, specification=""):
         # if lines == []:
@@ -267,7 +294,6 @@ def counter_strat_to_trace(lines=[], deadlock_required=[], cs_count=0, specifica
                     files[key] = deadlock
                     deadlock_number += 1
             cs_count += 1
-        print(files)
         trace_list = [files[key] for key in files.keys() if files[key] != "problem"]
         return trace_list, cs_count
 
@@ -405,83 +431,6 @@ class Counterstrategy:
         self.counterstrategy = spectra.generate_counter_strat(specification)
         self.states = dict()
 
-        # for n in self.graph[0].obj_dict['nodes']:
-        #     if n[0] == 'S':
-        #         # print(n)
-        #         self.states[n] = dict()
-        #         self.states[n]['successors'] = set()
-        #         self.states[n]['input_valuation'] = dict()
-        #         self.states[n]['next_input_valuation'] = dict()
-        #         self.states[n]['output_valuation'] = dict()
-        #         # Extract next input values
-        #         # print(self.graph[0].obj_dict['nodes'][n][0]['attributes'])
-        #         next_input_list = self.graph[0].obj_dict['nodes'][n][0]['attributes']['label'].rsplit('|',1)[1].strip('" ').rstrip("\\n ").split("\\n ")
-        #         for var in next_input_list:
-        #             if var != "":
-        #                 varname = var.split("=")[0]
-        #                 value = var.split("=")[1]
-        #                 if value == "True":
-        #                     self.states[n]['next_input_valuation'][varname] = 1
-        #                 elif value == "False":
-        #                     self.states[n]['next_input_valuation'][varname] = 0
-        #                 else:
-        #                     self.states[n]['next_input_valuation'][varname] = int(value)
-        #         #print n + ": "+str(self.states[n]['next_input_valuation'])
-
-        # # Read output valuations and successor relations from edges
-        # for e in self.graph[0].obj_dict['edges']:
-        #     if e[0] != 'A':
-        #         self.states[e[0]]['successors'].add(e[1])
-        #         # Edge labels contain valuations of output variables
-        #         label = self.graph[0].obj_dict['edges'][e][0]['attributes']['label'].strip('" ').rstrip("\\n")
-        #         if label != "":
-        #             vars = label.split("\\n")
-        #             for var in vars:
-        #                 varname = var.split("=")[0]
-        #                 value = int(var.split("=")[1])
-        #                 # Add the variable to the valuation of the destination state
-        #                 self.states[e[1]]['output_valuation'][varname] = value
-
-
-        # # Extract constant next input values
-        # const_next_input_list = self.graph[0].obj_dict['nodes']['ConstantNextInputs'][0]['attributes']['label'].strip('" ').replace("Constant next input values:\\n ", "").rstrip("\\n").split("\\n ")
-        # # Remove empty string from the list of constant inputs
-        # const_next_input_list = [x for x in const_next_input_list if x != ""]
-
-
-        # for n in self.states:
-        #     if n != "S0":
-        #         for var in const_next_input_list:
-        #             varname = var.split("=")[0]
-        #             value = int(var.split("=")[1])
-        #             self.states[n]['input_valuation'][varname] = value
-
-        #     for var in self.states[n]['next_input_valuation']:
-        #         for succ_n in self.states[n]['successors']:
-        #             self.states[succ_n]['input_valuation'][var] = self.states[n]['next_input_valuation'][var]
-
-        # # Workaround for keeping ConstantNextInput when a counterstrategy has initial state only
-        # # (used in extractRandomPath)
-        # self.states["S0"]['const_next_input'] = dict()
-        # for var in const_next_input_list:
-        #     varname = var.split("=")[0]
-        #     value = var.split("=")[1]
-        #     if value != 'X':
-        #         value = int(value)
-        #         self.states["S0"]['const_next_input'][varname] = value
-
-        # RATSY does not return the initial state valuation in the counterstrategy graph. Must be read from the BDDs
-        # marduk = counterstrategy_bdd[0]
-        # for var_obj in marduk.input_vars:
-        #     varname = var_obj.get_name()
-        #     (can_be_1, can_be_0) = marduk.spec_debug_utils.get_val(counterstrategy_bdd[1], var_obj, False)
-        #     if can_be_1 and not can_be_0:
-        #         self.states["S0"]['input_valuation'][varname] = 1
-        #     elif can_be_0 and not can_be_1:
-        #         self.states["S0"]['input_valuation'][varname] = 0
-        #     else:
-        #         self.states["S0"]['input_valuation'][varname] = random.randint(0,1)
-
 
     def getValuation(self, state):
         literals = []
@@ -560,8 +509,34 @@ class Counterstrategy:
         looping = False
         loop_startindex = None
 
+        if not self.counterstrategy:
+            last_state = set()
+            assignments = complete_deadlock_alt(last_state, self.specification)[0]
+
+            input_vars = set(exp.inputVarsList)
+
+            initial_state = State("INI")
+            for var in assignments:
+                # if re.sub(r'!', '', var) in input_vars:
+                initial_state.add_to_valuation(var)
+
+            last_state = assignments
+            assignments = complete_deadlock_alt(last_state, self.specification)[0]
+            # print("ASSIGNMENTS: ", assignments)
+
+            transient_states = []
+            initial_state.set_successor("Sf")
+            failing_state = State("Sf")
+            for var in assignments:
+                # if re.sub(r'!', '', var) in input_vars:
+                failing_state.add_to_valuation(var)
+            transient_states.append(failing_state)
+
+            looping_states = None
+            return Path(initial_state,transient_states, None)
+
         while curr_state and not looping:
-            
+
             # pattern = re.compile("^" + curr_state + " -> " + r"(?!DEAD)")
             # pattern = re.compile("^" + curr_state + r" -> (" + "|".join(visited_states) + r")")
             pattern = re.compile("^" + curr_state)
@@ -570,10 +545,6 @@ class Counterstrategy:
             # for t in transitions:
             #     print(t)
             # print()
-
-            if transitions == []:
-                pattern = re.compile("^" + curr_state)
-                transitions = list(filter(pattern.search, self.counterstrategy))
 
             self.initialize_state(curr_state)
             # self.states[curr_state]['successors'] = self.get_successors(transitions)
@@ -623,8 +594,9 @@ class Counterstrategy:
         initial_state = State("INI")
         for var in self.states["INI"]['input_valuation']:
             initial_state.add_to_valuation(var if self.states["INI"]['input_valuation'][var] == 1 else "!" + var)
-        # for var in self.states["INI"]['output_valuation']:
-        #     initial_state.add_to_valuation(var if self.states["INI"]['output_valuation'][var] == 1 else "!" + var)
+        # Does not make difference for AMBA
+        for var in self.states["INI"]['output_valuation']:
+            initial_state.add_to_valuation(var if self.states["INI"]['output_valuation'][var] == 1 else "!" + var)
 
 
         if len(visited_states)>1:
@@ -657,6 +629,16 @@ class Counterstrategy:
                 # sf_output_valuation = self.states["DEAD"]['output_valuation']
                 # for var in sf_output_valuation:
                 #    failing_state.add_to_valuation(var if sf_output_valuation[var] == 1 else "!" + var)
+
+                last_state = set()
+                for var in self.states[transient_states[-1].id_state]['input_valuation']:
+                    last_state.add(var if self.states["INI"]['input_valuation'][var] == 1 else "!" + var)
+                for var in self.states["INI"]['output_valuation']:
+                    last_state.add(var if self.states[transient_states[-1].id_state]['output_valuation'][var] == 1 else "!" + var)
+                assignments = complete_deadlock_alt(last_state, self.specification)
+
+                for var in assignments[0]:
+                        failing_state.add_to_valuation(var)
 
                 transient_states[-1].set_successor("Sf")
                 transient_states.append(failing_state)
@@ -691,23 +673,39 @@ class Counterstrategy:
             # The path contains the initial state only.
             # Two possible cases: the failure occurs in the initial state or it occurs in the next state.
             # If there is a next state, then there is a const_next_input field in the counterstrategy graph
-            sf_input_valuation = self.states[initial_state.id_state]['input_valuation']
+
+            last_state = set()
+            for var in self.states["INI"]['input_valuation']:
+                last_state.add(var if self.states["INI"]['input_valuation'][var] == 1 else "!" + var)
+            for var in self.states["INI"]['output_valuation']:
+                last_state.add(var if self.states["INI"]['output_valuation'][var] == 1 else "!" + var)
+            assignments = complete_deadlock_alt(last_state, self.specification)
+            print("ASSIGNMENTS: ", assignments)
+
             transient_states = []
-            if sf_input_valuation != dict():
+            initial_state.set_successor("Sf")
+            failing_state = State("Sf")
+            for var in assignments[0]:
+                    failing_state.add_to_valuation(var)
+            transient_states.append(failing_state)
 
-                # Workaround field const_next_input to store the valuation of the failing state Sf
-                initial_state.set_successor("Sf")
-                failing_state = State("Sf")
+            # sf_input_valuation = self.states[initial_state.id_state]['input_valuation']
 
-                # for var in sf_input_valuation:
-                #     failing_state.add_to_valuation(var if sf_input_valuation[var] == 1 else "!" + var)
+            # if sf_input_valuation != dict():
+
+            #     # Workaround field const_next_input to store the valuation of the failing state Sf
+            #     initial_state.set_successor("Sf")
+            #     failing_state = State("Sf")
+
+            #     for var in sf_input_valuation:
+            #         failing_state.add_to_valuation(var if sf_input_valuation[var] == 1 else "!" + var)
                 
-                # sf_output_valuation = self.states["DEAD"]['output_valuation']
-                # for var in sf_output_valuation:
-                #    failing_state.add_to_valuation(var if sf_output_valuation[var] == 1 else "!" + var)
+            #     # sf_output_valuation = self.states["DEAD"]['output_valuation']
+            #     # for var in sf_output_valuation:
+            #     #    failing_state.add_to_valuation(var if sf_output_valuation[var] == 1 else "!" + var)
 
-                transient_states.append(failing_state)
-
+            # transient_states = []
+            # transient_states.append(failing_state)
 
             looping_states = None
         return Path(initial_state,transient_states,looping_states)
@@ -725,19 +723,25 @@ class Counterstrategy:
         # The new state will have the constant input variables set to the value defined in the counterstrategy.
         # Since this state does not come from the counterstrategy graph, at this point we are sure there are no
         # other pieces of input valuation in the previous state
-        sf_input_valuation = self.states['INI']['input_valuation']
+        
+        input_vars = set(exp.inputVarsList)
+
         failing_state = State(new_state_name)
+        last_state = path.transient_states[-1].valuation
+        assignments = complete_deadlock_alt(last_state, self.specification)[0]
+        for var in assignments:
+            # if re.sub(r'!', '', var) in input_vars:
+            failing_state.add_to_valuation(var)
+
         path.states[new_state_name] = failing_state
         path.transient_states[-1].set_successor(new_state_name)
         path.transient_states.append(failing_state)
-        for var in sf_input_valuation:
-            failing_state.add_to_valuation(var if sf_input_valuation[var] == 1 else "!" + var)
 
         return path
 
 def main():
 
-    specification = "Examples/cimattiAnalyzing/amba_ahb_w_guar_trans_amba_ahb_1.spectra"
+    specification = "Examples/cimattiAnalyzing/amba_ahb_w_guar_trans_amba_ahb_1_normalised.spectra"
     # specification = "Examples/Protocol.spectra"
 
     # c = Counterstrategy(specification)
@@ -793,7 +797,24 @@ def main():
 
     lines = spectra.generate_counter_strat(specification)
     trace_list, cs_count = counter_strat_to_trace(lines, specification=specification)
-    print(trace_list)
+    trace_list = trace_list[0].split("\n")
+    valuations = []
+    for assignment in trace_list:
+        print(assignment)
+        matches = re.search(r'holds_at\(([^,]+),\s*(\d+)', assignment)
+        if matches:
+            var = matches.group(1)
+            state = int(matches.group(2))
+            if state == 0:
+                state = "INI"
+            else:
+                state = "S" + str(state - 1)
+            valuation = var + "__" + state
+            if re.search("not", assignment):
+                valuation = "!" + valuation
+            valuations.append(valuation)
+
+    print(" & ".join(valuations))
 
 if __name__ == '__main__':
     main()

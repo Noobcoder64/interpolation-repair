@@ -36,12 +36,14 @@ def extract_unrealizable_cores(specification):
     core_found = re.compile("at lines <([^>]*)>").search(output)
     if core_found:
         line_nums = [int(x) for x in core_found.group(1).split(" ") if x != ""]
+        # line_nums = [33, 37]
         spec = sp.read_file(specification)
-        spec = sp.format_spec(spec)
+        # spec = sp.format_spec(spec)
         spec = [re.sub(r'\s*;\n$', '', re.sub(r'\s', '', x)) for x in spec]
+        spec = sp.unspectra(spec)
         uc = []
         for line in line_nums:
-            uc.append(spec[line-1])
+            uc.append(spec[line])
         # self.guarantee_violation_list = names
         # self.calculate_violated_expressions(exp_type="guarantee")
         return uc

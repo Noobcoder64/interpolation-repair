@@ -69,7 +69,6 @@ def FifoDuplicateCheckRefinement():
             elif cur_node.isSatisfiable():
                 print("++ REALIZABLE REFINEMENT: SAT CHECK")
                 solutions.append(cur_node.gr1_units)
-                break
             else:
                 print("++ VACUOUS SOLUTION")
             # except Exception as e:

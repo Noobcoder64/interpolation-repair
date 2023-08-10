@@ -97,7 +97,10 @@ def extractStateComponents(interpolant):
 
 def projectOtherNode(node,variables):
     projection = str(node)
+    print("NODE: ", projection)
     varnames = set(re.findall(r"\w+",projection))
+    print("VARNAMES: ", varnames)
+    print("VARIABLES: ", variables)
     if all(varname in variables for varname in varnames):
         return projection
     else:
@@ -123,6 +126,7 @@ def projectOntoVars(state_component,variables):
         projection = projectAndNode(parse_tree,variables)
     else:
         projection = projectOtherNode(parse_tree,variables)
+    print("PROJECTION: ", projection)
     if projection != "":
         return projection
     else:
@@ -151,13 +155,13 @@ def getRefinementsFromStateComponents(state_components,path,input_vars):
                     # Increase the number of non-IO-separable components here, since if I did before, when the non-separable
                     # component is the next one, this would be counted twice
                     non_io_separable_state_components = non_io_separable_state_components + 1
-                    print("State "+path.states[state].successor+" component not I/O-separable")
+                    print("State "+path.states[state].successor+" component not I/O-separable 1")
         elif (path.states[state].successor is None or path.states[state].successor not in state_components) and state in state_components:
             try:
                 refinements.append("G(!(" + projectOntoVars(state_components[state],input_vars) + "))")
             except NonIOSeparableException:
                 non_io_separable_state_components = non_io_separable_state_components + 1
-                print("State " + state + " component not I/O-separable")
+                print("State " + state + " component not I/O-separable 2")
     # Fairness condition: if each and every looping state has a state component, then extract a fairness condition from it
     # This applies only when path is looping
     if path.is_loop:
@@ -171,28 +175,26 @@ def getRefinementsFromStateComponents(state_components,path,input_vars):
 
 
 def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,output_vars):
-    
-    # print("=== COUNTERSTRATEGY ===")
-    # print('\n'.join(c.counterstrategy))
-    # print()
-    
+    # assumptions_uc = []
+    # PROBLEM
+    guarantees_uc = exp.guaranteesList
+
+    print()
+    print("=== COUNTERSTRATEGY ===")
+    print('\n'.join(c.counterstrategy))
+    print()
+
     path = c.extractRandomPath()
 
-    # print("=== COUNTERRUN ===")
-    # print(path)
-    # print()
 
-    # assumptions_uc = []
-    
-    # print("=== UNREALIZABLE CORE ===")
-    # guarantees_uc = exp.guaranteesList
-    # for uc in guarantees_uc:
-    #     print(uc)
-    # print()
+    print("=== COUNTERRUN ===")
+    print(path)
+    print()
 
     assumptions_boolean = list(filter(None,[l2b.gr1LTL2Boolean(x,path) for x in assumptions_uc]))
 
     valuations_boolean = path.get_valuation()
+    # valuations_boolean = "!hready__INI & !hbusreq0__INI & !hlock0__INI & !hburst0__INI & !hburst1__INI & !hready__Sf & !hbusreq0__Sf & !hlock0__Sf & hburst0__Sf & !hburst1__Sf"
 
     if assumptions_boolean != []:
         assum_val_boolean = " & ".join(assumptions_boolean) + ((" & " + valuations_boolean) if valuations_boolean != "" else "")
@@ -201,16 +203,20 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
 
     guarantees_boolean = " & ".join(filter(None,[l2b.gr1LTL2Boolean(x, path) for x in guarantees_uc]))
 
-    # print()
-    # print("=== ASSUMPTIONS BOOLEAN ===")
-    # print(" & ".join(assumptions_boolean))
-    # print("=== VALUATIONS BOOLEAN ===")
-    # print(valuations_boolean)
+    print("=== UNREALIZABLE CORE ===")
+    for uc in guarantees_uc:
+        print(uc)
+    print()
+    
+    print("=== ASSUMPTIONS BOOLEAN ===")
+    print(" & ".join(assumptions_boolean))
+    print("=== VALUATIONS BOOLEAN ===")
+    print(valuations_boolean)
     # print("=== ASM VAL BOOLEAN ===")
     # print(assum_val_boolean)
-    # print("=== GUARANTEES BOOLEAN ===")
-    # print(guarantees_boolean)
-    # print()
+    print("=== GUARANTEES BOOLEAN ===")
+    print(guarantees_boolean)
+    print()
 
     l2b.writePathToFile("path",path)
     l2b.writeMathsatFormulaToFile("counterstrategy_auto", assum_val_boolean)
@@ -222,6 +228,10 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
     if os.path.isfile("INTERP.1.msat"):
         interpolant = l2b.parseInterpolant("INTERP.1.msat")
         if interpolant == "false":
+            os.remove("path")
+            os.remove("counterstrategy_auto")
+            os.remove("guarantees_auto")
+            os.remove("INTERP.1.msat")
             return ["FALSE"]
         # try:
         print()
@@ -239,6 +249,8 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
     elif not path.is_loop:
         # If no interpolant was produced, the solver returned SAT
         # Try extending the finite path by one failing state and repeat interpolation on the new path
+        
+        # guarantees_uc = exp.guaranteesList
         path = c.extendFinitePath(path)
         assumptions_boolean = list(filter(None, [l2b.gr1LTL2Boolean(x, path) for x in assumptions_uc]))
 
@@ -289,8 +301,8 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
         print("No interpolant for " + assum_val_boolean +"\n and guarantees " + guarantees_boolean + "\n on path " + str(path))
 
     os.remove("path")
-    # os.remove("counterstrategy_auto")
-    # os.remove("guarantees_auto")
+    os.remove("counterstrategy_auto")
+    os.remove("guarantees_auto")
     if os.path.isfile("INTERP.1.msat"):
         os.remove("INTERP.1.msat")
 

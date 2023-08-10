@@ -18,36 +18,69 @@ sys boolean LeftMotor_2;
 sys boolean nextMoveMode_0;
 sys boolean nextMoveMode_1;
 
-asm alw ((yBoolExpr_1 & Obstacle_0) -> next(Obstacle_0));
-asm alw ((yBoolExpr_2 & !Obstacle_0) -> next((!Obstacle_0)));
-gar !specState_0 & !specState_1;
-gar !turnState_0 & !turnState_1;
-gar alwEv (!nextMoveMode_0 & !nextMoveMode_1);
-gar alw ((!specState_0 & !specState_1 & !nextMoveMode_0 & !nextMoveMode_1 & next(!nextMoveMode_0 & nextMoveMode_1)) -> next(!specState_0 & specState_1));
-gar alw ((!specState_0 & specState_1 & !nextMoveMode_0 & nextMoveMode_1 & next(!nextMoveMode_0 & !nextMoveMode_1)) -> next(specState_0 & !specState_1));
-gar alw (!(specState_0 & !specState_1 & !nextMoveMode_0 & !nextMoveMode_1 & next(!nextMoveMode_0 & nextMoveMode_1)));
-gar alw ((!specState_0 & specState_1 & next(!nextMoveMode_0 & nextMoveMode_1)) -> next(!specState_0 & specState_1));
-gar alw ((specState_0 & !specState_1 & next(!nextMoveMode_0 & !nextMoveMode_1)) -> next(specState_0 & !specState_1));
-gar alw (nextMoveMode_0 & !nextMoveMode_1 -> next(!specState_0 & !specState_1));
-gar alw (Obstacle_0 ->(nextMoveMode_0 & !nextMoveMode_1));
-gar alw ((!nextMoveMode_0 & nextMoveMode_1 & next(!nextMoveMode_0 & !nextMoveMode_1)) <-> next(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & RightMotor_2));
-gar alw ((!nextMoveMode_0 & !nextMoveMode_1 & next(!nextMoveMode_0 & nextMoveMode_1)) <-> next(!LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & !RightMotor_2));
-gar alw (next(!nextMoveMode_0 & nextMoveMode_1) ->(!nextMoveMode_0 & !nextMoveMode_1 | !nextMoveMode_0 & nextMoveMode_1));
-gar alw (!nextMoveMode_0 & nextMoveMode_1 -> next(!nextMoveMode_0 & !nextMoveMode_1 | !nextMoveMode_0 & nextMoveMode_1));
-gar alw (next(!turnState_0 & !turnState_1) ->(!turnState_0 & !turnState_1 | turnState_0 & turnState_1));
-gar alw ((!turnState_0 & !turnState_1 &(!nextMoveMode_0 & !nextMoveMode_1)) -> next(!turnState_0 & !turnState_1));
-gar alw ((!nextMoveMode_0 & !nextMoveMode_1) <-> next(yBoolExpr_0));
-gar alw ((nextMoveMode_0 & !nextMoveMode_1 & yBoolExpr_0 & !turnState_0 & !turnState_1) -> next(!turnState_0 & turnState_1));
-gar alw (!turnState_0 & turnState_1 ->(nextMoveMode_0 & !nextMoveMode_1 & next(turnState_0 & !turnState_1)));
-gar alw ((turnState_0 & !turnState_1 & nextMoveMode_0 & !nextMoveMode_1) -> next(!turnState_0 & turnState_1));
-gar alw ((turnState_0 & !turnState_1 & !nextMoveMode_0 & !nextMoveMode_1) -> next(turnState_0 & turnState_1));
-gar alw ((turnState_0 & turnState_1 & !nextMoveMode_0 & !nextMoveMode_1) -> next(!turnState_0 & !turnState_1));
-gar alw ((turnState_0 & turnState_1 & (nextMoveMode_0 | nextMoveMode_1)) -> next(turnState_0 & !turnState_1));
-gar alw ((turnState_0 & !turnState_1 & !Obstacle_0) -> !nextMoveMode_0 & !nextMoveMode_1);
-gar alw ((!turnState_0 & !turnState_1 & next(!turnState_0 & turnState_1)) <->(LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & RightMotor_2));
-gar alw (next(turnState_0 & !turnState_1) <->(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & RightMotor_1 & RightMotor_2));
-gar alw (turnState_0 & !turnState_1 <->(!LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & !RightMotor_2));
-gar alw ((turnState_0 & turnState_1 & !turnState_0 & !turnState_1) <->(LeftMotor_0 & LeftMotor_1 & !LeftMotor_2 & RightMotor_0 & RightMotor_1 & !RightMotor_2));
-gar alw ((!nextMoveMode_0 & !nextMoveMode_1) <-> next(yBoolExpr_1));
-gar alw ((!nextMoveMode_0 & nextMoveMode_1) <-> next(yBoolExpr_2));
-asm alwEv (TRUE);
+assumption
+	G((yBoolExpr_1 & Obstacle_0) -> next(Obstacle_0));
+assumption
+	G((yBoolExpr_2 & !Obstacle_0) -> next((!Obstacle_0)));
+guarantee
+	!specState_0 & !specState_1;
+guarantee
+	!turnState_0 & !turnState_1;
+guarantee
+	GF (!nextMoveMode_0 & !nextMoveMode_1);
+guarantee
+	G((!specState_0 & !specState_1 & !nextMoveMode_0 & !nextMoveMode_1 & next(!nextMoveMode_0 & nextMoveMode_1)) -> next(!specState_0 & specState_1));
+guarantee
+	G((!specState_0 & specState_1 & !nextMoveMode_0 & nextMoveMode_1 & next(!nextMoveMode_0 & !nextMoveMode_1)) -> next(specState_0 & !specState_1));
+guarantee
+	G(!(specState_0 & !specState_1 & !nextMoveMode_0 & !nextMoveMode_1 & next(!nextMoveMode_0 & nextMoveMode_1)));
+guarantee
+	G((!specState_0 & specState_1 & next(!nextMoveMode_0 & nextMoveMode_1)) -> next(!specState_0 & specState_1));
+guarantee
+	G((specState_0 & !specState_1 & next(!nextMoveMode_0 & !nextMoveMode_1)) -> next(specState_0 & !specState_1));
+guarantee
+	G(nextMoveMode_0 & !nextMoveMode_1 -> next(!specState_0 & !specState_1));
+guarantee
+	G(Obstacle_0 ->(nextMoveMode_0 & !nextMoveMode_1));
+guarantee
+	G((!nextMoveMode_0 & nextMoveMode_1 & next(!nextMoveMode_0 & !nextMoveMode_1)) <-> next(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & RightMotor_2));
+guarantee
+	G((!nextMoveMode_0 & !nextMoveMode_1 & next(!nextMoveMode_0 & nextMoveMode_1)) <-> next(!LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & !RightMotor_2));
+guarantee
+	G(next(!nextMoveMode_0 & nextMoveMode_1) ->(!nextMoveMode_0 & !nextMoveMode_1 | !nextMoveMode_0 & nextMoveMode_1));
+guarantee
+	G(!nextMoveMode_0 & nextMoveMode_1 -> next(!nextMoveMode_0 & !nextMoveMode_1 | !nextMoveMode_0 & nextMoveMode_1));
+guarantee
+	G(next(!turnState_0 & !turnState_1) ->(!turnState_0 & !turnState_1 | turnState_0 & turnState_1));
+guarantee
+	G((!turnState_0 & !turnState_1 &(!nextMoveMode_0 & !nextMoveMode_1)) -> next(!turnState_0 & !turnState_1));
+guarantee
+	G((!nextMoveMode_0 & !nextMoveMode_1) <-> next(yBoolExpr_0));
+guarantee
+	G((nextMoveMode_0 & !nextMoveMode_1 & yBoolExpr_0 & !turnState_0 & !turnState_1) -> next(!turnState_0 & turnState_1));
+guarantee
+	G(!turnState_0 & turnState_1 ->(nextMoveMode_0 & !nextMoveMode_1 & next(turnState_0 & !turnState_1)));
+guarantee
+	G((turnState_0 & !turnState_1 & nextMoveMode_0 & !nextMoveMode_1) -> next(!turnState_0 & turnState_1));
+guarantee
+	G((turnState_0 & !turnState_1 & !nextMoveMode_0 & !nextMoveMode_1) -> next(turnState_0 & turnState_1));
+guarantee
+	G((turnState_0 & turnState_1 & !nextMoveMode_0 & !nextMoveMode_1) -> next(!turnState_0 & !turnState_1));
+guarantee
+	G((turnState_0 & turnState_1 & (nextMoveMode_0 | nextMoveMode_1)) -> next(turnState_0 & !turnState_1));
+guarantee
+	G((turnState_0 & !turnState_1 & !Obstacle_0) -> !nextMoveMode_0 & !nextMoveMode_1);
+guarantee
+	G((!turnState_0 & !turnState_1 & next(!turnState_0 & turnState_1)) <->(LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & RightMotor_2));
+guarantee
+	G(next(turnState_0 & !turnState_1) <->(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & RightMotor_1 & RightMotor_2));
+guarantee
+	G(turnState_0 & !turnState_1 <->(!LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & !RightMotor_2));
+guarantee
+	G((turnState_0 & turnState_1 & !turnState_0 & !turnState_1) <->(LeftMotor_0 & LeftMotor_1 & !LeftMotor_2 & RightMotor_0 & RightMotor_1 & !RightMotor_2));
+guarantee
+	G((!nextMoveMode_0 & !nextMoveMode_1) <-> next(yBoolExpr_1));
+guarantee
+	G((!nextMoveMode_0 & nextMoveMode_1) <-> next(yBoolExpr_2));
+assumption
+	GF (TRUE);

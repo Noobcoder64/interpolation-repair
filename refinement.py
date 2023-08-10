@@ -181,9 +181,14 @@ class Refinement:
             
             # specificationTree = r.readRATFile(exp.specfile)
             specification = sp.read_file(exp.specfile)
-            for unit_refinement in enumerate(self.gr1_units):
+            specification = sp.unformat_spec(specification)
+            assumptions = sp.unformat_spec(self.gr1_units)
+            for asm in assumptions:
+                specification.append("assumption\n")
+                specification.append("\t" + asm + ";\n")
+            # for unit_refinement in enumerate(self.gr1_units):
                 # r.addRequirement(specificationTree, str(self.id)+"_"+str(unit_refinement[0]), unit_refinement[1], "A", "1")
-                spectra.addAssumption(specification, unit_refinement[1])
+                # spectra.addAssumption(specification, unit_refinement[1])
 
             # r.writeRATFile(self.__getTempSpecFileName(), specificationTree)
             sp.write_file(specification, self.__getTempSpecFileName())
