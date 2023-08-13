@@ -15,28 +15,28 @@ assumption
 assumption
 	!frontDistSense_0 & !backDistSense_0;
 assumption
-	GF (isReady);
+	alwEv (isReady);
 assumption
-	G(isReady -> next(isReady));
+	alw (isReady -> next(isReady));
 assumption
-	GF (responded_0);
+	alwEv (responded_0);
 assumption
-	G(next(responded_0) <-> (((!moveAwayFromFrontObstacle) | !frontDistSense_0) | !(moveAwayFromFrontObstacle)));
+	alw (next(responded_0) <-> (((!moveAwayFromFrontObstacle) | !frontDistSense_0) | !(moveAwayFromFrontObstacle)));
 assumption
-	GF (responded_1);
+	alwEv (responded_1);
 assumption
-	G(next(responded_1) <-> (((!moveAwayFromBackObstacle) | !backDistSense_0) | !(moveAwayFromBackObstacle)));
+	alw (next(responded_1) <-> (((!moveAwayFromBackObstacle) | !backDistSense_0) | !(moveAwayFromBackObstacle)));
 guarantee
 	!balancer_0 & !balancer_1 & !balancer_2;
 guarantee
-	G((!isReady) -> !balancer_0 & !balancer_1 & !balancer_2);
+	alw ((!isReady) -> !balancer_0 & !balancer_1 & !balancer_2);
 guarantee
-	G(!balancer_0 & !balancer_1 & balancer_2 -> !frontDistSense_0);
+	alw (!balancer_0 & !balancer_1 & balancer_2 -> !frontDistSense_0);
 guarantee
-	G(!balancer_0 & balancer_1 & !balancer_2 -> !backDistSense_0);
+	alw (!balancer_0 & balancer_1 & !balancer_2 -> !backDistSense_0);
 guarantee
-	GF (!balancer_0 & !balancer_1 & balancer_2);
+	alwEv (!balancer_0 & !balancer_1 & balancer_2);
 guarantee
-	GF (balancer_0 & !balancer_1 & !balancer_2 | !balancer_0 & balancer_1 & balancer_2);
+	alwEv (balancer_0 & !balancer_1 & !balancer_2 | !balancer_0 & balancer_1 & balancer_2);
 guarantee
-	G((isReady & !frontDistSense_0) -> !balancer_0 & !balancer_1 & balancer_2);
+	alw ((isReady & !frontDistSense_0) -> !balancer_0 & !balancer_1 & balancer_2);

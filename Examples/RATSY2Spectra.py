@@ -58,4 +58,4 @@ for req in e.findall("requirement"):
         lines.append("guarantee\n\t" + normalizeFormulaSyntax(req.find("property").text) + ";\n")
 file.close()
 
-write_file(lines, "AMBAs/" + specification + ".spectra")
+write_file(lines, "SYNTECH15-UNREAL-1/" + specification + ".spectra")

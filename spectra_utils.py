@@ -36,7 +36,7 @@ def extract_unrealizable_cores(specification):
     core_found = re.compile("at lines <([^>]*)>").search(output)
     if core_found:
         line_nums = [int(x) for x in core_found.group(1).split(" ") if x != ""]
-        # line_nums = [33, 37]
+        # line_nums = [22, 24]
         spec = sp.read_file(specification)
         # spec = sp.format_spec(spec)
         spec = [re.sub(r'\s*;\n$', '', re.sub(r'\s', '', x)) for x in spec]

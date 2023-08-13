@@ -8,7 +8,6 @@ import re
 # Set random seed for repeatability
 # random.seed(1000)
 
-
 case_study_name = "Protocol"
 generation_method = "interpolation"
 n_multivarbias = 5

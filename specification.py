@@ -1,6 +1,7 @@
 import re
 import os
 import sys
+import spot
 
 def read_file(spectra_file):
     file = open(spectra_file, 'r')
@@ -289,7 +290,8 @@ def spectra_to_DNF(formula):
 
 def extract_non_liveness(spec, exp_type):
     output = extract_all_expressions(exp_type, spec)
-    return [spectra_to_DNF(x) for x in output if not re.search("F", x)]
+    # return [spectra_to_DNF(x) for x in output if not re.search("F", x)]
+    return [x for x in output if not re.search("F", x)]
 
 
 def extract_expressions(spec, counter_strat=False, guarantee_only=False):

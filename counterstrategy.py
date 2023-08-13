@@ -5,6 +5,7 @@ import spectra_utils as spectra
 import copy
 import specification as sp
 import experiment_properties as exp
+import spot
 
 def var_to_asp(sys, timepoint):
     vars = re.split(",\s*", sys)
@@ -84,9 +85,15 @@ def next_only(x, new_state):
     return '|'.join(disjuncts)
 
 def satisfies(expression, state):
+    expression = "(speedButton_0 & next(yBoolExpr_0)) | (!speedButton_0 & next(!yBoolExpr_0))"
+    print("====================================")
+    print("EXPRESSION: ", expression)
+    print("STATE: ", state)
     disjuncts = expression.split("|")
+    print("DIS: ", disjuncts)
     for disjunct in disjuncts:
         conjuncts = disjunct.split("&")
+        print("CON: ", conjuncts)
         if all([conjunct in state for conjunct in conjuncts]):
             return True
     return False
@@ -101,10 +108,12 @@ def unsat_nexts(new_state, primed_expressions_cleaned):
 
 def aspify(expressions):
     # is this first one ok?
+    expressions = [spot.formula(x).simplify().to_str() for x in expressions]
     expressions = [re.sub(r"\(|\)", "", x) for x in expressions]
     expressions = [re.sub(r"\|", ";", x) for x in expressions]
     expressions = [re.sub(r"!", " not ", x) for x in expressions]
     expressions = [re.sub(r"&", ",", x) for x in expressions]
+    expressions = [x for x in expressions if x != "1" and x != "0"]
     return expressions
 
 import subprocess
@@ -199,13 +208,15 @@ def next_possible_assignments(new_state, primed_expressions_cleaned, primed_expr
     unsat_next_exp = unsat_nexts(new_state, primed_expressions_cleaned)
     print("UNE: ", unsat_next_exp)
     unsat_next_exp_s = unsat_nexts(new_state, primed_expressions_cleaned_s)
+    print("UNES: ", unsat_next_exp_s)
 
-    if unsat_next_exp + unsat_next_exp_s + unprimed_expressions + unprimed_expressions_s == []:
+    # if unsat_next_exp + unsat_next_exp_s + unprimed_expressions + unprimed_expressions_s == []:
+    if False:
         # Pick random assignment
         vars = [var for var in variables if not re.search("prev_", var)]
         i = random.choice(range(2 ** len(vars)))
         # TODO: replace i with 0 for deadlock - in order to make deterministic
-        i = 0
+        # i = 0
         n = "{0:b}".format(i)
         assignments = '0' * (len(vars) - len(n)) + n
         assignments = [int(x) for x in assignments]
@@ -246,11 +257,16 @@ def complete_deadlock_alt(last_state, file):
     print("LAST STATE: ", last_state)
     spec = sp.read_file(file)
     spec = sp.format_spec(spec)
-    spec = sp.format_iff(spec)
-    search_type = "asm|assumption|gar|guarantee"
-    for i, line in enumerate(spec):
-        if re.search(search_type, line):
-            spec[i+1] = "\t" + sp.spectra_to_DNF(spec[i + 1]) + "\n"
+    # spec = sp.format_iff(spec)
+    # search_type = "asm|assumption|gar|guarantee"
+    # for i, line in enumerate(spec):
+    #     if re.search(search_type, line):
+    #         # spec[i+1] = spot.formula(spec[i+1])
+    #         formula = spot.formula(re.sub(r";", "", spec[i+1])).simplify()
+    #         print("FORMULA: ", formula)
+    #         print("LINE: ", spec[i+1])
+    #         spec[i+1] = "\t" + formula.to_str() + "\n"
+    #         # spec[i+1] = "\t" + sp.spectra_to_DNF(spec[i + 1]) + "\n"
     sp.write_file(spec, "./deadlock.spectra")
 
     initial_expressions, prevs, primed_expressions, unprimed_expressions, variables = sp.extract_expressions(spec,
@@ -259,16 +275,25 @@ def complete_deadlock_alt(last_state, file):
         spec,
         guarantee_only=True)
 
+    # primed_expressions = [spot.formula(x).simplify().to_str(parenth=True) for x in primed_expressions]
+
     primed_expressions_cleaned = [re.sub(r"PREV\((!*)([^\|^\(]*)\)", r"\1prev_\2", x) for x in primed_expressions]
     primed_expressions_cleaned_s = [re.sub(r"PREV\((!*)([^\|^\(]*)\)", r"\1prev_\2", x) for x in primed_expressions_s]
-    print("UE: ", unprimed_expressions)
-    print("UES: ", unprimed_expressions_s)
+    print()
     print("PEC: ", primed_expressions_cleaned)
+    print()
+    print("UE: ", unprimed_expressions)
+    print()
     print("PECS: ", primed_expressions_cleaned_s)
+    print()
+    print("UES: ", unprimed_expressions_s)
+    print()
     assignments, is_violating = next_possible_assignments(last_state, primed_expressions_cleaned,
                                                           primed_expressions_cleaned_s, unprimed_expressions,
                                                           unprimed_expressions_s, variables)
-
+    print()
+    print("ASSIGNMENTS: ", assignments)
+    print()
     return assignments
 
 
@@ -619,7 +644,7 @@ class Counterstrategy:
                     # print("TRANSIENT STATES: ", transient_states)
 
                 # If the path is not looping, it ends in a failing state
-                failing_state = State("Sf")
+                # failing_state = State("Sf")
                 # sf_input_valuation = self.states[transient_states[-1].id_state]['input_valuation']
                 # for var in sf_input_valuation:
                 #     failing_state.add_to_valuation(var if sf_input_valuation[var] == 1 else "!" + var)
@@ -637,8 +662,12 @@ class Counterstrategy:
                     last_state.add(var if self.states[transient_states[-1].id_state]['output_valuation'][var] == 1 else "!" + var)
                 assignments = complete_deadlock_alt(last_state, self.specification)
 
+                # input_vars = set(exp.inputVarsList)
+
+                failing_state = State("Sf")
                 for var in assignments[0]:
-                        failing_state.add_to_valuation(var)
+                    # if re.sub(r'!', '', var) in input_vars:
+                    failing_state.add_to_valuation(var)
 
                 transient_states[-1].set_successor("Sf")
                 transient_states.append(failing_state)

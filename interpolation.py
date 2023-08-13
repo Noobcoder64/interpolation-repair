@@ -177,7 +177,7 @@ def getRefinementsFromStateComponents(state_components,path,input_vars):
 def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,output_vars):
     # assumptions_uc = []
     # PROBLEM
-    guarantees_uc = exp.guaranteesList
+    # guarantees_uc = exp.guaranteesList
 
     print()
     print("=== COUNTERSTRATEGY ===")
@@ -194,8 +194,7 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
     assumptions_boolean = list(filter(None,[l2b.gr1LTL2Boolean(x,path) for x in assumptions_uc]))
 
     valuations_boolean = path.get_valuation()
-    # valuations_boolean = "!hready__INI & !hbusreq0__INI & !hlock0__INI & !hburst0__INI & !hburst1__INI & !hready__Sf & !hbusreq0__Sf & !hlock0__Sf & hburst0__Sf & !hburst1__Sf"
-
+   
     if assumptions_boolean != []:
         assum_val_boolean = " & ".join(assumptions_boolean) + ((" & " + valuations_boolean) if valuations_boolean != "" else "")
     else:
@@ -228,10 +227,10 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
     if os.path.isfile("INTERP.1.msat"):
         interpolant = l2b.parseInterpolant("INTERP.1.msat")
         if interpolant == "false":
-            os.remove("path")
-            os.remove("counterstrategy_auto")
-            os.remove("guarantees_auto")
-            os.remove("INTERP.1.msat")
+            # os.remove("path")
+            # os.remove("counterstrategy_auto")
+            # os.remove("guarantees_auto")
+            # os.remove("INTERP.1.msat")
             return ["FALSE"]
         # try:
         print()
