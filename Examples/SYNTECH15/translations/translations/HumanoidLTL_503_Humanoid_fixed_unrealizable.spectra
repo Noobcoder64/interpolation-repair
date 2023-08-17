@@ -69,9 +69,9 @@ guarantee
 guarantee
 	alw (((((((!(next(inputMoveMode_0)) & !(next(inputMoveMode_1))) & !(next(inputMoveMode_2))) & !(next(obstacle_0))) & !(next(button_0))) & next(pREV_aux_1)) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & !(next(leftMotor_2))) & !(next(rightMotor_0))) & !(next(rightMotor_1))) & !(next(rightMotor_2)))));
 guarantee
-	 ((obstacle_0 -> ((!(!(spec_OutputMoveMode_0)) & !(spec_OutputMoveMode_1)) & !(spec_OutputMoveMode_2))));
+	 ((obstacle_0 -> !(((!(spec_OutputMoveMode_0) & !(spec_OutputMoveMode_1)) & !(spec_OutputMoveMode_2)))));
 guarantee
-	alw ((next(obstacle_0) -> ((!(!(next(spec_OutputMoveMode_0))) & !(next(spec_OutputMoveMode_1))) & !(next(spec_OutputMoveMode_2)))));
+	alw ((next(obstacle_0) -> !(((!(next(spec_OutputMoveMode_0)) & !(next(spec_OutputMoveMode_1))) & !(next(spec_OutputMoveMode_2))))));
 guarantee
 	 ((((!(inputMoveMode_0) & inputMoveMode_1) & !(inputMoveMode_2)) <-> ((!(spec_OutputMoveMode_0) & spec_OutputMoveMode_1) & spec_OutputMoveMode_2)));
 guarantee
@@ -113,9 +113,9 @@ guarantee
 guarantee
 	alw ((((((next(button_0) & next(inputMoveMode_0)) & !(next(inputMoveMode_1))) & !(next(inputMoveMode_2))) & !(next(obstacle_0))) -> ((((((((!(next(spec_OutputMoveMode_0)) & !(next(spec_OutputMoveMode_1))) & !(next(spec_OutputMoveMode_2))) & next(leftMotor_0)) & next(leftMotor_1)) & !(next(leftMotor_2))) & next(rightMotor_0)) & next(rightMotor_1)) & !(next(rightMotor_2)))));
 guarantee
-	 ((!((button_0 | ((inputMoveMode_0 & !(inputMoveMode_1)) & !(inputMoveMode_2)))) -> ((!(spec_OutputMoveMode_0) & !(spec_OutputMoveMode_1)) & !(spec_OutputMoveMode_2))));
+	 ((!((button_0 | ((inputMoveMode_0 & !(inputMoveMode_1)) & !(inputMoveMode_2)))) -> !(((spec_OutputMoveMode_0 & !(spec_OutputMoveMode_1)) & !(spec_OutputMoveMode_2)))));
 guarantee
-	alw ((!((next(button_0) | ((next(inputMoveMode_0) & !(next(inputMoveMode_1))) & !(next(inputMoveMode_2))))) -> ((!(next(spec_OutputMoveMode_0)) & !(next(spec_OutputMoveMode_1))) & !(next(spec_OutputMoveMode_2)))));
+	alw ((!((next(button_0) | ((next(inputMoveMode_0) & !(next(inputMoveMode_1))) & !(next(inputMoveMode_2))))) -> !(((next(spec_OutputMoveMode_0) & !(next(spec_OutputMoveMode_1))) & !(next(spec_OutputMoveMode_2))))));
 
 assumption
 	 (!(pREV_aux_0));

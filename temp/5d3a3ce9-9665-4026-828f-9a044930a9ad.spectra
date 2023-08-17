@@ -1,5 +1,5 @@
 
-module GyroUnrealizable_Var2_710_GyroAspect_unrealizable
+module GyroUnrealizable_Var1_710_GyroAspect_unrealizable
 
 env boolean frontDistSense_0;
 env boolean backDistSense_0;
@@ -11,7 +11,6 @@ sys boolean balancer_2;
 
 env boolean eNV_CONSTRAINT_0_respondsTo_responded;
 env boolean eNV_CONSTRAINT_1_respondsTo_responded;
-env boolean eNV_CONSTRAINT_2_respondsTo_responded;
 
 assumption
 	 (!(isReady));
@@ -25,8 +24,6 @@ assumption
 	alwEv (eNV_CONSTRAINT_0_respondsTo_responded);
 assumption
 	alwEv (eNV_CONSTRAINT_1_respondsTo_responded);
-assumption
-	alwEv (eNV_CONSTRAINT_2_respondsTo_responded);
 
 guarantee
 	 (((!(balancer_0) & !(balancer_1)) & !(balancer_2)));
@@ -66,13 +63,9 @@ guarantee
 assumption
 	 (eNV_CONSTRAINT_0_respondsTo_responded);
 assumption
-	alw ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((!(!((((!(balancer_0) & balancer_1) & !(balancer_2)) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2))))) | !(backDistSense_0)) | (eNV_CONSTRAINT_0_respondsTo_responded & !(!((((!(balancer_0) & balancer_1) & !(balancer_2)) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2)))))))));
+	alw ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((!(!((((!(balancer_0) & !(balancer_1)) & balancer_2) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2))))) | !(frontDistSense_0)) | (eNV_CONSTRAINT_0_respondsTo_responded & !(!((((!(balancer_0) & !(balancer_1)) & balancer_2) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2)))))))));
 assumption
 	 (eNV_CONSTRAINT_1_respondsTo_responded);
 assumption
-	alw ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> ((!(((!(balancer_0) & !(balancer_1)) & balancer_2)) | frontDistSense_0) | (eNV_CONSTRAINT_1_respondsTo_responded & !(((!(balancer_0) & !(balancer_1)) & balancer_2))))));
-assumption
-	 (eNV_CONSTRAINT_2_respondsTo_responded);
-assumption
-	alw ((next(eNV_CONSTRAINT_2_respondsTo_responded) <-> ((!(((!(balancer_0) & balancer_1) & !(balancer_2))) | backDistSense_0) | (eNV_CONSTRAINT_2_respondsTo_responded & !(((!(balancer_0) & balancer_1) & !(balancer_2)))))));
+	alw ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> ((!(!((((!(balancer_0) & balancer_1) & !(balancer_2)) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2))))) | !(backDistSense_0)) | (eNV_CONSTRAINT_1_respondsTo_responded & !(!((((!(balancer_0) & balancer_1) & !(balancer_2)) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2)))))))));
 

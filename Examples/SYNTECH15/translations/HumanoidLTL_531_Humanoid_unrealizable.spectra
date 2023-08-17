@@ -29,15 +29,15 @@ guarantee
 guarantee
 	alw ((state_0 & !state_1 & next(!moveMode_0 & !moveMode_1)) -> next(state_0 & !state_1));
 guarantee
-	alw (!state_0 & state_1);
+	alw (!(state_0 & state_1));
 guarantee
-	alw ((!moveMode_0 & !moveMode_1 & Obstacle_0) ->(!next(!moveMode_0 & !moveMode_1)));
+	alw ((!moveMode_0 & !moveMode_1 & Obstacle_0) ->(!(next(!moveMode_0 & !moveMode_1))));
 guarantee
 	alw (((!moveMode_0 & !moveMode_1 & next(!moveMode_0 & moveMode_1)) |(!moveMode_0 & moveMode_1 & next(!moveMode_0 & !moveMode_1))) <->((!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & RightMotor_2) |(!LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & !RightMotor_2)));
 guarantee
 	alwEv (!moveMode_0 & !moveMode_1);
 guarantee
-	alw (moveMode_0 & moveMode_1 ->(!next(!moveMode_0 & moveMode_1)));
+	alw (moveMode_0 & moveMode_1 ->(!(next(!moveMode_0 & moveMode_1))));
 guarantee
 	alw ((!moveMode_0 & !moveMode_1 & next(moveMode_0 & !moveMode_1)) <->(LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & RightMotor_2));
 guarantee

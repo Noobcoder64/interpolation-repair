@@ -25,7 +25,7 @@ guarantee
 guarantee
 	alw ((!InputMoveMode_0 & !InputMoveMode_1 & !Obstacle_0) ->(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & !RightMotor_2));
 guarantee
-	alw (Obstacle_0 ->(!!OutputMoveMode_0 & !OutputMoveMode_1));
+	alw (Obstacle_0 ->(!(!OutputMoveMode_0 & !OutputMoveMode_1)));
 guarantee
 	alw (InputMoveMode_0 & !InputMoveMode_1 <-> OutputMoveMode_0 & OutputMoveMode_1);
 guarantee

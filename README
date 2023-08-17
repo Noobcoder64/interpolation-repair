@@ -1,3 +1,4 @@
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ubuntu/InterpolationRepair/spectra
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ubuntu/interpolation-repair/spectra
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/homes/fa1622/interpolation-repair/spectra
 

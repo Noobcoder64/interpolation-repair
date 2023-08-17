@@ -1,3 +1,4 @@
+import sys,traceback
 from pyparsing import *
 from pyparsing import pyparsing_common
 ParserElement.enablePackrat()
@@ -6,6 +7,8 @@ import xml.etree.ElementTree as ET
 import re
 import os
 import subprocess
+
+sys.setrecursionlimit(1500)
 
 ####################################### XML Init ##############################################
 # root = ET.Element("project")
@@ -175,6 +178,9 @@ def parseDefIntegerVariable(t):
 def parseDefIntegerConst(t):
     integer_consts[t[1]] = int(t[3])
 
+def parseNegation(t):
+    return [[t[0][0], t[0][1:]]]
+
 
 def parseComparison(t):
     # This is very complex. Comparisons can be:
@@ -292,7 +298,7 @@ def parseNext(t):
     return ["X", [t[0][1]]]
 
 def parsePrev(t):
-    return ["PREV", [t[0][1]]]
+    return ["PREV", t[0][1:]]
 
 identifier_pattern = re.compile(r"\w+")
 # count_prevs = 0
@@ -441,9 +447,10 @@ bool_atom = identifier | enum_literal
 atom = bool_atom | Word(nums)
 
 bool_expr = infixNotation(bool_atom,
-                             [(neg_op, 1, opAssoc.RIGHT),
+                             [
                               (comparison_op, 2, opAssoc.LEFT, parseComparison),
                               (inequality_op, 2, opAssoc.LEFT, parseInequality),
+                              (neg_op, 1, opAssoc.RIGHT, parseNegation),
                               (and_op, 2, opAssoc.LEFT),
                               (or_op, 2, opAssoc.LEFT),
                               (implies_op, 2, opAssoc.LEFT),
@@ -455,7 +462,7 @@ responds_to = Keyword("respondsTo") + Suppress("(") + bool_expr + Suppress(",") 
 responds_to.setParseAction(parseRespondsTo)
 
 temporal_logic_expr = responds_to | infixNotation(atom,
-                                    [(neg_op, 1, opAssoc.RIGHT),
+                                    [(neg_op, 1, opAssoc.RIGHT, parseNegation),
                                      (next_op, 1, opAssoc.RIGHT, parseNext),
                                      (prev_op, 1, opAssoc.RIGHT, parsePrev),
                                      (comparison_op, 2, opAssoc.LEFT, parseComparison),
@@ -516,12 +523,6 @@ def make_directories_if_needed(output_filename):
 
 
 def write_file(spec, output_filename):
-    '''
-    NB: newline = '\\\\n' is necessary so that file is compatible with
-    linux (ILASP is run from linux).\n
-    :param spec: List of lines to save.
-    :param output_filename: filename to save to
-    '''
     output_filename = re.sub(r"\\", "/", output_filename)
     make_directories_if_needed(output_filename)
     output = '\n'.join(spec)
@@ -530,13 +531,16 @@ def write_file(spec, output_filename):
     file.close()
 
 ###################################### Tests ##################################################
-import sys,traceback
+
 try:
     path = sys.argv[1]
     directory, filename = os.path.split(path)
-    spec.append("module " + filename.replace(".spectra", ""))
+    print("TRANSLATING: ", filename)
+    
     input_file = open(path, "r")
+    spec.append("module " + filename.replace(".spectra", ""))
     parsed_program = program.parseString(input_file.read(),parseAll=True)
+    input_file.close()
 
     spec = [re.sub(r"G\s*\(", r"alw (", line) for line in spec]
     spec = [re.sub(r"GF\s*\(", r"alwEv (", line) for line in spec]
@@ -551,48 +555,5 @@ try:
     cmd = "java -jar {} -i {}".format(PATH_TO_JAR, new_path)
     subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
 
-    # print("assumptions: " + str(assumptions))
-    # print("guarantees: " + str(guarantees))
-
-    # print(program)
-
-    # print("## Producing XML signals")
-    # for variable in env_variables:
-    #     signals.extend(env_variables[variable].getXMLDescription(True))
-    # for variable in sys_variables:
-    #     signals.extend(sys_variables[variable].getXMLDescription(False))
-
-    # print("## Producing XML assumptions and guarantees")
-    # for i,assumption in enumerate(assumptions):
-    #     requirement = ET.SubElement(requirements, "requirement")
-    #     name = ET.SubElement(requirement, "name")
-    #     name.text = "assum_" + str(i)
-    #     property = ET.SubElement(requirement, "property")
-    #     property.text = assumption
-    #     kind = ET.SubElement(requirement, "kind")
-    #     kind.text = "A"
-    #     notes = ET.SubElement(requirement, "notes")
-    #     toggled = ET.SubElement(requirement, "toggled")
-    #     toggled.text = "1"
-
-    # for i,guarantee in enumerate(guarantees):
-    #     requirement = ET.SubElement(requirements, "requirement")
-    #     name = ET.SubElement(requirement, "name")
-    #     name.text = "guar_" + str(i)
-    #     property = ET.SubElement(requirement, "property")
-    #     property.text = guarantee
-    #     kind = ET.SubElement(requirement, "kind")
-    #     kind.text = "G"
-    #     notes = ET.SubElement(requirement, "notes")
-    #     toggled = ET.SubElement(requirement, "toggled")
-    #     toggled.text = "1"
-
-    # import xml.dom.minidom as md
-    # dom = md.parseString(ET.tostring(root))
-    # xmlfile = open(filename+".rat", "w")
-    # xmlfile.write((dom.toprettyxml()).replace("!!",""))
-    # print(dom.toprettyxml())
-    # xmlfile.close()
-    input_file.close()
 except Exception as e:
     print(str(filename) + " " + str(traceback.print_exc(e)))

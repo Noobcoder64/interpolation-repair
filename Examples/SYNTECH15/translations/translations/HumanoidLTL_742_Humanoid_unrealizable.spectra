@@ -55,7 +55,7 @@ guarantee
 guarantee
 	alw (((!(next(turnState_0)) & !(next(turnState_1))) -> ((!(turnState_0) & !(turnState_1)) | (turnState_0 & turnState_1))));
 guarantee
-	alw ((((!(turnState_0) & !(turnState_1)) & (!(nextMoveMode_0) & !(nextMoveMode_1))) -> (!(next(turnState_0)) & !(next(turnState_1)))));
+	alw ((((!(turnState_0) & !(turnState_1)) & !((nextMoveMode_0 & !(nextMoveMode_1)))) -> (!(next(turnState_0)) & !(next(turnState_1)))));
 guarantee
 	alw ((((((nextMoveMode_0 & !(nextMoveMode_1)) & pREV_aux_0) & !(turnState_0)) & !(turnState_1)) -> (!(next(turnState_0)) & next(turnState_1))));
 guarantee
@@ -89,9 +89,9 @@ guarantee
 guarantee
 	alw (!((next(nextMoveMode_0) & next(nextMoveMode_1))));
 guarantee
-	 ((obstacle_0 -> (!(!(nextMoveMode_0)) & !(nextMoveMode_1))));
+	 ((obstacle_0 -> !((!(nextMoveMode_0) & !(nextMoveMode_1)))));
 guarantee
-	alw ((next(obstacle_0) -> (!(!(next(nextMoveMode_0))) & !(next(nextMoveMode_1)))));
+	alw ((next(obstacle_0) -> !((!(next(nextMoveMode_0)) & !(next(nextMoveMode_1))))));
 guarantee
 	 ((((turnState_0 & !(turnState_1)) & !(obstacle_0)) -> (!(nextMoveMode_0) & !(nextMoveMode_1))));
 guarantee

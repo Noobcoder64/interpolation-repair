@@ -14,7 +14,7 @@ guarantee
 guarantee
 	!balancer_0 & !balancer_1 & !balancer_2;
 guarantee
-	alw ((!isReady) -> !balancer_0 & !balancer_1 & !balancer_2);
+	alw ((!(isReady)) -> !balancer_0 & !balancer_1 & !balancer_2);
 guarantee
 	alw (!balancer_0 & !balancer_1 & balancer_2 -> !frontDistSense_0);
 guarantee
@@ -26,7 +26,7 @@ guarantee
 guarantee
 	alw ((isReady & !frontDistSense_0) -> !balancer_0 & !balancer_1 & balancer_2);
 assumption
-	!isReady;
+	!(isReady);
 assumption
 	!frontDistSense_0 & !backDistSense_0;
 assumption
@@ -36,11 +36,11 @@ assumption
 define
 	moveAwayFromFrontObstacle := !(!balancer_0 & !balancer_1 & balancer_2 | !balancer_0 & !balancer_1 & !balancer_2);
 assumption
-	respondsTo(moveAwayFromFrontObstacle,(!moveAwayFromFrontObstacle) | !frontDistSense_0);
+	respondsTo(moveAwayFromFrontObstacle,(!(moveAwayFromFrontObstacle)) | !frontDistSense_0);
 define
 	moveAwayFromBackObstacle := !(!balancer_0 & balancer_1 & !balancer_2 | !balancer_0 & !balancer_1 & !balancer_2);
 assumption
-	respondsTo(moveAwayFromBackObstacle,(!moveAwayFromBackObstacle) | !backDistSense_0);
+	respondsTo(moveAwayFromBackObstacle,(!(moveAwayFromBackObstacle)) | !backDistSense_0);
 pattern respondsTo(trigger, response) {
 var boolean responded;
 responded;

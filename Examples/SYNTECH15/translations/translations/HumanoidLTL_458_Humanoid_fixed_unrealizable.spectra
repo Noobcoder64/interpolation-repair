@@ -43,9 +43,9 @@ guarantee
 guarantee
 	alw ((((!(next(inputMoveMode_0)) & !(next(inputMoveMode_1))) & !(next(obstacle_0))) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & !(next(leftMotor_2))) & !(next(rightMotor_0))) & !(next(rightMotor_1))) & !(next(rightMotor_2)))));
 guarantee
-	 ((obstacle_0 -> (!(!(outputMoveMode_0)) & !(outputMoveMode_1))));
+	 ((obstacle_0 -> !((!(outputMoveMode_0) & !(outputMoveMode_1)))));
 guarantee
-	alw ((next(obstacle_0) -> (!(!(next(outputMoveMode_0))) & !(next(outputMoveMode_1)))));
+	alw ((next(obstacle_0) -> !((!(next(outputMoveMode_0)) & !(next(outputMoveMode_1))))));
 guarantee
 	 (((inputMoveMode_0 & !(inputMoveMode_1)) <-> (outputMoveMode_0 & outputMoveMode_1)));
 guarantee

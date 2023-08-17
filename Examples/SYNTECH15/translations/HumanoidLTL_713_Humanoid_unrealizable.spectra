@@ -50,7 +50,7 @@ guarantee
 guarantee
 	alw ((spec_search_0 & (Heading_0 <-> next_head_0) & (Heading_1 <-> next_head_1) & (Heading_2 <-> next_head_2)) -> next(!spec_search_0));
 guarantee
-	alw ((Obstacle_0 &(!PREV(PREV))) ->(!!spec_nextMoveMode_0 & !spec_nextMoveMode_1));
+	alw ((Obstacle_0 &(!(PREV(PREV(spec_nextMoveMode_0 & spec_nextMoveMode_1))))) ->(!(!spec_nextMoveMode_0 & !spec_nextMoveMode_1)));
 guarantee
 	alw ((PREV(!spec_nextMoveMode_0 & spec_nextMoveMode_1) & !spec_nextMoveMode_0 & !spec_nextMoveMode_1) <->(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & RightMotor_2));
 guarantee
@@ -70,7 +70,7 @@ guarantee
 guarantee
 	alw ((PREV(!spec_nextMoveMode_0 & !spec_nextMoveMode_1) & spec_nextMoveMode_0 & !spec_nextMoveMode_1) <->(LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & RightMotor_2));
 guarantee
-	alw ((PREV(!spec_nextMoveMode_0 & !spec_nextMoveMode_1) & PREV(PREV)) <->(LeftMotor_0 & LeftMotor_1 & !LeftMotor_2 & RightMotor_0 & RightMotor_1 & !RightMotor_2));
+	alw ((PREV(!spec_nextMoveMode_0 & !spec_nextMoveMode_1) & PREV(PREV(spec_nextMoveMode_0 & spec_nextMoveMode_1))) <->(LeftMotor_0 & LeftMotor_1 & !LeftMotor_2 & RightMotor_0 & RightMotor_1 & !RightMotor_2));
 guarantee
 	alw (PREV(!spec_nextMoveMode_0 & spec_nextMoveMode_1) -> (!spec_nextMoveMode_0 | spec_nextMoveMode_1));
 assumption

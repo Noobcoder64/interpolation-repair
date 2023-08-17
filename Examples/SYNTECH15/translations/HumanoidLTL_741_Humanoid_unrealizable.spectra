@@ -44,7 +44,7 @@ guarantee
 guarantee
 	alw ((PREV(search_0) & ((Heading_0 <-> !next_head_0))) -> search_0);
 guarantee
-	alw ((next(Obstacle_0) &(!PREV(nextMoveMode_0 & nextMoveMode_1))) -> next(!!nextMoveMode_0 & !nextMoveMode_1));
+	alw ((next(Obstacle_0) &(!(PREV(nextMoveMode_0 & nextMoveMode_1)))) -> next(!(!nextMoveMode_0 & !nextMoveMode_1)));
 guarantee
 	alw ((!nextMoveMode_0 & nextMoveMode_1 & next(!nextMoveMode_0 & !nextMoveMode_1)) <-> next(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & RightMotor_2));
 guarantee
