@@ -1,0 +1,110 @@
+Executing "C:\Users\Fahim\Documents\imperial_college_london\individual_project\SymbolicRepairsArtifact\SpecRepair\SYNTECH15\GyroUnrealizable_Var1_710_GyroAspect_unrealizable.spectra".
+Found 5 repair suggestions
+Number of well-separated suggestions is 5
+Maximum variables in the best repair is 5
+Maximum Node count: 5
+
+Repair #1 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=false -> 
+					(next(isReady)=true -> 
+						(balancer_0=false -> 
+							(balancer_1=false -> balancer_2=true)))) and
+				(isReady=true -> 
+					(next(isReady)=true -> 
+						(balancer_0=false -> 
+							(balancer_1=false -> balancer_2=false)))))) and
+		(backDistSense_0=true -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> 
+					(next(isReady)=true -> 
+						(balancer_0=false -> 
+							(balancer_1=false -> balancer_2=false))))))));
+
+//Initial//
+
+]
+
+Repair #2 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(isReady=false -> 
+				(next(isReady)=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false -> balancer_2=true)))) and
+			(isReady=true -> 
+				(next(isReady)=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false -> balancer_2=false)))))));
+
+//Initial//
+
+]
+
+Repair #3 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> 
+	(isReady=true -> 
+		(balancer_0=false -> 
+			(balancer_1=false -> balancer_2=false))));
+
+//Transitions//
+
+//Initial//
+
+]
+
+Repair #4 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(isReady=false -> 
+				(next(isReady)=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false -> balancer_2=true)))) and
+			(isReady=true -> 
+				(next(isReady)=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false -> balancer_2=false))))) and
+		(backDistSense_0=true -> 
+			(isReady=true -> 
+				(next(isReady)=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false -> balancer_2=false)))))));
+
+//Initial//
+
+]
+
+Repair #5 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> 
+	(isReady=true -> 
+		(balancer_0=false -> 
+			(balancer_1=false -> balancer_2=false))));
+
+//Transitions//
+
+//Initial//
+
+]
+
+runtime of repair operation was 79 in millisecs.

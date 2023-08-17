@@ -1,0 +1,69 @@
+Executing "C:\Users\Fahim\Documents\imperial_college_london\individual_project\SymbolicRepairsArtifact\SpecRepair\SYNTECH15\HumanoidLTL_503_Humanoid_fixed_unrealizable.spectra".
+Found 1 repair suggestions
+Number of well-separated suggestions is 0
+Maximum variables in the best repair is 7
+Maximum Node count: 18
+
+Repair #1 [
+
+//Justices//
+asm GF (Obstacle_0=false -> 
+	(LeftMotor_0=true and (LeftMotor_1=true and LeftMotor_2=true))) and
+(Obstacle_0=true -> 
+	(InputMoveMode_0=false -> 
+		(InputMoveMode_1=false -> 
+			(InputMoveMode_2=true -> 
+				(LeftMotor_0=true and (LeftMotor_1=true and LeftMotor_2=true)))) and
+		(InputMoveMode_1=true -> 
+			(LeftMotor_0=true and (LeftMotor_1=true and LeftMotor_2=true)))) and
+	(InputMoveMode_0=true -> 
+		(LeftMotor_0=true and (LeftMotor_1=true and LeftMotor_2=true))));
+
+//Transitions//
+asm G (Obstacle_0=false -> 
+	(next(Obstacle_0)=false -> 
+		(next(InputMoveMode_0)=false -> 
+			(next(InputMoveMode_1)=true -> 
+				(next(InputMoveMode_2)=false -> next(Button_0)=true)))) and
+	(next(Obstacle_0)=true -> 
+		(next(InputMoveMode_0)=false -> 
+			(next(InputMoveMode_2)=true and next(Button_0)=true)))) and
+(Obstacle_0=true -> 
+	(next(Obstacle_0)=false -> 
+		(InputMoveMode_0=false -> 
+			(next(InputMoveMode_0)=false -> 
+				(InputMoveMode_1=false -> 
+					(next(InputMoveMode_1)=true -> 
+						(InputMoveMode_2=true -> 
+							(next(InputMoveMode_2)=false -> next(Button_0)=true)))) and
+				(InputMoveMode_1=true -> 
+					(next(InputMoveMode_1)=true -> 
+						(next(InputMoveMode_2)=false -> next(Button_0)=true))))) and
+		(InputMoveMode_0=true -> 
+			(next(InputMoveMode_0)=false -> 
+				(next(InputMoveMode_1)=true -> 
+					(next(InputMoveMode_2)=false -> next(Button_0)=true))))) and
+	(next(Obstacle_0)=true -> 
+		(InputMoveMode_0=false -> 
+			(next(InputMoveMode_0)=false -> 
+				(InputMoveMode_1=false -> 
+					(InputMoveMode_2=true -> 
+						(next(InputMoveMode_2)=true and next(Button_0)=true))) and
+				(InputMoveMode_1=true -> 
+					(next(InputMoveMode_2)=true and next(Button_0)=true)))) and
+		(InputMoveMode_0=true -> 
+			(next(InputMoveMode_0)=false -> 
+				(next(InputMoveMode_2)=true and next(Button_0)=true)))));
+
+//Initial//
+asm (Obstacle_0=false -> 
+	(InputMoveMode_0=false -> 
+		(InputMoveMode_1=true -> 
+			(InputMoveMode_2=false -> Button_0=true)))) and
+(Obstacle_0=true -> 
+	(InputMoveMode_0=false -> 
+		(InputMoveMode_2=true and Button_0=true)));
+
+]
+
+runtime of repair operation was 3 in millisecs.

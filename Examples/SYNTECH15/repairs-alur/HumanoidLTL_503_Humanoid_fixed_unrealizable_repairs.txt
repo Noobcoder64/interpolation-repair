@@ -1,0 +1,7 @@
+Executing "C:\Users\Fahim\Documents\imperial_college_london\individual_project\SymbolicRepairsArtifact\SpecRepair\SYNTECH15\HumanoidLTL_503_Humanoid_fixed_unrealizable.spectra".
+Found 0 repair suggestions
+Number of well-separated suggestions is 0
+Maximum variables in the best repair is -1
+Maximum Node count: -1
+
+runtime of repair operation was 113 in millisecs.

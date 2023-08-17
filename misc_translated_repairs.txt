@@ -1,0 +1,92 @@
+Executing "misc_translated.spectra".
+Found 2 repair suggestions
+Number of well-separated suggestions is 2
+Maximum variables in the best repair is 6
+Maximum Node count: 6
+
+Repair #1 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> 
+	(backDistSense_0=false -> 
+		(isReady=true -> 
+			(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+				(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false -> balancer_2=false)))))));
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=false -> 
+					(next(isReady)=true -> 
+						(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+							(next(eNV_CONSTRAINT_0_respondsTo_responded)=true -> 
+								(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+									(balancer_0=false -> 
+										(balancer_1=false -> balancer_2=true))))))) and
+				(isReady=true -> 
+					(next(isReady)=true -> 
+						(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+							(next(eNV_CONSTRAINT_0_respondsTo_responded)=true -> 
+								(eNV_CONSTRAINT_1_respondsTo_responded=false -> 
+									(balancer_0=false -> 
+										(balancer_1=false -> balancer_2=false)))))))) and
+			(next(backDistSense_0)=true -> 
+				(isReady=false -> 
+					(next(isReady)=true -> 
+						(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+							(next(eNV_CONSTRAINT_0_respondsTo_responded)=true -> 
+								(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+									(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+										(balancer_0=false -> 
+											(balancer_1=false -> balancer_2=true)))))))) and
+				(isReady=true -> 
+					(next(isReady)=true -> 
+						(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+							(next(eNV_CONSTRAINT_0_respondsTo_responded)=true -> 
+								(eNV_CONSTRAINT_1_respondsTo_responded=false -> 
+									(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+										(balancer_0=false -> 
+											(balancer_1=false -> balancer_2=false)))))))))) and
+		(backDistSense_0=true -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> 
+					(next(isReady)=true -> 
+						(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+							(next(eNV_CONSTRAINT_0_respondsTo_responded)=true -> 
+								(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+									(balancer_0=false -> 
+										(balancer_1=false -> balancer_2=false)))))))) and
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> 
+					(next(isReady)=true -> 
+						(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+							(next(eNV_CONSTRAINT_0_respondsTo_responded)=true -> 
+								(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+									(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+										(balancer_0=false -> 
+											(balancer_1=false -> balancer_2=false))))))))))));
+
+//Initial//
+
+]
+
+Repair #2 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> 
+	(isReady=true -> 
+		(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+			(balancer_0=false -> 
+				(balancer_1=false -> balancer_2=false)))));
+
+//Transitions//
+
+//Initial//
+
+]
+
+runtime of repair operation was 87 in millisecs.

@@ -1,0 +1,91 @@
+module HumanoidLTL_NotRealizable2_879_Humanoid_unrealizable
+env boolean Obstacle_0;
+env boolean Noise_0;
+env boolean Heading_0;
+env boolean Heading_1;
+env boolean Heading_2;
+env boolean Button_0;
+sys boolean LeftMotor_0;
+sys boolean LeftMotor_1;
+sys boolean LeftMotor_2;
+guarantee
+	alw (!(LeftMotor_0 & LeftMotor_1 & LeftMotor_2));
+sys boolean RightMotor_0;
+sys boolean RightMotor_1;
+sys boolean RightMotor_2;
+guarantee
+	alw (!(RightMotor_0 & RightMotor_1 & RightMotor_2));
+sys boolean HeadMotor_0;
+sys boolean HeadMotor_1;
+guarantee
+	alw (!(HeadMotor_0 & HeadMotor_1));
+sys boolean spec_nextMoveMode_0;
+sys boolean spec_nextMoveMode_1;
+sys boolean spec_state_0;
+sys boolean spec_state_1;
+sys boolean spec_search_0;
+sys boolean next_head_0;
+sys boolean next_head_1;
+sys boolean next_head_2;
+guarantee
+	!spec_search_0 & !next_head_0 & !next_head_1 & !next_head_2;
+guarantee
+	alw ((!spec_state_0 & !spec_state_1 & !spec_nextMoveMode_0 & !spec_nextMoveMode_1 & next(!spec_nextMoveMode_0 & spec_nextMoveMode_1)) -> next(!spec_state_0 & spec_state_1));
+guarantee
+	alw ((!spec_state_0 & spec_state_1 & !spec_nextMoveMode_0 & spec_nextMoveMode_1 & next(!spec_nextMoveMode_0 & !spec_nextMoveMode_1)) -> next(spec_state_0 & !spec_state_1));
+guarantee
+	alw (!(spec_state_0 & !spec_state_1 & !spec_nextMoveMode_0 & !spec_nextMoveMode_1 & next(!spec_nextMoveMode_0 & spec_nextMoveMode_1)));
+guarantee
+	alw ((!spec_state_0 & spec_state_1 & next(!spec_nextMoveMode_0 & spec_nextMoveMode_1)) -> next(!spec_state_0 & spec_state_1));
+guarantee
+	alw ((spec_state_0 & !spec_state_1 & next(!spec_nextMoveMode_0 & !spec_nextMoveMode_1)) -> next(spec_state_0 & !spec_state_1));
+guarantee
+	alw ((spec_nextMoveMode_0 & !spec_nextMoveMode_1 | spec_nextMoveMode_0 & !spec_nextMoveMode_1) -> next(!spec_state_0 & !spec_state_1));
+guarantee
+	G HeadMotor_0 & !HeadMotor_1;
+guarantee
+	alw (Button_0 -> (next_head_0 <-> Heading_0) & (next_head_1 <-> Heading_1) & (next_head_2 <-> Heading_2));
+guarantee
+	alw ((!spec_search_0 & !spec_nextMoveMode_0 & !spec_nextMoveMode_1 & Noise_0 & ((Heading_0 <-> !next_head_0) | (Heading_1 <-> !next_head_1) | (Heading_2 <-> !next_head_2))) -> next(spec_search_0));
+guarantee
+	alw ((spec_search_0 & (Heading_0 <-> next_head_0) & (Heading_1 <-> next_head_1) & (Heading_2 <-> next_head_2)) -> next(!spec_search_0));
+guarantee
+	alw ((Obstacle_0 &(!PREV(PREV))) ->(!!spec_nextMoveMode_0 & !spec_nextMoveMode_1));
+guarantee
+	alw ((PREV(!spec_nextMoveMode_0 & spec_nextMoveMode_1) & !spec_nextMoveMode_0 & !spec_nextMoveMode_1) <->(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & RightMotor_2));
+guarantee
+	alw ((PREV(!spec_nextMoveMode_0 & !spec_nextMoveMode_1) & !spec_nextMoveMode_0 & spec_nextMoveMode_1) <->(!LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & !RightMotor_2));
+guarantee
+	alwEv (!spec_nextMoveMode_0 & !spec_nextMoveMode_1);
+guarantee
+	alw (PREV(spec_nextMoveMode_0 & !spec_nextMoveMode_1) ->(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & RightMotor_1 & RightMotor_2));
+guarantee
+	alw (PREV(spec_nextMoveMode_0 & spec_nextMoveMode_1) ->(!LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & !RightMotor_2));
+guarantee
+	alw (PREV(spec_nextMoveMode_0 & !spec_nextMoveMode_1) <-> spec_nextMoveMode_0 & spec_nextMoveMode_1);
+guarantee
+	alw ((!(PREV(spec_nextMoveMode_0 & !spec_nextMoveMode_1) | PREV(spec_nextMoveMode_0 & spec_nextMoveMode_1))) ->(!(LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 | RightMotor_0 & !RightMotor_1 & !RightMotor_2 | !LeftMotor_0 & LeftMotor_1 & LeftMotor_2 | !RightMotor_0 & RightMotor_1 & RightMotor_2)));
+guarantee
+	alw (!spec_nextMoveMode_0 & spec_nextMoveMode_1 ->(PREV(!spec_nextMoveMode_0 & !spec_nextMoveMode_1) | PREV(!spec_nextMoveMode_0 & spec_nextMoveMode_1)));
+guarantee
+	alw ((PREV(!spec_nextMoveMode_0 & !spec_nextMoveMode_1) & spec_nextMoveMode_0 & !spec_nextMoveMode_1) <->(LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & RightMotor_2));
+guarantee
+	alw ((PREV(!spec_nextMoveMode_0 & !spec_nextMoveMode_1) & PREV(PREV)) <->(LeftMotor_0 & LeftMotor_1 & !LeftMotor_2 & RightMotor_0 & RightMotor_1 & !RightMotor_2));
+guarantee
+	alw (PREV(!spec_nextMoveMode_0 & spec_nextMoveMode_1) -> (!spec_nextMoveMode_0 | spec_nextMoveMode_1));
+assumption
+	respondsTo(spec_search_0,(Heading_0 <-> next_head_0) & (Heading_1 <-> next_head_1) & (Heading_2 <-> next_head_2));
+assumption
+	alw (((!spec_nextMoveMode_0 & !spec_nextMoveMode_1 | !spec_nextMoveMode_0 & spec_nextMoveMode_1) & ((Heading_0 <-> !next_head_0) | (Heading_1 <-> !next_head_1) | (Heading_2 <-> !next_head_2))) -> next(((Heading_0 <-> !next_head_0) | (Heading_1 <-> !next_head_1) | (Heading_2 <-> !next_head_2))));
+assumption
+	respondsTo((spec_nextMoveMode_0 | spec_nextMoveMode_1),!Obstacle_0);
+assumption
+	alw ((!spec_nextMoveMode_0 & spec_nextMoveMode_1 & !Obstacle_0) -> next((!Obstacle_0)));
+assumption
+	alwEv (PREV(spec_nextMoveMode_0 & spec_nextMoveMode_1) & !Obstacle_0);
+pattern respondsTo(trigger, response) {
+var boolean responded;
+responded;
+alw (next(responded) iff (response or responded and !trigger));
+alwEv (responded);
+}

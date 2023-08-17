@@ -1,11 +1,26 @@
-spec Misc
+module Protocol
 
-sys boolean a;
-env boolean b;
+// INPUT VARIABLES
+
+env boolean req;
+env boolean cl;
+
+// OUTPUT VARIABLES
+
+sys boolean gr;
+sys boolean val;
+
+define
+	vall := val;
+
+// ASSUMPTIONS
+
+assumption
+    GF(!req);
+
+// GUARANTEES
 
 guarantee
-    a;
+    G(cl -> !vall);
 guarantee
-    G (a -> next(b));
-guarantee
-    G (a -> next(!b));
+    GF(gr and vall);

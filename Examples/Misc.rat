@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<project>
+	<signals>
+		<signal>
+			<name>req</name>
+			<kind>E</kind>
+			<type>boolean</type>
+			<notes/>
+		</signal>
+		<signal>
+			<name>cl</name>
+			<kind>E</kind>
+			<type>boolean</type>
+			<notes/>
+		</signal>
+		<signal>
+			<name>gr</name>
+			<kind>S</kind>
+			<type>boolean</type>
+			<notes/>
+		</signal>
+		<signal>
+			<name>val</name>
+			<kind>S</kind>
+			<type>boolean</type>
+			<notes/>
+		</signal>
+		<signal>
+			<name>vall</name>
+			<kind>S</kind>
+			<type>boolean</type>
+			<notes/>
+		</signal>
+	</signals>
+	<requirements>
+		<requirement>
+			<name>assum_0</name>
+			<property>G(F(!req))</property>
+			<kind>A</kind>
+			<notes/>
+			<toggled>1</toggled>
+		</requirement>
+		<requirement>
+			<name>guar_0</name>
+			<property>G(cl -&gt;(!vall))</property>
+			<kind>G</kind>
+			<notes/>
+			<toggled>1</toggled>
+		</requirement>
+		<requirement>
+			<name>guar_1</name>
+			<property>G(F(gr and vall))</property>
+			<kind>G</kind>
+			<notes/>
+			<toggled>1</toggled>
+		</requirement>
+	</requirements>
+</project>

@@ -1,0 +1,62 @@
+module HumanoidLTL_531_Humanoid_unrealizable
+env boolean Obstacle_0;
+sys boolean LeftMotor_0;
+sys boolean LeftMotor_1;
+sys boolean LeftMotor_2;
+guarantee
+	alw (!(LeftMotor_0 & LeftMotor_1 & LeftMotor_2));
+sys boolean RightMotor_0;
+sys boolean RightMotor_1;
+sys boolean RightMotor_2;
+guarantee
+	alw (!(RightMotor_0 & RightMotor_1 & RightMotor_2));
+sys boolean HeadMotor_0;
+sys boolean HeadMotor_1;
+guarantee
+	alw (!(HeadMotor_0 & HeadMotor_1));
+sys boolean moveMode_0;
+sys boolean moveMode_1;
+sys boolean state_0;
+sys boolean state_1;
+guarantee
+	alw ((!state_0 & !state_1 & !moveMode_0 & !moveMode_1 & next(!moveMode_0 & moveMode_1)) -> next(!state_0 & state_1));
+guarantee
+	alw ((!state_0 & state_1 & !moveMode_0 & moveMode_1 & next(!moveMode_0 & !moveMode_1)) -> next(state_0 & !state_1));
+guarantee
+	alw ((state_0 & !state_1 & !moveMode_0 & !moveMode_1 & next(!moveMode_0 & moveMode_1)) -> next(state_0 & state_1));
+guarantee
+	alw ((!state_0 & state_1 & next(!moveMode_0 & moveMode_1)) -> next(!state_0 & state_1));
+guarantee
+	alw ((state_0 & !state_1 & next(!moveMode_0 & !moveMode_1)) -> next(state_0 & !state_1));
+guarantee
+	alw (!state_0 & state_1);
+guarantee
+	alw ((!moveMode_0 & !moveMode_1 & Obstacle_0) ->(!next(!moveMode_0 & !moveMode_1)));
+guarantee
+	alw (((!moveMode_0 & !moveMode_1 & next(!moveMode_0 & moveMode_1)) |(!moveMode_0 & moveMode_1 & next(!moveMode_0 & !moveMode_1))) <->((!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & RightMotor_2) |(!LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & !RightMotor_2)));
+guarantee
+	alwEv (!moveMode_0 & !moveMode_1);
+guarantee
+	alw (moveMode_0 & moveMode_1 ->(!next(!moveMode_0 & moveMode_1)));
+guarantee
+	alw ((!moveMode_0 & !moveMode_1 & next(moveMode_0 & !moveMode_1)) <->(LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & RightMotor_2));
+guarantee
+	alw ((!moveMode_0 & !moveMode_1 & PREV(moveMode_0 & moveMode_1)) <->(LeftMotor_0 & LeftMotor_1 & !LeftMotor_2 & RightMotor_0 & RightMotor_1 & !RightMotor_2));
+guarantee
+	alw (moveMode_0 & !moveMode_1 <-> next(moveMode_0) & next(moveMode_1));
+guarantee
+	alw (moveMode_0 & !moveMode_1 ->(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & RightMotor_1 & RightMotor_2));
+guarantee
+	alw (moveMode_0 & moveMode_1 ->(!LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & !RightMotor_2));
+guarantee
+	alw ((!(moveMode_0 & !moveMode_1 | moveMode_0 & moveMode_1)) ->(!(LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 | RightMotor_0 & !RightMotor_1 & !RightMotor_2 | !LeftMotor_0 & LeftMotor_1 & LeftMotor_2 | !RightMotor_0 & RightMotor_1 & RightMotor_2)));
+assumption
+	respondsTo(!moveMode_0 & moveMode_1 | moveMode_0 & !moveMode_1 | moveMode_0 & moveMode_1,!Obstacle_0);
+assumption
+	alwEv (!Obstacle_0);
+pattern respondsTo(trigger, response) {
+var boolean responded;
+responded;
+alw (next(responded) iff (response or responded and !trigger));
+alwEv (responded);
+}

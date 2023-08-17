@@ -1,0 +1,845 @@
+Executing "C:\Users\Fahim\Documents\imperial_college_london\individual_project\SymbolicRepairsArtifact\SpecRepair\SYNTECH15\GyroUnrealizable_Var1_710_GyroAspect_unrealizable.spectra".
+Found 49 repair suggestions
+Number of well-separated suggestions is 21
+Maximum variables in the best repair is 3
+Maximum Node count: 3
+
+Repair #1 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Initial//
+
+]
+
+Repair #2 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Initial//
+
+]
+
+Repair #3 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Initial//
+
+]
+
+Repair #4 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> isReady=false);
+asm GF (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Transitions//
+
+//Initial//
+
+]
+
+Repair #5 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Initial//
+
+]
+
+Repair #6 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Initial//
+
+]
+
+Repair #7 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Initial//
+
+]
+
+Repair #8 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Initial//
+
+]
+
+Repair #9 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=true -> isReady=false));
+
+//Initial//
+
+]
+
+Repair #10 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Initial//
+
+]
+
+Repair #11 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #12 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=true -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #13 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=false -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #14 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=false -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #15 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=false -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #16 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=false -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #17 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> isReady=false);
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #18 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #19 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=true -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #20 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #21 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=true -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #22 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #23 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> next(isReady)=false)))));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #24 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=true -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #25 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> next(isReady)=false)))));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #26 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=true -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #27 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> next(isReady)=false)))));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #28 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> isReady=false);
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #29 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #30 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=true -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #31 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #32 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=true -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #33 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #34 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> next(isReady)=false)))));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #35 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=true -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #36 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> next(isReady)=false)))));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #37 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=true -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #38 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> next(isReady)=false)))));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #39 [
+
+//Justices//
+asm GF (frontDistSense_0=false -> isReady=false);
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #40 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #41 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=true -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #42 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #43 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=true -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #44 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=false -> isReady=false));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #45 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> next(isReady)=false)))));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #46 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=true -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #47 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> next(isReady)=false)))));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #48 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=true -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+Repair #49 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> next(isReady)=false)))));
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> next(isReady)=false)))));
+
+//Initial//
+
+]
+
+runtime of repair operation was 109 in millisecs.

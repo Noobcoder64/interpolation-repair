@@ -1,0 +1,1887 @@
+Executing "C:\Users\Fahim\Documents\imperial_college_london\individual_project\SymbolicRepairsArtifact\SpecRepair\SYNTECH15\HumanoidLTL_531_Humanoid_unrealizable.spectra".
+Found 7 repair suggestions
+Number of well-separated suggestions is 0
+Maximum variables in the best repair is 12
+Maximum Node count: 32
+
+Repair #1 [
+
+//Justices//
+
+//Transitions//
+asm G (Obstacle_0=true -> 
+	(LeftMotor_0=false -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))))) and
+			(LeftMotor_2=true -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))))))) and
+	(LeftMotor_0=true -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=true -> 
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))))))));
+
+//Initial//
+
+]
+
+Repair #2 [
+
+//Justices//
+
+//Transitions//
+asm G (Obstacle_0=false -> 
+	(LeftMotor_0=false -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))) and
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=true -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=true -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))))) and
+			(LeftMotor_2=true -> 
+				(RightMotor_1=false -> 
+					(RightMotor_2=true -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false))))))) and
+				(RightMotor_1=true -> 
+					(RightMotor_2=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false))))))))) and
+		(LeftMotor_1=true -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))))))) and
+	(LeftMotor_0=true -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=true -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))))) and
+		(LeftMotor_1=true -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))))))) and
+(Obstacle_0=true -> 
+	(LeftMotor_0=false -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))) and
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=true -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=true -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))))) and
+			(LeftMotor_2=true -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=true -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=true -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))) and
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))))) and
+		(LeftMotor_1=true -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))))))) and
+	(LeftMotor_0=true -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=true -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))))) and
+		(LeftMotor_1=true -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))))))));
+
+//Initial//
+
+]
+
+Repair #3 [
+
+//Justices//
+
+//Transitions//
+asm G (Obstacle_0=false -> 
+	(LeftMotor_0=false -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))))) and
+			(LeftMotor_2=true -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))))))) and
+	(LeftMotor_0=true -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=true -> 
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))))))) and
+(Obstacle_0=true -> 
+	(LeftMotor_0=false -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))) and
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))))) and
+			(LeftMotor_2=true -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))) and
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))))) and
+		(LeftMotor_1=true -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=false -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))))))) and
+	(LeftMotor_0=true -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=true -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=false -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))))) and
+		(LeftMotor_1=true -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=false -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))))))));
+
+//Initial//
+
+]
+
+Repair #4 [
+
+//Justices//
+
+//Transitions//
+asm G (Obstacle_0=true -> 
+	(LeftMotor_0=false -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))))) and
+			(LeftMotor_2=true -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))))))) and
+	(LeftMotor_0=true -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=true -> 
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))))))));
+
+//Initial//
+
+]
+
+Repair #5 [
+
+//Justices//
+
+//Transitions//
+asm G (Obstacle_0=false -> 
+	(LeftMotor_0=false -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))) and
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=true -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=true -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))))) and
+			(LeftMotor_2=true -> 
+				(RightMotor_1=false -> 
+					(RightMotor_2=true -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false))))))) and
+				(RightMotor_1=true -> 
+					(RightMotor_2=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false))))))))) and
+		(LeftMotor_1=true -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))))))) and
+	(LeftMotor_0=true -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=true -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))))) and
+		(LeftMotor_1=true -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))))))) and
+(Obstacle_0=true -> 
+	(LeftMotor_0=false -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))) and
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=true -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=true -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))))) and
+			(LeftMotor_2=true -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=true -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=true -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))) and
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))))) and
+		(LeftMotor_1=true -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))))))) and
+	(LeftMotor_0=true -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=true -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))))) and
+		(LeftMotor_1=true -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))))))));
+
+//Initial//
+
+]
+
+Repair #6 [
+
+//Justices//
+asm GF (LeftMotor_0=false -> 
+	(LeftMotor_1=false -> 
+		(LeftMotor_2=false -> 
+			(RightMotor_0=false -> 
+				(RightMotor_1=false -> 
+					(RightMotor_2=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false))))))) and
+				(RightMotor_1=true -> 
+					(RightMotor_2=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_2=true -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=true -> 
+								(moveMode_1=false -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=true -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))))))) and
+			(RightMotor_0=true -> 
+				(RightMotor_1=false -> 
+					(RightMotor_2=true -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false))))))) and
+				(RightMotor_1=true -> 
+					(RightMotor_2=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false))))))))) and
+		(LeftMotor_2=true -> 
+			(RightMotor_0=false -> 
+				(RightMotor_1=false -> 
+					(RightMotor_2=true -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false))))))) and
+				(RightMotor_1=true -> 
+					(RightMotor_2=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))))) and
+			(RightMotor_0=true -> 
+				(RightMotor_1=false -> 
+					(RightMotor_2=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=true -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=true -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_2=true -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false))))))) and
+				(RightMotor_1=true -> 
+					(RightMotor_2=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))))))) and
+	(LeftMotor_1=true -> 
+		(LeftMotor_2=false -> 
+			(RightMotor_0=false -> 
+				(RightMotor_1=false -> 
+					(HeadMotor_0=false -> 
+						(moveMode_0=false -> 
+							(moveMode_1=true -> 
+								(state_0=false -> state_1=false)))) and
+					(HeadMotor_0=true -> 
+						(HeadMotor_1=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))))) and
+				(RightMotor_1=true -> 
+					(RightMotor_2=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))))) and
+			(RightMotor_0=true -> 
+				(RightMotor_1=false -> 
+					(RightMotor_2=true -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false))))))) and
+				(RightMotor_1=true -> 
+					(RightMotor_2=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false))))))))))) and
+(LeftMotor_0=true -> 
+	(LeftMotor_1=false -> 
+		(LeftMotor_2=true -> 
+			(RightMotor_0=false -> 
+				(RightMotor_1=false -> 
+					(HeadMotor_0=false -> 
+						(moveMode_0=false -> 
+							(moveMode_1=true -> 
+								(state_0=false -> state_1=false)))) and
+					(HeadMotor_0=true -> 
+						(HeadMotor_1=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))))) and
+				(RightMotor_1=true -> 
+					(RightMotor_2=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))))) and
+			(RightMotor_0=true -> 
+				(RightMotor_1=true -> 
+					(RightMotor_2=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))))))) and
+	(LeftMotor_1=true -> 
+		(LeftMotor_2=false -> 
+			(RightMotor_0=false -> 
+				(RightMotor_1=false -> 
+					(HeadMotor_0=false -> 
+						(moveMode_0=false -> 
+							(moveMode_1=true -> 
+								(state_0=false -> state_1=false)))) and
+					(HeadMotor_0=true -> 
+						(HeadMotor_1=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))))) and
+				(RightMotor_1=true -> 
+					(RightMotor_2=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))))) and
+			(RightMotor_0=true -> 
+				(RightMotor_1=false -> 
+					(RightMotor_2=true -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=true -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))))))))));
+
+//Transitions//
+
+//Initial//
+
+]
+
+Repair #7 [
+
+//Justices//
+
+//Transitions//
+asm G (Obstacle_0=false -> 
+	(LeftMotor_0=false -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))))) and
+			(LeftMotor_2=true -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))))))) and
+	(LeftMotor_0=true -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=true -> 
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))))))))) and
+(Obstacle_0=true -> 
+	(LeftMotor_0=false -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))) and
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))))) and
+			(LeftMotor_2=true -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false)))))) and
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))))) and
+		(LeftMotor_1=true -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=false -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))))))) and
+	(LeftMotor_0=true -> 
+		(LeftMotor_1=false -> 
+			(LeftMotor_2=true -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=false -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=true -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=true -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))))) and
+		(LeftMotor_1=true -> 
+			(LeftMotor_2=false -> 
+				(RightMotor_0=false -> 
+					(RightMotor_1=false -> 
+						(HeadMotor_0=false -> 
+							(moveMode_0=false -> 
+								(moveMode_1=false -> 
+									(state_0=false -> state_1=false)))) and
+						(HeadMotor_0=true -> 
+							(HeadMotor_1=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false)))))))) and
+				(RightMotor_0=true -> 
+					(RightMotor_1=false -> 
+						(RightMotor_2=true -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))) and
+					(RightMotor_1=true -> 
+						(RightMotor_2=false -> 
+							(HeadMotor_0=false -> 
+								(moveMode_0=false -> 
+									(moveMode_1=false -> 
+										(state_0=false -> state_1=false)))) and
+							(HeadMotor_0=true -> 
+								(HeadMotor_1=false -> 
+									(moveMode_0=false -> 
+										(moveMode_1=false -> 
+											(state_0=false -> state_1=false))))))))))));
+
+//Initial//
+
+]
+
+runtime of repair operation was 150 in millisecs.

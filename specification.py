@@ -124,7 +124,7 @@ def format_spec(spec):
     spec = word_sub(spec, "gar", "guarantee --")
     new_vars = []
     # This bit deals with multi-valued 'enums'
-    # spec = enumerate_spec(new_vars, spec)
+    spec = enumerate_spec(new_vars, spec)
     for i, line in enumerate(spec):
         words = line.strip("\t").split(" ")
         words = [x for x in words if x != ""]
@@ -145,9 +145,11 @@ def format_spec(spec):
     return spec
 
 def interpolation_spec(spec):
+    spec = [re.sub(r"alw\s*\(([^\)]*)\)", r"G(\1)", line) for line in spec]
+    spec = [re.sub(r"alwEv\s*\(([^\)]*)\)", r"G(F(\1))", line) for line in spec]
     spec = [re.sub(r"GF\s*\(([^\)]*)\)", r"G(F(\1))", line) for line in spec]
     spec = word_sub(spec, "next", "X")
-    spec = [re.sub(r'(\w+)=true', '', x) for x in spec]
+    spec = [re.sub(r'(\w+)=true', r'\1', x) for x in spec]
     spec = [re.sub(r'(\w+)=false', r'!\1', x) for x in spec]
     spec = [re.sub(";", "", line) for line in spec]
     return spec
@@ -163,7 +165,7 @@ def unformat_spec(spec):
 def unspectra(spec):
     spec = [re.sub(r"alwEv\s*\(([^\)]*)\)", r"G(F(\1))", line) for line in spec]
     spec = [re.sub(r"alw\s*\(([^\)]*)\)", r"G(\1)", line) for line in spec]
-    spec = [re.sub(r'(\w+)=true', '', x) for x in spec]
+    spec = [re.sub(r'(\w+)=true', r'\1', x) for x in spec]
     spec = [re.sub(r'(\w+)=false', r'!\1', x) for x in spec]
     spec = [re.sub(r"next\(([^\)]*)\)", r"X(\1)", line) for line in spec]
     spec = [re.sub(r"\s*;", "", line) for line in spec]
@@ -431,9 +433,9 @@ def format_iff(spec):
 def main():
     spectra_file = sys.argv[1]
     spec = read_file(spectra_file)
-    spec = [re.sub('--[A-Z]', lambda m: m.group(0).lower(), x) for x in spec]
     out_file = generate_filename(spectra_file, "_formatted.spectra")
     # spec = [line + "\n" for line in spec]
+    # spec = format_spec(spec)
     write_file(spec, out_file)
 
 if __name__ == '__main__':

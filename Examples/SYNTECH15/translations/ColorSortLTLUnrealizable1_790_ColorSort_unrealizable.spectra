@@ -1,0 +1,129 @@
+module ColorSortLTLUnrealizable1_790_ColorSort_unrealizable
+env boolean color_0;
+env boolean color_1;
+env boolean color_2;
+assumption
+	alw (!(color_0 & color_1 & !color_2));
+assumption
+	alw (!(color_0 & color_1 & color_2));
+env boolean detect_0;
+env boolean detect_1;
+env boolean detect_2;
+assumption
+	alw (!(detect_0 & detect_1 & !detect_2));
+assumption
+	alw (!(detect_0 & detect_1 & detect_2));
+env boolean ack_ver_0;
+env boolean ack_hor_0;
+env boolean ack_bot_0;
+env boolean starting_pos_0;
+env boolean speedButton_0;
+sys boolean verMot_0;
+sys boolean horMot_0;
+sys boolean botMot_0;
+sys boolean botMot_1;
+guarantee
+	alw (!(botMot_0 & botMot_1));
+sys boolean motSpeed_0;
+sys boolean motSpeed_1;
+guarantee
+	alw (!(motSpeed_0 & motSpeed_1));
+sys boolean spec_currentColor_0;
+sys boolean spec_currentColor_1;
+sys boolean spec_currentColor_2;
+guarantee
+	alw (!(spec_currentColor_0 & spec_currentColor_1 & !spec_currentColor_2));
+guarantee
+	alw (!(spec_currentColor_0 & spec_currentColor_1 & spec_currentColor_2));
+sys boolean spec_dropping;
+sys boolean spec_speedButtonValidPressed;
+define
+	allsleep := verMot_0 & horMot_0 & !botMot_0 & botMot_1;
+define
+	nonemove := ack_ver_0 & ack_hor_0 & ack_bot_0;
+define
+	verhor_dontmove := ack_ver_0 & ack_hor_0;
+define
+	onlybotmoves := verhor_dontmove & !ack_bot_0;
+guarantee
+	alw (!verMot_0 ->(!botMot_0 & botMot_1 & horMot_0));
+guarantee
+	alw (!horMot_0 ->(!botMot_0 & botMot_1 & verMot_0));
+guarantee
+	alw ((botMot_0 | !botMot_1) ->(verMot_0 & horMot_0));
+guarantee
+	alw ((!ack_ver_0 | !ack_hor_0) -> allsleep);
+guarantee
+	alw (verMot_0 <-> (spec_currentColor_0 <-> next(spec_currentColor_0)) & (spec_currentColor_1 <-> next(spec_currentColor_1)) & (spec_currentColor_2 <-> next(spec_currentColor_2)));
+guarantee
+	alw (spec_dropping <-> next(spec_dropping) <->(verMot_0 & horMot_0));
+guarantee
+	(!spec_dropping) & !motSpeed_0 & !motSpeed_1;
+guarantee
+	alw (((!spec_dropping) & starting_pos_0 & verhor_dontmove) <-> botMot_0 & !botMot_1);
+guarantee
+	alw (((!spec_dropping) & !starting_pos_0 & !color_0 & !color_1 & color_2) -> allsleep);
+guarantee
+	alw ((!color_0 & !color_1 & color_2 | spec_dropping) -> verMot_0);
+guarantee
+	alw (((!spec_dropping) & !starting_pos_0 & nonemove & (color_0 | color_1 | !color_2)) <->(!verMot_0 & (color_0 <-> next(spec_currentColor_0)) & (color_1 <-> next(spec_currentColor_1)) & (color_2 <-> next(spec_currentColor_2))));
+guarantee
+	alw ((spec_dropping & ((detect_0 <-> !spec_currentColor_0) | (detect_1 <-> !spec_currentColor_1) | (detect_2 <-> !spec_currentColor_2)) & verhor_dontmove) <-> !botMot_0 & !botMot_1);
+guarantee
+	alw ((spec_dropping & (detect_0 <-> spec_currentColor_0) & (detect_1 <-> spec_currentColor_1) & (detect_2 <-> spec_currentColor_2) & verhor_dontmove) <-> !horMot_0);
+guarantee
+	!motSpeed_0 & !motSpeed_1 &(!spec_dropping);
+guarantee
+	alw ((!speedButton_0 & PREV(speedButton_0)) <-> spec_speedButtonValidPressed);
+guarantee
+	alw ((spec_speedButtonValidPressed & !motSpeed_0 & !motSpeed_1) -> next(!motSpeed_0 & motSpeed_1));
+guarantee
+	alw ((spec_speedButtonValidPressed & !motSpeed_0 & motSpeed_1) -> next(motSpeed_0 & !motSpeed_1));
+guarantee
+	alw ((spec_speedButtonValidPressed & motSpeed_0 & !motSpeed_1) -> next(!motSpeed_0 & !motSpeed_1));
+guarantee
+	alw ((!spec_speedButtonValidPressed) -> (motSpeed_0 <-> next(motSpeed_0)) & (motSpeed_1 <-> next(motSpeed_1)));
+sys boolean spec_waiting_ack_ver_mot;
+sys boolean spec_waiting_ack_hor_mot;
+guarantee
+	!spec_waiting_ack_ver_mot;
+guarantee
+	alw (((!spec_waiting_ack_ver_mot) & (verMot_0)) -> next(!spec_waiting_ack_ver_mot));
+guarantee
+	alw (((!spec_waiting_ack_ver_mot) & !verMot_0) -> next(spec_waiting_ack_ver_mot));
+guarantee
+	alw ((spec_waiting_ack_ver_mot & ack_ver_0) -> next(!spec_waiting_ack_ver_mot));
+guarantee
+	alw ((spec_waiting_ack_ver_mot & (!ack_ver_0)) -> next(spec_waiting_ack_ver_mot));
+assumption
+	alw ((!spec_waiting_ack_ver_mot) -> ack_ver_0);
+assumption
+	respondsTo(spec_waiting_ack_ver_mot,ack_ver_0);
+guarantee
+	!spec_waiting_ack_hor_mot;
+guarantee
+	alw (((!spec_waiting_ack_hor_mot) & (horMot_0)) -> next(!spec_waiting_ack_hor_mot));
+guarantee
+	alw (((!spec_waiting_ack_hor_mot) & !horMot_0) -> next(spec_waiting_ack_hor_mot));
+guarantee
+	alw ((spec_waiting_ack_hor_mot & ack_hor_0) -> next(!spec_waiting_ack_hor_mot));
+guarantee
+	alw ((spec_waiting_ack_hor_mot & (!ack_hor_0)) -> next(spec_waiting_ack_hor_mot));
+assumption
+	alw ((!spec_waiting_ack_hor_mot) -> ack_hor_0);
+assumption
+	respondsTo(spec_waiting_ack_hor_mot,ack_hor_0);
+assumption
+	alwEv ((color_0 | color_1 | !color_2));
+assumption
+	alwEv (!ack_hor_0);
+guarantee
+	respondsTo((color_0 | color_1 | !color_2),!horMot_0 & (detect_0 <-> spec_currentColor_0) & (detect_1 <-> spec_currentColor_1) & (detect_2 <-> spec_currentColor_2));
+guarantee
+	alwEv (!horMot_0);
+pattern respondsTo(trigger, response) {
+var boolean responded;
+responded;
+alw (next(responded) iff (response or responded and !trigger));
+alwEv (responded);
+}

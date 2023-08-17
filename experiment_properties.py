@@ -8,7 +8,7 @@ import re
 # Set random seed for repeatability
 # random.seed(1000)
 
-case_study_name = "Protocol"
+case_study_name = "AMBAs/amba02_noassumptions"
 generation_method = "interpolation"
 n_multivarbias = 5
 goodness_measure = ""
@@ -76,7 +76,6 @@ def changeCaseStudy(specification):
     global guaranteesList
 
     global start_experiment
-
     case_study_name = os.path.splitext(os.path.basename(specification))[0]
     specfile = specification
     datafile = "DataFiles/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + ".csv"
@@ -106,14 +105,14 @@ def changeCaseStudy(specification):
     for var in outputVarsList:
         print(var)
     varsList = inputVarsList + outputVarsList
-    initialGR1Units = io.extractAssumptionList(spec)
-    print("=== ASSUMPTIONS ===")
-    for asm in initialGR1Units:
-        print(asm)
-    guaranteesList = io.extractGuaranteesList(spec)
-    print("=== GUARANTEES ===")
-    for gar in guaranteesList:
-        print(gar)
+    # initialGR1Units = io.extractAssumptionList(spec)
+    # print("=== ASSUMPTIONS ===")
+    # for asm in initialGR1Units:
+    #     print(asm)
+    # guaranteesList = io.extractGuaranteesList(spec)
+    # print("=== GUARANTEES ===")
+    # for gar in guaranteesList:
+    #     print(gar)
 
     start_experiment = timeit.default_timer()
 

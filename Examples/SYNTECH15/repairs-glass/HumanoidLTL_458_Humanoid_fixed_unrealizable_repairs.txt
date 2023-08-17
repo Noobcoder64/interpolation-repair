@@ -1,0 +1,25 @@
+Executing "C:\Users\Fahim\Documents\imperial_college_london\individual_project\SymbolicRepairsArtifact\SpecRepair\SYNTECH15\HumanoidLTL_458_Humanoid_fixed_unrealizable.spectra".
+Found 1 repair suggestions
+Number of well-separated suggestions is 1
+Maximum variables in the best repair is 3
+Maximum Node count: 4
+
+Repair #1 [
+
+//Justices//
+
+//Transitions//
+asm G (next(Obstacle_0)=false -> 
+	(next(InputMoveMode_0)=true -> next(InputMoveMode_1)=false)) and
+(next(Obstacle_0)=true -> 
+	(next(InputMoveMode_0)=true -> next(InputMoveMode_1)=true));
+
+//Initial//
+asm (Obstacle_0=false -> 
+	(InputMoveMode_0=true -> InputMoveMode_1=false)) and
+(Obstacle_0=true -> 
+	(InputMoveMode_0=true -> InputMoveMode_1=true));
+
+]
+
+runtime of repair operation was 4 in millisecs.
