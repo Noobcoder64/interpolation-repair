@@ -1,26 +1,9 @@
 module Protocol
 
-// INPUT VARIABLES
-
-env boolean req;
-env boolean cl;
-
-// OUTPUT VARIABLES
-
-sys boolean gr;
-sys boolean val;
-
-define
-	vall := val;
-
-// ASSUMPTIONS
-
-assumption
-    GF(!req);
-
-// GUARANTEES
+env boolean a;
+sys boolean b;
 
 guarantee
-    G(cl -> !vall);
+    alw (a -> next(b));
 guarantee
-    GF(gr and vall);
+    alw (a -> next(!b));

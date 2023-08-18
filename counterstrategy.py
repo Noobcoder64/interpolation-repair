@@ -703,20 +703,20 @@ class Counterstrategy:
             # Two possible cases: the failure occurs in the initial state or it occurs in the next state.
             # If there is a next state, then there is a const_next_input field in the counterstrategy graph
 
-            last_state = set()
-            for var in self.states["INI"]['input_valuation']:
-                last_state.add(var if self.states["INI"]['input_valuation'][var] == 1 else "!" + var)
-            for var in self.states["INI"]['output_valuation']:
-                last_state.add(var if self.states["INI"]['output_valuation'][var] == 1 else "!" + var)
-            assignments = complete_deadlock_alt(last_state, self.specification)
-            print("ASSIGNMENTS: ", assignments)
+            # last_state = set()
+            # for var in self.states["INI"]['input_valuation']:
+            #     last_state.add(var if self.states["INI"]['input_valuation'][var] == 1 else "!" + var)
+            # for var in self.states["INI"]['output_valuation']:
+            #     last_state.add(var if self.states["INI"]['output_valuation'][var] == 1 else "!" + var)
+            # assignments = complete_deadlock_alt(last_state, self.specification)
+            # print("ASSIGNMENTS: ", assignments)
 
             transient_states = []
-            initial_state.set_successor("Sf")
-            failing_state = State("Sf")
-            for var in assignments[0]:
-                    failing_state.add_to_valuation(var)
-            transient_states.append(failing_state)
+            # initial_state.set_successor("Sf")
+            # failing_state = State("Sf")
+            # for var in assignments[0]:
+            #         failing_state.add_to_valuation(var)
+            # transient_states.append(failing_state)
 
             # sf_input_valuation = self.states[initial_state.id_state]['input_valuation']
 

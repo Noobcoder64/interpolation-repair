@@ -105,14 +105,14 @@ def changeCaseStudy(specification):
     for var in outputVarsList:
         print(var)
     varsList = inputVarsList + outputVarsList
-    # initialGR1Units = io.extractAssumptionList(spec)
-    # print("=== ASSUMPTIONS ===")
-    # for asm in initialGR1Units:
-    #     print(asm)
-    # guaranteesList = io.extractGuaranteesList(spec)
-    # print("=== GUARANTEES ===")
-    # for gar in guaranteesList:
-    #     print(gar)
+    initialGR1Units = io.extractAssumptionList(spec)
+    print("=== ASSUMPTIONS ===")
+    for asm in initialGR1Units:
+        print(asm)
+    guaranteesList = io.extractGuaranteesList(spec)
+    print("=== GUARANTEES ===")
+    for gar in guaranteesList:
+        print(gar)
 
     start_experiment = timeit.default_timer()
 

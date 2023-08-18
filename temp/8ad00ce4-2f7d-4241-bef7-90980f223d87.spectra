@@ -1,0 +1,78 @@
+
+module HumanoidLTL_458_Humanoid_fixed_unrealizable
+
+env boolean obstacle_0;
+env boolean inputMoveMode_0;
+env boolean inputMoveMode_1;
+
+sys boolean leftMotor_0;
+sys boolean leftMotor_1;
+sys boolean leftMotor_2;
+sys boolean rightMotor_0;
+sys boolean rightMotor_1;
+sys boolean rightMotor_2;
+sys boolean headMotor_0;
+sys boolean headMotor_1;
+sys boolean outputMoveMode_0;
+sys boolean outputMoveMode_1;
+
+
+
+guarantee
+	 (!(((leftMotor_0 & leftMotor_1) & leftMotor_2)));
+guarantee
+	alw (!(((next(leftMotor_0) & next(leftMotor_1)) & next(leftMotor_2))));
+guarantee
+	 (!(((rightMotor_0 & rightMotor_1) & rightMotor_2)));
+guarantee
+	alw (!(((next(rightMotor_0) & next(rightMotor_1)) & next(rightMotor_2))));
+guarantee
+	 (!((headMotor_0 & headMotor_1)));
+guarantee
+	alw (!((next(headMotor_0) & next(headMotor_1))));
+guarantee
+	 ((((!(inputMoveMode_0) & !(inputMoveMode_1)) & obstacle_0) -> (((((((outputMoveMode_0 & !(outputMoveMode_1)) & leftMotor_0) & !(leftMotor_1)) & leftMotor_2) & rightMotor_0) & !(rightMotor_1)) & rightMotor_2)));
+guarantee
+	alw ((((!(next(inputMoveMode_0)) & !(next(inputMoveMode_1))) & next(obstacle_0)) -> (((((((next(outputMoveMode_0) & !(next(outputMoveMode_1))) & next(leftMotor_0)) & !(next(leftMotor_1))) & next(leftMotor_2)) & next(rightMotor_0)) & !(next(rightMotor_1))) & next(rightMotor_2))));
+guarantee
+	 ((((!(inputMoveMode_0) & inputMoveMode_1) & !(obstacle_0)) -> (((((((!(outputMoveMode_0) & !(outputMoveMode_1)) & !(leftMotor_0)) & !(leftMotor_1)) & !(leftMotor_2)) & !(rightMotor_0)) & !(rightMotor_1)) & rightMotor_2)));
+guarantee
+	alw ((((!(next(inputMoveMode_0)) & next(inputMoveMode_1)) & !(next(obstacle_0))) -> (((((((!(next(outputMoveMode_0)) & !(next(outputMoveMode_1))) & !(next(leftMotor_0))) & !(next(leftMotor_1))) & !(next(leftMotor_2))) & !(next(rightMotor_0))) & !(next(rightMotor_1))) & next(rightMotor_2))));
+guarantee
+	 ((((!(inputMoveMode_0) & !(inputMoveMode_1)) & !(obstacle_0)) -> (((((!(leftMotor_0) & !(leftMotor_1)) & !(leftMotor_2)) & !(rightMotor_0)) & !(rightMotor_1)) & !(rightMotor_2))));
+guarantee
+	alw ((((!(next(inputMoveMode_0)) & !(next(inputMoveMode_1))) & !(next(obstacle_0))) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & !(next(leftMotor_2))) & !(next(rightMotor_0))) & !(next(rightMotor_1))) & !(next(rightMotor_2)))));
+guarantee
+	 ((obstacle_0 -> !((!(outputMoveMode_0) & !(outputMoveMode_1)))));
+guarantee
+	alw ((next(obstacle_0) -> !((!(next(outputMoveMode_0)) & !(next(outputMoveMode_1))))));
+guarantee
+	 (((inputMoveMode_0 & !(inputMoveMode_1)) <-> (outputMoveMode_0 & outputMoveMode_1)));
+guarantee
+	alw (((next(inputMoveMode_0) & !(next(inputMoveMode_1))) <-> (next(outputMoveMode_0) & next(outputMoveMode_1))));
+guarantee
+	 (((inputMoveMode_0 & !(inputMoveMode_1)) -> (((((!(leftMotor_0) & !(leftMotor_1)) & !(leftMotor_2)) & !(rightMotor_0)) & rightMotor_1) & rightMotor_2)));
+guarantee
+	alw (((next(inputMoveMode_0) & !(next(inputMoveMode_1))) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & !(next(leftMotor_2))) & !(next(rightMotor_0))) & next(rightMotor_1)) & next(rightMotor_2))));
+guarantee
+	 (((inputMoveMode_0 & inputMoveMode_1) -> (((((!(leftMotor_0) & !(leftMotor_1)) & leftMotor_2) & rightMotor_0) & !(rightMotor_1)) & !(rightMotor_2))));
+guarantee
+	alw (((next(inputMoveMode_0) & next(inputMoveMode_1)) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & next(leftMotor_2)) & next(rightMotor_0)) & !(next(rightMotor_1))) & !(next(rightMotor_2)))));
+guarantee
+	 ((!(((inputMoveMode_0 & !(inputMoveMode_1)) | (inputMoveMode_0 & inputMoveMode_1))) -> !(((((leftMotor_0 & !(leftMotor_1)) & !(leftMotor_2)) | ((rightMotor_0 & !(rightMotor_1)) & !(rightMotor_2))) | (((((!(leftMotor_0) & leftMotor_1) & leftMotor_2) & !(rightMotor_0)) & rightMotor_1) & rightMotor_2)))));
+guarantee
+	alw ((!(((next(inputMoveMode_0) & !(next(inputMoveMode_1))) | (next(inputMoveMode_0) & next(inputMoveMode_1)))) -> !(((((next(leftMotor_0) & !(next(leftMotor_1))) & !(next(leftMotor_2))) | ((next(rightMotor_0) & !(next(rightMotor_1))) & !(next(rightMotor_2)))) | (((((!(next(leftMotor_0)) & next(leftMotor_1)) & next(leftMotor_2)) & !(next(rightMotor_0))) & next(rightMotor_1)) & next(rightMotor_2))))));
+guarantee
+	 ((((inputMoveMode_0 & !(inputMoveMode_1)) | (inputMoveMode_0 & inputMoveMode_1)) -> (headMotor_0 & !(headMotor_1))));
+guarantee
+	alw ((((next(inputMoveMode_0) & !(next(inputMoveMode_1))) | (next(inputMoveMode_0) & next(inputMoveMode_1))) -> (next(headMotor_0) & !(next(headMotor_1)))));
+guarantee
+	 ((((inputMoveMode_0 & inputMoveMode_1) & (!(outputMoveMode_0) | outputMoveMode_1)) -> (((((leftMotor_0 & leftMotor_1) & !(leftMotor_2)) & rightMotor_0) & rightMotor_1) & !(rightMotor_2))));
+guarantee
+	alw ((((next(inputMoveMode_0) & next(inputMoveMode_1)) & (!(next(outputMoveMode_0)) | next(outputMoveMode_1))) -> (((((next(leftMotor_0) & next(leftMotor_1)) & !(next(leftMotor_2))) & next(rightMotor_0)) & next(rightMotor_1)) & !(next(rightMotor_2)))));
+guarantee
+	 ((((inputMoveMode_0 & inputMoveMode_1) & !(obstacle_0)) -> (!(outputMoveMode_0) & !(outputMoveMode_1))));
+guarantee
+	alw ((((next(inputMoveMode_0) & next(inputMoveMode_1)) & !(next(obstacle_0))) -> (!(next(outputMoveMode_0)) & !(next(outputMoveMode_1)))));
+
+

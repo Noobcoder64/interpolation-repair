@@ -194,7 +194,8 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
     assumptions_boolean = list(filter(None,[l2b.gr1LTL2Boolean(x,path) for x in assumptions_uc]))
 
     valuations_boolean = path.get_valuation()
-   
+
+
     if assumptions_boolean != []:
         assum_val_boolean = " & ".join(assumptions_boolean) + ((" & " + valuations_boolean) if valuations_boolean != "" else "")
     else:
