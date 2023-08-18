@@ -1,4 +1,0 @@
-VAR
-outputMoveMode_0__INI,leftMotor_1__INI,inputMoveMode_1__INI,headMotor_1__INI,leftMotor_0__INI,rightMotor_2__INI,inputMoveMode_0__INI,rightMotor_1__INI,outputMoveMode_1__INI,rightMotor_0__INI,headMotor_0__INI,leftMotor_2__INI,obstacle_0__INI: BOOLEAN
-FORMULA
-!leftMotor_2__INI & !rightMotor_2__INI & !inputMoveMode_1__INI & !headMotor_0__INI & !outputMoveMode_1__INI & !outputMoveMode_0__INI & !headMotor_1__INI & !rightMotor_0__INI & !leftMotor_1__INI & !inputMoveMode_0__INI & !obstacle_0__INI & !rightMotor_1__INI & !leftMotor_0__INI

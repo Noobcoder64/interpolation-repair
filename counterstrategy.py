@@ -449,23 +449,87 @@ def extract_string_within(pattern, line, strip_whitespace=False):
         return re.sub(r"\s", "", line)
     return line
 
+class CounterstrategyState:
+    def __init__(self, name: str, inputs: dict, outputs: dict):
+        self.name = name
+        self.inputs = inputs
+        self.outputs = outputs
+        self.influential_outputs = dict()
+        self.successors = []
+    
+    def add_successor(self, state_name):
+        self.successors.append(state_name)
+    
+    def __str__(self):
+        return f"State: {self.name} [Inputs: {self.inputs}] / [Outputs: {self.outputs}] Successors: {', '.join(transition.target_state.name for transition in self.successors)})"
+
 class Counterstrategy:
 
     def __init__(self, specification=""):
         self.specification = specification
         self.counterstrategy = spectra.generate_counter_strat(specification)
         self.states = dict()
+        self.parse_counterstrategy(self.counterstrategy)
+        for state in self.states.values():
+            self.compute_influentials(state)
+
+    def add_state(self, state):
+        self.states[state.name] = state
+
+    def get_state(self, name):
+        return self.states.get(name)
+
+    def parse_counterstrategy(self, cs):
+        transition_pattern = re.compile(r'(\w+)\s*->\s*(\w+)\s*\{([^}]+)\}\s*/\s*\{([^}]+)\};')
+        for transition in cs:
+            match = transition_pattern.match(transition)
+            if not match:
+                raise Exception("Transition pattern did not match")
+            
+            state_name = match.group(1)
+            successor_name = match.group(2)
+            if state_name in self.states:
+                self.states[state_name].add_successor(successor_name)
+            else:
+                inputs = dict(re.findall(r'(\w+):(\w+)',  match.group(3)))
+                outputs = dict(re.findall(r'(\w+):(\w+)', match.group(4)))
+                state = CounterstrategyState(state_name, inputs, outputs)
+                state.add_successor(successor_name)
+                self.add_state(state)
+
+    def compute_influentials(self, state: CounterstrategyState):
+        for i in range(len(state.successors)-1):
+            for j in range(i+1, len(state.successors)):
+                next_state1 = state.successors[i]
+                next_state2 = state.successors[j]
+
+                if next_state1 == next_state2:
+                    continue
+
+                outputs1 = self.states[next_state1].output
+                outputs2 = self.states[next_state2].output
+
+                for var in outputs1:
+                    if outputs1[var] != outputs2[var]:
+                        self.states[next_state1].influential_outputs[var] = outputs1[var]
+                        self.states[next_state2].influential_outputs[var] = outputs2[var]
 
 
+    """
+    Returns list of string literals
+    @param name: description
+    @type name: type
+    @return: A list of string literals
+    """
     def getValuation(self, state):
         literals = []
-        for varname in state["input_valuation"]:
-            if state["input_valuation"][varname]:
+        for varname in state.inputs:
+            if state.inputs[varname] == 'true':
                 literals.append(varname)
             else:
                 literals.append("!"+varname)
-        for varname in state["output_valuation"]:
-            if state["output_valuation"][varname]:
+        for varname in state.influential_outputs:
+            if state.outputs[varname] == 'true':
                 literals.append(varname)
             else:
                 literals.append("!"+varname)
@@ -495,33 +559,7 @@ class Counterstrategy:
             successor = extract_string_within("->\s*([^\s]*)\s", s)
             successors.add(successor)
         return successors
-
-    def influential_output_valuations(self, transitions):
-
-        for i in range(len(transitions)-1):
-            for j in range(i+1, len(transitions)):
-                next_state1 = extract_string_within("->\s*([^\s]*)\s", transitions[i])
-                next_state2 = extract_string_within("->\s*([^\s]*)\s", transitions[j])
-
-                if next_state1 == next_state2:
-                    continue
-
-                vars1 = re.compile("/\s*{(.*)}", ).search(transitions[i]).group(1).split(', ')
-                vars2 = re.compile("/\s*{(.*)}", ).search(transitions[j]).group(1).split(', ')
-
-                for k in range(len(vars1)):
-
-                    varname1 = vars1[k].split(":")[0]
-                    varname2 = vars2[k].split(":")[0]
-                    if varname1 != varname2:
-                        raise Exception("Variables not equal")
-                    value1 = int(vars1[k].split(":")[1] == 'true')
-                    value2 = int(vars2[k].split(":")[1] == 'true')
-                    if value1 != value2:
-                        self.initialize_state(next_state1)
-                        self.states[next_state1]['output_valuation'][varname1] = value1
-                        self.initialize_state(next_state2)
-                        self.states[next_state2]['output_valuation'][varname2] = value2
+    
 
     def extractRandomPath(self):
         """Extracts randomly a path from the counterstrategy"""
@@ -540,7 +578,7 @@ class Counterstrategy:
 
             input_vars = set(exp.inputVarsList)
 
-            initial_state = State("INI")
+            initial_state = State("S0")
             for var in assignments:
                 # if re.sub(r'!', '', var) in input_vars:
                 initial_state.add_to_valuation(var)
@@ -562,37 +600,29 @@ class Counterstrategy:
 
         while curr_state and not looping:
 
-            # pattern = re.compile("^" + curr_state + " -> " + r"(?!DEAD)")
-            # pattern = re.compile("^" + curr_state + r" -> (" + "|".join(visited_states) + r")")
-            pattern = re.compile("^" + curr_state)
-            transitions = list(filter(pattern.search, self.counterstrategy))
-            # print("TRANSITIONS from:", curr_state)
-            # for t in transitions:
-            #     print(t)
-            # print()
+            # pattern = re.compile("^" + curr_state)
+            # transitions = list(filter(pattern.search, self.counterstrategy))
 
-            self.initialize_state(curr_state)
-            # self.states[curr_state]['successors'] = self.get_successors(transitions)
+            # self.initialize_state(curr_state)
 
+            
+            # transition = random.choice(transitions)
+            # next_state = extract_string_within("->\s*([^\s]*)\s", transition)
+            # self.initialize_state(next_state)
 
-            # print("STATES:", states)
-            transition = random.choice(transitions)
-            next_state = extract_string_within("->\s*([^\s]*)\s", transition)
-            self.initialize_state(next_state)
-
-            vars = re.compile("{(.*)}\s*/", ).search(transition).group(1).split(', ')
-            for var in vars:
-                varname = var.split(":")[0]
-                value = int(var.split(":")[1] == 'true')
-                self.states[curr_state]['input_valuation'][varname] = value
+            # vars = re.compile("{(.*)}\s*/", ).search(transition).group(1).split(', ')
+            # for var in vars:
+            #     varname = var.split(":")[0]
+            #     value = int(var.split(":")[1] == 'true')
+            #     self.states[curr_state]['input_valuation'][varname] = value
             
             # TODO: output valuation is of current state
-            vars = re.compile("/\s*{(.*)}", ).search(transition).group(1).split(', ')
-            if not vars == ['']:
-                for var in vars:
-                    varname = var.split(":")[0]
-                    value = int(var.split(":")[1] == 'true')
-                    self.states[curr_state]['output_valuation'][varname] = value
+            # vars = re.compile("/\s*{(.*)}", ).search(transition).group(1).split(', ')
+            # if not vars == ['']:
+            #     for var in vars:
+            #         varname = var.split(":")[0]
+            #         value = int(var.split(":")[1] == 'true')
+            #         self.states[curr_state]['output_valuation'][varname] = value
 
             # self.influential_output_valuations(transitions)
 
@@ -602,8 +632,8 @@ class Counterstrategy:
             #     value = int(var.split(":")[1] == 'true')
             #     self.states[curr_state]['next_input_valuation'][varname] = value
 
-            curr_state = next_state
-            
+            curr_state = random.choice(self.states[curr_state].successors)
+
             if curr_state in visited_states:
                 looping = True
                 loop_startindex  = visited_states.index(curr_state)
@@ -617,11 +647,13 @@ class Counterstrategy:
         # print("LOOPING: ", looping)
 
         initial_state = State("INI")
-        for var in self.states["INI"]['input_valuation']:
-            initial_state.add_to_valuation(var if self.states["INI"]['input_valuation'][var] == 1 else "!" + var)
-        # Does not make difference for AMBA
-        for var in self.states["INI"]['output_valuation']:
-            initial_state.add_to_valuation(var if self.states["INI"]['output_valuation'][var] == 1 else "!" + var)
+        for var in self.getValuation(self.states["INI"]):
+            initial_state.add_to_valuation(var)
+        # for var in self.states["INI"].inputs:
+        #     initial_state.add_to_valuation(var if self.states["INI"].inputs[var] == 'true' else "!" + var)
+        # # Does not make difference for AMBA
+        # for var in self.states["INI"].influential_outputs:
+        #     initial_state.add_to_valuation(var if self.states["INI"].influential_outputs[var] == 'true' else "!" + var)
 
 
         if len(visited_states)>1:
@@ -683,7 +715,7 @@ class Counterstrategy:
                     if i < len(visited_states) - 1:
                         new_state.set_successor(visited_states[i + 1])
 
-                    for var in self.getValuation(self.states[state]):
+                    for var in self.getValuation(self.states[state].name):
                         new_state.add_to_valuation(var)
 
                     transient_states.append(new_state)

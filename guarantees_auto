@@ -1,4 +1,0 @@
-VAR
-outputMoveMode_1__Sf,rightMotor_1__Sf,inputMoveMode_0__Sf,rightMotor_2__Sf,rightMotor_0__Sf,inputMoveMode_1__Sf,obstacle_0__Sf,outputMoveMode_0__Sf,leftMotor_1__Sf,leftMotor_0__Sf,leftMotor_2__Sf: BOOLEAN
-FORMULA
-(((((inputMoveMode_0__Sf)&(inputMoveMode_1__Sf))->(((((!((leftMotor_0__Sf))&!((leftMotor_1__Sf)))&(leftMotor_2__Sf))&(rightMotor_0__Sf))&!((rightMotor_1__Sf)))&!((rightMotor_2__Sf)))))) & ((((((inputMoveMode_0__Sf)&(inputMoveMode_1__Sf))&(!((outputMoveMode_0__Sf))|(outputMoveMode_1__Sf)))->((((((leftMotor_0__Sf)&(leftMotor_1__Sf))&!((leftMotor_2__Sf)))&(rightMotor_0__Sf))&(rightMotor_1__Sf))&!((rightMotor_2__Sf)))))) & ((((((inputMoveMode_0__Sf)&(inputMoveMode_1__Sf))&!((obstacle_0__Sf)))->(!((outputMoveMode_0__Sf))&!((outputMoveMode_1__Sf))))))
