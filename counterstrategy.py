@@ -479,8 +479,38 @@ class Counterstrategy:
     def get_state(self, name):
         return self.states.get(name)
 
-    def parse_counterstrategy(self, cs):
+    def parse_counterstrategy(self, cs: str):
         transition_pattern = re.compile(r'(\w+)\s*->\s*(\w+)\s*\{([^}]+)\}\s*/\s*\{([^}]+)\};')
+        print(cs)
+        state_pattern = re.compile(r"State (\d+) <(.*?)>\s+With successors : (.*)")
+        assignment_pattern = re.compile(r"(\w+):(\w+)")
+
+        state_matches = re.finditer(state_pattern, cs)
+
+        for match in state_matches:
+            print(match)
+
+        # # Iterate through each line and parse the counterstrategy
+        # for line in cs:
+        #     state_match = state_line_pattern.match(line)
+        #     if state_match:
+        #         state_num = int(state_match.group(1))
+        #         state_details = state_match.group(2)
+        #         successor_nums = [int(num) for num in state_match.group(3).split(', ')]
+
+        #         state_dict = {
+        #             'state_num': state_num,
+        #             'successors': successor_nums,
+        #             'state_details': {}
+        #         }
+
+        #         # Parse the state details
+        #         state_detail_matches = state_detail_pattern.findall(state_details)
+        #         for key, value in state_detail_matches:
+        #             state_dict['state_details'][key] = value
+
+        #         counterstrategy.append(state_dict)
+
         for transition in cs:
             match = transition_pattern.match(transition)
             if not match:
@@ -503,11 +533,11 @@ class Counterstrategy:
                 next_state1 = state.successors[i]
                 next_state2 = state.successors[j]
 
-                if next_state1 == next_state2:
+                if next_state1 == next_state2 or next_state1 == "DEAD" or next_state2 == "DEAD":
                     continue
 
-                outputs1 = self.states[next_state1].output
-                outputs2 = self.states[next_state2].output
+                outputs1 = self.states[next_state1].outputs
+                outputs2 = self.states[next_state2].outputs
 
                 for var in outputs1:
                     if outputs1[var] != outputs2[var]:
@@ -528,7 +558,7 @@ class Counterstrategy:
                 literals.append(varname)
             else:
                 literals.append("!"+varname)
-        for varname in state.influential_outputs:
+        for varname in state.outputs:
             if state.outputs[varname] == 'true':
                 literals.append(varname)
             else:
@@ -688,10 +718,10 @@ class Counterstrategy:
                 #    failing_state.add_to_valuation(var if sf_output_valuation[var] == 1 else "!" + var)
 
                 last_state = set()
-                for var in self.states[transient_states[-1].id_state]['input_valuation']:
-                    last_state.add(var if self.states["INI"]['input_valuation'][var] == 1 else "!" + var)
-                for var in self.states["INI"]['output_valuation']:
-                    last_state.add(var if self.states[transient_states[-1].id_state]['output_valuation'][var] == 1 else "!" + var)
+                for var in self.states[transient_states[-1].id_state].inputs:
+                    last_state.add(var if self.states[transient_states[-1].id_state].inputs[var] == 'true' else "!" + var)
+                for var in self.states[transient_states[-1].id_state].outputs:
+                    last_state.add(var if self.states[transient_states[-1].id_state].outputs[var] == 'true' else "!" + var)
                 assignments = complete_deadlock_alt(last_state, self.specification)
 
                 # input_vars = set(exp.inputVarsList)
@@ -715,7 +745,7 @@ class Counterstrategy:
                     if i < len(visited_states) - 1:
                         new_state.set_successor(visited_states[i + 1])
 
-                    for var in self.getValuation(self.states[state].name):
+                    for var in self.getValuation(self.states[state]):
                         new_state.add_to_valuation(var)
 
                     transient_states.append(new_state)

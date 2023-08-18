@@ -97,10 +97,10 @@ def extractStateComponents(interpolant):
 
 def projectOtherNode(node,variables):
     projection = str(node)
-    print("NODE: ", projection)
+    # print("NODE: ", projection)
     varnames = set(re.findall(r"\w+",projection))
-    print("VARNAMES: ", varnames)
-    print("VARIABLES: ", variables)
+    # print("VARNAMES: ", varnames)
+    # print("VARIABLES: ", variables)
     if all(varname in variables for varname in varnames):
         return projection
     else:
@@ -126,7 +126,7 @@ def projectOntoVars(state_component,variables):
         projection = projectAndNode(parse_tree,variables)
     else:
         projection = projectOtherNode(parse_tree,variables)
-    print("PROJECTION: ", projection)
+    # print("PROJECTION: ", projection)
     if projection != "":
         return projection
     else:
@@ -210,8 +210,10 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
     
     print("=== ASSUMPTIONS BOOLEAN ===")
     print(" & ".join(assumptions_boolean))
+    print()
     print("=== VALUATIONS BOOLEAN ===")
     print(valuations_boolean)
+    print()
     # print("=== ASM VAL BOOLEAN ===")
     # print(assum_val_boolean)
     print("=== GUARANTEES BOOLEAN ===")

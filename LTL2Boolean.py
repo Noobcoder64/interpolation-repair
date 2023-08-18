@@ -7,14 +7,14 @@ fairness_pattern = re.compile(r"G\(F(\(.*\))\)")
 invariant_pattern = re.compile(r"G(\(.*\))")
 
 def gr1LTL2Boolean(ltlFormula,path):
-    print("LTL: ", ltlFormula)
-    print("PATH: ", path)
+    # print("LTL: ", ltlFormula)
+    # print("PATH: ", path)
     fairness_match = fairness_pattern.match(ltlFormula)
     invariant_match = invariant_pattern.match(ltlFormula)
     if fairness_match:
         return fairnessLTL2Boolean(fairness_match.group(1),path)
     elif invariant_match:
-        print("INVARIANT MATCH") 
+        # print("INVARIANT MATCH") 
         return invariantLTL2Boolean(invariant_match.group(1),path)
     else:
         return initialLTL2Boolean(ltlFormula,path)

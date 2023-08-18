@@ -56,16 +56,11 @@ def extract_unrealizable_cores(specification):
     #     return False
 
 def generate_counter_strat(specification):
-    cmd = "java -jar {} -i {} --counter-strategy".format(PATH_TO_CLI, specification)
+    cmd = "java -jar {} -i {} --counter-strategy-jtlv-format".format(PATH_TO_CLI, specification)
     output = run_subprocess(cmd, "\\n")
     if re.search("Result: Specification is unrealizable", output):
-        output = str(output).split("\n")
-        
-        counter_strategy = list(filter(re.compile(r"\s*->\s*[^{]*{[^}]*").search, output))
-        # self.cs_list = [counter_strategy]
-        
-        # print(self.cs_trace_PI)
-        return counter_strategy
+        return output
+    return None
 
 def check_realizibility(specification):
     cmd = "java -jar {} -i {}".format(PATH_TO_CLI, specification)
