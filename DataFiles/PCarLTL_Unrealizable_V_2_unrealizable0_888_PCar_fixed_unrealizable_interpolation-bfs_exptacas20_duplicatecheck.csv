@@ -1,4 +1,4 @@
 Id;Refinement;UniqueRefinement;Timestamp;Length;Parent;NumChildren;IsRealizable;IsSatisfiable;IsSolution;TimeRealizabilityCheck;TimeSatisfiabilityCheck;TimeCounterstrategy;CounterstrategyNumStates;TimeRefine;TimeGenerationMethod
-6886b388-4310-4ea1-b50e-62a52db47708;[];[];0.0003682890001073247;0;N/A;2;False;N/A;False;2.800908432000142;N/A;3.0221233070005837;N/A;0.00014214000020729145;2.51229204900028;
-aed9c3d3-4d53-4abf-b6eb-50acd94fabb3;['!(sideSense_0 & !parkResult_0)'];['!(sideSense_0 & !parkResult_0)'];8.338898556999993;1;6886b388-4310-4ea1-b50e-62a52db47708;0;True;False;False;2.825872510999943;2.822481051000068;N/A;N/A;N/A;N/A;
-7551f73d-6e91-462e-8281-71cbaa02a81f;['G(!(sideSense_0 & !parkResult_0))'];['G(!(sideSense_0 & !parkResult_0))'];8.338973359000192;1;6886b388-4310-4ea1-b50e-62a52db47708;0;True;False;False;2.789597883999704;2.808690652000223;N/A;N/A;N/A;N/A;
+d1b2f007-f9af-4e9f-b506-1852aa133540;[];[];0.0009650419997342397;0;N/A;2;False;N/A;False;1.1329690780003148;N/A;1.217229457999565;N/A;4.362300023785792e-05;0.9897972649996518;
+3d24d271-7f1a-4b32-b909-98c6d4de85fa;['!(sideSense_0 & !parkResult_0)'];['!(sideSense_0 & !parkResult_0)'];3.343261130999963;1;d1b2f007-f9af-4e9f-b506-1852aa133540;0;True;False;False;1.148846231000789;1.1620995280009083;N/A;N/A;N/A;N/A;
+7b3cf28b-852c-42bd-8a5b-aa0b39a06090;['G(!(sideSense_0 & !parkResult_0))'];['G(!(sideSense_0 & !parkResult_0))'];3.343274647000726;1;d1b2f007-f9af-4e9f-b506-1852aa133540;0;True;False;False;1.135490890001165;1.1716987670006347;N/A;N/A;N/A;N/A;

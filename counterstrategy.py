@@ -300,7 +300,7 @@ def complete_deadlock_alt(last_state, file):
 def counter_strat_to_trace(lines=[], deadlock_required=[], cs_count=0, specification=""):
         # if lines == []:
         #     lines = read_file(cs)
-        start = "INI"
+        start = "S0"
         output = ""
         files = {}
         deadlock_number = 0
@@ -461,7 +461,7 @@ class CounterstrategyState:
         self.successors.append(state_name)
     
     def __str__(self):
-        return f"State: {self.name} [Inputs: {self.inputs}] / [Outputs: {self.outputs}] Successors: {', '.join(transition.target_state.name for transition in self.successors)})"
+        return f"State: {self.name} [Inputs: {self.inputs}] / [Outputs: {self.outputs}] Successors: {', '.join(self.successors)})"
 
 class Counterstrategy:
 
@@ -472,6 +472,8 @@ class Counterstrategy:
         self.parse_counterstrategy(self.counterstrategy)
         for state in self.states.values():
             self.compute_influentials(state)
+        # for state in self.states.values():
+        #     print(state.name, state.influential_outputs)
 
     def add_state(self, state):
         self.states[state.name] = state
@@ -480,52 +482,24 @@ class Counterstrategy:
         return self.states.get(name)
 
     def parse_counterstrategy(self, cs: str):
-        transition_pattern = re.compile(r'(\w+)\s*->\s*(\w+)\s*\{([^}]+)\}\s*/\s*\{([^}]+)\};')
-        print(cs)
-        state_pattern = re.compile(r"State (\d+) <(.*?)>\s+With successors : (.*)")
+        state_pattern = re.compile(r"State (\d+) <(.*?)>\s+With (?:no )?successors(?: : |.)(.*)(?:\n|$)")
         assignment_pattern = re.compile(r"(\w+):(\w+)")
 
         state_matches = re.finditer(state_pattern, cs)
-
+        
         for match in state_matches:
-            print(match)
-
-        # # Iterate through each line and parse the counterstrategy
-        # for line in cs:
-        #     state_match = state_line_pattern.match(line)
-        #     if state_match:
-        #         state_num = int(state_match.group(1))
-        #         state_details = state_match.group(2)
-        #         successor_nums = [int(num) for num in state_match.group(3).split(', ')]
-
-        #         state_dict = {
-        #             'state_num': state_num,
-        #             'successors': successor_nums,
-        #             'state_details': {}
-        #         }
-
-        #         # Parse the state details
-        #         state_detail_matches = state_detail_pattern.findall(state_details)
-        #         for key, value in state_detail_matches:
-        #             state_dict['state_details'][key] = value
-
-        #         counterstrategy.append(state_dict)
-
-        for transition in cs:
-            match = transition_pattern.match(transition)
-            if not match:
-                raise Exception("Transition pattern did not match")
-            
-            state_name = match.group(1)
-            successor_name = match.group(2)
-            if state_name in self.states:
-                self.states[state_name].add_successor(successor_name)
-            else:
-                inputs = dict(re.findall(r'(\w+):(\w+)',  match.group(3)))
-                outputs = dict(re.findall(r'(\w+):(\w+)', match.group(4)))
-                state = CounterstrategyState(state_name, inputs, outputs)
-                state.add_successor(successor_name)
-                self.add_state(state)
+            state_name = "S" + match.group(1)
+            vars = dict(re.findall(assignment_pattern,  match.group(2)))
+            inputs = {x:vars[x] for x in exp.inputVarsList}
+            outputs = dict()
+            for y in exp.outputVarsList:
+                if y in vars:
+                    outputs[y] = vars[y]
+            state = CounterstrategyState(state_name, inputs, outputs)
+            if not match.group(3) == '':
+                state.successors = ["S"+i for i in match.group(3).split(", ")]
+            # print(state)
+            self.add_state(state)
 
     def compute_influentials(self, state: CounterstrategyState):
         for i in range(len(state.successors)-1):
@@ -533,7 +507,7 @@ class Counterstrategy:
                 next_state1 = state.successors[i]
                 next_state2 = state.successors[j]
 
-                if next_state1 == next_state2 or next_state1 == "DEAD" or next_state2 == "DEAD":
+                if next_state1 == next_state2:
                     continue
 
                 outputs1 = self.states[next_state1].outputs
@@ -558,7 +532,8 @@ class Counterstrategy:
                 literals.append(varname)
             else:
                 literals.append("!"+varname)
-        for varname in state.outputs:
+        for varname in state.influential_outputs:
+        # for varname in state.outputs:
             if state.outputs[varname] == 'true':
                 literals.append(varname)
             else:
@@ -595,10 +570,10 @@ class Counterstrategy:
         """Extracts randomly a path from the counterstrategy"""
 
         # Build a State object for the initial state
-        curr_state = "INI"
+        curr_state = "S0"
         # Perform a random walk from the initial state until hitting a failing state (no successors)
         # or completing a loop (which happens when visiting a state already visited in the walk)
-        visited_states = ["INI"]
+        visited_states = ["S0"]
         looping = False
         loop_startindex = None
 
@@ -628,47 +603,13 @@ class Counterstrategy:
             looping_states = None
             return Path(initial_state,transient_states, None)
 
-        while curr_state and not looping:
-
-            # pattern = re.compile("^" + curr_state)
-            # transitions = list(filter(pattern.search, self.counterstrategy))
-
-            # self.initialize_state(curr_state)
-
-            
-            # transition = random.choice(transitions)
-            # next_state = extract_string_within("->\s*([^\s]*)\s", transition)
-            # self.initialize_state(next_state)
-
-            # vars = re.compile("{(.*)}\s*/", ).search(transition).group(1).split(', ')
-            # for var in vars:
-            #     varname = var.split(":")[0]
-            #     value = int(var.split(":")[1] == 'true')
-            #     self.states[curr_state]['input_valuation'][varname] = value
-            
-            # TODO: output valuation is of current state
-            # vars = re.compile("/\s*{(.*)}", ).search(transition).group(1).split(', ')
-            # if not vars == ['']:
-            #     for var in vars:
-            #         varname = var.split(":")[0]
-            #         value = int(var.split(":")[1] == 'true')
-            #         self.states[curr_state]['output_valuation'][varname] = value
-
-            # self.influential_output_valuations(transitions)
-
-            # vars = re.compile("{(.*)}\s*/", ).search(transition).group(1).split(', ')
-            # for var in vars:
-            #     varname = var.split(":")[0]
-            #     value = int(var.split(":")[1] == 'true')
-            #     self.states[curr_state]['next_input_valuation'][varname] = value
+        while self.states[curr_state].successors != [] and not looping:
 
             curr_state = random.choice(self.states[curr_state].successors)
 
             if curr_state in visited_states:
                 looping = True
                 loop_startindex  = visited_states.index(curr_state)
-            elif curr_state == "DEAD":
-                curr_state = None
             else:
                 visited_states.append(curr_state)
 
@@ -676,14 +617,14 @@ class Counterstrategy:
         # print("VISITED STATES: ", visited_states)
         # print("LOOPING: ", looping)
 
-        initial_state = State("INI")
-        for var in self.getValuation(self.states["INI"]):
+        initial_state = State("S0")
+        for var in self.getValuation(self.states["S0"]):
             initial_state.add_to_valuation(var)
-        # for var in self.states["INI"].inputs:
-        #     initial_state.add_to_valuation(var if self.states["INI"].inputs[var] == 'true' else "!" + var)
+        # for var in self.states["S0"].inputs:
+        #     initial_state.add_to_valuation(var if self.states["S0"].inputs[var] == 'true' else "!" + var)
         # # Does not make difference for AMBA
-        # for var in self.states["INI"].influential_outputs:
-        #     initial_state.add_to_valuation(var if self.states["INI"].influential_outputs[var] == 'true' else "!" + var)
+        # for var in self.states["S0"].influential_outputs:
+        #     initial_state.add_to_valuation(var if self.states["S0"].influential_outputs[var] == 'true' else "!" + var)
 
 
         if len(visited_states)>1:
@@ -717,22 +658,22 @@ class Counterstrategy:
                 # for var in sf_output_valuation:
                 #    failing_state.add_to_valuation(var if sf_output_valuation[var] == 1 else "!" + var)
 
-                last_state = set()
-                for var in self.states[transient_states[-1].id_state].inputs:
-                    last_state.add(var if self.states[transient_states[-1].id_state].inputs[var] == 'true' else "!" + var)
-                for var in self.states[transient_states[-1].id_state].outputs:
-                    last_state.add(var if self.states[transient_states[-1].id_state].outputs[var] == 'true' else "!" + var)
-                assignments = complete_deadlock_alt(last_state, self.specification)
+                # last_state = set()
+                # for var in self.states[transient_states[-1].id_state].inputs:
+                #     last_state.add(var if self.states[transient_states[-1].id_state].inputs[var] == 'true' else "!" + var)
+                # for var in self.states[transient_states[-1].id_state].outputs:
+                #     last_state.add(var if self.states[transient_states[-1].id_state].outputs[var] == 'true' else "!" + var)
+                # assignments = complete_deadlock_alt(last_state, self.specification)
 
-                # input_vars = set(exp.inputVarsList)
+                # # input_vars = set(exp.inputVarsList)
 
-                failing_state = State("Sf")
-                for var in assignments[0]:
-                    # if re.sub(r'!', '', var) in input_vars:
-                    failing_state.add_to_valuation(var)
+                # failing_state = State("Sf")
+                # for var in assignments[0]:
+                #     # if re.sub(r'!', '', var) in input_vars:
+                #     failing_state.add_to_valuation(var)
 
-                transient_states[-1].set_successor("Sf")
-                transient_states.append(failing_state)
+                # transient_states[-1].set_successor("Sf")
+                # transient_states.append(failing_state)
 
                 looping_states = None
 
@@ -766,16 +707,21 @@ class Counterstrategy:
             # If there is a next state, then there is a const_next_input field in the counterstrategy graph
 
             # last_state = set()
-            # for var in self.states["INI"]['input_valuation']:
-            #     last_state.add(var if self.states["INI"]['input_valuation'][var] == 1 else "!" + var)
-            # for var in self.states["INI"]['output_valuation']:
-            #     last_state.add(var if self.states["INI"]['output_valuation'][var] == 1 else "!" + var)
+            # for var in self.states["S0"]['input_valuation']:
+            #     last_state.add(var if self.states["S0"]['input_valuation'][var] == 1 else "!" + var)
+            # for var in self.states["S0"]['output_valuation']:
+            #     last_state.add(var if self.states["S0"]['output_valuation'][var] == 1 else "!" + var)
             # assignments = complete_deadlock_alt(last_state, self.specification)
             # print("ASSIGNMENTS: ", assignments)
 
             transient_states = []
+            
             # initial_state.set_successor("Sf")
             # failing_state = State("Sf")
+            # for var in self.getValuation(self.states["S0"]):
+            #     failing_state.add_to_valuation(var)
+            # transient_states.append(failing_state)
+
             # for var in assignments[0]:
             #         failing_state.add_to_valuation(var)
             # transient_states.append(failing_state)
@@ -795,10 +741,9 @@ class Counterstrategy:
             #     # for var in sf_output_valuation:
             #     #    failing_state.add_to_valuation(var if sf_output_valuation[var] == 1 else "!" + var)
 
-            # transient_states = []
-            # transient_states.append(failing_state)
-
             looping_states = None
+        print("INI: ", initial_state)
+        print("TRANSIENT: ", transient_states)
         return Path(initial_state,transient_states,looping_states)
 
     def extendFinitePath(self, path):
@@ -843,19 +788,19 @@ def main():
     # print str(c.graph[0].obj_dict['edges']).replace(', ', '\n')
 
     # c.counterstrategy = [
-    #     'INI -> S0 {req:false, cl:true} / {gr:false, val:false};',
-    #     'INI -> DEAD {req:false, cl:true} / {gr:false, val:true};',
-    #     'INI -> S0 {req:false, cl:true} / {gr:true, val:false};',
-    #     'INI -> DEAD {req:false, cl:true} / {gr:true, val:true};',
     #     'S0 -> S0 {req:false, cl:true} / {gr:false, val:false};',
     #     'S0 -> DEAD {req:false, cl:true} / {gr:false, val:true};',
     #     'S0 -> S0 {req:false, cl:true} / {gr:true, val:false};',
     #     'S0 -> DEAD {req:false, cl:true} / {gr:true, val:true};',
-    #     'INI -> S1 {req:false, cl:true} / {gr:false, val:false};',
+    #     'S0 -> S0 {req:false, cl:true} / {gr:false, val:false};',
+    #     'S0 -> DEAD {req:false, cl:true} / {gr:false, val:true};',
+    #     'S0 -> S0 {req:false, cl:true} / {gr:true, val:false};',
+    #     'S0 -> DEAD {req:false, cl:true} / {gr:true, val:true};',
+    #     'S0 -> S1 {req:false, cl:true} / {gr:false, val:false};',
     # ]
 
     # c.counterstrategy = [
-    #     'INI -> S0 {req:false, cl:true} / {gr:false, val:false};',
+    #     'S0 -> S0 {req:false, cl:true} / {gr:false, val:false};',
     #     'S0 -> S1 {req:false, cl:true} / {gr:true, val:false};',
     #     'S0 -> S2 {req:false, cl:true} / {gr:true, val:false};',
     #     'S0 -> S3 {req:false, cl:true} / {gr:true, val:false};',
@@ -897,7 +842,7 @@ def main():
             var = matches.group(1)
             state = int(matches.group(2))
             if state == 0:
-                state = "INI"
+                state = "S0"
             else:
                 state = "S" + str(state - 1)
             valuation = var + "__" + state

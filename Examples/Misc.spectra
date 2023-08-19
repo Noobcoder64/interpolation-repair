@@ -1,13 +1,10 @@
 module Protocol
 
 env boolean a;
-env boolean b;
-sys boolean c;
+sys boolean b;
 
+assumption
+    !a;
 
 guarantee
     alw (a -> next(b));
-guarantee
-    alw (b -> next(c));
-guarantee
-    alw (b -> next(!c));

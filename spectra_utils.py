@@ -59,31 +59,30 @@ def generate_counter_strat(specification):
     cmd = "java -jar {} -i {} --counter-strategy-jtlv-format".format(PATH_TO_CLI, specification)
     output = run_subprocess(cmd, "\\n")
     if re.search("Result: Specification is unrealizable", output):
-        return output
+        print(output.replace("\\t", ""))
+        return output.replace("\\t", "")
     return None
 
 def check_realizibility(specification):
     cmd = "java -jar {} -i {}".format(PATH_TO_CLI, specification)
     output = run_subprocess(cmd, "\\r\\n")
-    # print("REALIZABILITY CHECK:", output)
     if re.search("Result: Specification is unrealizable", output):
         return False
     elif re.search("Result: Specification is realizable", output):
         return True
     
-    print("Spectra file in wrong format for CLI realizability check:")
+    print("Spectra file in wrong format for CLI realizability check.")
     return None
 
 def check_satisfiability(specification):
-    cmd = "java -jar {} -i {} --sat".format(PATH_TO_CLI, specification)
+    cmd = "java -jar {} -i {} -sat".format(PATH_TO_CLI, specification)
     output = run_subprocess(cmd, "\\r\\n")
-    # print("SATISFIABILITY CHECK:", output)
     if re.search("No. The specification is not satisfiable.", output):
         return False
     elif re.search("Yes. The specification is satisfiable.", output):
         return True
     
-    print("Spectra file in wrong format for CLI realizability check:")
+    print("Spectra file in wrong format for CLI satisfiability check.")
     return None
 
 def addAssumption(specification, assumption):

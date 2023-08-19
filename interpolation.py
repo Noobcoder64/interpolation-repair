@@ -179,10 +179,10 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
     # PROBLEM
     # guarantees_uc = exp.guaranteesList
 
-    print()
-    print("=== COUNTERSTRATEGY ===")
-    print('\n'.join(c.counterstrategy))
-    print()
+    # print()
+    # print("=== COUNTERSTRATEGY ===")
+    # print('\n'.join(c.counterstrategy))
+    # print()
 
     path = c.extractRandomPath()
 
@@ -277,6 +277,23 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
         # filter(None,l) removes empty strings from l
         guarantees_boolean = " & ".join(filter(None, [l2b.gr1LTL2Boolean(x, path) for x in guarantees_uc]))
 
+        print("=== UNREALIZABLE CORE ===")
+        for uc in guarantees_uc:
+            print(uc)
+        print()
+
+        print("=== ASSUMPTIONS BOOLEAN ===")
+        print(" & ".join(assumptions_boolean))
+        print()
+        print("=== VALUATIONS BOOLEAN ===")
+        print(valuations_boolean)
+        print()
+        # print("=== ASM VAL BOOLEAN ===")
+        # print(assum_val_boolean)
+        print("=== GUARANTEES BOOLEAN ===")
+        print(guarantees_boolean)
+        print()
+
         l2b.writePathToFile("path", path)
         l2b.writeMathsatFormulaToFile("counterstrategy_auto", assum_val_boolean)
         l2b.writeMathsatFormulaToFile("guarantees_auto", guarantees_boolean)
@@ -297,6 +314,14 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
                 state_components = dict()
                 print("Non-state-separable interpolant for " + assum_val_boolean + "\n and guarantees " + guarantees_boolean)
                 print("Interpolant: " + interpolant)
+            print()
+            print("=== INTERPOLANT ===")
+            print(interpolant)
+            state_components = extractStateComponents(interpolant)
+            print()
+            print("=== STATE COMPONENTS ===")
+            print(state_components)
+
     else:
         interpolant = ""
         state_components = dict()
