@@ -1,0 +1,78 @@
+Using BDD Package: CUDDFactory, Version: CUDD 3.0
+Using BDD Package: CUDDFactory, Version: CUDD 3.0
+0    [pool-1-thread-1] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+java.util.MissingResourceException: The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+	at org.eclipse.emf.common.util.DelegatingResourceLocator.delegatedGetString(DelegatingResourceLocator.java:586)
+	at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:450)
+	at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:605)
+	at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:597)
+	at org.eclipse.emf.ecore.util.Diagnostician.createDefaultDiagnostic(Diagnostician.java:110)
+	at org.eclipse.emf.ecore.util.Diagnostician.validate(Diagnostician.java:139)
+	at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:147)
+	at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:125)
+	at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:91)
+	at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getSpectraModel(SpectraInputProviderNoIDE.java:166)
+	at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getGameInput(SpectraInputProviderNoIDE.java:109)
+	at tau.smlab.syntech.Spectra.cli.SpecRepair.executeAlgorithm(SpecRepair.java:102)
+	at tau.smlab.syntech.Spectra.cli.SpecRepair.lambda$0(SpecRepair.java:73)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Executing "inputs/SYNTECH15-UNREAL/PCarLTL_Unrealizable_V_2_unrealizable0_888_PCar_fixed_unrealizable.spectra".
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 1337
+Nodes table size: 5110
+Checking: 0:1, 1 elements
+Checking: 1:2, 1 elements
+Found 1 repair suggestions
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 2052
+Nodes table size: 11242
+Number of well-separated suggestions is 0
+Maximum variables in the best repair is 12
+Maximum Node count: 19
+
+Repair #1 [
+
+//Justices//
+asm GF (obstacle_0=false -> 
+	(sideSense_0=false -> 
+		(parkResult_0=false -> 
+			(throttle_0=false -> 
+				(throttle_1=false -> 
+					(steer_0=true -> 
+						(steer_1=false -> 
+							(parkCommand_0=false -> 
+								(parkCommand_1=false -> 
+									(spec_policy_0=false -> 
+										(spec_policy_1=false -> spec_policy_2=true)))) and
+							(parkCommand_0=true -> 
+								(parkCommand_1=false -> 
+									(spec_policy_0=false -> 
+										(spec_policy_1=false -> spec_policy_2=false)))))))))) and
+	(sideSense_0=true -> 
+		(parkResult_0=false -> 
+			(parkCommand_0=false -> 
+				(parkCommand_1=true -> 
+					(spec_policy_0=false -> spec_policy_1=true)))))) and
+(obstacle_0=true -> 
+	(sideSense_0=false -> 
+		(spec_policy_0=false -> spec_policy_1=true)) and
+	(sideSense_0=true -> 
+		(parkResult_0=false -> 
+			(parkCommand_0=false -> 
+				(parkCommand_1=true -> 
+					(spec_policy_0=false -> spec_policy_1=true)))) and
+		(parkResult_0=true -> 
+			(spec_policy_0=false -> spec_policy_1=true))));
+
+//Transitions//
+
+//Initial//
+
+]
+
+runtime of repair operation was 21 in millisecs.

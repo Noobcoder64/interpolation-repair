@@ -1,0 +1,2 @@
+Using BDD Package: CUDDFactory, Version: CUDD 3.0
+Using BDD Package: CUDDFactory, Version: CUDD 3.0
