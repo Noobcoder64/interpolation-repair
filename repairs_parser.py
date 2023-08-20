@@ -9,7 +9,6 @@ import weakness_for_refinement as wr
 import experiment_properties as exp
 
 
-
 def main():
     sys.setrecursionlimit(1500)
     print("Current recursion depth limit:", sys.getrecursionlimit())
@@ -19,7 +18,7 @@ def main():
     csv_writer = csv.writer(csv_file)
 
     # Write headers
-    headers = ["specification", "numRepairs", "numVariables", "d1", "d2", "nummaxentropysccs", "d3"]
+    headers = ["Specification", "NumRepairs", "NumVariables", "d1", "d2", "nummaxentropysccs", "d3"]
     csv_writer.writerow(headers)
 
     txt_files = [filename for filename in os.listdir(directory) if filename.endswith(".txt")]

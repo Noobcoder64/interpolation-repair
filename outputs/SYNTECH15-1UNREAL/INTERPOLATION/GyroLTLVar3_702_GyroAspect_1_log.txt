@@ -1,0 +1,164 @@
+Parsing...done
+Parsing...done
+Removing non-boolean ITEs...done
+Removing non-boolean ITEs...done
+Canonizing...done
+Canonizing...done
+Converting formula to CNF...done
+Converting formula to CNF...done
+
+Solving time: 0.000951 sec
+Original proof size: 11
+Computing interpolant #1...done
+Interpolant #1 written to INTERP.1.msat
+
+DPLL Engine Statistics:
+Atoms: 67 (20 bool, 0 theory, 47 cnf) 
+Clauses: 23
+Avg clause length: 2.04348
+Restarts: 0
+Decisions: 0
+All propagations: 29
+All conflicts: 0
+
+Theory Solvers Statistics:
+------------------------------------
+Total time: 0.001 sec
+Memory used: 22.945 MBytes
+
+unsat
+=== INPUT VARS ===
+frontDistSense_0
+backDistSense_0
+isReady
+eNV_CONSTRAINT_0_respondsTo_responded
+eNV_CONSTRAINT_1_respondsTo_responded
+eNV_CONSTRAINT_2_respondsTo_responded
+eNV_CONSTRAINT_3_respondsTo_responded
+=== OUTPUT VARS ===
+balancer_0
+balancer_1
+balancer_2
+=== ASSUMPTIONS ===
+((!(frontDistSense_0)&!(backDistSense_0)))
+G(F(isReady))
+G((isReady->X(isReady)))
+G(F(eNV_CONSTRAINT_0_respondsTo_responded))
+G(F(eNV_CONSTRAINT_1_respondsTo_responded))
+G(F(eNV_CONSTRAINT_2_respondsTo_responded))
+G(F(eNV_CONSTRAINT_3_respondsTo_responded))
+(eNV_CONSTRAINT_0_respondsTo_responded)
+G((X(eNV_CONSTRAINT_0_respondsTo_responded)<->((!(!((((!(balancer_0)&!(balancer_1))&balancer_2)|((!(balancer_0)&!(balancer_1))&!(balancer_2)))))|!(frontDistSense_0))|(eNV_CONSTRAINT_0_respondsTo_responded&!(!((((!(balancer_0)&!(balancer_1))&balancer_2)|((!(balancer_0)&!(balancer_1))&!(balancer_2)))))))))
+(eNV_CONSTRAINT_1_respondsTo_responded)
+G((X(eNV_CONSTRAINT_1_respondsTo_responded)<->((!(!((((!(balancer_0)&balancer_1)&!(balancer_2))|((!(balancer_0)&!(balancer_1))&!(balancer_2)))))|!(backDistSense_0))|(eNV_CONSTRAINT_1_respondsTo_responded&!(!((((!(balancer_0)&balancer_1)&!(balancer_2))|((!(balancer_0)&!(balancer_1))&!(balancer_2)))))))))
+(eNV_CONSTRAINT_2_respondsTo_responded)
+G((X(eNV_CONSTRAINT_2_respondsTo_responded)<->((!(((!(balancer_0)&!(balancer_1))&balancer_2))|frontDistSense_0)|(eNV_CONSTRAINT_2_respondsTo_responded&!(((!(balancer_0)&!(balancer_1))&balancer_2))))))
+(eNV_CONSTRAINT_3_respondsTo_responded)
+G((X(eNV_CONSTRAINT_3_respondsTo_responded)<->((!(((!(balancer_0)&balancer_1)&!(balancer_2)))|backDistSense_0)|(eNV_CONSTRAINT_3_respondsTo_responded&!(((!(balancer_0)&balancer_1)&!(balancer_2)))))))
+=== GUARANTEES ===
+(((!(balancer_0)&!(balancer_1))&!(balancer_2)))
+G(F(((!(balancer_0))&!(balancer_1))&balancer_2))
+G(F((((balancer_0&!(balancer_1)))&!(balancer_2))|((!(balancer_0)&balancer_1)&balancer_2)))
+(!(((balancer_0&!(balancer_1))&balancer_2)))
+G(!(((X(balancer_0)&!(X(balancer_1)))&X(balancer_2))))
+(!(((balancer_0&balancer_1)&!(balancer_2))))
+G(!(((X(balancer_0)&X(balancer_1))&!(X(balancer_2)))))
+(!(((balancer_0&balancer_1)&balancer_2)))
+G(!(((X(balancer_0)&X(balancer_1))&X(balancer_2))))
+((!(isReady)->((!(balancer_0)&!(balancer_1))&!(balancer_2))))
+G((!(X(isReady))->((!(X(balancer_0))&!(X(balancer_1)))&!(X(balancer_2)))))
+((((!(balancer_0)&!(balancer_1))&balancer_2)->!(frontDistSense_0)))
+G((((!(X(balancer_0))&!(X(balancer_1)))&X(balancer_2))->!(X(frontDistSense_0))))
+((((!(balancer_0)&balancer_1)&!(balancer_2))->!(backDistSense_0)))
+G((((!(X(balancer_0))&X(balancer_1))&!(X(balancer_2)))->!(X(backDistSense_0))))
+(((isReady&!(frontDistSense_0))->((!(balancer_0)&!(balancer_1))&balancer_2)))
+G(((X(isReady)&!(X(frontDistSense_0)))->((!(X(balancer_0))&!(X(balancer_1)))&X(balancer_2))))
++++++++++++ inputs/SYNTECH15-1UNREAL/GyroLTLVar3_702_GyroAspect_1.spectra
+Resetting temp...
+Reset complete!
+++++ ELAPSED TIME 0
+++++ QUEUE LENGTH 0
+++++ Solutions 0
+++++ Duplicates 0
+++++ Node number 1
+++++ Refinement []
+++++ Length 0
+++ REALIZABILITY CHECK
+++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION
+b"Using BDD Package: CUDDFactory, Version: CUDD 3.0
+Using BDD Package: CUDDFactory, Version: CUDD 3.0
+0    [main] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+java.util.MissingResourceException: The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+at org.eclipse.emf.common.util.DelegatingResourceLocator.delegatedGetString(DelegatingResourceLocator.java:586)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:450)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:605)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:597)
+at org.eclipse.emf.ecore.util.Diagnostician.createDefaultDiagnostic(Diagnostician.java:110)
+at org.eclipse.emf.ecore.util.Diagnostician.validate(Diagnostician.java:139)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:147)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:125)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:91)
+at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getSpectraModel(SpectraInputProviderNoIDE.java:166)
+at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getGameInput(SpectraInputProviderNoIDE.java:109)
+at tau.smlab.syntech.Spectra.cli.SpectraCliTool.main(SpectraCliTool.java:162)
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 242
+Nodes table size: 1022
+Result: Specification is unrealizable
+extract strategy - Start
+
+extract strategy - End
+Initial State 0 <frontDistSense_0:false, backDistSense_0:false, isReady:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, eNV_CONSTRAINT_3_respondsTo_responded:true>
+With no successors.
+"
+INI:  <counterstrategy.State object at 0x7fdd5c3c2640>
+TRANSIENT:  []
+=== COUNTERRUN ===
+S0
+
+LTL TOKENS:  ['(', '(', 'isReady', '->', 'X', '(', 'isReady', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'eNV_CONSTRAINT_0_respondsTo_responded', ')', '<->', '(', '(', '!', '(', '!', '(', '(', '(', '(', '!', '(', 'balancer_0', ')', '&', '!', '(', 'balancer_1', ')', ')', '&', 'balancer_2', ')', '|', '(', '(', '!', '(', 'balancer_0', ')', '&', '!', '(', 'balancer_1', ')', ')', '&', '!', '(', 'balancer_2', ')', ')', ')', ')', ')', '|', '!', '(', 'frontDistSense_0', ')', ')', '|', '(', 'eNV_CONSTRAINT_0_respondsTo_responded', '&', '!', '(', '!', '(', '(', '(', '(', '!', '(', 'balancer_0', ')', '&', '!', '(', 'balancer_1', ')', ')', '&', 'balancer_2', ')', '|', '(', '(', '!', '(', 'balancer_0', ')', '&', '!', '(', 'balancer_1', ')', ')', '&', '!', '(', 'balancer_2', ')', ')', ')', ')', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'eNV_CONSTRAINT_1_respondsTo_responded', ')', '<->', '(', '(', '!', '(', '!', '(', '(', '(', '(', '!', '(', 'balancer_0', ')', '&', 'balancer_1', ')', '&', '!', '(', 'balancer_2', ')', ')', '|', '(', '(', '!', '(', 'balancer_0', ')', '&', '!', '(', 'balancer_1', ')', ')', '&', '!', '(', 'balancer_2', ')', ')', ')', ')', ')', '|', '!', '(', 'backDistSense_0', ')', ')', '|', '(', 'eNV_CONSTRAINT_1_respondsTo_responded', '&', '!', '(', '!', '(', '(', '(', '(', '!', '(', 'balancer_0', ')', '&', 'balancer_1', ')', '&', '!', '(', 'balancer_2', ')', ')', '|', '(', '(', '!', '(', 'balancer_0', ')', '&', '!', '(', 'balancer_1', ')', ')', '&', '!', '(', 'balancer_2', ')', ')', ')', ')', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'eNV_CONSTRAINT_2_respondsTo_responded', ')', '<->', '(', '(', '!', '(', '(', '(', '!', '(', 'balancer_0', ')', '&', '!', '(', 'balancer_1', ')', ')', '&', 'balancer_2', ')', ')', '|', 'frontDistSense_0', ')', '|', '(', 'eNV_CONSTRAINT_2_respondsTo_responded', '&', '!', '(', '(', '(', '!', '(', 'balancer_0', ')', '&', '!', '(', 'balancer_1', ')', ')', '&', 'balancer_2', ')', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'eNV_CONSTRAINT_3_respondsTo_responded', ')', '<->', '(', '(', '!', '(', '(', '(', '!', '(', 'balancer_0', ')', '&', 'balancer_1', ')', '&', '!', '(', 'balancer_2', ')', ')', ')', '|', 'backDistSense_0', ')', '|', '(', 'eNV_CONSTRAINT_3_respondsTo_responded', '&', '!', '(', '(', '(', '!', '(', 'balancer_0', ')', '&', 'balancer_1', ')', '&', '!', '(', 'balancer_2', ')', ')', ')', ')', ')', ')', ')']
+=== UNREALIZABLE CORE ===
+(((!(balancer_0)&!(balancer_1))&!(balancer_2)))
+(((isReady&!(frontDistSense_0))->((!(balancer_0)&!(balancer_1))&balancer_2)))
+
+=== ASSUMPTIONS BOOLEAN ===
+(((!(frontDistSense_0__S0)&!(backDistSense_0__S0)))) & (((isReady__S0->(isReady__Sf)))) & ((eNV_CONSTRAINT_0_respondsTo_responded__S0)) & ((((eNV_CONSTRAINT_0_respondsTo_responded__Sf)<->((!(!((((!(balancer_0__Sf)&!(balancer_1__Sf))&balancer_2__Sf)|((!(balancer_0__Sf)&!(balancer_1__Sf))&!(balancer_2__Sf)))))|!(frontDistSense_0__Sf))|(eNV_CONSTRAINT_0_respondsTo_responded__Sf&!(!((((!(balancer_0__Sf)&!(balancer_1__Sf))&balancer_2__Sf)|((!(balancer_0__Sf)&!(balancer_1__Sf))&!(balancer_2__Sf)))))))))) & ((eNV_CONSTRAINT_1_respondsTo_responded__S0)) & ((((eNV_CONSTRAINT_1_respondsTo_responded__Sf)<->((!(!((((!(balancer_0__Sf)&balancer_1__Sf)&!(balancer_2__Sf))|((!(balancer_0__Sf)&!(balancer_1__Sf))&!(balancer_2__Sf)))))|!(backDistSense_0__Sf))|(eNV_CONSTRAINT_1_respondsTo_responded__Sf&!(!((((!(balancer_0__Sf)&balancer_1__Sf)&!(balancer_2__Sf))|((!(balancer_0__Sf)&!(balancer_1__Sf))&!(balancer_2__Sf)))))))))) & ((eNV_CONSTRAINT_2_respondsTo_responded__S0)) & ((((eNV_CONSTRAINT_2_respondsTo_responded__Sf)<->((!(((!(balancer_0__Sf)&!(balancer_1__Sf))&balancer_2__Sf))|frontDistSense_0__Sf)|(eNV_CONSTRAINT_2_respondsTo_responded__Sf&!(((!(balancer_0__Sf)&!(balancer_1__Sf))&balancer_2__Sf))))))) & ((eNV_CONSTRAINT_3_respondsTo_responded__S0)) & ((((eNV_CONSTRAINT_3_respondsTo_responded__Sf)<->((!(((!(balancer_0__Sf)&balancer_1__Sf)&!(balancer_2__Sf)))|backDistSense_0__Sf)|(eNV_CONSTRAINT_3_respondsTo_responded__Sf&!(((!(balancer_0__Sf)&balancer_1__Sf)&!(balancer_2__Sf))))))))
+
+=== VALUATIONS BOOLEAN ===
+eNV_CONSTRAINT_2_respondsTo_responded__S0 & eNV_CONSTRAINT_1_respondsTo_responded__S0 & eNV_CONSTRAINT_0_respondsTo_responded__S0 & isReady__S0 & !frontDistSense_0__S0 & eNV_CONSTRAINT_3_respondsTo_responded__S0 & !backDistSense_0__S0
+
+=== GUARANTEES BOOLEAN ===
+((((!(balancer_0__S0)&!(balancer_1__S0))&!(balancer_2__S0)))) & ((((isReady__S0&!(frontDistSense_0__S0))->((!(balancer_0__S0)&!(balancer_1__S0))&balancer_2__S0))))
+
+
+=== INTERPOLANT ===
+isReady__S0 & !frontDistSense_0__S0
+
+=== STATE COMPONENTS ===
+{'S0': '!frontDistSense_0 & isReady'}
+
+=== Refinements === 
+['!(!frontDistSense_0 & isReady)', 'G(!(!frontDistSense_0 & isReady))']
+++++ ELAPSED TIME 2.6777713089832105
+++++ QUEUE LENGTH 1
+++++ Solutions 0
+++++ Duplicates 0
+++++ Node number 2
+++++ Refinement ['!(!frontDistSense_0 & isReady)']
+++++ Length 1
+++ REALIZABILITY CHECK
+++ REALIZABLE REFINEMENT: SAT CHECK
+++++ ELAPSED TIME 4.57989035898936
+++++ QUEUE LENGTH 0
+++++ Solutions 1
+++++ Duplicates 0
+++++ Node number 3
+++++ Refinement ['G(!(!frontDistSense_0 & isReady))']
+++++ Length 1
+++ REALIZABILITY CHECK
+++ VACUOUS SOLUTION
