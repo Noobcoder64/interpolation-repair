@@ -1,6 +1,6 @@
 import experiment_properties as exp
 import interpolation
-from refinement import Refinement
+from refinement import RefinementNode
 from collections import deque # For efficient FIFO queuing
 import timeit, gc, os
 import sys
@@ -10,7 +10,7 @@ if len(sys.argv) > 1:
     print("+++++++++++ " + sys.argv[1])
 
 max_nodes = 3000 # Max nodes to expand in the experiment
-timeout = 1800 # Seconds before timeout (30 min)
+timeout = 600 # Seconds before timeout (10 min)
 
 print("Resetting temp...")
 folder = 'temp'
@@ -24,6 +24,7 @@ for the_file in os.listdir(folder):
         print(e)
 print("Reset complete!")
 
+
 def FifoDuplicateCheckRefinement():
     """This implements the refinement strategy that uses model checking against ancestors
     to generate nodes"""
@@ -34,13 +35,28 @@ def FifoDuplicateCheckRefinement():
     duplicate_refs = []
 
     datafile = open(exp.datafile, "w")
-#    Use this if the experiment uses minimal, since you want to record ancestorcounterstrategieseliminated
-    # datafields = [ "Id", "Refinement", "UniqueRefinement", "Timestamp", "TimestampRealizabilityCheck", "Length", "Parent", "NumChildren", "AncestorCounterstrategiesEliminated", "TotalObservedCounterstrategies", "RedundantAssumptionsEliminated", "IsRealizable", "IsSatisfiable", "IsSolution", "TimeRealizabilityCheck", "TimeSatisfiabilityCheck", "TimeCounterstrategy", "CounterstrategyNumStates", "TimeRefine", "TimeGenerationMethod"]
-    # Use this if the exploration strategy is just BFS
-    datafields = [ "Id", "Refinement", "UniqueRefinement", "Timestamp", "Length", "Parent", "NumChildren", "IsRealizable", "IsSatisfiable", "IsSolution", "TimeRealizabilityCheck", "TimeSatisfiabilityCheck", "TimeCounterstrategy", "CounterstrategyNumStates", "TimeRefine", "TimeGenerationMethod"]
+    datafields = [
+        "Id",
+        "UniqueRefinement",
+        "NumVariables",
+        "Timestamp",
+        "Length",
+        "Parent",
+        "NumChildren",
+        "IsRealizable",
+        "IsSatisfiable",
+        "IsSolution",
+        "TimeRealizabilityCheck",
+        "TimeSatisfiabilityCheck",
+        "TimeCounterstrategy",
+        "CounterstrategyNumStates",
+        "TimeRefine",
+        "TimeGenerationMethod"
+    ]
+    
     datafile.write(";".join(datafields) + "\n")
 
-    initial_spec_node = Refinement()
+    initial_spec_node = RefinementNode()
 
     # Root of the refinement tree: it contains the initial spec
     partial_refinements_queue = deque([initial_spec_node])
@@ -51,7 +67,7 @@ def FifoDuplicateCheckRefinement():
         cur_node = partial_refinements_queue.pop()
         nodes += 1
 
-        if not (cur_node.ancestor_counterstrategies_eliminated_total, cur_node.unique_refinement) in explored_refs:
+        if not cur_node.unique_refinement in explored_refs:
             print("++++ ELAPSED TIME " + str(elapsed_time))
             print("++++ QUEUE LENGTH " + str(len(partial_refinements_queue)))
             print("++++ Solutions " + str(len(solutions)))
@@ -69,16 +85,16 @@ def FifoDuplicateCheckRefinement():
             elif cur_node.isSatisfiable():
                 print("++ REALIZABLE REFINEMENT: SAT CHECK")
                 solutions.append(cur_node.gr1_units)
+                cur_node.saveRefinementData(datafile, datafields)
             else:
                 print("++ VACUOUS SOLUTION")
             # except Exception as e:
             #     cur_node.writeNotes(str(e))
 
-            cur_node.saveRefinementData(datafile, datafields)
-            explored_refs.append((cur_node.ancestor_counterstrategies_eliminated_total, cur_node.unique_refinement))
+            explored_refs.append(cur_node.unique_refinement)
         else:
             print("++ DUPLICATE NODE")
-            duplicate_refs.append((cur_node.ancestor_counterstrategies_eliminated_total, cur_node.unique_refinement))
+            duplicate_refs.append(cur_node.unique_refinement)
 
         elapsed_time = timeit.default_timer() - start_experiment
 
@@ -102,17 +118,17 @@ def FifoDuplicateCheckRefinement():
     #     except Exception as e:
     #         print(str(e))
 
-    print("++++ SAVING SEARCH SUMMARY DATA")
-    experimentstatsfile = open(exp.experimentstatsfile, "w")
-    print("Nodes explored;" + str(nodes) + "\n"\
-                            + "Total time;" + str(elapsed_time) + "\n"\
-                            + "Duplicate nodes;" + str(len(duplicate_refs)) + "\n"\
-                            + "\n".join([str(x) for x in duplicate_refs]))
-    experimentstatsfile.write("Nodes explored;" + str(nodes) + "\n"
-                            + "Total time;" + str(elapsed_time) + "\n"
-                            + "Duplicate nodes;" + str(len(duplicate_refs)) + "\n"
-                              + "\n".join([str(x) for x in duplicate_refs]))
-    experimentstatsfile.close()
+    # print("++++ SAVING SEARCH SUMMARY DATA")
+    # experimentstatsfile = open(exp.experimentstatsfile, "w")
+    # print("Nodes explored;" + str(nodes) + "\n"\
+    #                         + "Total time;" + str(elapsed_time) + "\n"\
+    #                         + "Duplicate nodes;" + str(len(duplicate_refs)) + "\n"\
+    #                         + "\n".join([str(x) for x in duplicate_refs]))
+    # experimentstatsfile.write("Nodes explored;" + str(nodes) + "\n"
+    #                         + "Total time;" + str(elapsed_time) + "\n"
+    #                         + "Duplicate nodes;" + str(len(duplicate_refs)) + "\n"
+    #                           + "\n".join([str(x) for x in duplicate_refs]))
+    # experimentstatsfile.close()
 
 
     datafile.close()

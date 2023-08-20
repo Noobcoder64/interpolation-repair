@@ -8,7 +8,7 @@ import re
 # Set random seed for repeatability
 # random.seed(1000)
 
-case_study_name = "AMBAs/amba02_noassumptions"
+case_study_name = ""
 generation_method = "interpolation"
 n_multivarbias = 5
 goodness_measure = ""
@@ -28,27 +28,28 @@ search_fairness = True
 
 # This is a reference to the original specification file
 specfile = "Examples/"+case_study_name+".spectra"
-datafile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+".csv"
-checkpointfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_checkpoint.csv"
-satfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_sat.csv"
-weaknessfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_weakness.csv"
-wellsepfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_wellsep.csv"
-statsfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_stats.csv"
-equivclassesfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_equivclasses.csv"
-distancesfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_distances.csv"
-cstimesfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_cstimes.csv"
-uniquesolsfile = "DataFiles/" + case_study_name + "_"+refinement_method+"_exp"+str(exp_number)+"_uniquesols.csv"
+datafile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+".csv"
+checkpointfile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_checkpoint.csv"
+satfile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_sat.csv"
+weaknessfile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_weakness.csv"
+wellsepfile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_wellsep.csv"
+statsfile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_stats.csv"
+equivclassesfile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_equivclasses.csv"
+distancesfile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_distances.csv"
+cstimesfile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_cstimes.csv"
+uniquesolsfile = "outputs/" + case_study_name + "_"+refinement_method+"_exp"+str(exp_number)+"_uniquesols.csv"
 
-experimentstatsfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_expstats.csv"
+experimentstatsfile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_expstats.csv"
 
-spec = sp.read_file(specfile)
-spec = sp.interpolation_spec(spec)
+if case_study_name != "":
+    spec = sp.read_file(specfile)
+    spec = sp.interpolation_spec(spec)
 
-inputVarsList = io.extractInputVariablesFromFile(spec)
-outputVarsList = io.extractOutputVariablesFromFile(spec)
-varsList = inputVarsList + outputVarsList
-initialGR1Units = io.extractAssumptionList(spec)
-guaranteesList = io.extractGuaranteesList(spec)
+    inputVarsList = io.extractInputVariablesFromFile(spec)
+    outputVarsList = io.extractOutputVariablesFromFile(spec)
+    varsList = inputVarsList + outputVarsList
+    initialGR1Units = io.extractAssumptionList(spec)
+    guaranteesList = io.extractGuaranteesList(spec)
 
 counterstrategies = [] # This list contains all observed counterstrategy bdds for use in the experiment
                        # Each element is a triple (marduk_instance, bdd_initial_states, bdd_transition)
@@ -78,20 +79,20 @@ def changeCaseStudy(specification):
     global start_experiment
     case_study_name = os.path.splitext(os.path.basename(specification))[0]
     specfile = specification
-    datafile = "DataFiles/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + ".csv"
-    checkpointfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_checkpoint.csv"
-    satfile = "DataFiles/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_sat.csv"
-    weaknessfile = "DataFiles/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_weakness.csv"
-    wellsepfile = "DataFiles/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_wellsep.csv"
-    statsfile = "DataFiles/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_stats.csv"
-    equivclassesfile = "DataFiles/" + case_study_name + "_" + refinement_method + "_exp" + str(
+    datafile = "outputs/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + ".csv"
+    checkpointfile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_checkpoint.csv"
+    satfile = "outputs/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_sat.csv"
+    weaknessfile = "outputs/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_weakness.csv"
+    wellsepfile = "outputs/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_wellsep.csv"
+    statsfile = "outputs/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_stats.csv"
+    equivclassesfile = "outputs/" + case_study_name + "_" + refinement_method + "_exp" + str(
         exp_number) + "_equivclasses.csv"
-    distancesfile = "DataFiles/" + case_study_name + "_" + refinement_method + "_exp" + str(
+    distancesfile = "outputs/" + case_study_name + "_" + refinement_method + "_exp" + str(
         exp_number) + "_distances.csv"
-    cstimesfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_cstimes.csv"
-    uniquesolsfile = "DataFiles/" + case_study_name + "_"+refinement_method+"_exp"+str(exp_number)+"_uniquesols.csv"
+    cstimesfile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_cstimes.csv"
+    uniquesolsfile = "outputs/" + case_study_name + "_"+refinement_method+"_exp"+str(exp_number)+"_uniquesols.csv"
 
-    experimentstatsfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_expstats.csv"
+    experimentstatsfile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_expstats.csv"
 
     spec = sp.read_file(specfile)
     spec = sp.interpolation_spec(spec)
@@ -142,20 +143,20 @@ def changeGenerationMethod(generation_method):
     "-" + goodness_measure if goodness_measure != "" else "")
 
     specfile = "Examples/" + case_study_name + ".rat"
-    datafile = "DataFiles/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + ".csv"
-    checkpointfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_checkpoint.csv"
-    satfile = "DataFiles/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_sat.csv"
-    weaknessfile = "DataFiles/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_weakness.csv"
-    wellsepfile = "DataFiles/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_wellsep.csv"
-    statsfile = "DataFiles/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_stats.csv"
-    equivclassesfile = "DataFiles/" + case_study_name + "_" + refinement_method + "_exp" + str(
+    datafile = "outputs/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + ".csv"
+    checkpointfile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_checkpoint.csv"
+    satfile = "outputs/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_sat.csv"
+    weaknessfile = "outputs/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_weakness.csv"
+    wellsepfile = "outputs/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_wellsep.csv"
+    statsfile = "outputs/" + case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_stats.csv"
+    equivclassesfile = "outputs/" + case_study_name + "_" + refinement_method + "_exp" + str(
         exp_number) + "_equivclasses.csv"
-    distancesfile = "DataFiles/" + case_study_name + "_" + refinement_method + "_exp" + str(
+    distancesfile = "outputs/" + case_study_name + "_" + refinement_method + "_exp" + str(
         exp_number) + "_distances.csv"
-    cstimesfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_cstimes.csv"
-    uniquesolsfile = "DataFiles/" + case_study_name + "_"+refinement_method+"_exp"+str(exp_number)+"_uniquesols.csv"
+    cstimesfile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_cstimes.csv"
+    uniquesolsfile = "outputs/" + case_study_name + "_"+refinement_method+"_exp"+str(exp_number)+"_uniquesols.csv"
 
-    experimentstatsfile = "DataFiles/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_expstats.csv"
+    experimentstatsfile = "outputs/"+case_study_name+"_"+refinement_method+"_exp"+str(exp_number)+"_expstats.csv"
 
     spec = sp.read_file(specfile)
     spec = [re.sub(r"GF\s*\(([^\)]*)\)", r"G(F(\1))", line) for line in spec]

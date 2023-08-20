@@ -13,5 +13,5 @@
 
 for filepath in inputs/SYNTECH15-1UNREAL/*.spectra
 do
-        python translator.py ${filepath} outputs/SYNTECH-1UNREAL/
+        python translator.py ${filepath} outputs/SYNTECH15-1UNREAL/
 done

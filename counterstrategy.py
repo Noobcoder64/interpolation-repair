@@ -472,6 +472,7 @@ class Counterstrategy:
         self.parse_counterstrategy(self.counterstrategy)
         for state in self.states.values():
             self.compute_influentials(state)
+        self.num_states = len(self.states)
         # for state in self.states.values():
         #     print(state.name, state.influential_outputs)
 

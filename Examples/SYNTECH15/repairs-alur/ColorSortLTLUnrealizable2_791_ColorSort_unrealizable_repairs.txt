@@ -1,7 +1,0 @@
-Executing "C:\Users\Fahim\Documents\imperial_college_london\individual_project\SymbolicRepairsArtifact\SpecRepair\SYNTECH15\ColorSortLTLUnrealizable2_791_ColorSort_unrealizable.spectra".
-Found 0 repair suggestions
-Number of well-separated suggestions is 0
-Maximum variables in the best repair is -1
-Maximum Node count: -1
-
-runtime of repair operation was 54593 in millisecs.
