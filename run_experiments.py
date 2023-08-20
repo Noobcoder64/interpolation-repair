@@ -5,8 +5,8 @@ import concurrent.futures
 
 # List of input folders
 input_folders = [
-    "inputs/AMBA",
-    # "inputs/SYNTECH15-UNREAL",
+    # "inputs/AMBA",
+    "inputs/SYNTECH15-UNREAL",
     # "inputs/SYNTECH15-1UNREAL"
 ]
 
