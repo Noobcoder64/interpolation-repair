@@ -1,0 +1,2 @@
+Id,UniqueRefinement,NumVariables
+b83793da-b041-4974-8afc-344fcf4bc9f0,['G(F(!obstacle_0 -> (obstacle_1 -> (!sideSense_0 -> (eNV_CONSTRAINT_0_respondsTo_responded -> (!throttle_0 -> (throttle_1 -> (steer_0 &  steer_1))) & (throttle_0 -> (!throttle_1 -> (steer_0 &  steer_1))))) & (sideSense_0 -> (!sideSense_1 -> (eNV_CONSTRAINT_0_respondsTo_responded -> (!throttle_0 -> (throttle_1 -> (steer_0 &  steer_1))) & (throttle_0 -> (!throttle_1 -> (steer_0 &  steer_1)))))))))'],9

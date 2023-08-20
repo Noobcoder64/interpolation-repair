@@ -1,0 +1,2 @@
+Id,UniqueRefinement,NumVariables
+f931c4b0-b0ab-42e4-b628-6b7c5b540bf4,['G(F(!isReady -> (bluetoothCmd_0 -> (!bluetoothCmd_1 -> (bluetoothCmd_2 -> (!balancer_0 &  (!balancer_1 &  balancer_2)))))) & (isReady -> (bluetoothCmd_0 -> (!bluetoothCmd_1 -> (bluetoothCmd_2 -> (!balancer_0 -> (!balancer_1 -> (!balancer_2 -> (spec_blockedState_0 &  spec_blockedState_1))) & (balancer_1 -> (spec_blockedState_0 &  spec_blockedState_1))) & (balancer_0 -> (spec_blockedState_0 &  spec_blockedState_1)))))))'],9

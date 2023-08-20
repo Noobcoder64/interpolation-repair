@@ -1,0 +1,2 @@
+Id,UniqueRefinement,NumVariables
+458bf10e-d07d-403f-be15-7b6b1f92b0b8,['G(F(!isReady -> (!balancer_0 &  (!balancer_1 &  balancer_2))))'],4

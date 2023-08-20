@@ -1,0 +1,2 @@
+Id,UniqueRefinement,NumVariables
+f1c923cf-d7d4-45e3-be16-fd57806c5ae1,['G(F(!balancer_0 -> (balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 &  !balancer_2)))'],3

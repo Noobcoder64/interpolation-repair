@@ -1,0 +1,2 @@
+Id,UniqueRefinement,NumVariables
+c9f5653f-0bc8-40e8-9d62-86ab92eb19a4,['(!distSense_0 -> (isReady -> !eNV_CONSTRAINT_0_respondsTo_responded))'],3

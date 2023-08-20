@@ -1,0 +1,2 @@
+Id,UniqueRefinement,NumVariables
+8e36ae3c-5228-4f84-a1a9-b7fdd2e26387,['(obstacle_0 -> (!btInput_0 -> (eNV_CONSTRAINT_0_respondsTo_responded -> (!pREV_aux_1 -> (!pREV_aux_2 -> (!pREV_aux_3 -> (!pREV_aux_4 -> (!pREV_aux_5 -> pREV_aux_6))))))) & (btInput_0 -> (!btInput_1 -> (!btInput_2 -> (eNV_CONSTRAINT_0_respondsTo_responded -> (!pREV_aux_1 -> (!pREV_aux_2 -> (!pREV_aux_3 -> (!pREV_aux_4 -> (!pREV_aux_5 -> pREV_aux_6))))))))))'],11

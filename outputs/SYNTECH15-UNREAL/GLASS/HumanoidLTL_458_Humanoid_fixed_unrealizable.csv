@@ -1,0 +1,2 @@
+Id,UniqueRefinement,NumVariables
+1ead291a-015d-4bc5-bbdf-69b22ffbf3ef,"['G(X(!(obstacle_0)) -> (X(inputMoveMode_0) -> X(!(inputMoveMode_1))))', '(!obstacle_0 -> (inputMoveMode_0 -> !inputMoveMode_1))']",4
