@@ -1,0 +1,222 @@
+Parsing...done
+Parsing...done
+Removing non-boolean ITEs...done
+Removing non-boolean ITEs...done
+Canonizing...done
+Canonizing...done
+Converting formula to CNF...done
+Converting formula to CNF...done
+
+Solving time: 0.001128 sec
+Original proof size: 7
+Computing interpolant #1...done
+Interpolant #1 written to INTERP.1.msat
+
+DPLL Engine Statistics:
+Atoms: 112 (33 bool, 0 theory, 79 cnf) 
+Clauses: 16
+Avg clause length: 2
+Restarts: 0
+Decisions: 0
+All propagations: 50
+All conflicts: 0
+
+Theory Solvers Statistics:
+------------------------------------
+Total time: 0.001 sec
+Memory used: 22.949 MBytes
+
+unsat
+=== INPUT VARS ===
+obstacle_0
+noise_0
+heading_0
+heading_1
+button_0
+sYS_CONSTRAINT_0_respondsTo_responded
+eNV_CONSTRAINT_1_respondsTo_responded
+eNV_CONSTRAINT_2_respondsTo_responded
+eNV_CONSTRAINT_3_respondsTo_responded
+pREV_aux_4
+pREV_aux_5
+pREV_aux_6
+pREV_aux_7
+=== OUTPUT VARS ===
+leftMotor_0
+leftMotor_1
+leftMotor_2
+rightMotor_0
+rightMotor_1
+rightMotor_2
+headMotor_0
+headMotor_1
+nextMoveMode_0
+nextMoveMode_1
+specState_0
+specState_1
+turnState_0
+turnState_1
+nextHead_0
+nextHead_1
+=== ASSUMPTIONS ===
+((!(heading_0)&!(heading_1)))
+G(((pREV_aux_4&obstacle_0)->X(obstacle_0)))
+G(((pREV_aux_7&!(obstacle_0))->!(X(obstacle_0))))
+G(F(eNV_CONSTRAINT_1_respondsTo_responded))
+G(F(eNV_CONSTRAINT_2_respondsTo_responded))
+G(F(eNV_CONSTRAINT_3_respondsTo_responded))
+(sYS_CONSTRAINT_0_respondsTo_responded)
+G((X(sYS_CONSTRAINT_0_respondsTo_responded)<->(((heading_0<->nextHead_0)&(heading_1<->nextHead_1))|(sYS_CONSTRAINT_0_respondsTo_responded&!(noise_0)))))
+(eNV_CONSTRAINT_1_respondsTo_responded)
+G((X(eNV_CONSTRAINT_1_respondsTo_responded)<->((!(obstacle_0)&!(X(obstacle_0)))|(eNV_CONSTRAINT_1_respondsTo_responded&!((!(turnState_0)&turnState_1))))))
+(eNV_CONSTRAINT_2_respondsTo_responded)
+G((X(eNV_CONSTRAINT_2_respondsTo_responded)<->((((heading_0<->nextHead_0)&(heading_1<->nextHead_1))|(!(nextMoveMode_0)|nextMoveMode_1))|(eNV_CONSTRAINT_2_respondsTo_responded&!((nextMoveMode_0&!(nextMoveMode_1)))))))
+(eNV_CONSTRAINT_3_respondsTo_responded)
+G((X(eNV_CONSTRAINT_3_respondsTo_responded)<->((((heading_0<->nextHead_0)&(heading_1<->nextHead_1))|(!(nextMoveMode_0)|!(nextMoveMode_1)))|(eNV_CONSTRAINT_3_respondsTo_responded&!((nextMoveMode_0&nextMoveMode_1))))))
+(!(pREV_aux_4))
+G((X(pREV_aux_4)<->(!(nextMoveMode_0)&!(nextMoveMode_1))))
+(!(pREV_aux_5))
+G((X(pREV_aux_5)<->(nextMoveMode_0&!(nextMoveMode_1))))
+(!(pREV_aux_6))
+G((X(pREV_aux_6)<->(nextMoveMode_0&nextMoveMode_1)))
+(!(pREV_aux_7))
+G((X(pREV_aux_7)<->(!(nextMoveMode_0)&nextMoveMode_1)))
+=== GUARANTEES ===
+((!(specState_0)&!(specState_1)))
+((!(turnState_0)&!(turnState_1)))
+((nextHead_0&!(nextHead_1)))
+((!(nextMoveMode_0)&!(nextMoveMode_1)))
+G(F((!(nextMoveMode_0))&!(nextMoveMode_1)))
+G((((!(nextMoveMode_0)&nextMoveMode_1)&(!(X(nextMoveMode_0))&!(X(nextMoveMode_1))))<->(((((!(X(leftMotor_0))&!(X(leftMotor_1)))&!(X(leftMotor_2)))&!(X(rightMotor_0)))&!(X(rightMotor_1)))&X(rightMotor_2))))
+G((((!(nextMoveMode_0)&!(nextMoveMode_1))&(!(X(nextMoveMode_0))&X(nextMoveMode_1)))<->(((((!(X(leftMotor_0))&!(X(leftMotor_1)))&X(leftMotor_2))&!(X(rightMotor_0)))&!(X(rightMotor_1)))&!(X(rightMotor_2)))))
+G(((!(X(nextMoveMode_0))&X(nextMoveMode_1))->((!(nextMoveMode_0)&!(nextMoveMode_1))|(!(nextMoveMode_0)&nextMoveMode_1))))
+G(((!(nextMoveMode_0)&nextMoveMode_1)->((!(X(nextMoveMode_0))&!(X(nextMoveMode_1)))|(!(X(nextMoveMode_0))&X(nextMoveMode_1)))))
+G(((X(nextMoveMode_0)&!(X(nextMoveMode_1)))->((!(nextMoveMode_0)&!(nextMoveMode_1))|(nextMoveMode_0&!(nextMoveMode_1)))))
+G(((X(nextMoveMode_0)&X(nextMoveMode_1))->((!(nextMoveMode_0)&!(nextMoveMode_1))|(nextMoveMode_0&nextMoveMode_1))))
+G((((((!(specState_0)&!(specState_1))&!(nextMoveMode_0))&!(nextMoveMode_1))&(!(X(nextMoveMode_0))&X(nextMoveMode_1)))->(!(X(specState_0))&X(specState_1))))
+G((((((!(specState_0)&specState_1)&!(nextMoveMode_0))&nextMoveMode_1)&(!(X(nextMoveMode_0))&!(X(nextMoveMode_1))))->(X(specState_0)&!(X(specState_1)))))
+G(!(((((specState_0&!(specState_1))&!(nextMoveMode_0))&!(nextMoveMode_1))&(!(X(nextMoveMode_0))&X(nextMoveMode_1)))))
+G((((!(specState_0)&specState_1)&(!(X(nextMoveMode_0))&X(nextMoveMode_1)))->(!(X(specState_0))&X(specState_1))))
+G((((specState_0&!(specState_1))&(!(X(nextMoveMode_0))&!(X(nextMoveMode_1))))->(X(specState_0)&!(X(specState_1)))))
+G((((nextMoveMode_0&!(nextMoveMode_1))|(nextMoveMode_0&nextMoveMode_1))->(!(X(specState_0))&!(X(specState_1)))))
+G((button_0->((X(nextHead_0)<->X(heading_0))&(X(nextHead_1)<->X(heading_1)))))
+G((!(button_0)->((nextHead_0<->X(nextHead_0))&(nextHead_1<->X(nextHead_1)))))
+G(((!(X(turnState_0))&!(X(turnState_1)))->((!(turnState_0)&!(turnState_1))|(turnState_0&turnState_1))))
+G((((!(turnState_0)&!(turnState_1))&!(((nextMoveMode_0&!(nextMoveMode_1))|(nextMoveMode_0&nextMoveMode_1))))->(!(X(turnState_0))&!(X(turnState_1)))))
+G(((((((nextMoveMode_0&!(nextMoveMode_1))|(nextMoveMode_0&nextMoveMode_1))&pREV_aux_4)&!(turnState_0))&!(turnState_1))->(!(X(turnState_0))&X(turnState_1))))
+G(((!(turnState_0)&turnState_1)->((X(turnState_0)&!(X(turnState_1)))&((nextMoveMode_0&!(nextMoveMode_1))|(nextMoveMode_0&nextMoveMode_1)))))
+G((((turnState_0&!(turnState_1))&((nextMoveMode_0&!(nextMoveMode_1))|(nextMoveMode_0&nextMoveMode_1)))->(!(X(turnState_0))&X(turnState_1))))
+G(((((turnState_0&!(turnState_1))&!(nextMoveMode_0))&!(nextMoveMode_1))->(X(turnState_0)&X(turnState_1))))
+G(((((turnState_0&turnState_1)&!(nextMoveMode_0))&!(nextMoveMode_1))->(!(X(turnState_0))&!(X(turnState_1)))))
+G((((turnState_0&turnState_1)&(nextMoveMode_0|nextMoveMode_1))->(X(turnState_0)&!(X(turnState_1)))))
+G(((((!(turnState_0)&!(turnState_1))&!(X(turnState_0)))&X(turnState_1))<->(((((leftMotor_0&!(leftMotor_1))&leftMotor_2)&rightMotor_0)&!(rightMotor_1))&rightMotor_2)))
+G(((((X(turnState_0)&!(X(turnState_1)))&nextMoveMode_0)&!(nextMoveMode_1))<->(((((!(leftMotor_0)&!(leftMotor_1))&!(leftMotor_2))&!(rightMotor_0))&rightMotor_1)&rightMotor_2)))
+G(((((X(turnState_0)&!(X(turnState_1)))&nextMoveMode_0)&nextMoveMode_1)<->(((((!(leftMotor_0)&leftMotor_1)&leftMotor_2)&!(rightMotor_0))&!(rightMotor_1))&!(rightMotor_2))))
+G((((turnState_0&turnState_1)&(!(X(turnState_0))&!(X(turnState_1))))<->(((((leftMotor_0&leftMotor_1)&!(leftMotor_2))&rightMotor_0)&rightMotor_1)&!(rightMotor_2))))
+G(F(sYS_CONSTRAINT_0_respondsTo_responded))
+(!(((leftMotor_0&leftMotor_1)&leftMotor_2)))
+G(!(((X(leftMotor_0)&X(leftMotor_1))&X(leftMotor_2))))
+(!(((rightMotor_0&rightMotor_1)&rightMotor_2)))
+G(!(((X(rightMotor_0)&X(rightMotor_1))&X(rightMotor_2))))
+(!((headMotor_0&headMotor_1)))
+G(!((X(headMotor_0)&X(headMotor_1))))
+((obstacle_0->!((!(nextMoveMode_0)&!(nextMoveMode_1)))))
+G((X(obstacle_0)->!((!(X(nextMoveMode_0))&!(X(nextMoveMode_1))))))
+((((turnState_0&!(turnState_1))&pREV_aux_5)<->(((((!(leftMotor_0)&!(leftMotor_1))&leftMotor_2)&rightMotor_0)&!(rightMotor_1))&!(rightMotor_2))))
+G((((X(turnState_0)&!(X(turnState_1)))&X(pREV_aux_5))<->(((((!(X(leftMotor_0))&!(X(leftMotor_1)))&X(leftMotor_2))&X(rightMotor_0))&!(X(rightMotor_1)))&!(X(rightMotor_2)))))
+((((turnState_0&!(turnState_1))&pREV_aux_6)<->(((((leftMotor_0&!(leftMotor_1))&!(leftMotor_2))&!(rightMotor_0))&!(rightMotor_1))&rightMotor_2)))
+G((((X(turnState_0)&!(X(turnState_1)))&X(pREV_aux_6))<->(((((X(leftMotor_0)&!(X(leftMotor_1)))&!(X(leftMotor_2)))&!(X(rightMotor_0)))&!(X(rightMotor_1)))&X(rightMotor_2))))
++++++++++++ inputs/SYNTECH15-1UNREAL/HumanoidLTL_750_Humanoid_1.spectra
+Resetting temp...
+Reset complete!
+++++ ELAPSED TIME 0
+++++ QUEUE LENGTH 0
+++++ Solutions 0
+++++ Duplicates 0
+++++ Node number 1
+++++ Refinement []
+++++ Length 0
+++ REALIZABILITY CHECK
+++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION
+b"Using BDD Package: CUDDFactory, Version: CUDD 3.0
+Using BDD Package: CUDDFactory, Version: CUDD 3.0
+0    [main] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+java.util.MissingResourceException: The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+at org.eclipse.emf.common.util.DelegatingResourceLocator.delegatedGetString(DelegatingResourceLocator.java:586)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:450)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:605)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:597)
+at org.eclipse.emf.ecore.util.Diagnostician.createDefaultDiagnostic(Diagnostician.java:110)
+at org.eclipse.emf.ecore.util.Diagnostician.validate(Diagnostician.java:139)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:147)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:125)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:91)
+at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getSpectraModel(SpectraInputProviderNoIDE.java:166)
+at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getGameInput(SpectraInputProviderNoIDE.java:109)
+at tau.smlab.syntech.Spectra.cli.SpectraCliTool.main(SpectraCliTool.java:162)
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 2033
+Nodes table size: 37814
+Result: Specification is unrealizable
+extract strategy - Start
+
+extract strategy - End
+Initial State 0 <obstacle_0:true, noise_0:false, heading_0:false, heading_1:false, button_0:false, sYS_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, eNV_CONSTRAINT_3_respondsTo_responded:true, pREV_aux_4:false, pREV_aux_5:false, pREV_aux_6:false, pREV_aux_7:false>
+With no successors.
+"
+INI:  <counterstrategy.State object at 0x7f46ca705640>
+TRANSIENT:  []
+=== COUNTERRUN ===
+S0
+
+LTL TOKENS:  ['(', '(', '(', 'pREV_aux_4', '&', 'obstacle_0', ')', '->', 'X', '(', 'obstacle_0', ')', ')', ')']
+LTL TOKENS:  ['(', '(', '(', 'pREV_aux_7', '&', '!', '(', 'obstacle_0', ')', ')', '->', '!', '(', 'X', '(', 'obstacle_0', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'sYS_CONSTRAINT_0_respondsTo_responded', ')', '<->', '(', '(', '(', 'heading_0', '<->', 'nextHead_0', ')', '&', '(', 'heading_1', '<->', 'nextHead_1', ')', ')', '|', '(', 'sYS_CONSTRAINT_0_respondsTo_responded', '&', '!', '(', 'noise_0', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'eNV_CONSTRAINT_1_respondsTo_responded', ')', '<->', '(', '(', '!', '(', 'obstacle_0', ')', '&', '!', '(', 'X', '(', 'obstacle_0', ')', ')', ')', '|', '(', 'eNV_CONSTRAINT_1_respondsTo_responded', '&', '!', '(', '(', '!', '(', 'turnState_0', ')', '&', 'turnState_1', ')', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'eNV_CONSTRAINT_2_respondsTo_responded', ')', '<->', '(', '(', '(', '(', 'heading_0', '<->', 'nextHead_0', ')', '&', '(', 'heading_1', '<->', 'nextHead_1', ')', ')', '|', '(', '!', '(', 'nextMoveMode_0', ')', '|', 'nextMoveMode_1', ')', ')', '|', '(', 'eNV_CONSTRAINT_2_respondsTo_responded', '&', '!', '(', '(', 'nextMoveMode_0', '&', '!', '(', 'nextMoveMode_1', ')', ')', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'eNV_CONSTRAINT_3_respondsTo_responded', ')', '<->', '(', '(', '(', '(', 'heading_0', '<->', 'nextHead_0', ')', '&', '(', 'heading_1', '<->', 'nextHead_1', ')', ')', '|', '(', '!', '(', 'nextMoveMode_0', ')', '|', '!', '(', 'nextMoveMode_1', ')', ')', ')', '|', '(', 'eNV_CONSTRAINT_3_respondsTo_responded', '&', '!', '(', '(', 'nextMoveMode_0', '&', 'nextMoveMode_1', ')', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'pREV_aux_4', ')', '<->', '(', '!', '(', 'nextMoveMode_0', ')', '&', '!', '(', 'nextMoveMode_1', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'pREV_aux_5', ')', '<->', '(', 'nextMoveMode_0', '&', '!', '(', 'nextMoveMode_1', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'pREV_aux_6', ')', '<->', '(', 'nextMoveMode_0', '&', 'nextMoveMode_1', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'pREV_aux_7', ')', '<->', '(', '!', '(', 'nextMoveMode_0', ')', '&', 'nextMoveMode_1', ')', ')', ')']
+=== UNREALIZABLE CORE ===
+((!(nextMoveMode_0)&!(nextMoveMode_1)))
+((obstacle_0->!((!(nextMoveMode_0)&!(nextMoveMode_1)))))
+
+=== ASSUMPTIONS BOOLEAN ===
+(((!(heading_0__S0)&!(heading_1__S0)))) & ((((pREV_aux_4__S0&obstacle_0__S0)->(obstacle_0__Sf)))) & ((((pREV_aux_7__S0&!(obstacle_0__S0))->!((obstacle_0__Sf))))) & ((sYS_CONSTRAINT_0_respondsTo_responded__S0)) & ((((sYS_CONSTRAINT_0_respondsTo_responded__Sf)<->(((heading_0__Sf<->nextHead_0__Sf)&(heading_1__Sf<->nextHead_1__Sf))|(sYS_CONSTRAINT_0_respondsTo_responded__Sf&!(noise_0__Sf)))))) & ((eNV_CONSTRAINT_1_respondsTo_responded__S0)) & ((((eNV_CONSTRAINT_1_respondsTo_responded__Sf)<->((!(obstacle_0__Sf)&!((obstacle_0__Sf)))|(eNV_CONSTRAINT_1_respondsTo_responded__Sf&!((!(turnState_0__Sf)&turnState_1__Sf))))))) & ((eNV_CONSTRAINT_2_respondsTo_responded__S0)) & ((((eNV_CONSTRAINT_2_respondsTo_responded__Sf)<->((((heading_0__Sf<->nextHead_0__Sf)&(heading_1__Sf<->nextHead_1__Sf))|(!(nextMoveMode_0__Sf)|nextMoveMode_1__Sf))|(eNV_CONSTRAINT_2_respondsTo_responded__Sf&!((nextMoveMode_0__Sf&!(nextMoveMode_1__Sf)))))))) & ((eNV_CONSTRAINT_3_respondsTo_responded__S0)) & ((((eNV_CONSTRAINT_3_respondsTo_responded__Sf)<->((((heading_0__Sf<->nextHead_0__Sf)&(heading_1__Sf<->nextHead_1__Sf))|(!(nextMoveMode_0__Sf)|!(nextMoveMode_1__Sf)))|(eNV_CONSTRAINT_3_respondsTo_responded__Sf&!((nextMoveMode_0__Sf&nextMoveMode_1__Sf))))))) & ((!(pREV_aux_4__S0))) & ((((pREV_aux_4__Sf)<->(!(nextMoveMode_0__Sf)&!(nextMoveMode_1__Sf))))) & ((!(pREV_aux_5__S0))) & ((((pREV_aux_5__Sf)<->(nextMoveMode_0__Sf&!(nextMoveMode_1__Sf))))) & ((!(pREV_aux_6__S0))) & ((((pREV_aux_6__Sf)<->(nextMoveMode_0__Sf&nextMoveMode_1__Sf)))) & ((!(pREV_aux_7__S0))) & ((((pREV_aux_7__Sf)<->(!(nextMoveMode_0__Sf)&nextMoveMode_1__Sf))))
+
+=== VALUATIONS BOOLEAN ===
+eNV_CONSTRAINT_2_respondsTo_responded__S0 & !pREV_aux_4__S0 & obstacle_0__S0 & !pREV_aux_5__S0 & !button_0__S0 & eNV_CONSTRAINT_3_respondsTo_responded__S0 & !pREV_aux_7__S0 & !heading_0__S0 & eNV_CONSTRAINT_1_respondsTo_responded__S0 & sYS_CONSTRAINT_0_respondsTo_responded__S0 & !pREV_aux_6__S0 & !heading_1__S0 & !noise_0__S0
+
+=== GUARANTEES BOOLEAN ===
+(((!(nextMoveMode_0__S0)&!(nextMoveMode_1__S0)))) & (((obstacle_0__S0->!((!(nextMoveMode_0__S0)&!(nextMoveMode_1__S0))))))
+
+
+=== INTERPOLANT ===
+obstacle_0__S0
+
+=== STATE COMPONENTS ===
+{'S0': 'obstacle_0'}
+
+=== Refinements === 
+['G(!(obstacle_0))', '!(obstacle_0)']
+++++ ELAPSED TIME 2.857357210974442
+++++ QUEUE LENGTH 1
+++++ Solutions 0
+++++ Duplicates 0
+++++ Node number 2
+++++ Refinement ['G(!(obstacle_0))']
+++++ Length 1
+++ REALIZABILITY CHECK
+++ REALIZABLE REFINEMENT: SAT CHECK
+++++ ELAPSED TIME 4.8856488049787
+++++ QUEUE LENGTH 0
+++++ Solutions 1
+++++ Duplicates 0
+++++ Node number 3
+++++ Refinement ['!(obstacle_0)']
+++++ Length 1
+++ REALIZABILITY CHECK
+++ REALIZABLE REFINEMENT: SAT CHECK

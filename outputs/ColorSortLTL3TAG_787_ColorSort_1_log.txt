@@ -1,0 +1,286 @@
+Parsing...done
+Parsing...done
+Removing non-boolean ITEs...done
+Removing non-boolean ITEs...done
+Canonizing...done
+Canonizing...done
+Converting formula to CNF...done
+Converting formula to CNF...done
+
+Solving time: 0.002858 sec
+Original proof size: 10
+Computing interpolant #1...done
+Interpolant #1 written to INTERP.1.msat
+
+DPLL Engine Statistics:
+Atoms: 431 (110 bool, 0 theory, 321 cnf) 
+Clauses: 361
+Avg clause length: 2.31025
+Restarts: 0
+Decisions: 0
+All propagations: 241
+All conflicts: 0
+
+Theory Solvers Statistics:
+------------------------------------
+Total time: 0.003 sec
+Memory used: 23.211 MBytes
+
+unsat
+=== INPUT VARS ===
+color_0
+color_1
+color_2
+detect_0
+detect_1
+detect_2
+ack_ver_0
+ack_hor_0
+ack_bot_0
+starting_pos_0
+speedButton_0
+sYS_CONSTRAINT_0_respondsTo_responded
+eNV_CONSTRAINT_1_respondsTo_responded
+eNV_CONSTRAINT_2_respondsTo_responded
+pREV_aux_3
+=== OUTPUT VARS ===
+verMot_0
+horMot_0
+botMot_0
+botMot_1
+motSpeed_0
+motSpeed_1
+spec_currentColor_0
+spec_currentColor_1
+spec_currentColor_2
+spec_dropping
+spec_speedButtonValidPressed
+spec_waiting_ack_ver_mot
+spec_waiting_ack_hor_mot
+=== ASSUMPTIONS ===
+G(F(((color_0|color_1))|!(color_2)))
+G(F(!(ack_hor_0)))
+G((!(spec_waiting_ack_ver_mot)->ack_ver_0))
+G(F(eNV_CONSTRAINT_1_respondsTo_responded))
+G(F(eNV_CONSTRAINT_2_respondsTo_responded))
+(!(((color_0&color_1)&!(color_2))))
+G(!(((X(color_0)&X(color_1))&!(X(color_2)))))
+(!(((color_0&color_1)&color_2)))
+G(!(((X(color_0)&X(color_1))&X(color_2))))
+(!(((detect_0&detect_1)&!(detect_2))))
+G(!(((X(detect_0)&X(detect_1))&!(X(detect_2)))))
+(!(((detect_0&detect_1)&detect_2)))
+G(!(((X(detect_0)&X(detect_1))&X(detect_2))))
+(sYS_CONSTRAINT_0_respondsTo_responded)
+G((X(sYS_CONSTRAINT_0_respondsTo_responded)<->((((!(horMot_0)&(detect_0<->spec_currentColor_0))&(detect_1<->spec_currentColor_1))&(detect_2<->spec_currentColor_2))|(sYS_CONSTRAINT_0_respondsTo_responded&!(((color_0|color_1)|!(color_2)))))))
+(eNV_CONSTRAINT_1_respondsTo_responded)
+G((X(eNV_CONSTRAINT_1_respondsTo_responded)<->(ack_ver_0|(eNV_CONSTRAINT_1_respondsTo_responded&!(spec_waiting_ack_ver_mot)))))
+(eNV_CONSTRAINT_2_respondsTo_responded)
+G((X(eNV_CONSTRAINT_2_respondsTo_responded)<->(ack_hor_0|(eNV_CONSTRAINT_2_respondsTo_responded&!(spec_waiting_ack_hor_mot)))))
+(!(pREV_aux_3))
+G((X(pREV_aux_3)<->speedButton_0))
+=== GUARANTEES ===
+(((!(spec_dropping)&!(motSpeed_0))&!(motSpeed_1)))
+(!(spec_waiting_ack_ver_mot))
+(!(spec_waiting_ack_hor_mot))
+G(F(!(horMot_0)))
+G((verMot_0->(((spec_currentColor_0<->X(spec_currentColor_0))&(spec_currentColor_1<->X(spec_currentColor_1)))&(spec_currentColor_2<->X(spec_currentColor_2)))))
+G((!(verMot_0)->(((color_0<->X(spec_currentColor_0))&(color_1<->X(spec_currentColor_1)))&(color_2<->X(spec_currentColor_2)))))
+G(((spec_dropping<->X(spec_dropping))<->(verMot_0&horMot_0)))
+G((((spec_speedButtonValidPressed&!(motSpeed_0))&!(motSpeed_1))->(!(X(motSpeed_0))&X(motSpeed_1))))
+G((((spec_speedButtonValidPressed&!(motSpeed_0))&motSpeed_1)->(X(motSpeed_0)&!(X(motSpeed_1)))))
+G((((spec_speedButtonValidPressed&motSpeed_0)&!(motSpeed_1))->(!(X(motSpeed_0))&!(X(motSpeed_1)))))
+G((!(spec_speedButtonValidPressed)->((motSpeed_0<->X(motSpeed_0))&(motSpeed_1<->X(motSpeed_1)))))
+G(((!(spec_waiting_ack_ver_mot)&verMot_0)->!(X(spec_waiting_ack_ver_mot))))
+G(((!(spec_waiting_ack_ver_mot)&!(verMot_0))->X(spec_waiting_ack_ver_mot)))
+G(((spec_waiting_ack_ver_mot&ack_ver_0)->!(X(spec_waiting_ack_ver_mot))))
+G(((spec_waiting_ack_ver_mot&!(ack_ver_0))->X(spec_waiting_ack_ver_mot)))
+G(((!(spec_waiting_ack_hor_mot)&horMot_0)->!(X(spec_waiting_ack_hor_mot))))
+G(((!(spec_waiting_ack_hor_mot)&!(horMot_0))->X(spec_waiting_ack_hor_mot)))
+G(((spec_waiting_ack_hor_mot&ack_hor_0)->!(X(spec_waiting_ack_hor_mot))))
+G(((spec_waiting_ack_hor_mot&!(ack_hor_0))->X(spec_waiting_ack_hor_mot)))
+G(F(sYS_CONSTRAINT_0_respondsTo_responded))
+(!((botMot_0&botMot_1)))
+G(!((X(botMot_0)&X(botMot_1))))
+(!((motSpeed_0&motSpeed_1)))
+G(!((X(motSpeed_0)&X(motSpeed_1))))
+(!(((spec_currentColor_0&spec_currentColor_1)&!(spec_currentColor_2))))
+G(!(((X(spec_currentColor_0)&X(spec_currentColor_1))&!(X(spec_currentColor_2)))))
+(!(((spec_currentColor_0&spec_currentColor_1)&spec_currentColor_2)))
+G(!(((X(spec_currentColor_0)&X(spec_currentColor_1))&X(spec_currentColor_2))))
+((!(verMot_0)->((!(botMot_0)&botMot_1)&horMot_0)))
+G((!(X(verMot_0))->((!(X(botMot_0))&X(botMot_1))&X(horMot_0))))
+((!(horMot_0)->((!(botMot_0)&botMot_1)&verMot_0)))
+G((!(X(horMot_0))->((!(X(botMot_0))&X(botMot_1))&X(verMot_0))))
+(((botMot_0|!(botMot_1))->(verMot_0&horMot_0)))
+G(((X(botMot_0)|!(X(botMot_1)))->(X(verMot_0)&X(horMot_0))))
+(((!(ack_ver_0)|!(ack_hor_0))->(((verMot_0&horMot_0)&!(botMot_0))&botMot_1)))
+G(((!(X(ack_ver_0))|!(X(ack_hor_0)))->(((X(verMot_0)&X(horMot_0))&!(X(botMot_0)))&X(botMot_1))))
+((((!(spec_dropping)&starting_pos_0)&(ack_ver_0&ack_hor_0))<->(botMot_0&!(botMot_1))))
+G((((!(X(spec_dropping))&X(starting_pos_0))&(X(ack_ver_0)&X(ack_hor_0)))<->(X(botMot_0)&!(X(botMot_1)))))
+((((((!(spec_dropping)&!(starting_pos_0))&!(color_0))&!(color_1))&color_2)->(((verMot_0&horMot_0)&!(botMot_0))&botMot_1)))
+G((((((!(X(spec_dropping))&!(X(starting_pos_0)))&!(X(color_0)))&!(X(color_1)))&X(color_2))->(((X(verMot_0)&X(horMot_0))&!(X(botMot_0)))&X(botMot_1))))
+(((((!(color_0)&!(color_1))&color_2)|spec_dropping)->verMot_0))
+G(((((!(X(color_0))&!(X(color_1)))&X(color_2))|X(spec_dropping))->X(verMot_0)))
+(((((!(spec_dropping)&!(starting_pos_0))&((ack_ver_0&ack_hor_0)&ack_bot_0))&((color_0|color_1)|!(color_2)))<->!(verMot_0)))
+G(((((!(X(spec_dropping))&!(X(starting_pos_0)))&((X(ack_ver_0)&X(ack_hor_0))&X(ack_bot_0)))&((X(color_0)|X(color_1))|!(X(color_2))))<->!(X(verMot_0))))
+((((spec_dropping&(((detect_0<->!(spec_currentColor_0))|(detect_1<->!(spec_currentColor_1)))|(detect_2<->!(spec_currentColor_2))))&(ack_ver_0&ack_hor_0))<->(!(botMot_0)&!(botMot_1))))
+G((((X(spec_dropping)&(((X(detect_0)<->!(X(spec_currentColor_0)))|(X(detect_1)<->!(X(spec_currentColor_1))))|(X(detect_2)<->!(X(spec_currentColor_2)))))&(X(ack_ver_0)&X(ack_hor_0)))<->(!(X(botMot_0))&!(X(botMot_1)))))
+((((((spec_dropping&(detect_0<->spec_currentColor_0))&(detect_1<->spec_currentColor_1))&(detect_2<->spec_currentColor_2))&(ack_ver_0&ack_hor_0))<->!(horMot_0)))
+G((((((X(spec_dropping)&(X(detect_0)<->X(spec_currentColor_0)))&(X(detect_1)<->X(spec_currentColor_1)))&(X(detect_2)<->X(spec_currentColor_2)))&(X(ack_ver_0)&X(ack_hor_0)))<->!(X(horMot_0))))
+(((!(speedButton_0)&pREV_aux_3)<->spec_speedButtonValidPressed))
+G(((!(X(speedButton_0))&X(pREV_aux_3))<->X(spec_speedButtonValidPressed)))
++++++++++++ inputs/SYNTECH15-1UNREAL/ColorSortLTL3TAG_787_ColorSort_1.spectra
+Resetting temp...
+Reset complete!
+++++ ELAPSED TIME 0
+++++ QUEUE LENGTH 0
+++++ Solutions 0
+++++ Duplicates 0
+++++ Node number 1
+++++ Refinement []
+++++ Length 0
+++ REALIZABILITY CHECK
+++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION
+b"Using BDD Package: CUDDFactory, Version: CUDD 3.0
+Using BDD Package: CUDDFactory, Version: CUDD 3.0
+0    [main] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+java.util.MissingResourceException: The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+at org.eclipse.emf.common.util.DelegatingResourceLocator.delegatedGetString(DelegatingResourceLocator.java:586)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:450)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:605)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:597)
+at org.eclipse.emf.ecore.util.Diagnostician.createDefaultDiagnostic(Diagnostician.java:110)
+at org.eclipse.emf.ecore.util.Diagnostician.validate(Diagnostician.java:139)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:147)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:125)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:91)
+at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getSpectraModel(SpectraInputProviderNoIDE.java:166)
+at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getGameInput(SpectraInputProviderNoIDE.java:109)
+at tau.smlab.syntech.Spectra.cli.SpectraCliTool.main(SpectraCliTool.java:162)
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 1501
+Nodes table size: 10220
+Result: Specification is unrealizable
+extract strategy - Start
+
+extract strategy - End
+Initial State 0 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:false, spec_currentColor_2:false, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 26
+Initial State 1 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:false, spec_currentColor_2:true, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 22
+Initial State 2 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:true, spec_currentColor_2:false, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 18
+Initial State 3 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:true, spec_currentColor_2:true, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 14
+Initial State 4 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:true, spec_currentColor_1:false, spec_currentColor_2:false, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 10
+Initial State 5 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:true, spec_currentColor_1:false, spec_currentColor_2:true, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 6
+State 6 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:true, spec_currentColor_1:false, spec_currentColor_2:true, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 7
+State 7 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:true, spec_currentColor_1:false, spec_currentColor_2:true, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 8
+State 8 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:true, spec_currentColor_1:false, spec_currentColor_2:true, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 9
+State 9 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:true, spec_currentColor_1:false, spec_currentColor_2:true, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 6
+State 10 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:true, spec_currentColor_1:false, spec_currentColor_2:false, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 11
+State 11 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:true, spec_currentColor_1:false, spec_currentColor_2:false, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 12
+State 12 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:true, spec_currentColor_1:false, spec_currentColor_2:false, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 13
+State 13 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:true, spec_currentColor_1:false, spec_currentColor_2:false, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 10
+State 14 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:true, spec_currentColor_2:true, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 15
+State 15 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:true, spec_currentColor_2:true, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 16
+State 16 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:true, spec_currentColor_2:true, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 17
+State 17 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:true, spec_currentColor_2:true, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 14
+State 18 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:true, spec_currentColor_2:false, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 19
+State 19 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:true, spec_currentColor_2:false, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 20
+State 20 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:true, spec_currentColor_2:false, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 21
+State 21 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:true, spec_currentColor_2:false, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 18
+State 22 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:false, spec_currentColor_2:true, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 23
+State 23 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:false, spec_currentColor_2:true, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 24
+State 24 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:false, spec_currentColor_2:true, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 25
+State 25 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:false, spec_currentColor_2:true, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 22
+State 26 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:false, spec_currentColor_2:false, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 27
+State 27 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:false, spec_currentColor_2:false, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 28
+State 28 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:false, spec_currentColor_2:false, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 29
+State 29 <color_0:false, color_1:false, color_2:false, detect_0:false, detect_1:false, detect_2:false, ack_ver_0:true, ack_hor_0:false, ack_bot_0:false, starting_pos_0:false, speedButton_0:false, sYS_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, pREV_aux_3:false, verMot_0:true, horMot_0:true, botMot_0:false, botMot_1:true, motSpeed_0:false, motSpeed_1:false, spec_currentColor_0:false, spec_currentColor_1:false, spec_currentColor_2:false, spec_dropping:false, spec_speedButtonValidPressed:false, spec_waiting_ack_ver_mot:false, spec_waiting_ack_hor_mot:false>
+With successors : 26
+"
+INI:  <counterstrategy.State object at 0x7f50ea149fa0>
+TRANSIENT:  []
+=== COUNTERRUN ===
+S0 -> loop( -> S26 -> S27 -> S28 -> S29)
+
+LTL TOKENS:  ['(', '(', '!', '(', 'spec_waiting_ack_ver_mot', ')', '->', 'ack_ver_0', ')', ')']
+LTL TOKENS:  ['(', '!', '(', '(', '(', 'X', '(', 'color_0', ')', '&', 'X', '(', 'color_1', ')', ')', '&', '!', '(', 'X', '(', 'color_2', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '!', '(', '(', '(', 'X', '(', 'color_0', ')', '&', 'X', '(', 'color_1', ')', ')', '&', 'X', '(', 'color_2', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '!', '(', '(', '(', 'X', '(', 'detect_0', ')', '&', 'X', '(', 'detect_1', ')', ')', '&', '!', '(', 'X', '(', 'detect_2', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '!', '(', '(', '(', 'X', '(', 'detect_0', ')', '&', 'X', '(', 'detect_1', ')', ')', '&', 'X', '(', 'detect_2', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'sYS_CONSTRAINT_0_respondsTo_responded', ')', '<->', '(', '(', '(', '(', '!', '(', 'horMot_0', ')', '&', '(', 'detect_0', '<->', 'spec_currentColor_0', ')', ')', '&', '(', 'detect_1', '<->', 'spec_currentColor_1', ')', ')', '&', '(', 'detect_2', '<->', 'spec_currentColor_2', ')', ')', '|', '(', 'sYS_CONSTRAINT_0_respondsTo_responded', '&', '!', '(', '(', '(', 'color_0', '|', 'color_1', ')', '|', '!', '(', 'color_2', ')', ')', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'eNV_CONSTRAINT_1_respondsTo_responded', ')', '<->', '(', 'ack_ver_0', '|', '(', 'eNV_CONSTRAINT_1_respondsTo_responded', '&', '!', '(', 'spec_waiting_ack_ver_mot', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'eNV_CONSTRAINT_2_respondsTo_responded', ')', '<->', '(', 'ack_hor_0', '|', '(', 'eNV_CONSTRAINT_2_respondsTo_responded', '&', '!', '(', 'spec_waiting_ack_hor_mot', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'pREV_aux_3', ')', '<->', 'speedButton_0', ')', ')']
+LTL TOKENS:  ['(', '(', 'verMot_0', '->', '(', '(', '(', 'spec_currentColor_0', '<->', 'X', '(', 'spec_currentColor_0', ')', ')', '&', '(', 'spec_currentColor_1', '<->', 'X', '(', 'spec_currentColor_1', ')', ')', ')', '&', '(', 'spec_currentColor_2', '<->', 'X', '(', 'spec_currentColor_2', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', '!', '(', 'verMot_0', ')', '->', '(', '(', '(', 'color_0', '<->', 'X', '(', 'spec_currentColor_0', ')', ')', '&', '(', 'color_1', '<->', 'X', '(', 'spec_currentColor_1', ')', ')', ')', '&', '(', 'color_2', '<->', 'X', '(', 'spec_currentColor_2', ')', ')', ')', ')', ')']
+=== UNREALIZABLE CORE ===
+G(F(sYS_CONSTRAINT_0_respondsTo_responded))
+G((verMot_0->(((spec_currentColor_0<->X(spec_currentColor_0))&(spec_currentColor_1<->X(spec_currentColor_1)))&(spec_currentColor_2<->X(spec_currentColor_2)))))
+G((!(verMot_0)->(((color_0<->X(spec_currentColor_0))&(color_1<->X(spec_currentColor_1)))&(color_2<->X(spec_currentColor_2)))))
+
+=== ASSUMPTIONS BOOLEAN ===
+(((((color_0__S26|color_1__S26))|!(color_2__S26))) | ((((color_0__S27|color_1__S27))|!(color_2__S27))) | ((((color_0__S28|color_1__S28))|!(color_2__S28))) | ((((color_0__S29|color_1__S29))|!(color_2__S29)))) & (((!(ack_hor_0__S26))) | ((!(ack_hor_0__S27))) | ((!(ack_hor_0__S28))) | ((!(ack_hor_0__S29)))) & (((!(spec_waiting_ack_ver_mot__S0)->ack_ver_0__S0))) & (((!(spec_waiting_ack_ver_mot__S26)->ack_ver_0__S26))) & (((!(spec_waiting_ack_ver_mot__S27)->ack_ver_0__S27))) & (((!(spec_waiting_ack_ver_mot__S28)->ack_ver_0__S28))) & (((!(spec_waiting_ack_ver_mot__S29)->ack_ver_0__S29))) & (((eNV_CONSTRAINT_1_respondsTo_responded__S26)) | ((eNV_CONSTRAINT_1_respondsTo_responded__S27)) | ((eNV_CONSTRAINT_1_respondsTo_responded__S28)) | ((eNV_CONSTRAINT_1_respondsTo_responded__S29))) & (((eNV_CONSTRAINT_2_respondsTo_responded__S26)) | ((eNV_CONSTRAINT_2_respondsTo_responded__S27)) | ((eNV_CONSTRAINT_2_respondsTo_responded__S28)) | ((eNV_CONSTRAINT_2_respondsTo_responded__S29))) & ((!(((color_0__S0&color_1__S0)&!(color_2__S0))))) & ((!((((color_0__S26)&(color_1__S26))&!((color_2__S26)))))) & ((!((((color_0__S27)&(color_1__S27))&!((color_2__S27)))))) & ((!((((color_0__S28)&(color_1__S28))&!((color_2__S28)))))) & ((!((((color_0__S29)&(color_1__S29))&!((color_2__S29)))))) & ((!((((color_0__S26)&(color_1__S26))&!((color_2__S26)))))) & ((!(((color_0__S0&color_1__S0)&color_2__S0)))) & ((!((((color_0__S26)&(color_1__S26))&(color_2__S26))))) & ((!((((color_0__S27)&(color_1__S27))&(color_2__S27))))) & ((!((((color_0__S28)&(color_1__S28))&(color_2__S28))))) & ((!((((color_0__S29)&(color_1__S29))&(color_2__S29))))) & ((!((((color_0__S26)&(color_1__S26))&(color_2__S26))))) & ((!(((detect_0__S0&detect_1__S0)&!(detect_2__S0))))) & ((!((((detect_0__S26)&(detect_1__S26))&!((detect_2__S26)))))) & ((!((((detect_0__S27)&(detect_1__S27))&!((detect_2__S27)))))) & ((!((((detect_0__S28)&(detect_1__S28))&!((detect_2__S28)))))) & ((!((((detect_0__S29)&(detect_1__S29))&!((detect_2__S29)))))) & ((!((((detect_0__S26)&(detect_1__S26))&!((detect_2__S26)))))) & ((!(((detect_0__S0&detect_1__S0)&detect_2__S0)))) & ((!((((detect_0__S26)&(detect_1__S26))&(detect_2__S26))))) & ((!((((detect_0__S27)&(detect_1__S27))&(detect_2__S27))))) & ((!((((detect_0__S28)&(detect_1__S28))&(detect_2__S28))))) & ((!((((detect_0__S29)&(detect_1__S29))&(detect_2__S29))))) & ((!((((detect_0__S26)&(detect_1__S26))&(detect_2__S26))))) & ((sYS_CONSTRAINT_0_respondsTo_responded__S0)) & ((((sYS_CONSTRAINT_0_respondsTo_responded__S26)<->((((!(horMot_0__S0)&(detect_0__S0<->spec_currentColor_0__S0))&(detect_1__S0<->spec_currentColor_1__S0))&(detect_2__S0<->spec_currentColor_2__S0))|(sYS_CONSTRAINT_0_respondsTo_responded__S0&!(((color_0__S0|color_1__S0)|!(color_2__S0)))))))) & ((((sYS_CONSTRAINT_0_respondsTo_responded__S27)<->((((!(horMot_0__S26)&(detect_0__S26<->spec_currentColor_0__S26))&(detect_1__S26<->spec_currentColor_1__S26))&(detect_2__S26<->spec_currentColor_2__S26))|(sYS_CONSTRAINT_0_respondsTo_responded__S26&!(((color_0__S26|color_1__S26)|!(color_2__S26)))))))) & ((((sYS_CONSTRAINT_0_respondsTo_responded__S28)<->((((!(horMot_0__S27)&(detect_0__S27<->spec_currentColor_0__S27))&(detect_1__S27<->spec_currentColor_1__S27))&(detect_2__S27<->spec_currentColor_2__S27))|(sYS_CONSTRAINT_0_respondsTo_responded__S27&!(((color_0__S27|color_1__S27)|!(color_2__S27)))))))) & ((((sYS_CONSTRAINT_0_respondsTo_responded__S29)<->((((!(horMot_0__S28)&(detect_0__S28<->spec_currentColor_0__S28))&(detect_1__S28<->spec_currentColor_1__S28))&(detect_2__S28<->spec_currentColor_2__S28))|(sYS_CONSTRAINT_0_respondsTo_responded__S28&!(((color_0__S28|color_1__S28)|!(color_2__S28)))))))) & ((((sYS_CONSTRAINT_0_respondsTo_responded__S26)<->((((!(horMot_0__S29)&(detect_0__S29<->spec_currentColor_0__S29))&(detect_1__S29<->spec_currentColor_1__S29))&(detect_2__S29<->spec_currentColor_2__S29))|(sYS_CONSTRAINT_0_respondsTo_responded__S29&!(((color_0__S29|color_1__S29)|!(color_2__S29)))))))) & ((eNV_CONSTRAINT_1_respondsTo_responded__S0)) & ((((eNV_CONSTRAINT_1_respondsTo_responded__S26)<->(ack_ver_0__S0|(eNV_CONSTRAINT_1_respondsTo_responded__S0&!(spec_waiting_ack_ver_mot__S0)))))) & ((((eNV_CONSTRAINT_1_respondsTo_responded__S27)<->(ack_ver_0__S26|(eNV_CONSTRAINT_1_respondsTo_responded__S26&!(spec_waiting_ack_ver_mot__S26)))))) & ((((eNV_CONSTRAINT_1_respondsTo_responded__S28)<->(ack_ver_0__S27|(eNV_CONSTRAINT_1_respondsTo_responded__S27&!(spec_waiting_ack_ver_mot__S27)))))) & ((((eNV_CONSTRAINT_1_respondsTo_responded__S29)<->(ack_ver_0__S28|(eNV_CONSTRAINT_1_respondsTo_responded__S28&!(spec_waiting_ack_ver_mot__S28)))))) & ((((eNV_CONSTRAINT_1_respondsTo_responded__S26)<->(ack_ver_0__S29|(eNV_CONSTRAINT_1_respondsTo_responded__S29&!(spec_waiting_ack_ver_mot__S29)))))) & ((eNV_CONSTRAINT_2_respondsTo_responded__S0)) & ((((eNV_CONSTRAINT_2_respondsTo_responded__S26)<->(ack_hor_0__S0|(eNV_CONSTRAINT_2_respondsTo_responded__S0&!(spec_waiting_ack_hor_mot__S0)))))) & ((((eNV_CONSTRAINT_2_respondsTo_responded__S27)<->(ack_hor_0__S26|(eNV_CONSTRAINT_2_respondsTo_responded__S26&!(spec_waiting_ack_hor_mot__S26)))))) & ((((eNV_CONSTRAINT_2_respondsTo_responded__S28)<->(ack_hor_0__S27|(eNV_CONSTRAINT_2_respondsTo_responded__S27&!(spec_waiting_ack_hor_mot__S27)))))) & ((((eNV_CONSTRAINT_2_respondsTo_responded__S29)<->(ack_hor_0__S28|(eNV_CONSTRAINT_2_respondsTo_responded__S28&!(spec_waiting_ack_hor_mot__S28)))))) & ((((eNV_CONSTRAINT_2_respondsTo_responded__S26)<->(ack_hor_0__S29|(eNV_CONSTRAINT_2_respondsTo_responded__S29&!(spec_waiting_ack_hor_mot__S29)))))) & ((!(pREV_aux_3__S0))) & ((((pREV_aux_3__S26)<->speedButton_0__S0))) & ((((pREV_aux_3__S27)<->speedButton_0__S26))) & ((((pREV_aux_3__S28)<->speedButton_0__S27))) & ((((pREV_aux_3__S29)<->speedButton_0__S28))) & ((((pREV_aux_3__S26)<->speedButton_0__S29)))
+
+=== VALUATIONS BOOLEAN ===
+eNV_CONSTRAINT_2_respondsTo_responded__S0 & !ack_bot_0__S0 & !color_0__S0 & eNV_CONSTRAINT_1_respondsTo_responded__S0 & !pREV_aux_3__S0 & !speedButton_0__S0 & !detect_0__S0 & !detect_2__S0 & !starting_pos_0__S0 & !color_1__S0 & !ack_hor_0__S0 & !color_2__S0 & sYS_CONSTRAINT_0_respondsTo_responded__S0 & !detect_1__S0 & ack_ver_0__S0 & eNV_CONSTRAINT_2_respondsTo_responded__S26 & !ack_bot_0__S26 & !color_0__S26 & eNV_CONSTRAINT_1_respondsTo_responded__S26 & !pREV_aux_3__S26 & !speedButton_0__S26 & !detect_0__S26 & !detect_2__S26 & !starting_pos_0__S26 & !color_1__S26 & !ack_hor_0__S26 & !color_2__S26 & !sYS_CONSTRAINT_0_respondsTo_responded__S26 & !detect_1__S26 & ack_ver_0__S26 & eNV_CONSTRAINT_2_respondsTo_responded__S27 & !ack_bot_0__S27 & !color_0__S27 & eNV_CONSTRAINT_1_respondsTo_responded__S27 & !pREV_aux_3__S27 & !speedButton_0__S27 & !detect_0__S27 & !detect_2__S27 & !starting_pos_0__S27 & !color_1__S27 & !ack_hor_0__S27 & !color_2__S27 & !sYS_CONSTRAINT_0_respondsTo_responded__S27 & !detect_1__S27 & ack_ver_0__S27 & eNV_CONSTRAINT_2_respondsTo_responded__S28 & !ack_bot_0__S28 & !color_0__S28 & eNV_CONSTRAINT_1_respondsTo_responded__S28 & !pREV_aux_3__S28 & !speedButton_0__S28 & !detect_0__S28 & !detect_2__S28 & !starting_pos_0__S28 & !color_1__S28 & !ack_hor_0__S28 & !color_2__S28 & !sYS_CONSTRAINT_0_respondsTo_responded__S28 & !detect_1__S28 & ack_ver_0__S28 & eNV_CONSTRAINT_2_respondsTo_responded__S29 & !ack_bot_0__S29 & !color_0__S29 & eNV_CONSTRAINT_1_respondsTo_responded__S29 & !pREV_aux_3__S29 & !speedButton_0__S29 & !detect_0__S29 & !detect_2__S29 & !starting_pos_0__S29 & !color_1__S29 & !ack_hor_0__S29 & !color_2__S29 & !sYS_CONSTRAINT_0_respondsTo_responded__S29 & !detect_1__S29 & ack_ver_0__S29
+
+=== GUARANTEES BOOLEAN ===
+(((sYS_CONSTRAINT_0_respondsTo_responded__S26)) | ((sYS_CONSTRAINT_0_respondsTo_responded__S27)) | ((sYS_CONSTRAINT_0_respondsTo_responded__S28)) | ((sYS_CONSTRAINT_0_respondsTo_responded__S29))) & (((verMot_0__S0->(((spec_currentColor_0__S0<->(spec_currentColor_0__S26))&(spec_currentColor_1__S0<->(spec_currentColor_1__S26)))&(spec_currentColor_2__S0<->(spec_currentColor_2__S26)))))) & (((verMot_0__S26->(((spec_currentColor_0__S26<->(spec_currentColor_0__S27))&(spec_currentColor_1__S26<->(spec_currentColor_1__S27)))&(spec_currentColor_2__S26<->(spec_currentColor_2__S27)))))) & (((verMot_0__S27->(((spec_currentColor_0__S27<->(spec_currentColor_0__S28))&(spec_currentColor_1__S27<->(spec_currentColor_1__S28)))&(spec_currentColor_2__S27<->(spec_currentColor_2__S28)))))) & (((verMot_0__S28->(((spec_currentColor_0__S28<->(spec_currentColor_0__S29))&(spec_currentColor_1__S28<->(spec_currentColor_1__S29)))&(spec_currentColor_2__S28<->(spec_currentColor_2__S29)))))) & (((verMot_0__S29->(((spec_currentColor_0__S29<->(spec_currentColor_0__S26))&(spec_currentColor_1__S29<->(spec_currentColor_1__S26)))&(spec_currentColor_2__S29<->(spec_currentColor_2__S26)))))) & (((!(verMot_0__S0)->(((color_0__S0<->(spec_currentColor_0__S26))&(color_1__S0<->(spec_currentColor_1__S26)))&(color_2__S0<->(spec_currentColor_2__S26)))))) & (((!(verMot_0__S26)->(((color_0__S26<->(spec_currentColor_0__S27))&(color_1__S26<->(spec_currentColor_1__S27)))&(color_2__S26<->(spec_currentColor_2__S27)))))) & (((!(verMot_0__S27)->(((color_0__S27<->(spec_currentColor_0__S28))&(color_1__S27<->(spec_currentColor_1__S28)))&(color_2__S27<->(spec_currentColor_2__S28)))))) & (((!(verMot_0__S28)->(((color_0__S28<->(spec_currentColor_0__S29))&(color_1__S28<->(spec_currentColor_1__S29)))&(color_2__S28<->(spec_currentColor_2__S29)))))) & (((!(verMot_0__S29)->(((color_0__S29<->(spec_currentColor_0__S26))&(color_1__S29<->(spec_currentColor_1__S26)))&(color_2__S29<->(spec_currentColor_2__S26))))))
+
+
+=== INTERPOLANT ===
+!sYS_CONSTRAINT_0_respondsTo_responded__S27 & !sYS_CONSTRAINT_0_respondsTo_responded__S26 & !sYS_CONSTRAINT_0_respondsTo_responded__S28 & !sYS_CONSTRAINT_0_respondsTo_responded__S29
+
+=== STATE COMPONENTS ===
+{'S28': '!sYS_CONSTRAINT_0_respondsTo_responded', 'S29': '!sYS_CONSTRAINT_0_respondsTo_responded', 'S27': '!sYS_CONSTRAINT_0_respondsTo_responded', 'S26': '!sYS_CONSTRAINT_0_respondsTo_responded'}
+
+=== Refinements === 
+['G((!sYS_CONSTRAINT_0_respondsTo_responded) -> X(!(!sYS_CONSTRAINT_0_respondsTo_responded)))', 'G(F(!(!sYS_CONSTRAINT_0_respondsTo_responded)))']
+++++ ELAPSED TIME 6.268667238007765
+++++ QUEUE LENGTH 1
+++++ Solutions 0
+++++ Duplicates 0
+++++ Node number 2
+++++ Refinement ['G((!sYS_CONSTRAINT_0_respondsTo_responded) -> X(!(!sYS_CONSTRAINT_0_respondsTo_responded)))']
+++++ Length 1
+++ REALIZABILITY CHECK
+++ REALIZABLE REFINEMENT: SAT CHECK
+++++ ELAPSED TIME 8.315540695999516
+++++ QUEUE LENGTH 0
+++++ Solutions 1
+++++ Duplicates 0
+++++ Node number 3
+++++ Refinement ['G(F(!(!sYS_CONSTRAINT_0_respondsTo_responded)))']
+++++ Length 1
+++ REALIZABILITY CHECK
+++ REALIZABLE REFINEMENT: SAT CHECK

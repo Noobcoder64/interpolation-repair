@@ -1,0 +1,629 @@
+Parsing...done
+Parsing...done
+Removing non-boolean ITEs...done
+Removing non-boolean ITEs...done
+Canonizing...done
+Canonizing...done
+Converting formula to CNF...done
+Converting formula to CNF...done
+Searching...
+s
+
+Solving time: 0.003526 sec
+Original proof size: 36
+Computing interpolant #1...done
+Interpolant #1 written to INTERP.1.msat
+
+DPLL Engine Statistics:
+Atoms: 568 (111 bool, 0 theory, 457 cnf) 
+Clauses: 751
+Avg clause length: 2.18775
+Restarts: 1
+Decisions: 10
+All propagations: 528
+All conflicts: 4
+
+Theory Solvers Statistics:
+------------------------------------
+Total time: 0.004 sec
+Memory used: 23.375 MBytes
+
+unsat
+=== INPUT VARS ===
+obstacle_0
+eNV_CONSTRAINT_0_respondsTo_responded
+pREV_aux_1
+pREV_aux_2
+pREV_aux_3
+pREV_aux_4
+pREV_aux_5
+=== OUTPUT VARS ===
+leftMotor_0
+leftMotor_1
+leftMotor_2
+rightMotor_0
+rightMotor_1
+rightMotor_2
+headMotor_0
+headMotor_1
+nextMoveMode_0
+nextMoveMode_1
+state_0
+state_1
+=== ASSUMPTIONS ===
+G(F((pREV_aux_3&!(obstacle_0))))
+G((((!(nextMoveMode_0)&nextMoveMode_1)&!(obstacle_0))->!(X(obstacle_0))))
+G(F(eNV_CONSTRAINT_0_respondsTo_responded))
+(eNV_CONSTRAINT_0_respondsTo_responded)
+G((X(eNV_CONSTRAINT_0_respondsTo_responded)<->(!(obstacle_0)|(eNV_CONSTRAINT_0_respondsTo_responded&!((nextMoveMode_0|nextMoveMode_1))))))
+(!(pREV_aux_1))
+G((X(pREV_aux_1)<->(!(nextMoveMode_0)&nextMoveMode_1)))
+(!(pREV_aux_2))
+G((X(pREV_aux_2)<->(!(nextMoveMode_0)&!(nextMoveMode_1))))
+(!(pREV_aux_3))
+G((X(pREV_aux_3)<->(nextMoveMode_0&nextMoveMode_1)))
+(!(pREV_aux_4))
+G((X(pREV_aux_4)<->pREV_aux_3))
+(!(pREV_aux_5))
+G((X(pREV_aux_5)<->(nextMoveMode_0&!(nextMoveMode_1))))
+=== GUARANTEES ===
+G(F((!(nextMoveMode_0))&!(nextMoveMode_1)))
+G((((((!(state_0)&!(state_1))&!(nextMoveMode_0))&!(nextMoveMode_1))&(!(X(nextMoveMode_0))&X(nextMoveMode_1)))->(!(X(state_0))&X(state_1))))
+G((((((!(state_0)&state_1)&!(nextMoveMode_0))&nextMoveMode_1)&(!(X(nextMoveMode_0))&!(X(nextMoveMode_1))))->(X(state_0)&!(X(state_1)))))
+G((((((state_0&!(state_1))&!(nextMoveMode_0))&!(nextMoveMode_1))&(!(X(nextMoveMode_0))&X(nextMoveMode_1)))->(X(state_0)&X(state_1))))
+G((((!(state_0)&state_1)&(!(X(nextMoveMode_0))&X(nextMoveMode_1)))->(!(X(state_0))&X(state_1))))
+G((((state_0&!(state_1))&(!(X(nextMoveMode_0))&!(X(nextMoveMode_1))))->(X(state_0)&!(X(state_1)))))
+G((((nextMoveMode_0&!(nextMoveMode_1))|(nextMoveMode_0&!(nextMoveMode_1)))->(!(X(state_0))&!(X(state_1)))))
+(!(((leftMotor_0&leftMotor_1)&leftMotor_2)))
+G(!(((X(leftMotor_0)&X(leftMotor_1))&X(leftMotor_2))))
+(!(((rightMotor_0&rightMotor_1)&rightMotor_2)))
+G(!(((X(rightMotor_0)&X(rightMotor_1))&X(rightMotor_2))))
+(!((headMotor_0&headMotor_1)))
+G(!((X(headMotor_0)&X(headMotor_1))))
+(!((state_0&state_1)))
+G(!((X(state_0)&X(state_1))))
+((obstacle_0->!((!(nextMoveMode_0)&!(nextMoveMode_1)))))
+G((X(obstacle_0)->!((!(X(nextMoveMode_0))&!(X(nextMoveMode_1))))))
+((((pREV_aux_1&!(nextMoveMode_0))&!(nextMoveMode_1))<->(((((!(leftMotor_0)&!(leftMotor_1))&!(leftMotor_2))&!(rightMotor_0))&!(rightMotor_1))&rightMotor_2)))
+G((((X(pREV_aux_1)&!(X(nextMoveMode_0)))&!(X(nextMoveMode_1)))<->(((((!(X(leftMotor_0))&!(X(leftMotor_1)))&!(X(leftMotor_2)))&!(X(rightMotor_0)))&!(X(rightMotor_1)))&X(rightMotor_2))))
+((((pREV_aux_2&!(nextMoveMode_0))&nextMoveMode_1)<->(((((!(leftMotor_0)&!(leftMotor_1))&leftMotor_2)&!(rightMotor_0))&!(rightMotor_1))&!(rightMotor_2))))
+G((((X(pREV_aux_2)&!(X(nextMoveMode_0)))&X(nextMoveMode_1))<->(((((!(X(leftMotor_0))&!(X(leftMotor_1)))&X(leftMotor_2))&!(X(rightMotor_0)))&!(X(rightMotor_1)))&!(X(rightMotor_2)))))
+(((!(nextMoveMode_0)&nextMoveMode_1)->(pREV_aux_2|pREV_aux_1)))
+G(((!(X(nextMoveMode_0))&X(nextMoveMode_1))->(X(pREV_aux_2)|X(pREV_aux_1))))
+((pREV_aux_3->!((!(nextMoveMode_0)&nextMoveMode_1))))
+G((X(pREV_aux_3)->!((!(X(nextMoveMode_0))&X(nextMoveMode_1)))))
+((((pREV_aux_2&nextMoveMode_0)&!(nextMoveMode_1))<->(((((leftMotor_0&!(leftMotor_1))&leftMotor_2)&rightMotor_0)&!(rightMotor_1))&rightMotor_2)))
+G((((X(pREV_aux_2)&X(nextMoveMode_0))&!(X(nextMoveMode_1)))<->(((((X(leftMotor_0)&!(X(leftMotor_1)))&X(leftMotor_2))&X(rightMotor_0))&!(X(rightMotor_1)))&X(rightMotor_2))))
+((pREV_aux_1->(!(nextMoveMode_0)|nextMoveMode_1)))
+G((X(pREV_aux_1)->(!(X(nextMoveMode_0))|X(nextMoveMode_1))))
+(((pREV_aux_2&pREV_aux_4)<->(((((leftMotor_0&leftMotor_1)&!(leftMotor_2))&rightMotor_0)&rightMotor_1)&!(rightMotor_2))))
+G(((X(pREV_aux_2)&X(pREV_aux_4))<->(((((X(leftMotor_0)&X(leftMotor_1))&!(X(leftMotor_2)))&X(rightMotor_0))&X(rightMotor_1))&!(X(rightMotor_2)))))
+((pREV_aux_5<->(nextMoveMode_0&nextMoveMode_1)))
+G((X(pREV_aux_5)<->(X(nextMoveMode_0)&X(nextMoveMode_1))))
+((pREV_aux_5->(((((!(leftMotor_0)&!(leftMotor_1))&!(leftMotor_2))&!(rightMotor_0))&rightMotor_1)&rightMotor_2)))
+G((X(pREV_aux_5)->(((((!(X(leftMotor_0))&!(X(leftMotor_1)))&!(X(leftMotor_2)))&!(X(rightMotor_0)))&X(rightMotor_1))&X(rightMotor_2))))
+((pREV_aux_3->(((((!(leftMotor_0)&!(leftMotor_1))&leftMotor_2)&rightMotor_0)&!(rightMotor_1))&!(rightMotor_2))))
+G((X(pREV_aux_3)->(((((!(X(leftMotor_0))&!(X(leftMotor_1)))&X(leftMotor_2))&X(rightMotor_0))&!(X(rightMotor_1)))&!(X(rightMotor_2)))))
+((!((pREV_aux_5|pREV_aux_3))->!((((((leftMotor_0&!(leftMotor_1))&!(leftMotor_2))|((rightMotor_0&!(rightMotor_1))&!(rightMotor_2)))|((!(leftMotor_0)&leftMotor_1)&leftMotor_2))|((!(rightMotor_0)&rightMotor_1)&rightMotor_2)))))
+G((!((X(pREV_aux_5)|X(pREV_aux_3)))->!((((((X(leftMotor_0)&!(X(leftMotor_1)))&!(X(leftMotor_2)))|((X(rightMotor_0)&!(X(rightMotor_1)))&!(X(rightMotor_2))))|((!(X(leftMotor_0))&X(leftMotor_1))&X(leftMotor_2)))|((!(X(rightMotor_0))&X(rightMotor_1))&X(rightMotor_2))))))
++++++++++++ inputs/SYNTECH15-1UNREAL/HumanoidLTL_533_Humanoid_2.spectra
+Resetting temp...
+Reset complete!
+++++ ELAPSED TIME 0
+++++ QUEUE LENGTH 0
+++++ Solutions 0
+++++ Duplicates 0
+++++ Node number 1
+++++ Refinement []
+++++ Length 0
+++ REALIZABILITY CHECK
+++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION
+b"Using BDD Package: CUDDFactory, Version: CUDD 3.0
+Using BDD Package: CUDDFactory, Version: CUDD 3.0
+0    [main] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+java.util.MissingResourceException: The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+at org.eclipse.emf.common.util.DelegatingResourceLocator.delegatedGetString(DelegatingResourceLocator.java:586)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:450)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:605)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:597)
+at org.eclipse.emf.ecore.util.Diagnostician.createDefaultDiagnostic(Diagnostician.java:110)
+at org.eclipse.emf.ecore.util.Diagnostician.validate(Diagnostician.java:139)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:147)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:125)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:91)
+at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getSpectraModel(SpectraInputProviderNoIDE.java:166)
+at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getGameInput(SpectraInputProviderNoIDE.java:109)
+at tau.smlab.syntech.Spectra.cli.SpectraCliTool.main(SpectraCliTool.java:162)
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 872
+Nodes table size: 5110
+Result: Specification is unrealizable
+extract strategy - Start
+
+extract strategy - End
+Initial State 0 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 1 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 2 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 3 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 4 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 5 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 6 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 7 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 8 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 9 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 10 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 11 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 12 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 13 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 14 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 15 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 16 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 17 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 18 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 19 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 20 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 21 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 22 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 23 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 24 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 25 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 26 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 27 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 28 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 29 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 30 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 31 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 32 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 33 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 34 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 35 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 36 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 37 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 38 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 39 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 40 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 41 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 42 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 43 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 44 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 45 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 46 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 47 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 48 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 49 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 50 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 51 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 52 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 53 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 54 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 55 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 56 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 57 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 58 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 59 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 60 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 61 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 62 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 63 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 64 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 65 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 66 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 67 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 68 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 69 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 70 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 71 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 72 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 73 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 74 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 75 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 76 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 77 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 78 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 79 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 80 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 81 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 82 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 83 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 84 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 85 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 86 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 87 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 88 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 89 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 90 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 91 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 92 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 93 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 94 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 95 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 96 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 97 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 98 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 99 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 100 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 101 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 102 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 103 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 104 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 105 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 106 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 107 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 108 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 109 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 110 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 111 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 112 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 113 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 114 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 115 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 116 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 117 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 118 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 119 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 120 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 121 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 122 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 123 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 124 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 125 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 126 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 127 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 128 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 129 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 130 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 131 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 132 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 133 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 134 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 135 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 136 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 137 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 138 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 139 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 140 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 141 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 142 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 143 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 144 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 145 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 146 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 147 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 148 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 149 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 150 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 151 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 152 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 153 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 154 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 155 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 156 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 157 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 158 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 159 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 160 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 161 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 162 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 163 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 164 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 165 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 166 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 167 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 168 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 169 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 170 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 171 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 172 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 173 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 174 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 175 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 176 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 177 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 178 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 179 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 180 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 181 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 182 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 183 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 184 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 185 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+Initial State 186 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 189, 190, 191
+Initial State 187 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 189, 190, 191
+Initial State 188 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:true, leftMotor_1:true, leftMotor_2:false, rightMotor_0:true, rightMotor_1:false, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 189, 190, 191
+State 189 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:false, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:true, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:true, state_0:false, state_1:false>
+With successors : 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209
+State 190 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:false, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:true, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:true, state_0:false, state_1:false>
+With successors : 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209
+State 191 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:false, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:false, pREV_aux_5:true, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:true, state_0:false, state_1:false>
+With successors : 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209
+State 192 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:false, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 213
+State 193 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 210, 211, 212
+State 194 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:false, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 213
+State 195 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 210, 211, 212
+State 196 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:false, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 213
+State 197 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 210, 211, 212
+State 198 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:false, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 213
+State 199 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 210, 211, 212
+State 200 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:false, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 213
+State 201 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 210, 211, 212
+State 202 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:false, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 213
+State 203 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 210, 211, 212
+State 204 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:false, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 213
+State 205 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:false>
+With successors : 210, 211, 212
+State 206 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:false, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 213
+State 207 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:false, state_1:true>
+With successors : 210, 211, 212
+State 208 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:false, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 213
+State 209 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:true, pREV_aux_4:false, pREV_aux_5:false, leftMotor_0:false, leftMotor_1:false, leftMotor_2:true, rightMotor_0:true, rightMotor_1:false, rightMotor_2:false, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:false, state_0:true, state_1:false>
+With successors : 210, 211, 212
+State 210 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:true, pREV_aux_5:true, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:true, headMotor_0:false, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:true, state_0:false, state_1:false>
+With successors : 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209
+State 211 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:true, pREV_aux_5:true, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:true, headMotor_0:false, headMotor_1:true, nextMoveMode_0:true, nextMoveMode_1:true, state_0:false, state_1:false>
+With successors : 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209
+State 212 <obstacle_0:false, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:false, pREV_aux_3:false, pREV_aux_4:true, pREV_aux_5:true, leftMotor_0:false, leftMotor_1:false, leftMotor_2:false, rightMotor_0:false, rightMotor_1:true, rightMotor_2:true, headMotor_0:true, headMotor_1:false, nextMoveMode_0:true, nextMoveMode_1:true, state_0:false, state_1:false>
+With successors : 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209
+State 213 <obstacle_0:true, eNV_CONSTRAINT_0_respondsTo_responded:true, pREV_aux_1:false, pREV_aux_2:true, pREV_aux_3:false, pREV_aux_4:true, pREV_aux_5:false>
+With no successors.
+"
+INI:  <counterstrategy.State object at 0x7f89da382fa0>
+TRANSIENT:  [<counterstrategy.State object at 0x7f8a5a0639a0>, <counterstrategy.State object at 0x7f8a5a063a30>, <counterstrategy.State object at 0x7f8a5a063970>, <counterstrategy.State object at 0x7f8a5a063910>, <counterstrategy.State object at 0x7f8a5a0639d0>]
+=== COUNTERRUN ===
+S0 -> S190 -> S195 -> S210 -> S196 -> S213
+
+LTL TOKENS:  ['(', '(', '(', '(', '!', '(', 'nextMoveMode_0', ')', '&', 'nextMoveMode_1', ')', '&', '!', '(', 'obstacle_0', ')', ')', '->', '!', '(', 'X', '(', 'obstacle_0', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'eNV_CONSTRAINT_0_respondsTo_responded', ')', '<->', '(', '!', '(', 'obstacle_0', ')', '|', '(', 'eNV_CONSTRAINT_0_respondsTo_responded', '&', '!', '(', '(', 'nextMoveMode_0', '|', 'nextMoveMode_1', ')', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'pREV_aux_1', ')', '<->', '(', '!', '(', 'nextMoveMode_0', ')', '&', 'nextMoveMode_1', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'pREV_aux_2', ')', '<->', '(', '!', '(', 'nextMoveMode_0', ')', '&', '!', '(', 'nextMoveMode_1', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'pREV_aux_3', ')', '<->', '(', 'nextMoveMode_0', '&', 'nextMoveMode_1', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'pREV_aux_4', ')', '<->', 'pREV_aux_3', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'pREV_aux_5', ')', '<->', '(', 'nextMoveMode_0', '&', '!', '(', 'nextMoveMode_1', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'obstacle_0', ')', '->', '!', '(', '(', '!', '(', 'X', '(', 'nextMoveMode_0', ')', ')', '&', '!', '(', 'X', '(', 'nextMoveMode_1', ')', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', '(', '(', 'X', '(', 'pREV_aux_2', ')', '&', '!', '(', 'X', '(', 'nextMoveMode_0', ')', ')', ')', '&', 'X', '(', 'nextMoveMode_1', ')', ')', '<->', '(', '(', '(', '(', '(', '!', '(', 'X', '(', 'leftMotor_0', ')', ')', '&', '!', '(', 'X', '(', 'leftMotor_1', ')', ')', ')', '&', 'X', '(', 'leftMotor_2', ')', ')', '&', '!', '(', 'X', '(', 'rightMotor_0', ')', ')', ')', '&', '!', '(', 'X', '(', 'rightMotor_1', ')', ')', ')', '&', '!', '(', 'X', '(', 'rightMotor_2', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'pREV_aux_3', ')', '->', '!', '(', '(', '!', '(', 'X', '(', 'nextMoveMode_0', ')', ')', '&', 'X', '(', 'nextMoveMode_1', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', '(', '(', 'X', '(', 'pREV_aux_2', ')', '&', 'X', '(', 'nextMoveMode_0', ')', ')', '&', '!', '(', 'X', '(', 'nextMoveMode_1', ')', ')', ')', '<->', '(', '(', '(', '(', '(', 'X', '(', 'leftMotor_0', ')', '&', '!', '(', 'X', '(', 'leftMotor_1', ')', ')', ')', '&', 'X', '(', 'leftMotor_2', ')', ')', '&', 'X', '(', 'rightMotor_0', ')', ')', '&', '!', '(', 'X', '(', 'rightMotor_1', ')', ')', ')', '&', 'X', '(', 'rightMotor_2', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', '(', 'X', '(', 'pREV_aux_2', ')', '&', 'X', '(', 'pREV_aux_4', ')', ')', '<->', '(', '(', '(', '(', '(', 'X', '(', 'leftMotor_0', ')', '&', 'X', '(', 'leftMotor_1', ')', ')', '&', '!', '(', 'X', '(', 'leftMotor_2', ')', ')', ')', '&', 'X', '(', 'rightMotor_0', ')', ')', '&', 'X', '(', 'rightMotor_1', ')', ')', '&', '!', '(', 'X', '(', 'rightMotor_2', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'pREV_aux_5', ')', '<->', '(', 'X', '(', 'nextMoveMode_0', ')', '&', 'X', '(', 'nextMoveMode_1', ')', ')', ')', ')']
+=== UNREALIZABLE CORE ===
+G(F((!(nextMoveMode_0))&!(nextMoveMode_1)))
+((obstacle_0->!((!(nextMoveMode_0)&!(nextMoveMode_1)))))
+(((!(nextMoveMode_0)&nextMoveMode_1)->(pREV_aux_2|pREV_aux_1)))
+G((X(obstacle_0)->!((!(X(nextMoveMode_0))&!(X(nextMoveMode_1))))))
+G((((X(pREV_aux_2)&!(X(nextMoveMode_0)))&X(nextMoveMode_1))<->(((((!(X(leftMotor_0))&!(X(leftMotor_1)))&X(leftMotor_2))&!(X(rightMotor_0)))&!(X(rightMotor_1)))&!(X(rightMotor_2)))))
+G((X(pREV_aux_3)->!((!(X(nextMoveMode_0))&X(nextMoveMode_1)))))
+G((((X(pREV_aux_2)&X(nextMoveMode_0))&!(X(nextMoveMode_1)))<->(((((X(leftMotor_0)&!(X(leftMotor_1)))&X(leftMotor_2))&X(rightMotor_0))&!(X(rightMotor_1)))&X(rightMotor_2))))
+G(((X(pREV_aux_2)&X(pREV_aux_4))<->(((((X(leftMotor_0)&X(leftMotor_1))&!(X(leftMotor_2)))&X(rightMotor_0))&X(rightMotor_1))&!(X(rightMotor_2)))))
+G((X(pREV_aux_5)<->(X(nextMoveMode_0)&X(nextMoveMode_1))))
+
+=== ASSUMPTIONS BOOLEAN ===
+(((((!(nextMoveMode_0__S0)&nextMoveMode_1__S0)&!(obstacle_0__S0))->!((obstacle_0__S190))))) & (((((!(nextMoveMode_0__S190)&nextMoveMode_1__S190)&!(obstacle_0__S190))->!((obstacle_0__S195))))) & (((((!(nextMoveMode_0__S195)&nextMoveMode_1__S195)&!(obstacle_0__S195))->!((obstacle_0__S210))))) & (((((!(nextMoveMode_0__S210)&nextMoveMode_1__S210)&!(obstacle_0__S210))->!((obstacle_0__S196))))) & (((((!(nextMoveMode_0__S196)&nextMoveMode_1__S196)&!(obstacle_0__S196))->!((obstacle_0__S213))))) & (((((!(nextMoveMode_0__S213)&nextMoveMode_1__S213)&!(obstacle_0__S213))->!((obstacle_0__Sf))))) & ((eNV_CONSTRAINT_0_respondsTo_responded__S0)) & ((((eNV_CONSTRAINT_0_respondsTo_responded__S190)<->(!(obstacle_0__S0)|(eNV_CONSTRAINT_0_respondsTo_responded__S0&!((nextMoveMode_0__S0|nextMoveMode_1__S0))))))) & ((((eNV_CONSTRAINT_0_respondsTo_responded__S195)<->(!(obstacle_0__S190)|(eNV_CONSTRAINT_0_respondsTo_responded__S190&!((nextMoveMode_0__S190|nextMoveMode_1__S190))))))) & ((((eNV_CONSTRAINT_0_respondsTo_responded__S210)<->(!(obstacle_0__S195)|(eNV_CONSTRAINT_0_respondsTo_responded__S195&!((nextMoveMode_0__S195|nextMoveMode_1__S195))))))) & ((((eNV_CONSTRAINT_0_respondsTo_responded__S196)<->(!(obstacle_0__S210)|(eNV_CONSTRAINT_0_respondsTo_responded__S210&!((nextMoveMode_0__S210|nextMoveMode_1__S210))))))) & ((((eNV_CONSTRAINT_0_respondsTo_responded__S213)<->(!(obstacle_0__S196)|(eNV_CONSTRAINT_0_respondsTo_responded__S196&!((nextMoveMode_0__S196|nextMoveMode_1__S196))))))) & ((((eNV_CONSTRAINT_0_respondsTo_responded__Sf)<->(!(obstacle_0__Sf)|(eNV_CONSTRAINT_0_respondsTo_responded__Sf&!((nextMoveMode_0__Sf|nextMoveMode_1__Sf))))))) & ((!(pREV_aux_1__S0))) & ((((pREV_aux_1__S190)<->(!(nextMoveMode_0__S0)&nextMoveMode_1__S0)))) & ((((pREV_aux_1__S195)<->(!(nextMoveMode_0__S190)&nextMoveMode_1__S190)))) & ((((pREV_aux_1__S210)<->(!(nextMoveMode_0__S195)&nextMoveMode_1__S195)))) & ((((pREV_aux_1__S196)<->(!(nextMoveMode_0__S210)&nextMoveMode_1__S210)))) & ((((pREV_aux_1__S213)<->(!(nextMoveMode_0__S196)&nextMoveMode_1__S196)))) & ((((pREV_aux_1__Sf)<->(!(nextMoveMode_0__Sf)&nextMoveMode_1__Sf)))) & ((!(pREV_aux_2__S0))) & ((((pREV_aux_2__S190)<->(!(nextMoveMode_0__S0)&!(nextMoveMode_1__S0))))) & ((((pREV_aux_2__S195)<->(!(nextMoveMode_0__S190)&!(nextMoveMode_1__S190))))) & ((((pREV_aux_2__S210)<->(!(nextMoveMode_0__S195)&!(nextMoveMode_1__S195))))) & ((((pREV_aux_2__S196)<->(!(nextMoveMode_0__S210)&!(nextMoveMode_1__S210))))) & ((((pREV_aux_2__S213)<->(!(nextMoveMode_0__S196)&!(nextMoveMode_1__S196))))) & ((((pREV_aux_2__Sf)<->(!(nextMoveMode_0__Sf)&!(nextMoveMode_1__Sf))))) & ((!(pREV_aux_3__S0))) & ((((pREV_aux_3__S190)<->(nextMoveMode_0__S0&nextMoveMode_1__S0)))) & ((((pREV_aux_3__S195)<->(nextMoveMode_0__S190&nextMoveMode_1__S190)))) & ((((pREV_aux_3__S210)<->(nextMoveMode_0__S195&nextMoveMode_1__S195)))) & ((((pREV_aux_3__S196)<->(nextMoveMode_0__S210&nextMoveMode_1__S210)))) & ((((pREV_aux_3__S213)<->(nextMoveMode_0__S196&nextMoveMode_1__S196)))) & ((((pREV_aux_3__Sf)<->(nextMoveMode_0__Sf&nextMoveMode_1__Sf)))) & ((!(pREV_aux_4__S0))) & ((((pREV_aux_4__S190)<->pREV_aux_3__S0))) & ((((pREV_aux_4__S195)<->pREV_aux_3__S190))) & ((((pREV_aux_4__S210)<->pREV_aux_3__S195))) & ((((pREV_aux_4__S196)<->pREV_aux_3__S210))) & ((((pREV_aux_4__S213)<->pREV_aux_3__S196))) & ((((pREV_aux_4__Sf)<->pREV_aux_3__Sf))) & ((!(pREV_aux_5__S0))) & ((((pREV_aux_5__S190)<->(nextMoveMode_0__S0&!(nextMoveMode_1__S0))))) & ((((pREV_aux_5__S195)<->(nextMoveMode_0__S190&!(nextMoveMode_1__S190))))) & ((((pREV_aux_5__S210)<->(nextMoveMode_0__S195&!(nextMoveMode_1__S195))))) & ((((pREV_aux_5__S196)<->(nextMoveMode_0__S210&!(nextMoveMode_1__S210))))) & ((((pREV_aux_5__S213)<->(nextMoveMode_0__S196&!(nextMoveMode_1__S196))))) & ((((pREV_aux_5__Sf)<->(nextMoveMode_0__Sf&!(nextMoveMode_1__Sf)))))
+
+=== VALUATIONS BOOLEAN ===
+!pREV_aux_5__S0 & obstacle_0__S0 & !pREV_aux_1__S0 & !pREV_aux_2__S0 & !pREV_aux_4__S0 & eNV_CONSTRAINT_0_respondsTo_responded__S0 & !pREV_aux_3__S0 & !pREV_aux_1__S190 & pREV_aux_5__S190 & !obstacle_0__S190 & !pREV_aux_2__S190 & !pREV_aux_4__S190 & !pREV_aux_3__S190 & !eNV_CONSTRAINT_0_respondsTo_responded__S190 & headMotor_1__S190 & !headMotor_0__S190 & !pREV_aux_5__S195 & pREV_aux_3__S195 & nextMoveMode_0__S195 & !pREV_aux_1__S195 & state_1__S195 & !obstacle_0__S195 & !state_0__S195 & !pREV_aux_2__S195 & !pREV_aux_4__S195 & eNV_CONSTRAINT_0_respondsTo_responded__S195 & !headMotor_1__S195 & !headMotor_0__S195 & pREV_aux_4__S210 & !pREV_aux_1__S210 & pREV_aux_5__S210 & !obstacle_0__S210 & !pREV_aux_2__S210 & eNV_CONSTRAINT_0_respondsTo_responded__S210 & !pREV_aux_3__S210 & !headMotor_1__S210 & !headMotor_0__S210 & !pREV_aux_5__S196 & pREV_aux_3__S196 & !nextMoveMode_0__S196 & !pREV_aux_1__S196 & !obstacle_0__S196 & !pREV_aux_2__S196 & !pREV_aux_4__S196 & !state_1__S196 & eNV_CONSTRAINT_0_respondsTo_responded__S196 & !headMotor_1__S196 & state_0__S196 & !headMotor_0__S196 & !pREV_aux_5__S213 & obstacle_0__S213 & pREV_aux_4__S213 & !pREV_aux_1__S213 & eNV_CONSTRAINT_0_respondsTo_responded__S213 & !pREV_aux_3__S213 & pREV_aux_2__S213
+
+=== GUARANTEES BOOLEAN ===
+(((obstacle_0__S0->!((!(nextMoveMode_0__S0)&!(nextMoveMode_1__S0)))))) & ((((!(nextMoveMode_0__S0)&nextMoveMode_1__S0)->(pREV_aux_2__S0|pREV_aux_1__S0)))) & ((((obstacle_0__S190)->!((!((nextMoveMode_0__S190))&!((nextMoveMode_1__S190))))))) & ((((obstacle_0__S195)->!((!((nextMoveMode_0__S195))&!((nextMoveMode_1__S195))))))) & ((((obstacle_0__S210)->!((!((nextMoveMode_0__S210))&!((nextMoveMode_1__S210))))))) & ((((obstacle_0__S196)->!((!((nextMoveMode_0__S196))&!((nextMoveMode_1__S196))))))) & ((((obstacle_0__S213)->!((!((nextMoveMode_0__S213))&!((nextMoveMode_1__S213))))))) & ((((obstacle_0__Sf)->!((!((nextMoveMode_0__Sf))&!((nextMoveMode_1__Sf))))))) & ((((((pREV_aux_2__S190)&!((nextMoveMode_0__S190)))&(nextMoveMode_1__S190))<->(((((!((leftMotor_0__S190))&!((leftMotor_1__S190)))&(leftMotor_2__S190))&!((rightMotor_0__S190)))&!((rightMotor_1__S190)))&!((rightMotor_2__S190)))))) & ((((((pREV_aux_2__S195)&!((nextMoveMode_0__S195)))&(nextMoveMode_1__S195))<->(((((!((leftMotor_0__S195))&!((leftMotor_1__S195)))&(leftMotor_2__S195))&!((rightMotor_0__S195)))&!((rightMotor_1__S195)))&!((rightMotor_2__S195)))))) & ((((((pREV_aux_2__S210)&!((nextMoveMode_0__S210)))&(nextMoveMode_1__S210))<->(((((!((leftMotor_0__S210))&!((leftMotor_1__S210)))&(leftMotor_2__S210))&!((rightMotor_0__S210)))&!((rightMotor_1__S210)))&!((rightMotor_2__S210)))))) & ((((((pREV_aux_2__S196)&!((nextMoveMode_0__S196)))&(nextMoveMode_1__S196))<->(((((!((leftMotor_0__S196))&!((leftMotor_1__S196)))&(leftMotor_2__S196))&!((rightMotor_0__S196)))&!((rightMotor_1__S196)))&!((rightMotor_2__S196)))))) & ((((((pREV_aux_2__S213)&!((nextMoveMode_0__S213)))&(nextMoveMode_1__S213))<->(((((!((leftMotor_0__S213))&!((leftMotor_1__S213)))&(leftMotor_2__S213))&!((rightMotor_0__S213)))&!((rightMotor_1__S213)))&!((rightMotor_2__S213)))))) & ((((((pREV_aux_2__Sf)&!((nextMoveMode_0__Sf)))&(nextMoveMode_1__Sf))<->(((((!((leftMotor_0__Sf))&!((leftMotor_1__Sf)))&(leftMotor_2__Sf))&!((rightMotor_0__Sf)))&!((rightMotor_1__Sf)))&!((rightMotor_2__Sf)))))) & ((((pREV_aux_3__S190)->!((!((nextMoveMode_0__S190))&(nextMoveMode_1__S190)))))) & ((((pREV_aux_3__S195)->!((!((nextMoveMode_0__S195))&(nextMoveMode_1__S195)))))) & ((((pREV_aux_3__S210)->!((!((nextMoveMode_0__S210))&(nextMoveMode_1__S210)))))) & ((((pREV_aux_3__S196)->!((!((nextMoveMode_0__S196))&(nextMoveMode_1__S196)))))) & ((((pREV_aux_3__S213)->!((!((nextMoveMode_0__S213))&(nextMoveMode_1__S213)))))) & ((((pREV_aux_3__Sf)->!((!((nextMoveMode_0__Sf))&(nextMoveMode_1__Sf)))))) & ((((((pREV_aux_2__S190)&(nextMoveMode_0__S190))&!((nextMoveMode_1__S190)))<->((((((leftMotor_0__S190)&!((leftMotor_1__S190)))&(leftMotor_2__S190))&(rightMotor_0__S190))&!((rightMotor_1__S190)))&(rightMotor_2__S190))))) & ((((((pREV_aux_2__S195)&(nextMoveMode_0__S195))&!((nextMoveMode_1__S195)))<->((((((leftMotor_0__S195)&!((leftMotor_1__S195)))&(leftMotor_2__S195))&(rightMotor_0__S195))&!((rightMotor_1__S195)))&(rightMotor_2__S195))))) & ((((((pREV_aux_2__S210)&(nextMoveMode_0__S210))&!((nextMoveMode_1__S210)))<->((((((leftMotor_0__S210)&!((leftMotor_1__S210)))&(leftMotor_2__S210))&(rightMotor_0__S210))&!((rightMotor_1__S210)))&(rightMotor_2__S210))))) & ((((((pREV_aux_2__S196)&(nextMoveMode_0__S196))&!((nextMoveMode_1__S196)))<->((((((leftMotor_0__S196)&!((leftMotor_1__S196)))&(leftMotor_2__S196))&(rightMotor_0__S196))&!((rightMotor_1__S196)))&(rightMotor_2__S196))))) & ((((((pREV_aux_2__S213)&(nextMoveMode_0__S213))&!((nextMoveMode_1__S213)))<->((((((leftMotor_0__S213)&!((leftMotor_1__S213)))&(leftMotor_2__S213))&(rightMotor_0__S213))&!((rightMotor_1__S213)))&(rightMotor_2__S213))))) & ((((((pREV_aux_2__Sf)&(nextMoveMode_0__Sf))&!((nextMoveMode_1__Sf)))<->((((((leftMotor_0__Sf)&!((leftMotor_1__Sf)))&(leftMotor_2__Sf))&(rightMotor_0__Sf))&!((rightMotor_1__Sf)))&(rightMotor_2__Sf))))) & (((((pREV_aux_2__S190)&(pREV_aux_4__S190))<->((((((leftMotor_0__S190)&(leftMotor_1__S190))&!((leftMotor_2__S190)))&(rightMotor_0__S190))&(rightMotor_1__S190))&!((rightMotor_2__S190)))))) & (((((pREV_aux_2__S195)&(pREV_aux_4__S195))<->((((((leftMotor_0__S195)&(leftMotor_1__S195))&!((leftMotor_2__S195)))&(rightMotor_0__S195))&(rightMotor_1__S195))&!((rightMotor_2__S195)))))) & (((((pREV_aux_2__S210)&(pREV_aux_4__S210))<->((((((leftMotor_0__S210)&(leftMotor_1__S210))&!((leftMotor_2__S210)))&(rightMotor_0__S210))&(rightMotor_1__S210))&!((rightMotor_2__S210)))))) & (((((pREV_aux_2__S196)&(pREV_aux_4__S196))<->((((((leftMotor_0__S196)&(leftMotor_1__S196))&!((leftMotor_2__S196)))&(rightMotor_0__S196))&(rightMotor_1__S196))&!((rightMotor_2__S196)))))) & (((((pREV_aux_2__S213)&(pREV_aux_4__S213))<->((((((leftMotor_0__S213)&(leftMotor_1__S213))&!((leftMotor_2__S213)))&(rightMotor_0__S213))&(rightMotor_1__S213))&!((rightMotor_2__S213)))))) & (((((pREV_aux_2__Sf)&(pREV_aux_4__Sf))<->((((((leftMotor_0__Sf)&(leftMotor_1__Sf))&!((leftMotor_2__Sf)))&(rightMotor_0__Sf))&(rightMotor_1__Sf))&!((rightMotor_2__Sf)))))) & ((((pREV_aux_5__S190)<->((nextMoveMode_0__S190)&(nextMoveMode_1__S190))))) & ((((pREV_aux_5__S195)<->((nextMoveMode_0__S195)&(nextMoveMode_1__S195))))) & ((((pREV_aux_5__S210)<->((nextMoveMode_0__S210)&(nextMoveMode_1__S210))))) & ((((pREV_aux_5__S196)<->((nextMoveMode_0__S196)&(nextMoveMode_1__S196))))) & ((((pREV_aux_5__S213)<->((nextMoveMode_0__S213)&(nextMoveMode_1__S213))))) & ((((pREV_aux_5__Sf)<->((nextMoveMode_0__Sf)&(nextMoveMode_1__Sf)))))
+
+
+=== INTERPOLANT ===
+!pREV_aux_5__S213 & pREV_aux_4__S213 & pREV_aux_2__S213 & obstacle_0__S213 & pREV_aux_4__S213 & pREV_aux_2__S213
+
+=== STATE COMPONENTS ===
+{'S213': '!pREV_aux_5 & obstacle_0 & pREV_aux_4 & pREV_aux_2'}
+
+=== Refinements === 
+['G(!(!pREV_aux_5 & obstacle_0 & pREV_aux_4 & pREV_aux_2))']
+++++ ELAPSED TIME 3.014381499000592
+++++ QUEUE LENGTH 0
+++++ Solutions 0
+++++ Duplicates 0
+++++ Node number 2
+++++ Refinement ['G(!(!pREV_aux_5 & obstacle_0 & pREV_aux_4 & pREV_aux_2))']
+++++ Length 1
+++ REALIZABILITY CHECK
+++ REALIZABLE REFINEMENT: SAT CHECK

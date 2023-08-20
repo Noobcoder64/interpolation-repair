@@ -1,0 +1,299 @@
+Parsing...done
+Parsing...done
+Removing non-boolean ITEs...done
+Removing non-boolean ITEs...done
+Canonizing...done
+Canonizing...done
+Converting formula to CNF...done
+Converting formula to CNF...done
+
+Solving time: 0.003635 sec
+Original proof size: 51
+Computing interpolant #1...done
+Interpolant #1 written to INTERP.1.msat
+
+DPLL Engine Statistics:
+Atoms: 441 (110 bool, 0 theory, 331 cnf) 
+Clauses: 181
+Avg clause length: 2.18232
+Restarts: 0
+Decisions: 0
+All propagations: 395
+All conflicts: 0
+
+Theory Solvers Statistics:
+------------------------------------
+Total time: 0.004 sec
+Memory used: 23.207 MBytes
+
+unsat
+=== INPUT VARS ===
+frontDistSense_0
+backDistSense_0
+isReady
+bluetoothCmd_0
+bluetoothCmd_1
+bluetoothCmd_2
+eNV_CONSTRAINT_0_respondsTo_responded
+eNV_CONSTRAINT_1_respondsTo_responded
+eNV_CONSTRAINT_2_respondsTo_responded
+=== OUTPUT VARS ===
+balancer_0
+balancer_1
+balancer_2
+spec_blockedState_0
+spec_blockedState_1
+=== ASSUMPTIONS ===
+(!(isReady))
+(((bluetoothCmd_0&!(bluetoothCmd_1))&bluetoothCmd_2))
+((!(frontDistSense_0)&!(backDistSense_0)))
+G(F(isReady))
+G((isReady->X(isReady)))
+G(F(eNV_CONSTRAINT_0_respondsTo_responded))
+G(F(eNV_CONSTRAINT_1_respondsTo_responded))
+G(F(eNV_CONSTRAINT_2_respondsTo_responded))
+(!(((bluetoothCmd_0&bluetoothCmd_1)&!(bluetoothCmd_2))))
+G(!(((X(bluetoothCmd_0)&X(bluetoothCmd_1))&!(X(bluetoothCmd_2)))))
+(!(((bluetoothCmd_0&bluetoothCmd_1)&bluetoothCmd_2)))
+G(!(((X(bluetoothCmd_0)&X(bluetoothCmd_1))&X(bluetoothCmd_2))))
+(eNV_CONSTRAINT_0_respondsTo_responded)
+G((X(eNV_CONSTRAINT_0_respondsTo_responded)<->((!(!((((!(balancer_0)&balancer_1)&!(balancer_2))|((!(balancer_0)&!(balancer_1))&!(balancer_2)))))|!(backDistSense_0))|(eNV_CONSTRAINT_0_respondsTo_responded&!(!((((!(balancer_0)&balancer_1)&!(balancer_2))|((!(balancer_0)&!(balancer_1))&!(balancer_2)))))))))
+(eNV_CONSTRAINT_1_respondsTo_responded)
+G((X(eNV_CONSTRAINT_1_respondsTo_responded)<->((!(((!(balancer_0)&!(balancer_1))&balancer_2))|frontDistSense_0)|(eNV_CONSTRAINT_1_respondsTo_responded&!(((!(balancer_0)&!(balancer_1))&balancer_2))))))
+(eNV_CONSTRAINT_2_respondsTo_responded)
+G((X(eNV_CONSTRAINT_2_respondsTo_responded)<->((!(((!(balancer_0)&balancer_1)&!(balancer_2)))|backDistSense_0)|(eNV_CONSTRAINT_2_respondsTo_responded&!(((!(balancer_0)&balancer_1)&!(balancer_2)))))))
+=== GUARANTEES ===
+(((!(balancer_0)&!(balancer_1))&!(balancer_2)))
+G(F((((bluetoothCmd_0&!(bluetoothCmd_1)))&bluetoothCmd_2)->((!(balancer_0)&!(balancer_1))&balancer_2)))
+((!(spec_blockedState_0)&!(spec_blockedState_1)))
+G(F((((bluetoothCmd_0&!(bluetoothCmd_1)))&bluetoothCmd_2)->((!(spec_blockedState_0)&!(spec_blockedState_1))|(spec_blockedState_0&!(spec_blockedState_1)))))
+G(((((bluetoothCmd_0&!(bluetoothCmd_1))&bluetoothCmd_2)&isReady)->(((((((((!(spec_blockedState_0)&!(spec_blockedState_1))&((!(frontDistSense_0)&!(!(frontDistSense_0)))|!(frontDistSense_0)))&(!(X(spec_blockedState_0))&!(X(spec_blockedState_1))))|(((!(spec_blockedState_0)&!(spec_blockedState_1))&((frontDistSense_0&!((((balancer_0&!(balancer_1))&!(balancer_2))|((!(balancer_0)&balancer_1)&balancer_2))))&!(!(frontDistSense_0))))&(!(X(spec_blockedState_0))&X(spec_blockedState_1))))|(((!(spec_blockedState_0)&!(spec_blockedState_1))&((frontDistSense_0&(((balancer_0&!(balancer_1))&!(balancer_2))|((!(balancer_0)&balancer_1)&balancer_2)))&!(!(frontDistSense_0))))&(X(spec_blockedState_0)&!(X(spec_blockedState_1)))))|((!(spec_blockedState_0)&spec_blockedState_1)&(!(X(spec_blockedState_0))&X(spec_blockedState_1))))|(((spec_blockedState_0&!(spec_blockedState_1))&!(frontDistSense_0))&(!(X(spec_blockedState_0))&!(X(spec_blockedState_1)))))|(((spec_blockedState_0&!(spec_blockedState_1))&(!((((balancer_0&!(balancer_1))&!(balancer_2))|((!(balancer_0)&balancer_1)&balancer_2)))&!(!(frontDistSense_0))))&(!(X(spec_blockedState_0))&X(spec_blockedState_1))))|(((spec_blockedState_0&!(spec_blockedState_1))&((((balancer_0&!(balancer_1))&!(balancer_2))|((!(balancer_0)&balancer_1)&balancer_2))&!(!(frontDistSense_0))))&(X(spec_blockedState_0)&!(X(spec_blockedState_1)))))))
+(!(((balancer_0&!(balancer_1))&balancer_2)))
+G(!(((X(balancer_0)&!(X(balancer_1)))&X(balancer_2))))
+(!(((balancer_0&balancer_1)&!(balancer_2))))
+G(!(((X(balancer_0)&X(balancer_1))&!(X(balancer_2)))))
+(!(((balancer_0&balancer_1)&balancer_2)))
+G(!(((X(balancer_0)&X(balancer_1))&X(balancer_2))))
+((!(isReady)->((!(balancer_0)&!(balancer_1))&!(balancer_2))))
+G((!(X(isReady))->((!(X(balancer_0))&!(X(balancer_1)))&!(X(balancer_2)))))
+((((!(balancer_0)&!(balancer_1))&balancer_2)->!(frontDistSense_0)))
+G((((!(X(balancer_0))&!(X(balancer_1)))&X(balancer_2))->!(X(frontDistSense_0))))
+((((!(balancer_0)&balancer_1)&!(balancer_2))->!(backDistSense_0)))
+G((((!(X(balancer_0))&X(balancer_1))&!(X(balancer_2)))->!(X(backDistSense_0))))
+(!((spec_blockedState_0&spec_blockedState_1)))
+G(!((X(spec_blockedState_0)&X(spec_blockedState_1))))
+((((!(bluetoothCmd_0)&!(bluetoothCmd_1))&bluetoothCmd_2)->((!(frontDistSense_0)&isReady)->((!(balancer_0)&!(balancer_1))&balancer_2))))
+G((((!(X(bluetoothCmd_0))&!(X(bluetoothCmd_1)))&X(bluetoothCmd_2))->((!(X(frontDistSense_0))&X(isReady))->((!(X(balancer_0))&!(X(balancer_1)))&X(balancer_2)))))
+((((!(bluetoothCmd_0)&bluetoothCmd_1)&!(bluetoothCmd_2))->((!(backDistSense_0)&isReady)->((!(balancer_0)&balancer_1)&!(balancer_2)))))
+G((((!(X(bluetoothCmd_0))&X(bluetoothCmd_1))&!(X(bluetoothCmd_2)))->((!(X(backDistSense_0))&X(isReady))->((!(X(balancer_0))&X(balancer_1))&!(X(balancer_2))))))
+((((bluetoothCmd_0&!(bluetoothCmd_1))&!(bluetoothCmd_2))->(isReady->((balancer_0&!(balancer_1))&!(balancer_2)))))
+G((((X(bluetoothCmd_0)&!(X(bluetoothCmd_1)))&!(X(bluetoothCmd_2)))->(X(isReady)->((X(balancer_0)&!(X(balancer_1)))&!(X(balancer_2))))))
+((((!(bluetoothCmd_0)&bluetoothCmd_1)&bluetoothCmd_2)->(isReady->((!(balancer_0)&balancer_1)&balancer_2))))
+G((((!(X(bluetoothCmd_0))&X(bluetoothCmd_1))&X(bluetoothCmd_2))->(X(isReady)->((!(X(balancer_0))&X(balancer_1))&X(balancer_2)))))
+((((((!(bluetoothCmd_0)&!(bluetoothCmd_1))&!(bluetoothCmd_2))|(((!(bluetoothCmd_0)&!(bluetoothCmd_1))&bluetoothCmd_2)&frontDistSense_0))|(((!(bluetoothCmd_0)&bluetoothCmd_1)&!(bluetoothCmd_2))&backDistSense_0))->(isReady->((!(balancer_0)&!(balancer_1))&!(balancer_2)))))
+G((((((!(X(bluetoothCmd_0))&!(X(bluetoothCmd_1)))&!(X(bluetoothCmd_2)))|(((!(X(bluetoothCmd_0))&!(X(bluetoothCmd_1)))&X(bluetoothCmd_2))&X(frontDistSense_0)))|(((!(X(bluetoothCmd_0))&X(bluetoothCmd_1))&!(X(bluetoothCmd_2)))&X(backDistSense_0)))->(X(isReady)->((!(X(balancer_0))&!(X(balancer_1)))&!(X(balancer_2))))))
++++++++++++ inputs/SYNTECH15-1UNREAL/GyroLTL_700_GyroAspect_fixed_3.spectra
+Resetting temp...
+Reset complete!
+++++ ELAPSED TIME 0
+++++ QUEUE LENGTH 0
+++++ Solutions 0
+++++ Duplicates 0
+++++ Node number 1
+++++ Refinement []
+++++ Length 0
+++ REALIZABILITY CHECK
+++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION
+b"Using BDD Package: CUDDFactory, Version: CUDD 3.0
+Using BDD Package: CUDDFactory, Version: CUDD 3.0
+0    [main] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+java.util.MissingResourceException: The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+at org.eclipse.emf.common.util.DelegatingResourceLocator.delegatedGetString(DelegatingResourceLocator.java:586)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:450)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:605)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:597)
+at org.eclipse.emf.ecore.util.Diagnostician.createDefaultDiagnostic(Diagnostician.java:110)
+at org.eclipse.emf.ecore.util.Diagnostician.validate(Diagnostician.java:139)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:147)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:125)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:91)
+at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getSpectraModel(SpectraInputProviderNoIDE.java:166)
+at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getGameInput(SpectraInputProviderNoIDE.java:109)
+at tau.smlab.syntech.Spectra.cli.SpectraCliTool.main(SpectraCliTool.java:162)
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 542
+Nodes table size: 3066
+Result: Specification is unrealizable
+extract strategy - Start
+
+extract strategy - End
+Initial State 0 <frontDistSense_0:false, backDistSense_0:false, isReady:false, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:false>
+With successors : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+State 1 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:false>
+With successors : 29, 30, 31, 32
+State 2 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 29, 30, 31, 32
+State 3 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 29, 30, 31, 32
+State 4 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:false>
+With successors : 56, 57, 58, 59
+State 5 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 56, 57, 58, 59
+State 6 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:false, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 56, 57, 58, 59
+State 7 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:true, spec_blockedState_0:false, spec_blockedState_1:false>
+With successors : 13, 14, 15, 16
+State 8 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:true, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 29, 30, 31, 32
+State 9 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:true, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 13, 14, 15, 16
+State 10 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:true, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:false>
+With successors : 13, 14, 15, 16
+State 11 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:true, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 29, 30, 31, 32
+State 12 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:true, balancer_1:false, balancer_2:false, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 13, 14, 15, 16
+State 13 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 33, 34, 35, 36
+State 14 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:false, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 52, 53, 54, 55
+State 15 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:true, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 17, 18, 19, 20
+State 16 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:true, balancer_1:false, balancer_2:false, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 17, 18, 19, 20
+State 17 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 37, 38, 39, 40
+State 18 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:false, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 41, 42, 43, 44
+State 19 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:true, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 21, 22, 23, 24
+State 20 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:true, balancer_1:false, balancer_2:false, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 21, 22, 23, 24
+State 21 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 2, 5, 8, 11
+State 22 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:false, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 25, 26, 27, 28
+State 23 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:true, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 3, 6, 9, 12
+State 24 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:true, balancer_1:false, balancer_2:false, spec_blockedState_0:true, spec_blockedState_1:false>
+With successors : 3, 6, 9, 12
+State 25 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 29, 30, 31, 32
+State 26 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:false, balancer_1:true, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 56, 57, 58, 59
+State 27 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:false, balancer_1:true, balancer_2:true, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 29, 30, 31, 32
+State 28 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:true, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 29, 30, 31, 32
+State 29 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 33, 34, 35, 36
+State 30 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 52, 53, 54, 55
+State 31 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:true, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 33, 34, 35, 36
+State 32 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:true, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 33, 34, 35, 36
+State 33 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 37, 38, 39, 40
+State 34 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 41, 42, 43, 44
+State 35 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:true, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 37, 38, 39, 40
+State 36 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:true, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 37, 38, 39, 40
+State 37 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 2, 5, 8, 11
+State 38 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 25, 26, 27, 28
+State 39 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:true, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 2, 5, 8, 11
+State 40 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:true, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 2, 5, 8, 11
+State 41 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 37, 38, 39, 40
+State 42 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:false, balancer_1:true, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 45, 46, 47
+State 43 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:false, balancer_1:true, balancer_2:true, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 37, 38, 39, 40
+State 44 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:true, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 37, 38, 39, 40
+State 45 <frontDistSense_0:true, backDistSense_0:true, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 37, 38, 39, 40
+State 46 <frontDistSense_0:true, backDistSense_0:true, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:false, balancer_1:true, balancer_2:true, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 48, 49, 50, 51
+State 47 <frontDistSense_0:true, backDistSense_0:true, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:true, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 48, 49, 50, 51
+State 48 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 2, 5, 8, 11
+State 49 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 25, 26, 27, 28
+State 50 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:false, balancer_1:true, balancer_2:true, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 2, 5, 8, 11
+State 51 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:false, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:true, balancer_0:true, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 2, 5, 8, 11
+State 52 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 37, 38, 39, 40
+State 53 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:false, balancer_1:true, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 41, 42, 43, 44
+State 54 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:false, balancer_1:true, balancer_2:true, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 37, 38, 39, 40
+State 55 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:true, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 37, 38, 39, 40
+State 56 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:false, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 33, 34, 35, 36
+State 57 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:false, balancer_1:true, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 52, 53, 54, 55
+State 58 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:false, balancer_1:true, balancer_2:true, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 33, 34, 35, 36
+State 59 <frontDistSense_0:true, backDistSense_0:false, isReady:true, bluetoothCmd_0:true, bluetoothCmd_1:false, bluetoothCmd_2:true, eNV_CONSTRAINT_0_respondsTo_responded:true, eNV_CONSTRAINT_1_respondsTo_responded:true, eNV_CONSTRAINT_2_respondsTo_responded:false, balancer_0:true, balancer_1:false, balancer_2:false, spec_blockedState_0:false, spec_blockedState_1:true>
+With successors : 33, 34, 35, 36
+"
+INI:  <counterstrategy.State object at 0x7fdb43c81fd0>
+TRANSIENT:  [<counterstrategy.State object at 0x7fdb4354ee80>, <counterstrategy.State object at 0x7fdb4354efa0>, <counterstrategy.State object at 0x7fdb4354ed90>]
+=== COUNTERRUN ===
+S0 -> S8 -> S32 -> S36 -> loop( -> S38 -> S28 -> S31 -> S34 -> S41)
+
+LTL TOKENS:  ['(', '(', 'isReady', '->', 'X', '(', 'isReady', ')', ')', ')']
+LTL TOKENS:  ['(', '!', '(', '(', '(', 'X', '(', 'bluetoothCmd_0', ')', '&', 'X', '(', 'bluetoothCmd_1', ')', ')', '&', '!', '(', 'X', '(', 'bluetoothCmd_2', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '!', '(', '(', '(', 'X', '(', 'bluetoothCmd_0', ')', '&', 'X', '(', 'bluetoothCmd_1', ')', ')', '&', 'X', '(', 'bluetoothCmd_2', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'eNV_CONSTRAINT_0_respondsTo_responded', ')', '<->', '(', '(', '!', '(', '!', '(', '(', '(', '(', '!', '(', 'balancer_0', ')', '&', 'balancer_1', ')', '&', '!', '(', 'balancer_2', ')', ')', '|', '(', '(', '!', '(', 'balancer_0', ')', '&', '!', '(', 'balancer_1', ')', ')', '&', '!', '(', 'balancer_2', ')', ')', ')', ')', ')', '|', '!', '(', 'backDistSense_0', ')', ')', '|', '(', 'eNV_CONSTRAINT_0_respondsTo_responded', '&', '!', '(', '!', '(', '(', '(', '(', '!', '(', 'balancer_0', ')', '&', 'balancer_1', ')', '&', '!', '(', 'balancer_2', ')', ')', '|', '(', '(', '!', '(', 'balancer_0', ')', '&', '!', '(', 'balancer_1', ')', ')', '&', '!', '(', 'balancer_2', ')', ')', ')', ')', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'eNV_CONSTRAINT_1_respondsTo_responded', ')', '<->', '(', '(', '!', '(', '(', '(', '!', '(', 'balancer_0', ')', '&', '!', '(', 'balancer_1', ')', ')', '&', 'balancer_2', ')', ')', '|', 'frontDistSense_0', ')', '|', '(', 'eNV_CONSTRAINT_1_respondsTo_responded', '&', '!', '(', '(', '(', '!', '(', 'balancer_0', ')', '&', '!', '(', 'balancer_1', ')', ')', '&', 'balancer_2', ')', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', 'X', '(', 'eNV_CONSTRAINT_2_respondsTo_responded', ')', '<->', '(', '(', '!', '(', '(', '(', '!', '(', 'balancer_0', ')', '&', 'balancer_1', ')', '&', '!', '(', 'balancer_2', ')', ')', ')', '|', 'backDistSense_0', ')', '|', '(', 'eNV_CONSTRAINT_2_respondsTo_responded', '&', '!', '(', '(', '(', '!', '(', 'balancer_0', ')', '&', 'balancer_1', ')', '&', '!', '(', 'balancer_2', ')', ')', ')', ')', ')', ')', ')']
+LTL TOKENS:  ['(', '(', '(', '(', '!', '(', 'X', '(', 'balancer_0', ')', ')', '&', '!', '(', 'X', '(', 'balancer_1', ')', ')', ')', '&', 'X', '(', 'balancer_2', ')', ')', '->', '!', '(', 'X', '(', 'frontDistSense_0', ')', ')', ')', ')']
+=== UNREALIZABLE CORE ===
+G(F((((bluetoothCmd_0&!(bluetoothCmd_1)))&bluetoothCmd_2)->((!(balancer_0)&!(balancer_1))&balancer_2)))
+G((((!(X(balancer_0))&!(X(balancer_1)))&X(balancer_2))->!(X(frontDistSense_0))))
+
+=== ASSUMPTIONS BOOLEAN ===
+((!(isReady__S0))) & ((((bluetoothCmd_0__S0&!(bluetoothCmd_1__S0))&bluetoothCmd_2__S0))) & (((!(frontDistSense_0__S0)&!(backDistSense_0__S0)))) & (((isReady__S38)) | ((isReady__S28)) | ((isReady__S31)) | ((isReady__S34)) | ((isReady__S41))) & (((isReady__S0->(isReady__S8)))) & (((isReady__S8->(isReady__S32)))) & (((isReady__S32->(isReady__S36)))) & (((isReady__S36->(isReady__S38)))) & (((isReady__S38->(isReady__S28)))) & (((isReady__S28->(isReady__S31)))) & (((isReady__S31->(isReady__S34)))) & (((isReady__S34->(isReady__S41)))) & (((isReady__S41->(isReady__S38)))) & (((eNV_CONSTRAINT_0_respondsTo_responded__S38)) | ((eNV_CONSTRAINT_0_respondsTo_responded__S28)) | ((eNV_CONSTRAINT_0_respondsTo_responded__S31)) | ((eNV_CONSTRAINT_0_respondsTo_responded__S34)) | ((eNV_CONSTRAINT_0_respondsTo_responded__S41))) & (((eNV_CONSTRAINT_1_respondsTo_responded__S38)) | ((eNV_CONSTRAINT_1_respondsTo_responded__S28)) | ((eNV_CONSTRAINT_1_respondsTo_responded__S31)) | ((eNV_CONSTRAINT_1_respondsTo_responded__S34)) | ((eNV_CONSTRAINT_1_respondsTo_responded__S41))) & (((eNV_CONSTRAINT_2_respondsTo_responded__S38)) | ((eNV_CONSTRAINT_2_respondsTo_responded__S28)) | ((eNV_CONSTRAINT_2_respondsTo_responded__S31)) | ((eNV_CONSTRAINT_2_respondsTo_responded__S34)) | ((eNV_CONSTRAINT_2_respondsTo_responded__S41))) & ((!(((bluetoothCmd_0__S0&bluetoothCmd_1__S0)&!(bluetoothCmd_2__S0))))) & ((!((((bluetoothCmd_0__S8)&(bluetoothCmd_1__S8))&!((bluetoothCmd_2__S8)))))) & ((!((((bluetoothCmd_0__S32)&(bluetoothCmd_1__S32))&!((bluetoothCmd_2__S32)))))) & ((!((((bluetoothCmd_0__S36)&(bluetoothCmd_1__S36))&!((bluetoothCmd_2__S36)))))) & ((!((((bluetoothCmd_0__S38)&(bluetoothCmd_1__S38))&!((bluetoothCmd_2__S38)))))) & ((!((((bluetoothCmd_0__S28)&(bluetoothCmd_1__S28))&!((bluetoothCmd_2__S28)))))) & ((!((((bluetoothCmd_0__S31)&(bluetoothCmd_1__S31))&!((bluetoothCmd_2__S31)))))) & ((!((((bluetoothCmd_0__S34)&(bluetoothCmd_1__S34))&!((bluetoothCmd_2__S34)))))) & ((!((((bluetoothCmd_0__S41)&(bluetoothCmd_1__S41))&!((bluetoothCmd_2__S41)))))) & ((!((((bluetoothCmd_0__S38)&(bluetoothCmd_1__S38))&!((bluetoothCmd_2__S38)))))) & ((!(((bluetoothCmd_0__S0&bluetoothCmd_1__S0)&bluetoothCmd_2__S0)))) & ((!((((bluetoothCmd_0__S8)&(bluetoothCmd_1__S8))&(bluetoothCmd_2__S8))))) & ((!((((bluetoothCmd_0__S32)&(bluetoothCmd_1__S32))&(bluetoothCmd_2__S32))))) & ((!((((bluetoothCmd_0__S36)&(bluetoothCmd_1__S36))&(bluetoothCmd_2__S36))))) & ((!((((bluetoothCmd_0__S38)&(bluetoothCmd_1__S38))&(bluetoothCmd_2__S38))))) & ((!((((bluetoothCmd_0__S28)&(bluetoothCmd_1__S28))&(bluetoothCmd_2__S28))))) & ((!((((bluetoothCmd_0__S31)&(bluetoothCmd_1__S31))&(bluetoothCmd_2__S31))))) & ((!((((bluetoothCmd_0__S34)&(bluetoothCmd_1__S34))&(bluetoothCmd_2__S34))))) & ((!((((bluetoothCmd_0__S41)&(bluetoothCmd_1__S41))&(bluetoothCmd_2__S41))))) & ((!((((bluetoothCmd_0__S38)&(bluetoothCmd_1__S38))&(bluetoothCmd_2__S38))))) & ((eNV_CONSTRAINT_0_respondsTo_responded__S0)) & ((((eNV_CONSTRAINT_0_respondsTo_responded__S8)<->((!(!((((!(balancer_0__S0)&balancer_1__S0)&!(balancer_2__S0))|((!(balancer_0__S0)&!(balancer_1__S0))&!(balancer_2__S0)))))|!(backDistSense_0__S0))|(eNV_CONSTRAINT_0_respondsTo_responded__S0&!(!((((!(balancer_0__S0)&balancer_1__S0)&!(balancer_2__S0))|((!(balancer_0__S0)&!(balancer_1__S0))&!(balancer_2__S0)))))))))) & ((((eNV_CONSTRAINT_0_respondsTo_responded__S32)<->((!(!((((!(balancer_0__S8)&balancer_1__S8)&!(balancer_2__S8))|((!(balancer_0__S8)&!(balancer_1__S8))&!(balancer_2__S8)))))|!(backDistSense_0__S8))|(eNV_CONSTRAINT_0_respondsTo_responded__S8&!(!((((!(balancer_0__S8)&balancer_1__S8)&!(balancer_2__S8))|((!(balancer_0__S8)&!(balancer_1__S8))&!(balancer_2__S8)))))))))) & ((((eNV_CONSTRAINT_0_respondsTo_responded__S36)<->((!(!((((!(balancer_0__S32)&balancer_1__S32)&!(balancer_2__S32))|((!(balancer_0__S32)&!(balancer_1__S32))&!(balancer_2__S32)))))|!(backDistSense_0__S32))|(eNV_CONSTRAINT_0_respondsTo_responded__S32&!(!((((!(balancer_0__S32)&balancer_1__S32)&!(balancer_2__S32))|((!(balancer_0__S32)&!(balancer_1__S32))&!(balancer_2__S32)))))))))) & ((((eNV_CONSTRAINT_0_respondsTo_responded__S38)<->((!(!((((!(balancer_0__S36)&balancer_1__S36)&!(balancer_2__S36))|((!(balancer_0__S36)&!(balancer_1__S36))&!(balancer_2__S36)))))|!(backDistSense_0__S36))|(eNV_CONSTRAINT_0_respondsTo_responded__S36&!(!((((!(balancer_0__S36)&balancer_1__S36)&!(balancer_2__S36))|((!(balancer_0__S36)&!(balancer_1__S36))&!(balancer_2__S36)))))))))) & ((((eNV_CONSTRAINT_0_respondsTo_responded__S28)<->((!(!((((!(balancer_0__S38)&balancer_1__S38)&!(balancer_2__S38))|((!(balancer_0__S38)&!(balancer_1__S38))&!(balancer_2__S38)))))|!(backDistSense_0__S38))|(eNV_CONSTRAINT_0_respondsTo_responded__S38&!(!((((!(balancer_0__S38)&balancer_1__S38)&!(balancer_2__S38))|((!(balancer_0__S38)&!(balancer_1__S38))&!(balancer_2__S38)))))))))) & ((((eNV_CONSTRAINT_0_respondsTo_responded__S31)<->((!(!((((!(balancer_0__S28)&balancer_1__S28)&!(balancer_2__S28))|((!(balancer_0__S28)&!(balancer_1__S28))&!(balancer_2__S28)))))|!(backDistSense_0__S28))|(eNV_CONSTRAINT_0_respondsTo_responded__S28&!(!((((!(balancer_0__S28)&balancer_1__S28)&!(balancer_2__S28))|((!(balancer_0__S28)&!(balancer_1__S28))&!(balancer_2__S28)))))))))) & ((((eNV_CONSTRAINT_0_respondsTo_responded__S34)<->((!(!((((!(balancer_0__S31)&balancer_1__S31)&!(balancer_2__S31))|((!(balancer_0__S31)&!(balancer_1__S31))&!(balancer_2__S31)))))|!(backDistSense_0__S31))|(eNV_CONSTRAINT_0_respondsTo_responded__S31&!(!((((!(balancer_0__S31)&balancer_1__S31)&!(balancer_2__S31))|((!(balancer_0__S31)&!(balancer_1__S31))&!(balancer_2__S31)))))))))) & ((((eNV_CONSTRAINT_0_respondsTo_responded__S41)<->((!(!((((!(balancer_0__S34)&balancer_1__S34)&!(balancer_2__S34))|((!(balancer_0__S34)&!(balancer_1__S34))&!(balancer_2__S34)))))|!(backDistSense_0__S34))|(eNV_CONSTRAINT_0_respondsTo_responded__S34&!(!((((!(balancer_0__S34)&balancer_1__S34)&!(balancer_2__S34))|((!(balancer_0__S34)&!(balancer_1__S34))&!(balancer_2__S34)))))))))) & ((((eNV_CONSTRAINT_0_respondsTo_responded__S38)<->((!(!((((!(balancer_0__S41)&balancer_1__S41)&!(balancer_2__S41))|((!(balancer_0__S41)&!(balancer_1__S41))&!(balancer_2__S41)))))|!(backDistSense_0__S41))|(eNV_CONSTRAINT_0_respondsTo_responded__S41&!(!((((!(balancer_0__S41)&balancer_1__S41)&!(balancer_2__S41))|((!(balancer_0__S41)&!(balancer_1__S41))&!(balancer_2__S41)))))))))) & ((eNV_CONSTRAINT_1_respondsTo_responded__S0)) & ((((eNV_CONSTRAINT_1_respondsTo_responded__S8)<->((!(((!(balancer_0__S0)&!(balancer_1__S0))&balancer_2__S0))|frontDistSense_0__S0)|(eNV_CONSTRAINT_1_respondsTo_responded__S0&!(((!(balancer_0__S0)&!(balancer_1__S0))&balancer_2__S0))))))) & ((((eNV_CONSTRAINT_1_respondsTo_responded__S32)<->((!(((!(balancer_0__S8)&!(balancer_1__S8))&balancer_2__S8))|frontDistSense_0__S8)|(eNV_CONSTRAINT_1_respondsTo_responded__S8&!(((!(balancer_0__S8)&!(balancer_1__S8))&balancer_2__S8))))))) & ((((eNV_CONSTRAINT_1_respondsTo_responded__S36)<->((!(((!(balancer_0__S32)&!(balancer_1__S32))&balancer_2__S32))|frontDistSense_0__S32)|(eNV_CONSTRAINT_1_respondsTo_responded__S32&!(((!(balancer_0__S32)&!(balancer_1__S32))&balancer_2__S32))))))) & ((((eNV_CONSTRAINT_1_respondsTo_responded__S38)<->((!(((!(balancer_0__S36)&!(balancer_1__S36))&balancer_2__S36))|frontDistSense_0__S36)|(eNV_CONSTRAINT_1_respondsTo_responded__S36&!(((!(balancer_0__S36)&!(balancer_1__S36))&balancer_2__S36))))))) & ((((eNV_CONSTRAINT_1_respondsTo_responded__S28)<->((!(((!(balancer_0__S38)&!(balancer_1__S38))&balancer_2__S38))|frontDistSense_0__S38)|(eNV_CONSTRAINT_1_respondsTo_responded__S38&!(((!(balancer_0__S38)&!(balancer_1__S38))&balancer_2__S38))))))) & ((((eNV_CONSTRAINT_1_respondsTo_responded__S31)<->((!(((!(balancer_0__S28)&!(balancer_1__S28))&balancer_2__S28))|frontDistSense_0__S28)|(eNV_CONSTRAINT_1_respondsTo_responded__S28&!(((!(balancer_0__S28)&!(balancer_1__S28))&balancer_2__S28))))))) & ((((eNV_CONSTRAINT_1_respondsTo_responded__S34)<->((!(((!(balancer_0__S31)&!(balancer_1__S31))&balancer_2__S31))|frontDistSense_0__S31)|(eNV_CONSTRAINT_1_respondsTo_responded__S31&!(((!(balancer_0__S31)&!(balancer_1__S31))&balancer_2__S31))))))) & ((((eNV_CONSTRAINT_1_respondsTo_responded__S41)<->((!(((!(balancer_0__S34)&!(balancer_1__S34))&balancer_2__S34))|frontDistSense_0__S34)|(eNV_CONSTRAINT_1_respondsTo_responded__S34&!(((!(balancer_0__S34)&!(balancer_1__S34))&balancer_2__S34))))))) & ((((eNV_CONSTRAINT_1_respondsTo_responded__S38)<->((!(((!(balancer_0__S41)&!(balancer_1__S41))&balancer_2__S41))|frontDistSense_0__S41)|(eNV_CONSTRAINT_1_respondsTo_responded__S41&!(((!(balancer_0__S41)&!(balancer_1__S41))&balancer_2__S41))))))) & ((eNV_CONSTRAINT_2_respondsTo_responded__S0)) & ((((eNV_CONSTRAINT_2_respondsTo_responded__S8)<->((!(((!(balancer_0__S0)&balancer_1__S0)&!(balancer_2__S0)))|backDistSense_0__S0)|(eNV_CONSTRAINT_2_respondsTo_responded__S0&!(((!(balancer_0__S0)&balancer_1__S0)&!(balancer_2__S0)))))))) & ((((eNV_CONSTRAINT_2_respondsTo_responded__S32)<->((!(((!(balancer_0__S8)&balancer_1__S8)&!(balancer_2__S8)))|backDistSense_0__S8)|(eNV_CONSTRAINT_2_respondsTo_responded__S8&!(((!(balancer_0__S8)&balancer_1__S8)&!(balancer_2__S8)))))))) & ((((eNV_CONSTRAINT_2_respondsTo_responded__S36)<->((!(((!(balancer_0__S32)&balancer_1__S32)&!(balancer_2__S32)))|backDistSense_0__S32)|(eNV_CONSTRAINT_2_respondsTo_responded__S32&!(((!(balancer_0__S32)&balancer_1__S32)&!(balancer_2__S32)))))))) & ((((eNV_CONSTRAINT_2_respondsTo_responded__S38)<->((!(((!(balancer_0__S36)&balancer_1__S36)&!(balancer_2__S36)))|backDistSense_0__S36)|(eNV_CONSTRAINT_2_respondsTo_responded__S36&!(((!(balancer_0__S36)&balancer_1__S36)&!(balancer_2__S36)))))))) & ((((eNV_CONSTRAINT_2_respondsTo_responded__S28)<->((!(((!(balancer_0__S38)&balancer_1__S38)&!(balancer_2__S38)))|backDistSense_0__S38)|(eNV_CONSTRAINT_2_respondsTo_responded__S38&!(((!(balancer_0__S38)&balancer_1__S38)&!(balancer_2__S38)))))))) & ((((eNV_CONSTRAINT_2_respondsTo_responded__S31)<->((!(((!(balancer_0__S28)&balancer_1__S28)&!(balancer_2__S28)))|backDistSense_0__S28)|(eNV_CONSTRAINT_2_respondsTo_responded__S28&!(((!(balancer_0__S28)&balancer_1__S28)&!(balancer_2__S28)))))))) & ((((eNV_CONSTRAINT_2_respondsTo_responded__S34)<->((!(((!(balancer_0__S31)&balancer_1__S31)&!(balancer_2__S31)))|backDistSense_0__S31)|(eNV_CONSTRAINT_2_respondsTo_responded__S31&!(((!(balancer_0__S31)&balancer_1__S31)&!(balancer_2__S31)))))))) & ((((eNV_CONSTRAINT_2_respondsTo_responded__S41)<->((!(((!(balancer_0__S34)&balancer_1__S34)&!(balancer_2__S34)))|backDistSense_0__S34)|(eNV_CONSTRAINT_2_respondsTo_responded__S34&!(((!(balancer_0__S34)&balancer_1__S34)&!(balancer_2__S34)))))))) & ((((eNV_CONSTRAINT_2_respondsTo_responded__S38)<->((!(((!(balancer_0__S41)&balancer_1__S41)&!(balancer_2__S41)))|backDistSense_0__S41)|(eNV_CONSTRAINT_2_respondsTo_responded__S41&!(((!(balancer_0__S41)&balancer_1__S41)&!(balancer_2__S41))))))))
+
+=== VALUATIONS BOOLEAN ===
+!backDistSense_0__S0 & !frontDistSense_0__S0 & bluetoothCmd_0__S0 & !isReady__S0 & bluetoothCmd_2__S0 & eNV_CONSTRAINT_1_respondsTo_responded__S0 & eNV_CONSTRAINT_2_respondsTo_responded__S0 & !bluetoothCmd_1__S0 & eNV_CONSTRAINT_0_respondsTo_responded__S0 & !backDistSense_0__S8 & bluetoothCmd_0__S8 & bluetoothCmd_2__S8 & eNV_CONSTRAINT_1_respondsTo_responded__S8 & balancer_2__S8 & isReady__S8 & frontDistSense_0__S8 & eNV_CONSTRAINT_2_respondsTo_responded__S8 & spec_blockedState_1__S8 & !balancer_0__S8 & balancer_1__S8 & !bluetoothCmd_1__S8 & eNV_CONSTRAINT_0_respondsTo_responded__S8 & !spec_blockedState_0__S8 & !backDistSense_0__S32 & !balancer_1__S32 & bluetoothCmd_0__S32 & bluetoothCmd_2__S32 & eNV_CONSTRAINT_1_respondsTo_responded__S32 & !balancer_2__S32 & isReady__S32 & frontDistSense_0__S32 & eNV_CONSTRAINT_2_respondsTo_responded__S32 & !bluetoothCmd_1__S32 & eNV_CONSTRAINT_0_respondsTo_responded__S32 & balancer_0__S32 & !backDistSense_0__S36 & !balancer_1__S36 & bluetoothCmd_0__S36 & bluetoothCmd_2__S36 & eNV_CONSTRAINT_1_respondsTo_responded__S36 & !balancer_2__S36 & isReady__S36 & frontDistSense_0__S36 & eNV_CONSTRAINT_2_respondsTo_responded__S36 & !bluetoothCmd_1__S36 & eNV_CONSTRAINT_0_respondsTo_responded__S36 & balancer_0__S36 & !backDistSense_0__S38 & bluetoothCmd_0__S38 & bluetoothCmd_2__S38 & eNV_CONSTRAINT_1_respondsTo_responded__S38 & !balancer_2__S38 & isReady__S38 & frontDistSense_0__S38 & eNV_CONSTRAINT_2_respondsTo_responded__S38 & !balancer_0__S38 & balancer_1__S38 & !bluetoothCmd_1__S38 & eNV_CONSTRAINT_0_respondsTo_responded__S38 & !backDistSense_0__S28 & !balancer_1__S28 & bluetoothCmd_0__S28 & bluetoothCmd_2__S28 & eNV_CONSTRAINT_1_respondsTo_responded__S28 & !balancer_2__S28 & isReady__S28 & frontDistSense_0__S28 & !eNV_CONSTRAINT_2_respondsTo_responded__S28 & !bluetoothCmd_1__S28 & eNV_CONSTRAINT_0_respondsTo_responded__S28 & balancer_0__S28 & !backDistSense_0__S31 & bluetoothCmd_0__S31 & bluetoothCmd_2__S31 & eNV_CONSTRAINT_1_respondsTo_responded__S31 & balancer_2__S31 & isReady__S31 & frontDistSense_0__S31 & eNV_CONSTRAINT_2_respondsTo_responded__S31 & !balancer_0__S31 & balancer_1__S31 & !bluetoothCmd_1__S31 & eNV_CONSTRAINT_0_respondsTo_responded__S31 & !backDistSense_0__S34 & bluetoothCmd_0__S34 & bluetoothCmd_2__S34 & eNV_CONSTRAINT_1_respondsTo_responded__S34 & !balancer_2__S34 & isReady__S34 & frontDistSense_0__S34 & eNV_CONSTRAINT_2_respondsTo_responded__S34 & !balancer_0__S34 & balancer_1__S34 & !bluetoothCmd_1__S34 & eNV_CONSTRAINT_0_respondsTo_responded__S34 & !backDistSense_0__S41 & !balancer_1__S41 & bluetoothCmd_0__S41 & bluetoothCmd_2__S41 & eNV_CONSTRAINT_1_respondsTo_responded__S41 & !balancer_2__S41 & isReady__S41 & frontDistSense_0__S41 & !eNV_CONSTRAINT_2_respondsTo_responded__S41 & !balancer_0__S41 & !bluetoothCmd_1__S41 & eNV_CONSTRAINT_0_respondsTo_responded__S41
+
+=== GUARANTEES BOOLEAN ===
+((((((bluetoothCmd_0__S38&!(bluetoothCmd_1__S38)))&bluetoothCmd_2__S38)->((!(balancer_0__S38)&!(balancer_1__S38))&balancer_2__S38))) | (((((bluetoothCmd_0__S28&!(bluetoothCmd_1__S28)))&bluetoothCmd_2__S28)->((!(balancer_0__S28)&!(balancer_1__S28))&balancer_2__S28))) | (((((bluetoothCmd_0__S31&!(bluetoothCmd_1__S31)))&bluetoothCmd_2__S31)->((!(balancer_0__S31)&!(balancer_1__S31))&balancer_2__S31))) | (((((bluetoothCmd_0__S34&!(bluetoothCmd_1__S34)))&bluetoothCmd_2__S34)->((!(balancer_0__S34)&!(balancer_1__S34))&balancer_2__S34))) | (((((bluetoothCmd_0__S41&!(bluetoothCmd_1__S41)))&bluetoothCmd_2__S41)->((!(balancer_0__S41)&!(balancer_1__S41))&balancer_2__S41)))) & (((((!((balancer_0__S8))&!((balancer_1__S8)))&(balancer_2__S8))->!((frontDistSense_0__S8))))) & (((((!((balancer_0__S32))&!((balancer_1__S32)))&(balancer_2__S32))->!((frontDistSense_0__S32))))) & (((((!((balancer_0__S36))&!((balancer_1__S36)))&(balancer_2__S36))->!((frontDistSense_0__S36))))) & (((((!((balancer_0__S38))&!((balancer_1__S38)))&(balancer_2__S38))->!((frontDistSense_0__S38))))) & (((((!((balancer_0__S28))&!((balancer_1__S28)))&(balancer_2__S28))->!((frontDistSense_0__S28))))) & (((((!((balancer_0__S31))&!((balancer_1__S31)))&(balancer_2__S31))->!((frontDistSense_0__S31))))) & (((((!((balancer_0__S34))&!((balancer_1__S34)))&(balancer_2__S34))->!((frontDistSense_0__S34))))) & (((((!((balancer_0__S41))&!((balancer_1__S41)))&(balancer_2__S41))->!((frontDistSense_0__S41))))) & (((((!((balancer_0__S38))&!((balancer_1__S38)))&(balancer_2__S38))->!((frontDistSense_0__S38)))))
+
+
+=== INTERPOLANT ===
+(((!bluetoothCmd_0__S41 | !bluetoothCmd_1__S41) | !bluetoothCmd_2__S41) & ((!bluetoothCmd_0__S34 | !bluetoothCmd_1__S34) | !bluetoothCmd_2__S34) & ((!bluetoothCmd_0__S31 | !bluetoothCmd_1__S31) | !bluetoothCmd_2__S31) & ((!bluetoothCmd_0__S28 | !bluetoothCmd_1__S28) | !bluetoothCmd_2__S28) & (!bluetoothCmd_0__S38 | !bluetoothCmd_1__S38) | !bluetoothCmd_2__S38) & bluetoothCmd_0__S38 & bluetoothCmd_2__S38 & !balancer_2__S38 & bluetoothCmd_0__S28 & bluetoothCmd_2__S28 & !balancer_2__S28 & bluetoothCmd_0__S31 & bluetoothCmd_2__S31 & balancer_1__S31 & bluetoothCmd_0__S34 & bluetoothCmd_2__S34 & !balancer_2__S34 & bluetoothCmd_0__S41 & bluetoothCmd_2__S41 & !balancer_2__S41
+Traceback (most recent call last):
+  File "refinement_fifo_search_duplicatecheck.py", line 140, in <module>
+    main()
+  File "refinement_fifo_search_duplicatecheck.py", line 137, in main
+    FifoDuplicateCheckRefinement()
+  File "refinement_fifo_search_duplicatecheck.py", line 83, in FifoDuplicateCheckRefinement
+    candidate_ref_nodes = cur_node.refine()
+  File "/homes/fa1622/interpolation-repair/refinement.py", line 257, in refine
+    candidate_refs = self.generateAlternativeRefinements()
+  File "/homes/fa1622/interpolation-repair/refinement.py", line 318, in generateAlternativeRefinements
+    refinements = interpolation.GenerateAlternativeRefinements(self.counterstrategy, exp.initialGR1Units + self.gr1_units, self.getUnrealizableCore(), exp.inputVarsList, exp.outputVarsList)
+  File "/homes/fa1622/interpolation-repair/interpolation.py", line 242, in GenerateAlternativeRefinements
+    state_components = extractStateComponents(interpolant)
+  File "/homes/fa1622/interpolation-repair/interpolation.py", line 90, in extractStateComponents
+    state_components = computeAndNode(parse_tree)
+  File "/homes/fa1622/interpolation-repair/interpolation.py", line 70, in computeAndNode
+    state_components_op = computeOtherNode(operand)
+  File "/homes/fa1622/interpolation-repair/interpolation.py", line 57, in computeOtherNode
+    raise NonStateSeparableException
+interpolation.NonStateSeparableException

@@ -1,0 +1,144 @@
+Parsing...done
+Parsing...done
+Removing non-boolean ITEs...done
+Removing non-boolean ITEs...done
+Canonizing...done
+Canonizing...done
+The formula is already in CNF
+Converting formula to CNF...done
+
+Solving time: 0.000782 sec
+Original proof size: 7
+Computing interpolant #1...done
+Interpolant #1 written to INTERP.1.msat
+
+DPLL Engine Statistics:
+Atoms: 27 (12 bool, 0 theory, 15 cnf) 
+Clauses: 43
+Avg clause length: 2.11628
+Restarts: 0
+Decisions: 0
+All propagations: 23
+All conflicts: 0
+
+Theory Solvers Statistics:
+------------------------------------
+Total time: 0.001 sec
+Memory used: 22.820 MBytes
+
+unsat
+=== INPUT VARS ===
+distSense_0
+isReady
+=== OUTPUT VARS ===
+balancer_0
+balancer_1
+balancer_2
+=== ASSUMPTIONS ===
+G(F(isReady))
+(!(isReady))
+G((isReady->X(isReady)))
+=== GUARANTEES ===
+(((!(balancer_0)&!(balancer_1))&!(balancer_2)))
+G(F(((!(balancer_0))&!(balancer_1))&balancer_2))
+G((((!(balancer_0)&!(balancer_1))&balancer_2)->!((((X(balancer_0)&!(X(balancer_1)))&!(X(balancer_2)))|((!(X(balancer_0))&X(balancer_1))&X(balancer_2))))))
+G((((((distSense_0&!(balancer_0))&!(balancer_1))&!(balancer_2))&isReady)->!(((!(X(balancer_0))&!(X(balancer_1)))&!(X(balancer_2))))))
+(!(((balancer_0&!(balancer_1))&balancer_2)))
+G(!(((X(balancer_0)&!(X(balancer_1)))&X(balancer_2))))
+(!(((balancer_0&balancer_1)&!(balancer_2))))
+G(!(((X(balancer_0)&X(balancer_1))&!(X(balancer_2)))))
+(!(((balancer_0&balancer_1)&balancer_2)))
+G(!(((X(balancer_0)&X(balancer_1))&X(balancer_2))))
+((!(isReady)->((!(balancer_0)&!(balancer_1))&!(balancer_2))))
+G((!(X(isReady))->((!(X(balancer_0))&!(X(balancer_1)))&!(X(balancer_2)))))
+(((distSense_0&isReady)->!(((!(balancer_0)&!(balancer_1))&balancer_2))))
+G(((X(distSense_0)&X(isReady))->!(((!(X(balancer_0))&!(X(balancer_1)))&X(balancer_2)))))
+(((!(distSense_0)&isReady)->((!(balancer_0)&!(balancer_1))&balancer_2)))
+G(((!(X(distSense_0))&X(isReady))->((!(X(balancer_0))&!(X(balancer_1)))&X(balancer_2))))
++++++++++++ inputs/SYNTECH15-1UNREAL/GyroLTL_390_GyroAspect_1.spectra
+Resetting temp...
+Reset complete!
+++++ ELAPSED TIME 0
+++++ QUEUE LENGTH 0
+++++ Solutions 0
+++++ Duplicates 0
+++++ Node number 1
+++++ Refinement []
+++++ Length 0
+++ REALIZABILITY CHECK
+++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION
+b"Using BDD Package: CUDDFactory, Version: CUDD 3.0
+Using BDD Package: CUDDFactory, Version: CUDD 3.0
+0    [main] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+java.util.MissingResourceException: The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+at org.eclipse.emf.common.util.DelegatingResourceLocator.delegatedGetString(DelegatingResourceLocator.java:586)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:450)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:605)
+at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:597)
+at org.eclipse.emf.ecore.util.Diagnostician.createDefaultDiagnostic(Diagnostician.java:110)
+at org.eclipse.emf.ecore.util.Diagnostician.validate(Diagnostician.java:139)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:147)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:125)
+at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:91)
+at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getSpectraModel(SpectraInputProviderNoIDE.java:166)
+at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getGameInput(SpectraInputProviderNoIDE.java:109)
+at tau.smlab.syntech.Spectra.cli.SpectraCliTool.main(SpectraCliTool.java:162)
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 65
+Nodes table size: 1022
+Result: Specification is unrealizable
+extract strategy - Start
+
+extract strategy - End
+Initial State 0 <distSense_0:false, isReady:false, balancer_0:false, balancer_1:false, balancer_2:false>
+With successors : 1, 2, 3, 4
+State 1 <distSense_0:true, isReady:true, balancer_0:false, balancer_1:false, balancer_2:false>
+With successors : 2, 3, 4
+State 2 <distSense_0:true, isReady:true, balancer_0:false, balancer_1:true, balancer_2:false>
+With successors : 1, 2, 3, 4
+State 3 <distSense_0:true, isReady:true, balancer_0:false, balancer_1:true, balancer_2:true>
+With successors : 1, 2, 3, 4
+State 4 <distSense_0:true, isReady:true, balancer_0:true, balancer_1:false, balancer_2:false>
+With successors : 1, 2, 3, 4
+"
+INI:  <counterstrategy.State object at 0x7f55efd281c0>
+TRANSIENT:  []
+=== COUNTERRUN ===
+S0 -> loop( -> S1 -> S2)
+
+LTL TOKENS:  ['(', '(', 'isReady', '->', 'X', '(', 'isReady', ')', ')', ')']
+LTL TOKENS:  ['(', '(', '(', 'X', '(', 'distSense_0', ')', '&', 'X', '(', 'isReady', ')', ')', '->', '!', '(', '(', '(', '!', '(', 'X', '(', 'balancer_0', ')', ')', '&', '!', '(', 'X', '(', 'balancer_1', ')', ')', ')', '&', 'X', '(', 'balancer_2', ')', ')', ')', ')', ')']
+=== UNREALIZABLE CORE ===
+G(F(((!(balancer_0))&!(balancer_1))&balancer_2))
+G(((X(distSense_0)&X(isReady))->!(((!(X(balancer_0))&!(X(balancer_1)))&X(balancer_2)))))
+
+=== ASSUMPTIONS BOOLEAN ===
+(((isReady__S1)) | ((isReady__S2))) & ((!(isReady__S0))) & (((isReady__S0->(isReady__S1)))) & (((isReady__S1->(isReady__S2)))) & (((isReady__S2->(isReady__S1))))
+
+=== VALUATIONS BOOLEAN ===
+!distSense_0__S0 & !isReady__S0 & !balancer_0__S1 & distSense_0__S1 & !balancer_2__S1 & isReady__S1 & !balancer_1__S1 & balancer_1__S2 & !balancer_0__S2 & distSense_0__S2 & !balancer_2__S2 & isReady__S2
+
+=== GUARANTEES BOOLEAN ===
+(((((!(balancer_0__S1))&!(balancer_1__S1))&balancer_2__S1)) | ((((!(balancer_0__S2))&!(balancer_1__S2))&balancer_2__S2))) & (((((distSense_0__S1)&(isReady__S1))->!(((!((balancer_0__S1))&!((balancer_1__S1)))&(balancer_2__S1)))))) & (((((distSense_0__S2)&(isReady__S2))->!(((!((balancer_0__S2))&!((balancer_1__S2)))&(balancer_2__S2)))))) & (((((distSense_0__S1)&(isReady__S1))->!(((!((balancer_0__S1))&!((balancer_1__S1)))&(balancer_2__S1))))))
+
+
+=== INTERPOLANT ===
+!balancer_2__S2 & !balancer_2__S1
+
+=== STATE COMPONENTS ===
+{'S2': '!balancer_2', 'S1': '!balancer_2'}
+State S2 component not I/O-separable 1
+State S1 component not I/O-separable 1
+
+=== Refinements === 
+['G(F(!(!balancer_2)))']
+++++ ELAPSED TIME 2.751690592005616
+++++ QUEUE LENGTH 0
+++++ Solutions 0
+++++ Duplicates 0
+++++ Node number 2
+++++ Refinement ['G(F(!(!balancer_2)))']
+++++ Length 1
+++ REALIZABILITY CHECK
+++ REALIZABLE REFINEMENT: SAT CHECK
