@@ -1,0 +1,15 @@
+<record>
+  <index>1692530357121</index>
+  <date>Sun Aug 20 12:19:17 BST 2023</date>
+  <message>TimeStamp-1692530357-Start-ALL_ASM_CORE</message>
+</record>
+<record>
+  <index>1692530357177</index>
+  <date>Sun Aug 20 12:19:17 BST 2023</date>
+  <message>TimeStamp-1692530357-Operation-ALL_ASM_CORE-Buffer-Core #1 at lines &lt; 28 31 34 37 &gt; is</message>
+</record>
+<record>
+  <index>1692530357182</index>
+  <date>Sun Aug 20 12:19:17 BST 2023</date>
+  <message>TimeStamp-1692530357-Operation-ALL_ASM_CORE-Buffer-Found 4 elements that belong to all cores, at lines &lt; 28 31 34 37 &gt;. See markers in specification file.</message>
+</record>

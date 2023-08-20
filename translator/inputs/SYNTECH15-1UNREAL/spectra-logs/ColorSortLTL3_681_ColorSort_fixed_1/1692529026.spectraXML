@@ -1,0 +1,10 @@
+<record>
+  <index>1692529026401</index>
+  <date>Sun Aug 20 11:57:06 BST 2023</date>
+  <message>TimeStamp-1692529026-Start-ALL_ASM_CORE</message>
+</record>
+<record>
+  <index>1692529026564</index>
+  <date>Sun Aug 20 11:57:06 BST 2023</date>
+  <message>TimeStamp-1692529026-Operation-ALL_ASM_CORE-Buffer-Specification is not realizable. Cannot compute assumptions cores.</message>
+</record>

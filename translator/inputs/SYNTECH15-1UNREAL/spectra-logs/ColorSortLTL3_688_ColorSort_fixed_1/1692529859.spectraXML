@@ -1,0 +1,10 @@
+<record>
+  <index>1692529859453</index>
+  <date>Sun Aug 20 12:10:59 BST 2023</date>
+  <message>TimeStamp-1692529859-Operation-ALL_ASM_CORE-Buffer-Core #1 at lines &lt; 61 186 188 190 206 210 228 &gt; is</message>
+</record>
+<record>
+  <index>1692529859502</index>
+  <date>Sun Aug 20 12:10:59 BST 2023</date>
+  <message>TimeStamp-1692529859-Operation-ALL_ASM_CORE-Buffer-Found 7 elements that belong to all cores, at lines &lt; 61 186 188 190 206 210 228 &gt;. See markers in specification file.</message>
+</record>

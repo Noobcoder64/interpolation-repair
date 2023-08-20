@@ -1,0 +1,239 @@
+
+module ColorSortLTL3_621_ColorSort_fixed
+
+env boolean color_0;
+env boolean color_1;
+env boolean color_2;
+env boolean detect_0;
+env boolean detect_1;
+env boolean detect_2;
+env boolean ack_ver_hor_0;
+env boolean ack_bot_0;
+env boolean atEdge_0;
+env boolean color_seen;
+env boolean haltButton_0;
+env boolean speedButton_0;
+
+sys boolean verMot_0;
+sys boolean horMot_0;
+sys boolean botMot_0;
+sys boolean botMot_1;
+sys boolean botMot_2;
+sys boolean botMotColor_0;
+sys boolean botMotColor_1;
+sys boolean botMotColor_2;
+sys boolean store_place;
+sys boolean spec_allsleep;
+sys boolean motSpeed_0;
+sys boolean motSpeed_1;
+sys boolean spec_state_0;
+sys boolean spec_state_1;
+sys boolean spec_stage_0;
+sys boolean spec_stage_1;
+sys boolean spec_stage_2;
+sys boolean spec_speedButtonValidPressed;
+sys boolean spec_haltButtonValidPressed;
+sys boolean spec_pausing_0;
+
+env boolean sYS_CONSTRAINT_0_respondsTo_responded;
+env boolean eNV_CONSTRAINT_1_respondsTo_responded;
+env boolean eNV_CONSTRAINT_2_respondsTo_responded;
+env boolean pREV_aux_3;
+env boolean pREV_aux_4;
+env boolean pREV_aux_5;
+env boolean pREV_aux_6;
+env boolean pREV_aux_7;
+env boolean pREV_aux_8;
+env boolean pREV_aux_9;
+
+assumption
+	alwEv (((color_0 | !(color_1)) | !(color_2)));
+assumption
+	alw (((((spec_stage_0 | spec_stage_1) | !(spec_stage_2)) & ((!(spec_stage_0) | spec_stage_1) | !(spec_stage_2))) -> ack_ver_hor_0));
+assumption
+	alwEv (eNV_CONSTRAINT_1_respondsTo_responded);
+assumption
+	alwEv (eNV_CONSTRAINT_2_respondsTo_responded);
+assumption
+	 (!(((color_0 & color_1) & !(color_2))));
+assumption
+	alw (!(((next(color_0) & next(color_1)) & !(next(color_2)))));
+assumption
+	 (!(((color_0 & color_1) & color_2)));
+assumption
+	alw (!(((next(color_0) & next(color_1)) & next(color_2))));
+assumption
+	 (!(((detect_0 & detect_1) & !(detect_2))));
+assumption
+	alw (!(((next(detect_0) & next(detect_1)) & !(next(detect_2)))));
+assumption
+	 (!(((detect_0 & detect_1) & detect_2)));
+assumption
+	alw (!(((next(detect_0) & next(detect_1)) & next(detect_2))));
+
+guarantee
+	 ((!(spec_state_0) & !(spec_state_1)));
+guarantee
+	alwEv (((!(spec_state_0) & !(spec_state_1)) | (!(spec_state_0) & spec_state_1)));
+guarantee
+	 (((((((!(store_place) & !(motSpeed_0)) & !(motSpeed_1)) & !(spec_stage_0)) & !(spec_stage_1)) & !(spec_stage_2)) & spec_pausing_0));
+guarantee
+	alw (((((((((!(spec_state_0) & !(spec_state_1)) & ((((!(((((ack_ver_hor_0 & !(spec_stage_0)) & !(spec_stage_1)) & spec_stage_2) & spec_pausing_0)) & !((((detect_0 <-> botMotColor_0) & (detect_1 <-> botMotColor_1)) & (detect_2 <-> botMotColor_2)))) | (((((ack_ver_hor_0 & !(spec_stage_0)) & !(spec_stage_1)) & spec_stage_2) & spec_pausing_0) & (((!(ack_ver_hor_0) & spec_stage_0) & !(spec_stage_1)) & spec_stage_2))) | (((!((((!(ack_ver_hor_0) & spec_stage_0) & !(spec_stage_1)) & spec_stage_2)) & (detect_0 <-> botMotColor_0)) & (detect_1 <-> botMotColor_1)) & (detect_2 <-> botMotColor_2))) | ((((!(((((ack_ver_hor_0 & !(spec_stage_0)) & !(spec_stage_1)) & spec_stage_2) & spec_pausing_0)) & (((!(ack_ver_hor_0) & spec_stage_0) & !(spec_stage_1)) & spec_stage_2)) & (detect_0 <-> botMotColor_0)) & (detect_1 <-> botMotColor_1)) & (detect_2 <-> botMotColor_2)))) & (!(next(spec_state_0)) & !(next(spec_state_1)))) | (((!(spec_state_0) & !(spec_state_1)) & ((((((ack_ver_hor_0 & !(spec_stage_0)) & !(spec_stage_1)) & spec_stage_2) & spec_pausing_0) & !((((!(ack_ver_hor_0) & spec_stage_0) & !(spec_stage_1)) & spec_stage_2))) & !((((detect_0 <-> botMotColor_0) & (detect_1 <-> botMotColor_1)) & (detect_2 <-> botMotColor_2))))) & (!(next(spec_state_0)) & next(spec_state_1)))) | (((!(spec_state_0) & spec_state_1) & (((!((((!(ack_ver_hor_0) & spec_stage_0) & !(spec_stage_1)) & spec_stage_2)) & (detect_0 <-> botMotColor_0)) & (detect_1 <-> botMotColor_1)) & (detect_2 <-> botMotColor_2))) & (!(next(spec_state_0)) & !(next(spec_state_1))))) | (((!(spec_state_0) & spec_state_1) & (!((((!(ack_ver_hor_0) & spec_stage_0) & !(spec_stage_1)) & spec_stage_2)) & !((((detect_0 <-> botMotColor_0) & (detect_1 <-> botMotColor_1)) & (detect_2 <-> botMotColor_2))))) & (!(next(spec_state_0)) & next(spec_state_1)))) | (((!(spec_state_0) & spec_state_1) & (((!(ack_ver_hor_0) & spec_stage_0) & !(spec_stage_1)) & spec_stage_2)) & (next(spec_state_0) & !(next(spec_state_1))))) | ((spec_state_0 & !(spec_state_1)) & (next(spec_state_0) & !(next(spec_state_1))))));
+guarantee
+	alw ((((spec_haltButtonValidPressed & spec_pausing_0) | (!(spec_haltButtonValidPressed) & !(spec_pausing_0))) -> !(next(spec_pausing_0))));
+guarantee
+	alw ((((!(spec_haltButtonValidPressed) & spec_pausing_0) | (spec_haltButtonValidPressed & !(spec_pausing_0))) -> next(spec_pausing_0)));
+guarantee
+	alw (((!(spec_pausing_0) | !(ack_ver_hor_0)) -> (((spec_allsleep & (spec_stage_0 <-> next(spec_stage_0))) & (spec_stage_1 <-> next(spec_stage_1))) & (spec_stage_2 <-> next(spec_stage_2)))));
+guarantee
+	alw ((((spec_stage_0 | spec_stage_1) | spec_stage_2) -> (((botMotColor_0 <-> next(botMotColor_0)) & (botMotColor_1 <-> next(botMotColor_1))) & (botMotColor_2 <-> next(botMotColor_2)))));
+guarantee
+	alw (((((((!(color_0) & color_1) & color_2) & !(spec_stage_0)) & !(spec_stage_1)) & !(spec_stage_2)) -> (((spec_allsleep & !(next(spec_stage_0))) & !(next(spec_stage_1))) & !(next(spec_stage_2)))));
+guarantee
+	alw ((((((((color_0 | !(color_1)) | !(color_2)) & !(spec_stage_0)) & !(spec_stage_1)) & !(spec_stage_2)) & spec_pausing_0) -> ((((((!(verMot_0) & (color_0 <-> next(botMotColor_0))) & (color_1 <-> next(botMotColor_1))) & (color_2 <-> next(botMotColor_2))) & !(next(spec_stage_0))) & !(next(spec_stage_1))) & next(spec_stage_2))));
+guarantee
+	alw (((((((ack_ver_hor_0 & !(spec_stage_0)) & !(spec_stage_1)) & spec_stage_2) & spec_pausing_0) & !(color_seen)) -> ((!(color_seen) -> (((((!(botMot_0) & !(botMot_1)) & botMot_2) & !(next(spec_stage_0))) & next(spec_stage_1)) & next(spec_stage_2))) & (color_seen -> (((((!(botMot_0) & !(botMot_1)) & !(botMot_2)) & !(next(spec_stage_0))) & next(spec_stage_1)) & next(spec_stage_2))))));
+guarantee
+	alw ((((((!(ack_bot_0) & !(spec_stage_0)) & spec_stage_1) & !(spec_stage_2)) & spec_pausing_0) -> (((((!(botMot_0) & !(botMot_1)) & !(botMot_2)) & !(next(spec_stage_0))) & next(spec_stage_1)) & next(spec_stage_2))));
+guarantee
+	alw ((((((ack_bot_0 & !(spec_stage_0)) & spec_stage_1) & !(spec_stage_2)) & spec_pausing_0) -> (((!(horMot_0) & next(spec_stage_0)) & !(next(spec_stage_1))) & next(spec_stage_2))));
+guarantee
+	alw (((((((!(atEdge_0) & !(spec_stage_0)) & spec_stage_1) & spec_stage_2) & (((detect_0 <-> !(botMotColor_0)) | (detect_1 <-> !(botMotColor_1))) | (detect_2 <-> !(botMotColor_2)))) & spec_pausing_0) -> (((((!(botMot_0) & !(botMot_1)) & botMot_2) & !(next(spec_stage_0))) & next(spec_stage_1)) & next(spec_stage_2))));
+guarantee
+	alw (((((((atEdge_0 & !(spec_stage_0)) & spec_stage_1) & spec_stage_2) & spec_pausing_0) & (((detect_0 <-> !(botMotColor_0)) | (detect_1 <-> !(botMotColor_1))) | (detect_2 <-> !(botMotColor_2)))) -> (((((!(botMot_0) & botMot_1) & !(botMot_2)) & next(spec_stage_0)) & !(next(spec_stage_1))) & !(next(spec_stage_2)))));
+guarantee
+	alw ((((((spec_stage_0 & !(spec_stage_1)) & !(spec_stage_2)) & spec_pausing_0) & (((detect_0 <-> !(botMotColor_0)) | (detect_1 <-> !(botMotColor_1))) | (detect_2 <-> !(botMotColor_2)))) -> (((((!(botMot_0) & botMot_1) & !(botMot_2)) & next(spec_stage_0)) & !(next(spec_stage_1))) & !(next(spec_stage_2)))));
+guarantee
+	alw (((((((((!(spec_stage_0) & spec_stage_1) & spec_stage_2) | ((spec_stage_0 & !(spec_stage_1)) & !(spec_stage_2))) & spec_pausing_0) & (detect_0 <-> botMotColor_0)) & (detect_1 <-> botMotColor_1)) & (detect_2 <-> botMotColor_2)) -> (((!(horMot_0) & next(spec_stage_0)) & !(next(spec_stage_1))) & next(spec_stage_2))));
+guarantee
+	alw (((((((ack_ver_hor_0 & spec_stage_0) & !(spec_stage_1)) & spec_stage_2) | ((((!(ack_bot_0) | (ack_bot_0 & pREV_aux_4)) & spec_stage_0) & spec_stage_1) & !(spec_stage_2))) & spec_pausing_0) -> (((((botMot_0 & !(botMot_1)) & !(botMot_2)) & next(spec_stage_0)) & next(spec_stage_1)) & !(next(spec_stage_2)))));
+guarantee
+	alw (((((((ack_bot_0 & pREV_aux_5) & spec_stage_0) & spec_stage_1) & !(spec_stage_2)) & spec_pausing_0) -> (((spec_allsleep & !(next(spec_stage_0))) & !(next(spec_stage_1))) & !(next(spec_stage_2)))));
+guarantee
+	alwEv (sYS_CONSTRAINT_0_respondsTo_responded);
+guarantee
+	 (!(((botMot_0 & !(botMot_1)) & botMot_2)));
+guarantee
+	alw (!(((next(botMot_0) & !(next(botMot_1))) & next(botMot_2))));
+guarantee
+	 (!(((botMot_0 & botMot_1) & !(botMot_2))));
+guarantee
+	alw (!(((next(botMot_0) & next(botMot_1)) & !(next(botMot_2)))));
+guarantee
+	 (!(((botMot_0 & botMot_1) & botMot_2)));
+guarantee
+	alw (!(((next(botMot_0) & next(botMot_1)) & next(botMot_2))));
+guarantee
+	 (!(((botMotColor_0 & botMotColor_1) & !(botMotColor_2))));
+guarantee
+	alw (!(((next(botMotColor_0) & next(botMotColor_1)) & !(next(botMotColor_2)))));
+guarantee
+	 (!(((botMotColor_0 & botMotColor_1) & botMotColor_2)));
+guarantee
+	alw (!(((next(botMotColor_0) & next(botMotColor_1)) & next(botMotColor_2))));
+guarantee
+	 (!((motSpeed_0 & motSpeed_1)));
+guarantee
+	alw (!((next(motSpeed_0) & next(motSpeed_1))));
+guarantee
+	 (!((spec_state_0 & spec_state_1)));
+guarantee
+	alw (!((next(spec_state_0) & next(spec_state_1))));
+guarantee
+	 (!(((spec_stage_0 & spec_stage_1) & spec_stage_2)));
+guarantee
+	alw (!(((next(spec_stage_0) & next(spec_stage_1)) & next(spec_stage_2))));
+guarantee
+	 (((!(haltButton_0) & pREV_aux_3) <-> spec_haltButtonValidPressed));
+guarantee
+	alw (((!(next(haltButton_0)) & next(pREV_aux_3)) <-> next(spec_haltButtonValidPressed)));
+guarantee
+	 ((!(verMot_0) -> (((!(botMot_0) & botMot_1) & botMot_2) & horMot_0)));
+guarantee
+	alw ((!(next(verMot_0)) -> (((!(next(botMot_0)) & next(botMot_1)) & next(botMot_2)) & next(horMot_0))));
+guarantee
+	 ((!(horMot_0) -> (((!(botMot_0) & botMot_1) & botMot_2) & verMot_0)));
+guarantee
+	alw ((!(next(horMot_0)) -> (((!(next(botMot_0)) & next(botMot_1)) & next(botMot_2)) & next(verMot_0))));
+guarantee
+	 ((((botMot_0 | !(botMot_1)) | !(botMot_2)) -> (verMot_0 & horMot_0)));
+guarantee
+	alw ((((next(botMot_0) | !(next(botMot_1))) | !(next(botMot_2))) -> (next(verMot_0) & next(horMot_0))));
+guarantee
+	 ((spec_allsleep <-> ((((verMot_0 & horMot_0) & !(botMot_0)) & botMot_1) & botMot_2)));
+guarantee
+	alw ((next(spec_allsleep) <-> ((((next(verMot_0) & next(horMot_0)) & !(next(botMot_0))) & next(botMot_1)) & next(botMot_2))));
+guarantee
+	 ((store_place <-> (((((((!(spec_stage_0) & spec_stage_1) & spec_stage_2) | ((spec_stage_0 & !(spec_stage_1)) & !(spec_stage_2))) & spec_pausing_0) & (detect_0 <-> botMotColor_0)) & (detect_1 <-> botMotColor_1)) & (detect_2 <-> botMotColor_2))));
+guarantee
+	alw ((next(store_place) <-> (((((((!(next(spec_stage_0)) & next(spec_stage_1)) & next(spec_stage_2)) | ((next(spec_stage_0) & !(next(spec_stage_1))) & !(next(spec_stage_2)))) & next(spec_pausing_0)) & (next(detect_0) <-> next(botMotColor_0))) & (next(detect_1) <-> next(botMotColor_1))) & (next(detect_2) <-> next(botMotColor_2)))));
+guarantee
+	 (((!(speedButton_0) & pREV_aux_6) <-> spec_speedButtonValidPressed));
+guarantee
+	alw (((!(next(speedButton_0)) & next(pREV_aux_6)) <-> next(spec_speedButtonValidPressed)));
+guarantee
+	 (((spec_speedButtonValidPressed & pREV_aux_7) -> (!(motSpeed_0) & motSpeed_1)));
+guarantee
+	alw (((next(spec_speedButtonValidPressed) & next(pREV_aux_7)) -> (!(next(motSpeed_0)) & next(motSpeed_1))));
+guarantee
+	 (((spec_speedButtonValidPressed & pREV_aux_8) -> (motSpeed_0 & !(motSpeed_1))));
+guarantee
+	alw (((next(spec_speedButtonValidPressed) & next(pREV_aux_8)) -> (next(motSpeed_0) & !(next(motSpeed_1)))));
+guarantee
+	 (((spec_speedButtonValidPressed & pREV_aux_9) -> (!(motSpeed_0) & !(motSpeed_1))));
+guarantee
+	alw (((next(spec_speedButtonValidPressed) & next(pREV_aux_9)) -> (!(next(motSpeed_0)) & !(next(motSpeed_1)))));
+guarantee
+	 (((!(spec_speedButtonValidPressed) & pREV_aux_7) -> (!(motSpeed_0) & !(motSpeed_1))));
+guarantee
+	alw (((!(next(spec_speedButtonValidPressed)) & next(pREV_aux_7)) -> (!(next(motSpeed_0)) & !(next(motSpeed_1)))));
+guarantee
+	 (((!(spec_speedButtonValidPressed) & pREV_aux_8) -> (!(motSpeed_0) & motSpeed_1)));
+guarantee
+	alw (((!(next(spec_speedButtonValidPressed)) & next(pREV_aux_8)) -> (!(next(motSpeed_0)) & next(motSpeed_1))));
+guarantee
+	 (((!(spec_speedButtonValidPressed) & pREV_aux_9) -> (motSpeed_0 & !(motSpeed_1))));
+guarantee
+	alw (((!(next(spec_speedButtonValidPressed)) & next(pREV_aux_9)) -> (next(motSpeed_0) & !(next(motSpeed_1)))));
+
+assumption
+	 (sYS_CONSTRAINT_0_respondsTo_responded);
+assumption
+	alw ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (spec_haltButtonValidPressed | (sYS_CONSTRAINT_0_respondsTo_responded & !((spec_haltButtonValidPressed & spec_pausing_0))))));
+assumption
+	 (eNV_CONSTRAINT_1_respondsTo_responded);
+assumption
+	alw ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> (ack_ver_hor_0 | (eNV_CONSTRAINT_1_respondsTo_responded & !(!(ack_ver_hor_0))))));
+assumption
+	 (eNV_CONSTRAINT_2_respondsTo_responded);
+assumption
+	alw ((next(eNV_CONSTRAINT_2_respondsTo_responded) <-> (ack_bot_0 | (eNV_CONSTRAINT_2_respondsTo_responded & !(!(ack_bot_0))))));
+assumption
+	 (!(pREV_aux_3));
+assumption
+	alw ((next(pREV_aux_3) <-> haltButton_0));
+assumption
+	 (!(pREV_aux_4));
+assumption
+	alw ((next(pREV_aux_4) <-> !(spec_pausing_0)));
+assumption
+	 (!(pREV_aux_5));
+assumption
+	alw ((next(pREV_aux_5) <-> spec_pausing_0));
+assumption
+	 (!(pREV_aux_6));
+assumption
+	alw ((next(pREV_aux_6) <-> speedButton_0));
+assumption
+	 (!(pREV_aux_7));
+assumption
+	alw ((next(pREV_aux_7) <-> (!(motSpeed_0) & !(motSpeed_1))));
+assumption
+	 (!(pREV_aux_8));
+assumption
+	alw ((next(pREV_aux_8) <-> (!(motSpeed_0) & motSpeed_1)));
+assumption
+	 (!(pREV_aux_9));
+assumption
+	alw ((next(pREV_aux_9) <-> (motSpeed_0 & !(motSpeed_1))));
+

@@ -1,0 +1,10 @@
+<record>
+  <index>1692531433116</index>
+  <date>Sun Aug 20 12:37:13 BST 2023</date>
+  <message>TimeStamp-1692531433-Start-ASM_CORE</message>
+</record>
+<record>
+  <index>1692531433195</index>
+  <date>Sun Aug 20 12:37:13 BST 2023</date>
+  <message>TimeStamp-1692531433-Operation-ASM_CORE-Buffer-Found 5 realizable core assumptions, at lines &lt; 76 80 84 88 95 &gt;. See markers in specification file.</message>
+</record>
