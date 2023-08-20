@@ -1,6 +1,6 @@
 Using BDD Package: CUDDFactory, Version: CUDD 3.0
 Using BDD Package: CUDDFactory, Version: CUDD 3.0
-1    [pool-1-thread-1] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+0    [pool-1-thread-1] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
 java.util.MissingResourceException: The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
 	at org.eclipse.emf.common.util.DelegatingResourceLocator.delegatedGetString(DelegatingResourceLocator.java:586)
 	at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:450)
@@ -91,3 +91,1039 @@ extract strategy - Start
 
 extract strategy - End
 Generating patterns...
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+GF (hbusreq0=true -> 
+	(hlock0=false -> 
+		(hburst0=false -> hburst1=true)));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=true -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=true -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=false -> 
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=false -> 
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hlock0=false -> 
+		(hburst0=false -> hburst1=true)));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=false -> 
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hlock0=false -> 
+		(hburst0=false -> hburst1=true)));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=false -> 
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=false -> 
+	(hready'=true -> 
+		(hbusreq0=false -> 
+			(hbusreq0'=false -> 
+				(hlock0=true -> 
+					(hlock0'=false -> 
+						(hburst0=false -> 
+							(hburst0'=false -> 
+								(hburst1=false -> hburst1'=true)))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=true -> 
+	(hbusreq0=false -> 
+		(hbusreq0'=false -> 
+			(hlock0=false -> 
+				(hlock0'=false -> 
+					(hburst0=false -> 
+						(hburst0'=false -> 
+							(hburst1=false -> hburst1'=true))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=true -> 
+	(hbusreq0=false -> 
+		(hbusreq0'=false -> 
+			(hlock0=false -> 
+				(hlock0'=false -> 
+					(hburst0=false -> 
+						(hburst0'=false -> 
+							(hburst1=false -> hburst1'=true))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=false))));
+asm 
+G (hready=true -> 
+	(hbusreq0=false -> 
+		(hbusreq0'=false -> 
+			(hlock0=false -> 
+				(hlock0'=false -> 
+					(hburst0=false -> 
+						(hburst0'=false -> 
+							(hburst1=false -> hburst1'=true))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hlock0=false -> 
+		(hburst0=false -> hburst1=true)));
+asm 
+G (hready=true -> 
+	(hbusreq0=false -> 
+		(hbusreq0'=false -> 
+			(hlock0=false -> 
+				(hlock0'=false -> 
+					(hburst0=false -> 
+						(hburst0'=false -> 
+							(hburst1=false -> hburst1'=true))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hlock0=false -> 
+		(hburst0=false -> hburst1=true)));
+asm 
+G (hready=true -> 
+	(hbusreq0=false -> 
+		(hbusreq0'=false -> 
+			(hlock0=false -> 
+				(hlock0'=false -> 
+					(hburst0=false -> 
+						(hburst0'=false -> 
+							(hburst1=false -> hburst1'=true))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=false))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=true -> 
+	(hbusreq0=false -> 
+		(hbusreq0'=false -> 
+			(hlock0=false -> 
+				(hlock0'=false -> 
+					(hburst0=false -> 
+						(hburst0'=false -> 
+							(hburst1=false -> hburst1'=true))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=false))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=true -> 
+	(hbusreq0=false -> 
+		(hbusreq0'=false -> 
+			(hlock0=false -> 
+				(hlock0'=false -> 
+					(hburst0=false -> 
+						(hburst0'=false -> 
+							(hburst1=false -> hburst1'=true))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=true -> 
+	(hready'=false -> 
+		(hbusreq0=false -> 
+			(hbusreq0'=false -> 
+				(hlock0=false -> 
+					(hlock0'=false -> 
+						(hburst0=false -> 
+							(hburst0'=false -> 
+								(hburst1=false -> hburst1'=true)))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=true -> 
+	(hready'=false -> 
+		(hbusreq0=false -> 
+			(hbusreq0'=false -> 
+				(hlock0=false -> 
+					(hlock0'=false -> 
+						(hburst0=false -> 
+							(hburst0'=false -> 
+								(hburst1=false -> hburst1'=true)))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=false)) and
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=true -> 
+	(hready'=false -> 
+		(hbusreq0=false -> 
+			(hbusreq0'=false -> 
+				(hlock0=false -> 
+					(hlock0'=false -> 
+						(hburst0=false -> 
+							(hburst0'=false -> 
+								(hburst1=false -> hburst1'=true)))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=true -> 
+	(hready'=false -> 
+		(hbusreq0=false -> 
+			(hbusreq0'=false -> 
+				(hlock0=false -> 
+					(hlock0'=false -> 
+						(hburst0=false -> 
+							(hburst0'=false -> 
+								(hburst1=false -> hburst1'=true)))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hlock0=false -> 
+		(hburst0=false -> hburst1=true)));
+asm 
+G (hready=true -> 
+	(hready'=false -> 
+		(hbusreq0=false -> 
+			(hbusreq0'=false -> 
+				(hlock0=false -> 
+					(hlock0'=false -> 
+						(hburst0=false -> 
+							(hburst0'=false -> 
+								(hburst1=false -> hburst1'=true)))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hlock0=false -> 
+		(hburst0=false -> hburst1=true)));
+asm 
+G (hready=true -> 
+	(hready'=false -> 
+		(hbusreq0=false -> 
+			(hbusreq0'=false -> 
+				(hlock0=false -> 
+					(hlock0'=false -> 
+						(hburst0=false -> 
+							(hburst0'=false -> 
+								(hburst1=false -> hburst1'=true)))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=false)) and
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=true -> 
+	(hready'=false -> 
+		(hbusreq0=false -> 
+			(hbusreq0'=false -> 
+				(hlock0=false -> 
+					(hlock0'=false -> 
+						(hburst0=false -> 
+							(hburst0'=false -> 
+								(hburst1=false -> hburst1'=true)))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=false)) and
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=true -> 
+	(hready'=false -> 
+		(hbusreq0=false -> 
+			(hbusreq0'=false -> 
+				(hlock0=false -> 
+					(hlock0'=false -> 
+						(hburst0=false -> 
+							(hburst0'=false -> 
+								(hburst1=false -> hburst1'=true)))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hlock0=false -> 
+		(hburst0=false -> hburst1=true)));
+asm 
+G (hready=true -> 
+	(hready'=false -> 
+		(hbusreq0=false -> 
+			(hbusreq0'=false -> 
+				(hlock0=false -> 
+					(hlock0'=false -> 
+						(hburst0=false -> 
+							(hburst0'=false -> 
+								(hburst1=false -> hburst1'=true)))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hlock0=false -> 
+		(hburst0=false -> hburst1=true)));
+asm 
+G (hready=true -> 
+	(hready'=false -> 
+		(hbusreq0=false -> 
+			(hbusreq0'=false -> 
+				(hlock0=false -> 
+					(hlock0'=false -> 
+						(hburst0=false -> 
+							(hburst0'=false -> 
+								(hburst1=false -> hburst1'=true)))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready'=false -> 
+	(hbusreq0=false -> 
+		(hbusreq0'=true -> 
+			(hlock0=false -> 
+				(hlock0'=false -> 
+					(hburst0=false -> 
+						(hburst0'=false -> 
+							(hburst1=false -> hburst1'=true)))))))) and
+(hready'=true -> 
+	(hbusreq0=false -> 
+		(hbusreq0'=false -> 
+			(hlock0=false -> 
+				(hlock0'=false -> 
+					(hburst0=false -> 
+						(hburst0'=false -> 
+							(hburst1=false -> hburst1'=true))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=false -> 
+	(hready'=false -> 
+		(hbusreq0'=true -> 
+			(hlock0=false -> 
+				(hlock0'=false -> 
+					(hburst0=false -> 
+						(hburst0'=false -> 
+							(hburst1=false -> hburst1'=true))))))) and
+	(hready'=true -> 
+		(hlock0=false -> 
+			(hlock0'=false -> 
+				(hburst0=false -> 
+					(hburst0'=false -> 
+						(hburst1=false -> hburst1'=true))))))) and
+(hready=true -> 
+	(hready'=false -> 
+		(hbusreq0=false -> 
+			(hbusreq0'=true -> 
+				(hlock0=false -> 
+					(hlock0'=false -> 
+						(hburst0=false -> 
+							(hburst0'=false -> 
+								(hburst1=false -> hburst1'=true)))))))) and
+	(hready'=true -> 
+		(hbusreq0=false -> 
+			(hlock0=false -> 
+				(hlock0'=false -> 
+					(hburst0=false -> 
+						(hburst0'=false -> 
+							(hburst1=false -> hburst1'=true))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready=false -> 
+	(hready'=false -> 
+		(hbusreq0'=true -> 
+			(hlock0=false -> 
+				(hlock0'=false -> 
+					(hburst0=false -> 
+						(hburst0'=false -> 
+							(hburst1=false -> hburst1'=true))))))) and
+	(hready'=true -> 
+		(hlock0=false -> 
+			(hlock0'=false -> 
+				(hburst0=false -> 
+					(hburst0'=false -> 
+						(hburst1=false -> hburst1'=true))))))) and
+(hready=true -> 
+	(hready'=false -> 
+		(hbusreq0=false -> 
+			(hbusreq0'=true -> 
+				(hlock0=false -> 
+					(hlock0'=false -> 
+						(hburst0=false -> 
+							(hburst0'=false -> 
+								(hburst1=false -> hburst1'=true)))))))) and
+	(hready'=true -> 
+		(hbusreq0=false -> 
+			(hlock0=false -> 
+				(hlock0'=false -> 
+					(hburst0=false -> 
+						(hburst0'=false -> 
+							(hburst1=false -> hburst1'=true))))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready'=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hlock0'=false -> 
+				(hburst0=false -> 
+					(hburst0'=false -> 
+						(hburst1=false -> hburst1'=true)))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready'=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hlock0'=false -> 
+				(hburst0=false -> 
+					(hburst0'=false -> 
+						(hburst1=false -> hburst1'=true)))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=false)) and
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready'=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hlock0'=false -> 
+				(hburst0=false -> 
+					(hburst0'=false -> 
+						(hburst1=false -> hburst1'=true)))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready'=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hlock0'=false -> 
+				(hburst0=false -> 
+					(hburst0'=false -> 
+						(hburst1=false -> hburst1'=true)))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hlock0=false -> 
+		(hburst0=false -> hburst1=true)));
+asm 
+G (hready'=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hlock0'=false -> 
+				(hburst0=false -> 
+					(hburst0'=false -> 
+						(hburst1=false -> hburst1'=true)))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hlock0=false -> 
+		(hburst0=false -> hburst1=true)));
+asm 
+G (hready'=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hlock0'=false -> 
+				(hburst0=false -> 
+					(hburst0'=false -> 
+						(hburst1=false -> hburst1'=true)))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=false)) and
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready'=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hlock0'=false -> 
+				(hburst0=false -> 
+					(hburst0'=false -> 
+						(hburst1=false -> hburst1'=true)))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=false)) and
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true))));
+asm 
+G (hready'=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hlock0'=false -> 
+				(hburst0=false -> 
+					(hburst0'=false -> 
+						(hburst1=false -> hburst1'=true)))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hlock0=false -> 
+		(hburst0=false -> hburst1=true)));
+asm 
+G (hready'=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hlock0'=false -> 
+				(hburst0=false -> 
+					(hburst0'=false -> 
+						(hburst1=false -> hburst1'=true)))))));
+
+
+Found refinement:
+asm 
+G (hready=false -> 
+	(hbusreq0=false -> 
+		(hlock0=true -> 
+			(hburst0=false -> hburst1=true))) and
+	(hbusreq0=true -> 
+		(hlock0=false -> 
+			(hburst0=false -> hburst1=true)))) and
+(hready=true -> 
+	(hlock0=false -> 
+		(hburst0=false -> hburst1=true)));
+asm 
+G (hready'=false -> 
+	(hbusreq0=false -> 
+		(hlock0=false -> 
+			(hlock0'=false -> 
+				(hburst0=false -> 
+					(hburst0'=false -> 
+						(hburst1=false -> hburst1'=true)))))));

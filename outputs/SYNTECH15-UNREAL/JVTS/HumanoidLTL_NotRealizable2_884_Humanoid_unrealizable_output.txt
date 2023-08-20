@@ -33,4 +33,4 @@ Number of well-separated suggestions is 0
 Maximum variables in the best repair is -1
 Maximum Node count: -1
 
-runtime of repair operation was 90 in millisecs.
+runtime of repair operation was 140 in millisecs.

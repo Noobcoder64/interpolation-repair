@@ -56,16 +56,16 @@ Checking: 0:2 and 3:3, 2 elements
 check: return false - part is in neg set num 1
 GR1GameImplC.checkRealizability: start
 GR1GameImplC.checkRealizability: end
-Nodes num: 28836
-Nodes table size: 73584
+Nodes num: 32277
+Nodes table size: 81760
 GR1GameImplC.checkRealizability: start
 GR1GameImplC.checkRealizability: end
-Nodes num: 28847
-Nodes table size: 73584
+Nodes num: 32290
+Nodes table size: 81760
 Found 2 repair suggestions
 Number of well-separated suggestions is 0
 Maximum variables in the best repair is 14
-Maximum Node count: 32
+Maximum Node count: 31
 
 Repair #1 [
 
@@ -698,4 +698,4 @@ asm G (obstacle_0=false ->
 
 ]
 
-runtime of repair operation was 1968 in millisecs.
+runtime of repair operation was 1732 in millisecs.

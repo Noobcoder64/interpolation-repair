@@ -1,2 +1,386 @@
 Using BDD Package: CUDDFactory, Version: CUDD 3.0
 Using BDD Package: CUDDFactory, Version: CUDD 3.0
+0    [pool-1-thread-1] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+java.util.MissingResourceException: The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+	at org.eclipse.emf.common.util.DelegatingResourceLocator.delegatedGetString(DelegatingResourceLocator.java:586)
+	at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:450)
+	at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:605)
+	at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:597)
+	at org.eclipse.emf.ecore.util.Diagnostician.createDefaultDiagnostic(Diagnostician.java:110)
+	at org.eclipse.emf.ecore.util.Diagnostician.validate(Diagnostician.java:139)
+	at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:147)
+	at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:125)
+	at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:91)
+	at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getSpectraModel(SpectraInputProviderNoIDE.java:166)
+	at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getGameInput(SpectraInputProviderNoIDE.java:109)
+	at tau.smlab.syntech.Spectra.cli.SpecRepair.executeAlgorithm(SpecRepair.java:102)
+	at tau.smlab.syntech.Spectra.cli.SpecRepair.lambda$0(SpecRepair.java:73)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Executing "inputs/SYNTECH15-UNREAL/GyroUnrealizable_Var2_710_GyroAspect_unrealizable.spectra".
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 133
+Nodes table size: 1022
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 198
+Nodes table size: 1022
+Checking: 0:1, 1 elements
+Checking: 1:2, 1 elements
+Checking: 0:1, 1 elements
+Checking: 1:2, 1 elements
+Checking: 0:2, 2 elements
+Checking: 2:3, 1 elements
+Checking: 0:2, 2 elements
+Checking: 2:3, 1 elements
+Checking: 0:2, 2 elements
+Checking: 2:3, 1 elements
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 8577
+Nodes table size: 17374
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 8618
+Nodes table size: 17374
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 8618
+Nodes table size: 17374
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 8637
+Nodes table size: 17374
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 8637
+Nodes table size: 17374
+Found 5 repair suggestions
+Number of well-separated suggestions is 5
+Maximum variables in the best repair is 9
+Maximum Node count: 11
+
+Repair #1 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=true -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=false -> 
+					(next(isReady)=true -> 
+						(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+							(next(eNV_CONSTRAINT_0_respondsTo_responded)=false -> 
+								(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+									(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+										(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+											(next(eNV_CONSTRAINT_2_respondsTo_responded)=true -> 
+												(balancer_0=false -> 
+													(balancer_1=false -> balancer_2=true))))))) and
+							(next(eNV_CONSTRAINT_0_respondsTo_responded)=true -> 
+								(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+									(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+										(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+											(balancer_0=false -> 
+												(balancer_1=false -> balancer_2=true)))))))))) and
+			(next(backDistSense_0)=true -> 
+				(isReady=false -> 
+					(next(isReady)=true -> 
+						(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+							(next(eNV_CONSTRAINT_0_respondsTo_responded)=true -> 
+								(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+									(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+										(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+											(next(eNV_CONSTRAINT_2_respondsTo_responded)=false -> 
+												(balancer_0=false -> 
+													(balancer_1=false -> balancer_2=true)))))))))))))) and
+(frontDistSense_0=true -> 
+	(next(frontDistSense_0)=true -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> 
+					(next(isReady)=true -> 
+						(eNV_CONSTRAINT_0_respondsTo_responded=false -> 
+							(next(eNV_CONSTRAINT_0_respondsTo_responded)=false -> 
+								(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+									(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+										(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+											(next(eNV_CONSTRAINT_2_respondsTo_responded)=true -> 
+												(balancer_0=false -> 
+													(balancer_1=false and balancer_2=true)) and
+												(balancer_0=true -> 
+													(balancer_1=false -> balancer_2=true))))))) and
+							(next(eNV_CONSTRAINT_0_respondsTo_responded)=true -> 
+								(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+									(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+										(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+											(balancer_0=false -> 
+												(balancer_1=false and balancer_2=true)) and
+											(balancer_0=true -> 
+												(balancer_1=false -> balancer_2=true)))))))))) and
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> 
+					(next(isReady)=true -> 
+						(eNV_CONSTRAINT_0_respondsTo_responded=false -> 
+							(next(eNV_CONSTRAINT_0_respondsTo_responded)=true -> 
+								(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+									(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+										(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+											(next(eNV_CONSTRAINT_2_respondsTo_responded)=false -> 
+												(balancer_0=false -> 
+													(balancer_1=false and balancer_2=true)) and
+												(balancer_0=true -> 
+													(balancer_1=false -> balancer_2=true)))))))))))) and
+		(backDistSense_0=true -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> 
+					(next(isReady)=true -> 
+						(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+							(next(eNV_CONSTRAINT_0_respondsTo_responded)=false -> 
+								(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+									(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+										(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+											(next(eNV_CONSTRAINT_2_respondsTo_responded)=true -> 
+												(balancer_0=false -> 
+													(balancer_1=false -> balancer_2=true) and
+													(balancer_1=true -> balancer_2=false)) and
+												(balancer_0=true -> 
+													(balancer_1=false -> balancer_2=true))))))) and
+							(next(eNV_CONSTRAINT_0_respondsTo_responded)=true -> 
+								(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+									(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+										(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+											(balancer_0=false -> 
+												(balancer_1=false -> balancer_2=true) and
+												(balancer_1=true -> balancer_2=false)) and
+											(balancer_0=true -> 
+												(balancer_1=false -> balancer_2=true)))))))))) and
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> 
+					(next(isReady)=true -> 
+						(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+							(next(eNV_CONSTRAINT_0_respondsTo_responded)=true -> 
+								(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+									(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+										(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+											(next(eNV_CONSTRAINT_2_respondsTo_responded)=false -> 
+												(balancer_0=false -> 
+													(balancer_1=false -> balancer_2=true) and
+													(balancer_1=true -> balancer_2=false)) and
+												(balancer_0=true -> 
+													(balancer_1=false -> balancer_2=true))))))))))))));
+
+//Initial//
+
+]
+
+Repair #2 [
+
+//Justices//
+asm GF (frontDistSense_0=true -> 
+	(backDistSense_0=false -> 
+		(isReady=true -> 
+			(eNV_CONSTRAINT_0_respondsTo_responded=false -> 
+				(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+					(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+						(balancer_0=false -> 
+							(balancer_1=false and balancer_2=true)) and
+						(balancer_0=true -> 
+							(balancer_1=false -> balancer_2=true))))) and
+			(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+				(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false and balancer_2=true)) and
+					(balancer_0=true -> 
+						(balancer_1=false -> balancer_2=true)))))) and
+	(backDistSense_0=true -> 
+		(isReady=true -> 
+			(eNV_CONSTRAINT_0_respondsTo_responded=false -> 
+				(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+					(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+						(balancer_0=false -> 
+							(balancer_1=false -> balancer_2=true) and
+							(balancer_1=true -> balancer_2=false)) and
+						(balancer_0=true -> 
+							(balancer_1=false -> balancer_2=true))))) and
+			(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+				(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false -> balancer_2=true) and
+						(balancer_1=true -> balancer_2=false)) and
+					(balancer_0=true -> 
+						(balancer_1=false -> balancer_2=true)))))));
+
+//Transitions//
+
+//Initial//
+
+]
+
+Repair #3 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(next(frontDistSense_0)=true -> 
+		(backDistSense_0=false -> 
+			(isReady=false -> 
+				(next(isReady)=true -> 
+					(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+						(next(eNV_CONSTRAINT_0_respondsTo_responded)=false -> 
+							(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+								(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+									(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+										(next(eNV_CONSTRAINT_2_respondsTo_responded)=true -> 
+											(balancer_0=false -> 
+												(balancer_1=false -> balancer_2=true))))))) and
+						(next(eNV_CONSTRAINT_0_respondsTo_responded)=true -> 
+							(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+								(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+									(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+										(balancer_0=false -> 
+											(balancer_1=false -> balancer_2=true)))))))))))) and
+(frontDistSense_0=true -> 
+	(next(frontDistSense_0)=true -> 
+		(backDistSense_0=false -> 
+			(isReady=true -> 
+				(next(isReady)=true -> 
+					(eNV_CONSTRAINT_0_respondsTo_responded=false -> 
+						(next(eNV_CONSTRAINT_0_respondsTo_responded)=false -> 
+							(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+								(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+									(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+										(next(eNV_CONSTRAINT_2_respondsTo_responded)=true -> 
+											(balancer_0=false -> 
+												(balancer_1=false and balancer_2=true)) and
+											(balancer_0=true -> 
+												(balancer_1=false -> balancer_2=true))))))) and
+						(next(eNV_CONSTRAINT_0_respondsTo_responded)=true -> 
+							(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+								(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+									(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+										(balancer_0=false -> 
+											(balancer_1=false and balancer_2=true)) and
+										(balancer_0=true -> 
+											(balancer_1=false -> balancer_2=true)))))))))) and
+		(backDistSense_0=true -> 
+			(isReady=true -> 
+				(next(isReady)=true -> 
+					(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+						(next(eNV_CONSTRAINT_0_respondsTo_responded)=false -> 
+							(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+								(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+									(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+										(next(eNV_CONSTRAINT_2_respondsTo_responded)=true -> 
+											(balancer_0=false -> 
+												(balancer_1=false -> balancer_2=true) and
+												(balancer_1=true -> balancer_2=false)) and
+											(balancer_0=true -> 
+												(balancer_1=false -> balancer_2=true))))))) and
+						(next(eNV_CONSTRAINT_0_respondsTo_responded)=true -> 
+							(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+								(next(eNV_CONSTRAINT_1_respondsTo_responded)=true -> 
+									(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+										(balancer_0=false -> 
+											(balancer_1=false -> balancer_2=true) and
+											(balancer_1=true -> balancer_2=false)) and
+										(balancer_0=true -> 
+											(balancer_1=false -> balancer_2=true))))))))))));
+
+//Initial//
+
+]
+
+Repair #4 [
+
+//Justices//
+asm GF (frontDistSense_0=true -> 
+	(backDistSense_0=false -> 
+		(isReady=true -> 
+			(eNV_CONSTRAINT_0_respondsTo_responded=false -> 
+				(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+					(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+						(balancer_0=false -> 
+							(balancer_1=false and balancer_2=true)) and
+						(balancer_0=true -> 
+							(balancer_1=false -> balancer_2=true))))) and
+			(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+				(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false and balancer_2=true)) and
+					(balancer_0=true -> 
+						(balancer_1=false -> balancer_2=true)))))) and
+	(backDistSense_0=true -> 
+		(isReady=true -> 
+			(eNV_CONSTRAINT_0_respondsTo_responded=false -> 
+				(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+					(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+						(balancer_0=false -> 
+							(balancer_1=false -> balancer_2=true) and
+							(balancer_1=true -> balancer_2=false)) and
+						(balancer_0=true -> 
+							(balancer_1=false -> balancer_2=true))))) and
+			(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+				(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false -> balancer_2=true) and
+						(balancer_1=true -> balancer_2=false)) and
+					(balancer_0=true -> 
+						(balancer_1=false -> balancer_2=true)))))));
+
+//Transitions//
+
+//Initial//
+
+]
+
+Repair #5 [
+
+//Justices//
+asm GF (frontDistSense_0=true -> 
+	(backDistSense_0=false -> 
+		(isReady=true -> 
+			(eNV_CONSTRAINT_0_respondsTo_responded=false -> 
+				(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+					(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+						(balancer_0=false -> 
+							(balancer_1=false and balancer_2=true)) and
+						(balancer_0=true -> 
+							(balancer_1=false -> balancer_2=true))))) and
+			(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+				(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false and balancer_2=true)) and
+					(balancer_0=true -> 
+						(balancer_1=false -> balancer_2=true)))))) and
+	(backDistSense_0=true -> 
+		(isReady=true -> 
+			(eNV_CONSTRAINT_0_respondsTo_responded=false -> 
+				(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+					(eNV_CONSTRAINT_2_respondsTo_responded=true -> 
+						(balancer_0=false -> 
+							(balancer_1=false -> balancer_2=true) and
+							(balancer_1=true -> balancer_2=false)) and
+						(balancer_0=true -> 
+							(balancer_1=false -> balancer_2=true))))) and
+			(eNV_CONSTRAINT_0_respondsTo_responded=true -> 
+				(eNV_CONSTRAINT_1_respondsTo_responded=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false -> balancer_2=true) and
+						(balancer_1=true -> balancer_2=false)) and
+					(balancer_0=true -> 
+						(balancer_1=false -> balancer_2=true)))))));
+
+//Transitions//
+
+//Initial//
+
+]
+
+runtime of repair operation was 694 in millisecs.

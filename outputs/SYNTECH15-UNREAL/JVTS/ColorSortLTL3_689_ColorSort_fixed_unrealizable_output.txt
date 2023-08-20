@@ -1,6 +1,6 @@
 Using BDD Package: CUDDFactory, Version: CUDD 3.0
 Using BDD Package: CUDDFactory, Version: CUDD 3.0
-1    [pool-1-thread-1] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+0    [pool-1-thread-1] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
 java.util.MissingResourceException: The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
 	at org.eclipse.emf.common.util.DelegatingResourceLocator.delegatedGetString(DelegatingResourceLocator.java:586)
 	at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:450)
@@ -19,18 +19,12 @@ java.util.MissingResourceException: The string resource '_UI_DiagnosticRoot_diag
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:829)
-Executing "inputs/AMBA/amba_ahb_w_guar_trans_amba_ahb_2.spectra".
+Executing "inputs/SYNTECH15-UNREAL/ColorSortLTL3_689_ColorSort_fixed_unrealizable.spectra".
 GR1GameImplC.checkRealizability: start
 GR1GameImplC.checkRealizability: end
-Nodes num: 1510
-Nodes table size: 11242
+Nodes num: 2667
+Nodes table size: 27594
 GR1GameImplC.checkRealizability: start
 GR1GameImplC.checkRealizability: end
-Nodes num: 3044
-Nodes table size: 43946
-Found 0 repair suggestions
-Number of well-separated suggestions is 0
-Maximum variables in the best repair is -1
-Maximum Node count: -1
-
-runtime of repair operation was 36 in millisecs.
+Nodes num: 18277
+Nodes table size: 62342

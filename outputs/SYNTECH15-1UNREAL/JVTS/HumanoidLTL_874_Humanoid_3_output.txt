@@ -1,6 +1,6 @@
 Using BDD Package: CUDDFactory, Version: CUDD 3.0
 Using BDD Package: CUDDFactory, Version: CUDD 3.0
-0    [pool-1-thread-1] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+1    [pool-1-thread-1] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
 java.util.MissingResourceException: The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
 	at org.eclipse.emf.common.util.DelegatingResourceLocator.delegatedGetString(DelegatingResourceLocator.java:586)
 	at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:450)
@@ -26,5 +26,5 @@ Nodes num: 1242
 Nodes table size: 25550
 GR1GameImplC.checkRealizability: start
 GR1GameImplC.checkRealizability: end
-Nodes num: 3425
-Nodes table size: 85848
+Nodes num: 3233
+Nodes table size: 84826

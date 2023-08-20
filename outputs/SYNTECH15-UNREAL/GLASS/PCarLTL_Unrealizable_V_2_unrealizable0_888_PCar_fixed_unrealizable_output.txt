@@ -1,6 +1,6 @@
 Using BDD Package: CUDDFactory, Version: CUDD 3.0
 Using BDD Package: CUDDFactory, Version: CUDD 3.0
-0    [pool-1-thread-1] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+1    [pool-1-thread-1] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
 java.util.MissingResourceException: The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
 	at org.eclipse.emf.common.util.DelegatingResourceLocator.delegatedGetString(DelegatingResourceLocator.java:586)
 	at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:450)
@@ -29,11 +29,11 @@ Checking: 1:2, 1 elements
 Found 1 repair suggestions
 GR1GameImplC.checkRealizability: start
 GR1GameImplC.checkRealizability: end
-Nodes num: 2052
+Nodes num: 1535
 Nodes table size: 11242
 Number of well-separated suggestions is 0
 Maximum variables in the best repair is 12
-Maximum Node count: 19
+Maximum Node count: 20
 
 Repair #1 [
 
@@ -75,4 +75,4 @@ asm GF (obstacle_0=false ->
 
 ]
 
-runtime of repair operation was 21 in millisecs.
+runtime of repair operation was 29 in millisecs.

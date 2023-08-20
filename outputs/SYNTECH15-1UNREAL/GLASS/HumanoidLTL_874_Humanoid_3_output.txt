@@ -27,11 +27,11 @@ Nodes table size: 25550
 Found 1 repair suggestions
 GR1GameImplC.checkRealizability: start
 GR1GameImplC.checkRealizability: end
-Nodes num: 27639
-Nodes table size: 186004
+Nodes num: 21562
+Nodes table size: 224840
 Number of well-separated suggestions is 1
 Maximum variables in the best repair is 31
-Maximum Node count: 313
+Maximum Node count: 357
 
 Repair #1 [
 

@@ -19,18 +19,53 @@ java.util.MissingResourceException: The string resource '_UI_DiagnosticRoot_diag
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:829)
-Executing "inputs/AMBA/amba_ahb_w_guar_trans_amba_ahb_2.spectra".
+Executing "inputs/AMBA/amba_ahb_w_guar_fairness_amba_ahb_3.spectra".
 GR1GameImplC.checkRealizability: start
 GR1GameImplC.checkRealizability: end
-Nodes num: 1510
-Nodes table size: 11242
-GR1GameImplC.checkRealizability: start
-GR1GameImplC.checkRealizability: end
-Nodes num: 3044
-Nodes table size: 43946
+Nodes num: 3711
+Nodes table size: 33726
+Algorithm 1 started
+Alpha is 2
+Using max outgoing edge heuristic for beta
+Forbidden variables:
+{P1=[], P2=[], P3=[], P4=[]}
+Specification is unrealizable.
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+Found patterns:
+FG(8|7|6|4|2|5|3|1)
+F(0)
+F(2|1)
+F(4|3)
+F((0)&Next(1|2))
+F((2|1)&Next(3|4))
+F((4|3)&Next(5|6|7|8))
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+extract strategy - Start
+
+extract strategy - End
+Generating patterns...
+No refinement found. Please try again with other parameters.
 Found 0 repair suggestions
 Number of well-separated suggestions is 0
 Maximum variables in the best repair is -1
 Maximum Node count: -1
 
-runtime of repair operation was 36 in millisecs.
+runtime of repair operation was 4861 in millisecs.
