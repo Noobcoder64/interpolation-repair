@@ -14,7 +14,7 @@ INPUT_FOLDERS = [
 
 # List of algorithms
 ALGORITHMS = [
-    # "INTERPOLATION",
+    "INTERPOLATION",
     "GLASS",
     "JVTS",
     "ALUR",
@@ -88,9 +88,13 @@ def summarize_folder(input_folder):
 
         if matching_csv_file:
             csv_filepath = os.path.join(output_folder, matching_csv_file[0])
-            df = pd.read_csv(csv_filepath, sep=";")
-            # Calculate the number of repairs for the spec
-            num_repairs = len(df)
+            df = pd.read_csv(csv_filepath, sep=";", index_col=False)
+            if "IsSolution" in df.columns:
+                # Count the number of rows where 'IsSolution' is True
+                num_repairs = len(df[df["IsSolution"] == True])
+            else:
+                # If 'IsSolution' column is not present, consider all rows as num_repairs
+                num_repairs = len(df)
         else:
             num_repairs = 0
 
@@ -112,48 +116,15 @@ def summarize_folder(input_folder):
     print(f"Repairs summary saved to {output_file}")
 
 
-def plot_summary(input_folder):
-
-    count = dict()
-    for algorithm in ALGORITHMS:
-        output_folder = os.path.join(OUTPUT_PARENT_FOLDER, os.path.basename(input_folder), algorithm)
-
-        # Output CSV file path
-        repairs_summary_file = os.path.join(output_folder, SUMMARY_FILENAME)
-
-        df = pd.read_csv(repairs_summary_file)
-        repaired_specs = df[df["NumRepairs"] > 0]
-        num_repaired = len(repaired_specs)
-        count[algorithm] = num_repaired
-
-    # Create a bar plot
-    plt.bar(count.keys(), count.values())
-    plt.xlabel("Benchmark", fontsize=12)
-    plt.ylabel("Number of Specifications Repaired", fontsize=12)
-    plt.title("Number of Specifications Repaired in Each Benchmark", fontsize=12)
-    plt.xticks(fontsize=12)
-
-    # Add numbers above each bar
-    for benchmark, count in count.items():
-        plt.text(benchmark, count + 0.5, str(count), ha="center", va="bottom", fontsize=10)
-
-    # Display the plot
-    plt.tight_layout()
-    plt.show()
-
-
 total_start_time = time.time()
 
 # for input_folder in INPUT_FOLDERS:
 #     for algorithm in ALGORITHMS:
 #         process_folder(input_folder, algorithm)
 
-# for input_folder in INPUT_FOLDERS:
-#     for algorithm in ALGORITHMS:
-#         summarize_folder(input_folder)
-
 for input_folder in INPUT_FOLDERS:
-    plot_summary(input_folder)
+    for algorithm in ALGORITHMS:
+        summarize_folder(input_folder)
 
 total_end_time = time.time()
 total_elapsed_time = total_end_time - total_start_time

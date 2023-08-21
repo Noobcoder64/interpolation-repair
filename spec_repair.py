@@ -38,13 +38,13 @@ def create_csv_from_output(output_file, csv_output_file):
 
     with open(csv_output_file, "w", newline="") as csvfile:
         csv_writer = csv.writer(csvfile)
-        csv_writer.writerow(["Id", "UniqueRefinement", "NumVariables"])
+        csv_writer.writerow(["Id", "UniqueRefinement", "NumVariables", "IsSolution"])
 
         for i, repair in enumerate(repairs, start=1):
             assumptions = asm_pattern.findall(repair)
             assumptions = normalize_assumptions(assumptions)
             num_variables = count_num_variables(assumptions)
-            csv_writer.writerow([str(uuid.uuid4()), assumptions, num_variables])
+            csv_writer.writerow([str(uuid.uuid4()), assumptions, num_variables, True])
 
     
 def normalize_assumptions(assumptions):

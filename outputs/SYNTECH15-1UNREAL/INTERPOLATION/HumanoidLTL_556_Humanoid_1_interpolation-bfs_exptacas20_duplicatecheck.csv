@@ -1,5 +1,4 @@
 Id;UniqueRefinement;NumVariables;Timestamp;Length;Parent;NumChildren;IsRealizable;IsSatisfiable;IsSolution;TimeRealizabilityCheck;TimeSatisfiabilityCheck;TimeCounterstrategy;CounterstrategyNumStates;TimeRefine;TimeGenerationMethod
-94bb585c-a6af-4516-aa5b-c9519a13aeb7;['G(!(noise_0 & heading_0))'];3;3.1705033280013595;1;287ee777-ba00-4ebe-8a48-620731910acb;0;True;True;True;0.9762465529784095;1.0431832949980162;N/A;N/A;N/A;N/A;
-1482ac29-7c0b-481a-b05b-a7fc98ed91cd;['!(noise_0 & heading_0)', 'G((spec_search_1 & !spec_search_0) -> X(!(heading_0)))'];7;8.361069857986877;2;3a18f882-4d14-4d30-b05b-783c0bde4a91;0;True;True;True;1.0739418150042184;1.0465988620126154;N/A;N/A;N/A;N/A;
-d32b680d-5c11-418f-a9c5-56cc34407dfa;['!(noise_0 & heading_0)', 'G(!(heading_0))'];4;8.361086997989332;2;3a18f882-4d14-4d30-b05b-783c0bde4a91;0;True;True;True;1.012391871016007;0.9422299840080086;N/A;N/A;N/A;N/A;
-15426b84-4ea9-424b-a10f-5a0fdd5bfe30;['!(noise_0 & heading_0)', 'G((heading_0) -> X(!(heading_0)))'];5;8.361097357003018;2;3a18f882-4d14-4d30-b05b-783c0bde4a91;0;True;True;True;0.9801883380278014;1.0006961660110392;N/A;N/A;N/A;N/A;
+b78b7e9a-fe13-44b9-9101-196b409a5833;[];0;0.01741640199907124;0;N/A;2;False;N/A;False;9.778408777026925;N/A;12.907671363966074;174;0.00019203504780307412;8.159396402013954;
+12b2e637-b520-4612-8ee1-cf5742ef4586;['!(noise_0 & heading_0)'];2;30.907153278996702;1;b78b7e9a-fe13-44b9-9101-196b409a5833;0;False;N/A;False;8.984201855026186;N/A;11.851347897958476;111;N/A;N/A;
+668b5736-bf9f-4524-aeb7-30ff0eb8989d;['G(!(noise_0 & heading_0))'];3;30.907183171948418;1;b78b7e9a-fe13-44b9-9101-196b409a5833;0;True;True;True;7.575496072007809;7.478583764983341;N/A;N/A;N/A;N/A;

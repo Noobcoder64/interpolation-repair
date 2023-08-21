@@ -1,2 +1,4 @@
 Id;UniqueRefinement;NumVariables;Timestamp;Length;Parent;NumChildren;IsRealizable;IsSatisfiable;IsSolution;TimeRealizabilityCheck;TimeSatisfiabilityCheck;TimeCounterstrategy;CounterstrategyNumStates;TimeRefine;TimeGenerationMethod
-4ccb29e9-4c95-4d30-bead-673dd8190383;['G(F(!(!sYS_CONSTRAINT_0_respondsTo_responded)))'];3;5.090208941983292;1;1971a509-177d-45eb-a47d-7af6a47b45ff;0;True;True;True;1.8790840999863576;1.2356433500244748;N/A;N/A;N/A;N/A;
+5a1f4ccc-7370-445b-801d-0c80997f596d;[];0;0.003553994989488274;0;N/A;2;False;N/A;False;12.110528884048108;N/A;14.452101907983888;37;0.00021375901997089386;9.450738879968412;
+5fa0b1b2-965b-4b57-b416-95ecd2103a6b;['G((!sYS_CONSTRAINT_0_respondsTo_responded) -> X(!(!sYS_CONSTRAINT_0_respondsTo_responded)))'];3;36.05126363103045;1;5a1f4ccc-7370-445b-801d-0c80997f596d;0;True;False;False;9.509110897022765;9.96262794896029;N/A;N/A;N/A;N/A;
+7f8b3573-9b4e-4e3d-acbc-14229bf6e35f;['G(F(!(!sYS_CONSTRAINT_0_respondsTo_responded)))'];3;36.05129026499344;1;5a1f4ccc-7370-445b-801d-0c80997f596d;0;True;True;True;14.058569534972776;7.779844372998923;N/A;N/A;N/A;N/A;

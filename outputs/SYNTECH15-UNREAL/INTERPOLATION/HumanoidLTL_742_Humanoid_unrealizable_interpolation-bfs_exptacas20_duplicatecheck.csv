@@ -1,1 +1,3 @@
 Id;UniqueRefinement;NumVariables;Timestamp;Length;Parent;NumChildren;IsRealizable;IsSatisfiable;IsSolution;TimeRealizabilityCheck;TimeSatisfiabilityCheck;TimeCounterstrategy;CounterstrategyNumStates;TimeRefine;TimeGenerationMethod
+5f4eaae1-d0ec-4039-ae48-1870b5d4d020;[];0;0.004441269033122808;0;N/A;1;False;N/A;False;7.569297694019042;N/A;253.35630072001368;1233;0.00017906998982653022;1.412443591048941;
+acb6ed81-8741-4362-a6cd-64600a1c06fa;['G(F(!(nextMoveMode_1)))'];3;262.387416395999;1;5f4eaae1-d0ec-4039-ae48-1870b5d4d020;0;True;True;True;1.510034192004241;1.526282837963663;N/A;N/A;N/A;N/A;
