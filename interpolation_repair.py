@@ -57,13 +57,13 @@ def FifoDuplicateCheckRefinement():
     refinement_queue = deque([initial_spec_node])
 
     nodes = 0
-    elapsed_time = 0
-    while refinement_queue and nodes < MAX_NODES and elapsed_time < exp.timeout:
+    exp.elapsed_time = 0
+    while refinement_queue and nodes < MAX_NODES and exp.elapsed_time < exp.timeout:
         cur_node = refinement_queue.pop()
         nodes += 1
 
         if cur_node.unique_refinement not in explored_refs:
-            print("++++ ELAPSED TIME:", elapsed_time)
+            print("++++ ELAPSED TIME:", exp.elapsed_time)
             print("++++ QUEUE LENGTH:", len(refinement_queue))
             print("++++ Solutions:", len(solutions))
             print("++++ Duplicates:", len(duplicate_refs))
@@ -77,7 +77,7 @@ def FifoDuplicateCheckRefinement():
                     with concurrent.futures.ThreadPoolExecutor() as executor:
                         print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
                         refine_future = executor.submit(cur_node.refine)
-                        remaining_timeout = exp.timeout - elapsed_time
+                        remaining_timeout = exp.timeout - exp.elapsed_time
                         candidate_ref_nodes = refine_future.result(timeout=remaining_timeout)
                         refinement_queue.extendleft(candidate_ref_nodes)
                 elif cur_node.isSatisfiable():
@@ -97,7 +97,7 @@ def FifoDuplicateCheckRefinement():
             print("++ DUPLICATE NODE")
             duplicate_refs.append(cur_node.unique_refinement)
 
-        elapsed_time = timeit.default_timer() - start_experiment
+        exp.elapsed_time = timeit.default_timer() - start_experiment
 
     # start_time_nonexpanded_nodes = timeit.default_timer()
     # print("++++ SAVING NON EXPANDED NODES DATA: "+str(len(partial_refinements_queue))+" nodes")
@@ -137,12 +137,10 @@ def main():
     parser = argparse.ArgumentParser(description="Run interpolation_repair.py on .spectra file.")
     parser.add_argument("-i", "--input", required=True, help="Path to the input .spectra file")
     parser.add_argument("-o", "--output", default=os.getcwd(), help="Path to the output folder (default: current directory)")
-    parser.add_argument("-t", "--timeout", type=int, default=10, help="Timeout in minutes (default: 10)")
+    parser.add_argument("-t", "--timeout", type=float, default=10, help="Timeout in minutes (default: 10)")
 
     args = parser.parse_args()
-
-    exp.configure(args.input, args.timeout * 60, args.output)
-
+    exp.configure(args.input, args.timeout*60, args.output)
     FifoDuplicateCheckRefinement()
 
 if __name__=="__main__":

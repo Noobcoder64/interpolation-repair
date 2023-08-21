@@ -1,4 +1,4 @@
 Id;UniqueRefinement;NumVariables;Timestamp;Length;Parent;NumChildren;IsRealizable;IsSatisfiable;IsSolution;TimeRealizabilityCheck;TimeSatisfiabilityCheck;TimeCounterstrategy;CounterstrategyNumStates;TimeRefine;TimeGenerationMethod
-4d346037-113c-4be3-a22d-6f9d8d0c3c7d;[];0;0.01931090804282576;0;N/A;2;False;N/A;False;5.788266574963927;N/A;43.66103297501104;30;0.0001730700023472309;5.8530903669889085;
-521ce3ff-64cd-45e2-9747-431ee294bc74;['G(F(!(!sYS_CONSTRAINT_0_respondsTo_responded)))'];3;55.340116565988865;1;4d346037-113c-4be3-a22d-6f9d8d0c3c7d;0;True;True;True;6.982638810004573;7.406835398986004;N/A;N/A;N/A;N/A;
-1fdae5e1-7e52-4b71-8c5b-9331618fc912;['G((!sYS_CONSTRAINT_0_respondsTo_responded) -> X(!(!sYS_CONSTRAINT_0_respondsTo_responded)))'];3;55.340144535992295;1;4d346037-113c-4be3-a22d-6f9d8d0c3c7d;0;True;True;True;6.5237175520160235;5.92154945601942;N/A;N/A;N/A;N/A;
+399fd9ac-b199-4fda-b1c2-7685e0796fad;[];0;0.011424180993344635;0;N/A;2;False;N/A;False;6.736448448966257;N/A;44.163622139021754;30;0.00019377999706193805;6.851695167948492;
+ef97ef5d-7246-423f-9984-f9d45eab2eca;['G(F(!(!sYS_CONSTRAINT_0_respondsTo_responded)))'];3;57.793066187994555;1;399fd9ac-b199-4fda-b1c2-7685e0796fad;0;True;True;True;6.916369912971277;7.899678738031071;N/A;N/A;N/A;N/A;
+fe2d38a9-c03c-45ca-9458-3c755e1e9c1a;['G((!sYS_CONSTRAINT_0_respondsTo_responded) -> X(!(!sYS_CONSTRAINT_0_respondsTo_responded)))'];3;57.793094754975755;1;399fd9ac-b199-4fda-b1c2-7685e0796fad;0;True;True;True;5.699777747970074;5.666052832035348;N/A;N/A;N/A;N/A;

@@ -57,6 +57,7 @@ if case_study_name != "":
 counterstrategies = []
 
 start_experiment = timeit.default_timer()
+elapsed_time = 0
 
 def configure(spectra_file, timeout_in=600, output_folder="outputs/", debug=False):
     global specfile
@@ -81,6 +82,7 @@ def configure(spectra_file, timeout_in=600, output_folder="outputs/", debug=Fals
 
     global timeout
     global start_experiment
+    global elapsed_time
     
     specfile = spectra_file
     case_study_name = os.path.splitext(os.path.basename(specfile))[0]
@@ -123,3 +125,4 @@ def configure(spectra_file, timeout_in=600, output_folder="outputs/", debug=Fals
 
     timeout = timeout_in
     start_experiment = timeit.default_timer()
+    elapsed_time = 0
