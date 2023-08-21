@@ -1,0 +1,18 @@
+module Chatt
+
+env boolean r;
+env boolean c;
+sys boolean g;
+
+guarantee
+	respondsTo(r, next(g));
+	
+guarantee
+	G ((c | g) -> next(!g));
+
+pattern respondsTo(trigger, response) {
+  var boolean responded;
+  responded;
+  G (next(responded) iff (response or responded and !trigger));
+  GF (responded);
+}

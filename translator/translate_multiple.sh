@@ -1,6 +1,10 @@
 #!/bin/bash
 
-# These specifications have no enums to translate so use SpecTranslator directly
+for filepath in inputs/SIMPLE/*.spectra
+do
+        java -jar SpecTranslator.jar -i ${filepath} -o outputs/SIMPLE
+done
+
 # for filepath in inputs/AMBA/*.spectra
 # do
 #         java -jar SpecTranslator.jar -i ${filepath} -o outputs/AMBA
@@ -11,7 +15,7 @@
 #         python translator.py ${filepath} outputs/SYNTECH-UNREAL/
 # done
 
-for filepath in inputs/SYNTECH15-1UNREAL/*.spectra
-do
-        python translator.py ${filepath} outputs/SYNTECH15-1UNREAL/
-done
+# for filepath in inputs/SYNTECH15-1UNREAL/*.spectra
+# do
+#         python translator.py ${filepath} outputs/SYNTECH15-1UNREAL/
+# done

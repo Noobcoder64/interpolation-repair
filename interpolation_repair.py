@@ -33,7 +33,6 @@ def FifoDuplicateCheckRefinement():
     datafields = [
         "Id",
         "UniqueRefinement",
-        "NumVariables",
         "Timestamp",
         "Length",
         "Parent",

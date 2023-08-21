@@ -25,10 +25,6 @@ class RefinementNode:
         # Data fields (can be read from/written to a file)
         self.gr1_units = gr1_units # List of all units/conjuncts in this refinement
         self.length = len(gr1_units)
-        self.num_variables = 0
-        for assumption in self.gr1_units:
-            variable_names = re.findall(r'\b\w+\b', assumption)
-            self.num_variables += len(set(variable_names))
 
         # Weakness
         self.weakness = None

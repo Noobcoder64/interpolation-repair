@@ -1,0 +1,4 @@
+VAR
+f3__S0,f3__Sf,f1__S0,b1__Sf,b3__Sf,f1__Sf,b2__Sf,f2__Sf: BOOLEAN
+FORMULA
+(((f3__S0->((f2__Sf)|(f3__Sf))))) & (((((((f1__S0&(f2__Sf))|(f2__Sf&(f3__Sf)))|(f2__Sf&(f1__Sf)))|(f3__Sf&(f2__Sf)))->((b1__Sf|b2__Sf)|b3__Sf))))

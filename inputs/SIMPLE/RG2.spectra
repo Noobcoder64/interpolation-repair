@@ -1,0 +1,21 @@
+
+module RG2
+
+env boolean r;
+env boolean c;
+
+sys boolean g;
+
+env boolean sYS_CONSTRAINT_0_respondsTo_responded;
+
+
+guarantee
+	alw (((c | g) -> !(next(g))));
+guarantee
+	alwEv (sYS_CONSTRAINT_0_respondsTo_responded);
+
+assumption
+	 (sYS_CONSTRAINT_0_respondsTo_responded);
+assumption
+	alw ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (next(g) | (sYS_CONSTRAINT_0_respondsTo_responded & !(r)))));
+

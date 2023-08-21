@@ -10,6 +10,7 @@ Replace " ;" with ";"
 
 Install conda
 create conda env py38 and py27 for translator
+py27 for translation
 install packages
 
 Install python spot 2.11.6

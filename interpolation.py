@@ -26,17 +26,7 @@ def var_to_asp(sys, timepoint):
             suffix = "not_"
         params = [parts[0], str(timepoint), "trace_name"]
         output += suffix + "holds_at(" + ','.join(params) + ").\n"
-    return output
-
-
-class State(object):
-
-    def __init__(self, id):
-        self.id = id
-        self.input_valuation = set()
-        self.output_valuation = set()
-        self.successor = None
-        
+    return output      
 
 def getStateFromLiteral(literal):
     # literal is an su.BoolOperand object
@@ -185,7 +175,7 @@ def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars
     print()
 
     path = c.extractRandomPath()
-
+    # path.unroll()
 
     print("=== COUNTERRUN ===")
     print(path)
@@ -248,12 +238,15 @@ def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars
             # To think about: is it possible to come up with refinements even in case of a non-state-separable interpolant?
             # state_components = dict()
             # print("Non-state-separable interpolant for " + assum_val_boolean + "\n and guarantees " + guarantees_boolean)
-    elif not path.is_loop:
-        # If no interpolant was produced, the solver returned SAT
-        # Try extending the finite path by one failing state and repeat interpolation on the new path
+    else:
         
-        # guarantees_uc = exp.guaranteesList
-        path = c.extendFinitePath(path)
+        if path.is_loop:
+            path.unroll()
+        else:
+            # If no interpolant was produced, the solver returned SAT
+            # Try extending the finite path by one failing state and repeat interpolation on the new path
+            path = c.extendFinitePath(path)
+
         assumptions_boolean = list(filter(None, [l2b.gr1LTL2Boolean(x, path) for x in assumptions_uc]))
 
         # Avoid repeating the initial state's valuation twice in the counterrun expression
@@ -326,10 +319,10 @@ def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars
             print("=== STATE COMPONENTS ===")
             print(state_components)
 
-    else:
-        interpolant = ""
-        state_components = dict()
-        print("No interpolant for " + assum_val_boolean +"\n and guarantees " + guarantees_boolean + "\n on path " + str(path))
+    # else:
+    #     interpolant = ""
+    #     state_components = dict()
+    #     print("No interpolant for " + assum_val_boolean +"\n and guarantees " + guarantees_boolean + "\n on path " + str(path))
 
     os.remove("temp/path_"+id)
     os.remove("temp/counterstrategy_auto_"+id)
