@@ -1,14 +1,13 @@
 import subprocess
 import re
 import specification as sp
+import experiment_properties as exp
 
 PATH_TO_CLI = "spectra/spectra-cli.jar"
 
-def run_subprocess(cmd, newline, suppress=False, timeout=-1):
-    if suppress:
-        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True, stderr=subprocess.DEVNULL)#, start_new_session=timed)
-    else:
-        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)#, start_new_session=timed)
+def run_subprocess(cmd, newline):
+    remaining_time = exp.start_experiment-exp.elapsed_time
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True, timeout=remaining_time)
     output = p.communicate()[0]
     output = '\n'.join(str(output).split(newline))
     return output
