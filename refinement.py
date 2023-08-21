@@ -316,7 +316,7 @@ class RefinementNode:
         time_generation_method_start = timeit.default_timer()
         refinements = []
         if exp.generation_method == "interpolation":
-            refinements = interpolation.GenerateAlternativeRefinements(self.counterstrategy, exp.initialGR1Units + self.gr1_units, self.getUnrealizableCore(), exp.inputVarsList, exp.outputVarsList)
+            refinements = interpolation.GenerateAlternativeRefinements(str(self.id), self.counterstrategy, exp.initialGR1Units + self.gr1_units, self.getUnrealizableCore(), exp.inputVarsList, exp.outputVarsList)
         elif exp.generation_method == "multivarbias":
             biases = [varbias.VarBias() for x in range(exp.n_multivarbias)]
             for b in biases:

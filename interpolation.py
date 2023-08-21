@@ -174,7 +174,7 @@ def getRefinementsFromStateComponents(state_components,path,input_vars):
     return list(set(refinements)),non_io_separable_state_components
 
 
-def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,output_vars):
+def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars,output_vars):
     # assumptions_uc = []
     # PROBLEM
     # guarantees_uc = exp.guaranteesList
@@ -194,7 +194,6 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
     assumptions_boolean = list(filter(None,[l2b.gr1LTL2Boolean(x,path) for x in assumptions_uc]))
 
     valuations_boolean = path.get_valuation()
-
 
     if assumptions_boolean != []:
         assum_val_boolean = " & ".join(assumptions_boolean) + ((" & " + valuations_boolean) if valuations_boolean != "" else "")
@@ -220,20 +219,21 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
     print(guarantees_boolean)
     print()
 
-    l2b.writePathToFile("path",path)
-    l2b.writeMathsatFormulaToFile("counterstrategy_auto", assum_val_boolean)
-    l2b.writeMathsatFormulaToFile("guarantees_auto", guarantees_boolean)
+    l2b.writePathToFile("temp/path_"+id, path)
+    l2b.writeMathsatFormulaToFile("temp/counterstrategy_auto_"+id, assum_val_boolean)
+    l2b.writeMathsatFormulaToFile("temp/guarantees_auto_"+id, guarantees_boolean)
     
-    os.system(definitions.ROOT_DIR+"MathSAT4/mathsat-4.2.17-linux-x86_64/bin/mathsat -interpolate=INTERP counterstrategy_auto guarantees_auto")
+    os.system(f"{definitions.ROOT_DIR}MathSAT4/mathsat-4.2.17-linux-x86_64/bin/mathsat -interpolate=temp/INTERP_{id} temp/counterstrategy_auto_{id} temp/guarantees_auto_{id}")
     state_components = dict()
     # Parse the interpolant file
-    if os.path.isfile("INTERP.1.msat"):
-        interpolant = l2b.parseInterpolant("INTERP.1.msat")
+    if os.path.isfile(f"temp/INTERP_{id}.1.msat"):
+        interpolant = l2b.parseInterpolant(f"temp/INTERP_{id}.1.msat")
         if interpolant == "false":
-            # os.remove("path")
-            # os.remove("counterstrategy_auto")
-            # os.remove("guarantees_auto")
-            # os.remove("INTERP.1.msat")
+            os.remove("temp/path_"+id)
+            os.remove("temp/counterstrategy_auto_"+id)
+            os.remove("temp/guarantees_auto_"+id)
+            if os.path.isfile(f"temp/INTERP_{id}.1.msat"):
+                os.remove(f"temp/INTERP_{id}.1.msat")
             return ["FALSE"]
         # try:
         print()
@@ -294,17 +294,21 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
         print(guarantees_boolean)
         print()
 
-        l2b.writePathToFile("path", path)
-        l2b.writeMathsatFormulaToFile("counterstrategy_auto", assum_val_boolean)
-        l2b.writeMathsatFormulaToFile("guarantees_auto", guarantees_boolean)
+        l2b.writePathToFile("temp/path_"+id, path)
+        l2b.writeMathsatFormulaToFile("temp/counterstrategy_auto_"+id, assum_val_boolean)
+        l2b.writeMathsatFormulaToFile("temp/guarantees_auto_"+id, guarantees_boolean)
 
         # Use MathSAT 4 to generate the interpolant
-        os.system(
-            definitions.ROOT_DIR + "MathSAT4/mathsat-4.2.17-linux-x86_64/bin/mathsat -interpolate=INTERP counterstrategy_auto guarantees_auto")
+        os.system(f"{definitions.ROOT_DIR}MathSAT4/mathsat-4.2.17-linux-x86_64/bin/mathsat -interpolate=temp/INTERP_{id} temp/counterstrategy_auto_{id} temp/guarantees_auto_{id}")
 
-        if os.path.isfile("INTERP.1.msat"):
-            interpolant = l2b.parseInterpolant("INTERP.1.msat")
+        if os.path.isfile(f"temp/INTERP_{id}.1.msat"):
+            interpolant = l2b.parseInterpolant(f"temp/INTERP_{id}.1.msat")
             if interpolant == "false":
+                os.remove("temp/path_"+id)
+                os.remove("temp/counterstrategy_auto_"+id)
+                os.remove("temp/guarantees_auto_"+id)
+                if os.path.isfile(f"temp/INTERP_{id}.1.msat"):
+                    os.remove(f"temp/INTERP_{id}.1.msat")
                 return ["FALSE"]
             try:
                 state_components = extractStateComponents(interpolant)
@@ -327,11 +331,11 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
         state_components = dict()
         print("No interpolant for " + assum_val_boolean +"\n and guarantees " + guarantees_boolean + "\n on path " + str(path))
 
-    os.remove("path")
-    os.remove("counterstrategy_auto")
-    os.remove("guarantees_auto")
-    if os.path.isfile("INTERP.1.msat"):
-        os.remove("INTERP.1.msat")
+    os.remove("temp/path_"+id)
+    os.remove("temp/counterstrategy_auto_"+id)
+    os.remove("temp/guarantees_auto_"+id)
+    if os.path.isfile(f"temp/INTERP_{id}.1.msat"):
+        os.remove(f"temp/INTERP_{id}.1.msat")
 
     if state_components != dict():
         refinements,non_io_separable = getRefinementsFromStateComponents(state_components,path, input_vars)
