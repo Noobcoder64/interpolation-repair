@@ -137,12 +137,10 @@ def main():
     parser = argparse.ArgumentParser(description="Run interpolation_repair.py on .spectra file.")
     parser.add_argument("-i", "--input", required=True, help="Path to the input .spectra file")
     parser.add_argument("-o", "--output", default=os.getcwd(), help="Path to the output folder (default: current directory)")
-    parser.add_argument("-t", "--timeout", type=int, default=10, help="Timeout in minutes (default: 10)")
+    parser.add_argument("-t", "--timeout", type=float, default=10, help="Timeout in minutes (default: 10)")
 
     args = parser.parse_args()
-
-    exp.configure(args.input, args.timeout * 60, args.output)
-
+    exp.configure(args.input, args.timeout*60, args.output)
     FifoDuplicateCheckRefinement()
 
 if __name__=="__main__":

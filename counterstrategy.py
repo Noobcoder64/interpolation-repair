@@ -461,7 +461,7 @@ class CounterstrategyState:
         self.successors.append(state_name)
     
     def __str__(self):
-        return f"State: {self.name} [Inputs: {self.inputs}] / [Outputs: {self.outputs}] Successors: {', '.join(self.successors)})"
+        return f"State: {self.name}\nInputs: {self.inputs}\nOutputs: {self.outputs}\nSuccessors: {', '.join(self.successors)}"
 
 class Counterstrategy:
 
@@ -475,6 +475,10 @@ class Counterstrategy:
         self.num_states = len(self.states)
         # for state in self.states.values():
         #     print(state.name, state.influential_outputs)
+
+    def __str__(self):
+        state_strs = [str(state) for state in self.states.values()]
+        return "\n".join(state_strs)
 
     def add_state(self, state):
         self.states[state.name] = state

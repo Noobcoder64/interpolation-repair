@@ -6,9 +6,9 @@ import experiment_properties as exp
 PATH_TO_CLI = "spectra/spectra-cli.jar"
 
 def run_subprocess(cmd, newline):
-    remaining_time = exp.start_experiment-exp.elapsed_time
-    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True, timeout=remaining_time)
-    output = p.communicate()[0]
+    remaining_time = exp.timeout-exp.elapsed_time
+    p = subprocess.run(cmd, stdout=subprocess.PIPE, shell=True, timeout=remaining_time, text=True)
+    output = p.stdout
     output = '\n'.join(str(output).split(newline))
     return output
 
