@@ -5,9 +5,9 @@ import concurrent.futures
 
 # List of input folders
 INPUT_FOLDERS = [
-    "inputs/AMBA",
-    # "inputs/SYNTECH15-UNREAL",
-    # "inputs/SYNTECH15-1UNREAL"
+    # "inputs/AMBA",
+    "inputs/SYNTECH15-UNREAL",
+    "inputs/SYNTECH15-1UNREAL"
 ]
 
 # List of algorithms
