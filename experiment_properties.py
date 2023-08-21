@@ -81,7 +81,7 @@ def configure(spectra_file, timeout_in=600, output_folder="outputs/", debug=Fals
 
     global timeout
     global start_experiment
-    print("OUTPUT FOLDER:", output_folder)
+    
     specfile = spectra_file
     case_study_name = os.path.splitext(os.path.basename(specfile))[0]
     datafile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + ".csv")
