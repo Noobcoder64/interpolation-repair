@@ -12,7 +12,6 @@ ALGORITHMS = ["GLASS", "JVTS", "ALUR"]
 
 def run_spec_repair(spectra_file, algorithm, timeout, output_file):
     command = f"java -jar {SPEC_REPAIR_PATH} {spectra_file} {algorithm} {timeout}"
-
     with open(output_file, "w") as output:
         try:
             subprocess.run(command, shell=True, check=True, stdout=output)
@@ -21,7 +20,6 @@ def run_spec_repair(spectra_file, algorithm, timeout, output_file):
 
 
 def create_csv_from_output(output_file, csv_output_file):
-
     with open(output_file, "r") as file:
         text = file.read()
 
@@ -75,11 +73,11 @@ def count_num_variables(assumptions):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run SpecRepair.java on .spectra file specifications in a folder.")
+    parser = argparse.ArgumentParser(description="Run spec_repair.py on a .spectra file.")
     parser.add_argument("-i", "--input", required=True, help="Path to the input .spectra file")
     parser.add_argument("-a", "--algorithm", required=True, choices=["GLASS", "JVTS", "ALUR"], help="Algorithm (GLASS, JVTS, or ALUR)")
     parser.add_argument("-o", "--output", default=os.getcwd(), help="Path to the output folder (default: current directory)")
-    parser.add_argument("-t", "--timeout", type=int, help="Timeout in minutes (optional)")
+    parser.add_argument("-t", "--timeout", type=int, help="Timeout in minutes (default: 10)")
 
     args = parser.parse_args()
 

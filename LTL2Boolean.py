@@ -73,7 +73,7 @@ def invariantLTL2Boolean(ltlFormula,path):
 
     # Returns all the tokens in ltlFormula
     ltlTokens = ltlInvariant.parseString(ltlFormula)
-    print("LTL TOKENS: ", ltlTokens)
+    # print("LTL TOKENS: ", ltlTokens)
     translatedInv = translatedInv +"("+ _translateInvOnStatePair(ltlTokens,path.initial_state) + ") & "
 
     for state in path.transient_states:

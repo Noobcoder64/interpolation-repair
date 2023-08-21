@@ -5,20 +5,10 @@ import specification as sp
 PATH_TO_CLI = "spectra/spectra-cli.jar"
 
 def run_subprocess(cmd, newline, suppress=False, timeout=-1):
-    # timed = timeout > 0
-
     if suppress:
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True, stderr=subprocess.DEVNULL)#, start_new_session=timed)
     else:
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)#, start_new_session=timed)
-    # if timed:
-    #     try:
-    #         p.wait(timeout=timeout)
-    #     except subprocess.TimeoutExpired:
-    #         print("Subprocess Timeout")
-    #         os.kill(p.pid, signal.CTRL_C_EVENT)
-    #         subprocess.call(['taskkill', '/F', '/T', '/PID', str(p.pid)])
-    #         return "Timeout"
     output = p.communicate()[0]
     output = '\n'.join(str(output).split(newline))
     return output
@@ -59,7 +49,6 @@ def generate_counter_strat(specification):
     cmd = "java -jar {} -i {} --counter-strategy-jtlv-format".format(PATH_TO_CLI, specification)
     output = run_subprocess(cmd, "\\n")
     if re.search("Result: Specification is unrealizable", output):
-        print(output.replace("\\t", ""))
         return output.replace("\\t", "")
     return None
 

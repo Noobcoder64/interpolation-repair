@@ -179,10 +179,10 @@ def GenerateAlternativeRefinements(c,assumptions_uc,guarantees_uc,input_vars,out
     # PROBLEM
     # guarantees_uc = exp.guaranteesList
 
-    # print()
-    # print("=== COUNTERSTRATEGY ===")
-    # print('\n'.join(c.counterstrategy))
-    # print()
+    print()
+    print("=== COUNTERSTRATEGY ===")
+    print(c.counterstrategy)
+    print()
 
     path = c.extractRandomPath()
 

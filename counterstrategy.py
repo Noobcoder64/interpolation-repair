@@ -86,14 +86,14 @@ def next_only(x, new_state):
 
 def satisfies(expression, state):
     expression = "(speedButton_0 & next(yBoolExpr_0)) | (!speedButton_0 & next(!yBoolExpr_0))"
-    print("====================================")
-    print("EXPRESSION: ", expression)
-    print("STATE: ", state)
+    # print("====================================")
+    # print("EXPRESSION: ", expression)
+    # print("STATE: ", state)
     disjuncts = expression.split("|")
-    print("DIS: ", disjuncts)
+    # print("DIS: ", disjuncts)
     for disjunct in disjuncts:
         conjuncts = disjunct.split("&")
-        print("CON: ", conjuncts)
+        # print("CON: ", conjuncts)
         if all([conjunct in state for conjunct in conjuncts]):
             return True
     return False
@@ -157,9 +157,9 @@ def generate_model(expressions, neg_expressions, variables, scratch=False, asp_r
         output = asp_restrictions + "\n"
     else:
         output = ""
-    print("EXPRESSION BEFORE: ", expressions)
+    # print("EXPRESSION BEFORE: ", expressions)
     expressions = aspify(expressions)
-    print("EXPRESSIONS: ", expressions)
+    # print("EXPRESSIONS: ", expressions)
     for i, rule in enumerate(expressions):
         name = "t" + str(i)
         disjuncts = rule.split(";")
@@ -187,7 +187,7 @@ def generate_model(expressions, neg_expressions, variables, scratch=False, asp_r
     file = "./Translators/output-files/temp_asp.lp"
     sp.write_file(output, file)
     clingo_out = run_clingo_raw(file)
-    print(clingo_out)
+    # print(clingo_out)
     violation = True
 
     reg = re.search(r"Answer: 1(.*)SATISFIABLE", str(clingo_out))
@@ -206,9 +206,9 @@ def generate_model(expressions, neg_expressions, variables, scratch=False, asp_r
 def next_possible_assignments(new_state, primed_expressions_cleaned, primed_expressions_cleaned_s, unprimed_expressions,
                               unprimed_expressions_s, variables):
     unsat_next_exp = unsat_nexts(new_state, primed_expressions_cleaned)
-    print("UNE: ", unsat_next_exp)
+    # print("UNE: ", unsat_next_exp)
     unsat_next_exp_s = unsat_nexts(new_state, primed_expressions_cleaned_s)
-    print("UNES: ", unsat_next_exp_s)
+    # print("UNES: ", unsat_next_exp_s)
 
     # if unsat_next_exp + unsat_next_exp_s + unprimed_expressions + unprimed_expressions_s == []:
     if False:
@@ -254,7 +254,7 @@ def complete_deadlock(trace, file, deadlock_number):
     return state_to_asp(random.choice(assignments), trace, deadlock_number)
 
 def complete_deadlock_alt(last_state, file):
-    print("LAST STATE: ", last_state)
+    # print("LAST STATE: ", last_state)
     spec = sp.read_file(file)
     spec = sp.format_spec(spec)
     # spec = sp.format_iff(spec)
@@ -279,21 +279,21 @@ def complete_deadlock_alt(last_state, file):
 
     primed_expressions_cleaned = [re.sub(r"PREV\((!*)([^\|^\(]*)\)", r"\1prev_\2", x) for x in primed_expressions]
     primed_expressions_cleaned_s = [re.sub(r"PREV\((!*)([^\|^\(]*)\)", r"\1prev_\2", x) for x in primed_expressions_s]
-    print()
-    print("PEC: ", primed_expressions_cleaned)
-    print()
-    print("UE: ", unprimed_expressions)
-    print()
-    print("PECS: ", primed_expressions_cleaned_s)
-    print()
-    print("UES: ", unprimed_expressions_s)
-    print()
+    # print()
+    # print("PEC: ", primed_expressions_cleaned)
+    # print()
+    # print("UE: ", unprimed_expressions)
+    # print()
+    # print("PECS: ", primed_expressions_cleaned_s)
+    # print()
+    # print("UES: ", unprimed_expressions_s)
+    # print()
     assignments, is_violating = next_possible_assignments(last_state, primed_expressions_cleaned,
                                                           primed_expressions_cleaned_s, unprimed_expressions,
                                                           unprimed_expressions_s, variables)
-    print()
-    print("ASSIGNMENTS: ", assignments)
-    print()
+    # print()
+    # print("ASSIGNMENTS: ", assignments)
+    # print()
     return assignments
 
 
@@ -743,8 +743,8 @@ class Counterstrategy:
             #     #    failing_state.add_to_valuation(var if sf_output_valuation[var] == 1 else "!" + var)
 
             looping_states = None
-        print("INI: ", initial_state)
-        print("TRANSIENT: ", transient_states)
+        # print("INI: ", initial_state)
+        # print("TRANSIENT: ", transient_states)
         return Path(initial_state,transient_states,looping_states)
 
     def extendFinitePath(self, path):

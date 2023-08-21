@@ -152,7 +152,6 @@ class RefinementNode:
         """Create a specification XML Tree from the original specification and add the current refinement to it"""
 
         if not os.path.isfile(self.__getTempSpecFileName()):
-            
             specification = sp.read_file(exp.specfile)
             specification = sp.unformat_spec(specification)
             assumptions = sp.unformat_spec(self.gr1_units)
@@ -160,6 +159,10 @@ class RefinementNode:
                 specification.append("assumption\n")
                 specification.append("\t" + asm + ";\n")
             sp.write_file(specification, self.__getTempSpecFileName())
+
+    def __deleteTempSpecFile(self):
+        if os.path.isfile(self.__getTempSpecFileName()):
+            os.remove(self.__getTempSpecFileName())
 
     def getNotesFileId(self):
         return "temp/" + str(self.id) + "_notes.txt"
@@ -199,10 +202,10 @@ class RefinementNode:
         if self.is_satisfiable is not None:
             return self.is_satisfiable
         time_satisfiability_check_start = timeit.default_timer()
-        ret = spectra.check_satisfiability(self.__getTempSpecFileName())
+        self.is_satisfiable = spectra.check_satisfiability(self.__getTempSpecFileName())
         self.time_satisfiability_check = timeit.default_timer() - time_satisfiability_check_start
-        self.is_satisfiable = ret
-        return ret
+        self.__deleteTempSpecFile()
+        return self.is_satisfiable
 
     def getCounterstrategy(self):
         """Returns a counterstrategy object"""
@@ -212,15 +215,13 @@ class RefinementNode:
             self.counterstrategy_num_states = self.counterstrategy.num_states
             self.time_counterstrategy = timeit.default_timer() - counterstrategy_start
             return self.counterstrategy
-        else:
-            return None
+        return None
 
     def getUnrealizableCore(self):
         """Gets an unrealizable core for the current node"""
-        if not os.path.isfile(self.__getTempSpecFileName()):
-            self.__generateSpecFile()
         if self.unreal_core is None:
             self.unreal_core = spectra.extract_unrealizable_cores(self.__getTempSpecFileName())
+        self.__deleteTempSpecFile()
         return self.unreal_core
 
     def refine(self):

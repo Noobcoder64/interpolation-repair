@@ -1,28 +1,23 @@
+import os
+import timeit
+import argparse
+from collections import deque
 import experiment_properties as exp
-import interpolation
 from refinement import RefinementNode
-from collections import deque # For efficient FIFO queuing
-import timeit, gc, os
-import sys
+import concurrent.futures
 
-if len(sys.argv) > 1:
-    exp.changeCaseStudy(sys.argv[1])
-    print("+++++++++++ " + sys.argv[1])
+MAX_NODES = 3000 # Max nodes to expand in the experiment
 
-max_nodes = 3000 # Max nodes to expand in the experiment
-timeout = 600 # Seconds before timeout (10 min)
-
-print("Resetting temp...")
-folder = 'temp'
-for the_file in os.listdir(folder):
-    file_path = os.path.join(folder, the_file)
-    try:
-        if os.path.isfile(file_path):
-            os.unlink(file_path)
-        #elif os.path.isdir(file_path): shutil.rmtree(file_path)
-    except Exception as e:
-        print(e)
-print("Reset complete!")
+# print("Resetting temp...")
+# temp_folder = 'temp'
+# for temp_file in os.listdir(temp_folder):
+#     temp_file_path = os.path.join(temp_folder, temp_file)
+#     try:
+#         if os.path.isfile(temp_file_path):
+#             os.unlink(temp_file_path)
+#     except Exception as e:
+#         print(e)
+# print("Reset complete!")
 
 
 def FifoDuplicateCheckRefinement():
@@ -31,7 +26,7 @@ def FifoDuplicateCheckRefinement():
     start_experiment = exp.start_experiment
 
     solutions = []
-    explored_refs = [] # Each element is a tuple (total_cs_eliminated, unique_refinement)
+    explored_refs = []
     duplicate_refs = []
 
     datafile = open(exp.datafile, "w")
@@ -59,38 +54,44 @@ def FifoDuplicateCheckRefinement():
     initial_spec_node = RefinementNode()
 
     # Root of the refinement tree: it contains the initial spec
-    partial_refinements_queue = deque([initial_spec_node])
+    refinement_queue = deque([initial_spec_node])
 
     nodes = 0
     elapsed_time = 0
-    while not not partial_refinements_queue and nodes < max_nodes and elapsed_time < timeout:
-        cur_node = partial_refinements_queue.pop()
+    while refinement_queue and nodes < MAX_NODES and elapsed_time < exp.timeout:
+        cur_node = refinement_queue.pop()
         nodes += 1
 
-        if not cur_node.unique_refinement in explored_refs:
-            print("++++ ELAPSED TIME " + str(elapsed_time))
-            print("++++ QUEUE LENGTH " + str(len(partial_refinements_queue)))
-            print("++++ Solutions " + str(len(solutions)))
-            print("++++ Duplicates " + str(len(duplicate_refs)))
-            print("++++ Node number " + str(nodes))
-            print("++++ Refinement " + str(cur_node.gr1_units))
-            print("++++ Length " + str(cur_node.length))
+        if cur_node.unique_refinement not in explored_refs:
+            print("++++ ELAPSED TIME:", elapsed_time)
+            print("++++ QUEUE LENGTH:", len(refinement_queue))
+            print("++++ Solutions:", len(solutions))
+            print("++++ Duplicates:", len(duplicate_refs))
+            print("++++ Node number:", nodes)
+            print("++++ Refinement:", cur_node.gr1_units)
+            print("++++ Length:", cur_node.length)
 
-            # try:
-            print("++ REALIZABILITY CHECK")
-            if not cur_node.isRealizable():
-                print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
-                candidate_ref_nodes = cur_node.refine()
-                partial_refinements_queue.extendleft(candidate_ref_nodes)
-            elif cur_node.isSatisfiable():
-                print("++ REALIZABLE REFINEMENT: SAT CHECK")
-                solutions.append(cur_node.gr1_units)
-                cur_node.saveRefinementData(datafile, datafields)
-            else:
-                print("++ VACUOUS SOLUTION")
-            # except Exception as e:
-            #     cur_node.writeNotes(str(e))
+            try:
+                print("++ REALIZABILITY CHECK")
+                if not cur_node.isRealizable():
+                    with concurrent.futures.ThreadPoolExecutor() as executor:
+                        print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
+                        refine_future = executor.submit(cur_node.refine)
+                        remaining_timeout = exp.timeout - elapsed_time
+                        candidate_ref_nodes = refine_future.result(timeout=remaining_timeout)
+                        refinement_queue.extendleft(candidate_ref_nodes)
+                elif cur_node.isSatisfiable():
+                    print("++ REALIZABLE REFINEMENT: SAT CHECK")
+                    solutions.append(cur_node.gr1_units)
+                else:
+                    print("++ VACUOUS SOLUTION")
+            except concurrent.futures.TimeoutError:
+                print("++ Refine operation exceeded remaining timeout")
+            except Exception as e:
+                # cur_node.writeNotes(str(e))
+                print(e)
 
+            cur_node.saveRefinementData(datafile, datafields)
             explored_refs.append(cur_node.unique_refinement)
         else:
             print("++ DUPLICATE NODE")
@@ -130,10 +131,18 @@ def FifoDuplicateCheckRefinement():
     #                           + "\n".join([str(x) for x in duplicate_refs]))
     # experimentstatsfile.close()
 
-
     datafile.close()
 
 def main():
+    parser = argparse.ArgumentParser(description="Run interpolation_repair.py on .spectra file.")
+    parser.add_argument("-i", "--input", required=True, help="Path to the input .spectra file")
+    parser.add_argument("-o", "--output", default=os.getcwd(), help="Path to the output folder (default: current directory)")
+    parser.add_argument("-t", "--timeout", type=int, default=10, help="Timeout in minutes (default: 10)")
+
+    args = parser.parse_args()
+
+    exp.configure(args.input, args.timeout * 60, args.output)
+
     FifoDuplicateCheckRefinement()
 
 if __name__=="__main__":

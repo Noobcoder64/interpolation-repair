@@ -4,33 +4,41 @@ import subprocess
 import concurrent.futures
 
 # List of input folders
-input_folders = [
-    # "inputs/AMBA",
-    "inputs/SYNTECH15-UNREAL",
-    "inputs/SYNTECH15-1UNREAL"
+INPUT_FOLDERS = [
+    "inputs/AMBA",
+    # "inputs/SYNTECH15-UNREAL",
+    # "inputs/SYNTECH15-1UNREAL"
 ]
 
 # List of algorithms
-algorithms = ["GLASS", "JVTS", "ALUR"]
+ALGORITHMS = [
+    "INTERPOLATION",
+    # "GLASS",
+    # "JVTS",
+    # "ALUR",
+]
 
 # Output parent folder
-output_parent_folder = "outputs"
+OUTPUT_PARENT_FOLDER = "outputs"
 
 # Set the timeout
 TIMEOUT = 10
 
-def process_file(input_file, algorithm, output_folder):
+def process_file(input_file, algorithm, output_folder, output_file):
     start_time = time.time()
     
-    # Construct the command to run spec_repair.py
-    command = f"python spec_repair.py -i {input_file} -a {algorithm} -o {output_folder} -t {TIMEOUT}"
+    if algorithm == "INTERPOLATION":
+        command = f"python interpolation_repair.py -i {input_file} -o {output_folder} -t {TIMEOUT}"
+    else:
+        command = f"python spec_repair.py -i {input_file} -a {algorithm} -o {output_folder} -t {TIMEOUT}"
+    
+    print(command)
 
-    print(f"Repairing {input_file} using {algorithm} algorithm...")
-
-    try:
-        subprocess.run(command, shell=True, check=True)
-    except subprocess.CalledProcessError:
-        print(f"Error executing spec_repair.py for {input_file}")
+    with open(output_file, "w") as output:
+        try:
+            subprocess.run(command, shell=True, check=True, stdout=output)
+        except subprocess.CalledProcessError:
+            print(f"Error repairing {input_file}")
     
     end_time = time.time()
     elapsed_time = end_time - start_time
@@ -39,7 +47,7 @@ def process_file(input_file, algorithm, output_folder):
 
 def process_folder(input_folder, algorithm):
     # Create an output folder for each combination of input folder and algorithm
-    output_folder = os.path.join(output_parent_folder, os.path.basename(input_folder), algorithm)
+    output_folder = os.path.join(OUTPUT_PARENT_FOLDER, os.path.basename(input_folder), algorithm)
     os.makedirs(output_folder, exist_ok=True)
     
     # Get a list of .spectra files in the input folder
@@ -49,12 +57,13 @@ def process_folder(input_folder, algorithm):
     with concurrent.futures.ThreadPoolExecutor() as executor:
         for spectra_file in spectra_files:
             input_file = os.path.join(input_folder, spectra_file)
-            executor.submit(process_file, input_file, algorithm, output_folder)
+            output_file = os.path.join(output_folder, os.path.splitext(spectra_file)[0] + "_output.txt")
+            executor.submit(process_file, input_file, algorithm, output_folder, output_file)
 
 total_start_time = time.time()
 
-for input_folder in input_folders:
-    for algorithm in algorithms:
+for input_folder in INPUT_FOLDERS:
+    for algorithm in ALGORITHMS:
         process_folder(input_folder, algorithm)
             
 total_end_time = time.time()
