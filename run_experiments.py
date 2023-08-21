@@ -2,8 +2,7 @@ import os
 import time
 import subprocess
 import concurrent.futures
-import pandas as pd
-import matplotlib.pyplot as plt
+# import pandas as pd
 
 # List of input folders
 INPUT_FOLDERS = [
@@ -14,10 +13,11 @@ INPUT_FOLDERS = [
 
 # List of algorithms
 ALGORITHMS = [
-    "INTERPOLATION",
-    "GLASS",
-    "JVTS",
-    "ALUR",
+    "INTERPOLATION-NOINF",
+    # "INTERPOLATION",
+    # "GLASS",
+    # "JVTS",
+    # "ALUR",
 ]
 
 # Output parent folder
@@ -31,7 +31,7 @@ SUMMARY_FILENAME = "repairs_summary.csv"
 def process_file(input_file, algorithm, output_folder, output_file):
     start_time = time.time()
     
-    if algorithm == "INTERPOLATION":
+    if "INTERPOLATION" in algorithm:
         command = f"python interpolation_repair.py -i {input_file} -o {output_folder} -t {TIMEOUT}"
     else:
         command = f"python spec_repair.py -i {input_file} -a {algorithm} -o {output_folder} -t {TIMEOUT}"
@@ -118,13 +118,13 @@ def summarize_folder(input_folder):
 
 total_start_time = time.time()
 
-# for input_folder in INPUT_FOLDERS:
-#     for algorithm in ALGORITHMS:
-#         process_folder(input_folder, algorithm)
-
 for input_folder in INPUT_FOLDERS:
     for algorithm in ALGORITHMS:
-        summarize_folder(input_folder)
+        process_folder(input_folder, algorithm)
+
+# for input_folder in INPUT_FOLDERS:
+#     for algorithm in ALGORITHMS:
+#         summarize_folder(input_folder)
 
 total_end_time = time.time()
 total_elapsed_time = total_end_time - total_start_time

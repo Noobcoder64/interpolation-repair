@@ -1,0 +1,5 @@
+Id;UniqueRefinement;NumVariables;Timestamp;Length;Parent;NumChildren;IsRealizable;IsSatisfiable;IsSolution;TimeRealizabilityCheck;TimeSatisfiabilityCheck;TimeCounterstrategy;CounterstrategyNumStates;TimeRefine;TimeGenerationMethod
+651a20d5-8497-4435-9314-6551edcab98d;[];0;0.011505521018989384;0;N/A;1;False;N/A;False;9.263648156018462;N/A;9.855768362001982;16;0.00016906601376831532;5.574444582045544;
+ddfd9d6e-86c8-436b-b195-a79d4b7cd9dc;['G(F(!(!leftMotor_2)))'];3;24.754970641981345;1;651a20d5-8497-4435-9314-6551edcab98d;1;False;N/A;False;5.5966930849826895;N/A;5.928368871042039;20;7.165299030020833e-05;5.3276108369464055;
+647b0689-94d4-4e41-a91a-409033b81fad;['G(F(!(!leftMotor_2) & !(!leftMotor_1)))', 'G(F(!(!leftMotor_2)))'];7;41.626462874002755;2;ddfd9d6e-86c8-436b-b195-a79d4b7cd9dc;1;False;N/A;False;5.418392501946073;N/A;5.224576013046317;32;8.070794865489006e-05;3.408918279048521;
+673d8973-1761-4ba5-aa01-44f4959ea0f3;['FALSE', 'G(F(!(!leftMotor_2) & !(!leftMotor_1)))', 'G(F(!(!leftMotor_2)))'];8;55.70259502099361;3;647b0689-94d4-4e41-a91a-409033b81fad;0;True;False;False;4.118179048993625;3.8702824430074543;N/A;N/A;N/A;N/A;

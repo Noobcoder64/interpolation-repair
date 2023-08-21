@@ -470,8 +470,8 @@ class Counterstrategy:
         self.counterstrategy = spectra.generate_counter_strat(specification)
         self.states = dict()
         self.parse_counterstrategy(self.counterstrategy)
-        for state in self.states.values():
-            self.compute_influentials(state)
+        # for state in self.states.values():
+        #     self.compute_influentials(state)
         self.num_states = len(self.states)
         # for state in self.states.values():
         #     print(state.name, state.influential_outputs)
@@ -533,8 +533,8 @@ class Counterstrategy:
                 literals.append(varname)
             else:
                 literals.append("!"+varname)
-        for varname in state.influential_outputs:
-        # for varname in state.outputs:
+        # for varname in state.influential_outputs:
+        for varname in state.outputs:
             if state.outputs[varname] == 'true':
                 literals.append(varname)
             else:
