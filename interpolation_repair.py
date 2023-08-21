@@ -140,7 +140,7 @@ def main():
     parser.add_argument("-t", "--timeout", type=float, default=10, help="Timeout in minutes (default: 10)")
 
     args = parser.parse_args()
-    exp.configure(args.input, args.timeout*60, args.output)
+    exp.configure(args.input, args.timeout*60, args.output, debug=True)
     FifoDuplicateCheckRefinement()
 
 if __name__=="__main__":
