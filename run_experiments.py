@@ -16,8 +16,8 @@ ALGORITHMS = [
     # "INTERPOLATION-NOINF",
     # "INTERPOLATION",
     # "GLASS",
-    # "JVTS",
-    "ALUR",
+    "JVTS",
+    # "ALUR",
 ]
 
 # Output parent folder
@@ -58,13 +58,14 @@ def process_folder(input_folder, algorithm):
     spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra")]
     
     # Use ThreadPoolExecutor to process files in parallel
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        for spectra_file in spectra_files:
-            input_file = os.path.join(input_folder, spectra_file)
-            spectra_file_name = os.path.splitext(os.path.basename(spectra_file))[0]
-            output_file_name = f"{spectra_file_name}_{algorithm}_output.txt"
-            output_file = os.path.join(output_folder, output_file_name)
-            executor.submit(process_file, input_file, algorithm, output_folder, output_file)
+    # with concurrent.futures.ThreadPoolExecutor() as executor:
+    for spectra_file in spectra_files:
+        input_file = os.path.join(input_folder, spectra_file)
+        spectra_file_name = os.path.splitext(os.path.basename(spectra_file))[0]
+        output_file_name = f"{spectra_file_name}_{algorithm}_output.txt"
+        output_file = os.path.join(output_folder, output_file_name)
+        # executor.submit(process_file, input_file, algorithm, output_folder, output_file)
+        process_file(input_file, algorithm, output_folder, output_file)
 
 def create_summary_dataframe(spectra_files, output_folder):
     data_frames = []

@@ -12,6 +12,7 @@ ALGORITHMS = ["GLASS", "JVTS", "ALUR"]
 
 def run_spec_repair(spectra_file, algorithm, timeout):
     command = f"java -jar {SPEC_REPAIR_PATH} {spectra_file} {algorithm} {timeout}"
+    print(command)
     try:
         result = subprocess.run(command, shell=True, check=True, capture_output=True, text=True)
         print(result.stdout)
