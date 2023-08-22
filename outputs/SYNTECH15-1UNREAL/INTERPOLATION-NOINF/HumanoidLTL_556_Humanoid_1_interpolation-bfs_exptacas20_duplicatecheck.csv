@@ -1,5 +1,0 @@
-Id;UniqueRefinement;NumVariables;Timestamp;Length;Parent;NumChildren;IsRealizable;IsSatisfiable;IsSolution;TimeRealizabilityCheck;TimeSatisfiabilityCheck;TimeCounterstrategy;CounterstrategyNumStates;TimeRefine;TimeGenerationMethod
-af852060-cb43-441d-bdbb-a841e20b33df;[];0;0.0038857610197737813;0;N/A;2;False;N/A;False;8.847027872980107;N/A;10.159715828020126;174;0.00020317599410191178;8.88263636501506;
-b24648a2-c561-47c1-bf32-56d5b235dd20;['G(!(noise_0 & heading_0))'];3;27.919320020999294;1;af852060-cb43-441d-bdbb-a841e20b33df;0;True;True;True;9.565386397007387;8.493853438994847;N/A;N/A;N/A;N/A;
-26825858-0575-4fc5-9c15-0816d0e0f879;['!(noise_0 & heading_0)'];2;27.91934806900099;1;af852060-cb43-441d-bdbb-a841e20b33df;1;False;N/A;False;8.045405897020828;N/A;9.224155953968875;111;7.036601891741157e-05;7.394991321023554;
-68e5474f-9965-4a37-b0c9-2863eaacdcce;['!(noise_0 & heading_0)', 'G(!(heading_0))'];4;70.67842625203775;2;26825858-0575-4fc5-9c15-0816d0e0f879;0;True;True;True;9.353977420018055;8.218533648992889;N/A;N/A;N/A;N/A;

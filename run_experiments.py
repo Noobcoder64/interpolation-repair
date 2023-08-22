@@ -2,7 +2,7 @@ import os
 import time
 import subprocess
 import concurrent.futures
-import pandas as pd
+# import pandas as pd
 
 # List of input folders
 INPUT_FOLDERS = [
@@ -15,16 +15,16 @@ INPUT_FOLDERS = [
 ALGORITHMS = [
     # "INTERPOLATION-NOINF",
     # "INTERPOLATION",
-    # "GLASS",
+    "GLASS",
     "JVTS",
-    # "ALUR",
+    "ALUR",
 ]
 
 # Output parent folder
 OUTPUT_PARENT_FOLDER = "outputs/"
 
 # Set the timeout
-TIMEOUT = 1
+TIMEOUT = 10
 
 SUMMARY_FILENAME = "repairs_summary"
 
@@ -108,9 +108,9 @@ for input_folder in INPUT_FOLDERS:
     for algorithm in ALGORITHMS:
         process_folder(input_folder, algorithm)
 
-for input_folder in INPUT_FOLDERS:
-    for algorithm in ALGORITHMS:
-        summarize_folder(input_folder, algorithm)
+# for input_folder in INPUT_FOLDERS:
+#     for algorithm in ALGORITHMS:
+#         summarize_folder(input_folder, algorithm)
 
 total_end_time = time.time()
 total_elapsed_time = total_end_time - total_start_time

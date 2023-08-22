@@ -1,4 +1,0 @@
-,Id,UniqueRefinement,NumVariables,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod,d1,d2,nummaxentropysccs,d3
-0,337666b9-44dc-4e2b-9058-7025ac05f6c1,[],0,0.0028505549998953,0,,2,False,,False,7.079791948024649,,7.765917781973258,2.0,0.0001933449530042,5.384616511990316,,,,
-1,dec8f07f-0be5-4a2c-a682-742cd7a9d440,['G(!(hburst0))'],2,20.2558060750016,1,337666b9-44dc-4e2b-9058-7025ac05f6c1,0,True,True,True,17.715417279978283,2.224330969969742,,,,,0.9198174107915525,0.9198174107915525,1.0,-inf
-2,dcf53f35-d221-440b-8a24-7bf660dec03c,['G((!stateA1_1 & !hmastlock & !stateA1_0) -> X(!(hburst0)))'],6,20.255835207994096,1,337666b9-44dc-4e2b-9058-7025ac05f6c1,0,False,,False,2.1481670669745654,,9.1842334389803,233.0,,,0.9522063606347138,0.9522063606347138,1.0,-inf

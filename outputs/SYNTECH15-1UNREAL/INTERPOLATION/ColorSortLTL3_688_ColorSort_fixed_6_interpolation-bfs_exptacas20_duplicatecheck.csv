@@ -1,4 +1,0 @@
-Id;UniqueRefinement;NumVariables;Timestamp;Length;Parent;NumChildren;IsRealizable;IsSatisfiable;IsSolution;TimeRealizabilityCheck;TimeSatisfiabilityCheck;TimeCounterstrategy;CounterstrategyNumStates;TimeRefine;TimeGenerationMethod
-9ca3735f-b0d9-4779-9ca9-682aff59cd22;[];0;0.019562653033062816;0;N/A;2;False;N/A;False;9.386387904989533;N/A;12.648476870032027;36;0.00019048299873247743;10.109202751948033;
-8042163e-fea9-4393-918e-ab6c0ca3b761;['G(F(!(!sYS_CONSTRAINT_0_respondsTo_responded)))'];3;32.217058559006546;1;9ca3735f-b0d9-4779-9ca9-682aff59cd22;0;True;True;True;10.885728888970334;7.30055376701057;N/A;N/A;N/A;N/A;
-c24f0659-d354-4b70-8de6-8c2de51646c0;['G((!sYS_CONSTRAINT_0_respondsTo_responded) -> X(!(!sYS_CONSTRAINT_0_respondsTo_responded)))'];3;32.217090042016935;1;9ca3735f-b0d9-4779-9ca9-682aff59cd22;0;True;False;False;7.130859464989044;6.5762675979640335;N/A;N/A;N/A;N/A;

@@ -1,2 +1,0 @@
-Id,UniqueRefinement,NumVariables
-62080fc2-6d6d-4bd3-90ac-2f9fb182b29f,['(!frontDistSense_0 -> (!backDistSense_0 -> (isReady -> (eNV_CONSTRAINT_0_respondsTo_responded -> (eNV_CONSTRAINT_1_respondsTo_responded -> (eNV_CONSTRAINT_2_respondsTo_responded -> !eNV_CONSTRAINT_3_respondsTo_responded))))))'],7

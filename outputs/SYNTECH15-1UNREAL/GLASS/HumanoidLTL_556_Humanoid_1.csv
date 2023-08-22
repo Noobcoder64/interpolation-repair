@@ -1,2 +1,0 @@
-Id,UniqueRefinement,NumVariables
-74e6e88b-c5ce-49d3-b754-7cdb8606d05f,['G(F(!heading_0 -> (spec_nextMoveMode_0 -> (spec_nextMoveMode_1 -> (!spec_search_0 -> !spec_search_1)))) & (heading_0 -> (spec_nextMoveMode_0 -> (!spec_nextMoveMode_1 -> (spec_search_0 -> spec_search_1)) & (spec_nextMoveMode_1 -> (!spec_search_0 -> !spec_search_1) & (spec_search_0 -> spec_search_1)))))'],5

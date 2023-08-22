@@ -1,4 +1,0 @@
-Id;UniqueRefinement;NumVariables;Timestamp;Length;Parent;NumChildren;IsRealizable;IsSatisfiable;IsSolution;TimeRealizabilityCheck;TimeSatisfiabilityCheck;TimeCounterstrategy;CounterstrategyNumStates;TimeRefine;TimeGenerationMethod
-6a7078da-c0cd-42c2-866d-e50f65ec0395;[];0;0.03419326402945444;0;N/A;2;False;N/A;False;8.018971849989612;N/A;7.567903127986938;1;0.0002767769619822502;7.386061063967645;
-39a6e653-aaff-4abb-8c36-7c210b795858;['G(!(!bluetoothCmd_0 & !bluetoothCmd_2 & !bluetoothCmd_1 & isReady & !frontDistSense_0))'];6;23.032764179981314;1;6a7078da-c0cd-42c2-866d-e50f65ec0395;0;True;True;True;7.865685190015938;7.480363562994171;N/A;N/A;N/A;N/A;
-bd996cf8-845a-472b-aca4-d5f258fdcb27;['!(!bluetoothCmd_0 & !bluetoothCmd_2 & !bluetoothCmd_1 & isReady & !frontDistSense_0)'];5;23.032799687003717;1;6a7078da-c0cd-42c2-866d-e50f65ec0395;0;True;True;True;9.152356273029;7.895632995001506;N/A;N/A;N/A;N/A;

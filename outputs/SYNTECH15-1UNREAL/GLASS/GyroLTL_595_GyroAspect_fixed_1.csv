@@ -1,2 +1,0 @@
-Id,UniqueRefinement,NumVariables
-26c2e67a-4143-46ef-b583-a4ae5a0fdf20,['(!frontDistSense_0 -> (!backDistSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> bluetoothCmd_2)))))'],6

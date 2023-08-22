@@ -1,2 +1,0 @@
-Id,UniqueRefinement,NumVariables
-6cfb154f-d8e7-470a-b0ba-fdd593e7cab0,['(obstacle_0 -> (sYS_CONSTRAINT_0_respondsTo_responded -> (eNV_CONSTRAINT_1_respondsTo_responded -> (eNV_CONSTRAINT_2_respondsTo_responded -> (eNV_CONSTRAINT_3_respondsTo_responded -> (!pREV_aux_4 -> (!pREV_aux_5 -> (!pREV_aux_6 -> (!pREV_aux_7 -> (!pREV_aux_8 -> pREV_aux_9))))))))))'],11

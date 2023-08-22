@@ -1,2 +1,0 @@
-Id,UniqueRefinement,NumVariables
-cc54394b-7336-470e-be4c-2f23c9bea4b4,['G(X(obstacle_0) -> (!inputMoveMode_0 -> (X(!(inputMoveMode_0)) -> (inputMoveMode_1 -> (X(!(inputMoveMode_1)) -> (inputMoveMode_2 -> (X(!(inputMoveMode_2)) -> (X(!(button_0)) -> (X(pREV_aux_0) -> X(pREV_aux_1))))))))))'],8
