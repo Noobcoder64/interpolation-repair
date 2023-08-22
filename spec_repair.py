@@ -10,20 +10,18 @@ import time
 SPEC_REPAIR_PATH = "spectra/SpecRepair.jar"
 ALGORITHMS = ["GLASS", "JVTS", "ALUR"]
 
-def run_spec_repair(spectra_file, algorithm, timeout, output_file):
+def run_spec_repair(spectra_file, algorithm, timeout):
     command = f"java -jar {SPEC_REPAIR_PATH} {spectra_file} {algorithm} {timeout}"
-    with open(output_file, "w") as output:
-        try:
-            subprocess.run(command, shell=True, check=True, stdout=output)
-        except subprocess.CalledProcessError:
-            print(f"Error executing SpecRepair.java for {spectra_file}")
+    try:
+        result = subprocess.run(command, shell=True, check=True, capture_output=True, text=True)
+        print(result.stdout)
+        return result.stdout
+    except subprocess.CalledProcessError:
+        print(f"Error executing SpecRepair.java for {spectra_file}")
+        return None
 
-
-def create_csv_from_output(output_file, csv_output_file):
-    with open(output_file, "r") as file:
-        text = file.read()
-
-    match = re.search(r"Found (\d+) repair suggestions", text)
+def create_csv_from_output(output, csv_output_file):
+    match = re.search(r"Found (\d+) repair suggestions", output)
     if not match:
         return
 
@@ -34,17 +32,16 @@ def create_csv_from_output(output_file, csv_output_file):
     repair_pattern = re.compile(r"Repair #\d+\s*\[\s*(.*?)\s*\]", re.DOTALL)
     asm_pattern = re.compile(r"asm\s*(.*?);", re.DOTALL)
     
-    repairs = repair_pattern.findall(text)
+    repairs = repair_pattern.findall(output)
 
     with open(csv_output_file, "w", newline="") as csvfile:
         csv_writer = csv.writer(csvfile)
-        csv_writer.writerow(["Id", "UniqueRefinement", "NumVariables", "IsSolution"])
+        csv_writer.writerow(["Id", "UniqueRefinement", "IsSolution"])
 
         for i, repair in enumerate(repairs, start=1):
             assumptions = asm_pattern.findall(repair)
             assumptions = normalize_assumptions(assumptions)
-            num_variables = count_num_variables(assumptions)
-            csv_writer.writerow([str(uuid.uuid4()), assumptions, num_variables, True])
+            csv_writer.writerow([str(uuid.uuid4()), assumptions, True])
 
     
 def normalize_assumptions(assumptions):
@@ -58,20 +55,6 @@ def normalize_assumptions(assumptions):
     assumptions = [re.sub(r"GF\s*\((.*)\)", r"G(F(\1))", x) for x in assumptions]
     return assumptions
 
-def count_num_variables(assumptions):
-    total_variables = set()
-
-    assumptions = [re.sub(r"G\(F\s*\((.*)\)\)", r"\1", x) for x in assumptions]
-    assumptions = [re.sub(r"G\((.*)\)", r"\1", x) for x in assumptions]
-    assumptions = [re.sub(r"X\((.*)\)", r"\1", x) for x in assumptions]
-
-    for assumption in assumptions:
-        variables = re.findall(r'\b\w+\b', assumption)
-        total_variables.update(variables)
-
-    return len(total_variables)
-
-
 def main():
     parser = argparse.ArgumentParser(description="Run spec_repair.py on a .spectra file.")
     parser.add_argument("-i", "--input", required=True, help="Path to the input .spectra file")
@@ -81,13 +64,12 @@ def main():
 
     args = parser.parse_args()
 
-    spectra_file_name = os.path.basename(args.input)
+    output = run_spec_repair(args.input, args.algorithm, args.timeout)
 
-    output_file = os.path.join(args.output, os.path.splitext(spectra_file_name)[0] + "_output.txt")
-    run_spec_repair(args.input, args.algorithm, args.timeout, output_file)
-
-    csv_output_file = os.path.join(args.output, os.path.splitext(spectra_file_name)[0] + ".csv")
-    create_csv_from_output(output_file, csv_output_file)
+    spectra_file_name = os.path.splitext(os.path.basename(args.input))[0]
+    csv_file_name = f"{spectra_file_name}_{args.algorithm}.csv"
+    csv_output_file = os.path.join(args.output, csv_file_name)
+    create_csv_from_output(output, csv_output_file)
 
 if __name__ == "__main__":
     main()

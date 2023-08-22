@@ -48,7 +48,7 @@ def FifoDuplicateCheckRefinement():
         "TimeGenerationMethod"
     ]
     
-    datafile.write(";".join(datafields) + "\n")
+    datafile.write(",".join(datafields) + "\n")
 
     initial_spec_node = RefinementNode()
 

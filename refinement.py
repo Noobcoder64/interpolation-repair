@@ -137,7 +137,7 @@ class RefinementNode:
                 field_values.append(str(field_value))
             else:
                 field_values.append("N/A")
-        datafile.write(";".join(field_values) + ";" + self.__readNotes() + "\n")
+        datafile.write(",".join(field_values) + "," + self.__readNotes() + "\n")
 
     #==========================================================================
     # Methods to deal with .rat and .dot files

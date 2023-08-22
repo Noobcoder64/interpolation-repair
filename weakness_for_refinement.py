@@ -144,7 +144,7 @@ def main():
     # print(str(computeWeakness_probe(" & ".join(['G((isReady & !frontDistSense_0) -> X(!(!frontDistSense_0 & isReady)))', 'G(F(!(!balancer_2) & !(balancer_1) & !(balancer_0)))']), exp.varsList)))
 
     # TEST LIFT
-    exp.changeCaseStudy("Examples/Lift.spectra")
+    exp.changeCaseStudy("inputs/Lift.spectra")
     w1 = computeWeakness_probe(" & ".join(["G((!b1 & !b2 & !b3) -> X(b1 | b2 | b3))"]), exp.varsList)[0]
     w2 = computeWeakness_probe(" & ".join(["G(F(b1 | b2 | b3))"]), exp.varsList)[0]
     w3 = computeWeakness_probe(" & ".join(["G(F(b1))"]), exp.varsList)[0]
