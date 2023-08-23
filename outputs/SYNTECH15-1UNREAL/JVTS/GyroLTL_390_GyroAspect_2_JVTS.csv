@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+a7e08e4b-6680-4c64-88bf-5d7123ea1038,['G(F(!isReady -> (eNV_CONSTRAINT_0_respondsTo_responded -> (!balancer_0 -> (!balancer_1 -> balancer_2)))))'],True

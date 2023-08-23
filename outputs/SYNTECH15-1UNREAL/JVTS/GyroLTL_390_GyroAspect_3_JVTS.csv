@@ -1,0 +1,10 @@
+Id,UniqueRefinement,IsSolution
+afbe6005-6e92-47a1-8df0-8fb0d4d08cbb,['G(distSense_0 -> (isReady -> (eNV_CONSTRAINT_0_respondsTo_responded -> (!balancer_0 -> (!balancer_1 -> balancer_2)))))'],True
+aba4b531-a46b-4e41-b15c-fca46e153406,['G(!distSense_0 -> (X(distSense_0) -> (!isReady -> (X(isReady) -> (X(eNV_CONSTRAINT_0_respondsTo_responded) -> (!balancer_0 -> (!balancer_1 -> balancer_2))))))) & (distSense_0 -> (X(distSense_0) -> (!isReady -> (X(isReady) -> (eNV_CONSTRAINT_0_respondsTo_responded -> (X(eNV_CONSTRAINT_0_respondsTo_responded) -> (!balancer_0 -> (!balancer_1 -> balancer_2)))))) & (isReady -> (X(isReady) -> (eNV_CONSTRAINT_0_respondsTo_responded -> (X(eNV_CONSTRAINT_0_respondsTo_responded) -> (!balancer_0 -> !balancer_1) & (balancer_0 -> (!balancer_1 -> balancer_2))))))))'],True
+37a9b8ce-ac72-4f64-96ef-e3368970b196,['G(distSense_0 -> (isReady -> (eNV_CONSTRAINT_0_respondsTo_responded -> (!balancer_0 -> (!balancer_1 -> balancer_2)))))'],True
+149e8b5b-3324-4f79-a2bc-f3b2c4cf2ed8,['G(distSense_0 -> (isReady -> (eNV_CONSTRAINT_0_respondsTo_responded -> (!balancer_0 -> (!balancer_1 -> balancer_2)))))'],True
+17bb6110-3356-4f1b-82f8-4ab8dde80933,['G(F(!distSense_0 -> (!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2)))) & (distSense_0 -> (!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2))) & (isReady -> (!balancer_0 -> !balancer_1) & (balancer_0 -> (!balancer_1 -> balancer_2)))))'],True
+2830ba12-0c74-41dc-a3a5-123cbcc28a41,['G(distSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2))))'],True
+62e5de9a-f940-4338-b8e7-aac211657437,['G(distSense_0 -> (isReady -> (eNV_CONSTRAINT_0_respondsTo_responded -> (!balancer_0 -> (!balancer_1 -> balancer_2)))))'],True
+c3b0d840-e7dd-4e9e-bbc1-094085c42d74,['G(F(!distSense_0 -> (!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2)))) & (distSense_0 -> (!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2))) & (isReady -> (!balancer_0 -> !balancer_1) & (balancer_0 -> (!balancer_1 -> balancer_2)))))'],True
+85e3c769-3bc6-48b9-a856-619fa42dfd2c,['G(distSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2))))'],True
