@@ -10,43 +10,43 @@ sys boolean balancer_2;
 
 
 assumption
-	alwEv (isReady);
+	GF (isReady);
 assumption
 	 (!(isReady));
 assumption
-	alw ((isReady -> next(isReady)));
+	G ((isReady -> next(isReady)));
 
 guarantee
 	 (((!(balancer_0) & !(balancer_1)) & !(balancer_2)));
 guarantee
-	alwEv (((!(balancer_0) & !(balancer_1)) & balancer_2));
+	GF (((!(balancer_0) & !(balancer_1)) & balancer_2));
 guarantee
-	alw ((((!(balancer_0) & !(balancer_1)) & balancer_2) -> !((((next(balancer_0) & !(next(balancer_1))) & !(next(balancer_2))) | ((!(next(balancer_0)) & next(balancer_1)) & next(balancer_2))))));
+	G ((((!(balancer_0) & !(balancer_1)) & balancer_2) -> !((((next(balancer_0) & !(next(balancer_1))) & !(next(balancer_2))) | ((!(next(balancer_0)) & next(balancer_1)) & next(balancer_2))))));
 guarantee
-	alw ((((((distSense_0 & !(balancer_0)) & !(balancer_1)) & !(balancer_2)) & isReady) -> !(((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2))))));
+	G ((((((distSense_0 & !(balancer_0)) & !(balancer_1)) & !(balancer_2)) & isReady) -> !(((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2))))));
 guarantee
 	 (!(((balancer_0 & !(balancer_1)) & balancer_2)));
 guarantee
-	alw (!(((next(balancer_0) & !(next(balancer_1))) & next(balancer_2))));
+	G (!(((next(balancer_0) & !(next(balancer_1))) & next(balancer_2))));
 guarantee
 	 (!(((balancer_0 & balancer_1) & !(balancer_2))));
 guarantee
-	alw (!(((next(balancer_0) & next(balancer_1)) & !(next(balancer_2)))));
+	G (!(((next(balancer_0) & next(balancer_1)) & !(next(balancer_2)))));
 guarantee
 	 (!(((balancer_0 & balancer_1) & balancer_2)));
 guarantee
-	alw (!(((next(balancer_0) & next(balancer_1)) & next(balancer_2))));
+	G (!(((next(balancer_0) & next(balancer_1)) & next(balancer_2))));
 guarantee
 	 ((!(isReady) -> ((!(balancer_0) & !(balancer_1)) & !(balancer_2))));
 guarantee
-	alw ((!(next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2)))));
+	G ((!(next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2)))));
 guarantee
 	 (((distSense_0 & isReady) -> !(((!(balancer_0) & !(balancer_1)) & balancer_2))));
 guarantee
-	alw (((next(distSense_0) & next(isReady)) -> !(((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2)))));
+	G (((next(distSense_0) & next(isReady)) -> !(((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2)))));
 guarantee
 	 (((!(distSense_0) & isReady) -> ((!(balancer_0) & !(balancer_1)) & balancer_2)));
 guarantee
-	alw (((!(next(distSense_0)) & next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2))));
+	G (((!(next(distSense_0)) & next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2))));
 
 

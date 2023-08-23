@@ -1,2 +1,2 @@
 Id,UniqueRefinement,IsSolution,NumVariables
-bb9e7434-2ac1-43c1-a623-d6d9b720fd1b,['G(X(obstacle_0) -> (!inputMoveMode_0 -> (X(!(inputMoveMode_0)) -> (inputMoveMode_1 -> (X(!(inputMoveMode_1)) -> (inputMoveMode_2 -> (X(!(inputMoveMode_2)) -> (X(!(button_0)) -> (X(pREV_aux_0) -> X(pREV_aux_1))))))))))'],True,2.0
+bb9e7434-2ac1-43c1-a623-d6d9b720fd1b,['G(X(obstacle_0) -> (!inputMoveMode_0 -> (X(!(inputMoveMode_0)) -> (inputMoveMode_1 -> (X(!(inputMoveMode_1)) -> (inputMoveMode_2 -> (X(!(inputMoveMode_2)) -> (X(!(button_0)) -> (X(pREV_aux_0) -> X(pREV_aux_1))))))))))'],True,2

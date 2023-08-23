@@ -40,35 +40,35 @@ env boolean pREV_aux_4;
 env boolean pREV_aux_5;
 
 assumption
-	alwEv (((color_0 | color_1) | !(color_2)));
+	GF (((color_0 | color_1) | !(color_2)));
 assumption
-	alwEv (!(ack_hor_0));
+	GF (!(ack_hor_0));
 assumption
-	alw ((!(spec_waiting_ack_ver_mot) -> ack_ver_0));
+	G ((!(spec_waiting_ack_ver_mot) -> ack_ver_0));
 assumption
-	alw ((!(spec_waiting_ack_hor_mot) -> ack_hor_0));
+	G ((!(spec_waiting_ack_hor_mot) -> ack_hor_0));
 assumption
-	alwEv (eNV_CONSTRAINT_1_respondsTo_responded);
+	GF (eNV_CONSTRAINT_1_respondsTo_responded);
 assumption
-	alwEv (eNV_CONSTRAINT_2_respondsTo_responded);
+	GF (eNV_CONSTRAINT_2_respondsTo_responded);
 assumption
-	alwEv (eNV_CONSTRAINT_3_respondsTo_responded);
+	GF (eNV_CONSTRAINT_3_respondsTo_responded);
 assumption
 	 (!(((color_0 & color_1) & !(color_2))));
 assumption
-	alw (!(((next(color_0) & next(color_1)) & !(next(color_2)))));
+	G (!(((next(color_0) & next(color_1)) & !(next(color_2)))));
 assumption
 	 (!(((color_0 & color_1) & color_2)));
 assumption
-	alw (!(((next(color_0) & next(color_1)) & next(color_2))));
+	G (!(((next(color_0) & next(color_1)) & next(color_2))));
 assumption
 	 (!(((detect_0 & detect_1) & !(detect_2))));
 assumption
-	alw (!(((next(detect_0) & next(detect_1)) & !(next(detect_2)))));
+	G (!(((next(detect_0) & next(detect_1)) & !(next(detect_2)))));
 assumption
 	 (!(((detect_0 & detect_1) & detect_2)));
 assumption
-	alw (!(((next(detect_0) & next(detect_1)) & next(detect_2))));
+	G (!(((next(detect_0) & next(detect_1)) & next(detect_2))));
 
 guarantee
 	 (((((!(spec_dropping) & !(motSpeed_0)) & !(motSpeed_1)) & spec_pausing_0) & !(direction_0)));
@@ -79,136 +79,136 @@ guarantee
 guarantee
 	 (!(spec_waiting_ack_hor_mot));
 guarantee
-	alwEv (!(horMot_0));
+	GF (!(horMot_0));
 guarantee
-	alw ((verMot_0 -> (((spec_currentColor_0 <-> next(spec_currentColor_0)) & (spec_currentColor_1 <-> next(spec_currentColor_1))) & (spec_currentColor_2 <-> next(spec_currentColor_2)))));
+	G ((verMot_0 -> (((spec_currentColor_0 <-> next(spec_currentColor_0)) & (spec_currentColor_1 <-> next(spec_currentColor_1))) & (spec_currentColor_2 <-> next(spec_currentColor_2)))));
 guarantee
-	alw ((!(verMot_0) -> (((color_0 <-> next(spec_currentColor_0)) & (color_1 <-> next(spec_currentColor_1))) & (color_2 <-> next(spec_currentColor_2)))));
+	G ((!(verMot_0) -> (((color_0 <-> next(spec_currentColor_0)) & (color_1 <-> next(spec_currentColor_1))) & (color_2 <-> next(spec_currentColor_2)))));
 guarantee
-	alw (((spec_dropping <-> next(spec_dropping)) <-> (verMot_0 & horMot_0)));
+	G (((spec_dropping <-> next(spec_dropping)) <-> (verMot_0 & horMot_0)));
 guarantee
-	alw ((!(edge_0) <-> (direction_0 <-> !(next(direction_0)))));
+	G ((!(edge_0) <-> (direction_0 <-> !(next(direction_0)))));
 guarantee
-	alw ((((spec_speedButtonValidPressed & !(motSpeed_0)) & !(motSpeed_1)) -> (!(next(motSpeed_0)) & next(motSpeed_1))));
+	G ((((spec_speedButtonValidPressed & !(motSpeed_0)) & !(motSpeed_1)) -> (!(next(motSpeed_0)) & next(motSpeed_1))));
 guarantee
-	alw ((((spec_speedButtonValidPressed & !(motSpeed_0)) & motSpeed_1) -> (next(motSpeed_0) & !(next(motSpeed_1)))));
+	G ((((spec_speedButtonValidPressed & !(motSpeed_0)) & motSpeed_1) -> (next(motSpeed_0) & !(next(motSpeed_1)))));
 guarantee
-	alw ((((spec_speedButtonValidPressed & motSpeed_0) & !(motSpeed_1)) -> (!(next(motSpeed_0)) & !(next(motSpeed_1)))));
+	G ((((spec_speedButtonValidPressed & motSpeed_0) & !(motSpeed_1)) -> (!(next(motSpeed_0)) & !(next(motSpeed_1)))));
 guarantee
-	alw ((!(spec_speedButtonValidPressed) -> ((motSpeed_0 <-> next(motSpeed_0)) & (motSpeed_1 <-> next(motSpeed_1)))));
+	G ((!(spec_speedButtonValidPressed) -> ((motSpeed_0 <-> next(motSpeed_0)) & (motSpeed_1 <-> next(motSpeed_1)))));
 guarantee
-	alw ((((spec_pauseButtonValidPressed & spec_pausing_0) | (!(spec_pauseButtonValidPressed) & !(spec_pausing_0))) -> !(next(spec_pausing_0))));
+	G ((((spec_pauseButtonValidPressed & spec_pausing_0) | (!(spec_pauseButtonValidPressed) & !(spec_pausing_0))) -> !(next(spec_pausing_0))));
 guarantee
-	alw ((((!(spec_pauseButtonValidPressed) & spec_pausing_0) | (spec_pauseButtonValidPressed & !(spec_pausing_0))) -> next(spec_pausing_0)));
+	G ((((!(spec_pauseButtonValidPressed) & spec_pausing_0) | (spec_pauseButtonValidPressed & !(spec_pausing_0))) -> next(spec_pausing_0)));
 guarantee
-	alw (((!(spec_waiting_ack_ver_mot) & verMot_0) -> !(next(spec_waiting_ack_ver_mot))));
+	G (((!(spec_waiting_ack_ver_mot) & verMot_0) -> !(next(spec_waiting_ack_ver_mot))));
 guarantee
-	alw (((!(spec_waiting_ack_ver_mot) & !(verMot_0)) -> next(spec_waiting_ack_ver_mot)));
+	G (((!(spec_waiting_ack_ver_mot) & !(verMot_0)) -> next(spec_waiting_ack_ver_mot)));
 guarantee
-	alw (((spec_waiting_ack_ver_mot & ack_ver_0) -> !(next(spec_waiting_ack_ver_mot))));
+	G (((spec_waiting_ack_ver_mot & ack_ver_0) -> !(next(spec_waiting_ack_ver_mot))));
 guarantee
-	alw (((spec_waiting_ack_ver_mot & !(ack_ver_0)) -> next(spec_waiting_ack_ver_mot)));
+	G (((spec_waiting_ack_ver_mot & !(ack_ver_0)) -> next(spec_waiting_ack_ver_mot)));
 guarantee
-	alw (((!(spec_waiting_ack_hor_mot) & horMot_0) -> !(next(spec_waiting_ack_hor_mot))));
+	G (((!(spec_waiting_ack_hor_mot) & horMot_0) -> !(next(spec_waiting_ack_hor_mot))));
 guarantee
-	alw (((!(spec_waiting_ack_hor_mot) & !(horMot_0)) -> next(spec_waiting_ack_hor_mot)));
+	G (((!(spec_waiting_ack_hor_mot) & !(horMot_0)) -> next(spec_waiting_ack_hor_mot)));
 guarantee
-	alw (((spec_waiting_ack_hor_mot & ack_hor_0) -> !(next(spec_waiting_ack_hor_mot))));
+	G (((spec_waiting_ack_hor_mot & ack_hor_0) -> !(next(spec_waiting_ack_hor_mot))));
 guarantee
-	alw (((spec_waiting_ack_hor_mot & !(ack_hor_0)) -> next(spec_waiting_ack_hor_mot)));
+	G (((spec_waiting_ack_hor_mot & !(ack_hor_0)) -> next(spec_waiting_ack_hor_mot)));
 guarantee
-	alwEv (sYS_CONSTRAINT_0_respondsTo_responded);
+	GF (sYS_CONSTRAINT_0_respondsTo_responded);
 guarantee
 	 (!((botMot_0 & botMot_1)));
 guarantee
-	alw (!((next(botMot_0) & next(botMot_1))));
+	G (!((next(botMot_0) & next(botMot_1))));
 guarantee
 	 (!((motSpeed_0 & motSpeed_1)));
 guarantee
-	alw (!((next(motSpeed_0) & next(motSpeed_1))));
+	G (!((next(motSpeed_0) & next(motSpeed_1))));
 guarantee
 	 (!(((spec_currentColor_0 & spec_currentColor_1) & !(spec_currentColor_2))));
 guarantee
-	alw (!(((next(spec_currentColor_0) & next(spec_currentColor_1)) & !(next(spec_currentColor_2)))));
+	G (!(((next(spec_currentColor_0) & next(spec_currentColor_1)) & !(next(spec_currentColor_2)))));
 guarantee
 	 (!(((spec_currentColor_0 & spec_currentColor_1) & spec_currentColor_2)));
 guarantee
-	alw (!(((next(spec_currentColor_0) & next(spec_currentColor_1)) & next(spec_currentColor_2))));
+	G (!(((next(spec_currentColor_0) & next(spec_currentColor_1)) & next(spec_currentColor_2))));
 guarantee
 	 ((!(verMot_0) -> ((!(botMot_0) & botMot_1) & horMot_0)));
 guarantee
-	alw ((!(next(verMot_0)) -> ((!(next(botMot_0)) & next(botMot_1)) & next(horMot_0))));
+	G ((!(next(verMot_0)) -> ((!(next(botMot_0)) & next(botMot_1)) & next(horMot_0))));
 guarantee
 	 ((!(horMot_0) -> ((!(botMot_0) & botMot_1) & verMot_0)));
 guarantee
-	alw ((!(next(horMot_0)) -> ((!(next(botMot_0)) & next(botMot_1)) & next(verMot_0))));
+	G ((!(next(horMot_0)) -> ((!(next(botMot_0)) & next(botMot_1)) & next(verMot_0))));
 guarantee
 	 (((botMot_0 | !(botMot_1)) -> (verMot_0 & horMot_0)));
 guarantee
-	alw (((next(botMot_0) | !(next(botMot_1))) -> (next(verMot_0) & next(horMot_0))));
+	G (((next(botMot_0) | !(next(botMot_1))) -> (next(verMot_0) & next(horMot_0))));
 guarantee
 	 (((!(ack_ver_0) | !(ack_hor_0)) -> (((verMot_0 & horMot_0) & !(botMot_0)) & botMot_1)));
 guarantee
-	alw (((!(next(ack_ver_0)) | !(next(ack_hor_0))) -> (((next(verMot_0) & next(horMot_0)) & !(next(botMot_0))) & next(botMot_1))));
+	G (((!(next(ack_ver_0)) | !(next(ack_hor_0))) -> (((next(verMot_0) & next(horMot_0)) & !(next(botMot_0))) & next(botMot_1))));
 guarantee
 	 ((((!(spec_dropping) & starting_pos_0) & (ack_ver_0 & ack_hor_0)) <-> (botMot_0 & !(botMot_1))));
 guarantee
-	alw ((((!(next(spec_dropping)) & next(starting_pos_0)) & (next(ack_ver_0) & next(ack_hor_0))) <-> (next(botMot_0) & !(next(botMot_1)))));
+	G ((((!(next(spec_dropping)) & next(starting_pos_0)) & (next(ack_ver_0) & next(ack_hor_0))) <-> (next(botMot_0) & !(next(botMot_1)))));
 guarantee
 	 ((((((!(spec_dropping) & !(starting_pos_0)) & !(color_0)) & !(color_1)) & color_2) -> (((verMot_0 & horMot_0) & !(botMot_0)) & botMot_1)));
 guarantee
-	alw ((((((!(next(spec_dropping)) & !(next(starting_pos_0))) & !(next(color_0))) & !(next(color_1))) & next(color_2)) -> (((next(verMot_0) & next(horMot_0)) & !(next(botMot_0))) & next(botMot_1))));
+	G ((((((!(next(spec_dropping)) & !(next(starting_pos_0))) & !(next(color_0))) & !(next(color_1))) & next(color_2)) -> (((next(verMot_0) & next(horMot_0)) & !(next(botMot_0))) & next(botMot_1))));
 guarantee
 	 (((((!(color_0) & !(color_1)) & color_2) | spec_dropping) -> verMot_0));
 guarantee
-	alw (((((!(next(color_0)) & !(next(color_1))) & next(color_2)) | next(spec_dropping)) -> next(verMot_0)));
+	G (((((!(next(color_0)) & !(next(color_1))) & next(color_2)) | next(spec_dropping)) -> next(verMot_0)));
 guarantee
 	 (((((!(spec_dropping) & !(starting_pos_0)) & ((ack_ver_0 & ack_hor_0) & ack_bot_0)) & ((color_0 | color_1) | !(color_2))) <-> !(verMot_0)));
 guarantee
-	alw (((((!(next(spec_dropping)) & !(next(starting_pos_0))) & ((next(ack_ver_0) & next(ack_hor_0)) & next(ack_bot_0))) & ((next(color_0) | next(color_1)) | !(next(color_2)))) <-> !(next(verMot_0))));
+	G (((((!(next(spec_dropping)) & !(next(starting_pos_0))) & ((next(ack_ver_0) & next(ack_hor_0)) & next(ack_bot_0))) & ((next(color_0) | next(color_1)) | !(next(color_2)))) <-> !(next(verMot_0))));
 guarantee
 	 ((((spec_dropping & (((detect_0 <-> !(spec_currentColor_0)) | (detect_1 <-> !(spec_currentColor_1))) | (detect_2 <-> !(spec_currentColor_2)))) & (ack_ver_0 & ack_hor_0)) <-> (!(botMot_0) & !(botMot_1))));
 guarantee
-	alw ((((next(spec_dropping) & (((next(detect_0) <-> !(next(spec_currentColor_0))) | (next(detect_1) <-> !(next(spec_currentColor_1)))) | (next(detect_2) <-> !(next(spec_currentColor_2))))) & (next(ack_ver_0) & next(ack_hor_0))) <-> (!(next(botMot_0)) & !(next(botMot_1)))));
+	G ((((next(spec_dropping) & (((next(detect_0) <-> !(next(spec_currentColor_0))) | (next(detect_1) <-> !(next(spec_currentColor_1)))) | (next(detect_2) <-> !(next(spec_currentColor_2))))) & (next(ack_ver_0) & next(ack_hor_0))) <-> (!(next(botMot_0)) & !(next(botMot_1)))));
 guarantee
 	 ((((((spec_dropping & (detect_0 <-> spec_currentColor_0)) & (detect_1 <-> spec_currentColor_1)) & (detect_2 <-> spec_currentColor_2)) & (ack_ver_0 & ack_hor_0)) <-> !(horMot_0)));
 guarantee
-	alw ((((((next(spec_dropping) & (next(detect_0) <-> next(spec_currentColor_0))) & (next(detect_1) <-> next(spec_currentColor_1))) & (next(detect_2) <-> next(spec_currentColor_2))) & (next(ack_ver_0) & next(ack_hor_0))) <-> !(next(horMot_0))));
+	G ((((((next(spec_dropping) & (next(detect_0) <-> next(spec_currentColor_0))) & (next(detect_1) <-> next(spec_currentColor_1))) & (next(detect_2) <-> next(spec_currentColor_2))) & (next(ack_ver_0) & next(ack_hor_0))) <-> !(next(horMot_0))));
 guarantee
 	 (((!(speedButton_0) & pREV_aux_4) <-> spec_speedButtonValidPressed));
 guarantee
-	alw (((!(next(speedButton_0)) & next(pREV_aux_4)) <-> next(spec_speedButtonValidPressed)));
+	G (((!(next(speedButton_0)) & next(pREV_aux_4)) <-> next(spec_speedButtonValidPressed)));
 guarantee
 	 (((!(haltButton_0) & pREV_aux_5) <-> spec_pauseButtonValidPressed));
 guarantee
-	alw (((!(next(haltButton_0)) & next(pREV_aux_5)) <-> next(spec_pauseButtonValidPressed)));
+	G (((!(next(haltButton_0)) & next(pREV_aux_5)) <-> next(spec_pauseButtonValidPressed)));
 guarantee
 	 ((!(spec_pausing_0) -> (((verMot_0 & horMot_0) & !(botMot_0)) & botMot_1)));
 guarantee
-	alw ((!(next(spec_pausing_0)) -> (((next(verMot_0) & next(horMot_0)) & !(next(botMot_0))) & next(botMot_1))));
+	G ((!(next(spec_pausing_0)) -> (((next(verMot_0) & next(horMot_0)) & !(next(botMot_0))) & next(botMot_1))));
 
 assumption
 	 (sYS_CONSTRAINT_0_respondsTo_responded);
 assumption
-	alw ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> ((((!(horMot_0) & (detect_0 <-> spec_currentColor_0)) & (detect_1 <-> spec_currentColor_1)) & (detect_2 <-> spec_currentColor_2)) | (sYS_CONSTRAINT_0_respondsTo_responded & !(((color_0 | color_1) | !(color_2)))))));
+	G ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> ((((!(horMot_0) & (detect_0 <-> spec_currentColor_0)) & (detect_1 <-> spec_currentColor_1)) & (detect_2 <-> spec_currentColor_2)) | (sYS_CONSTRAINT_0_respondsTo_responded & !(((color_0 | color_1) | !(color_2)))))));
 assumption
 	 (eNV_CONSTRAINT_1_respondsTo_responded);
 assumption
-	alw ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> (spec_pausing_0 | (eNV_CONSTRAINT_1_respondsTo_responded & !(!(spec_pausing_0))))));
+	G ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> (spec_pausing_0 | (eNV_CONSTRAINT_1_respondsTo_responded & !(!(spec_pausing_0))))));
 assumption
 	 (eNV_CONSTRAINT_2_respondsTo_responded);
 assumption
-	alw ((next(eNV_CONSTRAINT_2_respondsTo_responded) <-> (ack_ver_0 | (eNV_CONSTRAINT_2_respondsTo_responded & !(spec_waiting_ack_ver_mot)))));
+	G ((next(eNV_CONSTRAINT_2_respondsTo_responded) <-> (ack_ver_0 | (eNV_CONSTRAINT_2_respondsTo_responded & !(spec_waiting_ack_ver_mot)))));
 assumption
 	 (eNV_CONSTRAINT_3_respondsTo_responded);
 assumption
-	alw ((next(eNV_CONSTRAINT_3_respondsTo_responded) <-> (ack_hor_0 | (eNV_CONSTRAINT_3_respondsTo_responded & !(spec_waiting_ack_hor_mot)))));
+	G ((next(eNV_CONSTRAINT_3_respondsTo_responded) <-> (ack_hor_0 | (eNV_CONSTRAINT_3_respondsTo_responded & !(spec_waiting_ack_hor_mot)))));
 assumption
 	 (!(pREV_aux_4));
 assumption
-	alw ((next(pREV_aux_4) <-> speedButton_0));
+	G ((next(pREV_aux_4) <-> speedButton_0));
 assumption
 	 (!(pREV_aux_5));
 assumption
-	alw ((next(pREV_aux_5) <-> haltButton_0));
+	G ((next(pREV_aux_5) <-> haltButton_0));
 

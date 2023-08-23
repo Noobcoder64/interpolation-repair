@@ -1,4 +1,4 @@
-Id,UniqueRefinement,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod
-9001a60c-c0e9-41b0-b964-c30e8ccf72ad,[],0.0021302159875631332,0,N/A,2,False,N/A,False,1.7058420280227438,N/A,2.794619814027101,37,8.69220239110291e-05,1.9518356259795837
-c5abb719-bf99-453a-a790-e0a86e651a4c,['G((!sYS_CONSTRAINT_0_respondsTo_responded) -> X(!(!sYS_CONSTRAINT_0_respondsTo_responded)))'],6.469168943993282,1,9001a60c-c0e9-41b0-b964-c30e8ccf72ad,0,True,False,False,1.5863179519656114,1.5185055150068365,N/A,N/A,N/A,N/A
-c231c477-71e6-4bf2-96d4-4f954601e451,['G(F(!(!sYS_CONSTRAINT_0_respondsTo_responded)))'],6.469190960982814,1,9001a60c-c0e9-41b0-b964-c30e8ccf72ad,0,True,True,True,2.2355569829815067,1.4372331979684532,N/A,N/A,N/A,N/A
+Id,UniqueRefinement,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod,NumVariables
+9001a60c-c0e9-41b0-b964-c30e8ccf72ad,[],0.0021302159875631,0,,2,False,,False,1.7058420280227438,,2.794619814027101,37.0,8.69220239110291e-05,1.951835625979584,0
+c5abb719-bf99-453a-a790-e0a86e651a4c,['G((!sYS_CONSTRAINT_0_respondsTo_responded) -> X(!(!sYS_CONSTRAINT_0_respondsTo_responded)))'],6.469168943993282,1,9001a60c-c0e9-41b0-b964-c30e8ccf72ad,0,True,False,False,1.5863179519656114,1.5185055150068365,,,,,1
+c231c477-71e6-4bf2-96d4-4f954601e451,['G(F(!(!sYS_CONSTRAINT_0_respondsTo_responded)))'],6.469190960982814,1,9001a60c-c0e9-41b0-b964-c30e8ccf72ad,0,True,True,True,2.2355569829815067,1.4372331979684532,,,,,1

@@ -145,8 +145,8 @@ def format_spec(spec):
     return spec
 
 def interpolation_spec(spec):
-    spec = [re.sub(r"alw\s*\(([^\)]*)\)", r"G(\1)", line) for line in spec]
-    spec = [re.sub(r"alwEv\s*\(([^\)]*)\)", r"G(F(\1))", line) for line in spec]
+    spec = [re.sub(r"alw\s*\(([^\)]*)\)", r"G (\1)", line) for line in spec]
+    spec = [re.sub(r"alwEv\s*\(([^\)]*)\)", r"GF (\1)", line) for line in spec]
     spec = [re.sub(r"GF\s*\(([^\)]*)\)", r"G(F(\1))", line) for line in spec]
     spec = word_sub(spec, "next", "X")
     spec = [re.sub(r'(\w+)=true', r'\1', x) for x in spec]

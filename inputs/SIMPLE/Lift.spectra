@@ -13,41 +13,41 @@ sys boolean f3;
 assumption
 	 (((!(b1) & !(b2)) & !(b3)));
 assumption
-	alw (((b1 & f1) -> !(next(b1))));
+	G (((b1 & f1) -> !(next(b1))));
 assumption
-	alw (((b2 & f2) -> !(next(b2))));
+	G (((b2 & f2) -> !(next(b2))));
 assumption
-	alw (((b3 & f3) -> !(next(b3))));
+	G (((b3 & f3) -> !(next(b3))));
 assumption
-	alw (((b1 & !(f1)) -> next(b1)));
+	G (((b1 & !(f1)) -> next(b1)));
 assumption
-	alw (((b2 & !(f2)) -> next(b2)));
+	G (((b2 & !(f2)) -> next(b2)));
 assumption
-	alw (((b3 & !(f3)) -> next(b3)));
+	G (((b3 & !(f3)) -> next(b3)));
 
 guarantee
 	 (((f1 & !(f2)) & !(f3)));
 guarantee
-	alw (((!((f1 & f2)) & !((f1 & f3))) & !((f2 & f3))));
+	G (((!((f1 & f2)) & !((f1 & f3))) & !((f2 & f3))));
 guarantee
-	alw ((f1 -> (next(f1) | next(f2))));
+	G ((f1 -> (next(f1) | next(f2))));
 guarantee
-	alw ((f2 -> ((next(f1) | next(f2)) | next(f3))));
+	G ((f2 -> ((next(f1) | next(f2)) | next(f3))));
 guarantee
-	alw ((f3 -> (next(f2) | next(f3))));
+	G ((f3 -> (next(f2) | next(f3))));
 guarantee
-	alw ((((((f1 & next(f2)) | (f2 & next(f3))) | (f2 & next(f1))) | (f3 & next(f2))) -> ((b1 | b2) | b3)));
+	G ((((((f1 & next(f2)) | (f2 & next(f3))) | (f2 & next(f1))) | (f3 & next(f2))) -> ((b1 | b2) | b3)));
 guarantee
-	alwEv ((b1 -> f1));
+	GF ((b1 -> f1));
 guarantee
-	alwEv ((b2 -> f2));
+	GF ((b2 -> f2));
 guarantee
-	alwEv ((b3 -> f3));
+	GF ((b3 -> f3));
 guarantee
-	alwEv (f1);
+	GF (f1);
 guarantee
-	alwEv (f2);
+	GF (f2);
 guarantee
-	alwEv (f3);
+	GF (f3);
 
 

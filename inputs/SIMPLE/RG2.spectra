@@ -10,12 +10,12 @@ env boolean sYS_CONSTRAINT_0_respondsTo_responded;
 
 
 guarantee
-	alw (((c | g) -> !(next(g))));
+	G (((c | g) -> !(next(g))));
 guarantee
-	alwEv (sYS_CONSTRAINT_0_respondsTo_responded);
+	GF (sYS_CONSTRAINT_0_respondsTo_responded);
 
 assumption
 	 (sYS_CONSTRAINT_0_respondsTo_responded);
 assumption
-	alw ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (next(g) | (sYS_CONSTRAINT_0_respondsTo_responded & !(r)))));
+	G ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (next(g) | (sYS_CONSTRAINT_0_respondsTo_responded & !(r)))));
 

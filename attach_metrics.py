@@ -43,7 +43,8 @@ def process_csv_file(csv_file_path, spectra_file_path):
     df.columns
     # Convert the 'UniqueRefinement' column to a list of lists
     df['UniqueRefinement'] = df['UniqueRefinement'].apply(ast.literal_eval)
-    
+    df['NumVariables'] = None
+
     # Configure experiment properties
     exp.configure(spectra_file_path)
     

@@ -20,71 +20,71 @@ env boolean eNV_CONSTRAINT_0_respondsTo_responded;
 env boolean pREV_aux_1;
 
 assumption
-	alwEv (!(obstacle_0));
+	GF (!(obstacle_0));
 assumption
-	alwEv (eNV_CONSTRAINT_0_respondsTo_responded);
+	GF (eNV_CONSTRAINT_0_respondsTo_responded);
 
 guarantee
-	alwEv ((!(moveMode_0) & !(moveMode_1)));
+	GF ((!(moveMode_0) & !(moveMode_1)));
 guarantee
-	alw ((((((!(state_0) & !(state_1)) & !(moveMode_0)) & !(moveMode_1)) & (!(next(moveMode_0)) & next(moveMode_1))) -> (!(next(state_0)) & next(state_1))));
+	G ((((((!(state_0) & !(state_1)) & !(moveMode_0)) & !(moveMode_1)) & (!(next(moveMode_0)) & next(moveMode_1))) -> (!(next(state_0)) & next(state_1))));
 guarantee
-	alw ((((((!(state_0) & state_1) & !(moveMode_0)) & moveMode_1) & (!(next(moveMode_0)) & !(next(moveMode_1)))) -> (next(state_0) & !(next(state_1)))));
+	G ((((((!(state_0) & state_1) & !(moveMode_0)) & moveMode_1) & (!(next(moveMode_0)) & !(next(moveMode_1)))) -> (next(state_0) & !(next(state_1)))));
 guarantee
-	alw ((((((state_0 & !(state_1)) & !(moveMode_0)) & !(moveMode_1)) & (!(next(moveMode_0)) & next(moveMode_1))) -> (next(state_0) & next(state_1))));
+	G ((((((state_0 & !(state_1)) & !(moveMode_0)) & !(moveMode_1)) & (!(next(moveMode_0)) & next(moveMode_1))) -> (next(state_0) & next(state_1))));
 guarantee
-	alw ((((!(state_0) & state_1) & (!(next(moveMode_0)) & next(moveMode_1))) -> (!(next(state_0)) & next(state_1))));
+	G ((((!(state_0) & state_1) & (!(next(moveMode_0)) & next(moveMode_1))) -> (!(next(state_0)) & next(state_1))));
 guarantee
-	alw ((((state_0 & !(state_1)) & (!(next(moveMode_0)) & !(next(moveMode_1)))) -> (next(state_0) & !(next(state_1)))));
+	G ((((state_0 & !(state_1)) & (!(next(moveMode_0)) & !(next(moveMode_1)))) -> (next(state_0) & !(next(state_1)))));
 guarantee
-	alw ((((!(moveMode_0) & !(moveMode_1)) & obstacle_0) -> !((!(next(moveMode_0)) & !(next(moveMode_1))))));
+	G ((((!(moveMode_0) & !(moveMode_1)) & obstacle_0) -> !((!(next(moveMode_0)) & !(next(moveMode_1))))));
 guarantee
-	alw (((((!(moveMode_0) & !(moveMode_1)) & (!(next(moveMode_0)) & next(moveMode_1))) | ((!(moveMode_0) & moveMode_1) & (!(next(moveMode_0)) & !(next(moveMode_1))))) <-> ((((((!(leftMotor_0) & !(leftMotor_1)) & !(leftMotor_2)) & !(rightMotor_0)) & !(rightMotor_1)) & rightMotor_2) | (((((!(leftMotor_0) & !(leftMotor_1)) & leftMotor_2) & !(rightMotor_0)) & !(rightMotor_1)) & !(rightMotor_2)))));
+	G (((((!(moveMode_0) & !(moveMode_1)) & (!(next(moveMode_0)) & next(moveMode_1))) | ((!(moveMode_0) & moveMode_1) & (!(next(moveMode_0)) & !(next(moveMode_1))))) <-> ((((((!(leftMotor_0) & !(leftMotor_1)) & !(leftMotor_2)) & !(rightMotor_0)) & !(rightMotor_1)) & rightMotor_2) | (((((!(leftMotor_0) & !(leftMotor_1)) & leftMotor_2) & !(rightMotor_0)) & !(rightMotor_1)) & !(rightMotor_2)))));
 guarantee
-	alw (((moveMode_0 & moveMode_1) -> !((!(next(moveMode_0)) & next(moveMode_1)))));
+	G (((moveMode_0 & moveMode_1) -> !((!(next(moveMode_0)) & next(moveMode_1)))));
 guarantee
-	alw ((((!(moveMode_0) & !(moveMode_1)) & (next(moveMode_0) & !(next(moveMode_1)))) <-> (((((leftMotor_0 & !(leftMotor_1)) & leftMotor_2) & rightMotor_0) & !(rightMotor_1)) & rightMotor_2)));
+	G ((((!(moveMode_0) & !(moveMode_1)) & (next(moveMode_0) & !(next(moveMode_1)))) <-> (((((leftMotor_0 & !(leftMotor_1)) & leftMotor_2) & rightMotor_0) & !(rightMotor_1)) & rightMotor_2)));
 guarantee
-	alw (((moveMode_0 & !(moveMode_1)) <-> (next(moveMode_0) & next(moveMode_1))));
+	G (((moveMode_0 & !(moveMode_1)) <-> (next(moveMode_0) & next(moveMode_1))));
 guarantee
 	 (!(((leftMotor_0 & leftMotor_1) & leftMotor_2)));
 guarantee
-	alw (!(((next(leftMotor_0) & next(leftMotor_1)) & next(leftMotor_2))));
+	G (!(((next(leftMotor_0) & next(leftMotor_1)) & next(leftMotor_2))));
 guarantee
 	 (!(((rightMotor_0 & rightMotor_1) & rightMotor_2)));
 guarantee
-	alw (!(((next(rightMotor_0) & next(rightMotor_1)) & next(rightMotor_2))));
+	G (!(((next(rightMotor_0) & next(rightMotor_1)) & next(rightMotor_2))));
 guarantee
 	 (!((headMotor_0 & headMotor_1)));
 guarantee
-	alw (!((next(headMotor_0) & next(headMotor_1))));
+	G (!((next(headMotor_0) & next(headMotor_1))));
 guarantee
 	 (!((state_0 & state_1)));
 guarantee
-	alw (!((next(state_0) & next(state_1))));
+	G (!((next(state_0) & next(state_1))));
 guarantee
 	 ((((!(moveMode_0) & !(moveMode_1)) & pREV_aux_1) <-> (((((leftMotor_0 & leftMotor_1) & !(leftMotor_2)) & rightMotor_0) & rightMotor_1) & !(rightMotor_2))));
 guarantee
-	alw ((((!(next(moveMode_0)) & !(next(moveMode_1))) & next(pREV_aux_1)) <-> (((((next(leftMotor_0) & next(leftMotor_1)) & !(next(leftMotor_2))) & next(rightMotor_0)) & next(rightMotor_1)) & !(next(rightMotor_2)))));
+	G ((((!(next(moveMode_0)) & !(next(moveMode_1))) & next(pREV_aux_1)) <-> (((((next(leftMotor_0) & next(leftMotor_1)) & !(next(leftMotor_2))) & next(rightMotor_0)) & next(rightMotor_1)) & !(next(rightMotor_2)))));
 guarantee
 	 (((moveMode_0 & !(moveMode_1)) -> (((((!(leftMotor_0) & !(leftMotor_1)) & !(leftMotor_2)) & !(rightMotor_0)) & rightMotor_1) & rightMotor_2)));
 guarantee
-	alw (((next(moveMode_0) & !(next(moveMode_1))) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & !(next(leftMotor_2))) & !(next(rightMotor_0))) & next(rightMotor_1)) & next(rightMotor_2))));
+	G (((next(moveMode_0) & !(next(moveMode_1))) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & !(next(leftMotor_2))) & !(next(rightMotor_0))) & next(rightMotor_1)) & next(rightMotor_2))));
 guarantee
 	 (((moveMode_0 & moveMode_1) -> (((((!(leftMotor_0) & !(leftMotor_1)) & leftMotor_2) & rightMotor_0) & !(rightMotor_1)) & !(rightMotor_2))));
 guarantee
-	alw (((next(moveMode_0) & next(moveMode_1)) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & next(leftMotor_2)) & next(rightMotor_0)) & !(next(rightMotor_1))) & !(next(rightMotor_2)))));
+	G (((next(moveMode_0) & next(moveMode_1)) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & next(leftMotor_2)) & next(rightMotor_0)) & !(next(rightMotor_1))) & !(next(rightMotor_2)))));
 guarantee
 	 ((!(((moveMode_0 & !(moveMode_1)) | (moveMode_0 & moveMode_1))) -> !((((((leftMotor_0 & !(leftMotor_1)) & !(leftMotor_2)) | ((rightMotor_0 & !(rightMotor_1)) & !(rightMotor_2))) | ((!(leftMotor_0) & leftMotor_1) & leftMotor_2)) | ((!(rightMotor_0) & rightMotor_1) & rightMotor_2)))));
 guarantee
-	alw ((!(((next(moveMode_0) & !(next(moveMode_1))) | (next(moveMode_0) & next(moveMode_1)))) -> !((((((next(leftMotor_0) & !(next(leftMotor_1))) & !(next(leftMotor_2))) | ((next(rightMotor_0) & !(next(rightMotor_1))) & !(next(rightMotor_2)))) | ((!(next(leftMotor_0)) & next(leftMotor_1)) & next(leftMotor_2))) | ((!(next(rightMotor_0)) & next(rightMotor_1)) & next(rightMotor_2))))));
+	G ((!(((next(moveMode_0) & !(next(moveMode_1))) | (next(moveMode_0) & next(moveMode_1)))) -> !((((((next(leftMotor_0) & !(next(leftMotor_1))) & !(next(leftMotor_2))) | ((next(rightMotor_0) & !(next(rightMotor_1))) & !(next(rightMotor_2)))) | ((!(next(leftMotor_0)) & next(leftMotor_1)) & next(leftMotor_2))) | ((!(next(rightMotor_0)) & next(rightMotor_1)) & next(rightMotor_2))))));
 
 assumption
 	 (eNV_CONSTRAINT_0_respondsTo_responded);
 assumption
-	alw ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> (!(obstacle_0) | (eNV_CONSTRAINT_0_respondsTo_responded & !((((!(moveMode_0) & moveMode_1) | (moveMode_0 & !(moveMode_1))) | (moveMode_0 & moveMode_1)))))));
+	G ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> (!(obstacle_0) | (eNV_CONSTRAINT_0_respondsTo_responded & !((((!(moveMode_0) & moveMode_1) | (moveMode_0 & !(moveMode_1))) | (moveMode_0 & moveMode_1)))))));
 assumption
 	 (!(pREV_aux_1));
 assumption
-	alw ((next(pREV_aux_1) <-> (moveMode_0 & moveMode_1)));
+	G ((next(pREV_aux_1) <-> (moveMode_0 & moveMode_1)));
 

@@ -13,73 +13,73 @@ sys boolean balancer_2;
 
 
 assumption
-	alwEv (isReady);
+	GF (isReady);
 assumption
 	 (!(isReady));
 assumption
 	 (((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & !(bluetoothCmd_2)));
 assumption
-	alw ((isReady -> next(isReady)));
+	G ((isReady -> next(isReady)));
 assumption
 	 (!(((bluetoothCmd_0 & bluetoothCmd_1) & !(bluetoothCmd_2))));
 assumption
-	alw (!(((next(bluetoothCmd_0) & next(bluetoothCmd_1)) & !(next(bluetoothCmd_2)))));
+	G (!(((next(bluetoothCmd_0) & next(bluetoothCmd_1)) & !(next(bluetoothCmd_2)))));
 assumption
 	 (!(((bluetoothCmd_0 & bluetoothCmd_1) & bluetoothCmd_2)));
 assumption
-	alw (!(((next(bluetoothCmd_0) & next(bluetoothCmd_1)) & next(bluetoothCmd_2))));
+	G (!(((next(bluetoothCmd_0) & next(bluetoothCmd_1)) & next(bluetoothCmd_2))));
 
 guarantee
 	 (((!(balancer_0) & !(balancer_1)) & !(balancer_2)));
 guarantee
-	alwEv ((((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & !(bluetoothCmd_2)) -> ((!(balancer_0) & !(balancer_1)) & balancer_2)));
+	GF ((((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & !(bluetoothCmd_2)) -> ((!(balancer_0) & !(balancer_1)) & balancer_2)));
 guarantee
-	alw ((((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & !(bluetoothCmd_2)) -> (((!(balancer_0) & !(balancer_1)) & balancer_2) -> (((!(next(bluetoothCmd_0)) & !(next(bluetoothCmd_1))) & !(next(bluetoothCmd_2))) -> !((((next(balancer_0) & !(next(balancer_1))) & !(next(balancer_2))) | ((!(next(balancer_0)) & next(balancer_1)) & next(balancer_2))))))));
+	G ((((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & !(bluetoothCmd_2)) -> (((!(balancer_0) & !(balancer_1)) & balancer_2) -> (((!(next(bluetoothCmd_0)) & !(next(bluetoothCmd_1))) & !(next(bluetoothCmd_2))) -> !((((next(balancer_0) & !(next(balancer_1))) & !(next(balancer_2))) | ((!(next(balancer_0)) & next(balancer_1)) & next(balancer_2))))))));
 guarantee
-	alw ((((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & !(bluetoothCmd_2)) -> (((((distSense_0 & !(balancer_0)) & !(balancer_1)) & !(balancer_2)) & isReady) -> !(((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2)))))));
+	G ((((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & !(bluetoothCmd_2)) -> (((((distSense_0 & !(balancer_0)) & !(balancer_1)) & !(balancer_2)) & isReady) -> !(((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2)))))));
 guarantee
 	 (!(((balancer_0 & !(balancer_1)) & balancer_2)));
 guarantee
-	alw (!(((next(balancer_0) & !(next(balancer_1))) & next(balancer_2))));
+	G (!(((next(balancer_0) & !(next(balancer_1))) & next(balancer_2))));
 guarantee
 	 (!(((balancer_0 & balancer_1) & !(balancer_2))));
 guarantee
-	alw (!(((next(balancer_0) & next(balancer_1)) & !(next(balancer_2)))));
+	G (!(((next(balancer_0) & next(balancer_1)) & !(next(balancer_2)))));
 guarantee
 	 (!(((balancer_0 & balancer_1) & balancer_2)));
 guarantee
-	alw (!(((next(balancer_0) & next(balancer_1)) & next(balancer_2))));
+	G (!(((next(balancer_0) & next(balancer_1)) & next(balancer_2))));
 guarantee
 	 ((!(isReady) -> ((!(balancer_0) & !(balancer_1)) & !(balancer_2))));
 guarantee
-	alw ((!(next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2)))));
+	G ((!(next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2)))));
 guarantee
 	 ((((!(balancer_0) & !(balancer_1)) & balancer_2) -> !(distSense_0)));
 guarantee
-	alw ((((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2)) -> !(next(distSense_0))));
+	G ((((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2)) -> !(next(distSense_0))));
 guarantee
 	 ((((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & !(bluetoothCmd_2)) -> ((!(distSense_0) & isReady) -> ((!(balancer_0) & !(balancer_1)) & balancer_2))));
 guarantee
-	alw ((((!(next(bluetoothCmd_0)) & !(next(bluetoothCmd_1))) & !(next(bluetoothCmd_2))) -> ((!(next(distSense_0)) & next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2)))));
+	G ((((!(next(bluetoothCmd_0)) & !(next(bluetoothCmd_1))) & !(next(bluetoothCmd_2))) -> ((!(next(distSense_0)) & next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2)))));
 guarantee
 	 ((((!(bluetoothCmd_0) & bluetoothCmd_1) & !(bluetoothCmd_2)) -> ((!(distSense_0) & isReady) -> ((!(balancer_0) & !(balancer_1)) & balancer_2))));
 guarantee
-	alw ((((!(next(bluetoothCmd_0)) & next(bluetoothCmd_1)) & !(next(bluetoothCmd_2))) -> ((!(next(distSense_0)) & next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2)))));
+	G ((((!(next(bluetoothCmd_0)) & next(bluetoothCmd_1)) & !(next(bluetoothCmd_2))) -> ((!(next(distSense_0)) & next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2)))));
 guarantee
 	 ((((!(bluetoothCmd_0) & bluetoothCmd_1) & bluetoothCmd_2) -> (isReady -> ((!(balancer_0) & balancer_1) & !(balancer_2)))));
 guarantee
-	alw ((((!(next(bluetoothCmd_0)) & next(bluetoothCmd_1)) & next(bluetoothCmd_2)) -> (next(isReady) -> ((!(next(balancer_0)) & next(balancer_1)) & !(next(balancer_2))))));
+	G ((((!(next(bluetoothCmd_0)) & next(bluetoothCmd_1)) & next(bluetoothCmd_2)) -> (next(isReady) -> ((!(next(balancer_0)) & next(balancer_1)) & !(next(balancer_2))))));
 guarantee
 	 ((((bluetoothCmd_0 & !(bluetoothCmd_1)) & bluetoothCmd_2) -> (isReady -> ((balancer_0 & !(balancer_1)) & !(balancer_2)))));
 guarantee
-	alw ((((next(bluetoothCmd_0) & !(next(bluetoothCmd_1))) & next(bluetoothCmd_2)) -> (next(isReady) -> ((next(balancer_0) & !(next(balancer_1))) & !(next(balancer_2))))));
+	G ((((next(bluetoothCmd_0) & !(next(bluetoothCmd_1))) & next(bluetoothCmd_2)) -> (next(isReady) -> ((next(balancer_0) & !(next(balancer_1))) & !(next(balancer_2))))));
 guarantee
 	 ((((bluetoothCmd_0 & !(bluetoothCmd_1)) & !(bluetoothCmd_2)) -> (isReady -> ((!(balancer_0) & balancer_1) & balancer_2))));
 guarantee
-	alw ((((next(bluetoothCmd_0) & !(next(bluetoothCmd_1))) & !(next(bluetoothCmd_2))) -> (next(isReady) -> ((!(next(balancer_0)) & next(balancer_1)) & next(balancer_2)))));
+	G ((((next(bluetoothCmd_0) & !(next(bluetoothCmd_1))) & !(next(bluetoothCmd_2))) -> (next(isReady) -> ((!(next(balancer_0)) & next(balancer_1)) & next(balancer_2)))));
 guarantee
 	 ((((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & bluetoothCmd_2) -> (isReady -> ((!(balancer_0) & !(balancer_1)) & !(balancer_2)))));
 guarantee
-	alw ((((!(next(bluetoothCmd_0)) & !(next(bluetoothCmd_1))) & next(bluetoothCmd_2)) -> (next(isReady) -> ((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2))))));
+	G ((((!(next(bluetoothCmd_0)) & !(next(bluetoothCmd_1))) & next(bluetoothCmd_2)) -> (next(isReady) -> ((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2))))));
 
 

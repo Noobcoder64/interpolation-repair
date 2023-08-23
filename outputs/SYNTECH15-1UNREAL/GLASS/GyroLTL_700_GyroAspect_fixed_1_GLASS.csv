@@ -1,2 +1,2 @@
 Id,UniqueRefinement,IsSolution,NumVariables
-73d901bf-82ca-4c0c-aada-68e8f8c2b902,['G(F(!isReady -> (bluetoothCmd_0 -> (!bluetoothCmd_1 -> (bluetoothCmd_2 -> (!balancer_0 &  (!balancer_1 &  balancer_2)))))))'],True,7.0
+73d901bf-82ca-4c0c-aada-68e8f8c2b902,['G(F(!isReady -> (bluetoothCmd_0 -> (!bluetoothCmd_1 -> (bluetoothCmd_2 -> (!balancer_0 &  (!balancer_1 &  balancer_2)))))))'],True,7

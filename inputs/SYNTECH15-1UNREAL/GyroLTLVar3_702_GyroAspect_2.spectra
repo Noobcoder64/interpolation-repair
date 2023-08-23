@@ -19,65 +19,65 @@ assumption
 assumption
 	 ((!(frontDistSense_0) & !(backDistSense_0)));
 assumption
-	alw ((isReady -> next(isReady)));
+	G ((isReady -> next(isReady)));
 assumption
-	alwEv (eNV_CONSTRAINT_0_respondsTo_responded);
+	GF (eNV_CONSTRAINT_0_respondsTo_responded);
 assumption
-	alwEv (eNV_CONSTRAINT_1_respondsTo_responded);
+	GF (eNV_CONSTRAINT_1_respondsTo_responded);
 assumption
-	alwEv (eNV_CONSTRAINT_2_respondsTo_responded);
+	GF (eNV_CONSTRAINT_2_respondsTo_responded);
 assumption
-	alwEv (eNV_CONSTRAINT_3_respondsTo_responded);
+	GF (eNV_CONSTRAINT_3_respondsTo_responded);
 
 guarantee
 	 (((!(balancer_0) & !(balancer_1)) & !(balancer_2)));
 guarantee
-	alwEv (((!(balancer_0) & !(balancer_1)) & balancer_2));
+	GF (((!(balancer_0) & !(balancer_1)) & balancer_2));
 guarantee
-	alwEv ((((balancer_0 & !(balancer_1)) & !(balancer_2)) | ((!(balancer_0) & balancer_1) & balancer_2)));
+	GF ((((balancer_0 & !(balancer_1)) & !(balancer_2)) | ((!(balancer_0) & balancer_1) & balancer_2)));
 guarantee
 	 (!(((balancer_0 & !(balancer_1)) & balancer_2)));
 guarantee
-	alw (!(((next(balancer_0) & !(next(balancer_1))) & next(balancer_2))));
+	G (!(((next(balancer_0) & !(next(balancer_1))) & next(balancer_2))));
 guarantee
 	 (!(((balancer_0 & balancer_1) & !(balancer_2))));
 guarantee
-	alw (!(((next(balancer_0) & next(balancer_1)) & !(next(balancer_2)))));
+	G (!(((next(balancer_0) & next(balancer_1)) & !(next(balancer_2)))));
 guarantee
 	 (!(((balancer_0 & balancer_1) & balancer_2)));
 guarantee
-	alw (!(((next(balancer_0) & next(balancer_1)) & next(balancer_2))));
+	G (!(((next(balancer_0) & next(balancer_1)) & next(balancer_2))));
 guarantee
 	 ((!(isReady) -> ((!(balancer_0) & !(balancer_1)) & !(balancer_2))));
 guarantee
-	alw ((!(next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2)))));
+	G ((!(next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2)))));
 guarantee
 	 ((((!(balancer_0) & !(balancer_1)) & balancer_2) -> !(frontDistSense_0)));
 guarantee
-	alw ((((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2)) -> !(next(frontDistSense_0))));
+	G ((((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2)) -> !(next(frontDistSense_0))));
 guarantee
 	 ((((!(balancer_0) & balancer_1) & !(balancer_2)) -> !(backDistSense_0)));
 guarantee
-	alw ((((!(next(balancer_0)) & next(balancer_1)) & !(next(balancer_2))) -> !(next(backDistSense_0))));
+	G ((((!(next(balancer_0)) & next(balancer_1)) & !(next(balancer_2))) -> !(next(backDistSense_0))));
 guarantee
 	 (((isReady & !(frontDistSense_0)) -> ((!(balancer_0) & !(balancer_1)) & balancer_2)));
 guarantee
-	alw (((next(isReady) & !(next(frontDistSense_0))) -> ((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2))));
+	G (((next(isReady) & !(next(frontDistSense_0))) -> ((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2))));
 
 assumption
 	 (eNV_CONSTRAINT_0_respondsTo_responded);
 assumption
-	alw ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((!(!((((!(balancer_0) & !(balancer_1)) & balancer_2) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2))))) | !(frontDistSense_0)) | (eNV_CONSTRAINT_0_respondsTo_responded & !(!((((!(balancer_0) & !(balancer_1)) & balancer_2) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2)))))))));
+	G ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((!(!((((!(balancer_0) & !(balancer_1)) & balancer_2) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2))))) | !(frontDistSense_0)) | (eNV_CONSTRAINT_0_respondsTo_responded & !(!((((!(balancer_0) & !(balancer_1)) & balancer_2) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2)))))))));
 assumption
 	 (eNV_CONSTRAINT_1_respondsTo_responded);
 assumption
-	alw ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> ((!(!((((!(balancer_0) & balancer_1) & !(balancer_2)) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2))))) | !(backDistSense_0)) | (eNV_CONSTRAINT_1_respondsTo_responded & !(!((((!(balancer_0) & balancer_1) & !(balancer_2)) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2)))))))));
+	G ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> ((!(!((((!(balancer_0) & balancer_1) & !(balancer_2)) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2))))) | !(backDistSense_0)) | (eNV_CONSTRAINT_1_respondsTo_responded & !(!((((!(balancer_0) & balancer_1) & !(balancer_2)) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2)))))))));
 assumption
 	 (eNV_CONSTRAINT_2_respondsTo_responded);
 assumption
-	alw ((next(eNV_CONSTRAINT_2_respondsTo_responded) <-> ((!(((!(balancer_0) & !(balancer_1)) & balancer_2)) | frontDistSense_0) | (eNV_CONSTRAINT_2_respondsTo_responded & !(((!(balancer_0) & !(balancer_1)) & balancer_2))))));
+	G ((next(eNV_CONSTRAINT_2_respondsTo_responded) <-> ((!(((!(balancer_0) & !(balancer_1)) & balancer_2)) | frontDistSense_0) | (eNV_CONSTRAINT_2_respondsTo_responded & !(((!(balancer_0) & !(balancer_1)) & balancer_2))))));
 assumption
 	 (eNV_CONSTRAINT_3_respondsTo_responded);
 assumption
-	alw ((next(eNV_CONSTRAINT_3_respondsTo_responded) <-> ((!(((!(balancer_0) & balancer_1) & !(balancer_2))) | backDistSense_0) | (eNV_CONSTRAINT_3_respondsTo_responded & !(((!(balancer_0) & balancer_1) & !(balancer_2)))))));
+	G ((next(eNV_CONSTRAINT_3_respondsTo_responded) <-> ((!(((!(balancer_0) & balancer_1) & !(balancer_2))) | backDistSense_0) | (eNV_CONSTRAINT_3_respondsTo_responded & !(((!(balancer_0) & balancer_1) & !(balancer_2)))))));
 

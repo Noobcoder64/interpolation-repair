@@ -7,9 +7,9 @@ sys boolean gr;
 sys boolean val;
 
 assumption
-    alwEv (!req);
+    GF (!req);
 
 guarantee
-    alw (cl -> !val);
+    G (cl -> !val);
 guarantee
-    alwEv (gr & val);
+    GF (gr & val);

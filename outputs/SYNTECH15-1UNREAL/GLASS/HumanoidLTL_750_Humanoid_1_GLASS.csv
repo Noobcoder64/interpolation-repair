@@ -1,2 +1,2 @@
 Id,UniqueRefinement,IsSolution,NumVariables
-3164f65b-f0db-4aca-a078-68f9cb42e3fe,['(obstacle_0 -> (!heading_0 -> (!heading_1 -> (sYS_CONSTRAINT_0_respondsTo_responded -> (eNV_CONSTRAINT_1_respondsTo_responded -> (eNV_CONSTRAINT_2_respondsTo_responded -> (eNV_CONSTRAINT_3_respondsTo_responded -> (!pREV_aux_4 -> (!pREV_aux_5 -> (!pREV_aux_6 -> pREV_aux_7))))))))))'],True,11.0
+3164f65b-f0db-4aca-a078-68f9cb42e3fe,['(obstacle_0 -> (!heading_0 -> (!heading_1 -> (sYS_CONSTRAINT_0_respondsTo_responded -> (eNV_CONSTRAINT_1_respondsTo_responded -> (eNV_CONSTRAINT_2_respondsTo_responded -> (eNV_CONSTRAINT_3_respondsTo_responded -> (!pREV_aux_4 -> (!pREV_aux_5 -> (!pREV_aux_6 -> pREV_aux_7))))))))))'],True,11

@@ -1,2 +1,2 @@
 Id,UniqueRefinement,IsSolution,NumVariables
-3f43a435-8f34-4fb2-a908-71b849c9a8a0,['G(F(!heading_0 -> (spec_nextMoveMode_0 -> (spec_nextMoveMode_1 -> (!spec_search_0 -> !spec_search_1)))) & (heading_0 -> (spec_nextMoveMode_0 -> (!spec_nextMoveMode_1 -> (spec_search_0 -> spec_search_1)) & (spec_nextMoveMode_1 -> (!spec_search_0 -> !spec_search_1) & (spec_search_0 -> spec_search_1)))))'],True,5.0
+3f43a435-8f34-4fb2-a908-71b849c9a8a0,['G(F(!heading_0 -> (spec_nextMoveMode_0 -> (spec_nextMoveMode_1 -> (!spec_search_0 -> !spec_search_1)))) & (heading_0 -> (spec_nextMoveMode_0 -> (!spec_nextMoveMode_1 -> (spec_search_0 -> spec_search_1)) & (spec_nextMoveMode_1 -> (!spec_search_0 -> !spec_search_1) & (spec_search_0 -> spec_search_1)))))'],True,5
