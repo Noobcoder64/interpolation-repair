@@ -1,78 +1,109 @@
 
-module HumanoidLTL_458_Humanoid_fixed_unrealizable
+module PCarLTL_Unrealizable_V_2_unrealizable0_888_PCar_fixed_unrealizable
 
 env boolean obstacle_0;
-env boolean inputMoveMode_0;
-env boolean inputMoveMode_1;
+env boolean sideSense_0;
+env boolean parkResult_0;
 
-sys boolean leftMotor_0;
-sys boolean leftMotor_1;
-sys boolean leftMotor_2;
-sys boolean rightMotor_0;
-sys boolean rightMotor_1;
-sys boolean rightMotor_2;
-sys boolean headMotor_0;
-sys boolean headMotor_1;
-sys boolean outputMoveMode_0;
-sys boolean outputMoveMode_1;
+sys boolean throttle_0;
+sys boolean throttle_1;
+sys boolean steer_0;
+sys boolean steer_1;
+sys boolean parkCommand_0;
+sys boolean parkCommand_1;
+sys boolean spec_policy_0;
+sys boolean spec_policy_1;
+sys boolean spec_policy_2;
 
+env boolean eNV_CONSTRAINT_0_respondsTo_responded;
+env boolean pREV_aux_1;
 
+assumption
+	 ((sideSense_0 & !(parkResult_0)));
+assumption
+	G ((((!(spec_policy_0) & !(spec_policy_1)) & !(spec_policy_2)) -> !(next(parkResult_0))));
+assumption
+	G (((throttle_0 & !(throttle_1)) -> ((obstacle_0 <-> next(obstacle_0)) & (sideSense_0 <-> next(sideSense_0)))));
+assumption
+	GF (eNV_CONSTRAINT_0_respondsTo_responded);
 
 guarantee
-	 (!(((leftMotor_0 & leftMotor_1) & leftMotor_2)));
+	 (((!(spec_policy_0) & !(spec_policy_1)) & !(spec_policy_2)));
 guarantee
-	G (!(((next(leftMotor_0) & next(leftMotor_1)) & next(leftMotor_2))));
+	GF (((spec_policy_0 & !(spec_policy_1)) & spec_policy_2));
 guarantee
-	 (!(((rightMotor_0 & rightMotor_1) & rightMotor_2)));
+	G ((((!(spec_policy_0) & !(spec_policy_1)) & !(spec_policy_2)) -> ((((!(next(spec_policy_0)) & !(next(spec_policy_1))) & !(next(spec_policy_2))) | ((!(next(spec_policy_0)) & !(next(spec_policy_1))) & next(spec_policy_2))) | ((!(next(spec_policy_0)) & next(spec_policy_1)) & !(next(spec_policy_2))))));
 guarantee
-	G (!(((next(rightMotor_0) & next(rightMotor_1)) & next(rightMotor_2))));
+	G ((((!(spec_policy_0) & !(spec_policy_1)) & spec_policy_2) -> ((((!(next(spec_policy_0)) & !(next(spec_policy_1))) & !(next(spec_policy_2))) | ((!(next(spec_policy_0)) & !(next(spec_policy_1))) & next(spec_policy_2))) | ((!(next(spec_policy_0)) & next(spec_policy_1)) & !(next(spec_policy_2))))));
 guarantee
-	 (!((headMotor_0 & headMotor_1)));
+	G ((((!(spec_policy_0) & spec_policy_1) & !(spec_policy_2)) -> ((!(next(spec_policy_0)) & next(spec_policy_1)) & next(spec_policy_2))));
 guarantee
-	G (!((next(headMotor_0) & next(headMotor_1))));
+	G ((((!(spec_policy_0) & spec_policy_1) & spec_policy_2) -> ((next(spec_policy_0) & !(next(spec_policy_1))) & !(next(spec_policy_2)))));
 guarantee
-	 ((((!(inputMoveMode_0) & !(inputMoveMode_1)) & obstacle_0) -> (((((((outputMoveMode_0 & !(outputMoveMode_1)) & leftMotor_0) & !(leftMotor_1)) & leftMotor_2) & rightMotor_0) & !(rightMotor_1)) & rightMotor_2)));
+	G ((((spec_policy_0 & !(spec_policy_1)) & !(spec_policy_2)) -> ((next(spec_policy_0) & !(next(spec_policy_1))) & next(spec_policy_2))));
 guarantee
-	G ((((!(next(inputMoveMode_0)) & !(next(inputMoveMode_1))) & next(obstacle_0)) -> (((((((next(outputMoveMode_0) & !(next(outputMoveMode_1))) & next(leftMotor_0)) & !(next(leftMotor_1))) & next(leftMotor_2)) & next(rightMotor_0)) & !(next(rightMotor_1))) & next(rightMotor_2))));
+	G (((obstacle_0 & (((!(spec_policy_0) & !(spec_policy_1)) & spec_policy_2) | ((!(spec_policy_0) & !(spec_policy_1)) & !(spec_policy_2)))) -> ((!(next(spec_policy_0)) & !(next(spec_policy_1))) & !(next(spec_policy_2)))));
 guarantee
-	 ((((!(inputMoveMode_0) & inputMoveMode_1) & !(obstacle_0)) -> (((((((!(outputMoveMode_0) & !(outputMoveMode_1)) & !(leftMotor_0)) & !(leftMotor_1)) & !(leftMotor_2)) & !(rightMotor_0)) & !(rightMotor_1)) & rightMotor_2)));
+	G ((((((!(spec_policy_0) & !(spec_policy_1)) & !(spec_policy_2)) & sideSense_0) & !(parkResult_0)) -> (((((spec_policy_0 <-> next(spec_policy_0)) & (spec_policy_1 <-> next(spec_policy_1))) & (spec_policy_2 <-> next(spec_policy_2))) & !(parkCommand_0)) & parkCommand_1)));
 guarantee
-	G ((((!(next(inputMoveMode_0)) & next(inputMoveMode_1)) & !(next(obstacle_0))) -> (((((((!(next(outputMoveMode_0)) & !(next(outputMoveMode_1))) & !(next(leftMotor_0))) & !(next(leftMotor_1))) & !(next(leftMotor_2))) & !(next(rightMotor_0))) & !(next(rightMotor_1))) & next(rightMotor_2))));
+	G (((((((!(spec_policy_0) & !(spec_policy_1)) & !(spec_policy_2)) & !(sideSense_0)) & !(obstacle_0)) & !(parkResult_0)) -> ((((((((!(next(spec_policy_0)) & !(next(spec_policy_1))) & next(spec_policy_2)) & !(throttle_0)) & !(throttle_1)) & !(parkCommand_0)) & !(parkCommand_1)) & steer_0) & !(steer_1))));
 guarantee
-	 ((((!(inputMoveMode_0) & !(inputMoveMode_1)) & !(obstacle_0)) -> (((((!(leftMotor_0) & !(leftMotor_1)) & !(leftMotor_2)) & !(rightMotor_0)) & !(rightMotor_1)) & !(rightMotor_2))));
+	G ((((((!(spec_policy_0) & !(spec_policy_1)) & spec_policy_2) & sideSense_0) & !(parkResult_0)) -> ((((!(next(spec_policy_0)) & !(next(spec_policy_1))) & !(next(spec_policy_2))) & !(parkCommand_0)) & parkCommand_1)));
 guarantee
-	G ((((!(next(inputMoveMode_0)) & !(next(inputMoveMode_1))) & !(next(obstacle_0))) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & !(next(leftMotor_2))) & !(next(rightMotor_0))) & !(next(rightMotor_1))) & !(next(rightMotor_2)))));
+	G (((((((!(spec_policy_0) & !(spec_policy_1)) & spec_policy_2) & !(sideSense_0)) & !(obstacle_0)) & !(parkResult_0)) -> (((((((((spec_policy_0 <-> next(spec_policy_0)) & (spec_policy_1 <-> next(spec_policy_1))) & (spec_policy_2 <-> next(spec_policy_2))) & !(throttle_0)) & !(throttle_1)) & parkCommand_0) & !(parkCommand_1)) & steer_0) & !(steer_1))));
 guarantee
-	 ((obstacle_0 -> !((!(outputMoveMode_0) & !(outputMoveMode_1)))));
+	G (((((((!(spec_policy_0) & !(spec_policy_1)) & spec_policy_2) | (((!(spec_policy_0) & !(spec_policy_1)) & !(spec_policy_2)) & pREV_aux_1)) & !(obstacle_0)) & parkResult_0) -> ((((((((!(next(spec_policy_0)) & next(spec_policy_1)) & !(next(spec_policy_2))) & throttle_0) & !(throttle_1)) & !(parkCommand_0)) & parkCommand_1) & !(steer_0)) & !(steer_1))));
 guarantee
-	G ((next(obstacle_0) -> !((!(next(outputMoveMode_0)) & !(next(outputMoveMode_1))))));
+	G ((((!(spec_policy_0) & spec_policy_1) & !(spec_policy_2)) -> ((((((((!(next(spec_policy_0)) & next(spec_policy_1)) & next(spec_policy_2)) & !(throttle_0)) & throttle_1) & !(steer_0)) & !(steer_1)) & !(parkCommand_0)) & parkCommand_1)));
 guarantee
-	 (((inputMoveMode_0 & !(inputMoveMode_1)) <-> (outputMoveMode_0 & outputMoveMode_1)));
+	G ((((!(spec_policy_0) & spec_policy_1) & spec_policy_2) -> ((((((((next(spec_policy_0) & !(next(spec_policy_1))) & !(next(spec_policy_2))) & throttle_0) & !(throttle_1)) & !(steer_0)) & steer_1) & !(parkCommand_0)) & parkCommand_1)));
 guarantee
-	G (((next(inputMoveMode_0) & !(next(inputMoveMode_1))) <-> (next(outputMoveMode_0) & next(outputMoveMode_1))));
+	G ((((spec_policy_0 & !(spec_policy_1)) & !(spec_policy_2)) -> ((((((((next(spec_policy_0) & !(next(spec_policy_1))) & next(spec_policy_2)) & !(throttle_0)) & throttle_1) & !(steer_0)) & steer_1) & !(parkCommand_0)) & parkCommand_1)));
 guarantee
-	 (((inputMoveMode_0 & !(inputMoveMode_1)) -> (((((!(leftMotor_0) & !(leftMotor_1)) & !(leftMotor_2)) & !(rightMotor_0)) & rightMotor_1) & rightMotor_2)));
+	G ((((spec_policy_0 & !(spec_policy_1)) & spec_policy_2) -> (((((((((spec_policy_0 <-> next(spec_policy_0)) & (spec_policy_1 <-> next(spec_policy_1))) & (spec_policy_2 <-> next(spec_policy_2))) & throttle_0) & !(throttle_1)) & steer_0) & !(steer_1)) & !(parkCommand_0)) & parkCommand_1)));
 guarantee
-	G (((next(inputMoveMode_0) & !(next(inputMoveMode_1))) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & !(next(leftMotor_2))) & !(next(rightMotor_0))) & next(rightMotor_1)) & next(rightMotor_2))));
+	 (!((throttle_0 & throttle_1)));
 guarantee
-	 (((inputMoveMode_0 & inputMoveMode_1) -> (((((!(leftMotor_0) & !(leftMotor_1)) & leftMotor_2) & rightMotor_0) & !(rightMotor_1)) & !(rightMotor_2))));
+	G (!((next(throttle_0) & next(throttle_1))));
 guarantee
-	G (((next(inputMoveMode_0) & next(inputMoveMode_1)) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & next(leftMotor_2)) & next(rightMotor_0)) & !(next(rightMotor_1))) & !(next(rightMotor_2)))));
+	 (!((steer_0 & steer_1)));
 guarantee
-	 ((!(((inputMoveMode_0 & !(inputMoveMode_1)) | (inputMoveMode_0 & inputMoveMode_1))) -> !(((((leftMotor_0 & !(leftMotor_1)) & !(leftMotor_2)) | ((rightMotor_0 & !(rightMotor_1)) & !(rightMotor_2))) | (((((!(leftMotor_0) & leftMotor_1) & leftMotor_2) & !(rightMotor_0)) & rightMotor_1) & rightMotor_2)))));
+	G (!((next(steer_0) & next(steer_1))));
 guarantee
-	G ((!(((next(inputMoveMode_0) & !(next(inputMoveMode_1))) | (next(inputMoveMode_0) & next(inputMoveMode_1)))) -> !(((((next(leftMotor_0) & !(next(leftMotor_1))) & !(next(leftMotor_2))) | ((next(rightMotor_0) & !(next(rightMotor_1))) & !(next(rightMotor_2)))) | (((((!(next(leftMotor_0)) & next(leftMotor_1)) & next(leftMotor_2)) & !(next(rightMotor_0))) & next(rightMotor_1)) & next(rightMotor_2))))));
+	 (!((parkCommand_0 & parkCommand_1)));
 guarantee
-	 ((((inputMoveMode_0 & !(inputMoveMode_1)) | (inputMoveMode_0 & inputMoveMode_1)) -> (headMotor_0 & !(headMotor_1))));
+	G (!((next(parkCommand_0) & next(parkCommand_1))));
 guarantee
-	G ((((next(inputMoveMode_0) & !(next(inputMoveMode_1))) | (next(inputMoveMode_0) & next(inputMoveMode_1))) -> (next(headMotor_0) & !(next(headMotor_1)))));
+	 (!(((spec_policy_0 & spec_policy_1) & !(spec_policy_2))));
 guarantee
-	 ((((inputMoveMode_0 & inputMoveMode_1) & (!(outputMoveMode_0) | outputMoveMode_1)) -> (((((leftMotor_0 & leftMotor_1) & !(leftMotor_2)) & rightMotor_0) & rightMotor_1) & !(rightMotor_2))));
+	G (!(((next(spec_policy_0) & next(spec_policy_1)) & !(next(spec_policy_2)))));
 guarantee
-	G ((((next(inputMoveMode_0) & next(inputMoveMode_1)) & (!(next(outputMoveMode_0)) | next(outputMoveMode_1))) -> (((((next(leftMotor_0) & next(leftMotor_1)) & !(next(leftMotor_2))) & next(rightMotor_0)) & next(rightMotor_1)) & !(next(rightMotor_2)))));
+	 (!(((spec_policy_0 & spec_policy_1) & spec_policy_2)));
 guarantee
-	 ((((inputMoveMode_0 & inputMoveMode_1) & !(obstacle_0)) -> (!(outputMoveMode_0) & !(outputMoveMode_1))));
+	G (!(((next(spec_policy_0) & next(spec_policy_1)) & next(spec_policy_2))));
 guarantee
-	G ((((next(inputMoveMode_0) & next(inputMoveMode_1)) & !(next(obstacle_0))) -> (!(next(outputMoveMode_0)) & !(next(outputMoveMode_1)))));
+	 ((obstacle_0 -> !((!(throttle_0) & !(throttle_1)))));
+guarantee
+	G ((next(obstacle_0) -> !((!(next(throttle_0)) & !(next(throttle_1))))));
+guarantee
+	 ((sideSense_0 -> !((((!(steer_0) & !(steer_1)) & !(throttle_0)) & !(throttle_1)))));
+guarantee
+	G ((next(sideSense_0) -> !((((!(next(steer_0)) & !(next(steer_1))) & !(next(throttle_0))) & !(next(throttle_1))))));
+guarantee
+	 ((obstacle_0 -> (!(parkCommand_0) & parkCommand_1)));
+guarantee
+	G ((next(obstacle_0) -> (!(next(parkCommand_0)) & next(parkCommand_1))));
+guarantee
+	 (((((!(spec_policy_0) & !(spec_policy_1)) & !(spec_policy_2)) & !(parkResult_0)) -> (!(throttle_0) | throttle_1)));
+guarantee
+	G (((((!(next(spec_policy_0)) & !(next(spec_policy_1))) & !(next(spec_policy_2))) & !(next(parkResult_0))) -> (!(next(throttle_0)) | next(throttle_1))));
 
+assumption
+	 (eNV_CONSTRAINT_0_respondsTo_responded);
+assumption
+	G ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> (!(obstacle_0) | (eNV_CONSTRAINT_0_respondsTo_responded & !((!(throttle_0) & throttle_1))))));
+assumption
+	 (!(pREV_aux_1));
+assumption
+	G ((next(pREV_aux_1) <-> ((!(spec_policy_0) & !(spec_policy_1)) & spec_policy_2)));
 
