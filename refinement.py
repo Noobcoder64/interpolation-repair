@@ -217,7 +217,6 @@ class RefinementNode:
         """Gets an unrealizable core for the current node"""
         if self.unreal_core is None:
             self.unreal_core = spectra.extract_unrealizable_cores(self.__getTempSpecFileName())
-        self.__deleteTempSpecFile()
         return self.unreal_core
 
     def refine(self):
@@ -258,6 +257,7 @@ class RefinementNode:
                 refinements.append(self.__concatenateAssumption(candidate_ref))
             self.time_refine = timeit.default_timer() - time_refine_start
         self.num_descendant_refinements = len(refinements)
+        self.__deleteTempSpecFile()
         return refinements
 
     # def __minimalRefinement(self, candidate_ref):

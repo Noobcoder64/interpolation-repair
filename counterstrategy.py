@@ -517,6 +517,7 @@ class Counterstrategy:
             transient_states = []
 
             if not looping:
+
                 # TODO: Treat DEAD as failing state?
                 # If the path is not looping, all the remaining states are transient
                 for i,state in enumerate(visited_states[1:]):
@@ -638,11 +639,15 @@ class Counterstrategy:
     def extendFinitePath(self, path):
         """If path does not reach a guarantee violation, extends it with a new state where supposedly the violation
         occurs. Needed because RATSY sometimes stops finite counterruns some steps before the actual violation"""
-
+        print(path.transient_states)
         if path.transient_states[-1].id_state == "Sf":
             new_state_name = "Sf2"
         else:
-            last_id = int((path.transient_states[-1].id_state)[2:])
+
+            if (path.transient_states[-1].id_state)[2:] == '':
+                last_id = int((path.transient_states[-1].id_state)[1:])
+            else:
+                last_id = int((path.transient_states[-1].id_state)[2:])
             new_state_name = "Sf" + str(last_id+1)
 
         # The new state will have the constant input variables set to the value defined in the counterstrategy.
