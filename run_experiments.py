@@ -13,9 +13,9 @@ INPUT_FOLDERS = [
 # List of algorithms
 ALGORITHMS = [
     # "INTERPOLATION-NOINF",
-    "INTERPOLATION",
+    # "INTERPOLATION",
     # "GLASS",
-    # "JVTS",
+    "JVTS",
     # "ALUR",
 ]
 
@@ -23,7 +23,7 @@ ALGORITHMS = [
 OUTPUT_PARENT_FOLDER = "outputs/"
 
 # Set the timeout
-TIMEOUT = 10
+TIMEOUT = 1
 
 
 def process_file(input_file, algorithm, output_folder, output_file):
