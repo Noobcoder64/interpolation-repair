@@ -1,0 +1,279 @@
+VAR detect_2__S41 : boolean
+VAR ack_hor_0__S39 : boolean
+VAR pREV_aux_2__S30 : boolean
+VAR pREV_aux_3__S38 : boolean
+VAR detect_1__S39 : boolean
+VAR pREV_aux_3__S31 : boolean
+VAR spec_dropping__S38 : boolean
+VAR color_0__S0 : boolean
+VAR pREV_aux_3__S36 : boolean
+VAR detect_0__S39 : boolean
+VAR detect_0__S30 : boolean
+VAR color_0__S32 : boolean
+VAR detect_1__S31 : boolean
+VAR detect_2__S39 : boolean
+VAR spec_dropping__S31 : boolean
+VAR ack_ver_0__S27 : boolean
+VAR pREV_aux_3__S32 : boolean
+VAR detect_0__S31 : boolean
+VAR detect_2__S29 : boolean
+VAR botMot_0__S30 : boolean
+VAR pREV_aux_2__S28 : boolean
+VAR ack_hor_0__S31 : boolean
+VAR ack_ver_0__S36 : boolean
+VAR pREV_aux_2__S31 : boolean
+VAR ack_bot_0__S31 : boolean
+VAR spec_dropping__S39 : boolean
+VAR spec_dropping__S36 : boolean
+VAR detect_2__S30 : boolean
+VAR spec_dropping__S29 : boolean
+VAR botMot_1__S37 : boolean
+VAR color_2__S0 : boolean
+VAR ack_hor_0__S41 : boolean
+VAR ack_hor_0__S29 : boolean
+VAR spec_dropping__S41 : boolean
+VAR ack_bot_0__S32 : boolean
+VAR botMot_0__S37 : boolean
+VAR ack_bot_0__S37 : boolean
+VAR spec_waiting_ack_ver_mot__S27 : boolean
+VAR ack_hor_0__S38 : boolean
+VAR pREV_aux_2__S38 : boolean
+VAR pREV_aux_2__S37 : boolean
+VAR ack_bot_0__S30 : boolean
+VAR detect_0__S38 : boolean
+VAR color_2__S32 : boolean
+VAR detect_1__S38 : boolean
+VAR botMot_1__S28 : boolean
+VAR pREV_aux_3__S29 : boolean
+VAR spec_dropping__S27 : boolean
+VAR detect_2__S31 : boolean
+VAR ack_bot_0__S29 : boolean
+VAR pREV_aux_3__S39 : boolean
+VAR verMot_0__S32 : boolean
+VAR pREV_aux_3__S30 : boolean
+VAR color_1__S0 : boolean
+VAR color_1__S32 : boolean
+VAR detect_2__S38 : boolean
+VAR detect_2__S36 : boolean
+VAR detect_1__S36 : boolean
+VAR pREV_aux_3__S41 : boolean
+VAR pREV_aux_3__S37 : boolean
+VAR detect_1__S30 : boolean
+VAR ack_ver_0__S0 : boolean
+VAR detect_0__S36 : boolean
+VAR detect_0__S41 : boolean
+VAR detect_1__S41 : boolean
+DEFINE def_835 := !(pREV_aux_2__S38)
+DEFINE def_952 := !(pREV_aux_3__S37)
+DEFINE def_961 := !(pREV_aux_3__S38)
+DEFINE def_831 := !(botMot_1__S37)
+DEFINE def_957 := !(botMot_0__S37)
+DEFINE def_1052 := !(ack_ver_0__S36)
+DEFINE def_943 := !(pREV_aux_3__S36)
+DEFINE def_398 := !(detect_2__S36)
+DEFINE def_257 := !(color_2__S32)
+DEFINE def_1977 := !(color_1__S32)
+DEFINE def_1981 := !(color_0__S32)
+DEFINE def_1984 := !(verMot_0__S32)
+DEFINE def_2007 := !(detect_1__S36)
+DEFINE def_2017 := !(detect_0__S36)
+DEFINE def_934 := !(pREV_aux_3__S32)
+DEFINE def_925 := !(pREV_aux_3__S31)
+DEFINE def_382 := !(detect_2__S31)
+DEFINE def_1130 := !(ack_hor_0__S31)
+DEFINE def_780 := !(pREV_aux_2__S30)
+DEFINE def_1116 := !(ack_hor_0__S29)
+DEFINE def_758 := !(pREV_aux_2__S28)
+DEFINE def_1010 := !(ack_ver_0__S27)
+DEFINE def_209 := !(color_2__S0)
+DEFINE def_147 := (spec_waiting_ack_ver_mot__S27 | ack_ver_0__S27)
+DEFINE def_791 := !(pREV_aux_2__S31)
+DEFINE def_907 := !(pREV_aux_3__S29)
+DEFINE def_765 := !(botMot_1__S28)
+DEFINE def_1832 := !(color_1__S0)
+DEFINE def_1836 := !(color_0__S0)
+DEFINE def_1954 := !(detect_1__S31)
+DEFINE def_1964 := !(detect_0__S31)
+DEFINE def_916 := !(pREV_aux_3__S30)
+DEFINE def_374 := !(detect_2__S30)
+DEFINE def_1930 := !(detect_1__S30)
+DEFINE def_1940 := !(detect_0__S30)
+DEFINE def_1691 := !(ack_bot_0__S29)
+DEFINE def_8875 := (def_907 | def_765)
+DEFINE def_8876 := (def_8875 & def_147)
+DEFINE def_8877 := (def_8876 & spec_dropping__S29)
+DEFINE def_8878 := (def_8877 | ack_hor_0__S29)
+DEFINE def_8879 := (def_8878 & spec_dropping__S27)
+DEFINE def_8880 := (def_8879 | ack_ver_0__S27)
+DEFINE def_8881 := (def_8880 & def_209)
+DEFINE def_8882 := (def_8881 & ack_ver_0__S0)
+DEFINE def_8883 := (def_8882 & def_1010)
+DEFINE def_8884 := (def_8883 & def_758)
+DEFINE def_8885 := (def_8884 & def_1116)
+DEFINE def_8886 := (def_8885 & detect_2__S29)
+DEFINE def_8887 := (def_8886 & def_1691)
+DEFINE def_8888 := (def_8887 & pREV_aux_3__S29)
+DEFINE def_8889 := (def_8888 & def_1940)
+DEFINE def_8890 := (def_8889 & def_1930)
+DEFINE def_8891 := (def_8890 & def_1836)
+DEFINE def_8892 := (def_8891 & def_1832)
+DEFINE def_8893 := (def_8892 & def_765)
+DEFINE def_8894 := (def_8893 | def_907)
+DEFINE def_8895 := (def_8894 & botMot_0__S30)
+DEFINE def_8896 := (def_8895 | def_791)
+DEFINE def_8897 := (def_8896 & def_147)
+DEFINE def_8898 := (def_8897 & spec_dropping__S31)
+DEFINE def_8899 := (def_8898 | ack_hor_0__S31)
+DEFINE def_8900 := (def_8899 & spec_dropping__S29)
+DEFINE def_8901 := (def_8900 | ack_hor_0__S29)
+DEFINE def_8902 := (def_8901 & spec_dropping__S27)
+DEFINE def_8903 := (def_8902 | ack_ver_0__S27)
+DEFINE def_8904 := (def_8903 & def_209)
+DEFINE def_8905 := (def_8904 & ack_ver_0__S0)
+DEFINE def_8906 := (def_8905 & def_1010)
+DEFINE def_8907 := (def_8906 & def_758)
+DEFINE def_8908 := (def_8907 & def_1116)
+DEFINE def_8909 := (def_8908 & pREV_aux_3__S29)
+DEFINE def_8910 := (def_8909 & ack_bot_0__S30)
+DEFINE def_8911 := (def_8910 & def_780)
+DEFINE def_8912 := (def_8911 & def_374)
+DEFINE def_8913 := (def_8912 & def_916)
+DEFINE def_8914 := (def_8913 & def_1130)
+DEFINE def_8915 := (def_8914 & pREV_aux_2__S31)
+DEFINE def_8916 := (def_8915 & def_1964)
+DEFINE def_8917 := (def_8916 & def_1954)
+DEFINE def_8918 := (def_8917 & def_1836)
+DEFINE def_8919 := (def_8918 & def_1832)
+DEFINE def_8920 := (def_8919 & def_765)
+DEFINE def_8921 := (def_8920 | def_907)
+DEFINE def_8922 := (def_8921 & botMot_0__S30)
+DEFINE def_8923 := (def_8922 | def_791)
+DEFINE def_8924 := (def_8923 & def_147)
+DEFINE def_8925 := (def_8924 & spec_dropping__S31)
+DEFINE def_8926 := (def_8925 | ack_hor_0__S31)
+DEFINE def_8927 := (def_8926 & spec_dropping__S29)
+DEFINE def_8928 := (def_8927 | ack_hor_0__S29)
+DEFINE def_8929 := (def_8928 & spec_dropping__S27)
+DEFINE def_8930 := (def_8929 | ack_ver_0__S27)
+DEFINE def_8931 := (def_8930 & def_209)
+DEFINE def_8932 := (def_8931 & ack_ver_0__S0)
+DEFINE def_8933 := (def_8932 & def_1010)
+DEFINE def_8934 := (def_8933 & def_758)
+DEFINE def_8935 := (def_8934 & def_1116)
+DEFINE def_8936 := (def_8935 & pREV_aux_3__S29)
+DEFINE def_8937 := (def_8936 & def_780)
+DEFINE def_8938 := (def_8937 & def_1130)
+DEFINE def_8939 := (def_8938 & ack_bot_0__S31)
+DEFINE def_8940 := (def_8939 & pREV_aux_2__S31)
+DEFINE def_8941 := (def_8940 & def_382)
+DEFINE def_8942 := (def_8941 & def_925)
+DEFINE def_8943 := (def_8942 & def_1984)
+DEFINE def_8944 := (def_8943 & spec_dropping__S36)
+DEFINE def_8945 := (def_8944 | ack_ver_0__S36)
+DEFINE def_8946 := (def_8945 & ack_bot_0__S32)
+DEFINE def_8947 := (def_8946 & def_934)
+DEFINE def_8948 := (def_8947 & def_1052)
+DEFINE def_8949 := (def_8948 & def_2017)
+DEFINE def_8950 := (def_8949 & def_2007)
+DEFINE def_8951 := (def_8950 & def_1984)
+DEFINE def_8952 := (def_8951 & def_1981)
+DEFINE def_8953 := (def_8952 & def_1977)
+DEFINE def_8954 := (def_8953 & spec_dropping__S36)
+DEFINE def_8955 := (def_8954 | ack_ver_0__S36)
+DEFINE def_8956 := (def_8955 & def_257)
+DEFINE def_8957 := (def_8956 & def_398)
+DEFINE def_8958 := (def_8957 & def_943)
+DEFINE def_8959 := (def_8958 & def_1052)
+DEFINE def_988 := !(pREV_aux_3__S41)
+DEFINE def_438 := !(detect_2__S41)
+DEFINE def_1178 := !(ack_hor_0__S41)
+DEFINE def_1165 := !(ack_hor_0__S39)
+DEFINE def_1158 := !(ack_hor_0__S38)
+DEFINE def_824 := !(pREV_aux_2__S37)
+DEFINE def_2124 := !(detect_1__S41)
+DEFINE def_2134 := !(detect_0__S41)
+DEFINE def_970 := !(pREV_aux_3__S39)
+DEFINE def_422 := !(detect_2__S39)
+DEFINE def_2078 := !(detect_1__S39)
+DEFINE def_2088 := !(detect_0__S39)
+DEFINE def_8960 := (def_2134 & def_2124)
+DEFINE def_8961 := (def_8960 & def_2088)
+DEFINE def_8962 := (def_8961 & def_2078)
+DEFINE def_8963 := (def_8962 & def_1984)
+DEFINE def_8964 := (def_8963 & def_1981)
+DEFINE def_8965 := (def_8964 & def_1977)
+DEFINE def_8966 := (def_8965 & def_831)
+DEFINE def_8967 := (def_8966 | def_961)
+DEFINE def_8968 := (def_8967 & spec_dropping__S41)
+DEFINE def_8969 := (def_8968 | ack_hor_0__S41)
+DEFINE def_8970 := (def_8969 & spec_dropping__S39)
+DEFINE def_8971 := (def_8970 | ack_hor_0__S39)
+DEFINE def_8972 := (def_8971 & spec_dropping__S38)
+DEFINE def_8973 := (def_8972 | ack_hor_0__S38)
+DEFINE def_8974 := (def_8973 & spec_dropping__S36)
+DEFINE def_8975 := (def_8974 | ack_ver_0__S36)
+DEFINE def_8976 := (def_8975 & def_257)
+DEFINE def_8977 := (def_8976 & def_1052)
+DEFINE def_8978 := (def_8977 & def_824)
+DEFINE def_8979 := (def_8978 & def_1158)
+DEFINE def_8980 := (def_8979 & pREV_aux_3__S38)
+DEFINE def_8981 := (def_8980 & def_1165)
+DEFINE def_8982 := (def_8981 & def_422)
+DEFINE def_8983 := (def_8982 & def_970)
+DEFINE def_8984 := (def_8983 & def_1178)
+DEFINE def_8985 := (def_8984 & def_438)
+DEFINE def_8986 := (def_8985 & def_988)
+DEFINE def_8987 := (def_8986 & def_2134)
+DEFINE def_8988 := (def_8987 & def_2124)
+DEFINE def_8989 := (def_8988 & def_1984)
+DEFINE def_8990 := (def_8989 & def_1981)
+DEFINE def_8991 := (def_8990 & def_1977)
+DEFINE def_8992 := (def_8991 & def_831)
+DEFINE def_8993 := (def_8992 | def_961)
+DEFINE def_8994 := (def_8993 & spec_dropping__S41)
+DEFINE def_8995 := (def_8994 | ack_hor_0__S41)
+DEFINE def_8996 := (def_8995 & spec_dropping__S39)
+DEFINE def_8997 := (def_8996 | ack_hor_0__S39)
+DEFINE def_8998 := (def_8997 & spec_dropping__S38)
+DEFINE def_8999 := (def_8998 | ack_hor_0__S38)
+DEFINE def_9000 := (def_8999 & spec_dropping__S36)
+DEFINE def_9001 := (def_9000 | ack_ver_0__S36)
+DEFINE def_9002 := (def_9001 & def_257)
+DEFINE def_9003 := (def_9002 & def_1052)
+DEFINE def_9004 := (def_9003 & def_824)
+DEFINE def_9005 := (def_9004 & def_1158)
+DEFINE def_9006 := (def_9005 & pREV_aux_3__S38)
+DEFINE def_9007 := (def_9006 & def_1165)
+DEFINE def_9008 := (def_9007 & def_1178)
+DEFINE def_9009 := (def_9008 & def_438)
+DEFINE def_9010 := (def_9009 & def_988)
+DEFINE def_414 := !(detect_2__S38)
+DEFINE def_2055 := !(detect_1__S38)
+DEFINE def_2065 := !(detect_0__S38)
+DEFINE def_9011 := (def_2065 & def_2055)
+DEFINE def_9012 := (def_9011 & def_1984)
+DEFINE def_9013 := (def_9012 & def_1981)
+DEFINE def_9014 := (def_9013 & def_1977)
+DEFINE def_9015 := (def_9014 & def_831)
+DEFINE def_9016 := (def_9015 | def_961)
+DEFINE def_9017 := (def_9016 & spec_dropping__S38)
+DEFINE def_9018 := (def_9017 | ack_hor_0__S38)
+DEFINE def_9019 := (def_9018 & spec_dropping__S36)
+DEFINE def_9020 := (def_9019 | ack_ver_0__S36)
+DEFINE def_9021 := (def_9020 & def_257)
+DEFINE def_9022 := (def_9021 & def_1052)
+DEFINE def_9023 := (def_9022 & def_824)
+DEFINE def_9024 := (def_9023 & def_1158)
+DEFINE def_9025 := (def_9024 & pREV_aux_3__S38)
+DEFINE def_9026 := (def_9025 & def_414)
+DEFINE def_9027 := (def_9026 & def_9010)
+DEFINE def_9028 := (def_9027 & def_8959)
+DEFINE def_9029 := (def_9028 & def_957)
+DEFINE def_9030 := (def_9029 & def_831)
+DEFINE def_9031 := (def_9030 | def_961)
+DEFINE def_9032 := (def_9031 | pREV_aux_2__S38)
+DEFINE def_9033 := (def_9032 & ack_bot_0__S37)
+DEFINE def_9034 := (def_9033 & def_952)
+DEFINE def_9035 := (def_9034 & def_835)
+DEFINE def_9036 := (def_9035 & pREV_aux_3__S38)
+FORMULA def_9036

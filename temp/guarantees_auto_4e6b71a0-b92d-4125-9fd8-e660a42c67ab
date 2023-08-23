@@ -1,0 +1,4 @@
+VAR
+balancer_1__S5,balancer_2__S1,balancer_0__Sf,distSense_0__Sf,balancer_1__S1,balancer_2__S5,balancer_0__S1,distSense_0__S1,balancer_2__Sf,distSense_0__S5,balancer_0__S5,balancer_1__Sf: BOOLEAN
+FORMULA
+(((((!((balancer_0__S1))&!((balancer_1__S1)))&(balancer_2__S1))->!((distSense_0__S1))))) & (((((!((balancer_0__S5))&!((balancer_1__S5)))&(balancer_2__S5))->!((distSense_0__S5))))) & (((((!((balancer_0__Sf))&!((balancer_1__Sf)))&(balancer_2__Sf))->!((distSense_0__Sf)))))
