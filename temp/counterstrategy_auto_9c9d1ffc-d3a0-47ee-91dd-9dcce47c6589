@@ -1,0 +1,4 @@
+VAR
+hready__S1,hburst0__S1,hbusreq0__S0,hlock0__S1,hburst1__S1,hburst0__S0,hbusreq0__S1,hburst1__S0,hready__S0,hlock0__S0: BOOLEAN
+FORMULA
+(((!hready__S0))) & (((!hbusreq0__S0))) & (((!hlock0__S0))) & (((!hburst0__S0))) & (((!hburst1__S0))) & (((hlock0__S0->hbusreq0__S0))) & (((hlock0__S1->hbusreq0__S1))) & !hbusreq0__S0 & !hready__S0 & !hlock0__S0 & !hburst1__S0 & !hburst0__S0 & hburst0__S1 & !hbusreq0__S1 & !hready__S1 & !hlock0__S1 & !hburst1__S1

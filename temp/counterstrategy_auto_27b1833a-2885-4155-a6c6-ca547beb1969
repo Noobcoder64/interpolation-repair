@@ -1,0 +1,4 @@
+VAR
+obstacle_0__S9,inputMoveMode_1__S0,inputMoveMode_1__S9,obstacle_0__S0,inputMoveMode_0__S9,inputMoveMode_0__S0: BOOLEAN
+FORMULA
+!inputMoveMode_0__S0 & !inputMoveMode_1__S0 & !obstacle_0__S0 & inputMoveMode_0__S9 & inputMoveMode_1__S9 & !obstacle_0__S9

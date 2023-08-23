@@ -1,0 +1,28 @@
+VAR obstacle_0__S0 : boolean
+VAR moveMode_0__S0 : boolean
+VAR moveMode_1__S0 : boolean
+VAR rightMotor_2__S0 : boolean
+VAR leftMotor_2__S0 : boolean
+DEFINE def_4 := !(obstacle_0__S0)
+DEFINE def_80 := !(rightMotor_2__S0)
+DEFINE def_9 := !(moveMode_1__S0)
+DEFINE def_6 := !(moveMode_0__S0)
+DEFINE def_656 := (def_9 | def_6)
+DEFINE def_657 := (def_656 & moveMode_0__S0)
+DEFINE def_658 := (def_657 | def_9)
+DEFINE def_659 := (def_658 | def_4)
+DEFINE def_660 := (def_659 & obstacle_0__S0)
+DEFINE def_86 := !(leftMotor_2__S0)
+DEFINE def_661 := (moveMode_1__S0 | def_6)
+DEFINE def_662 := (def_661 & def_660)
+DEFINE def_663 := (def_662 & def_86)
+DEFINE def_664 := (def_663 & def_80)
+DEFINE def_665 := (def_664 | def_4)
+DEFINE def_666 := (def_665 & obstacle_0__S0)
+DEFINE def_667 := (def_666 & def_6)
+DEFINE def_668 := (def_667 | moveMode_1__S0)
+DEFINE def_669 := (def_668 & def_660)
+DEFINE def_670 := (def_669 & def_80)
+DEFINE def_671 := (def_670 | def_4)
+DEFINE def_672 := (def_671 & obstacle_0__S0)
+FORMULA def_672
