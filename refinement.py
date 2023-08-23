@@ -112,7 +112,7 @@ class RefinementNode:
             notesfile.write(string + ";")
 
 
-    def saveRefinementData(self, datafile, fields):
+    def saveRefinementData(self, csv_writer, fields):
         """Saves the data contents of the 'fields' fields into datafile as a semicolon-separated string"""
 
         field_values = []
@@ -120,6 +120,8 @@ class RefinementNode:
         for field in fields:
             if field == "refinement":
                 field_value = self.gr1_units
+            if field == "unique_refinement":
+                field_value = self.unique_refinement
             elif field == "parent":
                 field_value = self.parent_id
             elif field == "num_children":
@@ -137,7 +139,7 @@ class RefinementNode:
                 field_values.append(str(field_value))
             else:
                 field_values.append("N/A")
-        datafile.write(",".join(field_values) + "," + self.__readNotes() + "\n")
+        csv_writer.writerow(field_values)
 
     #==========================================================================
     # Methods to deal with .rat and .dot files

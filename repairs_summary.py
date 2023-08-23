@@ -4,15 +4,15 @@ import pandas as pd
 
 # List of input folders
 INPUT_FOLDERS = [
-    # "inputs/AMBA",
-    # "inputs/SYNTECH15-UNREAL",
+    "inputs/AMBA",
+    "inputs/SYNTECH15-UNREAL",
     "inputs/SYNTECH15-1UNREAL"
 ]
 
 # List of algorithms
 ALGORITHMS = [
     # "INTERPOLATION-NOINF",
-    # "INTERPOLATION",
+    "INTERPOLATION",
     "GLASS",
     "JVTS",
     "ALUR",

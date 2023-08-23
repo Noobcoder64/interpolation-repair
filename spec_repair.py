@@ -35,7 +35,7 @@ def create_csv_from_output(output, csv_output_file):
     repairs = repair_pattern.findall(output)
 
     with open(csv_output_file, "w", newline="") as csvfile:
-        csv_writer = csv.writer(csvfile)
+        csv_writer = csv.writer(csvfile, delimiter=",")
         csv_writer.writerow(["Id", "UniqueRefinement", "IsSolution"])
 
         for i, repair in enumerate(repairs, start=1):

@@ -31,7 +31,7 @@ timeout = 600 # 10 minutes
 
 # This is a reference to the original specification file
 specfile = ""
-datafile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + ".csv")
+datafile = os.path.join(output_folder, case_study_name + "_INTERPOLATION" + ".csv")
 checkpointfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_checkpoint.csv")
 satfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_sat.csv")
 weaknessfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_weakness.csv")
@@ -86,7 +86,7 @@ def configure(spectra_file, timeout_in=600, output_folder="outputs/", debug=Fals
     
     specfile = spectra_file
     case_study_name = os.path.splitext(os.path.basename(specfile))[0]
-    datafile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + ".csv")
+    datafile = os.path.join(output_folder, case_study_name + "_INTERPOLATION" + ".csv")
     checkpointfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_checkpoint.csv")
     satfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_sat.csv")
     weaknessfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_weakness.csv")

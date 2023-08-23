@@ -639,7 +639,7 @@ class Counterstrategy:
     def extendFinitePath(self, path):
         """If path does not reach a guarantee violation, extends it with a new state where supposedly the violation
         occurs. Needed because RATSY sometimes stops finite counterruns some steps before the actual violation"""
-        print(path.transient_states)
+        
         if path.transient_states[-1].id_state == "Sf":
             new_state_name = "Sf2"
         else:

@@ -9,14 +9,14 @@ from weakness_for_refinement import computeWeakness_probe
 sys.setrecursionlimit(1500)
 
 input_folders = [
-    # "inputs/AMBA",
-    # "inputs/SYNTECH15-UNREAL",
+    "inputs/AMBA",
+    "inputs/SYNTECH15-UNREAL",
     "inputs/SYNTECH15-1UNREAL"
 ]
 
 ALGORITHMS = [
     # "INTERPOLATION-NOINF",
-    # "INTERPOLATION",
+    "INTERPOLATION",
     "GLASS",
     "JVTS",
     "ALUR",
@@ -38,8 +38,9 @@ def count_num_variables(refinements):
 
 def process_csv_file(csv_file_path, spectra_file_path):
     # Load the CSV file into a DataFrame
+    print(csv_file_path)
     df = pd.read_csv(csv_file_path, sep=",", index_col=False)
-    
+    df.columns
     # Convert the 'UniqueRefinement' column to a list of lists
     df['UniqueRefinement'] = df['UniqueRefinement'].apply(ast.literal_eval)
     

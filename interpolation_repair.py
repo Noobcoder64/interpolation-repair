@@ -5,6 +5,7 @@ from collections import deque
 import experiment_properties as exp
 from refinement import RefinementNode
 import concurrent.futures
+import csv
 
 MAX_NODES = 3000 # Max nodes to expand in the experiment
 
@@ -30,6 +31,7 @@ def FifoDuplicateCheckRefinement():
     duplicate_refs = []
 
     datafile = open(exp.datafile, "w")
+    csv_writer = csv.writer(datafile)
     datafields = [
         "Id",
         "UniqueRefinement",
@@ -48,7 +50,7 @@ def FifoDuplicateCheckRefinement():
         "TimeGenerationMethod"
     ]
     
-    datafile.write(",".join(datafields) + "\n")
+    csv_writer.writerow(datafields)
 
     initial_spec_node = RefinementNode()
 
@@ -90,7 +92,7 @@ def FifoDuplicateCheckRefinement():
             #     # cur_node.writeNotes(str(e))
             #     print(e)
 
-            cur_node.saveRefinementData(datafile, datafields)
+            cur_node.saveRefinementData(csv_writer, datafields)
             explored_refs.append(cur_node.unique_refinement)
         else:
             print("++ DUPLICATE NODE")
