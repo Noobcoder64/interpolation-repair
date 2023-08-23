@@ -1,10 +1,10 @@
-Id,UniqueRefinement,IsSolution
-b96472a4-93d3-4181-a2c9-6212dfd5ef5a,['G(F(distSense_0 -> !isReady))'],True
-52fb8388-d519-4abf-9032-02f219f20496,['G(distSense_0 -> !isReady)'],True
-f4349a9e-b549-48ad-8b8e-9ba1a8bac779,['G(distSense_0 -> (X(distSense_0) -> (isReady -> X(!(isReady)))))'],True
-3fb0742f-5380-40cd-80af-6386437f37b5,"['G(F(distSense_0 -> !isReady))', 'G(!distSense_0 -> isReady)']",True
-abcbefd8-4c11-4d9a-8bdd-2049316f7774,"['G(distSense_0 -> !isReady)', 'G(!distSense_0 -> isReady)']",True
-b9b3d9eb-20a5-40be-971d-23f75ea4e19d,"['G(distSense_0 -> (X(distSense_0) -> (isReady -> X(!(isReady)))))', 'G(!distSense_0 -> isReady)']",True
-43b44f07-385b-421b-a42b-3c0728fa12fb,"['G(F(distSense_0 -> !isReady))', 'G(!distSense_0 -> (X(distSense_0) -> (!isReady -> X(!(isReady)))))']",True
-8c16a9f8-b775-44fa-b422-3f62479f9562,"['G(distSense_0 -> !isReady)', 'G(!distSense_0 -> (X(distSense_0) -> (!isReady -> X(!(isReady)))))']",True
-c6d25bc0-2222-46f2-9219-a8a37f4bfc73,"['G(distSense_0 -> (X(distSense_0) -> (isReady -> X(!(isReady)))))', 'G(!distSense_0 -> (X(distSense_0) -> (!isReady -> X(!(isReady)))))']",True
+Id,UniqueRefinement,IsSolution,NumVariables
+b96472a4-93d3-4181-a2c9-6212dfd5ef5a,['G(F(distSense_0 -> !isReady))'],True,2.0
+52fb8388-d519-4abf-9032-02f219f20496,['G(distSense_0 -> !isReady)'],True,2.0
+f4349a9e-b549-48ad-8b8e-9ba1a8bac779,['G(distSense_0 -> (X(distSense_0) -> (isReady -> X(!(isReady)))))'],True,2.0
+3fb0742f-5380-40cd-80af-6386437f37b5,"['G(F(distSense_0 -> !isReady))', 'G(!distSense_0 -> isReady)']",True,2.0
+abcbefd8-4c11-4d9a-8bdd-2049316f7774,"['G(distSense_0 -> !isReady)', 'G(!distSense_0 -> isReady)']",True,2.0
+b9b3d9eb-20a5-40be-971d-23f75ea4e19d,"['G(distSense_0 -> (X(distSense_0) -> (isReady -> X(!(isReady)))))', 'G(!distSense_0 -> isReady)']",True,2.0
+43b44f07-385b-421b-a42b-3c0728fa12fb,"['G(F(distSense_0 -> !isReady))', 'G(!distSense_0 -> (X(distSense_0) -> (!isReady -> X(!(isReady)))))']",True,2.0
+8c16a9f8-b775-44fa-b422-3f62479f9562,"['G(distSense_0 -> !isReady)', 'G(!distSense_0 -> (X(distSense_0) -> (!isReady -> X(!(isReady)))))']",True,2.0
+c6d25bc0-2222-46f2-9219-a8a37f4bfc73,"['G(distSense_0 -> (X(distSense_0) -> (isReady -> X(!(isReady)))))', 'G(!distSense_0 -> (X(distSense_0) -> (!isReady -> X(!(isReady)))))']",True,2.0

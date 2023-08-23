@@ -33,3 +33,5 @@ conda install -c potassco clingo=5.4.0
 Install pandas
 https://pandas.pydata.org/docs/getting_started/install.html
 conda install pandas
+
+attach_metrics > repairs_summary > benchmark_summary > analysis

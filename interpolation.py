@@ -164,6 +164,30 @@ def getRefinementsFromStateComponents(state_components,path,input_vars):
     return list(set(refinements)),non_io_separable_state_components
 
 
+def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
+    l2b.writeMathsatFormulaToFile("temp/counterstrategy_auto_" + id, assum_val_boolean)
+    l2b.writeMathsatFormulaToFile("temp/guarantees_auto_" + id, guarantees_boolean)
+    
+    mathsat_path = os.path.join(definitions.ROOT_DIR, "MathSAT4/mathsat-4.2.17-linux-x86_64/bin/mathsat")
+    os.system(f"{mathsat_path} -interpolate=temp/INTERP_{id} temp/counterstrategy_auto_{id} temp/guarantees_auto_{id}")
+    
+    interpolant_file = f"temp/INTERP_{id}.1.msat"
+    
+    if os.path.isfile(interpolant_file):
+        interpolant = l2b.parseInterpolant(interpolant_file)
+        if interpolant == "false":
+            os.remove("temp/counterstrategy_auto_" + id)
+            os.remove("temp/guarantees_auto_" + id)
+            os.remove(interpolant_file)
+            return "false"
+
+        print("\n=== INTERPOLANT ===")
+        print(interpolant)
+
+        return interpolant
+    
+    return None
+
 def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars,output_vars):
     # assumptions_uc = []
     # PROBLEM
@@ -209,35 +233,24 @@ def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars
     print(guarantees_boolean)
     print()
 
-    l2b.writePathToFile("temp/path_"+id, path)
-    l2b.writeMathsatFormulaToFile("temp/counterstrategy_auto_"+id, assum_val_boolean)
-    l2b.writeMathsatFormulaToFile("temp/guarantees_auto_"+id, guarantees_boolean)
-    
-    os.system(f"{definitions.ROOT_DIR}MathSAT4/mathsat-4.2.17-linux-x86_64/bin/mathsat -interpolate=temp/INTERP_{id} temp/counterstrategy_auto_{id} temp/guarantees_auto_{id}")
+    interpolant  = compute_interpolant(id, assum_val_boolean, guarantees_boolean)
+
     state_components = dict()
     # Parse the interpolant file
-    if os.path.isfile(f"temp/INTERP_{id}.1.msat"):
-        interpolant = l2b.parseInterpolant(f"temp/INTERP_{id}.1.msat")
+    if interpolant is not None:
         if interpolant == "false":
-            os.remove("temp/path_"+id)
-            os.remove("temp/counterstrategy_auto_"+id)
-            os.remove("temp/guarantees_auto_"+id)
-            if os.path.isfile(f"temp/INTERP_{id}.1.msat"):
-                os.remove(f"temp/INTERP_{id}.1.msat")
             return ["FALSE"]
-        # try:
-        print()
-        print("=== INTERPOLANT ===")
-        print(interpolant)
-        state_components = extractStateComponents(interpolant)
-        print()
-        print("=== STATE COMPONENTS ===")
-        print(state_components)
-        # except NonStateSeparableException:
+        
+        try:
+            state_components = extractStateComponents(interpolant)
+            print()
+            print("=== STATE COMPONENTS ===")
+            print(state_components)
+        except NonStateSeparableException:
             # If the interpolant is not state separable, just skip this particular counterstrategy.
             # To think about: is it possible to come up with refinements even in case of a non-state-separable interpolant?
-            # state_components = dict()
-            # print("Non-state-separable interpolant for " + assum_val_boolean + "\n and guarantees " + guarantees_boolean)
+            state_components = dict()
+            print("Non-state-separable interpolant for " + assum_val_boolean + "\n and guarantees " + guarantees_boolean)
     else:
         
         if path.is_loop:
@@ -287,21 +300,16 @@ def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars
         print(guarantees_boolean)
         print()
 
-        l2b.writePathToFile("temp/path_"+id, path)
         l2b.writeMathsatFormulaToFile("temp/counterstrategy_auto_"+id, assum_val_boolean)
         l2b.writeMathsatFormulaToFile("temp/guarantees_auto_"+id, guarantees_boolean)
 
         # Use MathSAT 4 to generate the interpolant
         os.system(f"{definitions.ROOT_DIR}MathSAT4/mathsat-4.2.17-linux-x86_64/bin/mathsat -interpolate=temp/INTERP_{id} temp/counterstrategy_auto_{id} temp/guarantees_auto_{id}")
 
-        if os.path.isfile(f"temp/INTERP_{id}.1.msat"):
-            interpolant = l2b.parseInterpolant(f"temp/INTERP_{id}.1.msat")
+        interpolant = compute_interpolant(id, assum_val_boolean, guarantees_boolean)
+
+        if interpolant is not None:
             if interpolant == "false":
-                os.remove("temp/path_"+id)
-                os.remove("temp/counterstrategy_auto_"+id)
-                os.remove("temp/guarantees_auto_"+id)
-                if os.path.isfile(f"temp/INTERP_{id}.1.msat"):
-                    os.remove(f"temp/INTERP_{id}.1.msat")
                 return ["FALSE"]
             try:
                 state_components = extractStateComponents(interpolant)
@@ -324,7 +332,6 @@ def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars
     #     state_components = dict()
     #     print("No interpolant for " + assum_val_boolean +"\n and guarantees " + guarantees_boolean + "\n on path " + str(path))
 
-    os.remove("temp/path_"+id)
     os.remove("temp/counterstrategy_auto_"+id)
     os.remove("temp/guarantees_auto_"+id)
     if os.path.isfile(f"temp/INTERP_{id}.1.msat"):

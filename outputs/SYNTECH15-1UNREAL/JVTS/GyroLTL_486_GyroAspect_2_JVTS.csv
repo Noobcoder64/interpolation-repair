@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-63f92f6a-aaca-4dfa-80a0-992119c3b9fd,['G(F(!isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (!bluetoothCmd_2 -> (eNV_CONSTRAINT_0_respondsTo_responded -> (!balancer_0 -> (!balancer_1 -> balancer_2))))))))'],True
+Id,UniqueRefinement,IsSolution,NumVariables
+63f92f6a-aaca-4dfa-80a0-992119c3b9fd,['G(F(!isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (!bluetoothCmd_2 -> (eNV_CONSTRAINT_0_respondsTo_responded -> (!balancer_0 -> (!balancer_1 -> balancer_2))))))))'],True,8.0

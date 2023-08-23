@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-111f2325-1bf1-4a54-884c-ca0190918ee3,['G(F(!isReady -> (!balancer_0 &  (!balancer_1 &  balancer_2))))'],True
+Id,UniqueRefinement,IsSolution,NumVariables
+111f2325-1bf1-4a54-884c-ca0190918ee3,['G(F(!isReady -> (!balancer_0 &  (!balancer_1 &  balancer_2))))'],True,4.0

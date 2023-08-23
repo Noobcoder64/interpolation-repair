@@ -600,7 +600,8 @@ class Counterstrategy:
             # print("ASSIGNMENTS: ", assignments)
 
             transient_states = []
-            
+            looping_states = None
+
             if looping:
                 looping_states = [initial_state]
 

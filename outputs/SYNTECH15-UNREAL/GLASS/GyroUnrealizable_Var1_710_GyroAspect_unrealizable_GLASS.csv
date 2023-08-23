@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-434bdd7f-e5e5-4604-9e7a-49bb6dcb858a,['G(F(!balancer_0 -> (balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 &  !balancer_2)))'],True
+Id,UniqueRefinement,IsSolution,NumVariables
+434bdd7f-e5e5-4604-9e7a-49bb6dcb858a,['G(F(!balancer_0 -> (balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 &  !balancer_2)))'],True,3.0

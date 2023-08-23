@@ -5,8 +5,8 @@ import pandas as pd
 # List of input folders
 INPUT_FOLDERS = [
     # "inputs/AMBA",
-    "inputs/SYNTECH15-UNREAL",
-    # "inputs/SYNTECH15-1UNREAL"
+    # "inputs/SYNTECH15-UNREAL",
+    "inputs/SYNTECH15-1UNREAL"
 ]
 
 # List of algorithms
@@ -21,9 +21,6 @@ ALGORITHMS = [
 # Output parent folder
 OUTPUT_PARENT_FOLDER = "outputs/"
 
-# Set the timeout
-TIMEOUT = 10
-
 SUMMARY_FILENAME = "repairs_summary"
 
 def create_summary_dataframe(spectra_files, output_folder):
@@ -36,10 +33,12 @@ def create_summary_dataframe(spectra_files, output_folder):
             csv_filepath = os.path.join(output_folder, matching_csv_file[0])
             df = pd.read_csv(csv_filepath, sep=",", index_col=False)
             num_repairs = len(df[df["IsSolution"] == True])
+            min_num_variables = df["NumVariables"].min()
         else:
+            min_num_variables = 0
             num_repairs = 0
 
-        data = {"Specification": [spec_name], "NumRepairs": [num_repairs], "Repaired": [num_repairs > 0]}
+        data = {"Specification": [spec_name], "NumRepairs": [num_repairs], "MinNumVariables": [min_num_variables], "Repaired": [num_repairs > 0]}
         spec_df = pd.DataFrame(data)
         data_frames.append(spec_df)
     summary = pd.concat(data_frames, ignore_index=True)

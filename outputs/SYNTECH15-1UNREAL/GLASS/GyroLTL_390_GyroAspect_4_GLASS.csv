@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-6a442806-9236-47a5-926c-870cc412ec3d,['(!distSense_0 -> (isReady -> !eNV_CONSTRAINT_0_respondsTo_responded))'],True
+Id,UniqueRefinement,IsSolution,NumVariables
+6a442806-9236-47a5-926c-870cc412ec3d,['(!distSense_0 -> (isReady -> !eNV_CONSTRAINT_0_respondsTo_responded))'],True,3.0

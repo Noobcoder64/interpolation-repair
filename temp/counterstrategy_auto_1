@@ -1,0 +1,4 @@
+VAR
+b,a: BOOLEAN
+FORMULA
+a & b

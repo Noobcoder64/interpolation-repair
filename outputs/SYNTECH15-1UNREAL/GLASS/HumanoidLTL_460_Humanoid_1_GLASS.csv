@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-2fc0d392-c83a-424b-8b7c-6f065693c101,['G(X(obstacle_0) -> (inputMoveMode_0 -> (X(!(inputMoveMode_0)) -> (inputMoveMode_1 -> (X(!(inputMoveMode_1)) -> (X(pREV_aux_0) -> X(pREV_aux_1)))))))'],True
+Id,UniqueRefinement,IsSolution,NumVariables
+2fc0d392-c83a-424b-8b7c-6f065693c101,['G(X(obstacle_0) -> (inputMoveMode_0 -> (X(!(inputMoveMode_0)) -> (inputMoveMode_1 -> (X(!(inputMoveMode_1)) -> (X(pREV_aux_0) -> X(pREV_aux_1)))))))'],True,2.0
