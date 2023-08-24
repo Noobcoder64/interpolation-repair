@@ -10,10 +10,9 @@ def read_file(spectra_file):
     return spec
 
 def make_directories_if_needed(output_filename):
-    folder = re.sub(r"/[^/]*$", "", output_filename)
-    if not os.path.isdir(folder):
-        make_directories_if_needed(folder)
-        os.mkdir(folder)
+    directory_path = os.path.dirname(output_filename)
+    if not os.path.exists(directory_path):
+        os.makedirs(directory_path)
 
 
 def write_file(spec, output_filename):
