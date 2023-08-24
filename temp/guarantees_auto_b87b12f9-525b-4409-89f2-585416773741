@@ -1,4 +1,0 @@
-VAR
-rightMotor_0__S0,inputMoveMode_0__S0,leftMotor_1__S0,leftMotor_0__S0,outputMoveMode_1__S0,inputMoveMode_1__S0,rightMotor_2__S0,obstacle_0__S0,leftMotor_2__S0,rightMotor_1__S0,outputMoveMode_0__S0: BOOLEAN
-FORMULA
-((((inputMoveMode_0__S0&inputMoveMode_1__S0)->(((((!(leftMotor_0__S0)&!(leftMotor_1__S0))&leftMotor_2__S0)&rightMotor_0__S0)&!(rightMotor_1__S0))&!(rightMotor_2__S0))))) & (((((inputMoveMode_0__S0&inputMoveMode_1__S0)&(!(outputMoveMode_0__S0)|outputMoveMode_1__S0))->(((((leftMotor_0__S0&leftMotor_1__S0)&!(leftMotor_2__S0))&rightMotor_0__S0)&rightMotor_1__S0)&!(rightMotor_2__S0))))) & (((((inputMoveMode_0__S0&inputMoveMode_1__S0)&!(obstacle_0__S0))->(!(outputMoveMode_0__S0)&!(outputMoveMode_1__S0)))))

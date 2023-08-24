@@ -11,7 +11,8 @@ sys.setrecursionlimit(1500)
 input_folders = [
     "inputs/AMBA",
     "inputs/SYNTECH15-UNREAL",
-    "inputs/SYNTECH15-1UNREAL"
+    "inputs/SYNTECH15-1UNREAL",
+    "inputs/SYNTECH15-1UNREAL-ORIGINAL"
 ]
 
 ALGORITHMS = [

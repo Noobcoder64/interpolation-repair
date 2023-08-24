@@ -1,4 +1,0 @@
-VAR
-distSense_0__S1,isReady__S7,balancer_2__S7,balancer_2__Sf,balancer_1__S1,distSense_0__Sf,balancer_0__S7,balancer_0__S1,distSense_0__S7,balancer_2__S1,balancer_0__Sf,isReady__S1,isReady__Sf,balancer_1__Sf,balancer_1__S7: BOOLEAN
-FORMULA
-(((!((isReady__S1))->((!((balancer_0__S1))&!((balancer_1__S1)))&!((balancer_2__S1)))))) & (((!((isReady__S7))->((!((balancer_0__S7))&!((balancer_1__S7)))&!((balancer_2__S7)))))) & (((!((isReady__Sf))->((!((balancer_0__Sf))&!((balancer_1__Sf)))&!((balancer_2__Sf)))))) & (((((!((balancer_0__S1))&!((balancer_1__S1)))&(balancer_2__S1))->!((distSense_0__S1))))) & (((((!((balancer_0__S7))&!((balancer_1__S7)))&(balancer_2__S7))->!((distSense_0__S7))))) & (((((!((balancer_0__Sf))&!((balancer_1__Sf)))&(balancer_2__Sf))->!((distSense_0__Sf)))))

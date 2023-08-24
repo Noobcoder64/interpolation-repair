@@ -1,0 +1,6 @@
+Id,UniqueRefinement,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod,NumVariables
+cc615967-712e-485b-8f4d-9a9ca52d251f,[],0.0022400810266844,0,,3,False,,False,1.3780932440422475,,1.4188882180023938,5.0,5.392602179199457e-05,1.164877689036075,0
+a816ff07-dc11-423a-8880-ae343b2092d3,['G((!frontDistSense_0 & isReady) -> X(!(isReady & !frontDistSense_0)))'],3.98022916901391,1,cc615967-712e-485b-8f4d-9a9ca52d251f,0,True,True,True,1.492748369986657,1.3576790950028226,,,,,2
+f0ccdcd5-2e60-42d2-9173-638446a074ea,['G(F(!(!frontDistSense_0 & isReady) & !(isReady & !frontDistSense_0)))'],3.980240466014948,1,cc615967-712e-485b-8f4d-9a9ca52d251f,1,False,,False,2.0228093959740363,,1.721613978035748,6.0,7.144396658986807e-05,1.66790250496706,2
+f4afcb23-950b-44de-b08d-552e59b027a2,['G((isReady & !frontDistSense_0) -> X(!(!frontDistSense_0 & isReady)))'],3.980248059029691,1,cc615967-712e-485b-8f4d-9a9ca52d251f,0,True,True,True,1.8167661820189096,1.570656212978065,,,,,2
+bb03ba7d-2810-4037-a363-86660fa246bd,"['FALSE', 'G(F(!(!frontDistSense_0 & isReady) & !(isReady & !frontDistSense_0)))']",12.257596649986226,2,f0ccdcd5-2e60-42d2-9173-638446a074ea,0,True,False,False,1.6383335079881365,1.66256990499096,,,,,3

@@ -1,4 +1,0 @@
-VAR
-stateA1_0__S0,hburst0__S1,hbusreq0__S0,stateA1_0__S1,stateA1_0__Sf,hbusreq0__S1,hburst0__Sf: BOOLEAN
-FORMULA
-((!((((!stateA1_0__S1))&(hburst0__S1))))) & ((!((((!stateA1_0__Sf))&(hburst0__Sf))))) & ((((stateA1_0__S0&(!hbusreq0__S0))->((!stateA1_0__S1))))) & ((((stateA1_0__S1&(!hbusreq0__S1))->((!stateA1_0__Sf)))))

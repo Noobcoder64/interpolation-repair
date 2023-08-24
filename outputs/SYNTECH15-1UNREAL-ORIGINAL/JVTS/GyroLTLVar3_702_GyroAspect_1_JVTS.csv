@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-f9ef3294-2856-4bdb-bb6a-75d137e1def8,['G(frontDistSense=CLEAR -> (backDistSense=CLEAR -> (isReady -> balancer!=STP)))'],True
+Id,UniqueRefinement,IsSolution,NumVariables
+f9ef3294-2856-4bdb-bb6a-75d137e1def8,['G(frontDistSense=CLEAR -> (backDistSense=CLEAR -> (isReady -> balancer!=STP)))'],True,6

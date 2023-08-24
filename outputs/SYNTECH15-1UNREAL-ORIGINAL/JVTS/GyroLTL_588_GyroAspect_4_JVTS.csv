@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-531709f5-1750-402b-a38a-a2b830a505d1,"['G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=OK -> balancer!=STP))))', 'G(distSense=CLEAR -> (isReady -> (bluetoothCmd=NOP -> (balancerStatus=OK -> balancer=STP)))) & (distSense=BLOCKED -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=OK -> balancer!=STP))))']",True
+Id,UniqueRefinement,IsSolution,NumVariables
+531709f5-1750-402b-a38a-a2b830a505d1,"['G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=OK -> balancer!=STP))))', 'G(distSense=CLEAR -> (isReady -> (bluetoothCmd=NOP -> (balancerStatus=OK -> balancer=STP)))) & (distSense=BLOCKED -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=OK -> balancer!=STP))))']",True,11

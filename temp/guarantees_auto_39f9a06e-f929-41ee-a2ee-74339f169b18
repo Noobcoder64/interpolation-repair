@@ -1,4 +1,0 @@
-VAR
-spec_nextMoveMode_0__Sf,obstacle_0__S479,spec_turnState_0__S0,spec_turnState_1__S0,spec_nextMoveMode_1__Sf,spec_nextMoveMode_1__S2117,spec_nextMoveMode_1__S479,obstacle_0__Sf,obstacle_0__S2117,spec_nextMoveMode_0__S2117,spec_nextMoveMode_0__S479: BOOLEAN
-FORMULA
-(((!(spec_turnState_0__S0)&!(spec_turnState_1__S0)))) & ((((obstacle_0__S479)->!((!((spec_nextMoveMode_0__S479))&!((spec_nextMoveMode_1__S479))))))) & ((((obstacle_0__S2117)->!((!((spec_nextMoveMode_0__S2117))&!((spec_nextMoveMode_1__S2117))))))) & ((((obstacle_0__Sf)->!((!((spec_nextMoveMode_0__Sf))&!((spec_nextMoveMode_1__Sf)))))))

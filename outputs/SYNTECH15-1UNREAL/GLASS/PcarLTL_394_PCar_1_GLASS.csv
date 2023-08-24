@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution,NumVariables
+3e275aef-c090-482a-afa3-ecf70b436ec0,['G(F(!throttle_0 &  (!throttle_1 &  (steer_0 &  !steer_1))))'],True,4

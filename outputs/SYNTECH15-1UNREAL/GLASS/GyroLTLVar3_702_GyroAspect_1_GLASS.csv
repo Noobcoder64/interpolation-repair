@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution,NumVariables
+5ac0ee61-b2a6-42b8-91f1-41cfe11dc2a6,['(!frontDistSense_0 -> (!backDistSense_0 -> (isReady -> (eNV_CONSTRAINT_0_respondsTo_responded -> (eNV_CONSTRAINT_1_respondsTo_responded -> (eNV_CONSTRAINT_2_respondsTo_responded -> !eNV_CONSTRAINT_3_respondsTo_responded))))))'],True,7

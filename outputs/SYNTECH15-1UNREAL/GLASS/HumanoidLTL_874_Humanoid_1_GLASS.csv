@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution,NumVariables
+72d6341c-08fb-4d8e-ab65-686e27517c54,['(obstacle_0 -> (sYS_CONSTRAINT_0_respondsTo_responded -> (eNV_CONSTRAINT_1_respondsTo_responded -> (eNV_CONSTRAINT_2_respondsTo_responded -> (eNV_CONSTRAINT_3_respondsTo_responded -> (!pREV_aux_4 -> (!pREV_aux_5 -> (!pREV_aux_6 -> (!pREV_aux_7 -> (!pREV_aux_8 -> pREV_aux_9))))))))))'],True,11

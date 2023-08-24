@@ -1,0 +1,7 @@
+Id,UniqueRefinement,IsSolution,NumVariables
+44efed98-61da-4245-b3f7-9f48c6584b9d,"['G(F(!isReady -> !eNV_CONSTRAINT_0_respondsTo_responded))', 'G(F(!distSense_0 -> (!isReady -> !eNV_CONSTRAINT_0_respondsTo_responded)))']",True,3
+b13f82bc-6b19-4e87-8cd3-2048ec24c693,"['G(F(!distSense_0 -> (!isReady -> !eNV_CONSTRAINT_0_respondsTo_responded)))', 'G(distSense_0 -> (!isReady -> !eNV_CONSTRAINT_0_respondsTo_responded))']",True,3
+a3fd442f-bd67-4d5c-b12c-8ccb96ac8e32,"['G(F(distSense_0 -> (!isReady -> !eNV_CONSTRAINT_0_respondsTo_responded)))', 'G(!distSense_0 -> (!isReady -> !eNV_CONSTRAINT_0_respondsTo_responded))']",True,3
+73337094-e4e4-4e51-b97f-51c0d38759d4,"['G(distSense_0 -> (X(distSense_0) -> (!isReady -> (X(!(isReady)) -> (eNV_CONSTRAINT_0_respondsTo_responded -> X(!(eNV_CONSTRAINT_0_respondsTo_responded)))))))', 'G(!distSense_0 -> (!isReady -> !eNV_CONSTRAINT_0_respondsTo_responded))']",True,3
+3d14e006-3c5a-4ce5-be9a-a22fa5cd7f0c,"['G(F(!isReady -> !eNV_CONSTRAINT_0_respondsTo_responded))', 'G(!distSense_0 -> (X(!(distSense_0)) -> (!isReady -> (X(!(isReady)) -> (eNV_CONSTRAINT_0_respondsTo_responded -> X(!(eNV_CONSTRAINT_0_respondsTo_responded)))))))']",True,3
+83f155f1-5082-4fae-a699-66ebafc1c7d2,"['G(distSense_0 -> (!isReady -> !eNV_CONSTRAINT_0_respondsTo_responded))', 'G(!distSense_0 -> (X(!(distSense_0)) -> (!isReady -> (X(!(isReady)) -> (eNV_CONSTRAINT_0_respondsTo_responded -> X(!(eNV_CONSTRAINT_0_respondsTo_responded)))))))']",True,3

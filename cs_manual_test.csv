@@ -1,0 +1,14 @@
+Specification," States Before"," States After"
+ColorSortLTL3_689_ColorSort_fixed_unrealizable,,
+ColorSortLTLUnrealizable1_790_ColorSort_unrealizable,,
+ColorSortLTLUnrealizable2_791_ColorSort_unrealizable,,
+GyroUnrealizable_Var1_710_GyroAspect_unrealizable,3,10
+GyroUnrealizable_Var2_710_GyroAspect_unrealizable,39,84
+HumanoidLTL_458_Humanoid_fixed_unrealizable,8,-
+HumanoidLTL_503_Humanoid_fixed_unrealizable,15,-
+HumanoidLTL_531_Humanoid_unrealizable,1475,-
+HumanoidLTL_713_Humanoid_unrealizable,,
+HumanoidLTL_741_Humanoid_unrealizable,,
+HumanoidLTL_742_Humanoid_unrealizable,,
+HumanoidLTL_NotRealizable2_879_Humanoid_unrealizable,,
+HumanoidLTL_NotRealizable2_884_Humanoid_unrealizable,,

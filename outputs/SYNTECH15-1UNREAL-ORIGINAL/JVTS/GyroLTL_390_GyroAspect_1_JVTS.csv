@@ -1,11 +1,11 @@
-Id,UniqueRefinement,IsSolution
-25fecc09-0f29-46cf-b4e5-1060d6d07183,['G(F(distSense=BLOCKED -> (isReady -> balancer=FWD)))'],True
-509e864e-554a-4b13-bfee-a16501b15369,['G(distSense=BLOCKED -> (next(distSense)=BLOCKED -> (isReady -> (X(isReady) -> balancer=FWD))))'],True
-795688be-e4ba-4fa4-893c-1a6947406d19,['G(distSense=BLOCKED -> (isReady -> balancer!=FWD))'],True
-5f3fc2ca-4868-435c-9cf4-064122b7417c,['G(F(distSense=BLOCKED -> (isReady -> balancer=FWD)))'],True
-2b2e3bd3-ee10-45a0-a7b8-e0e10972706b,['G(distSense=BLOCKED -> (next(distSense)=BLOCKED -> (isReady -> (X(isReady) -> balancer=FWD))))'],True
-26eff7d3-6731-4956-8ea6-a102054888e2,['G(distSense=BLOCKED -> (isReady -> balancer!=FWD))'],True
-6c8863d6-3fb6-45df-994a-49187dcbcc2e,"['G(distSense=BLOCKED -> (next(distSense)=BLOCKED -> (!isReady -> (X(isReady) -> balancer!=STP))))', 'G(distSense=CLEAR -> (next(distSense)=BLOCKED -> (!isReady -> (X(isReady) -> balancer!=STP)) & (isReady -> (X(isReady) -> balancer!=FWD))))']",True
-7f66d174-a8da-4f4f-a174-f8d71b54af14,['G(F(distSense=BLOCKED -> (isReady -> balancer=FWD)))'],True
-2ceeeb4b-4eac-4c8b-ba25-1f008ac8eb93,['G(distSense=BLOCKED -> (isReady -> (X(isReady) -> balancer=FWD)))'],True
-3c5cef5b-a4c4-46d9-bec5-99cab03255e5,['G(distSense=CLEAR -> (isReady -> balancer=FWD)) & (distSense=BLOCKED -> (isReady -> balancer!=FWD))'],True
+Id,UniqueRefinement,IsSolution,NumVariables
+25fecc09-0f29-46cf-b4e5-1060d6d07183,['G(F(distSense=BLOCKED -> (isReady -> balancer=FWD)))'],True,5
+509e864e-554a-4b13-bfee-a16501b15369,['G(distSense=BLOCKED -> (next(distSense)=BLOCKED -> (isReady -> (X(isReady) -> balancer=FWD))))'],True,6
+795688be-e4ba-4fa4-893c-1a6947406d19,['G(distSense=BLOCKED -> (isReady -> balancer!=FWD))'],True,5
+5f3fc2ca-4868-435c-9cf4-064122b7417c,['G(F(distSense=BLOCKED -> (isReady -> balancer=FWD)))'],True,5
+2b2e3bd3-ee10-45a0-a7b8-e0e10972706b,['G(distSense=BLOCKED -> (next(distSense)=BLOCKED -> (isReady -> (X(isReady) -> balancer=FWD))))'],True,6
+26eff7d3-6731-4956-8ea6-a102054888e2,['G(distSense=BLOCKED -> (isReady -> balancer!=FWD))'],True,5
+6c8863d6-3fb6-45df-994a-49187dcbcc2e,"['G(distSense=BLOCKED -> (next(distSense)=BLOCKED -> (!isReady -> (X(isReady) -> balancer!=STP))))', 'G(distSense=CLEAR -> (next(distSense)=BLOCKED -> (!isReady -> (X(isReady) -> balancer!=STP)) & (isReady -> (X(isReady) -> balancer!=FWD))))']",True,7
+7f66d174-a8da-4f4f-a174-f8d71b54af14,['G(F(distSense=BLOCKED -> (isReady -> balancer=FWD)))'],True,5
+2ceeeb4b-4eac-4c8b-ba25-1f008ac8eb93,['G(distSense=BLOCKED -> (isReady -> (X(isReady) -> balancer=FWD)))'],True,5
+3c5cef5b-a4c4-46d9-bec5-99cab03255e5,['G(distSense=CLEAR -> (isReady -> balancer=FWD)) & (distSense=BLOCKED -> (isReady -> balancer!=FWD))'],True,6
