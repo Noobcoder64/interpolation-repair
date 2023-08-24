@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+1bced23b-1f80-4418-a915-be19d2a5e814,['G(F(!isReady -> (bluetoothCmd=AUTO -> balancer!=STP)))'],True

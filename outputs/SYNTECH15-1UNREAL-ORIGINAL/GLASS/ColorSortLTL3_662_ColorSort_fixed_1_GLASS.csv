@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+9cfbbf4a-550a-4da0-9aea-84e7b0155505,['(color!=BLACK &  (ack_ver=SLEEP &  ack_hor=SLEEP))'],True

@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+959a80b9-27ba-4c9a-80d2-d1756015b3f7,['G(F(!isReady -> balancer!=STP))'],True
