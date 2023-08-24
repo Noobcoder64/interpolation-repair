@@ -1,102 +1,144 @@
+// Initial file contents for AspectLTL aspect file (*.altl)
+module PCar
+		env {CLEAR, BLOCKED} obstacle ;
+		env {CLEAR,P_O, BLOCKED} sideSense;
+		env {NA,PARALLEL} parkResult;
+//		new emgButton: boolean;
+		sys {FWD, BWD, STOP} throttle ;
+		sys {RIGHT,LEFT, CENTER} steer ;
+		sys {START,STOP,CHECK} parkCommand ;
+		sys boolean spec_park;
+		sys {SEEKING,MEASURING,PARKING,PARKED} spec_policy;
 
-module PcarLTL_552_PCar_1
-
-env boolean obstacle_0;
-env boolean sideSense_0;
-env boolean sideSense_1;
-env boolean parkResult_0;
-
-sys boolean throttle_0;
-sys boolean throttle_1;
-sys boolean steer_0;
-sys boolean steer_1;
-sys boolean parkCommand_0;
-sys boolean parkCommand_1;
-sys boolean spec_park;
-sys boolean spec_policy_0;
-sys boolean spec_policy_1;
-
-env boolean sYS_CONSTRAINT_0_respondsTo_responded;
-env boolean eNV_CONSTRAINT_1_respondsTo_responded;
-
-assumption
-	 (!(parkResult_0));
-assumption
-	G (((throttle_0 & !(throttle_1)) -> (((obstacle_0 <-> next(obstacle_0)) & (sideSense_0 <-> next(sideSense_0))) & (sideSense_1 <-> next(sideSense_1)))));
-assumption
-	G (((!(spec_policy_0) & !(spec_policy_1)) -> !(parkResult_0)));
-assumption
-	GF (eNV_CONSTRAINT_1_respondsTo_responded);
-assumption
-	 (!((sideSense_0 & sideSense_1)));
-assumption
-	G (!((next(sideSense_0) & next(sideSense_1))));
+//LTLSPEC //initial state
+//	(throttle = STOP & steer= CENTER & spec_policy = SEEKING & parkCommand = STOP & !spec_park);
 
 guarantee
-	 (((!(spec_policy_0) & !(spec_policy_1)) & !(spec_park)));
+	spec_policy=SEEKING & !spec_park;
+
+guarantee//goal 
+  GF (spec_park);
+
 guarantee
-	GF (spec_park);
+	G(next(!spec_park) -> next(spec_policy != PARKED));
 guarantee
-	G ((!(next(spec_park)) -> (!(next(spec_policy_0)) | !(next(spec_policy_1)))));
+	G(next(spec_park) -> next(spec_policy = PARKED));	
+//LTLSPEC
+//	G F ( (throttle = FWD) & (steer = CENTER) );	
 guarantee
-	G ((next(spec_park) -> (next(spec_policy_0) & next(spec_policy_1))));
+  respondsTo(!(spec_policy=PARKED),!(throttle=STOP));
 guarantee
-	G ((((((!(spec_policy_0) & !(spec_policy_1)) & sideSense_0) & !(sideSense_1)) & !(obstacle_0)) -> (((((((!(next(spec_policy_0)) & !(next(spec_policy_1))) & !(throttle_0)) & !(throttle_1)) & !(parkCommand_0)) & parkCommand_1) & steer_0) & !(steer_1))));
+	G (((spec_policy=SEEKING|spec_policy=MEASURING)& obstacle = BLOCKED)->(throttle = BWD));
 guarantee
-	G (((((!(spec_policy_0) & !(spec_policy_1)) & sideSense_0) & !(sideSense_1)) -> (((((!(next(spec_policy_0)) & !(next(spec_policy_1))) & !(parkCommand_0)) & parkCommand_1) & steer_0) & !(steer_1))));
+	G (((spec_policy=PARKING|spec_policy=PARKED)& obstacle = BLOCKED)->!(throttle = FWD));
 guarantee
-	G ((((((!(spec_policy_0) & !(spec_policy_1)) & ((!(sideSense_0) & !(sideSense_1)) | (!(sideSense_0) & sideSense_1))) & !(obstacle_0)) & !(parkResult_0)) -> (((((((!(next(spec_policy_0)) & next(spec_policy_1)) & !(throttle_0)) & !(throttle_1)) & !(parkCommand_0)) & !(parkCommand_1)) & steer_0) & !(steer_1))));
+	G ((sideSense = BLOCKED) -> !(steer =RIGHT));
+//spec_policy state tarnsition restrictions
 guarantee
-	G ((((((!(spec_policy_0) & spec_policy_1) & ((!(sideSense_0) & !(sideSense_1)) | (!(sideSense_0) & sideSense_1))) & !(obstacle_0)) & !(parkResult_0)) -> (((((((!(next(spec_policy_0)) & next(spec_policy_1)) & !(throttle_0)) & !(throttle_1)) & parkCommand_0) & !(parkCommand_1)) & steer_0) & !(steer_1))));
+	G (((spec_policy = SEEKING) & (sideSense=BLOCKED) & (obstacle=CLEAR))
+		-> (next(spec_policy=SEEKING) & throttle=FWD & parkCommand=STOP &steer = CENTER) );
 guarantee
-	G ((((((!(spec_policy_0) & spec_policy_1) & ((!(sideSense_0) & !(sideSense_1)) | (!(sideSense_0) & sideSense_1))) & !(obstacle_0)) & parkResult_0) -> (((((((next(spec_policy_0) & !(next(spec_policy_1))) & throttle_0) & !(throttle_1)) & !(parkCommand_0)) & parkCommand_1) & steer_0) & !(steer_1))));
+	G (((spec_policy = SEEKING) & (sideSense=BLOCKED))
+		-> (next(spec_policy=SEEKING) & parkCommand=STOP &steer = CENTER) );
+
+
 guarantee
-	G (((((((!(spec_policy_0) & spec_policy_1) & sideSense_0) & !(sideSense_1)) & !(obstacle_0)) & parkResult_0) -> (((((next(spec_policy_0) & !(next(spec_policy_1))) & throttle_0) & !(throttle_1)) & !(parkCommand_0)) & parkCommand_1)));
+	G (((spec_policy = SEEKING) & (sideSense=CLEAR | sideSense = P_O) & (obstacle = CLEAR) &(parkResult =NA))
+		-> (next(spec_policy = MEASURING)&throttle=FWD & parkCommand=START & steer = CENTER));
 guarantee
-	G (((((((!(spec_policy_0) & spec_policy_1) & sideSense_0) & !(sideSense_1)) & !(obstacle_0)) & !(parkResult_0)) -> (((((!(next(spec_policy_0)) & !(next(spec_policy_1))) & !(throttle_0)) & !(throttle_1)) & !(parkCommand_0)) & parkCommand_1)));
+	G (((spec_policy = MEASURING) & (sideSense=CLEAR | sideSense = P_O)& (obstacle = CLEAR) &(parkResult =NA))
+		-> (next(spec_policy = MEASURING)&throttle=FWD & parkCommand=CHECK & steer = CENTER));
 guarantee
-	G (((spec_policy_0 & !(spec_policy_1)) -> (next(spec_policy_0) & next(spec_policy_1))));
+	G (((spec_policy = MEASURING) & (sideSense=CLEAR | sideSense = P_O)& (obstacle = CLEAR) &(parkResult =PARALLEL))
+		-> (next(spec_policy = PARKING) & (throttle = STOP) & (parkCommand = STOP) & steer = CENTER)
+	);
 guarantee
-	G (((spec_policy_0 & spec_policy_1) -> (((((((next(spec_policy_0) & next(spec_policy_1)) & throttle_0) & !(throttle_1)) & !(steer_0)) & steer_1) & !(parkCommand_0)) & parkCommand_1)));
+	G (((spec_policy = MEASURING) & (sideSense=BLOCKED) & (obstacle = CLEAR) & (parkResult =PARALLEL)) 
+		-> (next(spec_policy = PARKING) & (throttle = STOP) & (parkCommand = STOP))
+	);
 guarantee
-	G (((obstacle_0 & !(((spec_policy_0 & !(spec_policy_1)) | (spec_policy_0 & spec_policy_1)))) -> (!(next(spec_policy_0)) & !(next(spec_policy_1)))));
+	G (((spec_policy = MEASURING) & (sideSense=BLOCKED)& (obstacle = CLEAR) &(parkResult =NA))
+		-> (next(spec_policy = SEEKING) & (throttle = FWD) & (parkCommand = STOP))
+	);
 guarantee
-	GF (sYS_CONSTRAINT_0_respondsTo_responded);
+	G ( (spec_policy = PARKING) -> (next(spec_policy = PARKED)));
 guarantee
-	 (!((throttle_0 & throttle_1)));
+	G (((spec_policy = PARKED))
+		-> (next(spec_policy = PARKED) & (throttle = STOP) & (steer = LEFT) & (parkCommand = STOP))
+	);
 guarantee
-	G (!((next(throttle_0) & next(throttle_1))));
+	G(((obstacle=BLOCKED) &!(spec_policy=PARKING | spec_policy = PARKED))->(next(spec_policy = SEEKING)));
+	
 guarantee
-	 (!((steer_0 & steer_1)));
-guarantee
-	G (!((next(steer_0) & next(steer_1))));
-guarantee
-	 (!((parkCommand_0 & parkCommand_1)));
-guarantee
-	G (!((next(parkCommand_0) & next(parkCommand_1))));
-guarantee
-	 (((((!(spec_policy_0) & !(spec_policy_1)) | (!(spec_policy_0) & spec_policy_1)) & obstacle_0) -> (!(throttle_0) & throttle_1)));
-guarantee
-	G (((((!(next(spec_policy_0)) & !(next(spec_policy_1))) | (!(next(spec_policy_0)) & next(spec_policy_1))) & next(obstacle_0)) -> (!(next(throttle_0)) & next(throttle_1))));
-guarantee
-	 (((((spec_policy_0 & !(spec_policy_1)) | (spec_policy_0 & spec_policy_1)) & obstacle_0) -> !((!(throttle_0) & !(throttle_1)))));
-guarantee
-	G (((((next(spec_policy_0) & !(next(spec_policy_1))) | (next(spec_policy_0) & next(spec_policy_1))) & next(obstacle_0)) -> !((!(next(throttle_0)) & !(next(throttle_1))))));
-guarantee
-	 (((sideSense_0 & !(sideSense_1)) -> !((!(steer_0) & !(steer_1)))));
-guarantee
-	G (((next(sideSense_0) & !(next(sideSense_1))) -> !((!(next(steer_0)) & !(next(steer_1))))));
-guarantee
-	 ((obstacle_0 -> (!(parkCommand_0) & parkCommand_1)));
-guarantee
-	G ((next(obstacle_0) -> (!(next(parkCommand_0)) & next(parkCommand_1))));
+	G((obstacle=BLOCKED)->(parkCommand=STOP));
+
 
 assumption
-	 (sYS_CONSTRAINT_0_respondsTo_responded);
-assumption
-	G ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (!((throttle_0 & !(throttle_1))) | (sYS_CONSTRAINT_0_respondsTo_responded & !(!((spec_policy_0 & spec_policy_1)))))));
-assumption
-	 (eNV_CONSTRAINT_1_respondsTo_responded);
-assumption
-	G ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> (!(obstacle_0) | (eNV_CONSTRAINT_1_respondsTo_responded & !((!(throttle_0) & throttle_1))))));
+  respondsTo((throttle=BWD),(obstacle=CLEAR));
 
+assumption
+	G ((throttle=STOP)->((obstacle=next(obstacle))&(sideSense=next(sideSense))));
+
+assumption
+	G ((spec_policy = SEEKING) -> (parkResult = NA));
+assumption
+	parkResult = NA ;
+
+
+
+//LTLSPEC
+//	G ((spec_spec_park) ->F((obstacle = BLOCKED) & (sideSense = BLOCKED)));
+
+//LTLSPECENV
+//	G((!((spec_policy = spec_parkING) | (spec_policy = MEASURING) | (spec_policy = spec_parkED )) -> !next(spec_park) ));
+//
+//LTLSPECENV
+//	G((spec_park & (spec_policy = spec_parkED) -> next(spec_park)));
+
+//VAR -- auxiliary variables States of DBW
+//  new spec_b2f : { S0, S1, S2};
+//
+//LTLSPEC -- initial assignments: initial state
+//  spec_b2f=S0;
+//
+//LTLSPEC -- safety this and next spec_b2f
+//  G((spec_b2f=S0 & ((!(throttle = BWD) & !(throttle = STOP)) | 
+//  		(throttle = BWD & throttle = FWD) | 
+//  		(!(throttle = FWD) & throttle = STOP) | 
+//  		(!(throttle = BWD) & throttle = FWD & throttle = STOP)) & next(spec_b2f=S0)) |
+//  (spec_b2f=S0 & (throttle = BWD & !(throttle = FWD) & !(throttle = STOP)) & next(spec_b2f=S1)) |
+//  (spec_b2f=S1 & (!(throttle = FWD) & throttle = STOP) & next(spec_b2f=S0)) |
+//  (spec_b2f=S1 & (!(throttle = FWD) & !(throttle = STOP)) & next(spec_b2f=S1)) |
+//  (spec_b2f=S1 & (throttle = FWD) & next(spec_b2f=S2)) |
+//  (spec_b2f=S2 & TRUE & next(spec_b2f=S2)));
+//
+//LTLSPEC -- equivalence of satisfaction
+//  (G F (spec_b2f=S0 | spec_b2f=S1));
+//  
+//VAR -- auxiliary variables States of DBW
+//  new spec_f2b : { S0, S1, S2};
+//
+//LTLSPEC -- initial assignments: initial state
+//  spec_f2b=S0;
+//
+//LTLSPEC -- safety this and next spec_b2f
+//  G((spec_f2b=S0 & ((!(throttle = FWD) & !(throttle = STOP)) | 
+//  		(throttle = FWD & throttle = BWD) | 
+//  		(!(throttle = BWD) & throttle = STOP) | 
+//  		(!(throttle = FWD) & throttle = BWD & throttle = STOP)) & next(spec_f2b=S0)) |
+//  (spec_f2b=S0 & (throttle = FWD & !(throttle = BWD) & !(throttle = STOP)) & next(spec_f2b=S1)) |
+//  (spec_f2b=S1 & (!(throttle = BWD) & throttle = STOP) & next(spec_f2b=S0)) |
+//  (spec_f2b=S1 & (!(throttle = BWD) & !(throttle = STOP)) & next(spec_f2b=S1)) |
+//  (spec_f2b=S1 & (throttle = BWD) & next(spec_f2b=S2)) |
+//  (spec_f2b=S2 & TRUE & next(spec_f2b=S2)));
+//
+//LTLSPEC -- equivalence of satisfaction
+//  (G F (spec_f2b=S0 | spec_f2b=S1));
+//LTLSPECENV
+//	G (((throttle = FWD) & (steer=CENTER))  -> F!(sideSense = BLOCKED));
+pattern respondsTo(trigger, response) {
+  var boolean responded;
+  responded;
+  G (next(responded) iff (response or responded and !trigger));
+  GF (responded);
+}

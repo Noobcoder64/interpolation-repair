@@ -5,8 +5,8 @@ import concurrent.futures
 
 # List of input folders
 INPUT_FOLDERS = [
-    # "inputs/AMBA",
-    # "inputs/SYNTECH15-UNREAL",
+    "inputs/AMBA",
+    "inputs/SYNTECH15-UNREAL",
     "inputs/SYNTECH15-1UNREAL"
 ]
 
@@ -23,7 +23,7 @@ ALGORITHMS = [
 OUTPUT_PARENT_FOLDER = "outputs/"
 
 # Set the timeout
-TIMEOUT = 1
+TIMEOUT = 10
 
 
 def process_file(input_file, algorithm, output_folder, output_file):

@@ -1,0 +1,27 @@
+Id,UniqueRefinement,IsSolution
+9b593e47-1a3c-4e90-b8a0-11c405b31f63,['G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> balancer=FWD)))'],True
+051885e9-f187-40e4-b6e2-29619eeeef2d,['G(F(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> balancer!=FWD))))'],True
+796c478d-2728-4bec-b6f0-b6dfa5f4041b,['G(distSense=CLEAR -> (next(distSense)=CLEAR -> (isReady -> (X(isReady) -> (bluetoothCmd=AUTO -> (next(bluetoothCmd)=AUTO -> balancer!=FWD))))))'],True
+84b97be1-3d67-4549-8e41-ed50843ac891,['G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> balancer=FWD)))'],True
+f676c61a-36eb-4e87-90aa-f6456ff53940,['G(F(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> balancer!=FWD))))'],True
+5c006e23-f5a7-4b98-b6dd-a2d483de0c92,['G(distSense=CLEAR -> (next(distSense)=CLEAR -> (isReady -> (X(isReady) -> (bluetoothCmd=AUTO -> (next(bluetoothCmd)=AUTO -> balancer!=FWD))))))'],True
+53487717-4252-4e11-9ee1-06742595222f,['G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> balancer=FWD)))'],True
+59993b7d-0450-4dfa-8911-7b71362a4a9f,"['G(F(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=FELL -> balancer!=FWD)))))', 'G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=OK -> balancer=FWD))))']",True
+e6c9af19-861f-45bb-95fc-357a649ee7a9,"['G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=OK -> balancer=FWD))))', 'G(distSense=CLEAR -> (next(distSense)=CLEAR -> (isReady -> (X(isReady) -> (bluetoothCmd=AUTO -> (next(bluetoothCmd)=AUTO -> (balancerStatus=FELL -> (next(balancerStatus)=FELL -> balancer!=FWD))))))))']",True
+e75863a6-c8a6-46d1-8132-83d588a9fbc3,"['G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=OK -> balancer=FWD))))', 'G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=FELL -> balancer=FWD))))']",True
+a53596f6-5b12-4d78-a342-17a0212ec813,"['G(F(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=OK -> balancer!=FWD)))))', 'G(distSense=CLEAR -> (next(distSense)=CLEAR -> (!isReady -> (X(isReady) -> (bluetoothCmd=AUTO -> (next(bluetoothCmd)=AUTO -> (balancerStatus=OK -> balancer!=STP))))) & (isReady -> (X(isReady) -> (bluetoothCmd=AUTO -> (next(bluetoothCmd)=AUTO -> (balancerStatus=FELL -> balancer!=FWD)))))))']",True
+640a08cb-0bbe-4928-b6de-2f455b6e31ba,['G(F(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> balancer!=FWD))))'],True
+e315ae90-89b9-4303-bf26-7ec4115e94bb,['G(distSense=CLEAR -> (next(distSense)=CLEAR -> (isReady -> (X(isReady) -> (bluetoothCmd=AUTO -> (next(bluetoothCmd)=AUTO -> balancer!=FWD))))))'],True
+8f4c54c8-0c88-4ecc-a5a9-add74258770e,['G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> balancer=FWD)))'],True
+89a1f2d7-0987-49e3-a91f-6a74c2f504a1,"['G(F(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=FELL -> balancer!=FWD)))))', 'G(distSense=CLEAR -> (next(distSense)=CLEAR -> (isReady -> (X(isReady) -> (bluetoothCmd=AUTO -> (next(bluetoothCmd)=AUTO -> (balancerStatus=OK -> balancer!=FWD)))))))']",True
+1010b8dc-1261-4ffa-b3ab-094dd8899caf,"['G(distSense=CLEAR -> (next(distSense)=CLEAR -> (isReady -> (X(isReady) -> (bluetoothCmd=AUTO -> (next(bluetoothCmd)=AUTO -> (balancerStatus=OK -> balancer!=FWD)))))))', 'G(distSense=CLEAR -> (next(distSense)=CLEAR -> (isReady -> (X(isReady) -> (bluetoothCmd=AUTO -> (next(bluetoothCmd)=AUTO -> (balancerStatus=FELL -> (next(balancerStatus)=FELL -> balancer!=FWD))))))))']",True
+4a577a6b-500f-4d8d-a97a-4b4be166fa41,"['G(distSense=CLEAR -> (next(distSense)=CLEAR -> (isReady -> (X(isReady) -> (bluetoothCmd=AUTO -> (next(bluetoothCmd)=AUTO -> (balancerStatus=OK -> balancer!=FWD)))))))', 'G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=FELL -> balancer=FWD))))']",True
+18e04412-3056-4c44-8b53-bf6798bdf83c,['G(F(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> balancer!=FWD))))'],True
+ca80827d-d983-4106-a7e2-3cc7ab9d5962,['G(distSense=CLEAR -> (next(distSense)=CLEAR -> (isReady -> (X(isReady) -> (bluetoothCmd=AUTO -> (next(bluetoothCmd)=AUTO -> balancer!=FWD))))))'],True
+7285af3e-c4de-4dfe-a167-617b19e73634,['G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> balancer=FWD)))'],True
+e872cc5e-5e26-4cf2-83ae-870ea861b472,['G(F(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> balancer!=FWD))))'],True
+13de92ab-88d8-4efc-9e2f-7d2db4a677ef,['G(distSense=CLEAR -> (next(distSense)=CLEAR -> (isReady -> (X(isReady) -> (bluetoothCmd=AUTO -> (next(bluetoothCmd)=AUTO -> balancer!=FWD))))))'],True
+e0d8a3cd-5f4d-4a2f-adf0-9d88e7644f75,['G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> balancer=FWD)))'],True
+f7657d64-1f6b-48eb-b6f4-44bb6e865953,"['G(F(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=FELL -> balancer!=FWD)))))', 'G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=OK -> balancer=FWD))))']",True
+3de6439d-c508-409e-b91d-19e94f4bb84f,"['G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=OK -> balancer=FWD))))', 'G(distSense=CLEAR -> (next(distSense)=CLEAR -> (isReady -> (X(isReady) -> (bluetoothCmd=AUTO -> (next(bluetoothCmd)=AUTO -> (balancerStatus=FELL -> (next(balancerStatus)=FELL -> balancer!=FWD))))))))']",True
+fb7fe590-4a91-4b88-9cfd-18f3dc127b6d,"['G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=OK -> balancer=FWD))))', 'G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancerStatus=FELL -> balancer=FWD))))']",True

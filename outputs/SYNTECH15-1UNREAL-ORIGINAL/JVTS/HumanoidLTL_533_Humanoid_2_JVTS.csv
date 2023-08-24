@@ -1,0 +1,3 @@
+Id,UniqueRefinement,IsSolution
+1e7b1470-c818-471c-ab49-485ee268f16f,['G(F(LeftMotor=FWD -> (RightMotor=TURN_FWD -> (nextMoveMode=TURN_LEFT_2 -> state!=Q0))) & (LeftMotor=BWD -> (RightMotor=TURN_BWD -> (nextMoveMode=TURN_LEFT_1 -> state=Q3))))'],True
+eba59374-c0fe-44db-99de-aaded38ce207,['G(F(LeftMotor=FWD -> (RightMotor=TURN_FWD -> (nextMoveMode=TURN_LEFT_2 -> state!=Q0))) & (LeftMotor=BWD -> (RightMotor=TURN_BWD -> (nextMoveMode=TURN_LEFT_1 -> state=Q3))))'],True

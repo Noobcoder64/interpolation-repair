@@ -1,123 +1,67 @@
+module Humanoid
+		env {CLEAR, BLOCKED} Obstacle ;
+		env {FWD, BWD, TURN_LEFT_1, TURN_LEFT_2, DANCE} InputMoveMode ;
+		env {FREE, PRESSED} Button ;
+		sys {FWD, BWD, STOP, TURN_FWD, TURN_BWD, CALIB_TURN, CALIB_FWD, DANCE} LeftMotor ;
+		sys {FWD, BWD, STOP, TURN_FWD, TURN_BWD, CALIB_TURN, CALIB_FWD, DANCE} RightMotor ;
+		sys {FWD, BWD, STOP, DANCE} HeadMotor ;
+		sys {FWD, BWD, TURN_LEFT_1, TURN_LEFT_2, DANCE} OutputMoveMode ;
 
-module HumanoidLTL_462_Humanoid_1
+guarantee 
+	G((InputMoveMode = FWD & Obstacle = BLOCKED) -> (OutputMoveMode = TURN_LEFT_1 & LeftMotor = CALIB_TURN & RightMotor = CALIB_TURN));
 
-env boolean obstacle_0;
-env boolean inputMoveMode_0;
-env boolean inputMoveMode_1;
-env boolean inputMoveMode_2;
-env boolean button_0;
+guarantee 
+	G((InputMoveMode = BWD & Obstacle = CLEAR) -> ((OutputMoveMode = FWD & LeftMotor = FWD & RightMotor = BWD)));
 
-sys boolean leftMotor_0;
-sys boolean leftMotor_1;
-sys boolean leftMotor_2;
-sys boolean rightMotor_0;
-sys boolean rightMotor_1;
-sys boolean rightMotor_2;
-sys boolean headMotor_0;
-sys boolean headMotor_1;
-sys boolean outputMoveMode_0;
-sys boolean outputMoveMode_1;
-sys boolean outputMoveMode_2;
-
-env boolean pREV_aux_0;
-env boolean pREV_aux_1;
-
-assumption
-	 (!(((inputMoveMode_0 & !(inputMoveMode_1)) & inputMoveMode_2)));
-assumption
-	G (!(((next(inputMoveMode_0) & !(next(inputMoveMode_1))) & next(inputMoveMode_2))));
-assumption
-	 (!(((inputMoveMode_0 & inputMoveMode_1) & !(inputMoveMode_2))));
-assumption
-	G (!(((next(inputMoveMode_0) & next(inputMoveMode_1)) & !(next(inputMoveMode_2)))));
-assumption
-	 (!(((inputMoveMode_0 & inputMoveMode_1) & inputMoveMode_2)));
-assumption
-	G (!(((next(inputMoveMode_0) & next(inputMoveMode_1)) & next(inputMoveMode_2))));
+--LTLSPEC
+	--G  ((InputMoveMode = FWD & Obstacle = CLEAR) -> (LeftMotor = FWD & RightMotor = FWD));
 
 guarantee
-	 (!(((outputMoveMode_0 & !(outputMoveMode_1)) & outputMoveMode_2)));
-guarantee
-	G (!(((next(outputMoveMode_0) & !(next(outputMoveMode_1))) & next(outputMoveMode_2))));
-guarantee
-	 (!(((outputMoveMode_0 & outputMoveMode_1) & !(outputMoveMode_2))));
-guarantee
-	G (!(((next(outputMoveMode_0) & next(outputMoveMode_1)) & !(next(outputMoveMode_2)))));
-guarantee
-	 (!(((outputMoveMode_0 & outputMoveMode_1) & outputMoveMode_2)));
-guarantee
-	G (!(((next(outputMoveMode_0) & next(outputMoveMode_1)) & next(outputMoveMode_2))));
-guarantee
-	 (((((!(inputMoveMode_0) & !(inputMoveMode_1)) & !(inputMoveMode_2)) & obstacle_0) -> ((((((((!(outputMoveMode_0) & outputMoveMode_1) & !(outputMoveMode_2)) & leftMotor_0) & !(leftMotor_1)) & leftMotor_2) & rightMotor_0) & !(rightMotor_1)) & rightMotor_2)));
-guarantee
-	G (((((!(next(inputMoveMode_0)) & !(next(inputMoveMode_1))) & !(next(inputMoveMode_2))) & next(obstacle_0)) -> ((((((((!(next(outputMoveMode_0)) & next(outputMoveMode_1)) & !(next(outputMoveMode_2))) & next(leftMotor_0)) & !(next(leftMotor_1))) & next(leftMotor_2)) & next(rightMotor_0)) & !(next(rightMotor_1))) & next(rightMotor_2))));
-guarantee
-	 (((((!(inputMoveMode_0) & !(inputMoveMode_1)) & inputMoveMode_2) & !(obstacle_0)) -> ((((((((!(outputMoveMode_0) & !(outputMoveMode_1)) & !(outputMoveMode_2)) & !(leftMotor_0)) & !(leftMotor_1)) & !(leftMotor_2)) & !(rightMotor_0)) & !(rightMotor_1)) & rightMotor_2)));
-guarantee
-	G (((((!(next(inputMoveMode_0)) & !(next(inputMoveMode_1))) & next(inputMoveMode_2)) & !(next(obstacle_0))) -> ((((((((!(next(outputMoveMode_0)) & !(next(outputMoveMode_1))) & !(next(outputMoveMode_2))) & !(next(leftMotor_0))) & !(next(leftMotor_1))) & !(next(leftMotor_2))) & !(next(rightMotor_0))) & !(next(rightMotor_1))) & next(rightMotor_2))));
-guarantee
-	 ((((((!(inputMoveMode_0) & !(inputMoveMode_1)) & !(inputMoveMode_2)) & !(button_0)) & pREV_aux_0) -> (((((leftMotor_0 & leftMotor_1) & !(leftMotor_2)) & rightMotor_0) & rightMotor_1) & !(rightMotor_2))));
-guarantee
-	G ((((((!(next(inputMoveMode_0)) & !(next(inputMoveMode_1))) & !(next(inputMoveMode_2))) & !(next(button_0))) & next(pREV_aux_0)) -> (((((next(leftMotor_0) & next(leftMotor_1)) & !(next(leftMotor_2))) & next(rightMotor_0)) & next(rightMotor_1)) & !(next(rightMotor_2)))));
-guarantee
-	 (((((((!(inputMoveMode_0) & !(inputMoveMode_1)) & !(inputMoveMode_2)) & !(obstacle_0)) & !(button_0)) & pREV_aux_1) -> (((((!(leftMotor_0) & !(leftMotor_1)) & !(leftMotor_2)) & !(rightMotor_0)) & !(rightMotor_1)) & !(rightMotor_2))));
-guarantee
-	G (((((((!(next(inputMoveMode_0)) & !(next(inputMoveMode_1))) & !(next(inputMoveMode_2))) & !(next(obstacle_0))) & !(next(button_0))) & next(pREV_aux_1)) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & !(next(leftMotor_2))) & !(next(rightMotor_0))) & !(next(rightMotor_1))) & !(next(rightMotor_2)))));
-guarantee
-	 ((obstacle_0 -> !(((!(outputMoveMode_0) & !(outputMoveMode_1)) & !(outputMoveMode_2)))));
-guarantee
-	G ((next(obstacle_0) -> !(((!(next(outputMoveMode_0)) & !(next(outputMoveMode_1))) & !(next(outputMoveMode_2))))));
-guarantee
-	 ((((!(inputMoveMode_0) & inputMoveMode_1) & !(inputMoveMode_2)) <-> ((!(outputMoveMode_0) & outputMoveMode_1) & outputMoveMode_2)));
-guarantee
-	G ((((!(next(inputMoveMode_0)) & next(inputMoveMode_1)) & !(next(inputMoveMode_2))) <-> ((!(next(outputMoveMode_0)) & next(outputMoveMode_1)) & next(outputMoveMode_2))));
-guarantee
-	 ((((!(inputMoveMode_0) & inputMoveMode_1) & !(inputMoveMode_2)) -> (((((!(leftMotor_0) & !(leftMotor_1)) & !(leftMotor_2)) & !(rightMotor_0)) & rightMotor_1) & rightMotor_2)));
-guarantee
-	G ((((!(next(inputMoveMode_0)) & next(inputMoveMode_1)) & !(next(inputMoveMode_2))) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & !(next(leftMotor_2))) & !(next(rightMotor_0))) & next(rightMotor_1)) & next(rightMotor_2))));
-guarantee
-	 ((((!(inputMoveMode_0) & inputMoveMode_1) & inputMoveMode_2) -> (((((!(leftMotor_0) & !(leftMotor_1)) & leftMotor_2) & rightMotor_0) & !(rightMotor_1)) & !(rightMotor_2))));
-guarantee
-	G ((((!(next(inputMoveMode_0)) & next(inputMoveMode_1)) & next(inputMoveMode_2)) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & next(leftMotor_2)) & next(rightMotor_0)) & !(next(rightMotor_1))) & !(next(rightMotor_2)))));
-guarantee
-	 ((!((((!(inputMoveMode_0) & inputMoveMode_1) & !(inputMoveMode_2)) | ((!(inputMoveMode_0) & inputMoveMode_1) & inputMoveMode_2))) -> !(((((leftMotor_0 & !(leftMotor_1)) & !(leftMotor_2)) | ((rightMotor_0 & !(rightMotor_1)) & !(rightMotor_2))) | (((((!(leftMotor_0) & leftMotor_1) & leftMotor_2) & !(rightMotor_0)) & rightMotor_1) & rightMotor_2)))));
-guarantee
-	G ((!((((!(next(inputMoveMode_0)) & next(inputMoveMode_1)) & !(next(inputMoveMode_2))) | ((!(next(inputMoveMode_0)) & next(inputMoveMode_1)) & next(inputMoveMode_2)))) -> !(((((next(leftMotor_0) & !(next(leftMotor_1))) & !(next(leftMotor_2))) | ((next(rightMotor_0) & !(next(rightMotor_1))) & !(next(rightMotor_2)))) | (((((!(next(leftMotor_0)) & next(leftMotor_1)) & next(leftMotor_2)) & !(next(rightMotor_0))) & next(rightMotor_1)) & next(rightMotor_2))))));
-guarantee
-	 (((((!(inputMoveMode_0) & inputMoveMode_1) & !(inputMoveMode_2)) | ((!(inputMoveMode_0) & inputMoveMode_1) & inputMoveMode_2)) -> (headMotor_0 & !(headMotor_1))));
-guarantee
-	G (((((!(next(inputMoveMode_0)) & next(inputMoveMode_1)) & !(next(inputMoveMode_2))) | ((!(next(inputMoveMode_0)) & next(inputMoveMode_1)) & next(inputMoveMode_2))) -> (next(headMotor_0) & !(next(headMotor_1)))));
-guarantee
-	 (((((!(inputMoveMode_0) & inputMoveMode_1) & inputMoveMode_2) & !(obstacle_0)) -> ((!(outputMoveMode_0) & !(outputMoveMode_1)) & !(outputMoveMode_2))));
-guarantee
-	G (((((!(next(inputMoveMode_0)) & next(inputMoveMode_1)) & next(inputMoveMode_2)) & !(next(obstacle_0))) -> ((!(next(outputMoveMode_0)) & !(next(outputMoveMode_1))) & !(next(outputMoveMode_2)))));
-guarantee
-	 (((((((inputMoveMode_0 & !(inputMoveMode_1)) & !(inputMoveMode_2)) & outputMoveMode_0) & !(outputMoveMode_1)) & !(outputMoveMode_2)) -> (((((((!(rightMotor_0) & rightMotor_1) & !(rightMotor_2)) & leftMotor_0) & leftMotor_1) & leftMotor_2) & headMotor_0) & headMotor_1)));
-guarantee
-	G (((((((next(inputMoveMode_0) & !(next(inputMoveMode_1))) & !(next(inputMoveMode_2))) & next(outputMoveMode_0)) & !(next(outputMoveMode_1))) & !(next(outputMoveMode_2))) -> (((((((!(next(rightMotor_0)) & next(rightMotor_1)) & !(next(rightMotor_2))) & next(leftMotor_0)) & next(leftMotor_1)) & next(leftMotor_2)) & next(headMotor_0)) & next(headMotor_1))));
-guarantee
-	 ((!(button_0) -> ((((outputMoveMode_0 <-> inputMoveMode_0) & (outputMoveMode_1 <-> inputMoveMode_1)) & (outputMoveMode_2 <-> inputMoveMode_2)) | ((!(inputMoveMode_0) | inputMoveMode_1) | inputMoveMode_2))));
-guarantee
-	G ((!(next(button_0)) -> ((((next(outputMoveMode_0) <-> next(inputMoveMode_0)) & (next(outputMoveMode_1) <-> next(inputMoveMode_1))) & (next(outputMoveMode_2) <-> next(inputMoveMode_2))) | ((!(next(inputMoveMode_0)) | next(inputMoveMode_1)) | next(inputMoveMode_2)))));
-guarantee
-	 ((((((button_0 & !(inputMoveMode_0)) & !(inputMoveMode_1)) & !(inputMoveMode_2)) & !(obstacle_0)) -> ((((((((outputMoveMode_0 & !(outputMoveMode_1)) & !(outputMoveMode_2)) & leftMotor_0) & !(leftMotor_1)) & leftMotor_2) & rightMotor_0) & !(rightMotor_1)) & rightMotor_2)));
-guarantee
-	G ((((((next(button_0) & !(next(inputMoveMode_0))) & !(next(inputMoveMode_1))) & !(next(inputMoveMode_2))) & !(next(obstacle_0))) -> ((((((((next(outputMoveMode_0) & !(next(outputMoveMode_1))) & !(next(outputMoveMode_2))) & next(leftMotor_0)) & !(next(leftMotor_1))) & next(leftMotor_2)) & next(rightMotor_0)) & !(next(rightMotor_1))) & next(rightMotor_2))));
-guarantee
-	 ((((((button_0 & inputMoveMode_0) & !(inputMoveMode_1)) & !(inputMoveMode_2)) & !(obstacle_0)) -> ((((((((!(outputMoveMode_0) & !(outputMoveMode_1)) & !(outputMoveMode_2)) & leftMotor_0) & leftMotor_1) & !(leftMotor_2)) & rightMotor_0) & rightMotor_1) & !(rightMotor_2))));
-guarantee
-	G ((((((next(button_0) & next(inputMoveMode_0)) & !(next(inputMoveMode_1))) & !(next(inputMoveMode_2))) & !(next(obstacle_0))) -> ((((((((!(next(outputMoveMode_0)) & !(next(outputMoveMode_1))) & !(next(outputMoveMode_2))) & next(leftMotor_0)) & next(leftMotor_1)) & !(next(leftMotor_2))) & next(rightMotor_0)) & next(rightMotor_1)) & !(next(rightMotor_2)))));
-guarantee
-	 ((!((button_0 | ((inputMoveMode_0 & !(inputMoveMode_1)) & !(inputMoveMode_2)))) -> !(((outputMoveMode_0 & !(outputMoveMode_1)) & !(outputMoveMode_2)))));
-guarantee
-	G ((!((next(button_0) | ((next(inputMoveMode_0) & !(next(inputMoveMode_1))) & !(next(inputMoveMode_2))))) -> !(((next(outputMoveMode_0) & !(next(outputMoveMode_1))) & !(next(outputMoveMode_2))))));
+	G  ((InputMoveMode = FWD & Button = FREE & Y (InputMoveMode = TURN_LEFT_2)) -> (LeftMotor = CALIB_FWD & RightMotor = CALIB_FWD));
 
-assumption
-	 (!(pREV_aux_0));
-assumption
-	G ((next(pREV_aux_0) <-> ((!(inputMoveMode_0) & inputMoveMode_1) & inputMoveMode_2)));
-assumption
-	 (!(pREV_aux_1));
-assumption
-	G ((next(pREV_aux_1) <-> ((inputMoveMode_0 | !(inputMoveMode_1)) | !(inputMoveMode_2))));
+guarantee
+	G  ((InputMoveMode = FWD & Obstacle = CLEAR & Button = FREE & Y (InputMoveMode != TURN_LEFT_2)) -> (LeftMotor = FWD & RightMotor = FWD));
 
+guarantee
+	G ((Obstacle = BLOCKED) -> !(OutputMoveMode = FWD));
+////////////////////////////	
+
+guarantee//for turning sequence (step 1 and then 2
+	G ((InputMoveMode = TURN_LEFT_1) <-> (OutputMoveMode = TURN_LEFT_2));
+
+guarantee
+	G ((InputMoveMode = TURN_LEFT_1) -> (LeftMotor = FWD & RightMotor = TURN_FWD));
+	
+guarantee
+	G ((InputMoveMode = TURN_LEFT_2) -> (LeftMotor = BWD & RightMotor = TURN_BWD));
+	
+guarantee
+	G (!(InputMoveMode = TURN_LEFT_1 | InputMoveMode = TURN_LEFT_2) -> !(LeftMotor = TURN_BWD | RightMotor = TURN_BWD |LeftMotor = TURN_FWD & RightMotor = TURN_FWD));
+	
+guarantee
+	G ((InputMoveMode = TURN_LEFT_1 | InputMoveMode = TURN_LEFT_2) -> (HeadMotor = STOP));
+	
+--LTLSPEC
+	--G ((InputMoveMode = TURN_LEFT_2 & OutputMoveMode != TURN_LEFT_1) -> (LeftMotor = CALIB_FWD & RightMotor = CALIB_FWD));
+
+guarantee
+	G  ((InputMoveMode = TURN_LEFT_2 & Obstacle = CLEAR) -> (OutputMoveMode = FWD));
+
+--DANCING
+guarantee
+	G ((InputMoveMode = DANCE & OutputMoveMode = DANCE) -> (RightMotor = STOP & LeftMotor = DANCE & HeadMotor = DANCE));
+
+guarantee
+	G ((Button = FREE) -> (OutputMoveMode = InputMoveMode | InputMoveMode != DANCE));	
+	
+guarantee
+	G ((Button = PRESSED & InputMoveMode = FWD & Obstacle = CLEAR) -> (OutputMoveMode = DANCE  & LeftMotor = CALIB_TURN & RightMotor = CALIB_TURN));
+
+guarantee
+	G ((Button = PRESSED & InputMoveMode = DANCE & Obstacle = CLEAR) -> OutputMoveMode = FWD  & LeftMotor = CALIB_FWD & RightMotor = CALIB_FWD);
+
+guarantee
+	G (!(Button = PRESSED | InputMoveMode = DANCE) -> !(OutputMoveMode = DANCE));
+
+--LTLSPECENV
+	--G((InputMoveMode = TURN_LEFT_2 & Obstacle = CLEAR) -> next(Obstacle = CLEAR));

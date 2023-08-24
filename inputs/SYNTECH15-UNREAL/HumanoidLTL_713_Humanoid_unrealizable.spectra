@@ -1,158 +1,157 @@
+module Humanoid
+		env {CLEAR, BLOCKED} Obstacle ;
+		env {QUIET, NOISE} Noise ;
+		env {N,NW,W,SW,SO,SE,EA,NE} Heading;
+		env {FREE, PRESSED} Button ;
+		sys {FWD, BWD, STOP, TURN_FWD, TURN_BWD, CALIB_TURN, CALIB_FWD} LeftMotor ;
+		sys {FWD, BWD, STOP, TURN_FWD, TURN_BWD, CALIB_TURN, CALIB_FWD} RightMotor ;
+		sys {FWD, BWD, STOP} HeadMotor ;
+		sys {FWD, BWD, TURN_LEFT_1, TURN_LEFT_2} spec_nextMoveMode ;
+		sys {Q0,Q1,Q2,Q3} spec_state ;
+		sys {M0,M1} spec_search ;
+		sys {N,NW,W,SW,SO,SE,EA,NE} next_head ;
+		
+//to prevant robot from going FWD<-->BWD indefinitely 
+//////////////////////////////////////////////
+guarantee
+	spec_search = M0 & next_head = N;
+	
+guarantee 
+	G((spec_state = Q0 & spec_nextMoveMode = FWD & next(spec_nextMoveMode = BWD)) -> next(spec_state = Q1));
 
-module HumanoidLTL_713_Humanoid_unrealizable
+guarantee 
+	G((spec_state = Q1 & spec_nextMoveMode = BWD & next(spec_nextMoveMode = FWD)) -> next(spec_state = Q2));
+	
+guarantee
+	G(!(spec_state = Q2 & spec_nextMoveMode = FWD & next(spec_nextMoveMode = BWD)));
 
-env boolean obstacle_0;
-env boolean noise_0;
-env boolean heading_0;
-env boolean heading_1;
-env boolean heading_2;
-env boolean button_0;
+guarantee 
+	G((spec_state = Q1 & next(spec_nextMoveMode = BWD)) -> (next(spec_state = Q1)));
 
-sys boolean leftMotor_0;
-sys boolean leftMotor_1;
-sys boolean leftMotor_2;
-sys boolean rightMotor_0;
-sys boolean rightMotor_1;
-sys boolean rightMotor_2;
-sys boolean headMotor_0;
-sys boolean headMotor_1;
-sys boolean spec_nextMoveMode_0;
-sys boolean spec_nextMoveMode_1;
-sys boolean spec_state_0;
-sys boolean spec_state_1;
-sys boolean spec_search_0;
-sys boolean next_head_0;
-sys boolean next_head_1;
-sys boolean next_head_2;
+guarantee 
+	G((spec_state = Q2 & next(spec_nextMoveMode = FWD)) -> (next(spec_state = Q2)));
+	
+guarantee
+	G(( (spec_nextMoveMode = TURN_LEFT_1) | (spec_nextMoveMode = TURN_LEFT_1)) -> next(spec_state = Q0));
+	
+//turn to degree
+/*LTLSPEC
+	G ((Noise = NOISE & Heading = LOST) -> next(spec_search = M1));
+	
+LTLSPEC
+	G ((Heading = LOST & spec_search = M1) -> next(spec_search = M1));
 
-env boolean eNV_CONSTRAINT_0_respondsTo_responded;
-env boolean eNV_CONSTRAINT_1_respondsTo_responded;
-env boolean pREV_aux_2;
-env boolean pREV_aux_3;
-env boolean pREV_aux_4;
-env boolean pREV_aux_5;
-env boolean pREV_aux_6;
+LTLSPEC
+	G ((Heading = ONTRACK | (Noise = QUIET & spec_search = M0)) -> next(spec_search = M0));
 
-assumption
-	GF ((pREV_aux_2 & !(obstacle_0)));
-assumption
-	G (((((!(spec_nextMoveMode_0) & !(spec_nextMoveMode_1)) | (!(spec_nextMoveMode_0) & spec_nextMoveMode_1)) & (((heading_0 <-> !(next_head_0)) | (heading_1 <-> !(next_head_1))) | (heading_2 <-> !(next_head_2)))) -> (((next(heading_0) <-> !(next(next_head_0))) | (next(heading_1) <-> !(next(next_head_1)))) | (next(heading_2) <-> !(next(next_head_2))))));
-assumption
-	G ((((!(spec_nextMoveMode_0) & spec_nextMoveMode_1) & !(obstacle_0)) -> !(next(obstacle_0))));
-assumption
-	GF (eNV_CONSTRAINT_0_respondsTo_responded);
-assumption
-	GF (eNV_CONSTRAINT_1_respondsTo_responded);
+
+//////////////////////////////////////////////
+LTLSPEC
+	G((spec_search = M1) -> ( spec_nextMoveMode = TURN_LEFT_1  | spec_nextMoveMode = TURN_LEFT_2));
+*/
+
+
 
 guarantee
-	 ((((!(spec_search_0) & !(next_head_0)) & !(next_head_1)) & !(next_head_2)));
+	G(HeadMotor = STOP); 
+
+guarantee 
+	G ((Button = PRESSED) -> (next_head = Heading));
+
+guarantee 
+	G ((spec_search = M0 & spec_nextMoveMode = FWD & Noise = NOISE & Heading != next_head) -> 
+		(next(spec_search = M1)));
+
 guarantee
-	G ((headMotor_0 & !(headMotor_1)));
+	G((spec_search = M1 & Heading = next_head) -> next(spec_search = M0));
+///// Search automaton, need to remove if possible
+/*
+LTLSPEC
+	G((spec_search = M1) -> next(spec_search = M2) & next(spec_nextMoveMode = TURN_LEFT_1));
+	
+LTLSPEC
+	G((spec_search = M2 & Heading != next_head) -> 
+		(next(spec_search = M2) & (spec_nextMoveMode = TURN_LEFT_1 | spec_nextMoveMode = TURN_LEFT_2)));
+
+*/
+////////
+	
 guarantee
-	GF ((!(spec_nextMoveMode_0) & !(spec_nextMoveMode_1)));
+	G(((Obstacle = BLOCKED) & !(Y(Y(spec_nextMoveMode = TURN_LEFT_2)))) -> (!(spec_nextMoveMode = FWD)));
+	
 guarantee
-	G ((((((!(spec_state_0) & !(spec_state_1)) & !(spec_nextMoveMode_0)) & !(spec_nextMoveMode_1)) & (!(next(spec_nextMoveMode_0)) & next(spec_nextMoveMode_1))) -> (!(next(spec_state_0)) & next(spec_state_1))));
+	G((Y(spec_nextMoveMode = BWD) & (spec_nextMoveMode = FWD)) <-> (LeftMotor = FWD & RightMotor = BWD));
+
 guarantee
-	G ((((((!(spec_state_0) & spec_state_1) & !(spec_nextMoveMode_0)) & spec_nextMoveMode_1) & (!(next(spec_nextMoveMode_0)) & !(next(spec_nextMoveMode_1)))) -> (next(spec_state_0) & !(next(spec_state_1)))));
+	G((Y(spec_nextMoveMode = FWD) & (spec_nextMoveMode = BWD)) <-> (LeftMotor = BWD & RightMotor = FWD));
+	
 guarantee
-	G (!(((((spec_state_0 & !(spec_state_1)) & !(spec_nextMoveMode_0)) & !(spec_nextMoveMode_1)) & (!(next(spec_nextMoveMode_0)) & next(spec_nextMoveMode_1)))));
+  GF (spec_nextMoveMode=FWD);
+	
+//LTLSPEC
+	//G ((spec_nextMoveMode = TURN_LEFT_2 & Obstacle = BLOCKED) -> next(spec_nextMoveMode = TURN_LEFT_1));
+//calibrate before turn
+
+//// Some technical limitations on the movement
+//
+// Turn movement is an atomic movement of 2 steps, turn_left_1 to turn_left_2, can't do 1 without doing 2 right after, and 2 can come only after 1
+// Starting to turn and stoping needs a calibration from FWD movement
+
 guarantee
-	G ((((!(spec_state_0) & spec_state_1) & (!(next(spec_nextMoveMode_0)) & next(spec_nextMoveMode_1))) -> (!(next(spec_state_0)) & next(spec_state_1))));
+	G (Y(spec_nextMoveMode = TURN_LEFT_1) -> (LeftMotor = FWD & RightMotor = TURN_FWD));
+	
 guarantee
-	G ((((spec_state_0 & !(spec_state_1)) & (!(next(spec_nextMoveMode_0)) & !(next(spec_nextMoveMode_1)))) -> (next(spec_state_0) & !(next(spec_state_1)))));
+	G (Y(spec_nextMoveMode = TURN_LEFT_2) -> (LeftMotor = BWD & RightMotor = TURN_BWD));
+	
 guarantee
-	G ((((spec_nextMoveMode_0 & !(spec_nextMoveMode_1)) | (spec_nextMoveMode_0 & !(spec_nextMoveMode_1))) -> (!(next(spec_state_0)) & !(next(spec_state_1)))));
-guarantee
-	G ((((((!(spec_search_0) & !(spec_nextMoveMode_0)) & !(spec_nextMoveMode_1)) & noise_0) & (((heading_0 <-> !(next_head_0)) | (heading_1 <-> !(next_head_1))) | (heading_2 <-> !(next_head_2)))) -> next(spec_search_0)));
-guarantee
-	G (((((spec_search_0 & (heading_0 <-> next_head_0)) & (heading_1 <-> next_head_1)) & (heading_2 <-> next_head_2)) -> !(next(spec_search_0))));
-guarantee
-	 (!(((leftMotor_0 & leftMotor_1) & leftMotor_2)));
-guarantee
-	G (!(((next(leftMotor_0) & next(leftMotor_1)) & next(leftMotor_2))));
-guarantee
-	 (!(((rightMotor_0 & rightMotor_1) & rightMotor_2)));
-guarantee
-	G (!(((next(rightMotor_0) & next(rightMotor_1)) & next(rightMotor_2))));
-guarantee
-	 (!((headMotor_0 & headMotor_1)));
-guarantee
-	G (!((next(headMotor_0) & next(headMotor_1))));
-guarantee
-	 ((button_0 -> (((next_head_0 <-> heading_0) & (next_head_1 <-> heading_1)) & (next_head_2 <-> heading_2))));
-guarantee
-	G ((next(button_0) -> (((next(next_head_0) <-> next(heading_0)) & (next(next_head_1) <-> next(heading_1))) & (next(next_head_2) <-> next(heading_2)))));
-guarantee
-	 (((obstacle_0 & !(pREV_aux_3)) -> !((!(spec_nextMoveMode_0) & !(spec_nextMoveMode_1)))));
-guarantee
-	G (((next(obstacle_0) & !(next(pREV_aux_3))) -> !((!(next(spec_nextMoveMode_0)) & !(next(spec_nextMoveMode_1))))));
-guarantee
-	 ((((pREV_aux_4 & !(spec_nextMoveMode_0)) & !(spec_nextMoveMode_1)) <-> (((((!(leftMotor_0) & !(leftMotor_1)) & !(leftMotor_2)) & !(rightMotor_0)) & !(rightMotor_1)) & rightMotor_2)));
-guarantee
-	G ((((next(pREV_aux_4) & !(next(spec_nextMoveMode_0))) & !(next(spec_nextMoveMode_1))) <-> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & !(next(leftMotor_2))) & !(next(rightMotor_0))) & !(next(rightMotor_1))) & next(rightMotor_2))));
-guarantee
-	 ((((pREV_aux_5 & !(spec_nextMoveMode_0)) & spec_nextMoveMode_1) <-> (((((!(leftMotor_0) & !(leftMotor_1)) & leftMotor_2) & !(rightMotor_0)) & !(rightMotor_1)) & !(rightMotor_2))));
-guarantee
-	G ((((next(pREV_aux_5) & !(next(spec_nextMoveMode_0))) & next(spec_nextMoveMode_1)) <-> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & next(leftMotor_2)) & !(next(rightMotor_0))) & !(next(rightMotor_1))) & !(next(rightMotor_2)))));
-guarantee
-	 ((pREV_aux_6 -> (((((!(leftMotor_0) & !(leftMotor_1)) & !(leftMotor_2)) & !(rightMotor_0)) & rightMotor_1) & rightMotor_2)));
-guarantee
-	G ((next(pREV_aux_6) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & !(next(leftMotor_2))) & !(next(rightMotor_0))) & next(rightMotor_1)) & next(rightMotor_2))));
-guarantee
-	 ((pREV_aux_2 -> (((((!(leftMotor_0) & !(leftMotor_1)) & leftMotor_2) & rightMotor_0) & !(rightMotor_1)) & !(rightMotor_2))));
-guarantee
-	G ((next(pREV_aux_2) -> (((((!(next(leftMotor_0)) & !(next(leftMotor_1))) & next(leftMotor_2)) & next(rightMotor_0)) & !(next(rightMotor_1))) & !(next(rightMotor_2)))));
-guarantee
-	 ((pREV_aux_6 <-> (spec_nextMoveMode_0 & spec_nextMoveMode_1)));
-guarantee
-	G ((next(pREV_aux_6) <-> (next(spec_nextMoveMode_0) & next(spec_nextMoveMode_1))));
-guarantee
-	 ((!((pREV_aux_6 | pREV_aux_2)) -> !((((((leftMotor_0 & !(leftMotor_1)) & !(leftMotor_2)) | ((rightMotor_0 & !(rightMotor_1)) & !(rightMotor_2))) | ((!(leftMotor_0) & leftMotor_1) & leftMotor_2)) | ((!(rightMotor_0) & rightMotor_1) & rightMotor_2)))));
-guarantee
-	G ((!((next(pREV_aux_6) | next(pREV_aux_2))) -> !((((((next(leftMotor_0) & !(next(leftMotor_1))) & !(next(leftMotor_2))) | ((next(rightMotor_0) & !(next(rightMotor_1))) & !(next(rightMotor_2)))) | ((!(next(leftMotor_0)) & next(leftMotor_1)) & next(leftMotor_2))) | ((!(next(rightMotor_0)) & next(rightMotor_1)) & next(rightMotor_2))))));
-guarantee
-	 (((!(spec_nextMoveMode_0) & spec_nextMoveMode_1) -> (pREV_aux_5 | pREV_aux_4)));
-guarantee
-	G (((!(next(spec_nextMoveMode_0)) & next(spec_nextMoveMode_1)) -> (next(pREV_aux_5) | next(pREV_aux_4))));
-guarantee
-	 ((((pREV_aux_5 & spec_nextMoveMode_0) & !(spec_nextMoveMode_1)) <-> (((((leftMotor_0 & !(leftMotor_1)) & leftMotor_2) & rightMotor_0) & !(rightMotor_1)) & rightMotor_2)));
-guarantee
-	G ((((next(pREV_aux_5) & next(spec_nextMoveMode_0)) & !(next(spec_nextMoveMode_1))) <-> (((((next(leftMotor_0) & !(next(leftMotor_1))) & next(leftMotor_2)) & next(rightMotor_0)) & !(next(rightMotor_1))) & next(rightMotor_2))));
-guarantee
-	 (((pREV_aux_5 & pREV_aux_3) <-> (((((leftMotor_0 & leftMotor_1) & !(leftMotor_2)) & rightMotor_0) & rightMotor_1) & !(rightMotor_2))));
-guarantee
-	G (((next(pREV_aux_5) & next(pREV_aux_3)) <-> (((((next(leftMotor_0) & next(leftMotor_1)) & !(next(leftMotor_2))) & next(rightMotor_0)) & next(rightMotor_1)) & !(next(rightMotor_2)))));
-guarantee
-	 ((pREV_aux_4 -> (!(spec_nextMoveMode_0) | spec_nextMoveMode_1)));
-guarantee
-	G ((next(pREV_aux_4) -> (!(next(spec_nextMoveMode_0)) | next(spec_nextMoveMode_1))));
+	G (Y(spec_nextMoveMode = TURN_LEFT_1) <-> spec_nextMoveMode = TURN_LEFT_2);
+	
+guarantee //This motor movements can only be used in turning
+	G (!(Y(spec_nextMoveMode = TURN_LEFT_1) | Y(spec_nextMoveMode = TURN_LEFT_2)) -> !(LeftMotor = TURN_BWD | RightMotor = TURN_BWD | LeftMotor = TURN_FWD | RightMotor = TURN_FWD));	
+	
+guarantee //Going backward can only start from a calibrated FWD movement
+	G ((spec_nextMoveMode = BWD) -> (Y(spec_nextMoveMode = FWD) | Y(spec_nextMoveMode = BWD)));
+
+/* Trying to remove since ^^^ is more generalized 
+LTLSPEC
+	G (Y (spec_nextMoveMode = TURN_LEFT_2) -> !(spec_nextMoveMode = BWD));
+*/	
+
+guarantee // calibration movement to start turning
+	G  ((Y(spec_nextMoveMode = FWD) & spec_nextMoveMode = TURN_LEFT_1) <-> (LeftMotor = CALIB_TURN & RightMotor = CALIB_TURN));
+	
+guarantee // Calibration at the end of turning
+	G  ((Y(spec_nextMoveMode = FWD) & Y(Y(spec_nextMoveMode = TURN_LEFT_2))) <-> (LeftMotor = CALIB_FWD & RightMotor = CALIB_FWD));
+	
+guarantee //Cant start turning from backward movement
+	G ( (Y(spec_nextMoveMode = BWD)) -> (spec_nextMoveMode != TURN_LEFT_1)) ;
+	
+assumption
+  respondsTo((spec_search=M1),(Heading=next_head));
 
 assumption
-	 (eNV_CONSTRAINT_0_respondsTo_responded);
-assumption
-	G ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((((heading_0 <-> next_head_0) & (heading_1 <-> next_head_1)) & (heading_2 <-> next_head_2)) | (eNV_CONSTRAINT_0_respondsTo_responded & !(spec_search_0)))));
-assumption
-	 (eNV_CONSTRAINT_1_respondsTo_responded);
-assumption
-	G ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> (!(obstacle_0) | (eNV_CONSTRAINT_1_respondsTo_responded & !((spec_nextMoveMode_0 | spec_nextMoveMode_1))))));
-assumption
-	 (!(pREV_aux_2));
-assumption
-	G ((next(pREV_aux_2) <-> (spec_nextMoveMode_0 & spec_nextMoveMode_1)));
-assumption
-	 (!(pREV_aux_3));
-assumption
-	G ((next(pREV_aux_3) <-> pREV_aux_2));
-assumption
-	 (!(pREV_aux_4));
-assumption
-	G ((next(pREV_aux_4) <-> (!(spec_nextMoveMode_0) & spec_nextMoveMode_1)));
-assumption
-	 (!(pREV_aux_5));
-assumption
-	G ((next(pREV_aux_5) <-> (!(spec_nextMoveMode_0) & !(spec_nextMoveMode_1))));
-assumption
-	 (!(pREV_aux_6));
-assumption
-	G ((next(pREV_aux_6) <-> (spec_nextMoveMode_0 & !(spec_nextMoveMode_1))));
+	G(((spec_nextMoveMode = FWD | spec_nextMoveMode = BWD) & Heading != next_head) -> next(Heading != next_head));
 
+/*LTLSPECENV
+	G((spec_search = M1) -> (Y(spec_nextMoveMode != BWD) & Y(Y(spec_nextMoveMode != TURN_LEFT_2))));
+*/
+assumption
+  respondsTo((spec_nextMoveMode!=FWD),(Obstacle=CLEAR));
+
+assumption
+	G((spec_nextMoveMode = BWD & Obstacle = CLEAR) -> (next(Obstacle != BLOCKED)));
+	
+assumption
+  GF ((Y(spec_nextMoveMode=TURN_LEFT_2)&Obstacle=CLEAR));
+
+//LTLSPECENV
+	//G((Y(Y(spec_nextMoveMode = TURN_LEFT_2)) & Y(spec_nextMoveMode = FWD)) -> Obstacle = CLEAR);
+
+//LTLSPECENV
+	//G F(Obstacle = CLEAR);
+pattern respondsTo(trigger, response) {
+  var boolean responded;
+  responded;
+  G (next(responded) iff (response or responded and !trigger));
+  GF (responded);
+}

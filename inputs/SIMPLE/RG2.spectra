@@ -1,21 +1,18 @@
-
-module RG2
+module Chatt
 
 env boolean r;
 env boolean c;
-
 sys boolean g;
 
-env boolean sYS_CONSTRAINT_0_respondsTo_responded;
-
-
 guarantee
-	G (((c | g) -> !(next(g))));
+	respondsTo(r, next(g));
+	
 guarantee
-	GF (sYS_CONSTRAINT_0_respondsTo_responded);
+	G ((c | g) -> next(!g));
 
-assumption
-	 (sYS_CONSTRAINT_0_respondsTo_responded);
-assumption
-	G ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (next(g) | (sYS_CONSTRAINT_0_respondsTo_responded & !(r)))));
-
+pattern respondsTo(trigger, response) {
+  var boolean responded;
+  responded;
+  G (next(responded) iff (response or responded and !trigger));
+  GF (responded);
+}

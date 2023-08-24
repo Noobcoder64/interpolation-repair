@@ -1,0 +1,4 @@
+Id,UniqueRefinement,IsSolution
+4a49e0e5-986f-4459-9bff-764ec5494160,['G(Obstacle=CLEAR -> (InputMoveMode=TURN_LEFT_2 -> (Button=FREE -> (LeftMotor=BWD &  (RightMotor=TURN_BWD &  (HeadMotor=STOP &  OutputMoveMode=FWD)))))) & (Obstacle=BLOCKED -> (InputMoveMode=FWD -> (Button=PRESSED &  TRUE)))'],True
+3931191c-8638-4ad3-a8e1-6f528ef087f7,['G(Obstacle=CLEAR -> (InputMoveMode=TURN_LEFT_2 -> (Button=PRESSED -> (LeftMotor=BWD &  (RightMotor=TURN_BWD &  (HeadMotor=STOP &  OutputMoveMode=FWD)))))) & (Obstacle=BLOCKED -> (InputMoveMode=FWD -> (Button=PRESSED &  TRUE)))'],True
+7fbb96f0-ae34-45d4-a105-4079e20619bf,"['G(Obstacle=BLOCKED -> (InputMoveMode=FWD -> (Button=PRESSED &  TRUE)) & (InputMoveMode=TURN_LEFT_2 -> (Button=FREE -> (LeftMotor=BWD &  (RightMotor=TURN_BWD &  (HeadMotor=STOP &  OutputMoveMode={BWD, TURN_LEFT_1}))))))']",True

@@ -1,52 +1,41 @@
+// Initial file contents for AspectLTL aspect file (*.altl)
+module GyroAspect
+		env {CLEAR, BLOCKED} distSense ;
+		env boolean isReady ;
+		sys {STP, FWD, BWD, TURN_LEFT, TURN_RIGHT} balancer ;
+		
+guarantee -- initial state
+	balancer=STP;
+	
+guarantee
+	G (!isReady -> balancer=STP);
 
-module GyroLTL_390_GyroAspect_1
+guarantee -- safety requirement
+	G ((distSense=BLOCKED & isReady) -> !(balancer=FWD));
 
-env boolean distSense_0;
-env boolean isReady;
+guarantee -- goal of gyro
+  GF (balancer=FWD);
 
-sys boolean balancer_0;
-sys boolean balancer_1;
-sys boolean balancer_2;
+guarantee
+	G ((distSense=CLEAR & isReady) -> (balancer=FWD));
 
+guarantee
+	G ((balancer=FWD) -> next(!(balancer=TURN_RIGHT | balancer=TURN_LEFT)));
+
+guarantee
+	G ((distSense=BLOCKED & balancer=STP & isReady) -> next(!(balancer=STP)));
 
 assumption
-	GF (isReady);
+  GF (isReady);
+	
 assumption
-	 (!(isReady));
+	G (isReady -> next(isReady));
+	
 assumption
-	G ((isReady -> next(isReady)));
-
-guarantee
-	 (((!(balancer_0) & !(balancer_1)) & !(balancer_2)));
-guarantee
-	GF (((!(balancer_0) & !(balancer_1)) & balancer_2));
-guarantee
-	G ((((!(balancer_0) & !(balancer_1)) & balancer_2) -> !((((next(balancer_0) & !(next(balancer_1))) & !(next(balancer_2))) | ((!(next(balancer_0)) & next(balancer_1)) & next(balancer_2))))));
-guarantee
-	G ((((((distSense_0 & !(balancer_0)) & !(balancer_1)) & !(balancer_2)) & isReady) -> !(((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2))))));
-guarantee
-	 (!(((balancer_0 & !(balancer_1)) & balancer_2)));
-guarantee
-	G (!(((next(balancer_0) & !(next(balancer_1))) & next(balancer_2))));
-guarantee
-	 (!(((balancer_0 & balancer_1) & !(balancer_2))));
-guarantee
-	G (!(((next(balancer_0) & next(balancer_1)) & !(next(balancer_2)))));
-guarantee
-	 (!(((balancer_0 & balancer_1) & balancer_2)));
-guarantee
-	G (!(((next(balancer_0) & next(balancer_1)) & next(balancer_2))));
-guarantee
-	 ((!(isReady) -> ((!(balancer_0) & !(balancer_1)) & !(balancer_2))));
-guarantee
-	G ((!(next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2)))));
-guarantee
-	 (((distSense_0 & isReady) -> !(((!(balancer_0) & !(balancer_1)) & balancer_2))));
-guarantee
-	G (((next(distSense_0) & next(isReady)) -> !(((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2)))));
-guarantee
-	 (((!(distSense_0) & isReady) -> ((!(balancer_0) & !(balancer_1)) & balancer_2)));
-guarantee
-	G (((!(next(distSense_0)) & next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2))));
-
-
+	!isReady;
+pattern respondsTo(trigger, response) {
+  var boolean responded;
+  responded;
+  G (next(responded) iff (response or responded and !trigger));
+  GF (responded);
+}

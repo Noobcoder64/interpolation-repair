@@ -1,26 +1,23 @@
-
-module RG1
-
+module Alur
 env boolean r;
-env boolean c;
+env	boolean c;
 
 sys boolean g;
 sys boolean v;
 
-env boolean sYS_CONSTRAINT_0_respondsTo_responded;
+gar
+pRespondsToS(r, next(g));
+	
+gar ungrant:
+	G ((c | g) ->next(!g));
+gar cnv:
+	G (c -> !v);
+gar gnv:
+	GF g & v;
 
-
-guarantee
-	G (((c | g) -> !(next(g))));
-guarantee
-	G ((c -> !(v)));
-guarantee
-	GF ((g & v));
-guarantee
-	GF (sYS_CONSTRAINT_0_respondsTo_responded);
-
-assumption
-	 (sYS_CONSTRAINT_0_respondsTo_responded);
-assumption
-	G ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (next(g) | (sYS_CONSTRAINT_0_respondsTo_responded & !(r)))));
-
+pattern pRespondsToS(trigger, response) {
+  var boolean responded;
+  responded;
+  G (next(responded) iff (response or responded and !trigger));
+  GF (responded);
+}

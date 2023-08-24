@@ -1,197 +1,120 @@
+module ColorSort
+		env {RED, GREEN, BLUE, BLACK, YELLOW , WHITE} color ;
+		env {RED, GREEN, BLUE, BLACK, YELLOW , WHITE} detect ;
+		env {MOVE, SLEEP} ack_ver ;
+		env {MOVE, SLEEP} ack_hor ;
+		env {MOVE, SLEEP} ack_bot ;
+		
+		env {PRESS, RELEASE} speedButton;
+		sys {MOVE, SLEEP} verMot ;
+		sys {MOVE, SLEEP} horMot ;
+		sys {SEEK, STOP, RETURN} botMot ;
+		
+		sys {LEVEL1, LEVEL2, LEVEL3} motSpeed;
+		
+		sys { S0, S1, S2} spec_state__seek ;
+		
+		sys {RED, GREEN, BLUE, BLACK, YELLOW , WHITE} spec_currentColor;
+		sys boolean spec_dropping ;
+		
+		sys boolean spec_speedButtonValidPressed ;
+		
+		
+define -- spec_allsleep is true iff all motors sleep
+	spec_allsleep := verMot = SLEEP  & horMot = SLEEP & botMot = STOP;
+define -- spec_nonemove is true iff no motor moves
+	spec_nonemove := ack_ver = SLEEP & ack_hor = SLEEP & ack_bot = SLEEP;
 
-module ColorSortLTL3_646_ColorSort_fixed_1
-
-env boolean color_0;
-env boolean color_1;
-env boolean color_2;
-env boolean detect_0;
-env boolean detect_1;
-env boolean detect_2;
-env boolean ack_ver_0;
-env boolean ack_hor_0;
-env boolean ack_bot_0;
-env boolean speedButton_0;
-
-sys boolean verMot_0;
-sys boolean horMot_0;
-sys boolean botMot_0;
-sys boolean botMot_1;
-sys boolean motSpeed_0;
-sys boolean motSpeed_1;
-sys boolean spec_state__seek_0;
-sys boolean spec_state__seek_1;
-sys boolean spec_currentColor_0;
-sys boolean spec_currentColor_1;
-sys boolean spec_currentColor_2;
-sys boolean spec_dropping;
-sys boolean spec_speedButtonValidPressed;
-
-env boolean pREV_aux_0;
-env boolean pREV_aux_1;
-env boolean pREV_aux_2;
-env boolean pREV_aux_3;
-env boolean pREV_aux_4;
-env boolean pREV_aux_5;
-env boolean pREV_aux_6;
-env boolean pREV_aux_7;
-env boolean pREV_aux_8;
-
-assumption
-	GF (((!(spec_state__seek_0) & !(spec_state__seek_1)) | (spec_state__seek_0 & !(spec_state__seek_1))));
-assumption
-	GF (((color_0 | !(color_1)) | !(color_2)));
-assumption
-	G ((!(spec_dropping) -> ((ack_ver_0 & ack_hor_0) & ack_bot_0)));
-assumption
-	G ((!(ack_hor_0) <-> ((((detect_0 <-> spec_currentColor_0) & (detect_1 <-> spec_currentColor_1)) & (detect_2 <-> spec_currentColor_2)) & (pREV_aux_7 | pREV_aux_8))));
-assumption
-	 (!(((color_0 & color_1) & !(color_2))));
-assumption
-	G (!(((next(color_0) & next(color_1)) & !(next(color_2)))));
-assumption
-	 (!(((color_0 & color_1) & color_2)));
-assumption
-	G (!(((next(color_0) & next(color_1)) & next(color_2))));
-assumption
-	 (!(((detect_0 & detect_1) & !(detect_2))));
-assumption
-	G (!(((next(detect_0) & next(detect_1)) & !(next(detect_2)))));
-assumption
-	 (!(((detect_0 & detect_1) & detect_2)));
-assumption
-	G (!(((next(detect_0) & next(detect_1)) & next(detect_2))));
+guarantee -- only one motors moves at a time
+	G (verMot = MOVE -> (botMot = STOP & horMot = SLEEP));
+	
+guarantee 
+	G (horMot = MOVE -> (botMot = STOP & verMot = SLEEP));
+	
+guarantee 
+	G (botMot != STOP -> (verMot = SLEEP & horMot = SLEEP));
 
 guarantee
-	 ((!(spec_state__seek_0) & !(spec_state__seek_1)));
+	G (verMot = SLEEP -> spec_currentColor = next(spec_currentColor));
+	
 guarantee
-	 (((!(motSpeed_0) & !(motSpeed_1)) & !(spec_dropping)));
+	G (spec_dropping = next(spec_dropping) <-> verMot = SLEEP & !(PREV(botMot = RETURN) & ack_bot = SLEEP));
+	
 guarantee
-	G ((verMot_0 -> (((spec_currentColor_0 <-> next(spec_currentColor_0)) & (spec_currentColor_1 <-> next(spec_currentColor_1))) & (spec_currentColor_2 <-> next(spec_currentColor_2)))));
-guarantee
-	G (((spec_dropping <-> next(spec_dropping)) <-> (verMot_0 & !((pREV_aux_0 & ack_bot_0)))));
-guarantee
-	G (((((color_0 | !(color_1)) | !(color_2)) & !(spec_dropping)) -> ((((!(verMot_0) & (color_0 <-> next(spec_currentColor_0))) & (color_1 <-> next(spec_currentColor_1))) & (color_2 <-> next(spec_currentColor_2))) & next(spec_dropping))));
-guarantee
-	G ((((((((((!(spec_state__seek_0) & !(spec_state__seek_1)) & ((!((!(botMot_0) & !(botMot_1))) & !((((detect_0 <-> spec_currentColor_0) & (detect_1 <-> spec_currentColor_1)) & (detect_2 <-> spec_currentColor_2)))) | (((detect_0 <-> spec_currentColor_0) & (detect_1 <-> spec_currentColor_1)) & (detect_2 <-> spec_currentColor_2)))) & (!(next(spec_state__seek_0)) & !(next(spec_state__seek_1)))) | (((!(spec_state__seek_0) & !(spec_state__seek_1)) & (((!(botMot_0) & !(botMot_1)) & !((!(botMot_0) & !(botMot_1)))) & !((((detect_0 <-> spec_currentColor_0) & (detect_1 <-> spec_currentColor_1)) & (detect_2 <-> spec_currentColor_2))))) & (!(next(spec_state__seek_0)) & next(spec_state__seek_1)))) | (((!(spec_state__seek_0) & !(spec_state__seek_1)) & ((((!(botMot_0) & !(botMot_1)) & !(botMot_0)) & !(botMot_1)) & !((((detect_0 <-> spec_currentColor_0) & (detect_1 <-> spec_currentColor_1)) & (detect_2 <-> spec_currentColor_2))))) & (next(spec_state__seek_0) & !(next(spec_state__seek_1))))) | ((!(spec_state__seek_0) & spec_state__seek_1) & (!(next(spec_state__seek_0)) & next(spec_state__seek_1)))) | (((((spec_state__seek_0 & !(spec_state__seek_1)) & (detect_0 <-> spec_currentColor_0)) & (detect_1 <-> spec_currentColor_1)) & (detect_2 <-> spec_currentColor_2)) & (!(next(spec_state__seek_0)) & !(next(spec_state__seek_1))))) | (((spec_state__seek_0 & !(spec_state__seek_1)) & (!((!(botMot_0) & !(botMot_1))) & !((((detect_0 <-> spec_currentColor_0) & (detect_1 <-> spec_currentColor_1)) & (detect_2 <-> spec_currentColor_2))))) & (!(next(spec_state__seek_0)) & next(spec_state__seek_1)))) | (((spec_state__seek_0 & !(spec_state__seek_1)) & ((!(botMot_0) & !(botMot_1)) & !((((detect_0 <-> spec_currentColor_0) & (detect_1 <-> spec_currentColor_1)) & (detect_2 <-> spec_currentColor_2))))) & (next(spec_state__seek_0) & !(next(spec_state__seek_1))))));
-guarantee
-	 (!((botMot_0 & botMot_1)));
-guarantee
-	G (!((next(botMot_0) & next(botMot_1))));
-guarantee
-	 (!((motSpeed_0 & motSpeed_1)));
-guarantee
-	G (!((next(motSpeed_0) & next(motSpeed_1))));
-guarantee
-	 (!((spec_state__seek_0 & spec_state__seek_1)));
-guarantee
-	G (!((next(spec_state__seek_0) & next(spec_state__seek_1))));
-guarantee
-	 (!(((spec_currentColor_0 & spec_currentColor_1) & !(spec_currentColor_2))));
-guarantee
-	G (!(((next(spec_currentColor_0) & next(spec_currentColor_1)) & !(next(spec_currentColor_2)))));
-guarantee
-	 (!(((spec_currentColor_0 & spec_currentColor_1) & spec_currentColor_2)));
-guarantee
-	G (!(((next(spec_currentColor_0) & next(spec_currentColor_1)) & next(spec_currentColor_2))));
-guarantee
-	 ((!(verMot_0) -> ((!(botMot_0) & botMot_1) & horMot_0)));
-guarantee
-	G ((!(next(verMot_0)) -> ((!(next(botMot_0)) & next(botMot_1)) & next(horMot_0))));
-guarantee
-	 ((!(horMot_0) -> ((!(botMot_0) & botMot_1) & verMot_0)));
-guarantee
-	G ((!(next(horMot_0)) -> ((!(next(botMot_0)) & next(botMot_1)) & next(verMot_0))));
-guarantee
-	 (((botMot_0 | !(botMot_1)) -> (verMot_0 & horMot_0)));
-guarantee
-	G (((next(botMot_0) | !(next(botMot_1))) -> (next(verMot_0) & next(horMot_0))));
-guarantee
-	 (((!(ack_ver_0) | !(ack_hor_0)) -> (((verMot_0 & horMot_0) & !(botMot_0)) & botMot_1)));
-guarantee
-	G (((!(next(ack_ver_0)) | !(next(ack_hor_0))) -> (((next(verMot_0) & next(horMot_0)) & !(next(botMot_0))) & next(botMot_1))));
-guarantee
-	 ((spec_dropping -> verMot_0));
-guarantee
-	G ((next(spec_dropping) -> next(verMot_0)));
-guarantee
-	 ((!(spec_dropping) -> ((!(botMot_0) & botMot_1) & horMot_0)));
-guarantee
-	G ((!(next(spec_dropping)) -> ((!(next(botMot_0)) & next(botMot_1)) & next(horMot_0))));
-guarantee
-	 (((((!(color_0) & color_1) & color_2) & !(spec_dropping)) -> (((verMot_0 & horMot_0) & !(botMot_0)) & botMot_1)));
-guarantee
-	G (((((!(next(color_0)) & next(color_1)) & next(color_2)) & !(next(spec_dropping))) -> (((next(verMot_0) & next(horMot_0)) & !(next(botMot_0))) & next(botMot_1))));
-guarantee
-	 ((((ack_ver_0 & pREV_aux_1) & spec_dropping) -> (!(botMot_0) & !(botMot_1))));
-guarantee
-	G ((((next(ack_ver_0) & next(pREV_aux_1)) & next(spec_dropping)) -> (!(next(botMot_0)) & !(next(botMot_1)))));
-guarantee
-	 ((((((spec_dropping & (detect_0 <-> spec_currentColor_0)) & (detect_1 <-> spec_currentColor_1)) & (detect_2 <-> spec_currentColor_2)) & pREV_aux_2) <-> !(horMot_0)));
-guarantee
-	G ((((((next(spec_dropping) & (next(detect_0) <-> next(spec_currentColor_0))) & (next(detect_1) <-> next(spec_currentColor_1))) & (next(detect_2) <-> next(spec_currentColor_2))) & next(pREV_aux_2)) <-> !(next(horMot_0))));
-guarantee
-	 (((!(speedButton_0) & pREV_aux_3) <-> spec_speedButtonValidPressed));
-guarantee
-	G (((!(next(speedButton_0)) & next(pREV_aux_3)) <-> next(spec_speedButtonValidPressed)));
-guarantee
-	 (((spec_speedButtonValidPressed & pREV_aux_4) -> (!(motSpeed_0) & motSpeed_1)));
-guarantee
-	G (((next(spec_speedButtonValidPressed) & next(pREV_aux_4)) -> (!(next(motSpeed_0)) & next(motSpeed_1))));
-guarantee
-	 (((spec_speedButtonValidPressed & pREV_aux_5) -> (motSpeed_0 & !(motSpeed_1))));
-guarantee
-	G (((next(spec_speedButtonValidPressed) & next(pREV_aux_5)) -> (next(motSpeed_0) & !(next(motSpeed_1)))));
-guarantee
-	 (((spec_speedButtonValidPressed & pREV_aux_6) -> (!(motSpeed_0) & !(motSpeed_1))));
-guarantee
-	G (((next(spec_speedButtonValidPressed) & next(pREV_aux_6)) -> (!(next(motSpeed_0)) & !(next(motSpeed_1)))));
-guarantee
-	 (((!(spec_speedButtonValidPressed) & pREV_aux_4) -> (!(motSpeed_0) & !(motSpeed_1))));
-guarantee
-	G (((!(next(spec_speedButtonValidPressed)) & next(pREV_aux_4)) -> (!(next(motSpeed_0)) & !(next(motSpeed_1)))));
-guarantee
-	 (((!(spec_speedButtonValidPressed) & pREV_aux_5) -> (!(motSpeed_0) & motSpeed_1)));
-guarantee
-	G (((!(next(spec_speedButtonValidPressed)) & next(pREV_aux_5)) -> (!(next(motSpeed_0)) & next(motSpeed_1))));
-guarantee
-	 (((!(spec_speedButtonValidPressed) & pREV_aux_6) -> (motSpeed_0 & !(motSpeed_1))));
-guarantee
-	G (((!(next(spec_speedButtonValidPressed)) & next(pREV_aux_6)) -> (next(motSpeed_0) & !(next(motSpeed_1)))));
+	G (ack_ver = MOVE | ack_hor = MOVE -> spec_allsleep);
+	
+assumption
+	G (!spec_dropping -> spec_nonemove);
+	
+assumption
+	G (ack_hor = MOVE <-> detect = spec_currentColor & (PREV(horMot = MOVE) | PREV(ack_hor = MOVE)));
+	
+	
+-- running the robot
 
-assumption
-	 (!(pREV_aux_0));
-assumption
-	G ((next(pREV_aux_0) <-> (botMot_0 & !(botMot_1))));
-assumption
-	 (!(pREV_aux_1));
-assumption
-	G ((next(pREV_aux_1) <-> !(ack_ver_0)));
-assumption
-	 (!(pREV_aux_2));
-assumption
-	G ((next(pREV_aux_2) <-> (botMot_0 | !(botMot_1))));
-assumption
-	 (!(pREV_aux_3));
-assumption
-	G ((next(pREV_aux_3) <-> speedButton_0));
-assumption
-	 (!(pREV_aux_4));
-assumption
-	G ((next(pREV_aux_4) <-> (!(motSpeed_0) & !(motSpeed_1))));
-assumption
-	 (!(pREV_aux_5));
-assumption
-	G ((next(pREV_aux_5) <-> (!(motSpeed_0) & motSpeed_1)));
-assumption
-	 (!(pREV_aux_6));
-assumption
-	G ((next(pREV_aux_6) <-> (motSpeed_0 & !(motSpeed_1))));
-assumption
-	 (!(pREV_aux_7));
-assumption
-	G ((next(pREV_aux_7) <-> !(horMot_0)));
-assumption
-	 (!(pREV_aux_8));
-assumption
-	G ((next(pREV_aux_8) <-> !(ack_hor_0)));
+guarantee
+	G (spec_dropping -> verMot = SLEEP);
+	
+guarantee
+	G (!spec_dropping -> botMot = STOP & horMot = SLEEP);
 
+guarantee
+	G (color = BLACK & !spec_dropping -> spec_allsleep);
+	
+guarantee
+	G (color != BLACK & !spec_dropping -> verMot = MOVE & next(spec_currentColor) = color & next(spec_dropping));
+	 
+guarantee
+	G (ack_ver = SLEEP & PREV(ack_ver = MOVE) & spec_dropping -> botMot = SEEK);
+
+guarantee -- initial assignments: initial spec_state__seek
+  spec_state__seek=S0;
+
+guarantee -- safety this and next spec_state__seek
+  G ((spec_state__seek=S0 & ((!(botMot = SEEK) & !(detect = spec_currentColor)) | ((detect = spec_currentColor))) & next(spec_state__seek=S0)) |
+  (spec_state__seek=S0 & ((botMot = SEEK) & !(botMot = SEEK) & !(detect = spec_currentColor)) & next(spec_state__seek=S1)) |
+  (spec_state__seek=S0 & ((botMot = SEEK) & (botMot = SEEK) & !(detect = spec_currentColor)) & next(spec_state__seek=S2)) |
+  (spec_state__seek=S1 & next(spec_state__seek=S1)) |
+  (spec_state__seek=S2 & ((detect = spec_currentColor)) & next(spec_state__seek=S0)) |
+  (spec_state__seek=S2 & (!(botMot = SEEK) & !(detect = spec_currentColor)) & next(spec_state__seek=S1)) |
+  (spec_state__seek=S2 & ((botMot = SEEK) & !(detect = spec_currentColor)) & next(spec_state__seek=S2)));
+
+assumption -- equivalence of satisfaction
+  GF (spec_state__seek=S0|spec_state__seek=S2);
+
+guarantee
+	G (spec_dropping & detect = spec_currentColor & PREV(botMot != STOP) <-> horMot = MOVE);
+
+-- speed button
+
+guarantee
+	motSpeed = LEVEL1 & !spec_dropping;
+
+guarantee
+	G (speedButton = PRESS & PREV(speedButton = RELEASE) <-> spec_speedButtonValidPressed);
+
+
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed & PREV(motSpeed = LEVEL1) -> motSpeed = LEVEL2);
+	
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed & PREV(motSpeed = LEVEL2) -> motSpeed = LEVEL3);
+	
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed & PREV(motSpeed = LEVEL3) -> motSpeed = LEVEL1);
+	 
+	 
+guarantee -- if the speed button is released, the speed remains the same
+	G (!spec_speedButtonValidPressed & PREV(motSpeed = LEVEL1) -> motSpeed = LEVEL1);
+	
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (!spec_speedButtonValidPressed & PREV(motSpeed = LEVEL2) -> motSpeed = LEVEL2);
+	
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (!spec_speedButtonValidPressed & PREV(motSpeed = LEVEL3) -> motSpeed = LEVEL3);
+
+
+-- Some environment specifications
+
+assumption -- there will always be a cube
+  GF (color!=BLACK);

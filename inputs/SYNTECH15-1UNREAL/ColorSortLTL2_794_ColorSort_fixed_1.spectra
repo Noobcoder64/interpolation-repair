@@ -1,222 +1,160 @@
-
-module ColorSortLTL2_794_ColorSort_fixed_1
-
-env boolean color_0;
-env boolean color_1;
-env boolean color_2;
-env boolean detect_0;
-env boolean detect_1;
-env boolean detect_2;
-env boolean ack_ver_hor_0;
-env boolean ack_bot_0;
-env boolean atEdge_0;
-env boolean num_of_cubes_0;
-env boolean haltButton_0;
-env boolean speedButton_0;
-
-sys boolean verMot_0;
-sys boolean horMot_0;
-sys boolean botMot_0;
-sys boolean botMot_1;
-sys boolean spec_allsleep;
-sys boolean motSpeed_0;
-sys boolean motSpeed_1;
-sys boolean reduce_num_of_cubes_0;
-sys boolean spec_currentColor_0;
-sys boolean spec_currentColor_1;
-sys boolean spec_currentColor_2;
-sys boolean spec_stage_0;
-sys boolean spec_stage_1;
-sys boolean spec_stage_2;
-sys boolean spec_finished_cycle;
-sys boolean spec_speedButtonValidPressed;
-sys boolean spec_haltButtonValidPressed;
-sys boolean spec_pausing_0;
-
-env boolean sYS_CONSTRAINT_0_respondsTo_responded;
-env boolean eNV_CONSTRAINT_1_respondsTo_responded;
-env boolean eNV_CONSTRAINT_2_respondsTo_responded;
-env boolean eNV_CONSTRAINT_3_respondsTo_responded;
-env boolean pREV_aux_4;
-env boolean pREV_aux_5;
-env boolean pREV_aux_6;
-env boolean pREV_aux_7;
-env boolean pREV_aux_8;
-env boolean pREV_aux_9;
-env boolean pREV_aux_10;
-
-assumption
-	GF (((color_0 | !(color_1)) | !(color_2)));
-assumption
-	GF (eNV_CONSTRAINT_1_respondsTo_responded);
-assumption
-	GF (eNV_CONSTRAINT_2_respondsTo_responded);
-assumption
-	GF (eNV_CONSTRAINT_3_respondsTo_responded);
-assumption
-	 (!(((color_0 & color_1) & !(color_2))));
-assumption
-	G (!(((next(color_0) & next(color_1)) & !(next(color_2)))));
-assumption
-	 (!(((color_0 & color_1) & color_2)));
-assumption
-	G (!(((next(color_0) & next(color_1)) & next(color_2))));
-assumption
-	 (!(((detect_0 & detect_1) & !(detect_2))));
-assumption
-	G (!(((next(detect_0) & next(detect_1)) & !(next(detect_2)))));
-assumption
-	 (!(((detect_0 & detect_1) & detect_2)));
-assumption
-	G (!(((next(detect_0) & next(detect_1)) & next(detect_2))));
+module ColorSort
+		env {RED, GREEN, BLUE, BLACK, YELLOW , WHITE} color ;
+		env {RED, GREEN, BLUE, BLACK, YELLOW , WHITE} detect ;
+		env {MOVE, SLEEP} ack_ver_hor ;
+		env {MOVE, SLEEP} ack_bot ;
+		env {NOEDGE, EDGE} atEdge ;
+		
+		env {ZERO, NOTZERO} num_of_cubes;
+		
+		env {PRESS, RELEASE} haltButton;
+		
+		env {PRESS, RELEASE} speedButton;
+		sys {MOVE, SLEEP} verMot ;
+		sys {MOVE, SLEEP} horMot ;
+		sys {RIGHT, LEFT, STOP, INITPOS} botMot ;
+		
+		sys boolean spec_allsleep ;
+		
+		sys {LEVEL1, LEVEL2, LEVEL3} motSpeed;
+		
+		sys {REDUCE, NOTREDUCE} reduce_num_of_cubes;
+		
+		sys {RED, GREEN, BLUE, BLACK, YELLOW , WHITE} spec_currentColor;
+		sys {WAIT, KICK, TOANGLERIGHT, TOANGLELEFT, DROP, FROMANGLE} spec_stage ;
+		sys boolean spec_finished_cycle;
+		
+		sys boolean spec_speedButtonValidPressed ;
+		sys boolean spec_haltButtonValidPressed ;
+		
+		sys {PAUSE, GO} spec_pausing ;
 
 guarantee
-	 ((((((!(motSpeed_0) & !(motSpeed_1)) & !(spec_stage_0)) & !(spec_stage_1)) & !(spec_stage_2)) & spec_pausing_0));
-guarantee
-	G ((((spec_haltButtonValidPressed & spec_pausing_0) | (!(spec_haltButtonValidPressed) & !(spec_pausing_0))) -> !(next(spec_pausing_0))));
-guarantee
-	G ((((!(spec_haltButtonValidPressed) & spec_pausing_0) | (spec_haltButtonValidPressed & !(spec_pausing_0))) -> next(spec_pausing_0)));
-guarantee
-	G (((!(spec_pausing_0) | !(ack_ver_hor_0)) -> (((spec_allsleep & (spec_stage_0 <-> next(spec_stage_0))) & (spec_stage_1 <-> next(spec_stage_1))) & (spec_stage_2 <-> next(spec_stage_2)))));
-guarantee
-	G ((((spec_stage_0 | spec_stage_1) | spec_stage_2) -> (((spec_currentColor_0 <-> next(spec_currentColor_0)) & (spec_currentColor_1 <-> next(spec_currentColor_1))) & (spec_currentColor_2 <-> next(spec_currentColor_2)))));
-guarantee
-	G ((((((((!(color_0) & color_1) & color_2) | !(num_of_cubes_0)) & !(spec_stage_0)) & !(spec_stage_1)) & !(spec_stage_2)) -> (((spec_allsleep & !(next(spec_stage_0))) & !(next(spec_stage_1))) & !(next(spec_stage_2)))));
-guarantee
-	G (((((((((color_0 | !(color_1)) | !(color_2)) & num_of_cubes_0) & !(spec_stage_0)) & !(spec_stage_1)) & !(spec_stage_2)) & spec_pausing_0) -> ((((((!(verMot_0) & (color_0 <-> next(spec_currentColor_0))) & (color_1 <-> next(spec_currentColor_1))) & (color_2 <-> next(spec_currentColor_2))) & !(next(spec_stage_0))) & !(next(spec_stage_1))) & next(spec_stage_2))));
-guarantee
-	G ((((((ack_ver_hor_0 & !(spec_stage_0)) & !(spec_stage_1)) & spec_stage_2) & spec_pausing_0) -> ((((!(botMot_0) & !(botMot_1)) & !(next(spec_stage_0))) & next(spec_stage_1)) & !(next(spec_stage_2)))));
-guarantee
-	G (((((!(atEdge_0) & (((!(spec_stage_0) & spec_stage_1) & !(spec_stage_2)) | ((!(spec_stage_0) & spec_stage_1) & spec_stage_2))) & (((detect_0 <-> !(spec_currentColor_0)) | (detect_1 <-> !(spec_currentColor_1))) | (detect_2 <-> !(spec_currentColor_2)))) & spec_pausing_0) -> (((((((!(spec_stage_0) & spec_stage_1) & !(spec_stage_2)) -> (!(botMot_0) & !(botMot_1))) & (((!(spec_stage_0) & spec_stage_1) & spec_stage_2) -> (!(botMot_0) & botMot_1))) & (spec_stage_0 <-> next(spec_stage_0))) & (spec_stage_1 <-> next(spec_stage_1))) & (spec_stage_2 <-> next(spec_stage_2)))));
-guarantee
-	G (((((atEdge_0 & (((!(spec_stage_0) & spec_stage_1) & !(spec_stage_2)) | ((!(spec_stage_0) & spec_stage_1) & spec_stage_2))) & spec_pausing_0) & (((detect_0 <-> !(spec_currentColor_0)) | (detect_1 <-> !(spec_currentColor_1))) | (detect_2 <-> !(spec_currentColor_2)))) -> ((((!(spec_stage_0) & spec_stage_1) & !(spec_stage_2)) -> ((((!(botMot_0) & botMot_1) & !(next(spec_stage_0))) & next(spec_stage_1)) & next(spec_stage_2))) & (((!(spec_stage_0) & spec_stage_1) & spec_stage_2) -> ((((!(botMot_0) & !(botMot_1)) & !(next(spec_stage_0))) & next(spec_stage_1)) & !(next(spec_stage_2)))))));
-guarantee
-	G (((((((((!(spec_stage_0) & spec_stage_1) & !(spec_stage_2)) | ((!(spec_stage_0) & spec_stage_1) & spec_stage_2)) & spec_pausing_0) & (detect_0 <-> spec_currentColor_0)) & (detect_1 <-> spec_currentColor_1)) & (detect_2 <-> spec_currentColor_2)) -> ((((((verMot_0 & !(horMot_0)) & botMot_0) & !(botMot_1)) & next(spec_stage_0)) & !(next(spec_stage_1))) & !(next(spec_stage_2)))));
-guarantee
-	G (((((((ack_ver_hor_0 & spec_stage_0) & !(spec_stage_1)) & !(spec_stage_2)) | ((((!(ack_bot_0) | (ack_bot_0 & pREV_aux_5)) & spec_stage_0) & !(spec_stage_1)) & spec_stage_2)) & spec_pausing_0) -> ((((botMot_0 & botMot_1) & next(spec_stage_0)) & !(next(spec_stage_1))) & next(spec_stage_2))));
-guarantee
-	G ((spec_finished_cycle -> (((spec_allsleep & !(next(spec_stage_0))) & !(next(spec_stage_1))) & !(next(spec_stage_2)))));
-guarantee
-	GF (sYS_CONSTRAINT_0_respondsTo_responded);
-guarantee
-	 (!((motSpeed_0 & motSpeed_1)));
-guarantee
-	G (!((next(motSpeed_0) & next(motSpeed_1))));
-guarantee
-	 (!(((spec_currentColor_0 & spec_currentColor_1) & !(spec_currentColor_2))));
-guarantee
-	G (!(((next(spec_currentColor_0) & next(spec_currentColor_1)) & !(next(spec_currentColor_2)))));
-guarantee
-	 (!(((spec_currentColor_0 & spec_currentColor_1) & spec_currentColor_2)));
-guarantee
-	G (!(((next(spec_currentColor_0) & next(spec_currentColor_1)) & next(spec_currentColor_2))));
-guarantee
-	 (!(((spec_stage_0 & spec_stage_1) & !(spec_stage_2))));
-guarantee
-	G (!(((next(spec_stage_0) & next(spec_stage_1)) & !(next(spec_stage_2)))));
-guarantee
-	 (!(((spec_stage_0 & spec_stage_1) & spec_stage_2)));
-guarantee
-	G (!(((next(spec_stage_0) & next(spec_stage_1)) & next(spec_stage_2))));
-guarantee
-	 (((!(haltButton_0) & pREV_aux_4) <-> spec_haltButtonValidPressed));
-guarantee
-	G (((!(next(haltButton_0)) & next(pREV_aux_4)) <-> next(spec_haltButtonValidPressed)));
-guarantee
-	 ((!(verMot_0) -> ((botMot_0 & !(botMot_1)) & horMot_0)));
-guarantee
-	G ((!(next(verMot_0)) -> ((next(botMot_0) & !(next(botMot_1))) & next(horMot_0))));
-guarantee
-	 ((!(horMot_0) -> ((botMot_0 & !(botMot_1)) & verMot_0)));
-guarantee
-	G ((!(next(horMot_0)) -> ((next(botMot_0) & !(next(botMot_1))) & next(verMot_0))));
-guarantee
-	 (((!(botMot_0) | botMot_1) -> (verMot_0 & horMot_0)));
-guarantee
-	G (((!(next(botMot_0)) | next(botMot_1)) -> (next(verMot_0) & next(horMot_0))));
-guarantee
-	 ((spec_allsleep <-> (((verMot_0 & horMot_0) & botMot_0) & !(botMot_1))));
-guarantee
-	G ((next(spec_allsleep) <-> (((next(verMot_0) & next(horMot_0)) & next(botMot_0)) & !(next(botMot_1)))));
-guarantee
-	 ((spec_finished_cycle <-> (((((ack_bot_0 & pREV_aux_6) & spec_stage_0) & !(spec_stage_1)) & spec_stage_2) & spec_pausing_0)));
-guarantee
-	G ((next(spec_finished_cycle) <-> (((((next(ack_bot_0) & next(pREV_aux_6)) & next(spec_stage_0)) & !(next(spec_stage_1))) & next(spec_stage_2)) & next(spec_pausing_0))));
-guarantee
-	 ((spec_finished_cycle <-> !(reduce_num_of_cubes_0)));
-guarantee
-	G ((next(spec_finished_cycle) <-> !(next(reduce_num_of_cubes_0))));
-guarantee
-	 (((!(speedButton_0) & pREV_aux_7) <-> spec_speedButtonValidPressed));
-guarantee
-	G (((!(next(speedButton_0)) & next(pREV_aux_7)) <-> next(spec_speedButtonValidPressed)));
-guarantee
-	 (((spec_speedButtonValidPressed & pREV_aux_8) -> (!(motSpeed_0) & motSpeed_1)));
-guarantee
-	G (((next(spec_speedButtonValidPressed) & next(pREV_aux_8)) -> (!(next(motSpeed_0)) & next(motSpeed_1))));
-guarantee
-	 (((spec_speedButtonValidPressed & pREV_aux_9) -> (motSpeed_0 & !(motSpeed_1))));
-guarantee
-	G (((next(spec_speedButtonValidPressed) & next(pREV_aux_9)) -> (next(motSpeed_0) & !(next(motSpeed_1)))));
-guarantee
-	 (((spec_speedButtonValidPressed & pREV_aux_10) -> (!(motSpeed_0) & !(motSpeed_1))));
-guarantee
-	G (((next(spec_speedButtonValidPressed) & next(pREV_aux_10)) -> (!(next(motSpeed_0)) & !(next(motSpeed_1)))));
-guarantee
-	 (((!(spec_speedButtonValidPressed) & pREV_aux_8) -> (!(motSpeed_0) & !(motSpeed_1))));
-guarantee
-	G (((!(next(spec_speedButtonValidPressed)) & next(pREV_aux_8)) -> (!(next(motSpeed_0)) & !(next(motSpeed_1)))));
-guarantee
-	 (((!(spec_speedButtonValidPressed) & pREV_aux_9) -> (!(motSpeed_0) & motSpeed_1)));
-guarantee
-	G (((!(next(spec_speedButtonValidPressed)) & next(pREV_aux_9)) -> (!(next(motSpeed_0)) & next(motSpeed_1))));
-guarantee
-	 (((!(spec_speedButtonValidPressed) & pREV_aux_10) -> (motSpeed_0 & !(motSpeed_1))));
-guarantee
-	G (((!(next(spec_speedButtonValidPressed)) & next(pREV_aux_10)) -> (next(motSpeed_0) & !(next(motSpeed_1)))));
+	G (haltButton = PRESS & PREV(haltButton = RELEASE) <-> spec_haltButtonValidPressed = true);
 
-assumption
-	 (sYS_CONSTRAINT_0_respondsTo_responded);
-assumption
-	G ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (spec_haltButtonValidPressed | (sYS_CONSTRAINT_0_respondsTo_responded & !((spec_haltButtonValidPressed & spec_pausing_0))))));
-assumption
-	 (eNV_CONSTRAINT_1_respondsTo_responded);
-assumption
-	G ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> (ack_ver_hor_0 | (eNV_CONSTRAINT_1_respondsTo_responded & !(!(ack_ver_hor_0))))));
-assumption
-	 (eNV_CONSTRAINT_2_respondsTo_responded);
-assumption
-	G ((next(eNV_CONSTRAINT_2_respondsTo_responded) <-> (ack_bot_0 | (eNV_CONSTRAINT_2_respondsTo_responded & !(!(ack_bot_0))))));
-assumption
-	 (eNV_CONSTRAINT_3_respondsTo_responded);
-assumption
-	G ((next(eNV_CONSTRAINT_3_respondsTo_responded) <-> (!(num_of_cubes_0) | (eNV_CONSTRAINT_3_respondsTo_responded & !(num_of_cubes_0)))));
-assumption
-	 (!(pREV_aux_4));
-assumption
-	G ((next(pREV_aux_4) <-> haltButton_0));
-assumption
-	 (!(pREV_aux_5));
-assumption
-	G ((next(pREV_aux_5) <-> !(spec_pausing_0)));
-assumption
-	 (!(pREV_aux_6));
-assumption
-	G ((next(pREV_aux_6) <-> spec_pausing_0));
-assumption
-	 (!(pREV_aux_7));
-assumption
-	G ((next(pREV_aux_7) <-> speedButton_0));
-assumption
-	 (!(pREV_aux_8));
-assumption
-	G ((next(pREV_aux_8) <-> (!(motSpeed_0) & !(motSpeed_1))));
-assumption
-	 (!(pREV_aux_9));
-assumption
-	G ((next(pREV_aux_9) <-> (!(motSpeed_0) & motSpeed_1)));
-assumption
-	 (!(pREV_aux_10));
-assumption
-	G ((next(pREV_aux_10) <-> (motSpeed_0 & !(motSpeed_1))));
+guarantee
+	G ((spec_haltButtonValidPressed = true & spec_pausing = GO) | (spec_haltButtonValidPressed = false & spec_pausing = PAUSE)
+		-> next(spec_pausing) = PAUSE);
+	
+guarantee
+	G ((spec_haltButtonValidPressed = false & spec_pausing = GO) | (spec_haltButtonValidPressed = true & spec_pausing = PAUSE)
+		-> next(spec_pausing) = GO);
 
+guarantee -- no pause is eternal
+  respondsTo(spec_haltButtonValidPressed=true&spec_pausing=GO,(spec_haltButtonValidPressed=true));
+	
+guarantee -- if we pause, this means no motors move and all the rest of the stats remain the same
+	G (spec_pausing = PAUSE | ack_ver_hor = MOVE -> 
+		spec_allsleep = true & next(spec_stage) = spec_stage);
+	
+guarantee --aside from the WAIT stage, spec_currentColor never changes
+	G (spec_stage != WAIT -> next(spec_currentColor) = spec_currentColor);
+
+guarantee -- only one motors moves at a time
+	G (verMot = MOVE -> (botMot = STOP & horMot = SLEEP));
+	
+guarantee 
+	G (horMot = MOVE -> (botMot = STOP & verMot = SLEEP));
+	
+guarantee 
+	G (botMot != STOP -> (verMot = SLEEP & horMot = SLEEP));
+	
+guarantee -- spec_allsleep is true iff all motors sleep
+	G (spec_allsleep = true <-> verMot = SLEEP  & horMot = SLEEP & botMot = STOP);
+	
+guarantee -- motors are asleep at the start
+	motSpeed = LEVEL1 & spec_stage = WAIT & spec_pausing = GO;
+	
+-- THIS IS HOW THE ROBOT WORKS WHEN NOT PAUSED
+
+-- prior to heap search
+
+guarantee -- if there is no cube and we are not currently moving a cube, all motors sleep
+	G ((color = BLACK | num_of_cubes = ZERO) & spec_stage = WAIT -> 
+		spec_allsleep = true & next(spec_stage) = WAIT);
+
+guarantee -- once seeing a cube, verMot kicks it in
+	G (color != BLACK & num_of_cubes != ZERO & spec_stage = WAIT  & spec_pausing = GO  ->
+		verMot = MOVE  & color = next(spec_currentColor) & next(spec_stage) = KICK);
+
+guarantee -- after the cube has been kicked in, move to the right angle
+	G (ack_ver_hor = SLEEP & spec_stage = KICK  & spec_pausing = GO  ->
+		botMot = RIGHT & next(spec_stage) = TOANGLERIGHT);
+
+-- heap search
+ 
+guarantee -- while the bottom motor is moving, see if the color has been found [botMot is MOVING and the color has NOT been found; we're GOING]
+	G (atEdge != EDGE & (spec_stage = TOANGLERIGHT | spec_stage = TOANGLELEFT) & detect != spec_currentColor & spec_pausing = GO  ->
+		(spec_stage = TOANGLERIGHT -> botMot = RIGHT) & (spec_stage = TOANGLELEFT -> botMot = LEFT) & next(spec_stage) = spec_stage);
+
+guarantee -- while the bottom motor is moving, see if the color has been found [botMot STOPPED MOVING and the color has NOT been found; we're GOING]
+	G (atEdge = EDGE & (spec_stage = TOANGLERIGHT | spec_stage = TOANGLELEFT) & spec_pausing = GO  & detect != spec_currentColor ->
+		(spec_stage = TOANGLERIGHT -> botMot = LEFT & next(spec_stage) = TOANGLELEFT) & (spec_stage = TOANGLELEFT -> botMot = RIGHT & next(spec_stage) = TOANGLERIGHT));
+ /* 
+LTLSPEC -- while the bottom motor is moving, see if the color has been found [botMot is MOVING and the color has NOT been found; we're GOING]
+	G (spec_stage = TOANGLELEFT & spec_pausing = GO  & detect != spec_currentColor ->
+		botMot = LEFT & next(spec_stage) = TOANGLELEFT);
+*/
+guarantee -- after moving to the right angle, move the cube into the heap [we're GOING]
+	G ((spec_stage = TOANGLERIGHT | spec_stage = TOANGLELEFT) & spec_pausing = GO & detect = spec_currentColor ->
+		verMot = SLEEP & horMot = MOVE & botMot = STOP & next(spec_stage) = DROP );
+
+-- return to initial position
+	 
+guarantee -- after the cube has been dropped into the heap, return to original position. Wait for the motor to finish returning before doing anything else
+	G (((ack_ver_hor = SLEEP & spec_stage = DROP) | ((ack_bot = MOVE | (ack_bot = SLEEP & PREV(spec_pausing = PAUSE))) & spec_stage = FROMANGLE)) & spec_pausing = GO ->
+		botMot = INITPOS & next(spec_stage) = FROMANGLE);
+
+guarantee
+	G (spec_finished_cycle <-> ack_bot = SLEEP & PREV(spec_pausing = GO) & spec_stage = FROMANGLE & spec_pausing = GO);
+
+guarantee -- after the bottom motor finished moving, return to starting stage
+	G (spec_finished_cycle -> spec_allsleep = true & next(spec_stage) = WAIT);
+
+guarantee -- reduce the number of cubes left to soft iff a cycle has been finished
+	G (spec_finished_cycle <-> reduce_num_of_cubes = REDUCE);
+
+-- speed button
+
+guarantee
+	G (speedButton = PRESS & PREV(speedButton = RELEASE) <-> spec_speedButtonValidPressed = true);
+
+
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed = true & PREV(motSpeed = LEVEL1) -> motSpeed = LEVEL2);
+	
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed = true & PREV(motSpeed = LEVEL2) -> motSpeed = LEVEL3);
+	
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed = true & PREV(motSpeed = LEVEL3) -> motSpeed = LEVEL1);
+	 
+	 
+guarantee -- if the speed button is released, the speed remains the same
+	G (spec_speedButtonValidPressed = false & PREV(motSpeed = LEVEL1) -> motSpeed = LEVEL1);
+	
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed = false & PREV(motSpeed = LEVEL2) -> motSpeed = LEVEL2);
+	
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed = false & PREV(motSpeed = LEVEL3) -> motSpeed = LEVEL3);
+
+-- Some environment specifications
+
+assumption -- after starting to move, we will sleep eventually
+  respondsTo(ack_ver_hor=MOVE,(ack_ver_hor=SLEEP));
+assumption
+  respondsTo(ack_bot=MOVE,(ack_bot=SLEEP));
+	
+assumption -- we will always finish sorting the given number of cubes
+  respondsTo(num_of_cubes!=ZERO,(num_of_cubes=ZERO));
+
+assumption -- there will always be a cube
+  GF (color!=BLACK);
+
+pattern respondsTo(trigger, response) {
+  var boolean responded;
+  responded;
+  G (next(responded) iff (response or responded and !trigger));
+  GF (responded);
+}

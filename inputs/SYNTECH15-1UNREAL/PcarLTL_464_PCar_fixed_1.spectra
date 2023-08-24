@@ -1,69 +1,68 @@
-
-module PcarLTL_464_PCar_fixed_1
-
-env boolean obstacle_0;
-env boolean sideSense_0;
-env boolean sideSense_1;
-
-sys boolean throttle_0;
-sys boolean throttle_1;
-sys boolean steer_0;
-sys boolean steer_1;
-sys boolean spec_b2f_0;
-sys boolean spec_b2f_1;
-sys boolean spec_f2b_0;
-sys boolean spec_f2b_1;
-
-env boolean eNV_CONSTRAINT_0_respondsTo_responded;
-
+// Initial file contents for AspectLTL aspect file (*.altl)
+module PCar
+		env {CLEAR, BLOCKED} obstacle ;
+		env {CLEAR,P_O, BLOCKED} sideSense;
+//		new park: boolean;
+//		new policy: {SEEKING,PARKING,PARKED};
+//		new emgButton: boolean;
+		sys {FWD, BWD, STOP} throttle ;
+		sys {RIGHT,LEFT, CENTER} steer ;
+guarantee
+	G (obstacle=BLOCKED -> ( !(throttle = FWD) ));
+guarantee
+	G (((obstacle = CLEAR) & (sideSense = CLEAR)) ->  (steer = CENTER));
+guarantee
+  GF ((throttle=FWD)&(steer=CENTER));
+//LTLSPEC
+//	G(((sideSense = P_O) | (sideSense = CLEAR)) -> (park));
+//LTLSPEC
+//	G ((park) ->F((obstacle = BLOCKED) & (sideSense = BLOCKED)));
+//LTLSPECENV
+//	!(park); // init state for env. there is no parking space at the beginning.
 assumption
-	GF (((!(spec_b2f_0) & !(spec_b2f_1)) | (!(spec_b2f_0) & spec_b2f_1)));
-assumption
-	GF (((!(spec_f2b_0) & !(spec_f2b_1)) | (!(spec_f2b_0) & spec_f2b_1)));
-assumption
-	GF (eNV_CONSTRAINT_0_respondsTo_responded);
-assumption
-	 (!((sideSense_0 & sideSense_1)));
-assumption
-	G (!((next(sideSense_0) & next(sideSense_1))));
+  respondsTo(((throttle=FWD)&(steer=CENTER)&(sideSense=BLOCKED)),(sideSense=CLEAR));
 
-guarantee
-	GF ((((!(throttle_0) & !(throttle_1)) & steer_0) & !(steer_1)));
-guarantee
-	 ((!(spec_b2f_0) & !(spec_b2f_1)));
-guarantee
-	 ((!(spec_f2b_0) & !(spec_f2b_1)));
-guarantee
-	G (((((((((!(spec_b2f_0) & !(spec_b2f_1)) & ((((!((!(throttle_0) & throttle_1)) & !((throttle_0 & !(throttle_1)))) | (((!(throttle_0) & throttle_1) & !(throttle_0)) & !(throttle_1))) | ((!((!(throttle_0) & !(throttle_1))) & throttle_0) & !(throttle_1))) | ((((!((!(throttle_0) & throttle_1)) & !(throttle_0)) & !(throttle_1)) & throttle_0) & !(throttle_1)))) & (!(next(spec_b2f_0)) & !(next(spec_b2f_1)))) | (((!(spec_b2f_0) & !(spec_b2f_1)) & (((!(throttle_0) & throttle_1) & !((!(throttle_0) & !(throttle_1)))) & !((throttle_0 & !(throttle_1))))) & (!(next(spec_b2f_0)) & next(spec_b2f_1)))) | (((!(spec_b2f_0) & spec_b2f_1) & ((!((!(throttle_0) & !(throttle_1))) & throttle_0) & !(throttle_1))) & (!(next(spec_b2f_0)) & !(next(spec_b2f_1))))) | (((!(spec_b2f_0) & spec_b2f_1) & (!((!(throttle_0) & !(throttle_1))) & !((throttle_0 & !(throttle_1))))) & (!(next(spec_b2f_0)) & next(spec_b2f_1)))) | ((((!(spec_b2f_0) & spec_b2f_1) & !(throttle_0)) & !(throttle_1)) & (next(spec_b2f_0) & !(next(spec_b2f_1))))) | ((spec_b2f_0 & !(spec_b2f_1)) & (next(spec_b2f_0) & !(next(spec_b2f_1))))));
-guarantee
-	G (((((((((!(spec_f2b_0) & !(spec_f2b_1)) & ((((!((!(throttle_0) & !(throttle_1))) & !((throttle_0 & !(throttle_1)))) | (((!(throttle_0) & !(throttle_1)) & !(throttle_0)) & throttle_1)) | ((!((!(throttle_0) & throttle_1)) & throttle_0) & !(throttle_1))) | ((((!((!(throttle_0) & !(throttle_1))) & !(throttle_0)) & throttle_1) & throttle_0) & !(throttle_1)))) & (!(next(spec_f2b_0)) & !(next(spec_f2b_1)))) | (((!(spec_f2b_0) & !(spec_f2b_1)) & (((!(throttle_0) & !(throttle_1)) & !((!(throttle_0) & throttle_1))) & !((throttle_0 & !(throttle_1))))) & (!(next(spec_f2b_0)) & next(spec_f2b_1)))) | (((!(spec_f2b_0) & spec_f2b_1) & ((!((!(throttle_0) & throttle_1)) & throttle_0) & !(throttle_1))) & (!(next(spec_f2b_0)) & !(next(spec_f2b_1))))) | (((!(spec_f2b_0) & spec_f2b_1) & (!((!(throttle_0) & throttle_1)) & !((throttle_0 & !(throttle_1))))) & (!(next(spec_f2b_0)) & next(spec_f2b_1)))) | ((((!(spec_f2b_0) & spec_f2b_1) & !(throttle_0)) & throttle_1) & (next(spec_f2b_0) & !(next(spec_f2b_1))))) | ((spec_f2b_0 & !(spec_f2b_1)) & (next(spec_f2b_0) & !(next(spec_f2b_1))))));
-guarantee
-	 (!((throttle_0 & throttle_1)));
-guarantee
-	G (!((next(throttle_0) & next(throttle_1))));
-guarantee
-	 (!((steer_0 & steer_1)));
-guarantee
-	G (!((next(steer_0) & next(steer_1))));
-guarantee
-	 ((obstacle_0 -> !((!(throttle_0) & !(throttle_1)))));
-guarantee
-	G ((next(obstacle_0) -> !((!(next(throttle_0)) & !(next(throttle_1))))));
-guarantee
-	 ((((!(obstacle_0) & !(sideSense_0)) & !(sideSense_1)) -> (steer_0 & !(steer_1))));
-guarantee
-	G ((((!(next(obstacle_0)) & !(next(sideSense_0))) & !(next(sideSense_1))) -> (next(steer_0) & !(next(steer_1)))));
-guarantee
-	 (!((spec_b2f_0 & spec_b2f_1)));
-guarantee
-	G (!((next(spec_b2f_0) & next(spec_b2f_1))));
-guarantee
-	 (!((spec_f2b_0 & spec_f2b_1)));
-guarantee
-	G (!((next(spec_f2b_0) & next(spec_f2b_1))));
+  sys { S0, S1, S2} spec_b2f ;
 
-assumption
-	 (eNV_CONSTRAINT_0_respondsTo_responded);
-assumption
-	G ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((!(sideSense_0) & !(sideSense_1)) | (eNV_CONSTRAINT_0_respondsTo_responded & !((((((!(throttle_0) & !(throttle_1)) & steer_0) & !(steer_1)) & sideSense_0) & !(sideSense_1)))))));
+guarantee -- initial assignments: initial state
+  spec_b2f=S0;
 
+guarantee -- safety this and next spec_b2f
+  G((spec_b2f=S0 & ((!(throttle = BWD) & !(throttle = STOP)) | 
+  		(throttle = BWD & throttle = FWD) | 
+  		(!(throttle = FWD) & throttle = STOP) | 
+  		(!(throttle = BWD) & throttle = FWD & throttle = STOP)) & next(spec_b2f=S0)) |
+  (spec_b2f=S0 & (throttle = BWD & !(throttle = FWD) & !(throttle = STOP)) & next(spec_b2f=S1)) |
+  (spec_b2f=S1 & (!(throttle = FWD) & throttle = STOP) & next(spec_b2f=S0)) |
+  (spec_b2f=S1 & (!(throttle = FWD) & !(throttle = STOP)) & next(spec_b2f=S1)) |
+  (spec_b2f=S1 & (throttle = FWD) & next(spec_b2f=S2)) |
+  (spec_b2f=S2 & next(spec_b2f=S2)));
+
+assumption -- equivalence of satisfaction
+  GF (spec_b2f=S0|spec_b2f=S1);
+  
+  sys { S0, S1, S2} spec_f2b ;
+
+guarantee -- initial assignments: initial state
+  spec_f2b=S0;
+
+guarantee -- safety this and next spec_b2f
+  G((spec_f2b=S0 & ((!(throttle = FWD) & !(throttle = STOP)) | 
+  		(throttle = FWD & throttle = BWD) | 
+  		(!(throttle = BWD) & throttle = STOP) | 
+  		(!(throttle = FWD) & throttle = BWD & throttle = STOP)) & next(spec_f2b=S0)) |
+  (spec_f2b=S0 & (throttle = FWD & !(throttle = BWD) & !(throttle = STOP)) & next(spec_f2b=S1)) |
+  (spec_f2b=S1 & (!(throttle = BWD) & throttle = STOP) & next(spec_f2b=S0)) |
+  (spec_f2b=S1 & (!(throttle = BWD) & !(throttle = STOP)) & next(spec_f2b=S1)) |
+  (spec_f2b=S1 & (throttle = BWD) & next(spec_f2b=S2)) |
+  (spec_f2b=S2 & next(spec_f2b=S2)));
+
+assumption -- equivalence of satisfaction
+  GF (spec_f2b=S0|spec_f2b=S1);
+
+pattern respondsTo(trigger, response) {
+  var boolean responded;
+  responded;
+  G (next(responded) iff (response or responded and !trigger));
+  GF (responded);
+}

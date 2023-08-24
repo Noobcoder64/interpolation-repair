@@ -1,5 +1,4 @@
-
-module Lift
+module Cavezza
 
 env boolean b1;
 env boolean b2;
@@ -9,45 +8,58 @@ sys boolean f1;
 sys boolean f2;
 sys boolean f3;
 
+// phi init
+assumption
+    (!b1 and !b2 and !b3);
 
+// phi1
 assumption
-	 (((!(b1) & !(b2)) & !(b3)));
+    G ((b1 and f1) -> next(!b1));
 assumption
-	G (((b1 & f1) -> !(next(b1))));
+    G ((b2 and f2) -> next(!b2));
 assumption
-	G (((b2 & f2) -> !(next(b2))));
-assumption
-	G (((b3 & f3) -> !(next(b3))));
-assumption
-	G (((b1 & !(f1)) -> next(b1)));
-assumption
-	G (((b2 & !(f2)) -> next(b2)));
-assumption
-	G (((b3 & !(f3)) -> next(b3)));
+    G ((b3 and f3) -> next(!b3));
 
-guarantee
-	 (((f1 & !(f2)) & !(f3)));
-guarantee
-	G (((!((f1 & f2)) & !((f1 & f3))) & !((f2 & f3))));
-guarantee
-	G ((f1 -> (next(f1) | next(f2))));
-guarantee
-	G ((f2 -> ((next(f1) | next(f2)) | next(f3))));
-guarantee
-	G ((f3 -> (next(f2) | next(f3))));
-guarantee
-	G ((((((f1 & next(f2)) | (f2 & next(f3))) | (f2 & next(f1))) | (f3 & next(f2))) -> ((b1 | b2) | b3)));
-guarantee
-	GF ((b1 -> f1));
-guarantee
-	GF ((b2 -> f2));
-guarantee
-	GF ((b3 -> f3));
-guarantee
-	GF (f1);
-guarantee
-	GF (f2);
-guarantee
-	GF (f3);
+// phi2
+assumption
+    G ((b1 and !f1) -> next(b1));
+assumption
+    G ((b2 and !f2) -> next(b2));
+assumption
+    G ((b3 and !f3) -> next(b3));
 
+// phi init
+guarantee
+    (f1 and !f2 and !f3);
 
+// phi1
+guarantee
+    G (!(f1 and f2) and !(f1 and f3) and !(f2 and f3));
+
+// phi2
+guarantee
+    G (f1 -> (next(f1) or next(f2)));
+guarantee
+    G (f2 -> (next(f1) or next(f2) or next(f3)));
+guarantee
+    G (f3 -> (next(f2) or next(f3)));
+
+// phi3
+guarantee
+    G (((f1 and next(f2)) or (f2 and next(f3)) or (f2 and next(f1)) or (f3 and next(f2))) ->(b1 or b2 or b3));
+
+// phi4
+guarantee
+    GF (b1 -> f1);
+guarantee
+    GF (b2 -> f2);
+guarantee
+    GF (b3 -> f3);
+
+// phi5
+guarantee
+    GF (f1);
+guarantee
+    GF (f2);
+guarantee
+    GF (f3);

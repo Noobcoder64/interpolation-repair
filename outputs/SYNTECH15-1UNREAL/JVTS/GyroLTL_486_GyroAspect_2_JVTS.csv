@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution
-ee1ecbd9-d60a-4f9b-a82e-5731e92dfb26,['G(F(!isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (!bluetoothCmd_2 -> (eNV_CONSTRAINT_0_respondsTo_responded -> (!balancer_0 -> (!balancer_1 -> balancer_2))))))))'],True

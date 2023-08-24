@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables
-7fbb21e6-2d2c-4498-a0bb-72abf9760ad6,"['G(X(!(obstacle_0)) -> (X(inputMoveMode_0) -> X(!(inputMoveMode_1))))', '(!obstacle_0 -> (inputMoveMode_0 -> !inputMoveMode_1))']",True,3

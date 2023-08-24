@@ -1,174 +1,153 @@
+module ColorSort
+		env {GREEN, BLACK, RED, BLUE,  YELLOW , WHITE} color ;
+		env {GREEN, BLACK, RED, BLUE,  YELLOW , WHITE} detect ;
+		env {MOVE, SLEEP} ack_ver ;
+		env {MOVE, SLEEP} ack_hor ;
+		env {MOVE, SLEEP} ack_bot ;
+		env {YES, NO} starting_pos ;
+		
+		env {PRESS, RELEASE} speedButton;
+		sys {MOVE, SLEEP} verMot ;
+		sys {MOVE, SLEEP} horMot ;
+		sys {SEEK, STOP, RETURN} botMot ;
+		
+		sys {LEVEL1, LEVEL2, LEVEL3} motSpeed;
+		
+		sys {GREEN, BLACK, RED, BLUE,  YELLOW , WHITE} spec_currentColor;
+		sys boolean spec_dropping ;
+		
+		sys boolean spec_speedButtonValidPressed ;
+		
+	define
+		allsleep := verMot = SLEEP & horMot = SLEEP & botMot = STOP;
+	define
+		nonemove := ack_ver = SLEEP & ack_hor = SLEEP & ack_bot = SLEEP;
+	define
+		verhor_dontmove := ack_ver = SLEEP & ack_hor = SLEEP;
+	define
+		onlybotmoves := verhor_dontmove & ack_bot = MOVE;
 
-module ColorSortLTL3TAG_787_ColorSort_2
+guarantee -- only one motors moves at a time
+	G (verMot = MOVE -> (botMot = STOP & horMot = SLEEP));
+	
+guarantee 
+	G (horMot = MOVE -> (botMot = STOP & verMot = SLEEP));
+	
+guarantee 
+	G (botMot != STOP -> (verMot = SLEEP & horMot = SLEEP));
+	
+guarantee -- if a motor is in the middle of moving, all the other motors stop
+	G (ack_ver = MOVE | ack_hor = MOVE -> allsleep);
 
-env boolean color_0;
-env boolean color_1;
-env boolean color_2;
-env boolean detect_0;
-env boolean detect_1;
-env boolean detect_2;
-env boolean ack_ver_0;
-env boolean ack_hor_0;
-env boolean ack_bot_0;
-env boolean starting_pos_0;
-env boolean speedButton_0;
+-- currentColor keeps its value unless a new cube is kicked
+guarantee 
+	G (verMot = SLEEP -> spec_currentColor = next(spec_currentColor));
+guarantee
+	G (verMot = MOVE -> color = next(spec_currentColor));
+	
+guarantee -- the dropping stage starts when we kick the cube in and ends when we drop it into its heap
+	G (spec_dropping = next(spec_dropping) <-> verMot = SLEEP & horMot = SLEEP);
+	
+-- this is how the colorsort works when given a cube
 
-sys boolean verMot_0;
-sys boolean horMot_0;
-sys boolean botMot_0;
-sys boolean botMot_1;
-sys boolean motSpeed_0;
-sys boolean motSpeed_1;
-sys boolean spec_currentColor_0;
-sys boolean spec_currentColor_1;
-sys boolean spec_currentColor_2;
-sys boolean spec_dropping;
-sys boolean spec_speedButtonValidPressed;
-sys boolean spec_waiting_ack_ver_mot;
-sys boolean spec_waiting_ack_hor_mot;
+guarantee -- we do not drop at the start, and the spped level starts at 1
+	!spec_dropping & motSpeed = LEVEL1;
 
-env boolean sYS_CONSTRAINT_0_respondsTo_responded;
-env boolean eNV_CONSTRAINT_1_respondsTo_responded;
-env boolean pREV_aux_2;
+guarantee -- if we are not in the dropping stage and the vertical and horizontal motors are still, return to the initial position
+	G (!spec_dropping & starting_pos = NO & verhor_dontmove <-> botMot = RETURN);
+		
+-- if we are not in the dropping stage and are at the initial position, drop a cube iff you see one
+		
+guarantee
+	G (!spec_dropping & starting_pos = YES & color = BLACK -> allsleep);
+	
+guarantee
+	G (color = BLACK | spec_dropping -> verMot = SLEEP);
+	
+guarantee
+	G (!spec_dropping & starting_pos = YES & nonemove & color != BLACK <-> verMot = MOVE);
+	
+guarantee -- seek the heap for the current cube until it is found
+	G (spec_dropping & detect != spec_currentColor & verhor_dontmove <-> botMot = SEEK);
 
-assumption
-	GF (((color_0 | color_1) | !(color_2)));
-assumption
-	GF (!(ack_hor_0));
-assumption
-	G ((!(spec_waiting_ack_ver_mot) -> ack_ver_0));
-assumption
-	G ((!(spec_waiting_ack_hor_mot) -> ack_hor_0));
-assumption
-	GF (eNV_CONSTRAINT_1_respondsTo_responded);
-assumption
-	 (!(((color_0 & color_1) & !(color_2))));
-assumption
-	G (!(((next(color_0) & next(color_1)) & !(next(color_2)))));
-assumption
-	 (!(((color_0 & color_1) & color_2)));
-assumption
-	G (!(((next(color_0) & next(color_1)) & next(color_2))));
-assumption
-	 (!(((detect_0 & detect_1) & !(detect_2))));
-assumption
-	G (!(((next(detect_0) & next(detect_1)) & !(next(detect_2)))));
-assumption
-	 (!(((detect_0 & detect_1) & detect_2)));
-assumption
-	G (!(((next(detect_0) & next(detect_1)) & next(detect_2))));
+guarantee -- when the heap is found, drop the cube into it through the tray
+	G (spec_dropping & detect = spec_currentColor & verhor_dontmove <-> horMot = MOVE);
+	
+-- the speed button
 
 guarantee
-	 (((!(spec_dropping) & !(motSpeed_0)) & !(motSpeed_1)));
-guarantee
-	 (!(spec_waiting_ack_ver_mot));
-guarantee
-	 (!(spec_waiting_ack_hor_mot));
-guarantee
-	GF (!(horMot_0));
-guarantee
-	G ((verMot_0 -> (((spec_currentColor_0 <-> next(spec_currentColor_0)) & (spec_currentColor_1 <-> next(spec_currentColor_1))) & (spec_currentColor_2 <-> next(spec_currentColor_2)))));
-guarantee
-	G ((!(verMot_0) -> (((color_0 <-> next(spec_currentColor_0)) & (color_1 <-> next(spec_currentColor_1))) & (color_2 <-> next(spec_currentColor_2)))));
-guarantee
-	G (((spec_dropping <-> next(spec_dropping)) <-> (verMot_0 & horMot_0)));
-guarantee
-	G ((((spec_speedButtonValidPressed & !(motSpeed_0)) & !(motSpeed_1)) -> (!(next(motSpeed_0)) & next(motSpeed_1))));
-guarantee
-	G ((((spec_speedButtonValidPressed & !(motSpeed_0)) & motSpeed_1) -> (next(motSpeed_0) & !(next(motSpeed_1)))));
-guarantee
-	G ((((spec_speedButtonValidPressed & motSpeed_0) & !(motSpeed_1)) -> (!(next(motSpeed_0)) & !(next(motSpeed_1)))));
-guarantee
-	G ((!(spec_speedButtonValidPressed) -> ((motSpeed_0 <-> next(motSpeed_0)) & (motSpeed_1 <-> next(motSpeed_1)))));
-guarantee
-	G (((!(spec_waiting_ack_ver_mot) & verMot_0) -> !(next(spec_waiting_ack_ver_mot))));
-guarantee
-	G (((!(spec_waiting_ack_ver_mot) & !(verMot_0)) -> next(spec_waiting_ack_ver_mot)));
-guarantee
-	G (((spec_waiting_ack_ver_mot & ack_ver_0) -> !(next(spec_waiting_ack_ver_mot))));
-guarantee
-	G (((spec_waiting_ack_ver_mot & !(ack_ver_0)) -> next(spec_waiting_ack_ver_mot)));
-guarantee
-	G (((!(spec_waiting_ack_hor_mot) & horMot_0) -> !(next(spec_waiting_ack_hor_mot))));
-guarantee
-	G (((!(spec_waiting_ack_hor_mot) & !(horMot_0)) -> next(spec_waiting_ack_hor_mot)));
-guarantee
-	G (((spec_waiting_ack_hor_mot & ack_hor_0) -> !(next(spec_waiting_ack_hor_mot))));
-guarantee
-	G (((spec_waiting_ack_hor_mot & !(ack_hor_0)) -> next(spec_waiting_ack_hor_mot)));
-guarantee
-	GF (sYS_CONSTRAINT_0_respondsTo_responded);
-guarantee
-	 (!((botMot_0 & botMot_1)));
-guarantee
-	G (!((next(botMot_0) & next(botMot_1))));
-guarantee
-	 (!((motSpeed_0 & motSpeed_1)));
-guarantee
-	G (!((next(motSpeed_0) & next(motSpeed_1))));
-guarantee
-	 (!(((spec_currentColor_0 & spec_currentColor_1) & !(spec_currentColor_2))));
-guarantee
-	G (!(((next(spec_currentColor_0) & next(spec_currentColor_1)) & !(next(spec_currentColor_2)))));
-guarantee
-	 (!(((spec_currentColor_0 & spec_currentColor_1) & spec_currentColor_2)));
-guarantee
-	G (!(((next(spec_currentColor_0) & next(spec_currentColor_1)) & next(spec_currentColor_2))));
-guarantee
-	 ((!(verMot_0) -> ((!(botMot_0) & botMot_1) & horMot_0)));
-guarantee
-	G ((!(next(verMot_0)) -> ((!(next(botMot_0)) & next(botMot_1)) & next(horMot_0))));
-guarantee
-	 ((!(horMot_0) -> ((!(botMot_0) & botMot_1) & verMot_0)));
-guarantee
-	G ((!(next(horMot_0)) -> ((!(next(botMot_0)) & next(botMot_1)) & next(verMot_0))));
-guarantee
-	 (((botMot_0 | !(botMot_1)) -> (verMot_0 & horMot_0)));
-guarantee
-	G (((next(botMot_0) | !(next(botMot_1))) -> (next(verMot_0) & next(horMot_0))));
-guarantee
-	 (((!(ack_ver_0) | !(ack_hor_0)) -> (((verMot_0 & horMot_0) & !(botMot_0)) & botMot_1)));
-guarantee
-	G (((!(next(ack_ver_0)) | !(next(ack_hor_0))) -> (((next(verMot_0) & next(horMot_0)) & !(next(botMot_0))) & next(botMot_1))));
-guarantee
-	 ((((!(spec_dropping) & starting_pos_0) & (ack_ver_0 & ack_hor_0)) <-> (botMot_0 & !(botMot_1))));
-guarantee
-	G ((((!(next(spec_dropping)) & next(starting_pos_0)) & (next(ack_ver_0) & next(ack_hor_0))) <-> (next(botMot_0) & !(next(botMot_1)))));
-guarantee
-	 ((((((!(spec_dropping) & !(starting_pos_0)) & !(color_0)) & !(color_1)) & color_2) -> (((verMot_0 & horMot_0) & !(botMot_0)) & botMot_1)));
-guarantee
-	G ((((((!(next(spec_dropping)) & !(next(starting_pos_0))) & !(next(color_0))) & !(next(color_1))) & next(color_2)) -> (((next(verMot_0) & next(horMot_0)) & !(next(botMot_0))) & next(botMot_1))));
-guarantee
-	 (((((!(color_0) & !(color_1)) & color_2) | spec_dropping) -> verMot_0));
-guarantee
-	G (((((!(next(color_0)) & !(next(color_1))) & next(color_2)) | next(spec_dropping)) -> next(verMot_0)));
-guarantee
-	 (((((!(spec_dropping) & !(starting_pos_0)) & ((ack_ver_0 & ack_hor_0) & ack_bot_0)) & ((color_0 | color_1) | !(color_2))) <-> !(verMot_0)));
-guarantee
-	G (((((!(next(spec_dropping)) & !(next(starting_pos_0))) & ((next(ack_ver_0) & next(ack_hor_0)) & next(ack_bot_0))) & ((next(color_0) | next(color_1)) | !(next(color_2)))) <-> !(next(verMot_0))));
-guarantee
-	 ((((spec_dropping & (((detect_0 <-> !(spec_currentColor_0)) | (detect_1 <-> !(spec_currentColor_1))) | (detect_2 <-> !(spec_currentColor_2)))) & (ack_ver_0 & ack_hor_0)) <-> (!(botMot_0) & !(botMot_1))));
-guarantee
-	G ((((next(spec_dropping) & (((next(detect_0) <-> !(next(spec_currentColor_0))) | (next(detect_1) <-> !(next(spec_currentColor_1)))) | (next(detect_2) <-> !(next(spec_currentColor_2))))) & (next(ack_ver_0) & next(ack_hor_0))) <-> (!(next(botMot_0)) & !(next(botMot_1)))));
-guarantee
-	 ((((((spec_dropping & (detect_0 <-> spec_currentColor_0)) & (detect_1 <-> spec_currentColor_1)) & (detect_2 <-> spec_currentColor_2)) & (ack_ver_0 & ack_hor_0)) <-> !(horMot_0)));
-guarantee
-	G ((((((next(spec_dropping) & (next(detect_0) <-> next(spec_currentColor_0))) & (next(detect_1) <-> next(spec_currentColor_1))) & (next(detect_2) <-> next(spec_currentColor_2))) & (next(ack_ver_0) & next(ack_hor_0))) <-> !(next(horMot_0))));
-guarantee
-	 (((!(speedButton_0) & pREV_aux_2) <-> spec_speedButtonValidPressed));
-guarantee
-	G (((!(next(speedButton_0)) & next(pREV_aux_2)) <-> next(spec_speedButtonValidPressed)));
+	G (speedButton = PRESS & PREV(speedButton = RELEASE) <-> spec_speedButtonValidPressed);
 
-assumption
-	 (sYS_CONSTRAINT_0_respondsTo_responded);
-assumption
-	G ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> ((((!(horMot_0) & (detect_0 <-> spec_currentColor_0)) & (detect_1 <-> spec_currentColor_1)) & (detect_2 <-> spec_currentColor_2)) | (sYS_CONSTRAINT_0_respondsTo_responded & !(((color_0 | color_1) | !(color_2)))))));
-assumption
-	 (eNV_CONSTRAINT_1_respondsTo_responded);
-assumption
-	G ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> (ack_ver_0 | (eNV_CONSTRAINT_1_respondsTo_responded & !(spec_waiting_ack_ver_mot)))));
-assumption
-	 (!(pREV_aux_2));
-assumption
-	G ((next(pREV_aux_2) <-> speedButton_0));
 
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed & motSpeed = LEVEL1 -> next(motSpeed = LEVEL2));
+	
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed & motSpeed = LEVEL2 -> next(motSpeed = LEVEL3));
+	
+guarantee -- if the speed button is pressed, increase the speed by one level
+	G (spec_speedButtonValidPressed & motSpeed = LEVEL3 -> next(motSpeed = LEVEL1));
+	 
+	 
+guarantee -- if the speed button is released, the speed remains the same
+	G (!spec_speedButtonValidPressed -> motSpeed = next(motSpeed));
+
+	
+-- environment specifications
+ 
+  sys boolean spec_waiting_ack_ver_mot;
+  sys boolean spec_waiting_ack_hor_mot;
+
+guarantee -- initial state
+  !spec_waiting_ack_ver_mot; -- not waiting for acknowledgement (only sleeping is allowed)
+  
+guarantee -- transitions
+  G(!spec_waiting_ack_ver_mot & verMot!=MOVE -> next(!spec_waiting_ack_ver_mot));
+guarantee
+  G (!spec_waiting_ack_ver_mot & verMot=MOVE -> next(spec_waiting_ack_ver_mot));
+guarantee
+  G (spec_waiting_ack_ver_mot & ack_ver=SLEEP -> next(!spec_waiting_ack_ver_mot));
+guarantee
+  G (spec_waiting_ack_ver_mot & ack_ver!=SLEEP -> next(spec_waiting_ack_ver_mot));
+
+assumption -- while we are not waiting motor can only acknowledge sleeping
+  G(!spec_waiting_ack_ver_mot -> ack_ver=SLEEP);
+assumption -- if we are waiting motor has to eventually acknowledge finishing
+  respondsTo(spec_waiting_ack_ver_mot,(ack_ver=SLEEP));
+  
+  
+guarantee -- initial state
+  !spec_waiting_ack_hor_mot; -- not waiting for acknowledgement (only sleeping is allowed)
+  
+guarantee -- transitions
+  G(!spec_waiting_ack_hor_mot & horMot!=MOVE -> next(!spec_waiting_ack_hor_mot));
+guarantee
+  G (!spec_waiting_ack_hor_mot & horMot=MOVE -> next(spec_waiting_ack_hor_mot));
+guarantee
+  G (spec_waiting_ack_hor_mot & ack_hor=SLEEP -> next(!spec_waiting_ack_hor_mot));
+guarantee
+  G (spec_waiting_ack_hor_mot & ack_hor!=SLEEP -> next(spec_waiting_ack_hor_mot));
+
+assumption -- while we are not waiting motor can only acknowledge sleeping
+  G(!spec_waiting_ack_hor_mot -> ack_hor=SLEEP);
+
+assumption -- there will always be a cube
+  GF (color!=BLACK);
+	
+assumption
+  GF (ack_hor=MOVE);
+	
+-- some interesting guarantees
+
+guarantee
+  respondsTo(color!=BLACK,(horMot=MOVE&detect=spec_currentColor));
+ 
+guarantee
+  GF (horMot=MOVE);
+
+pattern respondsTo(trigger, response) {
+  var boolean responded;
+  responded;
+  G (next(responded) iff (response or responded and !trigger));
+  GF (responded);
+}

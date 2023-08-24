@@ -1,201 +1,185 @@
+// Initial file contents for AspectLTL aspect file (*.altl)
+module GyroAspect
+		env {CLEAR, BLOCKED} frontDistSense ;
+		env {CLEAR, BLOCKED} backDistSense ;
+		env boolean isReady ;
+		env {STP, FWD, BWD, TURN_LEFT, TURN_RIGHT, SWITCH_MODE, SPEED_DOWN, SPEED_UP, NOP } bluetoothCmd ;
+		sys {STP, FWD, BWD, TURN_LEFT, TURN_RIGHT} balancer ;
+		sys { SLOW, REGULAR, FAST } balancerSpeed ;
+		sys { AUTO, MANUAL } spec_mode ;
+		sys { STP, FWD, BWD, TURN_LEFT, TURN_RIGHT } spec_manualCmd ;
 
-module GyroLTLVar2_701_GyroAspect_fixed_3
 
-env boolean frontDistSense_0;
-env boolean backDistSense_0;
-env boolean isReady;
-env boolean bluetoothCmd_0;
-env boolean bluetoothCmd_1;
-env boolean bluetoothCmd_2;
-env boolean bluetoothCmd_3;
+// Initial state.
+guarantee
+	balancer=STP;
 
-sys boolean balancer_0;
-sys boolean balancer_1;
-sys boolean balancer_2;
-sys boolean balancerSpeed_0;
-sys boolean balancerSpeed_1;
-sys boolean spec_mode_0;
-sys boolean spec_manualCmd_0;
-sys boolean spec_manualCmd_1;
-sys boolean spec_manualCmd_2;
-sys boolean spec_blockedState_0;
-sys boolean spec_blockedState_1;
+// Stop while the robot is not ready to move.
+guarantee
+	G (!isReady -> balancer=STP);
 
-env boolean eNV_CONSTRAINT_0_respondsTo_responded;
-env boolean eNV_CONSTRAINT_1_respondsTo_responded;
-env boolean eNV_CONSTRAINT_2_respondsTo_responded;
-env boolean pREV_aux_3;
-env boolean pREV_aux_4;
-env boolean pREV_aux_5;
-env boolean pREV_aux_6;
-env boolean pREV_aux_7;
+// Move forward only when there are no obstacles ahead.
+guarantee 
+	G ((balancer=FWD) -> (frontDistSense=CLEAR));
 
-assumption
-	 (!(isReady));
-assumption
-	 ((((bluetoothCmd_0 & !(bluetoothCmd_1)) & !(bluetoothCmd_2)) & !(bluetoothCmd_3)));
-assumption
-	 ((!(frontDistSense_0) & !(backDistSense_0)));
-assumption
-	GF (isReady);
-assumption
-	G ((isReady -> next(isReady)));
-assumption
-	GF (eNV_CONSTRAINT_0_respondsTo_responded);
-assumption
-	GF (eNV_CONSTRAINT_1_respondsTo_responded);
-assumption
-	GF (eNV_CONSTRAINT_2_respondsTo_responded);
-assumption
-	 (!((((bluetoothCmd_0 & !(bluetoothCmd_1)) & !(bluetoothCmd_2)) & bluetoothCmd_3)));
-assumption
-	G (!((((next(bluetoothCmd_0) & !(next(bluetoothCmd_1))) & !(next(bluetoothCmd_2))) & next(bluetoothCmd_3))));
-assumption
-	 (!((((bluetoothCmd_0 & !(bluetoothCmd_1)) & bluetoothCmd_2) & !(bluetoothCmd_3))));
-assumption
-	G (!((((next(bluetoothCmd_0) & !(next(bluetoothCmd_1))) & next(bluetoothCmd_2)) & !(next(bluetoothCmd_3)))));
-assumption
-	 (!((((bluetoothCmd_0 & !(bluetoothCmd_1)) & bluetoothCmd_2) & bluetoothCmd_3)));
-assumption
-	G (!((((next(bluetoothCmd_0) & !(next(bluetoothCmd_1))) & next(bluetoothCmd_2)) & next(bluetoothCmd_3))));
-assumption
-	 (!((((bluetoothCmd_0 & bluetoothCmd_1) & !(bluetoothCmd_2)) & !(bluetoothCmd_3))));
-assumption
-	G (!((((next(bluetoothCmd_0) & next(bluetoothCmd_1)) & !(next(bluetoothCmd_2))) & !(next(bluetoothCmd_3)))));
-assumption
-	 (!((((bluetoothCmd_0 & bluetoothCmd_1) & !(bluetoothCmd_2)) & bluetoothCmd_3)));
-assumption
-	G (!((((next(bluetoothCmd_0) & next(bluetoothCmd_1)) & !(next(bluetoothCmd_2))) & next(bluetoothCmd_3))));
-assumption
-	 (!((((bluetoothCmd_0 & bluetoothCmd_1) & bluetoothCmd_2) & !(bluetoothCmd_3))));
-assumption
-	G (!((((next(bluetoothCmd_0) & next(bluetoothCmd_1)) & next(bluetoothCmd_2)) & !(next(bluetoothCmd_3)))));
-assumption
-	 (!((((bluetoothCmd_0 & bluetoothCmd_1) & bluetoothCmd_2) & bluetoothCmd_3)));
-assumption
-	G (!((((next(bluetoothCmd_0) & next(bluetoothCmd_1)) & next(bluetoothCmd_2)) & next(bluetoothCmd_3))));
+// Move backward only when there are no obstacles behind.
+guarantee 
+	G ((balancer=BWD) -> (backDistSense=CLEAR));
 
+// When in auto mode, eventually move forward.
+guarantee 
+  GF (spec_mode=AUTO->balancer=FWD);
+
+// Pattern #20 for: turning happens when blocked until clear
+////////////////////////////////////////////////////////////
+define 
+  	turningOp := (balancer=TURN_RIGHT | balancer=TURN_LEFT); 
+  	
+  sys { S0, S1, S2} spec_blockedState ;
+
+guarantee -- initial assignments: initial state
+  spec_blockedState=S0;
+
+guarantee -- safety this and next blockedState
+  G ((spec_mode=AUTO & isReady) -> ((spec_blockedState=S0 & ((!(frontDistSense=BLOCKED) & !(frontDistSense=CLEAR)) | (frontDistSense=CLEAR)) & next(spec_blockedState=S0)) |
+  (spec_blockedState=S0 & (frontDistSense=BLOCKED & !turningOp & !(frontDistSense=CLEAR)) & next(spec_blockedState=S1)) |
+  (spec_blockedState=S0 & (frontDistSense=BLOCKED & turningOp & !(frontDistSense=CLEAR)) & next(spec_blockedState=S2)) |
+  (spec_blockedState=S1 & next(spec_blockedState=S1)) |
+  (spec_blockedState=S2 & (frontDistSense=CLEAR) & next(spec_blockedState=S0)) |
+  (spec_blockedState=S2 & (!turningOp & !(frontDistSense=CLEAR)) & next(spec_blockedState=S1)) |
+  (spec_blockedState=S2 & (turningOp & !(frontDistSense=CLEAR)) & next(spec_blockedState=S2))));
+
+guarantee -- equivalence of satisfaction
+  GF (spec_mode=AUTO->(spec_blockedState=S0|spec_blockedState=S2));
+////////////////////////////////////////////////////////////
+
+// Switching between auto and manual modes logic:
+////////////////////////////////////////////////////////////
+
+guarantee -- initial assignments: initial state
+  spec_mode=AUTO;
+
+guarantee -- safety this and next blockedState
+  G ((spec_mode=AUTO & bluetoothCmd=SWITCH_MODE & next(spec_mode=MANUAL) & (spec_manualCmd=STP)) | 
+  	(spec_mode=MANUAL & bluetoothCmd=SWITCH_MODE & next(spec_mode=AUTO)) | 
+  	(bluetoothCmd!=SWITCH_MODE & next(spec_mode)=spec_mode)
+  	);
+
+////////////////////////////////////////////////////////////
+
+// Changing speed logic:
+////////////////////////////////////////////////////////////
+
+guarantee -- initial assignments: initial state
+  balancerSpeed=REGULAR;
+
+guarantee -- safety this and next blockedState
+  G ((balancerSpeed=SLOW & bluetoothCmd=SPEED_DOWN & next(balancerSpeed=SLOW)) | 
+  	(balancerSpeed=SLOW & bluetoothCmd=SPEED_UP & next(balancerSpeed=REGULAR)) | 
+  	(balancerSpeed=REGULAR & bluetoothCmd=SPEED_DOWN & next(balancerSpeed=SLOW)) | 
+  	(balancerSpeed=REGULAR & bluetoothCmd=SPEED_UP & next(balancerSpeed=FAST)) | 
+  	(balancerSpeed=FAST & bluetoothCmd=SPEED_DOWN & next(balancerSpeed=REGULAR)) | 
+  	(balancerSpeed=FAST & bluetoothCmd=SPEED_UP & next(balancerSpeed=FAST)) | 
+  	((bluetoothCmd!=SPEED_DOWN & bluetoothCmd!=SPEED_UP) & next(balancerSpeed)=balancerSpeed)
+  	);
+
+////////////////////////////////////////////////////////////
+
+
+// Manual mode specifications:
+////////////////////////////////////////////////////////////
+
+// Connecting bluetooth command to manual command local variable
 guarantee
-	 (((!(balancer_0) & !(balancer_1)) & !(balancer_2)));
+	G ((spec_mode=MANUAL) -> 
+		(((bluetoothCmd=STP) -> (spec_manualCmd=STP)) &
+		((bluetoothCmd=FWD) -> (spec_manualCmd=FWD)) &
+		((bluetoothCmd=BWD) -> (spec_manualCmd=BWD)) &
+		((bluetoothCmd=TURN_LEFT) -> (spec_manualCmd=TURN_LEFT)) &
+		((bluetoothCmd=TURN_RIGHT) -> (spec_manualCmd=TURN_RIGHT))
+	));
+
+// Any non driving command from the bluetooth controller saves the last manual mode command
+define
+	bluetoothDrivingCmd := ((bluetoothCmd=STP) | (bluetoothCmd=FWD) | (bluetoothCmd=BWD) | (bluetoothCmd=TURN_LEFT) | (bluetoothCmd=TURN_RIGHT));
+	
 guarantee
-	GF ((!(spec_mode_0) -> ((!(balancer_0) & !(balancer_1)) & balancer_2)));
+	G ((spec_mode=MANUAL) -> 
+		((!bluetoothDrivingCmd) -> (
+		(PREV(spec_manualCmd=STP) -> spec_manualCmd=STP) &
+		(PREV(spec_manualCmd=FWD) -> spec_manualCmd=FWD) &
+		(PREV(spec_manualCmd=BWD) -> spec_manualCmd=BWD) &
+		(PREV(spec_manualCmd=TURN_LEFT) -> spec_manualCmd=TURN_LEFT) &
+		(PREV(spec_manualCmd=TURN_RIGHT) -> spec_manualCmd=TURN_RIGHT)
+	)));	
+	
 guarantee
-	 ((!(spec_blockedState_0) & !(spec_blockedState_1)));
+	G ((spec_mode=MANUAL) -> 
+		((spec_manualCmd=FWD) -> ((frontDistSense=CLEAR & isReady)-> balancer=FWD))
+	);
+	
 guarantee
-	GF ((!(spec_mode_0) -> ((!(spec_blockedState_0) & !(spec_blockedState_1)) | (spec_blockedState_0 & !(spec_blockedState_1)))));
+	G ((spec_mode=MANUAL) -> 
+		((spec_manualCmd=BWD) -> ((backDistSense=CLEAR & isReady) -> balancer=BWD))
+	);
+	
 guarantee
-	 (!(spec_mode_0));
+	G ((spec_mode=MANUAL) -> 
+		((spec_manualCmd=TURN_RIGHT) -> (isReady -> balancer=TURN_RIGHT))
+	);
+	
 guarantee
-	 ((!(balancerSpeed_0) & balancerSpeed_1));
+	G ((spec_mode=MANUAL) -> 
+		((spec_manualCmd=TURN_LEFT) -> (isReady -> balancer=TURN_LEFT))
+	);
+	
 guarantee
-	G (((!(spec_mode_0) & isReady) -> (((((((((!(spec_blockedState_0) & !(spec_blockedState_1)) & ((!(frontDistSense_0) & !(!(frontDistSense_0))) | !(frontDistSense_0))) & (!(next(spec_blockedState_0)) & !(next(spec_blockedState_1)))) | (((!(spec_blockedState_0) & !(spec_blockedState_1)) & ((frontDistSense_0 & !((((balancer_0 & !(balancer_1)) & !(balancer_2)) | ((!(balancer_0) & balancer_1) & balancer_2)))) & !(!(frontDistSense_0)))) & (!(next(spec_blockedState_0)) & next(spec_blockedState_1)))) | (((!(spec_blockedState_0) & !(spec_blockedState_1)) & ((frontDistSense_0 & (((balancer_0 & !(balancer_1)) & !(balancer_2)) | ((!(balancer_0) & balancer_1) & balancer_2))) & !(!(frontDistSense_0)))) & (next(spec_blockedState_0) & !(next(spec_blockedState_1))))) | ((!(spec_blockedState_0) & spec_blockedState_1) & (!(next(spec_blockedState_0)) & next(spec_blockedState_1)))) | (((spec_blockedState_0 & !(spec_blockedState_1)) & !(frontDistSense_0)) & (!(next(spec_blockedState_0)) & !(next(spec_blockedState_1))))) | (((spec_blockedState_0 & !(spec_blockedState_1)) & (!((((balancer_0 & !(balancer_1)) & !(balancer_2)) | ((!(balancer_0) & balancer_1) & balancer_2))) & !(!(frontDistSense_0)))) & (!(next(spec_blockedState_0)) & next(spec_blockedState_1)))) | (((spec_blockedState_0 & !(spec_blockedState_1)) & ((((balancer_0 & !(balancer_1)) & !(balancer_2)) | ((!(balancer_0) & balancer_1) & balancer_2)) & !(!(frontDistSense_0)))) & (next(spec_blockedState_0) & !(next(spec_blockedState_1)))))));
-guarantee
-	G (((((((((((!(spec_mode_0) & !(bluetoothCmd_0)) & bluetoothCmd_1) & !(bluetoothCmd_2)) & bluetoothCmd_3) & next(spec_mode_0)) & !(spec_manualCmd_0)) & !(spec_manualCmd_1)) & !(spec_manualCmd_2)) | (((((spec_mode_0 & !(bluetoothCmd_0)) & bluetoothCmd_1) & !(bluetoothCmd_2)) & bluetoothCmd_3) & !(next(spec_mode_0)))) | ((((bluetoothCmd_0 | !(bluetoothCmd_1)) | bluetoothCmd_2) | !(bluetoothCmd_3)) & (spec_mode_0 <-> next(spec_mode_0)))));
-guarantee
-	G (((((((((((((!(balancerSpeed_0) & !(balancerSpeed_1)) & !(bluetoothCmd_0)) & bluetoothCmd_1) & bluetoothCmd_2) & !(bluetoothCmd_3)) & (!(next(balancerSpeed_0)) & !(next(balancerSpeed_1)))) | ((((((!(balancerSpeed_0) & !(balancerSpeed_1)) & !(bluetoothCmd_0)) & bluetoothCmd_1) & bluetoothCmd_2) & bluetoothCmd_3) & (!(next(balancerSpeed_0)) & next(balancerSpeed_1)))) | ((((((!(balancerSpeed_0) & balancerSpeed_1) & !(bluetoothCmd_0)) & bluetoothCmd_1) & bluetoothCmd_2) & !(bluetoothCmd_3)) & (!(next(balancerSpeed_0)) & !(next(balancerSpeed_1))))) | ((((((!(balancerSpeed_0) & balancerSpeed_1) & !(bluetoothCmd_0)) & bluetoothCmd_1) & bluetoothCmd_2) & bluetoothCmd_3) & (next(balancerSpeed_0) & !(next(balancerSpeed_1))))) | ((((((balancerSpeed_0 & !(balancerSpeed_1)) & !(bluetoothCmd_0)) & bluetoothCmd_1) & bluetoothCmd_2) & !(bluetoothCmd_3)) & (!(next(balancerSpeed_0)) & next(balancerSpeed_1)))) | ((((((balancerSpeed_0 & !(balancerSpeed_1)) & !(bluetoothCmd_0)) & bluetoothCmd_1) & bluetoothCmd_2) & bluetoothCmd_3) & (next(balancerSpeed_0) & !(next(balancerSpeed_1))))) | ((((((bluetoothCmd_0 | !(bluetoothCmd_1)) | !(bluetoothCmd_2)) | bluetoothCmd_3) & (((bluetoothCmd_0 | !(bluetoothCmd_1)) | !(bluetoothCmd_2)) | !(bluetoothCmd_3))) & (balancerSpeed_0 <-> next(balancerSpeed_0))) & (balancerSpeed_1 <-> next(balancerSpeed_1)))));
-guarantee
-	 (!(((balancer_0 & !(balancer_1)) & balancer_2)));
-guarantee
-	G (!(((next(balancer_0) & !(next(balancer_1))) & next(balancer_2))));
-guarantee
-	 (!(((balancer_0 & balancer_1) & !(balancer_2))));
-guarantee
-	G (!(((next(balancer_0) & next(balancer_1)) & !(next(balancer_2)))));
-guarantee
-	 (!(((balancer_0 & balancer_1) & balancer_2)));
-guarantee
-	G (!(((next(balancer_0) & next(balancer_1)) & next(balancer_2))));
-guarantee
-	 (!((balancerSpeed_0 & balancerSpeed_1)));
-guarantee
-	G (!((next(balancerSpeed_0) & next(balancerSpeed_1))));
-guarantee
-	 (!(((spec_manualCmd_0 & !(spec_manualCmd_1)) & spec_manualCmd_2)));
-guarantee
-	G (!(((next(spec_manualCmd_0) & !(next(spec_manualCmd_1))) & next(spec_manualCmd_2))));
-guarantee
-	 (!(((spec_manualCmd_0 & spec_manualCmd_1) & !(spec_manualCmd_2))));
-guarantee
-	G (!(((next(spec_manualCmd_0) & next(spec_manualCmd_1)) & !(next(spec_manualCmd_2)))));
-guarantee
-	 (!(((spec_manualCmd_0 & spec_manualCmd_1) & spec_manualCmd_2)));
-guarantee
-	G (!(((next(spec_manualCmd_0) & next(spec_manualCmd_1)) & next(spec_manualCmd_2))));
-guarantee
-	 ((!(isReady) -> ((!(balancer_0) & !(balancer_1)) & !(balancer_2))));
-guarantee
-	G ((!(next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2)))));
-guarantee
-	 ((((!(balancer_0) & !(balancer_1)) & balancer_2) -> !(frontDistSense_0)));
-guarantee
-	G ((((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2)) -> !(next(frontDistSense_0))));
-guarantee
-	 ((((!(balancer_0) & balancer_1) & !(balancer_2)) -> !(backDistSense_0)));
-guarantee
-	G ((((!(next(balancer_0)) & next(balancer_1)) & !(next(balancer_2))) -> !(next(backDistSense_0))));
-guarantee
-	 (!((spec_blockedState_0 & spec_blockedState_1)));
-guarantee
-	G (!((next(spec_blockedState_0) & next(spec_blockedState_1))));
-guarantee
-	 ((spec_mode_0 -> ((((((((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & !(bluetoothCmd_2)) & !(bluetoothCmd_3)) -> ((!(spec_manualCmd_0) & !(spec_manualCmd_1)) & !(spec_manualCmd_2))) & ((((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & !(bluetoothCmd_2)) & bluetoothCmd_3) -> ((!(spec_manualCmd_0) & !(spec_manualCmd_1)) & spec_manualCmd_2))) & ((((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & bluetoothCmd_2) & !(bluetoothCmd_3)) -> ((!(spec_manualCmd_0) & spec_manualCmd_1) & !(spec_manualCmd_2)))) & ((((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & bluetoothCmd_2) & bluetoothCmd_3) -> ((!(spec_manualCmd_0) & spec_manualCmd_1) & spec_manualCmd_2))) & ((((!(bluetoothCmd_0) & bluetoothCmd_1) & !(bluetoothCmd_2)) & !(bluetoothCmd_3)) -> ((spec_manualCmd_0 & !(spec_manualCmd_1)) & !(spec_manualCmd_2))))));
-guarantee
-	G ((next(spec_mode_0) -> ((((((((!(next(bluetoothCmd_0)) & !(next(bluetoothCmd_1))) & !(next(bluetoothCmd_2))) & !(next(bluetoothCmd_3))) -> ((!(next(spec_manualCmd_0)) & !(next(spec_manualCmd_1))) & !(next(spec_manualCmd_2)))) & ((((!(next(bluetoothCmd_0)) & !(next(bluetoothCmd_1))) & !(next(bluetoothCmd_2))) & next(bluetoothCmd_3)) -> ((!(next(spec_manualCmd_0)) & !(next(spec_manualCmd_1))) & next(spec_manualCmd_2)))) & ((((!(next(bluetoothCmd_0)) & !(next(bluetoothCmd_1))) & next(bluetoothCmd_2)) & !(next(bluetoothCmd_3))) -> ((!(next(spec_manualCmd_0)) & next(spec_manualCmd_1)) & !(next(spec_manualCmd_2))))) & ((((!(next(bluetoothCmd_0)) & !(next(bluetoothCmd_1))) & next(bluetoothCmd_2)) & next(bluetoothCmd_3)) -> ((!(next(spec_manualCmd_0)) & next(spec_manualCmd_1)) & next(spec_manualCmd_2)))) & ((((!(next(bluetoothCmd_0)) & next(bluetoothCmd_1)) & !(next(bluetoothCmd_2))) & !(next(bluetoothCmd_3))) -> ((next(spec_manualCmd_0) & !(next(spec_manualCmd_1))) & !(next(spec_manualCmd_2)))))));
-guarantee
-	 ((spec_mode_0 -> (!((((((((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & !(bluetoothCmd_2)) & !(bluetoothCmd_3)) | (((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & !(bluetoothCmd_2)) & bluetoothCmd_3)) | (((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & bluetoothCmd_2) & !(bluetoothCmd_3))) | (((!(bluetoothCmd_0) & !(bluetoothCmd_1)) & bluetoothCmd_2) & bluetoothCmd_3)) | (((!(bluetoothCmd_0) & bluetoothCmd_1) & !(bluetoothCmd_2)) & !(bluetoothCmd_3)))) -> (((((pREV_aux_3 -> ((!(spec_manualCmd_0) & !(spec_manualCmd_1)) & !(spec_manualCmd_2))) & (pREV_aux_4 -> ((!(spec_manualCmd_0) & !(spec_manualCmd_1)) & spec_manualCmd_2))) & (pREV_aux_5 -> ((!(spec_manualCmd_0) & spec_manualCmd_1) & !(spec_manualCmd_2)))) & (pREV_aux_6 -> ((!(spec_manualCmd_0) & spec_manualCmd_1) & spec_manualCmd_2))) & (pREV_aux_7 -> ((spec_manualCmd_0 & !(spec_manualCmd_1)) & !(spec_manualCmd_2)))))));
-guarantee
-	G ((next(spec_mode_0) -> (!((((((((!(next(bluetoothCmd_0)) & !(next(bluetoothCmd_1))) & !(next(bluetoothCmd_2))) & !(next(bluetoothCmd_3))) | (((!(next(bluetoothCmd_0)) & !(next(bluetoothCmd_1))) & !(next(bluetoothCmd_2))) & next(bluetoothCmd_3))) | (((!(next(bluetoothCmd_0)) & !(next(bluetoothCmd_1))) & next(bluetoothCmd_2)) & !(next(bluetoothCmd_3)))) | (((!(next(bluetoothCmd_0)) & !(next(bluetoothCmd_1))) & next(bluetoothCmd_2)) & next(bluetoothCmd_3))) | (((!(next(bluetoothCmd_0)) & next(bluetoothCmd_1)) & !(next(bluetoothCmd_2))) & !(next(bluetoothCmd_3))))) -> (((((next(pREV_aux_3) -> ((!(next(spec_manualCmd_0)) & !(next(spec_manualCmd_1))) & !(next(spec_manualCmd_2)))) & (next(pREV_aux_4) -> ((!(next(spec_manualCmd_0)) & !(next(spec_manualCmd_1))) & next(spec_manualCmd_2)))) & (next(pREV_aux_5) -> ((!(next(spec_manualCmd_0)) & next(spec_manualCmd_1)) & !(next(spec_manualCmd_2))))) & (next(pREV_aux_6) -> ((!(next(spec_manualCmd_0)) & next(spec_manualCmd_1)) & next(spec_manualCmd_2)))) & (next(pREV_aux_7) -> ((next(spec_manualCmd_0) & !(next(spec_manualCmd_1))) & !(next(spec_manualCmd_2))))))));
-guarantee
-	 ((spec_mode_0 -> (((!(spec_manualCmd_0) & !(spec_manualCmd_1)) & spec_manualCmd_2) -> ((!(frontDistSense_0) & isReady) -> ((!(balancer_0) & !(balancer_1)) & balancer_2)))));
-guarantee
-	G ((next(spec_mode_0) -> (((!(next(spec_manualCmd_0)) & !(next(spec_manualCmd_1))) & next(spec_manualCmd_2)) -> ((!(next(frontDistSense_0)) & next(isReady)) -> ((!(next(balancer_0)) & !(next(balancer_1))) & next(balancer_2))))));
-guarantee
-	 ((spec_mode_0 -> (((!(spec_manualCmd_0) & spec_manualCmd_1) & !(spec_manualCmd_2)) -> ((!(backDistSense_0) & isReady) -> ((!(balancer_0) & balancer_1) & !(balancer_2))))));
-guarantee
-	G ((next(spec_mode_0) -> (((!(next(spec_manualCmd_0)) & next(spec_manualCmd_1)) & !(next(spec_manualCmd_2))) -> ((!(next(backDistSense_0)) & next(isReady)) -> ((!(next(balancer_0)) & next(balancer_1)) & !(next(balancer_2)))))));
-guarantee
-	 ((spec_mode_0 -> (((spec_manualCmd_0 & !(spec_manualCmd_1)) & !(spec_manualCmd_2)) -> (isReady -> ((balancer_0 & !(balancer_1)) & !(balancer_2))))));
-guarantee
-	G ((next(spec_mode_0) -> (((next(spec_manualCmd_0) & !(next(spec_manualCmd_1))) & !(next(spec_manualCmd_2))) -> (next(isReady) -> ((next(balancer_0) & !(next(balancer_1))) & !(next(balancer_2)))))));
-guarantee
-	 ((spec_mode_0 -> (((!(spec_manualCmd_0) & spec_manualCmd_1) & spec_manualCmd_2) -> (isReady -> ((!(balancer_0) & balancer_1) & balancer_2)))));
-guarantee
-	G ((next(spec_mode_0) -> (((!(next(spec_manualCmd_0)) & next(spec_manualCmd_1)) & next(spec_manualCmd_2)) -> (next(isReady) -> ((!(next(balancer_0)) & next(balancer_1)) & next(balancer_2))))));
-guarantee
-	 ((spec_mode_0 -> (((((!(spec_manualCmd_0) & !(spec_manualCmd_1)) & !(spec_manualCmd_2)) | (((!(spec_manualCmd_0) & !(spec_manualCmd_1)) & spec_manualCmd_2) & frontDistSense_0)) | (((!(spec_manualCmd_0) & spec_manualCmd_1) & !(spec_manualCmd_2)) & backDistSense_0)) -> (isReady -> ((!(balancer_0) & !(balancer_1)) & !(balancer_2))))));
-guarantee
-	G ((next(spec_mode_0) -> (((((!(next(spec_manualCmd_0)) & !(next(spec_manualCmd_1))) & !(next(spec_manualCmd_2))) | (((!(next(spec_manualCmd_0)) & !(next(spec_manualCmd_1))) & next(spec_manualCmd_2)) & next(frontDistSense_0))) | (((!(next(spec_manualCmd_0)) & next(spec_manualCmd_1)) & !(next(spec_manualCmd_2))) & next(backDistSense_0))) -> (next(isReady) -> ((!(next(balancer_0)) & !(next(balancer_1))) & !(next(balancer_2)))))));
+	G ((spec_mode=MANUAL) -> 
+		((spec_manualCmd=STP | (spec_manualCmd=FWD & frontDistSense=BLOCKED) | (spec_manualCmd=BWD & backDistSense=BLOCKED)) -> (isReady -> balancer=STP))
+	);
+	
+////////////////////////////////////////////////////////////
+
+// The robot needs to be stabilized at first and it is not ready to move.
+assumption
+	!isReady;
 
 assumption
-	 (eNV_CONSTRAINT_0_respondsTo_responded);
+	bluetoothCmd=NOP;
+		
+// Robot starts when not blocked forward and backward
 assumption
-	G ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((!(!((((!(balancer_0) & balancer_1) & !(balancer_2)) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2))))) | !(backDistSense_0)) | (eNV_CONSTRAINT_0_respondsTo_responded & !(!((((!(balancer_0) & balancer_1) & !(balancer_2)) | ((!(balancer_0) & !(balancer_1)) & !(balancer_2)))))))));
-assumption
-	 (eNV_CONSTRAINT_1_respondsTo_responded);
-assumption
-	G ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> ((!(((!(balancer_0) & !(balancer_1)) & balancer_2)) | frontDistSense_0) | (eNV_CONSTRAINT_1_respondsTo_responded & !(((!(balancer_0) & !(balancer_1)) & balancer_2))))));
-assumption
-	 (eNV_CONSTRAINT_2_respondsTo_responded);
-assumption
-	G ((next(eNV_CONSTRAINT_2_respondsTo_responded) <-> ((!(((!(balancer_0) & balancer_1) & !(balancer_2))) | backDistSense_0) | (eNV_CONSTRAINT_2_respondsTo_responded & !(((!(balancer_0) & balancer_1) & !(balancer_2)))))));
-assumption
-	 (!(pREV_aux_3));
-assumption
-	G ((next(pREV_aux_3) <-> ((!(spec_manualCmd_0) & !(spec_manualCmd_1)) & !(spec_manualCmd_2))));
-assumption
-	 (!(pREV_aux_4));
-assumption
-	G ((next(pREV_aux_4) <-> ((!(spec_manualCmd_0) & !(spec_manualCmd_1)) & spec_manualCmd_2)));
-assumption
-	 (!(pREV_aux_5));
-assumption
-	G ((next(pREV_aux_5) <-> ((!(spec_manualCmd_0) & spec_manualCmd_1) & !(spec_manualCmd_2))));
-assumption
-	 (!(pREV_aux_6));
-assumption
-	G ((next(pREV_aux_6) <-> ((!(spec_manualCmd_0) & spec_manualCmd_1) & spec_manualCmd_2)));
-assumption
-	 (!(pREV_aux_7));
-assumption
-	G ((next(pREV_aux_7) <-> ((spec_manualCmd_0 & !(spec_manualCmd_1)) & !(spec_manualCmd_2))));
+	frontDistSense=CLEAR & backDistSense=CLEAR;
 
+// Eventually the robot will be ready to move.
+assumption
+  GF (isReady);
+
+// When the robot is ready, it will stay that way.
+assumption
+	G (isReady -> next(isReady));
+
+define 
+  	moveAwayFromFrontObstacle := !(balancer=FWD | balancer=STP); 
+
+define 
+  	moveAwayFromBackObstacle := !(balancer=BWD | balancer=STP); 
+
+// Back surface becomes clear responds to continuously moving away from obstacle.
+assumption
+  respondsTo(moveAwayFromBackObstacle,(!moveAwayFromBackObstacle|backDistSense=CLEAR));
+
+// Front surface becomes blocked responds to continuously moving forward.
+assumption
+  respondsTo(balancer=FWD,(!(balancer=FWD)|frontDistSense=BLOCKED));
+	
+// Back surface becomes blocked responds to continuously moving backward
+assumption
+  respondsTo(balancer=BWD,(!(balancer=BWD)|backDistSense=BLOCKED));
+
+pattern respondsTo(trigger, response) {
+  var boolean responded;
+  responded;
+  G (next(responded) iff (response or responded and !trigger));
+  GF (responded);
+}

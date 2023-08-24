@@ -1,50 +1,29 @@
+// Initial file contents for AspectLTL aspect file (*.altl)
+module PCar
+		env {CLEAR, BLOCKED, OBJECT} obstacle ;
+		env {CLEAR,P_O, BLOCKED} sideSense;
 
-module PcarLTL_463_PCar_1
+		sys {FWD, BWD, STOP} throttle ;
+		sys {RIGHT,LEFT, CENTER} steer ;
 
-env boolean obstacle_0;
-env boolean obstacle_1;
-env boolean sideSense_0;
-env boolean sideSense_1;
-
-sys boolean throttle_0;
-sys boolean throttle_1;
-sys boolean steer_0;
-sys boolean steer_1;
-
-env boolean eNV_CONSTRAINT_0_respondsTo_responded;
-
+guarantee
+	G (obstacle=BLOCKED -> ( !(throttle = FWD) ));
+//LTLSPEC
+//	G ( (throttle = BWD & steer = LEFT)  -> next(!(throttle = FWD & steer = LEFT)));
+//LTLSPEC
+//	G ( (throttle = BWD & steer = RIGHT)  -> next(!(throttle = FWD & steer = RIGHT)));
+//LTLSPEC
+//	G (((obstacle = CLEAR) & (sideSense = BLOCKED)) ->  !((throttle = FWD) & (steer=RIGHT)));
+guarantee
+	G (((obstacle = CLEAR) & (sideSense = CLEAR)) ->  (steer = CENTER));
+guarantee
+  GF ((throttle=FWD)&(steer=CENTER));
 assumption
-	GF (eNV_CONSTRAINT_0_respondsTo_responded);
-assumption
-	 (!((obstacle_0 & obstacle_1)));
-assumption
-	G (!((next(obstacle_0) & next(obstacle_1))));
-assumption
-	 (!((sideSense_0 & sideSense_1)));
-assumption
-	G (!((next(sideSense_0) & next(sideSense_1))));
+  respondsTo(((throttle=FWD)&(steer=CENTER)&(sideSense=BLOCKED)),(sideSense=CLEAR));
 
-guarantee
-	GF ((((!(throttle_0) & !(throttle_1)) & steer_0) & !(steer_1)));
-guarantee
-	 (!((throttle_0 & throttle_1)));
-guarantee
-	G (!((next(throttle_0) & next(throttle_1))));
-guarantee
-	 (!((steer_0 & steer_1)));
-guarantee
-	G (!((next(steer_0) & next(steer_1))));
-guarantee
-	 (((!(obstacle_0) & obstacle_1) -> !((!(throttle_0) & !(throttle_1)))));
-guarantee
-	G (((!(next(obstacle_0)) & next(obstacle_1)) -> !((!(next(throttle_0)) & !(next(throttle_1))))));
-guarantee
-	 (((((!(obstacle_0) & !(obstacle_1)) & !(sideSense_0)) & !(sideSense_1)) -> (steer_0 & !(steer_1))));
-guarantee
-	G (((((!(next(obstacle_0)) & !(next(obstacle_1))) & !(next(sideSense_0))) & !(next(sideSense_1))) -> (next(steer_0) & !(next(steer_1)))));
-
-assumption
-	 (eNV_CONSTRAINT_0_respondsTo_responded);
-assumption
-	G ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((!(sideSense_0) & !(sideSense_1)) | (eNV_CONSTRAINT_0_respondsTo_responded & !((((((!(throttle_0) & !(throttle_1)) & steer_0) & !(steer_1)) & sideSense_0) & !(sideSense_1)))))));
-
+pattern respondsTo(trigger, response) {
+  var boolean responded;
+  responded;
+  G (next(responded) iff (response or responded and !trigger));
+  GF (responded);
+}
