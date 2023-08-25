@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-1989d2b2-0286-4dd1-b5e2-6d5ee2e98712,['(Obstacle=BLOCKED -> Heading!=N)'],True
+Id,UniqueRefinement,IsSolution,NumVariables
+1989d2b2-0286-4dd1-b5e2-6d5ee2e98712,['(Obstacle=BLOCKED -> Heading!=N)'],True,4

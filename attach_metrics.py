@@ -8,10 +8,12 @@ from weakness_for_refinement import computeWeakness_probe
 
 sys.setrecursionlimit(1500)
 
-input_folders = [
+INPUT_FOLDERS = [
     "inputs/AMBA",
     "inputs/SYNTECH15-UNREAL",
     "inputs/SYNTECH15-1UNREAL",
+    "inputs/AMBA-ORIGINAL",
+    "inputs/SYNTECH15-UNREAL-ORIGINAL",
     "inputs/SYNTECH15-1UNREAL-ORIGINAL"
 ]
 
@@ -72,7 +74,7 @@ def process_csv_file(csv_file_path, spectra_file_path):
 
 def main():
     
-    for input_folder in input_folders:
+    for input_folder in INPUT_FOLDERS:
         input_folder_name = os.path.basename(input_folder)
 
         for algorithm in ALGORITHMS:

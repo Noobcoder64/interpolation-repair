@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-63333bbb-b976-4859-87d3-c152f2a05ef7,['Obstacle=CLEAR'],True
+Id,UniqueRefinement,IsSolution,NumVariables
+63333bbb-b976-4859-87d3-c152f2a05ef7,['Obstacle=CLEAR'],True,2

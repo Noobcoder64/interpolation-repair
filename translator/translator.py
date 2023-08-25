@@ -70,33 +70,6 @@ class Variable:
             equalities.append(self.convertFromEnumLabelToBooleanFormula(i,False,next))
 
         return "(" + " | ".join(equalities) + ")"
-
-
-    def getXMLDescription(self, env_signal):
-        # env_signal: True: environment - False: controller
-        signals = []
-        if self.boolean:
-            signal = ET.Element("signal")
-            name = ET.SubElement(signal, "name")
-            name.text = self.name
-            kind = ET.SubElement(signal, "kind")
-            kind.text = "E" if env_signal else "S"
-            type = ET.SubElement(signal, "type")
-            type.text = "boolean"
-            notes = ET.SubElement(signal, "notes")
-            signals.append(signal)
-        else:
-            for i in range(self.num_bits):
-                signal = ET.Element("signal")
-                name = ET.SubElement(signal, "name")
-                name.text = self.name + "_" + str(i)
-                kind = ET.SubElement(signal, "kind")
-                kind.text = "E" if env_signal else "S"
-                type = ET.SubElement(signal, "type")
-                type.text = "boolean"
-                notes = ET.SubElement(signal, "notes")
-                signals.append(signal)
-        return signals
     
 
 env_variables = dict()

@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-bf81d53a-c628-4ae7-9150-159a441c0056,['(distSense=CLEAR -> (isReady -> bluetoothCmd!=AUTO))'],True
+Id,UniqueRefinement,IsSolution,NumVariables
+bf81d53a-c628-4ae7-9150-159a441c0056,['(distSense=CLEAR -> (isReady -> bluetoothCmd!=AUTO))'],True,5

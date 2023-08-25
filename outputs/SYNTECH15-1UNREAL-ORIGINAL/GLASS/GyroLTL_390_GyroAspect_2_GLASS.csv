@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-84b8ae7e-2a87-464d-b15b-83bd1e553e06,['G(F(!isReady -> balancer!=STP))'],True
+Id,UniqueRefinement,IsSolution,NumVariables
+84b8ae7e-2a87-464d-b15b-83bd1e553e06,['G(F(!isReady -> balancer!=STP))'],True,3

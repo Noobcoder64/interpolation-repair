@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-3b1b3fe7-af8b-4ef1-9cdb-35d3173efec2,"['G(F(frontDistSense=CLEAR -> (!isReady -> balancer!=STP) & (isReady -> balancer!=FWD)) & (frontDistSense=BLOCKED -> (backDistSense=CLEAR -> (!isReady -> balancer!=STP) & (isReady -> balancer!={STP, BWD})) & (backDistSense=BLOCKED -> balancer!=STP)))']",True
+Id,UniqueRefinement,IsSolution,NumVariables
+3b1b3fe7-af8b-4ef1-9cdb-35d3173efec2,"['G(F(frontDistSense=CLEAR -> (!isReady -> balancer!=STP) & (isReady -> balancer!=FWD)) & (frontDistSense=BLOCKED -> (backDistSense=CLEAR -> (!isReady -> balancer!=STP) & (isReady -> balancer!={STP, BWD})) & (backDistSense=BLOCKED -> balancer!=STP)))']",True,9

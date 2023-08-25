@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-71972bc5-4623-4aa1-afc7-00f325e92fbb,"['G(F(frontDistSense=CLEAR -> (!isReady -> (bluetoothCmd=AUTO -> balancer!=STP))) & (frontDistSense=BLOCKED -> (backDistSense=CLEAR -> (!isReady -> (bluetoothCmd=AUTO -> balancer!=STP)) & (isReady -> (bluetoothCmd=AUTO -> balancer=FWD))) & (backDistSense=BLOCKED -> (!isReady -> (bluetoothCmd=AUTO -> balancer!=STP)) & (isReady -> (bluetoothCmd=AUTO -> balancer={FWD, BWD})))))']",True
+Id,UniqueRefinement,IsSolution,NumVariables
+71972bc5-4623-4aa1-afc7-00f325e92fbb,"['G(F(frontDistSense=CLEAR -> (!isReady -> (bluetoothCmd=AUTO -> balancer!=STP))) & (frontDistSense=BLOCKED -> (backDistSense=CLEAR -> (!isReady -> (bluetoothCmd=AUTO -> balancer!=STP)) & (isReady -> (bluetoothCmd=AUTO -> balancer=FWD))) & (backDistSense=BLOCKED -> (!isReady -> (bluetoothCmd=AUTO -> balancer!=STP)) & (isReady -> (bluetoothCmd=AUTO -> balancer={FWD, BWD})))))']",True,11

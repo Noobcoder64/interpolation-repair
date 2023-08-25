@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-8aadba60-d45a-4d6e-aa6e-e9029fd7b218,['(Obstacle=BLOCKED -> Heading=SO)'],True
+Id,UniqueRefinement,IsSolution,NumVariables
+8aadba60-d45a-4d6e-aa6e-e9029fd7b218,['(Obstacle=BLOCKED -> Heading=SO)'],True,4

@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-c4f83e38-0cd9-4ae1-b358-ae32dbac4272,"['G(distSense=BLOCKED -> (isReady -> (X(isReady) -> (bluetoothCmd=AUTO -> (next(bluetoothCmd)=NOP -> (balancerStatus=OK -> (balancer=STP -> bluetoothStatus=FELL)) & (balancerStatus=FELL -> (balancer=STP -> bluetoothStatus=OK)))))))', '(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> balancerStatus=FELL)))']",True
+Id,UniqueRefinement,IsSolution,NumVariables
+c4f83e38-0cd9-4ae1-b358-ae32dbac4272,"['G(distSense=BLOCKED -> (isReady -> (X(isReady) -> (bluetoothCmd=AUTO -> (next(bluetoothCmd)=NOP -> (balancerStatus=OK -> (balancer=STP -> bluetoothStatus=FELL)) & (balancerStatus=FELL -> (balancer=STP -> bluetoothStatus=OK)))))))', '(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> balancerStatus=FELL)))']",True,14
