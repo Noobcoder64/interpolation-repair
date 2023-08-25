@@ -6,7 +6,7 @@ env boolean c;
 
 sys boolean g;
 
-env boolean sYS_CONSTRAINT_0_respondsTo_responded;
+aux boolean sYS_CONSTRAINT_0_respondsTo_responded;
 
 
 guarantee
@@ -14,8 +14,8 @@ guarantee
 guarantee
 	alwEv (sYS_CONSTRAINT_0_respondsTo_responded);
 
-assumption
+guarantee
 	 (sYS_CONSTRAINT_0_respondsTo_responded);
-assumption
+guarantee
 	alw ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (next(g) | (sYS_CONSTRAINT_0_respondsTo_responded & !(r)))));
 
