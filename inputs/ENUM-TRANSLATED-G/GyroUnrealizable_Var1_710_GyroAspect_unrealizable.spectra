@@ -32,9 +32,9 @@ guarantee
 guarantee
 	G (((balancer = BWD) -> (backDistSense = CLEAR)));
 guarantee
-	alwEv ((balancer = FWD));
+	GF ((balancer = FWD));
 guarantee
-	alwEv (((balancer = TURN_RIGHT) | (balancer = TURN_LEFT)));
+	GF (((balancer = TURN_RIGHT) | (balancer = TURN_LEFT)));
 guarantee
 	G (((isReady & (frontDistSense = CLEAR)) -> (balancer = FWD)));
 

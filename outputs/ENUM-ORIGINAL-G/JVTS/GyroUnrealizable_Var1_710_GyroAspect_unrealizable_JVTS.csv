@@ -1,0 +1,16 @@
+Id,UniqueRefinement,IsSolution
+d79aa323-00ea-4c44-80d0-eb63a0685ba6,['G(frontDistSense=CLEAR -> (backDistSense=CLEAR -> (isReady -> balancer=FWD)))'],True
+404ff48f-e9d8-4edb-9862-d739650de233,['G(frontDistSense=CLEAR -> (next(frontDistSense)=CLEAR -> (backDistSense=CLEAR -> (next(backDistSense)=CLEAR -> (!isReady -> (X(isReady) -> balancer!=STP)) & (isReady -> (X(isReady) -> balancer!=FWD)))) & (backDistSense=BLOCKED -> (next(backDistSense)=CLEAR -> (isReady -> (X(isReady) -> balancer!=FWD))))))'],True
+5ad150d4-4348-4f1e-b0cc-4de8a9da2714,['G(frontDistSense=CLEAR -> (next(frontDistSense)=CLEAR -> (backDistSense=CLEAR -> (isReady -> (X(isReady) -> balancer!=FWD)))))'],True
+3be0f9be-e6d8-4197-b0f8-75f53fce93c7,['G(frontDistSense=CLEAR -> (isReady -> balancer=FWD))'],True
+2bc93b58-3bb0-4c41-8fbf-b7162f0f0936,['G(frontDistSense=CLEAR -> (next(frontDistSense)=CLEAR -> (backDistSense=CLEAR -> (!isReady -> (X(isReady) -> balancer!=STP)) & (isReady -> (X(isReady) -> balancer!=FWD)))))'],True
+1bb4fdba-809a-4296-b2da-a95e55f43ef6,['G(F(frontDistSense=CLEAR -> (isReady -> balancer!=FWD)))'],True
+cce4fbab-fc2a-45c7-be12-1c3688fade01,['G(frontDistSense=CLEAR -> (next(frontDistSense)=CLEAR -> (isReady -> (X(isReady) -> balancer!=FWD))))'],True
+349a72c8-5705-41e7-b24d-ab2178687792,['G(frontDistSense=CLEAR -> (isReady -> balancer=FWD))'],True
+358620ec-b74d-410a-98cc-cecf21ba2863,['G(frontDistSense=CLEAR -> (next(frontDistSense)=CLEAR -> (backDistSense=CLEAR -> (!isReady -> (X(isReady) -> balancer!=STP)) & (isReady -> (X(isReady) -> balancer!=FWD)))))'],True
+bee3b97e-e684-426a-8a0b-2c5371535db0,['G(F(frontDistSense=CLEAR -> (isReady -> balancer!=FWD)))'],True
+442d17af-86cd-4a3d-8df0-252472dc80ce,['G(frontDistSense=CLEAR -> (next(frontDistSense)=CLEAR -> (isReady -> (X(isReady) -> balancer!=FWD))))'],True
+19898cfe-9172-4d3d-addd-a7e2b4f58d1b,['G(frontDistSense=CLEAR -> (isReady -> balancer=FWD))'],True
+400b94d4-373d-421f-ad3f-be82a3af4810,['G(F(frontDistSense=CLEAR -> (isReady -> balancer!=FWD)))'],True
+b55aa30c-bd68-4624-8a52-942b7343842c,['G(frontDistSense=CLEAR -> (next(frontDistSense)=CLEAR -> (isReady -> (X(isReady) -> balancer!=FWD))))'],True
+99c005e6-9981-4e47-9753-ce5935fe9b60,['G(frontDistSense=CLEAR -> (isReady -> balancer=FWD))'],True
