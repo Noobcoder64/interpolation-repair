@@ -344,6 +344,8 @@ class CounterstrategyState:
     def __str__(self):
         return f"State: {self.name}\nInputs: {self.inputs}\nOutputs: {self.outputs}\nSuccessors: {', '.join(self.successors)}\nInfluential outputs: {self.influential_outputs}"
 
+USE_INFLUENTIAL = False
+
 class Counterstrategy:
 
     def __init__(self, specification=""):
@@ -351,11 +353,10 @@ class Counterstrategy:
         self.counterstrategy = spectra.generate_counter_strat(specification)
         self.states = dict()
         self.parse_counterstrategy(self.counterstrategy)
-        for state in self.states.values():
-            self.compute_influentials(state)
+        if USE_INFLUENTIAL:
+            for state in self.states.values():
+                self.compute_influentials(state)
         self.num_states = len(self.states)
-        # for state in self.states.values():
-        #     print(state.name, state.influential_outputs)
 
     def __str__(self):
         state_strs = [str(state) for state in self.states.values()]
@@ -418,8 +419,11 @@ class Counterstrategy:
                 literals.append(varname)
             else:
                 literals.append("!"+varname)
-        for varname in state.influential_outputs:
-        # for varname in state.outputs:
+        if USE_INFLUENTIAL:
+            outputs = state.influential_outputs
+        else:
+            outputs = state.outputs
+        for varname in outputs:
             if state.outputs[varname] == 'true':
                 literals.append(varname)
             else:
