@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables
-6ab8525a-a17a-4db3-a0dc-50b8e79e18d4,"['G(F(frontDistSense=CLEAR -> (!isReady -> balancer!=STP)) & (frontDistSense=BLOCKED -> (backDistSense=CLEAR -> (!isReady -> balancer!=STP) & (isReady -> balancer=FWD)) & (backDistSense=BLOCKED -> (!isReady -> balancer!=STP) & (isReady -> balancer={FWD, BWD}))))']",True,9

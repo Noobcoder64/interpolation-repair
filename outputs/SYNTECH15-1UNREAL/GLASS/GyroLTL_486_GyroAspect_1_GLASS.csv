@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables
-4c72f036-1ba0-41fa-b9b3-916df56a2e87,['G(F(!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (!bluetoothCmd_2 -> (!balancer_0 &  (!balancer_1 &  balancer_2))))))'],True,6

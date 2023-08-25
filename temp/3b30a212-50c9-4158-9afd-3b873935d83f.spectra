@@ -1,0 +1,17 @@
+module RequestGrant
+
+env boolean req;
+env boolean cl;
+
+sys boolean gr;
+sys boolean val;
+
+assumption
+    alwEv (!req);
+
+guarantee
+    alw (cl -> !val);
+guarantee
+    alwEv (gr & val);
+assumption
+	alwEv (!(!val));

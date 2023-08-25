@@ -7,20 +7,20 @@ env boolean c;
 sys boolean g;
 sys boolean v;
 
-env boolean sYS_CONSTRAINT_0_respondsTo_responded;
+env boolean sYS_CONSTRAINT_0_pRespondsToS_responded;
 
 
 guarantee
-	G (((c | g) -> !(next(g))));
+	alw (((c | g) -> !(next(g))));
 guarantee
-	G ((c -> !(v)));
+	alw ((c -> !(v)));
 guarantee
-	GF ((g & v));
+	alwEv ((g & v));
 guarantee
-	GF (sYS_CONSTRAINT_0_respondsTo_responded);
+	alwEv (sYS_CONSTRAINT_0_pRespondsToS_responded);
 
 assumption
-	 (sYS_CONSTRAINT_0_respondsTo_responded);
+	 (sYS_CONSTRAINT_0_pRespondsToS_responded);
 assumption
-	G ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (next(g) | (sYS_CONSTRAINT_0_respondsTo_responded & !(r)))));
+	alw ((next(sYS_CONSTRAINT_0_pRespondsToS_responded) <-> (next(g) | (sYS_CONSTRAINT_0_pRespondsToS_responded & !(r)))));
 

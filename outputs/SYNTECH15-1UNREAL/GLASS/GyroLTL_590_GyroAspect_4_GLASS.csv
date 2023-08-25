@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables
-22838f54-8498-4dde-8990-d71ee658299f,['(!distSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (!bluetoothCmd_2 -> (eNV_CONSTRAINT_0_respondsTo_responded -> !eNV_CONSTRAINT_1_respondsTo_responded))))))'],True,7

@@ -4,25 +4,28 @@ import re
 import pandas as pd
 import ast
 import experiment_properties as exp
-from weakness_for_refinement import computeWeakness_probe
+from weakness_for_refinement import Weakness, computeWeakness_probe
 
 sys.setrecursionlimit(1500)
 
+# List of input folders
 INPUT_FOLDERS = [
     "inputs/AMBA",
     "inputs/SYNTECH15-UNREAL",
     "inputs/SYNTECH15-1UNREAL",
-    "inputs/AMBA-ORIGINAL",
-    "inputs/SYNTECH15-UNREAL-ORIGINAL",
-    "inputs/SYNTECH15-1UNREAL-ORIGINAL"
+    # "inputs/AMBA-ORIGINAL",
+    # "inputs/SYNTECH15-UNREAL-ORIGINAL",
+    # "inputs/SYNTECH15-1UNREAL-ORIGINAL"
 ]
 
+# List of algorithms
 ALGORITHMS = [
-    # "INTERPOLATION-NOINF",
+    # "INTERPOLATION-ALLGARS",
+    # "INTERPOLATION-NONINF",
     "INTERPOLATION",
-    "GLASS",
+    # "GLASS",
     "JVTS",
-    "ALUR",
+    # "ALUR",
 ]
 
 def count_num_variables(refinements):
@@ -40,8 +43,8 @@ def count_num_variables(refinements):
     return len(total_variables)
 
 def process_csv_file(csv_file_path, spectra_file_path):
+    print("Processing:", csv_file_path)
     # Load the CSV file into a DataFrame
-    print(csv_file_path)
     df = pd.read_csv(csv_file_path, sep=",", index_col=False)
     df.columns
     # Convert the 'UniqueRefinement' column to a list of lists
@@ -57,20 +60,32 @@ def process_csv_file(csv_file_path, spectra_file_path):
         if not isinstance(refinements, list):
             continue
         
-        num_variables = 0
+        num_variables = None
+        d1 = None
+        d2 = None
+        nummaxentropysccs = None
+        d3 = None
         if refinements != []:
             num_variables = count_num_variables(refinements)
-        
-        df.at[index, 'NumVariables'] = int(num_variables)
 
-        # weakness = computeWeakness_probe(" & ".join(refinements), exp.varsList)[0]
-        # df.at[index, 'd1'] = weakness.d1
-        # df.at[index, 'd2'] = weakness.d2
-        # df.at[index, 'nummaxentropysccs'] = weakness.nummaxentropysccs
-        # df.at[index, 'd3'] = weakness.d3
-    
+            try:
+                weakness = computeWeakness_probe(" & ".join(refinements), exp.varsList)[0]
+                d1 = weakness.d1
+                d2 = weakness.d2
+                nummaxentropysccs = weakness.nummaxentropysccs
+                d3 = weakness.d3
+            except:
+                print("Failed to compute weakness")
+
+        df.at[index, 'NumVariables'] = num_variables
+        df.at[index, 'd1'] = d1
+        df.at[index, 'd2'] = d2
+        df.at[index, 'nummaxentropysccs'] = nummaxentropysccs
+        df.at[index, 'd3'] = d3
+        
     # Write the updated DataFrame back to the CSV file
     df.to_csv(csv_file_path, sep=",", index=False)
+    print("Processed:", csv_file_path)
 
 def main():
     

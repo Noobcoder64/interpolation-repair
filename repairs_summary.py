@@ -6,19 +6,20 @@ import pandas as pd
 INPUT_FOLDERS = [
     "inputs/AMBA",
     "inputs/SYNTECH15-UNREAL",
-    "inputs/SYNTECH15-1UNREAL",
-    "inputs/AMBA-ORIGINAL",
-    "inputs/SYNTECH15-UNREAL-ORIGINAL",
-    "inputs/SYNTECH15-1UNREAL-ORIGINAL"
+    # "inputs/SYNTECH15-1UNREAL",
+    # "inputs/AMBA-ORIGINAL",
+    # "inputs/SYNTECH15-UNREAL-ORIGINAL",
+    # "inputs/SYNTECH15-1UNREAL-ORIGINAL"
 ]
 
 # List of algorithms
 ALGORITHMS = [
-    # "INTERPOLATION-NOINF",
-    "INTERPOLATION",
-    "GLASS",
-    "JVTS",
-    "ALUR",
+    "INTERPOLATION-ALLGARS",
+    "INTERPOLATION-NONINF",
+    # "INTERPOLATION",
+    # "GLASS",
+    # "JVTS",
+    # "ALUR",
 ]
 
 # Output parent folder

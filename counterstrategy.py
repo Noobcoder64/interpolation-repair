@@ -344,7 +344,7 @@ class CounterstrategyState:
     def __str__(self):
         return f"State: {self.name}\nInputs: {self.inputs}\nOutputs: {self.outputs}\nSuccessors: {', '.join(self.successors)}\nInfluential outputs: {self.influential_outputs}"
 
-USE_INFLUENTIAL = False
+USE_INFLUENTIAL = True
 
 class Counterstrategy:
 

@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables
-d37bacb6-2a2f-4b47-b2c1-0aca8e481ebd,['G(F(!isReady -> (bluetoothCmd_0 -> (!bluetoothCmd_1 -> (bluetoothCmd_2 -> (!balancer_0 &  (!balancer_1 &  balancer_2)))))) & (isReady -> (bluetoothCmd_0 -> (!bluetoothCmd_1 -> (bluetoothCmd_2 -> (!balancer_0 -> (!balancer_1 -> (!balancer_2 -> (spec_blockedState_0 &  spec_blockedState_1))) & (balancer_1 -> (spec_blockedState_0 &  spec_blockedState_1))) & (balancer_0 -> (spec_blockedState_0 &  spec_blockedState_1)))))))'],True,9

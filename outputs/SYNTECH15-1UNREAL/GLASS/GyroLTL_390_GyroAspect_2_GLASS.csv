@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables
-ba02cfbd-420b-4b45-8d40-76cc4398c00f,['G(F(!isReady -> (!balancer_0 &  (!balancer_1 &  balancer_2))))'],True,4

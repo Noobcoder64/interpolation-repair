@@ -182,7 +182,7 @@ def parseInvariants(phi):
     return invariants
 
 def parseFairness(phi):
-    """Returns an array containing all invariants without the G operator.
+    """Returns an array containing all fairness without the G operator.
         For instance, if phi = G(a & b) & G(c) & G(F(c)) it returns ['(c)']"""
     global pars
     if pars is None:

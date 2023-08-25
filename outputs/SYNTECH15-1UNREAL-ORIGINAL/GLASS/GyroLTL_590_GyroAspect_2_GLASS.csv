@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables
-d2baaf79-b6a0-4c98-ac03-79f143848480,['G(F(!isReady -> (bluetoothCmd=AUTO -> balancer!=STP)))'],True,5

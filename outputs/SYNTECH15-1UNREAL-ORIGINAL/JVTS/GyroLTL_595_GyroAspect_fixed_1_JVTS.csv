@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables
-94b9d1b1-2337-40c3-941a-1217543fe54a,['G(frontDistSense=CLEAR -> (backDistSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> (balancer=STP -> (spec_blockedState=S0 -> (spec_moveAwayFromFrontObstacleState=S0 -> (spec_moveAwayFromBackObstacleState=S0 -> (spec_forwardingState=S0 -> spec_backwardingState=S1)))))))))'],True,15

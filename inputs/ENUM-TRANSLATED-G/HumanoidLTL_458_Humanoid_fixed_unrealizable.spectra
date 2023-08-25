@@ -1,0 +1,37 @@
+
+module HumanoidLTL_458_Humanoid_fixed_unrealizable
+
+env {CLEAR, BLOCKED} obstacle;
+env {FWD, BWD, TURN_LEFT_1, TURN_LEFT_2} inputMoveMode;
+
+sys {FWD, BWD, STOP, TURN_FWD, TURN_BWD, CALIB_TURN, CALIB_FWD} leftMotor;
+sys {FWD, BWD, STOP, TURN_FWD, TURN_BWD, CALIB_TURN, CALIB_FWD} rightMotor;
+sys {FWD, BWD, STOP} headMotor;
+sys {FWD, BWD, TURN_LEFT_1, TURN_LEFT_2} outputMoveMode;
+
+
+
+guarantee
+	G ((((inputMoveMode = FWD) & (obstacle = BLOCKED)) -> (((outputMoveMode = TURN_LEFT_1) & (leftMotor = CALIB_TURN)) & (rightMotor = CALIB_TURN))));
+guarantee
+	G ((((inputMoveMode = BWD) & (obstacle = CLEAR)) -> (((outputMoveMode = FWD) & (leftMotor = FWD)) & (rightMotor = BWD))));
+guarantee
+	G ((((inputMoveMode = FWD) & (obstacle = CLEAR)) -> ((leftMotor = FWD) & (rightMotor = FWD))));
+guarantee
+	G (((obstacle = BLOCKED) -> !((outputMoveMode = FWD))));
+guarantee
+	G (((inputMoveMode = TURN_LEFT_1) <-> (outputMoveMode = TURN_LEFT_2)));
+guarantee
+	G (((inputMoveMode = TURN_LEFT_1) -> ((leftMotor = FWD) & (rightMotor = TURN_FWD))));
+guarantee
+	G (((inputMoveMode = TURN_LEFT_2) -> ((leftMotor = BWD) & (rightMotor = TURN_BWD))));
+guarantee
+	G ((!(((inputMoveMode = TURN_LEFT_1) | (inputMoveMode = TURN_LEFT_2))) -> !((((leftMotor = TURN_BWD) | (rightMotor = TURN_BWD)) | ((leftMotor = TURN_FWD) & (rightMotor = TURN_FWD))))));
+guarantee
+	G ((((inputMoveMode = TURN_LEFT_1) | (inputMoveMode = TURN_LEFT_2)) -> (headMotor = STOP)));
+guarantee
+	G ((((inputMoveMode = TURN_LEFT_2) & !((outputMoveMode = TURN_LEFT_1))) -> ((leftMotor = CALIB_FWD) & (rightMotor = CALIB_FWD))));
+guarantee
+	G ((((inputMoveMode = TURN_LEFT_2) & (obstacle = CLEAR)) -> (outputMoveMode = FWD)));
+
+

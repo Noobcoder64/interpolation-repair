@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables
-36c8f3f8-dbbb-44bb-930d-c2945387b646,['G(F(distSense=CLEAR -> (!isReady -> balancer!=STP)) & (distSense=BLOCKED -> (!isReady -> balancer!=STP) & (isReady -> balancer=FWD)))'],True,7

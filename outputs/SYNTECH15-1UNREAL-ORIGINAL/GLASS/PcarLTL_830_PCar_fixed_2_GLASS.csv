@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables
-fa39bed9-24d8-46d6-86c3-c47eb2336fa3,['G(obstacle=BLOCKED -> (next(obstacle)=CLEAR -> (sideSense=PARALLEL_PARKING -> (next(sideSense)!={} &  (next(parkResult)=PARALLEL -> (next(colorSense)=BLACK -> (throttle=BWD -> (steer=CENTER -> (parkComm& =STOP -> spec_policy!=MEASURING))) & (throttle=STOP -> (steer=CENTER -> (parkComm& =STOP -> spec_policy!=MEASURING))) & (throttle=EXIT_FWD -> (steer=CENTER -> (parkComm& =STOP -> spec_policy!=MEASURING)))))))))'],True,19

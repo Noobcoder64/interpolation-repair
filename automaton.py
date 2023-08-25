@@ -110,7 +110,7 @@ class Automaton:
         # shlex.split splits the string according to shell format
         # subprocess.PIPE is needed to pipe the standard output of ltl2tgba to the standard input of this Python script
         command = [ROOT_DIR + "spot/build/bin/ltl2tgba", "-B", "-S", "-D", "-f", ltlFormula]
-        print(command)
+        
         p = subprocess.Popen(command,0,None,None,subprocess.PIPE)
         spot_out = p.stdout
 
