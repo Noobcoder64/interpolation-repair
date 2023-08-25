@@ -10,8 +10,8 @@ sys {FWD, BWD, TURN_LEFT} nextMoveMode;
 sys {Q0, Q1, Q2, Q3} specState;
 sys {T0, T1, T2, T3} turnState;
 
-env boolean pREV_aux_0;
-env boolean pREV_aux_1;
+aux boolean pREV_aux_0;
+aux boolean pREV_aux_1;
 
 assumption
 	alw (((pREV_aux_0 & (obstacle = BLOCKED)) -> (next(obstacle = BLOCKED))));
@@ -73,12 +73,12 @@ guarantee
 guarantee
 	alw ((((turnState = T3) & (turnState = T0)) <-> ((leftMotor = CALIB_FWD) & (rightMotor = CALIB_FWD))));
 
-assumption
+guarantee
 	 (!(pREV_aux_0));
-assumption
+guarantee
 	alw ((next(pREV_aux_0) <-> (next(nextMoveMode = FWD))));
-assumption
+guarantee
 	 (!(pREV_aux_1));
-assumption
+guarantee
 	alw ((next(pREV_aux_1) <-> (next(nextMoveMode = BWD))));
 

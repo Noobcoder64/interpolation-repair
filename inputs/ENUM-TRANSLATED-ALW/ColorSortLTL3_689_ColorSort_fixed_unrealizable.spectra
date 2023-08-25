@@ -22,18 +22,18 @@ sys boolean spec_prevBotMotSeek;
 sys boolean spec_waiting_ack_ver_mot;
 sys boolean spec_waiting_ack_hor_mot;
 
-env boolean sYS_CONSTRAINT_0_respondsTo_responded;
-env boolean eNV_CONSTRAINT_1_respondsTo_responded;
-env boolean eNV_CONSTRAINT_2_respondsTo_responded;
-env boolean eNV_CONSTRAINT_3_respondsTo_responded;
-env boolean pREV_aux_4;
-env boolean pREV_aux_5;
-env boolean pREV_aux_6;
-env boolean pREV_aux_7;
-env boolean pREV_aux_8;
-env boolean pREV_aux_9;
-env boolean pREV_aux_10;
-env boolean pREV_aux_11;
+aux boolean sYS_CONSTRAINT_0_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_1_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_2_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_3_respondsTo_responded;
+aux boolean pREV_aux_4;
+aux boolean pREV_aux_5;
+aux boolean pREV_aux_6;
+aux boolean pREV_aux_7;
+aux boolean pREV_aux_8;
+aux boolean pREV_aux_9;
+aux boolean pREV_aux_10;
+aux boolean pREV_aux_11;
 
 assumption
 	alw ((!(spec_waiting_ack_ver_mot) -> (ack_ver = SLEEP)));
@@ -133,52 +133,52 @@ guarantee
 guarantee
 	alwEv (sYS_CONSTRAINT_0_respondsTo_responded);
 
-assumption
+guarantee
 	 (sYS_CONSTRAINT_0_respondsTo_responded);
-assumption
+guarantee
 	alw ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (((horMot = MOVE) & (detect = spec_currentColor)) | (sYS_CONSTRAINT_0_respondsTo_responded & !(!((color = BLACK)))))));
-assumption
+guarantee
 	 (eNV_CONSTRAINT_1_respondsTo_responded);
-assumption
+guarantee
 	alw ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> ((ack_ver = SLEEP) | (eNV_CONSTRAINT_1_respondsTo_responded & !(spec_waiting_ack_ver_mot)))));
-assumption
+guarantee
 	 (eNV_CONSTRAINT_2_respondsTo_responded);
-assumption
+guarantee
 	alw ((next(eNV_CONSTRAINT_2_respondsTo_responded) <-> ((ack_hor = SLEEP) | (eNV_CONSTRAINT_2_respondsTo_responded & !(spec_waiting_ack_hor_mot)))));
-assumption
+guarantee
 	 (eNV_CONSTRAINT_3_respondsTo_responded);
-assumption
+guarantee
 	alw ((next(eNV_CONSTRAINT_3_respondsTo_responded) <-> ((ack_bot = SLEEP) | (eNV_CONSTRAINT_3_respondsTo_responded & !((ack_bot = MOVE))))));
-assumption
+guarantee
 	 (!(pREV_aux_4));
-assumption
+guarantee
 	alw ((next(pREV_aux_4) <-> (botMot = RETURN)));
-assumption
+guarantee
 	 (!(pREV_aux_5));
-assumption
+guarantee
 	alw ((next(pREV_aux_5) <-> (botMot = SEEK)));
-assumption
+guarantee
 	 (!(pREV_aux_6));
-assumption
+guarantee
 	alw ((next(pREV_aux_6) <-> (ack_ver = MOVE)));
-assumption
+guarantee
 	 (!(pREV_aux_7));
-assumption
+guarantee
 	alw ((next(pREV_aux_7) <-> (ack_hor = MOVE)));
-assumption
+guarantee
 	 (!(pREV_aux_8));
-assumption
+guarantee
 	alw ((next(pREV_aux_8) <-> (speedButton = RELEASE)));
-assumption
+guarantee
 	 (!(pREV_aux_9));
-assumption
+guarantee
 	alw ((next(pREV_aux_9) <-> (motSpeed = LEVEL1)));
-assumption
+guarantee
 	 (!(pREV_aux_10));
-assumption
+guarantee
 	alw ((next(pREV_aux_10) <-> (motSpeed = LEVEL2)));
-assumption
+guarantee
 	 (!(pREV_aux_11));
-assumption
+guarantee
 	alw ((next(pREV_aux_11) <-> (motSpeed = LEVEL3)));
 

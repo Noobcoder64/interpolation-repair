@@ -7,8 +7,8 @@ env boolean isReady;
 
 sys {STP, FWD, BWD, TURN_LEFT, TURN_RIGHT} balancer;
 
-env boolean eNV_CONSTRAINT_0_respondsTo_responded;
-env boolean eNV_CONSTRAINT_1_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_0_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_1_respondsTo_responded;
 
 assumption
 	 (!(isReady));
@@ -38,12 +38,12 @@ guarantee
 guarantee
 	alw (((isReady & (frontDistSense = CLEAR)) -> (balancer = FWD)));
 
-assumption
+guarantee
 	 (eNV_CONSTRAINT_0_respondsTo_responded);
-assumption
+guarantee
 	alw ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((!(!(((balancer = FWD) | (balancer = STP)))) | (frontDistSense = CLEAR)) | (eNV_CONSTRAINT_0_respondsTo_responded & !(!(((balancer = FWD) | (balancer = STP))))))));
-assumption
+guarantee
 	 (eNV_CONSTRAINT_1_respondsTo_responded);
-assumption
+guarantee
 	alw ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> ((!(!(((balancer = BWD) | (balancer = STP)))) | (backDistSense = CLEAR)) | (eNV_CONSTRAINT_1_respondsTo_responded & !(!(((balancer = BWD) | (balancer = STP))))))));
 

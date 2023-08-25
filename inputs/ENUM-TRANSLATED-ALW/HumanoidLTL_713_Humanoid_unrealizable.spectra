@@ -14,13 +14,13 @@ sys {Q0, Q1, Q2, Q3} spec_state;
 sys {M0, M1} spec_search;
 sys {N, NW, W, SW, SO, SE, EA, NE} next_head;
 
-env boolean eNV_CONSTRAINT_0_respondsTo_responded;
-env boolean eNV_CONSTRAINT_1_respondsTo_responded;
-env boolean pREV_aux_2;
-env boolean pREV_aux_3;
-env boolean pREV_aux_4;
-env boolean pREV_aux_5;
-env boolean pREV_aux_6;
+aux boolean eNV_CONSTRAINT_0_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_1_respondsTo_responded;
+aux boolean pREV_aux_2;
+aux boolean pREV_aux_3;
+aux boolean pREV_aux_4;
+aux boolean pREV_aux_5;
+aux boolean pREV_aux_6;
 
 assumption
 	alw (((((spec_nextMoveMode = FWD) | (spec_nextMoveMode = BWD)) & !((heading = next_head))) -> !((next(heading = next(next_head))))));
@@ -80,32 +80,32 @@ guarantee
 guarantee
 	alw ((pREV_aux_4 -> !((spec_nextMoveMode = TURN_LEFT_1))));
 
-assumption
+guarantee
 	 (eNV_CONSTRAINT_0_respondsTo_responded);
-assumption
+guarantee
 	alw ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((heading = next_head) | (eNV_CONSTRAINT_0_respondsTo_responded & !((spec_search = M1))))));
-assumption
+guarantee
 	 (eNV_CONSTRAINT_1_respondsTo_responded);
-assumption
+guarantee
 	alw ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> ((obstacle = CLEAR) | (eNV_CONSTRAINT_1_respondsTo_responded & !(!((spec_nextMoveMode = FWD)))))));
-assumption
+guarantee
 	 (!(pREV_aux_2));
-assumption
+guarantee
 	alw ((next(pREV_aux_2) <-> (spec_nextMoveMode = TURN_LEFT_2)));
-assumption
+guarantee
 	 (!(pREV_aux_3));
-assumption
+guarantee
 	alw ((next(pREV_aux_3) <-> pREV_aux_2));
-assumption
+guarantee
 	 (!(pREV_aux_4));
-assumption
+guarantee
 	alw ((next(pREV_aux_4) <-> (spec_nextMoveMode = BWD)));
-assumption
+guarantee
 	 (!(pREV_aux_5));
-assumption
+guarantee
 	alw ((next(pREV_aux_5) <-> (spec_nextMoveMode = FWD)));
-assumption
+guarantee
 	 (!(pREV_aux_6));
-assumption
+guarantee
 	alw ((next(pREV_aux_6) <-> (spec_nextMoveMode = TURN_LEFT_1)));
 

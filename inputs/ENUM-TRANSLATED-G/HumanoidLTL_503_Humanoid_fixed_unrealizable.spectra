@@ -11,8 +11,8 @@ sys {FWD, BWD, STOP, TURN_FWD, TURN_BWD, CALIB_TURN, CALIB_FWD, DANCE} rightMoto
 sys {FWD, BWD, STOP, DANCE} headMotor;
 sys {FWD, BWD, TURN_LEFT_1, TURN_LEFT_2, DANCE} spec_OutputMoveMode;
 
-env boolean pREV_aux_0;
-env boolean pREV_aux_1;
+aux boolean pREV_aux_0;
+aux boolean pREV_aux_1;
 
 assumption
 	G ((((inputMoveMode = FWD) & pREV_aux_0) -> (obstacle = CLEAR)));
@@ -42,7 +42,7 @@ guarantee
 guarantee
 	G ((((inputMoveMode = DANCE) & (spec_OutputMoveMode = DANCE)) -> ((((rightMotor = STOP) & (leftMotor = DANCE)) & (headMotor = DANCE)) | (((rightMotor = STOP) & (leftMotor = STOP)) & (headMotor = STOP)))));
 guarantee
-	alwEv ((leftMotor = DANCE));
+	GF ((leftMotor = DANCE));
 guarantee
 	G (((button = FREE) -> ((spec_OutputMoveMode = inputMoveMode) | !((inputMoveMode = DANCE)))));
 guarantee
@@ -52,12 +52,12 @@ guarantee
 guarantee
 	G ((!(((button = PRESSED) | (inputMoveMode = DANCE))) -> !((spec_OutputMoveMode = DANCE))));
 
-assumption
+guarantee
 	 (!(pREV_aux_0));
-assumption
+guarantee
 	G ((next(pREV_aux_0) <-> (inputMoveMode = TURN_LEFT_2)));
-assumption
+guarantee
 	 (!(pREV_aux_1));
-assumption
+guarantee
 	G ((next(pREV_aux_1) <-> !((inputMoveMode = TURN_LEFT_2))));
 

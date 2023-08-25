@@ -1,29 +1,7 @@
 import os
 import time
 import pandas as pd
-
-# List of input folders
-INPUT_FOLDERS = [
-    "inputs/AMBA",
-    "inputs/SYNTECH15-UNREAL",
-    # "inputs/SYNTECH15-1UNREAL",
-    # "inputs/AMBA-ORIGINAL",
-    # "inputs/SYNTECH15-UNREAL-ORIGINAL",
-    # "inputs/SYNTECH15-1UNREAL-ORIGINAL"
-]
-
-# List of algorithms
-ALGORITHMS = [
-    "INTERPOLATION-ALLGARS",
-    "INTERPOLATION-NONINF",
-    # "INTERPOLATION",
-    # "GLASS",
-    # "JVTS",
-    # "ALUR",
-]
-
-# Output parent folder
-OUTPUT_PARENT_FOLDER = "outputs/"
+from experiment_config import INPUT_FOLDERS, ALGORITHMS, OUTPUT_PARENT_FOLDER
 
 SUMMARY_FILENAME = "repairs_summary"
 
@@ -38,12 +16,12 @@ def create_summary_dataframe(spectra_files, output_folder):
             df = pd.read_csv(csv_filepath, sep=",", index_col=False)
             repaired_df = df[df["IsSolution"] == True]
             num_repairs = len(repaired_df)
-            min_num_variables = repaired_df["NumVariables"].min()
+            # min_num_variables = repaired_df["NumVariables"].min()
         else:
             min_num_variables = 0
             num_repairs = 0
 
-        data = {"Specification": [spec_name], "NumRepairs": [num_repairs], "MinNumVariables": [min_num_variables], "Repaired": [num_repairs > 0]}
+        data = {"Specification": [spec_name], "NumRepairs": [num_repairs], "Repaired": [num_repairs > 0]}
         spec_df = pd.DataFrame(data)
         data_frames.append(spec_df)
     summary = pd.concat(data_frames, ignore_index=True)

@@ -19,10 +19,10 @@ sys boolean spec_speedButtonValidPressed;
 sys boolean spec_waiting_ack_ver_mot;
 sys boolean spec_waiting_ack_hor_mot;
 
-env boolean sYS_CONSTRAINT_0_respondsTo_responded;
-env boolean eNV_CONSTRAINT_1_respondsTo_responded;
-env boolean eNV_CONSTRAINT_2_respondsTo_responded;
-env boolean pREV_aux_3;
+aux boolean sYS_CONSTRAINT_0_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_1_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_2_respondsTo_responded;
+aux boolean pREV_aux_3;
 
 assumption
 	alw ((!(spec_waiting_ack_ver_mot) -> (ack_ver = SLEEP)));
@@ -100,20 +100,20 @@ guarantee
 guarantee
 	alwEv (sYS_CONSTRAINT_0_respondsTo_responded);
 
-assumption
+guarantee
 	 (sYS_CONSTRAINT_0_respondsTo_responded);
-assumption
+guarantee
 	alw ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (((horMot = MOVE) & (detect = spec_currentColor)) | (sYS_CONSTRAINT_0_respondsTo_responded & !(!((color = BLACK)))))));
-assumption
+guarantee
 	 (eNV_CONSTRAINT_1_respondsTo_responded);
-assumption
+guarantee
 	alw ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> ((ack_ver = SLEEP) | (eNV_CONSTRAINT_1_respondsTo_responded & !(spec_waiting_ack_ver_mot)))));
-assumption
+guarantee
 	 (eNV_CONSTRAINT_2_respondsTo_responded);
-assumption
+guarantee
 	alw ((next(eNV_CONSTRAINT_2_respondsTo_responded) <-> ((ack_hor = SLEEP) | (eNV_CONSTRAINT_2_respondsTo_responded & !(spec_waiting_ack_hor_mot)))));
-assumption
+guarantee
 	 (!(pREV_aux_3));
-assumption
+guarantee
 	alw ((next(pREV_aux_3) <-> (speedButton = RELEASE)));
 

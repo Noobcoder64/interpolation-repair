@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-dcef966a-0027-4b6e-be56-5bef3353ddb0,['G(Obstacle=CLEAR -> InputMoveMode!=TURN_LEFT_2)'],True
+Id,UniqueRefinement,IsSolution,NumVariables,d1,d2,nummaxentropysccs,d3
+dcef966a-0027-4b6e-be56-5bef3353ddb0,['G(Obstacle=CLEAR -> InputMoveMode!=TURN_LEFT_2)'],True,4,,,,

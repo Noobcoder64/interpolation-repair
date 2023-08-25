@@ -22,18 +22,18 @@ sys boolean spec_prevBotMotSeek;
 sys boolean spec_waiting_ack_ver_mot;
 sys boolean spec_waiting_ack_hor_mot;
 
-env boolean sYS_CONSTRAINT_0_respondsTo_responded;
-env boolean eNV_CONSTRAINT_1_respondsTo_responded;
-env boolean eNV_CONSTRAINT_2_respondsTo_responded;
-env boolean eNV_CONSTRAINT_3_respondsTo_responded;
-env boolean pREV_aux_4;
-env boolean pREV_aux_5;
-env boolean pREV_aux_6;
-env boolean pREV_aux_7;
-env boolean pREV_aux_8;
-env boolean pREV_aux_9;
-env boolean pREV_aux_10;
-env boolean pREV_aux_11;
+aux boolean sYS_CONSTRAINT_0_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_1_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_2_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_3_respondsTo_responded;
+aux boolean pREV_aux_4;
+aux boolean pREV_aux_5;
+aux boolean pREV_aux_6;
+aux boolean pREV_aux_7;
+aux boolean pREV_aux_8;
+aux boolean pREV_aux_9;
+aux boolean pREV_aux_10;
+aux boolean pREV_aux_11;
 
 assumption
 	G ((!(spec_waiting_ack_ver_mot) -> (ack_ver = SLEEP)));
@@ -44,13 +44,13 @@ assumption
 assumption
 	G (((horMot = MOVE) -> (next(ack_hor = MOVE))));
 assumption
-	alwEv (!((color = BLACK)));
+	GF (!((color = BLACK)));
 assumption
-	alwEv (eNV_CONSTRAINT_1_respondsTo_responded);
+	GF (eNV_CONSTRAINT_1_respondsTo_responded);
 assumption
-	alwEv (eNV_CONSTRAINT_2_respondsTo_responded);
+	GF (eNV_CONSTRAINT_2_respondsTo_responded);
 assumption
-	alwEv (eNV_CONSTRAINT_3_respondsTo_responded);
+	GF (eNV_CONSTRAINT_3_respondsTo_responded);
 
 guarantee
 	G ((spec_prevBotMotReturn <-> pREV_aux_4));
@@ -69,7 +69,7 @@ guarantee
 guarantee
 	G ((((ack_ver = MOVE) | (ack_hor = MOVE)) -> (((verMot = SLEEP) & (horMot = SLEEP)) & (botMot = STOP))));
 guarantee
-	alwEv ((horMot = MOVE));
+	GF ((horMot = MOVE));
 guarantee
 	G ((((color = BLACK) & !(spec_dropping)) -> (((verMot = SLEEP) & (horMot = SLEEP)) & (botMot = STOP))));
 guarantee
@@ -81,7 +81,7 @@ guarantee
 guarantee
 	G ((((((((((((spec_state_seek = S0) & (!((spec_prevBotMotSeek & (ack_bot = MOVE))) | ((spec_prevBotMotSeek & (detect = spec_currentColor)) & (spec_prevBotMotSeek & (ack_bot = MOVE))))) & (next(spec_state_seek = S0))) | (((spec_state_seek = S0) & ((!((spec_prevBotMotSeek & (detect = spec_currentColor))) & ((spec_dropping & !((detect = spec_currentColor))) -> (botMot = SEEK))) & (spec_prevBotMotSeek & (ack_bot = MOVE)))) & (next(spec_state_seek = S1)))) | (((spec_state_seek = S0) & ((!((spec_prevBotMotSeek & (detect = spec_currentColor))) & !(((spec_dropping & !((detect = spec_currentColor))) -> (botMot = SEEK)))) & (spec_prevBotMotSeek & (ack_bot = MOVE)))) & (next(spec_state_seek = S3)))) | (((spec_state_seek = S1) & (spec_prevBotMotSeek & (detect = spec_currentColor))) & (next(spec_state_seek = S0)))) | (((spec_state_seek = S1) & (!((spec_prevBotMotSeek & (detect = spec_currentColor))) & ((spec_dropping & !((detect = spec_currentColor))) -> (botMot = SEEK)))) & (next(spec_state_seek = S1)))) | (((spec_state_seek = S1) & (!((spec_prevBotMotSeek & (detect = spec_currentColor))) & !(((spec_dropping & !((detect = spec_currentColor))) -> (botMot = SEEK))))) & (next(spec_state_seek = S3)))) | ((spec_state_seek = S2) & (next(spec_state_seek = S2)))) | (((spec_state_seek = S3) & (spec_prevBotMotSeek & (detect = spec_currentColor))) & (next(spec_state_seek = S2)))) | (((spec_state_seek = S3) & !((spec_prevBotMotSeek & (detect = spec_currentColor)))) & (next(spec_state_seek = S3)))));
 guarantee
-	alwEv ((((spec_state_seek = S0) | (spec_state_seek = S1)) | (spec_state_seek = S3)));
+	GF ((((spec_state_seek = S0) | (spec_state_seek = S1)) | (spec_state_seek = S3)));
 guarantee
 	G (((((spec_dropping & (((ack_ver = SLEEP) & (ack_hor = SLEEP)) & (ack_bot = MOVE))) & (detect = spec_currentColor)) & pREV_aux_5) <-> (horMot = MOVE)));
 guarantee
@@ -91,7 +91,7 @@ guarantee
 guarantee
 	G ((((((((((spec_state_return = S0) & ((!((spec_prevBotMotReturn & (ack_bot = MOVE))) & !((spec_prevBotMotReturn & (ack_bot = SLEEP)))) | (spec_prevBotMotReturn & (ack_bot = SLEEP)))) & (next(spec_state_return = S0))) | (((spec_state_return = S0) & (((spec_prevBotMotReturn & (ack_bot = MOVE)) & !(((spec_dropping & (((ack_ver = SLEEP) & (ack_hor = SLEEP)) & (ack_bot = MOVE))) -> (botMot = RETURN)))) & !((spec_prevBotMotReturn & (ack_bot = SLEEP))))) & (next(spec_state_return = S1)))) | (((spec_state_return = S0) & (((spec_prevBotMotReturn & (ack_bot = MOVE)) & ((spec_dropping & (((ack_ver = SLEEP) & (ack_hor = SLEEP)) & (ack_bot = MOVE))) -> (botMot = RETURN))) & !((spec_prevBotMotReturn & (ack_bot = SLEEP))))) & (next(spec_state_return = S2)))) | ((spec_state_return = S1) & (next(spec_state_return = S1)))) | (((spec_state_return = S2) & (spec_prevBotMotReturn & (ack_bot = SLEEP))) & (next(spec_state_return = S0)))) | (((spec_state_return = S2) & (!(((spec_dropping & (((ack_ver = SLEEP) & (ack_hor = SLEEP)) & (ack_bot = MOVE))) -> (botMot = RETURN))) & !((spec_prevBotMotReturn & (ack_bot = SLEEP))))) & (next(spec_state_return = S1)))) | (((spec_state_return = S2) & (((spec_dropping & (((ack_ver = SLEEP) & (ack_hor = SLEEP)) & (ack_bot = MOVE))) -> (botMot = RETURN)) & !((spec_prevBotMotReturn & (ack_bot = SLEEP))))) & (next(spec_state_return = S2)))));
 guarantee
-	alwEv (((spec_state_return = S0) | (spec_state_return = S2)));
+	GF (((spec_state_return = S0) | (spec_state_return = S2)));
 guarantee
 	G (((spec_prevBotMotReturn & (ack_bot = SLEEP)) -> (((verMot = SLEEP) & (horMot = SLEEP)) & (botMot = STOP))));
 guarantee
@@ -131,54 +131,54 @@ guarantee
 guarantee
 	G (((spec_waiting_ack_hor_mot & !((ack_hor = SLEEP))) -> next(spec_waiting_ack_hor_mot)));
 guarantee
-	alwEv (sYS_CONSTRAINT_0_respondsTo_responded);
+	GF (sYS_CONSTRAINT_0_respondsTo_responded);
 
-assumption
+guarantee
 	 (sYS_CONSTRAINT_0_respondsTo_responded);
-assumption
+guarantee
 	G ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (((horMot = MOVE) & (detect = spec_currentColor)) | (sYS_CONSTRAINT_0_respondsTo_responded & !(!((color = BLACK)))))));
-assumption
+guarantee
 	 (eNV_CONSTRAINT_1_respondsTo_responded);
-assumption
+guarantee
 	G ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> ((ack_ver = SLEEP) | (eNV_CONSTRAINT_1_respondsTo_responded & !(spec_waiting_ack_ver_mot)))));
-assumption
+guarantee
 	 (eNV_CONSTRAINT_2_respondsTo_responded);
-assumption
+guarantee
 	G ((next(eNV_CONSTRAINT_2_respondsTo_responded) <-> ((ack_hor = SLEEP) | (eNV_CONSTRAINT_2_respondsTo_responded & !(spec_waiting_ack_hor_mot)))));
-assumption
+guarantee
 	 (eNV_CONSTRAINT_3_respondsTo_responded);
-assumption
+guarantee
 	G ((next(eNV_CONSTRAINT_3_respondsTo_responded) <-> ((ack_bot = SLEEP) | (eNV_CONSTRAINT_3_respondsTo_responded & !((ack_bot = MOVE))))));
-assumption
+guarantee
 	 (!(pREV_aux_4));
-assumption
+guarantee
 	G ((next(pREV_aux_4) <-> (botMot = RETURN)));
-assumption
+guarantee
 	 (!(pREV_aux_5));
-assumption
+guarantee
 	G ((next(pREV_aux_5) <-> (botMot = SEEK)));
-assumption
+guarantee
 	 (!(pREV_aux_6));
-assumption
+guarantee
 	G ((next(pREV_aux_6) <-> (ack_ver = MOVE)));
-assumption
+guarantee
 	 (!(pREV_aux_7));
-assumption
+guarantee
 	G ((next(pREV_aux_7) <-> (ack_hor = MOVE)));
-assumption
+guarantee
 	 (!(pREV_aux_8));
-assumption
+guarantee
 	G ((next(pREV_aux_8) <-> (speedButton = RELEASE)));
-assumption
+guarantee
 	 (!(pREV_aux_9));
-assumption
+guarantee
 	G ((next(pREV_aux_9) <-> (motSpeed = LEVEL1)));
-assumption
+guarantee
 	 (!(pREV_aux_10));
-assumption
+guarantee
 	G ((next(pREV_aux_10) <-> (motSpeed = LEVEL2)));
-assumption
+guarantee
 	 (!(pREV_aux_11));
-assumption
+guarantee
 	G ((next(pREV_aux_11) <-> (motSpeed = LEVEL3)));
 

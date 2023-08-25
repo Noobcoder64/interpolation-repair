@@ -10,8 +10,8 @@ sys {RIGHT, LEFT, CENTER} steer;
 sys {START, STOP, CHECK} parkCommand;
 sys {SEEKING, MEASURING, PARKING_0, PARKING_1, PARKING_2, PARKED} spec_policy;
 
-env boolean eNV_CONSTRAINT_0_respondsTo_responded;
-env boolean pREV_aux_1;
+aux boolean eNV_CONSTRAINT_0_respondsTo_responded;
+aux boolean pREV_aux_1;
 
 assumption
 	G (((spec_policy = SEEKING) -> (next(parkResult = NA))));
@@ -20,12 +20,12 @@ assumption
 assumption
 	G (((throttle = STOP) -> ((obstacle = next(obstacle)) & (sideSense = next(sideSense)))));
 assumption
-	alwEv (eNV_CONSTRAINT_0_respondsTo_responded);
+	GF (eNV_CONSTRAINT_0_respondsTo_responded);
 
 guarantee
 	 ((spec_policy = SEEKING));
 guarantee
-	alwEv ((spec_policy = PARKED));
+	GF ((spec_policy = PARKED));
 guarantee
 	G (((spec_policy = SEEKING) -> (((next(spec_policy = SEEKING)) | (next(spec_policy = MEASURING))) | (next(spec_policy = PARKING_0)))));
 guarantee
@@ -65,12 +65,12 @@ guarantee
 guarantee
 	G (((spec_policy = PARKED) -> ((((next(spec_policy = spec_policy)) & (throttle = STOP)) & (steer = CENTER)) & (parkCommand = STOP))));
 
-assumption
+guarantee
 	 (eNV_CONSTRAINT_0_respondsTo_responded);
-assumption
+guarantee
 	G ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((obstacle = CLEAR) | (eNV_CONSTRAINT_0_respondsTo_responded & !((throttle = BWD))))));
-assumption
+guarantee
 	 (!(pREV_aux_1));
-assumption
+guarantee
 	G ((next(pREV_aux_1) <-> (spec_policy = MEASURING)));
 

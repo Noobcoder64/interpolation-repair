@@ -9,8 +9,8 @@ sys {FWD, BWD, STOP} headMotor;
 sys {FWD, BWD, TURN_LEFT_1, TURN_LEFT_2} moveMode;
 sys {Q0, Q1, Q2, Q3} state;
 
-env boolean eNV_CONSTRAINT_0_respondsTo_responded;
-env boolean pREV_aux_1;
+aux boolean eNV_CONSTRAINT_0_respondsTo_responded;
+aux boolean pREV_aux_1;
 
 assumption
 	alwEv ((obstacle = CLEAR));
@@ -50,12 +50,12 @@ guarantee
 guarantee
 	alw ((!(((moveMode = TURN_LEFT_1) | (moveMode = TURN_LEFT_2))) -> !(((((leftMotor = TURN_BWD) | (rightMotor = TURN_BWD)) | (leftMotor = TURN_FWD)) | (rightMotor = TURN_FWD)))));
 
-assumption
+guarantee
 	 (eNV_CONSTRAINT_0_respondsTo_responded);
-assumption
+guarantee
 	alw ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((obstacle = CLEAR) | (eNV_CONSTRAINT_0_respondsTo_responded & !((((moveMode = BWD) | (moveMode = TURN_LEFT_1)) | (moveMode = TURN_LEFT_2)))))));
-assumption
+guarantee
 	 (!(pREV_aux_1));
-assumption
+guarantee
 	alw ((next(pREV_aux_1) <-> (moveMode = TURN_LEFT_2)));
 
