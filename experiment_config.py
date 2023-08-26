@@ -7,8 +7,8 @@ INPUT_FOLDERS = [
     # "inputs/AMBA-ORIGINAL",
     # "inputs/SYNTECH15-UNREAL-ORIGINAL",
     # "inputs/SYNTECH15-1UNREAL-ORIGINAL",
-    "inputs/ENUM-ORIGINAL-G",
-    "inputs/ENUM-ORIGINAL-ALW",
+    # "inputs/ENUM-ORIGINAL-G",
+    # "inputs/ENUM-ORIGINAL-ALW",
     "inputs/ENUM-TRANSLATED-G",
     "inputs/ENUM-TRANSLATED-ALW",
 ]
