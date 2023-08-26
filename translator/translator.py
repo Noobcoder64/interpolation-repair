@@ -43,9 +43,9 @@ class Variable:
         literals = []
         for i,x in enumerate(bin_value):
             if x == "1":
-                literals.append(("X(" if next else "") + self.name + "_" + str(i) + (")" if next else ""))
+                literals.append(("next(" if next else "") + self.name + "_" + str(i) + (")" if next else ""))
             else:
-                literals.append(("X(" if next else "") + "!" + self.name + "_" + str(i) + (")" if next else ""))
+                literals.append(("next(" if next else "") + "!" + self.name + "_" + str(i) + (")" if next else ""))
 
         if not negated:
             return " & ".join(literals)
@@ -92,7 +92,7 @@ def parseDefinition(t):
 def parseVariable(t):
     kind = t[0]
     boolean = t[1] == "boolean"
-    name = t[-1]
+    name = t[-2]
     values = []
     if not boolean:
         for i in range(2,len(t)):
@@ -103,14 +103,15 @@ def parseVariable(t):
     var_obj = Variable(name, boolean, values)
     if kind == "env":
         env_variables[name] = var_obj
-    elif kind == "sys":
+    elif kind == "sys" or kind == "aux":
         sys_variables[name] = var_obj
 
+    ret = ""
     if boolean:
-        spec.append(kind + " boolean " + var_obj.name + ";")
+        ret += kind + " boolean " + var_obj.name + ";"
     else:
         for i in range(var_obj.num_bits):
-            spec.append(kind + " boolean " + var_obj.name + "_" + str(i) + ";")
+            ret += kind + " boolean " + var_obj.name + "_" + str(i) + ";\n"
 
         for i in range(len(var_obj.values), 2**var_obj.num_bits):
             bin_value = format(i, "#0" + str(var_obj.num_bits+2) + "b")[2:]
@@ -126,11 +127,11 @@ def parseVariable(t):
                 safety = "assumption\n\t"
             elif kind == "sys":
                 safety = "guarantee\n\t"
-            safety += "alw (!(" + " & ".join(literals) + "));"
-            spec.append(safety)
+            safety += "alw (!(" + " & ".join(literals) + "));\n"
+            ret += safety
 
     variables[name] = var_obj
-    return var_obj
+    return ret
 
 
 def parseDefIntegerVariable(t):
@@ -165,38 +166,34 @@ def parseComparison(t):
     # - same as before with integer values
     # - integer_variable = integer_value
 
-    if len(t[0]) == 3:
+    if len(t) == 3:
         # In this case the expression is ["var", "="/"!=", "constant"]
         # or ["var_1", "="/"!=", "var_2"]
-        if t[0][0] in env_variables:
-            var_1 = env_variables[t[0][0]]
-        else:
-            var_1 = sys_variables[t[0][0]]
 
-        if t[0][2] in env_variables:
-            var_2 = env_variables[t[0][2]]
-        elif t[0][2] in sys_variables:
-            var_2 = sys_variables[t[0][2]]
-        elif t[0][2] in ["true", "TRUE"]:
+        operand1 = t[0]
+        operand2 = t[2]
+
+        if operand1 in env_variables:
+            var_1 = env_variables[operand1]
+        else:
+            var_1 = sys_variables[operand1]
+
+        if operand2 in env_variables:
+            var_2 = env_variables[operand2]
+        elif operand2 in sys_variables:
+            var_2 = sys_variables[operand2]
+        elif operand2 in ["true", "TRUE"]:
             return var_1.name
-        elif t[0][2] in ["false", "FALSE"]:
+        elif operand2 in ["false", "FALSE"]:
             return "!" + var_1.name
         else:
-            # If it is a constant, just return the Boolean expression
-            # The constant may be a number or an enumerative value
-
-            try:
-                return var_1.convertFromEnumLabelToBooleanFormula(int(t[0][2]), t[0][1]=="!=")
-            except ValueError:
-                return var_1.convertFromEnumLabelToBooleanFormula(t[0][2], t[0][1] == "!=")
+            # operand2 is an Enum value
+            return var_1.convertFromEnumLabelToBooleanFormula(operand2, t[1] == "!=")
 
         # Here both terms are variable names
         # var_1 =/!= var_2
         if var_1.boolean:
-            return var_1.name \
-                        + " <-> "\
-                        + ("!" if t[0][1] == "!=" else "") \
-                        + var_2.name
+            return var_1.name + " <-> " + ("!" if t[0][1] == "!=" else "") + var_2.name
         else:
             formula_bits = []
             for i in range(var_1.num_bits):
@@ -212,12 +209,12 @@ def parseComparison(t):
             else:
                 return "(" + " | ".join(formula_bits) + ")"
 
-    else:
+    elif len(t) == 4:
         # There is some next operator involved
         # Previous ("Y") operators are dealt with in the relevant parser
-        token_list = t[0]._ParseResults__toklist
-        index_X_operand = token_list.index("X") + 1
-        X_operand = t[0][index_X_operand][0]
+        token_list = t._ParseResults__toklist
+        index_X_operand = token_list.index("next") + 1
+        X_operand = t[index_X_operand]
         if X_operand in env_variables:
             X_operand_obj = env_variables[X_operand]
         else:
@@ -229,9 +226,9 @@ def parseComparison(t):
             index_comparison_operator = token_list.index("!=")
 
         if index_X_operand > index_comparison_operator:
-            simple_term = t[0][index_comparison_operator - 1]
+            simple_term = t[index_comparison_operator - 1]
         else:
-            simple_term = t[0][index_comparison_operator + 1]
+            simple_term = t[index_comparison_operator + 1]
 
         simple_term_obj = None
         if simple_term in env_variables:
@@ -242,26 +239,50 @@ def parseComparison(t):
             # The simple term is a constant and the formula is of the kind
             # X(var) =/!= CONSTANT
             # The constant may be a number or an enumerative value
-            try:
-                return X_operand_obj.convertFromEnumLabelToBooleanFormula(int(simple_term), t[0][index_comparison_operator]=="!=", True)
-            except ValueError:
-                return X_operand_obj.convertFromEnumLabelToBooleanFormula(simple_term, t[0][index_comparison_operator] == "!=", True)
+            return X_operand_obj.convertFromEnumLabelToBooleanFormula(simple_term, t[index_comparison_operator] == "!=", True)
 
         if X_operand_obj.boolean:
-            return simple_term + " <-> X(" \
-                                + ("!" if t[0][index_comparison_operator] == "!=" else "") \
+            return simple_term + " <-> next(" \
+                                + ("!" if t[index_comparison_operator] == "!=" else "") \
                                 + X_operand + ")"
 
         formula_bits = []
         for i in range(simple_term_obj.num_bits):
             formula_bits.append("(" + simple_term + "_" + str(i)
-                                + " <-> X("
-                                + ("!" if t[0][index_comparison_operator] == "!=" else "")
+                                + " <-> next("
+                                + ("!" if t[index_comparison_operator] == "!=" else "")
                                 + X_operand + "_" + str(i) + "))")
         if t[0][index_comparison_operator] == "!=":
             return "(" + " | ".join(formula_bits) + ")"
         else:
             return " & ".join(formula_bits)
+    else:
+
+        token_list = t._ParseResults__toklist
+        operand1 = t[1][0]
+        operand2 = t[4][0]
+
+        if operand1 in env_variables:
+            var1 = env_variables[operand1]
+        else:
+            var1 = sys_variables[operand1]
+
+        # X(var) =/!= var
+        if var1.boolean:
+            return "next(" + ("!" if "!=" in token_list else "") + operand1 + ")" \
+                    + " <-> " \
+                    + "next(" + ("!" if "!=" in token_list else "") + operand2 + ")"
+
+        formula_bits = []
+        for i in range(var1.num_bits):
+            formula_bits.append("(next(" + operand1 + "_" + str(i) + ")"
+                                + " <-> " \
+                                + "next(" + ("!" if "!=" in token_list else "") + operand2 + "_" + str(i) + "))")
+        if  "!=" in token_list:
+            return "(" + " | ".join(formula_bits) + ")"
+        else:
+            return " & ".join(formula_bits)
+
 
 def parseInequality(t):
 
@@ -385,18 +406,18 @@ def parsePattern(t):
                 line += item + " "
         spec.append("}")
 
-# def printStatement(t):
-#     print(t)
+def printStatement(t):
+    print(t)
 
 ############################### Grammar ##################################################
 
 comment = ("--" + restOfLine) | nestedExpr('/*', '*/') | ("//" + restOfLine)
 
 seq = Literal(";")
-always_op = Keyword("G")
+always_op = Keyword("G") | Keyword("alw")
 eventually_op = Keyword("F")
-alwayseventually_op = Keyword("GF")
-next_op = Keyword("X") | Keyword("next")
+alwayseventually_op = Keyword("GF") | Keyword("alwEv")
+# next_op = Keyword("X") | Keyword("next")
 prev_op = Keyword("PREV") | Keyword("Y")
 
 neg_op = Literal("!")
@@ -418,7 +439,8 @@ inequality_op = leq_op | lt_op | geq_op | gt_op
 identifier = pyparsing_common.identifier
 enum_literal = Word(alphas.upper(), alphas.upper() + nums + "_")
 
-bool_atom = identifier | enum_literal
+next_op = Literal("next") + Suppress("(") + identifier + Suppress(")")
+bool_atom = next_op | identifier | enum_literal
 
 atom = bool_atom | Word(nums)
 
@@ -457,13 +479,13 @@ temporal_logic_expr.setParseAction(parseTemporalLogicProperty)
 def_integer_const = Keyword("define") + identifier + Literal(":=") + Word(nums)
 def_integer_const.setParseAction(parseDefIntegerConst)
 
-def_boolean = (Keyword("env") | Keyword("sys")) + Keyword("boolean") + identifier
+def_boolean = (Keyword("env") | Keyword("sys") | Keyword("aux")) + Keyword("boolean") + identifier
 def_enum = (Keyword("env") | Keyword("sys")) \
            + Literal("{") + delimitedList(enum_literal) + Literal("}") \
            + identifier
 def_internal_variable = (Keyword("define") + identifier + Literal(":=") + temporal_logic_expr)
 
-definition = def_boolean | def_enum | def_internal_variable
+definition = (def_boolean | def_enum | def_internal_variable) + seq
 definition.ignore(comment)
 definition.setParseAction(parseDefinition)
 
@@ -490,6 +512,9 @@ program = Keyword("module") + identifier \
 
 program.ignore(comment)
 
+comparison_exp = bool_atom + comparison_op + bool_atom
+comparison_exp.setParseAction(parseComparison)
+
 ###################################### IO ####################################################
 
 def write_file(spec, output_filename):
@@ -507,7 +532,7 @@ if len(sys.argv) >= 3:
     output_directory = sys.argv[2]
 else:
     # Default output directory if not provided
-    output_directory = "outputs/"
+    output_directory = "outputs"
 
 if not os.path.isdir(output_directory):
     os.makedirs(output_directory)
@@ -515,22 +540,41 @@ if not os.path.isdir(output_directory):
 directory, filename = os.path.split(input_path)
 print "TRANSLATING: " + filename
 
-input_file = open(input_path, "r")
-spec.append("module " + filename.replace(".spectra", ""))
-parsed_program = program.parseString(input_file.read(), parseAll=True)
-input_file.close()
+# === Run SpecTranslator.java ===
 
-# Normalize syntax
-spec = [re.sub(r"G\s*\(", r"alw (", line) for line in spec]
-spec = [re.sub(r"GF\s*\(", r"alwEv (", line) for line in spec]
-spec = [re.sub(r"X\s*\(", r"next(", line) for line in spec]
-spec = [re.sub(r"Y\s*\(", r"PREV(", line) for line in spec]
-spec = [re.sub(r'(\w+)=true', r'\1', x) for x in spec]
-spec = [re.sub(r'(\w+)=false', r'!\1', x) for x in spec]
+PATH_TO_JAR = "SpecTranslator.jar"
+cmd = "java -jar {} -i {} -o {}".format(PATH_TO_JAR, input_path, output_directory)
+p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
+p.wait()
 
 new_path = os.path.join(output_directory, filename)
-write_file(spec, new_path)
-PATH_TO_JAR = "SpecTranslator.jar"
-cmd = "java -jar {} -i {} -o {}".format(PATH_TO_JAR, new_path, output_directory)
-subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
+
+with open(new_path, "r") as input_file:
+    old_spec = input_file.read()
+
+new_spec = definition.transformString(old_spec)
+
+with open(new_path, "w") as output_file:
+    output_file.write(new_spec)
+
+with open(new_path, "r") as input_file:
+    old_spec = input_file.read()
+
+new_spec = comparison_exp.transformString(old_spec)
+
+with open(new_path, "w") as output_file:
+    output_file.write(new_spec)
+
+# Normalize syntax
+# spec = [re.sub(r"G\s*\(", r"alw (", line) for line in spec]
+# spec = [re.sub(r"GF\s*\(", r"alwEv (", line) for line in spec]
+# spec = [re.sub(r"alwEv\s*\(", r"GF (", line) for line in spec]
+# spec = [re.sub(r"alw\s*\(", r"G (", line) for line in spec]
+# spec = [re.sub(r"X\s*\(", r"next(", line) for line in spec]
+# spec = [re.sub(r"Y\s*\(", r"PREV(", line) for line in spec]
+# spec = [re.sub(r'(\w+)=true', r'\1', x) for x in spec]
+# spec = [re.sub(r'(\w+)=false', r'!\1', x) for x in spec]
+
+
+
 

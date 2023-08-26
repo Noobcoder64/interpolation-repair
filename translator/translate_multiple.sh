@@ -1,9 +1,9 @@
 #!/bin/bash
 
-for filepath in inputs/SIMPLE/*.spectra
-do
-        java -jar SpecTranslator.jar -i ${filepath} -o outputs/SIMPLE
-done
+# for filepath in inputs/SIMPLE/*.spectra
+# do
+#         java -jar SpecTranslator.jar -i ${filepath} -o outputs/SIMPLE
+# done
 
 # for filepath in inputs/AMBA/*.spectra
 # do
@@ -22,5 +22,5 @@ done
 
 for filepath in inputs/SYNTECH15-UNREAL-ORIGINAL/*.spectra
 do
-        java -jar SpecTranslator.jar -i ${filepath} -o outputs/ENUM-TRANSLATED-ALW/
+        python translator.py ${filepath} outputs/BOOL-TRANSLATED-G
 done
