@@ -10,7 +10,6 @@ sys {FWD, BWD, STOP} headMotor;
 sys {FWD, BWD, TURN_LEFT_1, TURN_LEFT_2} outputMoveMode;
 
 
-
 guarantee
 	G ((((inputMoveMode = FWD) & (obstacle = BLOCKED)) -> (((outputMoveMode = TURN_LEFT_1) & (leftMotor = CALIB_TURN)) & (rightMotor = CALIB_TURN))));
 guarantee

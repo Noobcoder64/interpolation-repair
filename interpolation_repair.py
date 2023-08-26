@@ -41,9 +41,11 @@ def FifoDuplicateCheckRefinement():
         "NumChildren",
         "IsRealizable",
         "IsSatisfiable",
+        "IsWellSeparated",
         "IsSolution",
         "TimeRealizabilityCheck",
         "TimeSatisfiabilityCheck",
+        "TimeWellSeparationCheck",
         "TimeCounterstrategy",
         "CounterstrategyNumStates",
         "TimeRefine",
@@ -82,6 +84,7 @@ def FifoDuplicateCheckRefinement():
                     candidate_ref_nodes = refine_future.result(timeout=remaining_timeout)
                     refinement_queue.extendleft(candidate_ref_nodes)
             elif cur_node.isSatisfiable():
+                cur_node.isWellSeparated()
                 print("++ REALIZABLE REFINEMENT: SAT CHECK")
                 solutions.append(cur_node.gr1_units)
             else:

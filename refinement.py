@@ -35,6 +35,7 @@ class RefinementNode:
 
         self.is_realizable = None
         self.is_satisfiable = None
+        self.is_well_separated = None
         self.goodness = None # This field contains the goodness measure to use in a heuristic-based search.
                              # The higher the better
 
@@ -45,6 +46,7 @@ class RefinementNode:
         self.counterstrategy_num_states = None
         self.time_realizability_check = None
         self.time_satisfiability_check = None
+        self.time_well_separation_check = None
         # Total time to model check all children of this node.
         self.time_refine = None
         self.time_weakness = None
@@ -202,6 +204,14 @@ class RefinementNode:
         time_satisfiability_check_start = timeit.default_timer()
         self.is_satisfiable = spectra.check_satisfiability(self.__getTempSpecFileName())
         self.time_satisfiability_check = timeit.default_timer() - time_satisfiability_check_start
+        return self.is_satisfiable
+    
+    def isWellSeparated(self):
+        if self.is_well_separated is not None:
+            return self.is_well_separated
+        time_well_separation_check_start = timeit.default_timer()
+        self.is_satisfiable = spectra.check_well_separation(self.__getTempSpecFileName())
+        self.time_well_separation_check = timeit.default_timer() - time_well_separation_check_start
         self.__deleteTempSpecFile()
         return self.is_satisfiable
 

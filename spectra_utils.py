@@ -73,6 +73,18 @@ def check_satisfiability(specification):
     print("Spectra file in wrong format for CLI satisfiability check.")
     return None
 
+def check_well_separation(specification):
+    cmd = "java -jar {} -i {} --well-separation".format(PATH_TO_CLI, specification)
+    output = run_subprocess(cmd, "\\r\\n")
+    print(output)
+    if re.search("non-well-separated", output):
+        return False
+    elif re.search("well-separated", output):
+        return True
+    
+    print("Error checking well-separation.")
+    return None
+
 def addAssumption(specification, assumption):
     assumption = sp.unformat_spec(assumption)
     specification.append(assumption)
