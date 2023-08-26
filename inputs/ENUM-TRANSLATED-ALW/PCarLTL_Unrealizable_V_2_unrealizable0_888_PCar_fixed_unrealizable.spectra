@@ -14,7 +14,7 @@ aux boolean eNV_CONSTRAINT_0_respondsTo_responded;
 aux boolean pREV_aux_1;
 
 assumption
-	alw (((spec_policy = SEEKING) -> (next(parkResult = NA))));
+	alw (((spec_policy = SEEKING) -> (next(parkResult) = NA)));
 assumption
 	 (((sideSense = BLOCKED) & (parkResult = NA)));
 assumption
@@ -27,43 +27,43 @@ guarantee
 guarantee
 	alwEv ((spec_policy = PARKED));
 guarantee
-	alw (((spec_policy = SEEKING) -> (((next(spec_policy = SEEKING)) | (next(spec_policy = MEASURING))) | (next(spec_policy = PARKING_0)))));
+	alw (((spec_policy = SEEKING) -> (((next(spec_policy) = SEEKING) | (next(spec_policy) = MEASURING)) | (next(spec_policy) = PARKING_0))));
 guarantee
-	alw (((spec_policy = MEASURING) -> (((next(spec_policy = SEEKING)) | (next(spec_policy = MEASURING))) | (next(spec_policy = PARKING_0)))));
+	alw (((spec_policy = MEASURING) -> (((next(spec_policy) = SEEKING) | (next(spec_policy) = MEASURING)) | (next(spec_policy) = PARKING_0))));
 guarantee
-	alw (((spec_policy = PARKING_0) -> (next(spec_policy = PARKING_1))));
+	alw (((spec_policy = PARKING_0) -> (next(spec_policy) = PARKING_1)));
 guarantee
-	alw (((spec_policy = PARKING_1) -> (next(spec_policy = PARKING_2))));
+	alw (((spec_policy = PARKING_1) -> (next(spec_policy) = PARKING_2)));
 guarantee
-	alw (((spec_policy = PARKING_2) -> (next(spec_policy = PARKED))));
+	alw (((spec_policy = PARKING_2) -> (next(spec_policy) = PARKED)));
 guarantee
 	alw (((obstacle = BLOCKED) -> !((throttle = FWD))));
 guarantee
 	alw (((sideSense = BLOCKED) -> !(((steer = RIGHT) & (throttle = FWD)))));
 guarantee
-	alw ((((obstacle = BLOCKED) & ((spec_policy = MEASURING) | (spec_policy = SEEKING))) -> (next(spec_policy = SEEKING))));
+	alw ((((obstacle = BLOCKED) & ((spec_policy = MEASURING) | (spec_policy = SEEKING))) -> (next(spec_policy) = SEEKING)));
 guarantee
 	alw (((obstacle = BLOCKED) -> (parkCommand = STOP)));
 guarantee
 	alw ((((spec_policy = SEEKING) & (parkResult = NA)) -> !((throttle = STOP))));
 guarantee
-	alw (((((spec_policy = SEEKING) & (sideSense = BLOCKED)) & (parkResult = NA)) -> ((next(spec_policy = spec_policy)) & (parkCommand = STOP))));
+	alw (((((spec_policy = SEEKING) & (sideSense = BLOCKED)) & (parkResult = NA)) -> ((next(spec_policy) = spec_policy) & (parkCommand = STOP))));
 guarantee
-	alw ((((((spec_policy = SEEKING) & (sideSense = CLEAR)) & (obstacle = CLEAR)) & (parkResult = NA)) -> ((((next(spec_policy = MEASURING)) & (throttle = FWD)) & (parkCommand = START)) & (steer = CENTER))));
+	alw ((((((spec_policy = SEEKING) & (sideSense = CLEAR)) & (obstacle = CLEAR)) & (parkResult = NA)) -> ((((next(spec_policy) = MEASURING) & (throttle = FWD)) & (parkCommand = START)) & (steer = CENTER))));
 guarantee
-	alw (((((spec_policy = MEASURING) & (sideSense = BLOCKED)) & (parkResult = NA)) -> ((next(spec_policy = SEEKING)) & (parkCommand = STOP))));
+	alw (((((spec_policy = MEASURING) & (sideSense = BLOCKED)) & (parkResult = NA)) -> ((next(spec_policy) = SEEKING) & (parkCommand = STOP))));
 guarantee
-	alw ((((((spec_policy = MEASURING) & (sideSense = CLEAR)) & (obstacle = CLEAR)) & (parkResult = NA)) -> ((((next(spec_policy = spec_policy)) & (throttle = FWD)) & (parkCommand = CHECK)) & (steer = CENTER))));
+	alw ((((((spec_policy = MEASURING) & (sideSense = CLEAR)) & (obstacle = CLEAR)) & (parkResult = NA)) -> ((((next(spec_policy) = spec_policy) & (throttle = FWD)) & (parkCommand = CHECK)) & (steer = CENTER))));
 guarantee
-	alw ((((((spec_policy = MEASURING) | ((spec_policy = SEEKING) & pREV_aux_1)) & (obstacle = CLEAR)) & (parkResult = PARALLEL)) -> ((((next(spec_policy = PARKING_0)) & (throttle = STOP)) & (parkCommand = STOP)) & (steer = RIGHT))));
+	alw ((((((spec_policy = MEASURING) | ((spec_policy = SEEKING) & pREV_aux_1)) & (obstacle = CLEAR)) & (parkResult = PARALLEL)) -> ((((next(spec_policy) = PARKING_0) & (throttle = STOP)) & (parkCommand = STOP)) & (steer = RIGHT))));
 guarantee
-	alw (((spec_policy = PARKING_0) -> ((((next(spec_policy = PARKING_1)) & (throttle = BWD)) & (steer = RIGHT)) & (parkCommand = STOP))));
+	alw (((spec_policy = PARKING_0) -> ((((next(spec_policy) = PARKING_1) & (throttle = BWD)) & (steer = RIGHT)) & (parkCommand = STOP))));
 guarantee
-	alw (((spec_policy = PARKING_1) -> ((((next(spec_policy = PARKING_2)) & (throttle = STOP)) & (steer = LEFT)) & (parkCommand = STOP))));
+	alw (((spec_policy = PARKING_1) -> ((((next(spec_policy) = PARKING_2) & (throttle = STOP)) & (steer = LEFT)) & (parkCommand = STOP))));
 guarantee
-	alw (((spec_policy = PARKING_2) -> ((((next(spec_policy = PARKED)) & (throttle = BWD)) & (steer = LEFT)) & (parkCommand = STOP))));
+	alw (((spec_policy = PARKING_2) -> ((((next(spec_policy) = PARKED) & (throttle = BWD)) & (steer = LEFT)) & (parkCommand = STOP))));
 guarantee
-	alw (((spec_policy = PARKED) -> ((((next(spec_policy = spec_policy)) & (throttle = STOP)) & (steer = CENTER)) & (parkCommand = STOP))));
+	alw (((spec_policy = PARKED) -> ((((next(spec_policy) = spec_policy) & (throttle = STOP)) & (steer = CENTER)) & (parkCommand = STOP))));
 
 guarantee
 	 (eNV_CONSTRAINT_0_respondsTo_responded);

@@ -18,31 +18,31 @@ assumption
 	GF (eNV_CONSTRAINT_0_respondsTo_responded);
 
 guarantee
-	G (((((state = Q0) & (moveMode = FWD)) & (next(moveMode = BWD))) -> (next(state = Q1))));
+	G (((((state = Q0) & (moveMode = FWD)) & (next(moveMode) = BWD)) -> (next(state) = Q1)));
 guarantee
-	G (((((state = Q1) & (moveMode = BWD)) & (next(moveMode = FWD))) -> (next(state = Q2))));
+	G (((((state = Q1) & (moveMode = BWD)) & (next(moveMode) = FWD)) -> (next(state) = Q2)));
 guarantee
-	G (((((state = Q2) & (moveMode = FWD)) & (next(moveMode = BWD))) -> (next(state = Q3))));
+	G (((((state = Q2) & (moveMode = FWD)) & (next(moveMode) = BWD)) -> (next(state) = Q3)));
 guarantee
-	G ((((state = Q1) & (next(moveMode = BWD))) -> (next(state = Q1))));
+	G ((((state = Q1) & (next(moveMode) = BWD)) -> (next(state) = Q1)));
 guarantee
-	G ((((state = Q2) & (next(moveMode = FWD))) -> (next(state = Q2))));
+	G ((((state = Q2) & (next(moveMode) = FWD)) -> (next(state) = Q2)));
 guarantee
 	G (!((state = Q3)));
 guarantee
-	G ((((moveMode = FWD) & (obstacle = BLOCKED)) -> !((next(moveMode = FWD)))));
+	G ((((moveMode = FWD) & (obstacle = BLOCKED)) -> !((next(moveMode) = FWD))));
 guarantee
-	G (((((moveMode = FWD) & (next(moveMode = BWD))) | ((moveMode = BWD) & (next(moveMode = FWD)))) <-> (((leftMotor = FWD) & (rightMotor = BWD)) | ((leftMotor = BWD) & (rightMotor = FWD)))));
+	G (((((moveMode = FWD) & (next(moveMode) = BWD)) | ((moveMode = BWD) & (next(moveMode) = FWD))) <-> (((leftMotor = FWD) & (rightMotor = BWD)) | ((leftMotor = BWD) & (rightMotor = FWD)))));
 guarantee
 	GF ((moveMode = FWD));
 guarantee
-	G (((moveMode = TURN_LEFT_2) -> !((next(moveMode = BWD)))));
+	G (((moveMode = TURN_LEFT_2) -> !((next(moveMode) = BWD))));
 guarantee
-	G ((((moveMode = FWD) & (next(moveMode = TURN_LEFT_1))) <-> ((leftMotor = CALIB_TURN) & (rightMotor = CALIB_TURN))));
+	G ((((moveMode = FWD) & (next(moveMode) = TURN_LEFT_1)) <-> ((leftMotor = CALIB_TURN) & (rightMotor = CALIB_TURN))));
 guarantee
 	G ((((moveMode = FWD) & pREV_aux_1) <-> ((leftMotor = CALIB_FWD) & (rightMotor = CALIB_FWD))));
 guarantee
-	G (((moveMode = TURN_LEFT_1) <-> (next(moveMode = TURN_LEFT_2))));
+	G (((moveMode = TURN_LEFT_1) <-> (next(moveMode) = TURN_LEFT_2)));
 guarantee
 	G (((moveMode = TURN_LEFT_1) -> ((leftMotor = FWD) & (rightMotor = TURN_FWD))));
 guarantee

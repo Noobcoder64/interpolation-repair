@@ -81,19 +81,19 @@ guarantee
 guarantee
 	G ((((speedButton = PRESS) & pREV_aux_4) <-> spec_speedButtonValidPressed));
 guarantee
-	G (((spec_speedButtonValidPressed & (motSpeed = LEVEL1)) -> (next(motSpeed = LEVEL2))));
+	G (((spec_speedButtonValidPressed & (motSpeed = LEVEL1)) -> (next(motSpeed) = LEVEL2)));
 guarantee
-	G (((spec_speedButtonValidPressed & (motSpeed = LEVEL2)) -> (next(motSpeed = LEVEL3))));
+	G (((spec_speedButtonValidPressed & (motSpeed = LEVEL2)) -> (next(motSpeed) = LEVEL3)));
 guarantee
-	G (((spec_speedButtonValidPressed & (motSpeed = LEVEL3)) -> (next(motSpeed = LEVEL1))));
+	G (((spec_speedButtonValidPressed & (motSpeed = LEVEL3)) -> (next(motSpeed) = LEVEL1)));
 guarantee
 	G ((!(spec_speedButtonValidPressed) -> (motSpeed = next(motSpeed))));
 guarantee
 	G ((((haltButton = PRESS) & pREV_aux_5) <-> spec_pauseButtonValidPressed));
 guarantee
-	G ((((spec_pauseButtonValidPressed & (spec_pausing = GO)) | (!(spec_pauseButtonValidPressed) & (spec_pausing = PAUSE))) -> (next(spec_pausing = PAUSE))));
+	G ((((spec_pauseButtonValidPressed & (spec_pausing = GO)) | (!(spec_pauseButtonValidPressed) & (spec_pausing = PAUSE))) -> (next(spec_pausing) = PAUSE)));
 guarantee
-	G ((((!(spec_pauseButtonValidPressed) & (spec_pausing = GO)) | (spec_pauseButtonValidPressed & (spec_pausing = PAUSE))) -> (next(spec_pausing = GO))));
+	G ((((!(spec_pauseButtonValidPressed) & (spec_pausing = GO)) | (spec_pauseButtonValidPressed & (spec_pausing = PAUSE))) -> (next(spec_pausing) = GO)));
 guarantee
 	G (((spec_pausing = PAUSE) -> (((verMot = SLEEP) & (horMot = SLEEP)) & (botMot = STOP))));
 guarantee

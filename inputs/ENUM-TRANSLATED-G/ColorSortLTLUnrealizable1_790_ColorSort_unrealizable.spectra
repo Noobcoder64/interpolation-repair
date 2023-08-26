@@ -68,11 +68,11 @@ guarantee
 guarantee
 	G ((((speedButton = PRESS) & pREV_aux_3) <-> spec_speedButtonValidPressed));
 guarantee
-	G (((spec_speedButtonValidPressed & (motSpeed = LEVEL1)) -> (next(motSpeed = LEVEL2))));
+	G (((spec_speedButtonValidPressed & (motSpeed = LEVEL1)) -> (next(motSpeed) = LEVEL2)));
 guarantee
-	G (((spec_speedButtonValidPressed & (motSpeed = LEVEL2)) -> (next(motSpeed = LEVEL3))));
+	G (((spec_speedButtonValidPressed & (motSpeed = LEVEL2)) -> (next(motSpeed) = LEVEL3)));
 guarantee
-	G (((spec_speedButtonValidPressed & (motSpeed = LEVEL3)) -> (next(motSpeed = LEVEL1))));
+	G (((spec_speedButtonValidPressed & (motSpeed = LEVEL3)) -> (next(motSpeed) = LEVEL1)));
 guarantee
 	G ((!(spec_speedButtonValidPressed) -> (motSpeed = next(motSpeed))));
 guarantee

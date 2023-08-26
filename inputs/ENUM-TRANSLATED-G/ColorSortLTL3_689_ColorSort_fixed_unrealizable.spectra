@@ -38,11 +38,11 @@ aux boolean pREV_aux_11;
 assumption
 	G ((!(spec_waiting_ack_ver_mot) -> (ack_ver = SLEEP)));
 assumption
-	G (((verMot = MOVE) -> (next(ack_ver = MOVE))));
+	G (((verMot = MOVE) -> (next(ack_ver) = MOVE)));
 assumption
 	G ((!(spec_waiting_ack_hor_mot) -> (ack_hor = SLEEP)));
 assumption
-	G (((horMot = MOVE) -> (next(ack_hor = MOVE))));
+	G (((horMot = MOVE) -> (next(ack_hor) = MOVE)));
 assumption
 	GF (!((color = BLACK)));
 assumption
@@ -73,13 +73,13 @@ guarantee
 guarantee
 	G ((((color = BLACK) & !(spec_dropping)) -> (((verMot = SLEEP) & (horMot = SLEEP)) & (botMot = STOP))));
 guarantee
-	G (((!((color = BLACK)) & !(spec_dropping)) -> ((verMot = MOVE) & (next(spec_currentColor = color)))));
+	G (((!((color = BLACK)) & !(spec_dropping)) -> ((verMot = MOVE) & (next(spec_currentColor) = color))));
 guarantee
 	G (((((((ack_ver = SLEEP) & (ack_hor = SLEEP)) & (ack_bot = SLEEP)) & spec_dropping) & pREV_aux_6) -> (botMot = SEEK)));
 guarantee
 	 ((spec_state_seek = S0));
 guarantee
-	G ((((((((((((spec_state_seek = S0) & (!((spec_prevBotMotSeek & (ack_bot = MOVE))) | ((spec_prevBotMotSeek & (detect = spec_currentColor)) & (spec_prevBotMotSeek & (ack_bot = MOVE))))) & (next(spec_state_seek = S0))) | (((spec_state_seek = S0) & ((!((spec_prevBotMotSeek & (detect = spec_currentColor))) & ((spec_dropping & !((detect = spec_currentColor))) -> (botMot = SEEK))) & (spec_prevBotMotSeek & (ack_bot = MOVE)))) & (next(spec_state_seek = S1)))) | (((spec_state_seek = S0) & ((!((spec_prevBotMotSeek & (detect = spec_currentColor))) & !(((spec_dropping & !((detect = spec_currentColor))) -> (botMot = SEEK)))) & (spec_prevBotMotSeek & (ack_bot = MOVE)))) & (next(spec_state_seek = S3)))) | (((spec_state_seek = S1) & (spec_prevBotMotSeek & (detect = spec_currentColor))) & (next(spec_state_seek = S0)))) | (((spec_state_seek = S1) & (!((spec_prevBotMotSeek & (detect = spec_currentColor))) & ((spec_dropping & !((detect = spec_currentColor))) -> (botMot = SEEK)))) & (next(spec_state_seek = S1)))) | (((spec_state_seek = S1) & (!((spec_prevBotMotSeek & (detect = spec_currentColor))) & !(((spec_dropping & !((detect = spec_currentColor))) -> (botMot = SEEK))))) & (next(spec_state_seek = S3)))) | ((spec_state_seek = S2) & (next(spec_state_seek = S2)))) | (((spec_state_seek = S3) & (spec_prevBotMotSeek & (detect = spec_currentColor))) & (next(spec_state_seek = S2)))) | (((spec_state_seek = S3) & !((spec_prevBotMotSeek & (detect = spec_currentColor)))) & (next(spec_state_seek = S3)))));
+	G ((((((((((((spec_state_seek = S0) & (!((spec_prevBotMotSeek & (ack_bot = MOVE))) | ((spec_prevBotMotSeek & (detect = spec_currentColor)) & (spec_prevBotMotSeek & (ack_bot = MOVE))))) & (next(spec_state_seek) = S0)) | (((spec_state_seek = S0) & ((!((spec_prevBotMotSeek & (detect = spec_currentColor))) & ((spec_dropping & !((detect = spec_currentColor))) -> (botMot = SEEK))) & (spec_prevBotMotSeek & (ack_bot = MOVE)))) & (next(spec_state_seek) = S1))) | (((spec_state_seek = S0) & ((!((spec_prevBotMotSeek & (detect = spec_currentColor))) & !(((spec_dropping & !((detect = spec_currentColor))) -> (botMot = SEEK)))) & (spec_prevBotMotSeek & (ack_bot = MOVE)))) & (next(spec_state_seek) = S3))) | (((spec_state_seek = S1) & (spec_prevBotMotSeek & (detect = spec_currentColor))) & (next(spec_state_seek) = S0))) | (((spec_state_seek = S1) & (!((spec_prevBotMotSeek & (detect = spec_currentColor))) & ((spec_dropping & !((detect = spec_currentColor))) -> (botMot = SEEK)))) & (next(spec_state_seek) = S1))) | (((spec_state_seek = S1) & (!((spec_prevBotMotSeek & (detect = spec_currentColor))) & !(((spec_dropping & !((detect = spec_currentColor))) -> (botMot = SEEK))))) & (next(spec_state_seek) = S3))) | ((spec_state_seek = S2) & (next(spec_state_seek) = S2))) | (((spec_state_seek = S3) & (spec_prevBotMotSeek & (detect = spec_currentColor))) & (next(spec_state_seek) = S2))) | (((spec_state_seek = S3) & !((spec_prevBotMotSeek & (detect = spec_currentColor)))) & (next(spec_state_seek) = S3))));
 guarantee
 	GF ((((spec_state_seek = S0) | (spec_state_seek = S1)) | (spec_state_seek = S3)));
 guarantee
@@ -89,7 +89,7 @@ guarantee
 guarantee
 	 ((spec_state_return = S0));
 guarantee
-	G ((((((((((spec_state_return = S0) & ((!((spec_prevBotMotReturn & (ack_bot = MOVE))) & !((spec_prevBotMotReturn & (ack_bot = SLEEP)))) | (spec_prevBotMotReturn & (ack_bot = SLEEP)))) & (next(spec_state_return = S0))) | (((spec_state_return = S0) & (((spec_prevBotMotReturn & (ack_bot = MOVE)) & !(((spec_dropping & (((ack_ver = SLEEP) & (ack_hor = SLEEP)) & (ack_bot = MOVE))) -> (botMot = RETURN)))) & !((spec_prevBotMotReturn & (ack_bot = SLEEP))))) & (next(spec_state_return = S1)))) | (((spec_state_return = S0) & (((spec_prevBotMotReturn & (ack_bot = MOVE)) & ((spec_dropping & (((ack_ver = SLEEP) & (ack_hor = SLEEP)) & (ack_bot = MOVE))) -> (botMot = RETURN))) & !((spec_prevBotMotReturn & (ack_bot = SLEEP))))) & (next(spec_state_return = S2)))) | ((spec_state_return = S1) & (next(spec_state_return = S1)))) | (((spec_state_return = S2) & (spec_prevBotMotReturn & (ack_bot = SLEEP))) & (next(spec_state_return = S0)))) | (((spec_state_return = S2) & (!(((spec_dropping & (((ack_ver = SLEEP) & (ack_hor = SLEEP)) & (ack_bot = MOVE))) -> (botMot = RETURN))) & !((spec_prevBotMotReturn & (ack_bot = SLEEP))))) & (next(spec_state_return = S1)))) | (((spec_state_return = S2) & (((spec_dropping & (((ack_ver = SLEEP) & (ack_hor = SLEEP)) & (ack_bot = MOVE))) -> (botMot = RETURN)) & !((spec_prevBotMotReturn & (ack_bot = SLEEP))))) & (next(spec_state_return = S2)))));
+	G ((((((((((spec_state_return = S0) & ((!((spec_prevBotMotReturn & (ack_bot = MOVE))) & !((spec_prevBotMotReturn & (ack_bot = SLEEP)))) | (spec_prevBotMotReturn & (ack_bot = SLEEP)))) & (next(spec_state_return) = S0)) | (((spec_state_return = S0) & (((spec_prevBotMotReturn & (ack_bot = MOVE)) & !(((spec_dropping & (((ack_ver = SLEEP) & (ack_hor = SLEEP)) & (ack_bot = MOVE))) -> (botMot = RETURN)))) & !((spec_prevBotMotReturn & (ack_bot = SLEEP))))) & (next(spec_state_return) = S1))) | (((spec_state_return = S0) & (((spec_prevBotMotReturn & (ack_bot = MOVE)) & ((spec_dropping & (((ack_ver = SLEEP) & (ack_hor = SLEEP)) & (ack_bot = MOVE))) -> (botMot = RETURN))) & !((spec_prevBotMotReturn & (ack_bot = SLEEP))))) & (next(spec_state_return) = S2))) | ((spec_state_return = S1) & (next(spec_state_return) = S1))) | (((spec_state_return = S2) & (spec_prevBotMotReturn & (ack_bot = SLEEP))) & (next(spec_state_return) = S0))) | (((spec_state_return = S2) & (!(((spec_dropping & (((ack_ver = SLEEP) & (ack_hor = SLEEP)) & (ack_bot = MOVE))) -> (botMot = RETURN))) & !((spec_prevBotMotReturn & (ack_bot = SLEEP))))) & (next(spec_state_return) = S1))) | (((spec_state_return = S2) & (((spec_dropping & (((ack_ver = SLEEP) & (ack_hor = SLEEP)) & (ack_bot = MOVE))) -> (botMot = RETURN)) & !((spec_prevBotMotReturn & (ack_bot = SLEEP))))) & (next(spec_state_return) = S2))));
 guarantee
 	GF (((spec_state_return = S0) | (spec_state_return = S2)));
 guarantee

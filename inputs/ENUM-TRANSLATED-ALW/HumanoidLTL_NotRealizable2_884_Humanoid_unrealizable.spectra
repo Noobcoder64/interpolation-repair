@@ -24,9 +24,9 @@ aux boolean pREV_aux_6;
 aux boolean pREV_aux_7;
 
 assumption
-	alw (((((spec_nextMoveMode = FWD) | (spec_nextMoveMode = BWD)) & !((heading = next_head))) -> !((next(heading = next(next_head))))));
+	alw (((((spec_nextMoveMode = FWD) | (spec_nextMoveMode = BWD)) & !((heading = next_head))) -> !((next(heading) = next(next_head)))));
 assumption
-	alw ((((spec_nextMoveMode = BWD) & (obstacle = CLEAR)) -> !((next(obstacle = BLOCKED)))));
+	alw ((((spec_nextMoveMode = BWD) & (obstacle = CLEAR)) -> !((next(obstacle) = BLOCKED))));
 assumption
 	alwEv ((pREV_aux_3 & (obstacle = CLEAR)));
 assumption
@@ -37,25 +37,25 @@ assumption
 	alwEv (eNV_CONSTRAINT_2_respondsTo_responded);
 
 guarantee
-	 (((spec_search = M0) & (next(next_head = N))));
+	 (((spec_search = M0) & (next_head = N)));
 guarantee
-	alw (((((spec_state = Q0) & (spec_nextMoveMode = FWD)) & (next(spec_nextMoveMode = BWD))) -> (next(spec_state = Q1))));
+	alw (((((spec_state = Q0) & (spec_nextMoveMode = FWD)) & (next(spec_nextMoveMode) = BWD)) -> (next(spec_state) = Q1)));
 guarantee
-	alw (((((spec_state = Q1) & (spec_nextMoveMode = BWD)) & (next(spec_nextMoveMode = FWD))) -> (next(spec_state = Q2))));
+	alw (((((spec_state = Q1) & (spec_nextMoveMode = BWD)) & (next(spec_nextMoveMode) = FWD)) -> (next(spec_state) = Q2)));
 guarantee
-	alw (!((((spec_state = Q2) & (spec_nextMoveMode = FWD)) & (next(spec_nextMoveMode = BWD)))));
+	alw (!((((spec_state = Q2) & (spec_nextMoveMode = FWD)) & (next(spec_nextMoveMode) = BWD))));
 guarantee
-	alw ((((spec_state = Q1) & (next(spec_nextMoveMode = BWD))) -> (next(spec_state = Q1))));
+	alw ((((spec_state = Q1) & (next(spec_nextMoveMode) = BWD)) -> (next(spec_state) = Q1)));
 guarantee
-	alw ((((spec_state = Q2) & (next(spec_nextMoveMode = FWD))) -> (next(spec_state = Q2))));
+	alw ((((spec_state = Q2) & (next(spec_nextMoveMode) = FWD)) -> (next(spec_state) = Q2)));
 guarantee
-	alw ((((spec_nextMoveMode = TURN_LEFT_1) | (spec_nextMoveMode = TURN_LEFT_2)) -> (next(spec_state = Q0))));
+	alw ((((spec_nextMoveMode = TURN_LEFT_1) | (spec_nextMoveMode = TURN_LEFT_2)) -> (next(spec_state) = Q0)));
 guarantee
-	alw (((button = PRESSED) -> (next(next_head = heading))));
+	alw (((button = PRESSED) -> (next_head = heading)));
 guarantee
-	alw ((((((spec_search = M0) & (spec_nextMoveMode = FWD)) & (noise = NOISE)) & !((heading = next_head))) -> (next(spec_search = M1))));
+	alw ((((((spec_search = M0) & (spec_nextMoveMode = FWD)) & (noise = NOISE)) & !((heading = next_head))) -> (next(spec_search) = M1)));
 guarantee
-	alw ((((spec_search = M1) & (heading = next_head)) -> (next(spec_search = M0))));
+	alw ((((spec_search = M1) & (heading = next_head)) -> (next(spec_search) = M0)));
 guarantee
 	alw ((((obstacle = BLOCKED) & !(pREV_aux_4)) -> !((spec_nextMoveMode = FWD))));
 guarantee

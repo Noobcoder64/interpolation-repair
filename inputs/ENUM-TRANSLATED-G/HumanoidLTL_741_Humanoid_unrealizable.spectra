@@ -21,11 +21,11 @@ aux boolean pREV_aux_3;
 aux boolean pREV_aux_4;
 
 assumption
-	G (((((next(nextMoveMode = FWD)) | (next(nextMoveMode = BWD))) & !((heading = next_head))) -> !((next(heading = next_head)))));
+	G (((((nextMoveMode = FWD) | (nextMoveMode = BWD)) & !((heading = next_head))) -> !((next(heading) = next_head))));
 assumption
-	G ((((next(nextMoveMode = FWD)) & (obstacle = BLOCKED)) -> (next(obstacle = BLOCKED))));
+	G ((((nextMoveMode = FWD) & (obstacle = BLOCKED)) -> (next(obstacle) = BLOCKED)));
 assumption
-	G ((((next(nextMoveMode = BWD)) & (obstacle = CLEAR)) -> !((next(obstacle = BLOCKED)))));
+	G ((((nextMoveMode = BWD) & (obstacle = CLEAR)) -> !((next(obstacle) = BLOCKED))));
 assumption
 	GF (eNV_CONSTRAINT_0_respondsTo_responded);
 assumption
@@ -34,17 +34,17 @@ assumption
 guarantee
 	 (((search = M0) & (spec_state = Q0)));
 guarantee
-	G ((next(next_head = N)));
+	G ((next_head = N));
 guarantee
-	GF (((next(nextMoveMode = FWD)) & (search = M0)));
+	GF (((nextMoveMode = FWD) & (search = M0)));
 guarantee
-	G (((((spec_state = Q0) & (next(nextMoveMode = FWD))) & (next(nextMoveMode = BWD))) -> (next(spec_state = Q1))));
+	G (((((spec_state = Q0) & (nextMoveMode = FWD)) & (next(nextMoveMode) = BWD)) -> (next(spec_state) = Q1)));
 guarantee
-	G (((((spec_state = Q1) & (next(nextMoveMode = BWD))) & (next(nextMoveMode = FWD))) -> (next(spec_state = Q2))));
+	G (((((spec_state = Q1) & (nextMoveMode = BWD)) & (next(nextMoveMode) = FWD)) -> (next(spec_state) = Q2)));
 guarantee
-	G (!((((spec_state = Q2) & (next(nextMoveMode = FWD))) & (next(nextMoveMode = BWD)))));
+	G (!((((spec_state = Q2) & (nextMoveMode = FWD)) & (next(nextMoveMode) = BWD))));
 guarantee
-	G ((((next(nextMoveMode = TURN_LEFT_1)) | (next(nextMoveMode = TURN_LEFT_2))) -> (next(spec_state = Q0))));
+	G ((((nextMoveMode = TURN_LEFT_1) | (nextMoveMode = TURN_LEFT_2)) -> (next(spec_state) = Q0)));
 guarantee
 	G (((((pREV_aux_2 & (noise = NOISE)) & !((heading = next_head))) & !((button = PRESSED))) -> (search = M1)));
 guarantee
@@ -52,27 +52,27 @@ guarantee
 guarantee
 	G (((pREV_aux_3 & !((heading = next_head))) -> (search = M1)));
 guarantee
-	G ((((next(obstacle = BLOCKED)) & !(pREV_aux_4)) -> !((next(nextMoveMode = FWD)))));
+	G ((((next(obstacle) = BLOCKED) & !(pREV_aux_4)) -> !((next(nextMoveMode) = FWD))));
 guarantee
-	G ((((next(nextMoveMode = BWD)) & (next(nextMoveMode = FWD))) <-> ((next(leftMotor = FWD)) & (next(rightMotor = BWD)))));
+	G ((((nextMoveMode = BWD) & (next(nextMoveMode) = FWD)) <-> ((next(leftMotor) = FWD) & (next(rightMotor) = BWD))));
 guarantee
-	G ((((next(nextMoveMode = FWD)) & (next(nextMoveMode = BWD))) <-> ((next(leftMotor = BWD)) & (next(rightMotor = FWD)))));
+	G ((((nextMoveMode = FWD) & (next(nextMoveMode) = BWD)) <-> ((next(leftMotor) = BWD) & (next(rightMotor) = FWD))));
 guarantee
-	G (((next(nextMoveMode = BWD)) -> ((next(nextMoveMode = FWD)) | (next(nextMoveMode = BWD)))));
+	G (((next(nextMoveMode) = BWD) -> ((nextMoveMode = FWD) | (nextMoveMode = BWD))));
 guarantee
-	G (((next(nextMoveMode = TURN_LEFT_1)) -> ((next(leftMotor = FWD)) & (next(rightMotor = TURN_FWD)))));
+	G (((nextMoveMode = TURN_LEFT_1) -> ((next(leftMotor) = FWD) & (next(rightMotor) = TURN_FWD))));
 guarantee
-	G (((next(nextMoveMode = TURN_LEFT_2)) -> ((next(leftMotor = BWD)) & (next(rightMotor = TURN_BWD)))));
+	G (((nextMoveMode = TURN_LEFT_2) -> ((next(leftMotor) = BWD) & (next(rightMotor) = TURN_BWD))));
 guarantee
-	G (((next(nextMoveMode = TURN_LEFT_1)) <-> (next(nextMoveMode = TURN_LEFT_2))));
+	G (((nextMoveMode = TURN_LEFT_1) <-> (next(nextMoveMode) = TURN_LEFT_2)));
 guarantee
-	G ((!(((next(nextMoveMode = TURN_LEFT_1)) | (next(nextMoveMode = TURN_LEFT_2)))) -> !(((((next(leftMotor = TURN_BWD)) | (next(rightMotor = TURN_BWD))) | (next(leftMotor = TURN_FWD))) | (next(rightMotor = TURN_FWD))))));
+	G ((!(((nextMoveMode = TURN_LEFT_1) | (nextMoveMode = TURN_LEFT_2))) -> !(((((next(leftMotor) = TURN_BWD) | (next(rightMotor) = TURN_BWD)) | (next(leftMotor) = TURN_FWD)) | (next(rightMotor) = TURN_FWD)))));
 guarantee
-	G ((((next(nextMoveMode = FWD)) & (next(nextMoveMode = TURN_LEFT_1))) <-> ((next(leftMotor = CALIB_TURN)) & (next(rightMotor = CALIB_TURN)))));
+	G ((((nextMoveMode = FWD) & (next(nextMoveMode) = TURN_LEFT_1)) <-> ((next(leftMotor) = CALIB_TURN) & (next(rightMotor) = CALIB_TURN))));
 guarantee
-	G ((((next(nextMoveMode = FWD)) & pREV_aux_4) <-> ((next(leftMotor = CALIB_FWD)) & (next(rightMotor = CALIB_FWD)))));
+	G ((((nextMoveMode = FWD) & pREV_aux_4) <-> ((next(leftMotor) = CALIB_FWD) & (next(rightMotor) = CALIB_FWD))));
 guarantee
-	G (((next(nextMoveMode = BWD)) -> !((next(nextMoveMode = TURN_LEFT_1)))));
+	G (((nextMoveMode = BWD) -> !((next(nextMoveMode) = TURN_LEFT_1))));
 
 guarantee
 	 (eNV_CONSTRAINT_0_respondsTo_responded);
@@ -81,7 +81,7 @@ guarantee
 guarantee
 	 (eNV_CONSTRAINT_1_respondsTo_responded);
 guarantee
-	G ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> (((next(nextMoveMode = TURN_LEFT_2)) & (obstacle = CLEAR)) | (eNV_CONSTRAINT_1_respondsTo_responded & !((next(nextMoveMode = TURN_LEFT_2)))))));
+	G ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> (((nextMoveMode = TURN_LEFT_2) & (obstacle = CLEAR)) | (eNV_CONSTRAINT_1_respondsTo_responded & !((nextMoveMode = TURN_LEFT_2))))));
 guarantee
 	 (!(pREV_aux_2));
 guarantee
@@ -93,5 +93,5 @@ guarantee
 guarantee
 	 (!(pREV_aux_4));
 guarantee
-	G ((next(pREV_aux_4) <-> (next(nextMoveMode = TURN_LEFT_2))));
+	G ((next(pREV_aux_4) <-> (nextMoveMode = TURN_LEFT_2)));
 
