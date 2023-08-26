@@ -3,48 +3,40 @@ module PcarLTL_394_PCar_1
 
 env boolean obstacle_0;
 env boolean obstacle_1;
+assumption
+	G (!(obstacle_0 & obstacle_1));
+
 env boolean sideSense_0;
 env boolean sideSense_1;
+assumption
+	G (!(sideSense_0 & sideSense_1));
+
 
 sys boolean throttle_0;
 sys boolean throttle_1;
+guarantee
+	G (!(throttle_0 & throttle_1));
+
 sys boolean steer_0;
 sys boolean steer_1;
+guarantee
+	G (!(steer_0 & steer_1));
 
-env boolean eNV_CONSTRAINT_0_respondsTo_responded;
 
-assumption
-	alwEv (eNV_CONSTRAINT_0_respondsTo_responded);
-assumption
-	 (!((obstacle_0 & obstacle_1)));
-assumption
-	alw (!((next(obstacle_0) & next(obstacle_1))));
-assumption
-	 (!((sideSense_0 & sideSense_1)));
-assumption
-	alw (!((next(sideSense_0) & next(sideSense_1))));
-
-guarantee
-	alwEv ((((!(throttle_0) & !(throttle_1)) & steer_0) & !(steer_1)));
-guarantee
-	 (!((throttle_0 & throttle_1)));
-guarantee
-	alw (!((next(throttle_0) & next(throttle_1))));
-guarantee
-	 (!((steer_0 & steer_1)));
-guarantee
-	alw (!((next(steer_0) & next(steer_1))));
-guarantee
-	 (((!(obstacle_0) & obstacle_1) -> !((!(throttle_0) & !(throttle_1)))));
-guarantee
-	alw (((!(next(obstacle_0)) & next(obstacle_1)) -> !((!(next(throttle_0)) & !(next(throttle_1))))));
-guarantee
-	 (((((!(obstacle_0) & !(obstacle_1)) & !(sideSense_0)) & !(sideSense_1)) -> (steer_0 & !(steer_1))));
-guarantee
-	alw (((((!(next(obstacle_0)) & !(next(obstacle_1))) & !(next(sideSense_0))) & !(next(sideSense_1))) -> (next(steer_0) & !(next(steer_1)))));
+aux boolean eNV_CONSTRAINT_0_respondsTo_responded;
 
 assumption
+	GF (eNV_CONSTRAINT_0_respondsTo_responded);
+
+guarantee
+	G (((!obstacle_0 & obstacle_1) -> !((!throttle_0 & !throttle_1))));
+guarantee
+	G ((((!obstacle_0 & !obstacle_1) & (!sideSense_0 & !sideSense_1)) -> (steer_0 & !steer_1)));
+guarantee
+	GF (((!throttle_0 & !throttle_1) & (steer_0 & !steer_1)));
+
+guarantee
 	 (eNV_CONSTRAINT_0_respondsTo_responded);
-assumption
-	alw ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((!(sideSense_0) & !(sideSense_1)) | (eNV_CONSTRAINT_0_respondsTo_responded & !((((((!(throttle_0) & !(throttle_1)) & steer_0) & !(steer_1)) & sideSense_0) & !(sideSense_1)))))));
+guarantee
+	G ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((!sideSense_0 & !sideSense_1) | (eNV_CONSTRAINT_0_respondsTo_responded & !((((!throttle_0 & !throttle_1) & (steer_0 & !steer_1)) & (sideSense_0 & !sideSense_1)))))));
 

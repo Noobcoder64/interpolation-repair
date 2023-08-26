@@ -30,11 +30,11 @@ guarantee
 guarantee
 	alw (((!((f1 & f2)) & !((f1 & f3))) & !((f2 & f3))));
 guarantee
-	alw ((f1 -> (next(f1) | next(f2))));
+	alw ((f1 -> next(f1 | f2)));
 guarantee
-	alw ((f2 -> ((next(f1) | next(f2)) | next(f3))));
+	alw ((f2 -> next(f1 | f2 | f3)));
 guarantee
-	alw ((f3 -> (next(f2) | next(f3))));
+	alw ((f3 -> next(f2 | f3)));
 guarantee
 	alw ((((((f1 & next(f2)) | (f2 & next(f3))) | (f2 & next(f1))) | (f3 & next(f2))) -> ((b1 | b2) | b3)));
 guarantee
