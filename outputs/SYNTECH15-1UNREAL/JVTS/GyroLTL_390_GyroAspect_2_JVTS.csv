@@ -1,0 +1,13 @@
+Id,UniqueRefinement,IsSolution
+b24ef8cf-be81-41be-ac49-bcca1e103b06,['G(F(!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2))))'],True
+fa815995-fbd1-45d5-8c0c-82a50591e383,['G(!isReady -> (X(!(isReady)) -> (!balancer_0 -> (!balancer_1 -> balancer_2))))'],True
+f71757c4-5898-4e1a-853e-a802a923c64c,['G(!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2)))'],True
+7eb5ba7c-f17b-4b8c-82df-e6869d88bd6f,['G(F(!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2))))'],True
+32d4e49b-7a0b-4c6c-a3fb-a7d5011720cc,['G(!isReady -> (X(!(isReady)) -> (!balancer_0 -> (!balancer_1 -> balancer_2))))'],True
+d6999c8a-c93f-4620-be60-5f2bd2d58329,['G(!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2)))'],True
+d55e236d-d21b-425b-abd4-f8bca1e831b4,"['G(F(distSense_0 -> (!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2)))))', 'G(!distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))']",True
+9af9d918-91df-4c2f-af00-e8b6565914bd,"['G(!distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))', 'G(distSense_0 -> (X(distSense_0) -> (!isReady -> (X(!(isReady)) -> (!balancer_0 -> (!balancer_1 -> balancer_2))))))']",True
+1e81c967-94d4-49c2-bd47-c053eb6bf1e0,"['G(!distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))', 'G(distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))']",True
+679ac935-ed56-44d6-a4df-27fb324ab03b,"['G(F(distSense_0 -> (!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2)))))', 'G(!distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))']",True
+10092976-4176-40a1-b0a2-7d25cdb00a54,"['G(!distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))', 'G(distSense_0 -> (X(distSense_0) -> (!isReady -> (X(!(isReady)) -> (!balancer_0 -> (!balancer_1 -> balancer_2))))))']",True
+92977625-8163-4ca8-81ba-0f060c5a4f30,"['G(!distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))', 'G(distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))']",True

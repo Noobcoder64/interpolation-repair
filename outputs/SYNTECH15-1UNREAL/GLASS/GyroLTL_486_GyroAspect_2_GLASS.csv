@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+404739bd-c6a6-4501-8f3c-6f338ad5e744,['G(F(!isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (!bluetoothCmd_2 -> (!balancer_0 -> (!balancer_1 -> balancer_2)))))))'],True

@@ -19,9 +19,9 @@ ALGORITHMS = [
     # "INTERPOLATION-NONINF",
     # "INTERPOLATION-ALLGARS",
     # "INTERPOLATION",
-    "GLASS",
-    "JVTS",
-    # "ALUR",
+    # "GLASS",
+    # "JVTS",
+    "ALUR",
 ]
 
 # Output parent folder
