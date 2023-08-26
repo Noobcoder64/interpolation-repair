@@ -1,8 +1,8 @@
 
 # List of input folders
 INPUT_FOLDERS = [
-    # "inputs/AMBA",
-    # "inputs/SYNTECH15-UNREAL",
+    "inputs/AMBA",
+    "inputs/SYNTECH15-UNREAL",
     # "inputs/SYNTECH15-1UNREAL",
     # "inputs/AMBA-ORIGINAL",
     # "inputs/SYNTECH15-UNREAL-ORIGINAL",
@@ -11,7 +11,7 @@ INPUT_FOLDERS = [
     # "inputs/ENUM-ORIGINAL-ALW",
     # "inputs/ENUM-TRANSLATED-G",
     # "inputs/ENUM-TRANSLATED-ALW",
-    "inputs/BOOL-TRANSLATED-G",
+    # "inputs/BOOL-TRANSLATED-G",
 ]
 
 # List of algorithms
@@ -19,7 +19,7 @@ ALGORITHMS = [
     # "INTERPOLATION-NONINF",
     # "INTERPOLATION-ALLGARS",
     # "INTERPOLATION",
-    # "GLASS",
+    "GLASS",
     "JVTS",
     # "ALUR",
 ]

@@ -1,4 +1,0 @@
-Id,UniqueRefinement,IsSolution
-6422360a-8308-4e58-a578-7f763297e2ec,"['G(F(frontDistSense=BLOCKED -> (backDistSense=CLEAR -> (isReady -> balancer=FWD)) & (backDistSense=BLOCKED -> (isReady -> balancer={FWD, BWD}))))']",True
-c52fbd3c-6eb0-48b5-b9b2-9f69dfc3b217,"['G(F(frontDistSense=BLOCKED -> (backDistSense=CLEAR -> (isReady -> balancer=FWD)) & (backDistSense=BLOCKED -> (isReady -> balancer={FWD, BWD}))))']",True
-4eae62ce-c7ce-4aa8-b656-da1c82a610ee,"['G(F(frontDistSense=BLOCKED -> (backDistSense=CLEAR -> (isReady -> balancer=FWD)) & (backDistSense=BLOCKED -> (isReady -> balancer={FWD, BWD}))))']",True

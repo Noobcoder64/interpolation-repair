@@ -76,7 +76,6 @@ def check_satisfiability(specification):
 def check_well_separation(specification):
     cmd = "java -jar {} -i {} --well-separation".format(PATH_TO_CLI, specification)
     output = run_subprocess(cmd, "\\r\\n")
-    print(output)
     if re.search("non-well-separated", output):
         return False
     elif re.search("well-separated", output):

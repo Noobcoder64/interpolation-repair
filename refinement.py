@@ -210,10 +210,10 @@ class RefinementNode:
         if self.is_well_separated is not None:
             return self.is_well_separated
         time_well_separation_check_start = timeit.default_timer()
-        self.is_satisfiable = spectra.check_well_separation(self.__getTempSpecFileName())
+        self.is_well_separated = spectra.check_well_separation(self.__getTempSpecFileName())
         self.time_well_separation_check = timeit.default_timer() - time_well_separation_check_start
         self.__deleteTempSpecFile()
-        return self.is_satisfiable
+        return self.is_well_separated
 
     def getCounterstrategy(self):
         """Returns a counterstrategy object"""
