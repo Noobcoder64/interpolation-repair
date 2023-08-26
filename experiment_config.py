@@ -9,8 +9,9 @@ INPUT_FOLDERS = [
     # "inputs/SYNTECH15-1UNREAL-ORIGINAL",
     # "inputs/ENUM-ORIGINAL-G",
     # "inputs/ENUM-ORIGINAL-ALW",
-    "inputs/ENUM-TRANSLATED-G",
-    "inputs/ENUM-TRANSLATED-ALW",
+    # "inputs/ENUM-TRANSLATED-G",
+    # "inputs/ENUM-TRANSLATED-ALW",
+    "inputs/BOOL-TRANSLATED-G",
 ]
 
 # List of algorithms
