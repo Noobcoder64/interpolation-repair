@@ -171,6 +171,10 @@ def parseComparison(t):
             simple_term_obj = env_variables[simple_term]
         elif simple_term in sys_variables:
             simple_term_obj = sys_variables[simple_term]
+        elif simple_term in ["true", "TRUE"]:
+            return "next(" + X_operand + ")"
+        elif simple_term in ["false", "FALSE"]:
+            return "next(!" + X_operand + ")"
         else:
             # The simple term is a constant and the formula is of the kind
             # X(var) =/!= CONSTANT

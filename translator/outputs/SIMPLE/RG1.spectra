@@ -11,16 +11,16 @@ aux boolean sYS_CONSTRAINT_0_pRespondsToS_responded;
 
 
 guarantee
-	alw (((c | g) -> !(next(g))));
+	G (((c | g) -> !(next(g))));
 guarantee
-	alw ((c -> !(v)));
+	G ((c -> !(v)));
 guarantee
-	alwEv ((g & v));
+	GF ((g & v));
 guarantee
-	alwEv (sYS_CONSTRAINT_0_pRespondsToS_responded);
+	GF (sYS_CONSTRAINT_0_pRespondsToS_responded);
 
 guarantee
 	 (sYS_CONSTRAINT_0_pRespondsToS_responded);
 guarantee
-	alw ((next(sYS_CONSTRAINT_0_pRespondsToS_responded) <-> (next(g) | (sYS_CONSTRAINT_0_pRespondsToS_responded & !(r)))));
+	G ((next(sYS_CONSTRAINT_0_pRespondsToS_responded) <-> (next(g) | (sYS_CONSTRAINT_0_pRespondsToS_responded & !(r)))));
 
