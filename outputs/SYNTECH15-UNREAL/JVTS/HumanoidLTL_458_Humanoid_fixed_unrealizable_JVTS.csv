@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+f213e68a-2298-4c48-8382-154756e5509c,['G(!obstacle_0 -> (inputMoveMode_0 -> !inputMoveMode_1))'],True
