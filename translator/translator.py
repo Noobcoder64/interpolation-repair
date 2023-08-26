@@ -562,6 +562,9 @@ with open(new_path, "r") as input_file:
 
 new_spec = comparison_exp.transformString(old_spec)
 
+new_spec = re.sub(r"alwEv\s*\(", r"GF (", new_spec)
+new_spec = re.sub(r"alw\s*\(", r"G (", new_spec)
+
 with open(new_path, "w") as output_file:
     output_file.write(new_spec)
 
