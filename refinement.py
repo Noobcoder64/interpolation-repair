@@ -144,17 +144,16 @@ class RefinementNode:
         csv_writer.writerow(field_values)
 
     #==========================================================================
-    # Methods to deal with .rat and .dot files
+    # Methods to deal .spectra files
+
     def __getTempSpecFileName(self):
         return "temp/" + str(self.id) + ".spectra"
 
     def __generateSpecFile(self):
-        """Create a specification XML Tree from the original specification and add the current refinement to it"""
-
         if not os.path.isfile(self.__getTempSpecFileName()):
             specification = sp.read_file(exp.specfile)
-            specification = sp.unformat_spec(specification)
-            assumptions = sp.unformat_spec(self.gr1_units)
+            specification = sp.spectra_format(specification)
+            assumptions = sp.spectra_format(self.gr1_units)
             for asm in assumptions:
                 specification.append("assumption\n")
                 specification.append("\t" + asm + ";\n")
@@ -219,7 +218,7 @@ class RefinementNode:
         """Returns a counterstrategy object"""
         if not self.isRealizable():
             counterstrategy_start = timeit.default_timer()
-            self.counterstrategy = Counterstrategy(self.__getTempSpecFileName())
+            self.counterstrategy = spectra.generate_counterstrategy(self.__getTempSpecFileName())
             self.counterstrategy_num_states = self.counterstrategy.num_states
             self.time_counterstrategy = timeit.default_timer() - counterstrategy_start
             return self.counterstrategy
@@ -228,7 +227,7 @@ class RefinementNode:
     def getUnrealizableCore(self):
         """Gets an unrealizable core for the current node"""
         if self.unreal_core is None:
-            self.unreal_core = spectra.extract_unrealizable_cores(self.__getTempSpecFileName())
+            self.unreal_core = spectra.compute_unrealizable_core(self.__getTempSpecFileName())
         return self.unreal_core
 
     def refine(self):

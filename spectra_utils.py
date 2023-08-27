@@ -2,6 +2,7 @@ import subprocess
 import re
 import specification as sp
 import experiment_properties as exp
+from counterstrategy import CounterstrategyState, Counterstrategy
 
 PATH_TO_CLI = "spectra/spectra-cli.jar"
 
@@ -12,47 +13,8 @@ def run_subprocess(cmd, newline):
     output = '\n'.join(str(output).split(newline))
     return output
 
-def extract_unrealizable_cores(specification):
-    '''
-    Extracted runnable jar from cores.ExploreCores from
-    https://github.com/jringert/spectra-tutorial/blob/main/D2_counter-strategy/src/cores/ExploreCores.java
-    \nHad to edit file, so it takes input from args.\n
-    :return: True if cores found, False otherwise.
-    '''
-    path_to_jar = "spectra/spectra_unrealizable_cores.jar"
-    cmd = "java -jar {} {}".format(path_to_jar, specification)
-    output = run_subprocess(cmd, "\\r\\n")
-    core_found = re.compile("at lines <([^>]*)>").search(output)
-    if core_found:
-        line_nums = [int(x) for x in core_found.group(1).split(" ") if x != ""]
-        # line_nums = [59, 71, 75]
-        spec = sp.read_file(specification)
-        # spec = sp.format_spec(spec)
-        spec = [re.sub(r'\s*;\n$', '', re.sub(r'\s', '', x)) for x in spec]
-        spec = sp.unspectra(spec)
-        uc = []
-        for line in line_nums:
-            uc.append(spec[line])
-        # self.guarantee_violation_list = names
-        # self.calculate_violated_expressions(exp_type="guarantee")
-        return uc
-    # else:
-    #     line_nums = ['']
-    # if line_nums != ['']:
-    #     print("\nUnrealizable core:")
-    # else:
-    #     print("\nNo Unrealizable Core Found.")
-    #     return False
-
-def generate_counter_strat(specification):
-    cmd = "java -jar {} -i {} --counter-strategy-jtlv-format".format(PATH_TO_CLI, specification)
-    output = run_subprocess(cmd, "\\n")
-    if re.search("Result: Specification is unrealizable", output):
-        return output.replace("\\t", "")
-    return None
-
-def check_realizibility(specification):
-    cmd = "java -jar {} -i {}".format(PATH_TO_CLI, specification)
+def check_realizibility(spectra_file_path):
+    cmd = "java -jar {} -i {}".format(PATH_TO_CLI, spectra_file_path)
     output = run_subprocess(cmd, "\\r\\n")
     if re.search("Result: Specification is unrealizable", output):
         return False
@@ -62,8 +24,8 @@ def check_realizibility(specification):
     print("Spectra file in wrong format for CLI realizability check.")
     return None
 
-def check_satisfiability(specification):
-    cmd = "java -jar {} -i {} -sat".format(PATH_TO_CLI, specification)
+def check_satisfiability(spectra_file_path):
+    cmd = "java -jar {} -i {} -sat".format(PATH_TO_CLI, spectra_file_path)
     output = run_subprocess(cmd, "\\r\\n")
     if re.search("No. The specification is not satisfiable.", output):
         return False
@@ -73,8 +35,8 @@ def check_satisfiability(specification):
     print("Spectra file in wrong format for CLI satisfiability check.")
     return None
 
-def check_well_separation(specification):
-    cmd = "java -jar {} -i {} --well-separation".format(PATH_TO_CLI, specification)
+def check_well_separation(spectra_file_path):
+    cmd = "java -jar {} -i {} --well-separation".format(PATH_TO_CLI, spectra_file_path)
     output = run_subprocess(cmd, "\\r\\n")
     if re.search("non-well-separated", output):
         return False
@@ -84,12 +46,51 @@ def check_well_separation(specification):
     print("Error checking well-separation.")
     return None
 
-def addAssumption(specification, assumption):
-    assumption = sp.unformat_spec(assumption)
-    specification.append(assumption)
+def generate_counterstrategy(spectra_file_path):
+    cmd = "java -jar {} -i {} --counter-strategy-jtlv-format".format(PATH_TO_CLI, spectra_file_path)
+    output = run_subprocess(cmd, "\\n")
+    if re.search("Result: Specification is unrealizable", output):
+        return parse_counterstrategy(output.replace("\\t", ""))
+    return None
 
-def writeSpectrafile(filename, specification):
-    pass
+def parse_counterstrategy(text):
+    state_pattern = re.compile(r"State (\d+) <(.*?)>\s+With (?:no )?successors(?: : |.)(.*)(?:\n|$)")
+    assignment_pattern = re.compile(r"(\w+):(\w+)")
+
+    state_matches = re.finditer(state_pattern, text)
+    states = dict()
+    for match in state_matches:
+        state_name = "S" + match.group(1)
+        vars = dict(re.findall(assignment_pattern,  match.group(2)))
+        inputs = {x:vars[x] for x in exp.inputVarsList}
+        outputs = dict()
+        for y in exp.outputVarsList:
+            if y in vars:
+                outputs[y] = vars[y]
+        state = CounterstrategyState(state_name, inputs, outputs)
+        if not match.group(3) == '':
+            state.successors = ["S"+i for i in match.group(3).split(", ")]
+        states[state.name] = state
+        
+    return Counterstrategy(states, use_influential=True)
+
+def compute_unrealizable_core(specification):
+    cmd = "java -jar {} -i {} -uc".format(PATH_TO_CLI, specification)
+    output = run_subprocess(cmd, "\\r\\n")
+    core_found = re.compile("at lines <([^>]*)>").search(output)
+    if not core_found:
+        return None
+    
+    line_nums = [int(x) for x in core_found.group(1).split(" ") if x != ""]
+    spec = sp.read_file(specification)
+    # spec = sp.format_spec(spec)
+    spec = [re.sub(r'\s*;\n$', '', re.sub(r'\s', '', x)) for x in spec]
+    spec = sp.unspectra(spec)
+    uc = []
+    for line in line_nums:
+        uc.append(spec[line])
+    return uc
+    
 
 def main():
     specification = "Examples/Protocol.spectra"

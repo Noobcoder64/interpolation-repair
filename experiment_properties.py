@@ -113,15 +113,19 @@ def configure(spectra_file, timeout_in=600, output_folder="outputs/", debug=Fals
         print("=== INPUT VARS ===")
         for var in inputVarsList:
             print(var)
+        print()
         print("=== OUTPUT VARS ===")
         for var in outputVarsList:
             print(var)
+        print()
         print("=== ASSUMPTIONS ===")
         for asm in initialGR1Units:
             print(asm)
+        print()
         print("=== GUARANTEES ===")
         for gar in guaranteesList:
             print(gar)
+        print()
 
     timeout = timeout_in
     start_experiment = timeit.default_timer()

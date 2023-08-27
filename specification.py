@@ -14,14 +14,7 @@ def make_directories_if_needed(output_filename):
     if not os.path.exists(directory_path):
         os.makedirs(directory_path)
 
-
 def write_file(spec, output_filename):
-    '''
-    NB: newline = '\\\\n' is necessary so that file is compatible with
-    linux (ILASP is run from linux).\n
-    :param spec: List of lines to save.
-    :param output_filename: filename to save to
-    '''
     output_filename = re.sub(r"\\", "/", output_filename)
     make_directories_if_needed(output_filename)
     output = ''.join(spec)
@@ -153,16 +146,14 @@ def interpolation_spec(spec):
     spec = [re.sub(";", "", line) for line in spec]
     return spec
 
-def unformat_spec(spec):
-    spec = [re.sub(r"G\(F\(([^\)]*)\)", r"alwEv (\1", line) for line in spec]
-    spec = [re.sub(r"GF\s*\(([^\)]*)\)", r"alwEv (\1)", line) for line in spec]
-    spec = [re.sub(r"G\s*\(([^\)]*)\)", r"alw (\1)", line) for line in spec]
+def spectra_format(spec):
+    spec = [re.sub(r"G\(F\(([^\)]*)\)", r"GF (\1", line) for line in spec]
     spec = [re.sub(r"X\(([^\)]*)\)", r"next(\1)", line) for line in spec]
-    spec = [re.sub(r"\s*;", r";", line) for line in spec]
     return spec
 
 def unspectra(spec):
     spec = [re.sub(r"alwEv\s*\(([^\)]*)\)", r"G(F(\1))", line) for line in spec]
+    spec = [re.sub(r"GF\s*\(([^\)]*)\)", r"G(F(\1))", line) for line in spec]
     spec = [re.sub(r"alw\s*\(([^\)]*)\)", r"G(\1)", line) for line in spec]
     spec = [re.sub(r'(\w+)=true', r'\1', x) for x in spec]
     spec = [re.sub(r'(\w+)=false', r'!\1', x) for x in spec]
@@ -170,14 +161,6 @@ def unspectra(spec):
     spec = [re.sub(r"\s*;", "", line) for line in spec]
 
     return spec
-
-def assumptions(spec):
-    spec = [x for x in spec if 'asm' in x]
-    return format_spec(spec)
-
-def guarantees(spec):
-    spec = [x for x in spec if 'gar' in x]
-    return format_spec(spec)
 
 def simplify_assignments(spec, variables):
     vars = "|".join(variables)
@@ -299,11 +282,11 @@ def extract_expressions(spec, counter_strat=False, guarantee_only=False):
     variables = strip_vars(spec)
     spec = simplify_assignments(spec, variables)
     assumptions = extract_non_liveness(spec, "assumption")
-    print("ASSUMPTIONS: ", assumptions)
+    # print("ASSUMPTIONS: ", assumptions)
     guarantees = extract_non_liveness(spec, "guarantee")
-    print("GUARANTEES ===============")
-    for gar in guarantees:
-        print(gar)
+    # print("GUARANTEES ===============")
+    # for gar in guarantees:
+    #     print(gar)
 
     if counter_strat:
         guarantees = []
@@ -418,16 +401,6 @@ def format_iff(spec):
     spec = [iff_to_dnf(line) for line in spec]
     # spec = [symplify(line, variables) for line in spec]
     return spec
-
-# def main():
-#     spectra_file = "Examples/cimattiAnalyzing/amba_ahb_w_guar_trans_amba_ahb_1.spectra"
-#     format_iff(spectra_file)
-#     spec = read_file(spectra_file)
-#     # spec = format_spec(spec)
-#     spec = unformat_spec(spec)
-#     out_file = generate_filename(spectra_file, "_formatted.spectra")
-#     # spec = [line + "\n" for line in spec]
-#     write_file(spec, out_file)
 
 def main():
     spectra_file = sys.argv[1]

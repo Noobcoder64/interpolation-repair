@@ -102,7 +102,7 @@ def _translateInvOnStatePair(ltlTokens,state):
         elif token == "X" and state.successor is None:
             # print("STATE IS Sf ======================================")
             # In this case the path is finite, and the next state is actually the failing state
-            cur_state_id = "Sf"
+            cur_state_id = state.id_state
         else:
             ret_string = ret_string + token
             if token == "(" and cur_state_id == state.successor:
