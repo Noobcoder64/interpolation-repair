@@ -171,7 +171,7 @@ class RefinementNode:
         uc = [re.sub(r"G\(F\s*\((.*)\)\)", r"\1", x) for x in uc]
         uc = [re.sub(r"G\((.*)\)", r"\1", x) for x in uc]
         uc = [re.sub(r"X\((.*)\)", r"\1", x) for x in uc]
-        print("HEREEEEE")
+
         for guarantee in uc:
             guarantee = re.sub(r'G\((.*)\)|X\((.*)\)|G\(F\((.*)\)\)', r'\1', guarantee)
             variables = re.findall(r'\b\w+\b', guarantee)
@@ -300,7 +300,7 @@ class RefinementNode:
             self.time_refine = timeit.default_timer() - time_refine_start
         elif exp.search_method == "bfs":
             self.getUnrealizableCore()
-            # self.__minimizeSpecFile()
+            self.__minimizeSpecFile()
             self.getCounterstrategy()
             candidate_refs = self.generateAlternativeRefinements()
             time_refine_start = timeit.default_timer()

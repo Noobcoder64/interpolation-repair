@@ -58,7 +58,6 @@ def parse_counterstrategy(text):
     assignment_pattern = re.compile(r"(\w+):(\w+)")
 
     state_matches = re.finditer(state_pattern, text)
-    initial_states = dict()
     states = dict()
     for match in state_matches:
         is_initial = match.group(1) != None
@@ -73,10 +72,10 @@ def parse_counterstrategy(text):
         successors = []
         if not match.group(5) == '':
             successors = match.group(5).split(", ")
-        state = CounterstrategyState(state_name, inputs, outputs, successors, [], is_initial, is_dead)
+        state = CounterstrategyState(state_name, inputs, outputs, successors, is_initial, is_dead)
         states[state.name] = state
 
-    return Counterstrategy(initial_states, states, use_influential=True)
+    return Counterstrategy(states, use_influential=True)
 
 def compute_unrealizable_core(spectra_file_path):
     cmd = "java -jar {} -i {} -uc".format(PATH_TO_CLI, spectra_file_path)

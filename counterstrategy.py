@@ -4,13 +4,12 @@ import experiment_properties as exp
 from path import State, Path
 
 class CounterstrategyState:
-    def __init__(self, name: str, inputs: dict, outputs: dict, successors=[], dead_successors=[], is_initial= False, is_dead = False):
+    def __init__(self, name: str, inputs: dict, outputs: dict, successors=[], is_initial= False, is_dead = False):
         self.name = name
         self.inputs = inputs
         self.outputs = outputs
         self.influential_outputs = dict()
         self.successors = successors
-        self.dead_successors = dead_successors
         self.is_initial = is_initial
         self.is_dead = is_dead
 
@@ -23,10 +22,8 @@ class CounterstrategyState:
 
 class Counterstrategy:
 
-    def __init__(self, initial_states = dict(), states = dict(), dead_states = dict(), use_influential=True):
-        self.initial_states: dict = initial_states
+    def __init__(self, states = dict(), use_influential=True):
         self.states = states
-        self.dead_states = dead_states
         self.use_influential = use_influential
 
         if self.use_influential:
@@ -35,10 +32,8 @@ class Counterstrategy:
         self.num_states = len(self.states)
 
     def __str__(self):
-        initial_state_strs = [str(state) + "\n" for state in self.initial_states.values()]
         state_strs = [str(state) + "\n" for state in self.states.values()]
-        dead_state_strs = [str(state) + "\n" for state in self.dead_states.values()]
-        return "\n".join(initial_state_strs) + "\n" + "\n".join(state_strs) + "\n" + "\n".join(dead_state_strs)
+        return "\n".join(state_strs)
 
     def add_state(self, state):
         self.states[state.name] = state
@@ -52,7 +47,7 @@ class Counterstrategy:
                 next_state1 = state.successors[i]
                 next_state2 = state.successors[j]
 
-                if next_state1 in self.dead_states or next_state2 in self.dead_states:
+                if self.states[next_state1].is_dead or self.states[next_state2].is_dead:
                     continue
 
                 if next_state1 == next_state2:
@@ -136,19 +131,18 @@ class Counterstrategy:
                     transient_states.append(new_state)
 
                 # If the path is not looping, it ends in a failing state
-                failing_state_name = random.choice(self.states[transient_states[-1].id_state].successors)
-                failing_state = State(failing_state_name)
+                successors = self.states[transient_states[-1].id_state].successors
+                while successors != []:
+                    
+                    failing_state_name = random.choice(successors)
+                    failing_state = State(failing_state_name)
                 
-                for var in self.getValuation(self.states[failing_state_name]):
-                    failing_state.add_to_valuation(var)
+                    for var in self.getValuation(self.states[failing_state_name]):
+                        failing_state.add_to_valuation(var)
+                    transient_states[-1].set_successor(failing_state_name)
+                    transient_states.append(failing_state)
 
-                ## Sf is failing for any output valuation. Pick one, for instance the same valuation as the previous state
-                #sf_output_valuation = self.states[transient_states[-1].id_state]['output_valuation']
-                #for var in sf_output_valuation:
-                #    failing_state.add_to_valuation(var if sf_output_valuation[var] == 1 else "!" + var)
-
-                transient_states[-1].set_successor("Sf")
-                transient_states.append(failing_state)
+                    successors = self.states[transient_states[-1].id_state].successors
 
                 looping_states = None
 

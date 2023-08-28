@@ -18,10 +18,10 @@ INPUT_FOLDERS = [
 ALGORITHMS = [
     # "INTERPOLATION-NONINF",
     # "INTERPOLATION-ALLGARS",
-    # "INTERPOLATION",
+    "INTERPOLATION-MIN",
     # "GLASS",
     # "JVTS",
-    "ALUR",
+    # "ALUR",
 ]
 
 # Output parent folder

@@ -1,0 +1,57 @@
+
+module amba_ahb_w_guar_fairness_amba_ahb_1
+
+env boolean hready;
+env boolean hbusreq0;
+env boolean hlock0;
+env boolean hburst0;
+env boolean hburst1;
+
+sys boolean start;
+sys boolean stateA1_0;
+sys boolean stateG2_0;
+
+
+assumption
+	 ((!hready));
+assumption
+	 ((!hbusreq0));
+assumption
+	 ((!hlock0));
+assumption
+	 ((!hburst0));
+assumption
+	 ((!hburst1));
+assumption
+	G ((hlock0 -> hbusreq0));
+assumption
+	GF ((!stateA1_0));
+assumption
+	GF (hready);
+
+
+
+
+assumption
+	GF (!(hburst1));
+
+assumption
+	G((hburst0) -> next(!(hburst0)));
+
+assumption
+	G((hburst1) -> next(!(hburst1)));
+
+assumption
+	G((hburst1) -> next(!(hburst0)));
+guarantee
+	G(((stateA1_0&(!hbusreq0))->(next(!stateA1_0))));
+guarantee
+	G(((!hready)->(next(!start))));
+guarantee
+	G((((!stateG2_0)&(!start))->(next(!stateG2_0))));
+guarantee
+	G((((!stateG2_0)&hburst1)->(next(!stateG2_0))));
+guarantee
+	GF (stateG2_0);
+guarantee
+	GF ((!stateG2_0));

@@ -215,23 +215,19 @@ def check_satisfiability(id, assum_val_boolean, guarantees_boolean):
 def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars,output_vars):
     # assumptions_uc = []
     # PROBLEM
-    guarantees_uc = exp.guaranteesList
+    # guarantees_uc = exp.guaranteesList
 
-    print()
-    print("=== COUNTERSTRATEGY ===")
-    print(c)
-    print()
+    # print()
+    # print("=== COUNTERSTRATEGY ===")
+    # print(c)
+    # print()
 
     path = c.extractRandomPath()
     # path.unroll()
 
     print("=== COUNTERRUN ===")
     print(path)
-    # print(path.initial_state)
-    # print(path.transient_states)
-    # print(path.looping_states)
     print()
-
 
     assumptions_boolean = list(filter(None,[l2b.gr1LTL2Boolean(x,path) for x in assumptions_uc]))
 
@@ -244,25 +240,25 @@ def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars
 
     guarantees_boolean = list(filter(None,[l2b.gr1LTL2Boolean(x, path) for x in guarantees_uc]))
 
-    def test_function(subset):
-        interpolant = compute_interpolant(id, assum_val_boolean, subset)
-        print("INTERPOLANT:", interpolant)
-        return interpolant is None
+    # def test_function(subset):
+    #     interpolant = compute_interpolant(id, assum_val_boolean, subset)
+    #     print("INTERPOLANT:", interpolant)
+    #     return interpolant is None
         
-    debugger = dd.DDMin(guarantees_boolean, test_function)
-    minimal_input = debugger.execute()
-    print("Minimal input:", minimal_input)
+    # debugger = dd.DDMin(guarantees_boolean, test_function)
+    # minimal_input = debugger.execute()
+    # print("Minimal input:", minimal_input)
 
-    guarantees_boolean = minimal_input
+    # guarantees_boolean = minimal_input
 
-    print("=== UNREALIZABLE CORE ===")
-    for uc in guarantees_uc:
-        print(uc)
-    print()
+    # print("=== UNREALIZABLE CORE ===")
+    # for uc in guarantees_uc:
+    #     print(uc)
+    # print()
     
-    print("=== ASSUMPTIONS BOOLEAN ===")
-    print(" & ".join(assumptions_boolean))
-    print()
+    # print("=== ASSUMPTIONS BOOLEAN ===")
+    # print(" & ".join(assumptions_boolean))
+    # print()
     print("=== VALUATIONS BOOLEAN ===")
     print(valuations_boolean)
     print()
