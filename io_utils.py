@@ -90,7 +90,7 @@ def extractInputVariablesFromFile(spec):
 def extractOutputVariablesFromFile(spec):
     variables = []
     for line in spec:
-        match = re.search(r'(?:sys)\s+boolean\s+(\w+)\s*', line)
+        match = re.search(r'(?:sys|aux)\s+boolean\s+(\w+)\s*', line)
         if match:
             variables.append(match.group(1))
     

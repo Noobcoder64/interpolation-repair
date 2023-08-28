@@ -155,7 +155,7 @@ class RefinementNode:
             specification = sp.spectra_format(specification)
             assumptions = sp.spectra_format(self.gr1_units)
             for asm in assumptions:
-                specification.append("assumption\n")
+                specification.append("\nassumption\n")
                 specification.append("\t" + asm + ";\n")
             sp.write_file(specification, self.__getTempSpecFileName())
 

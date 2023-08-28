@@ -4,33 +4,37 @@ import experiment_properties as exp
 from path import State, Path
 
 class CounterstrategyState:
-    def __init__(self, name: str, inputs: dict, outputs: dict):
+    def __init__(self, name: str, inputs: dict, outputs: dict, successors=[], is_dead: bool = False):
         self.name = name
         self.inputs = inputs
         self.outputs = outputs
         self.influential_outputs = dict()
-        self.successors = []
-    
+        self.successors = successors
+        self.is_dead = is_dead
+
     def add_successor(self, state_name):
         self.successors.append(state_name)
     
     def __str__(self):
-        return f"State: {self.name}\nInputs: {self.inputs}\nOutputs: {self.outputs}\nSuccessors: {', '.join(self.successors)}\nInfluential outputs: {self.influential_outputs}"
+        return f"State: {self.name}\nInputs: {self.inputs}\nOutputs: {self.outputs}\nSuccessors: {', '.join(self.successors)}\nInfluential outputs: {self.influential_outputs}\nDEAD: {self.is_dead}"
 
 
 class Counterstrategy:
 
-    def __init__(self, states = dict(), use_influential = True):
+    def __init__(self, states = dict(), dead_states = dict(), use_influential=True):
         self.states = states
+        self.dead_states = dead_states
         self.use_influential = use_influential
+
         if self.use_influential:
             for state in self.states.values():
                 self.compute_influentials(state)
         self.num_states = len(self.states)
 
     def __str__(self):
-        state_strs = [str(state) for state in self.states.values()]
-        return "\n".join(state_strs)
+        state_strs = [str(state) + "\n" for state in self.states.values()]
+        dead_state_strs = [str(state) + "\n" for state in self.dead_states.values()]
+        return "\n".join(state_strs) + "\n" + "\n".join(dead_state_strs)
 
     def add_state(self, state):
         self.states[state.name] = state
@@ -44,7 +48,13 @@ class Counterstrategy:
                 next_state1 = state.successors[i]
                 next_state2 = state.successors[j]
 
+                if next_state1 in self.dead_states or next_state2 in self.dead_states:
+                    continue
+
                 if next_state1 == next_state2:
+                    continue
+
+                if self.states[next_state1].inputs == self.states[next_state2].inputs:
                     continue
 
                 outputs1 = self.states[next_state1].outputs
@@ -86,7 +96,8 @@ class Counterstrategy:
 
         while self.states[curr_state].successors != [] and not looping:
 
-            curr_state = random.choice(self.states[curr_state].successors)
+            successors = [state for state in self.states[curr_state].successors if state not in self.dead_states]
+            curr_state = random.choice(successors)
 
             if curr_state in visited_states:
                 looping = True

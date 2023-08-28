@@ -59,6 +59,7 @@ def parse_counterstrategy(text):
 
     state_matches = re.finditer(state_pattern, text)
     states = dict()
+    dead_states = dict()
     for match in state_matches:
         state_name = "S" + match.group(1)
         vars = dict(re.findall(assignment_pattern,  match.group(2)))
@@ -67,12 +68,18 @@ def parse_counterstrategy(text):
         for y in exp.outputVarsList:
             if y in vars:
                 outputs[y] = vars[y]
-        state = CounterstrategyState(state_name, inputs, outputs)
+        successors = []
         if not match.group(3) == '':
-            state.successors = ["S"+i for i in match.group(3).split(", ")]
-        states[state.name] = state
+            successors = ["S"+i for i in match.group(3).split(", ")]
+        is_dead = successors == []
+        state = CounterstrategyState(state_name, inputs, outputs, successors, is_dead)
 
-    return Counterstrategy(states, use_influential=True)
+        if is_dead:
+            dead_states[state.name] = state
+        else:
+            states[state.name] = state
+
+    return Counterstrategy(states, dead_states, use_influential=True)
 
 def compute_unrealizable_core(spectra_file_path):
     cmd = "java -jar {} -i {} -uc".format(PATH_TO_CLI, spectra_file_path)
