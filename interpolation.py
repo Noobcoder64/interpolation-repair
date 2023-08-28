@@ -176,7 +176,7 @@ def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
     cmd = [mathsat_path, f"-interpolate=temp/INTERP_{id}", f"temp/counterstrategy_auto_{id}", f"temp/guarantees_auto_{id}"]
     result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     output = result.stdout
-    print(output)
+    # print(output)
 
     interpolant_file = f"temp/INTERP_{id}.1.msat"
     

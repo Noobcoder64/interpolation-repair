@@ -54,32 +54,29 @@ def generate_counterstrategy(spectra_file_path):
     return None
 
 def parse_counterstrategy(text):
-    state_pattern = re.compile(r"State (\d+) <(.*?)>\s+With (?:no )?successors(?: : |.)(.*)(?:\n|$)")
+    state_pattern = re.compile(r"(Initial )?(Dead )?State (\w+) <(.*?)>\s+With (?:no )?successors(?: : |.)(.*)(?:\n|$)")
     assignment_pattern = re.compile(r"(\w+):(\w+)")
 
     state_matches = re.finditer(state_pattern, text)
+    initial_states = dict()
     states = dict()
-    dead_states = dict()
     for match in state_matches:
-        state_name = "S" + match.group(1)
-        vars = dict(re.findall(assignment_pattern,  match.group(2)))
+        is_initial = match.group(1) != None
+        is_dead = match.group(2) != None
+        state_name = match.group(3)
+        vars = dict(re.findall(assignment_pattern,  match.group(4)))
         inputs = {x:vars[x] for x in exp.inputVarsList}
         outputs = dict()
         for y in exp.outputVarsList:
             if y in vars:
                 outputs[y] = vars[y]
         successors = []
-        if not match.group(3) == '':
-            successors = ["S"+i for i in match.group(3).split(", ")]
-        is_dead = successors == []
-        state = CounterstrategyState(state_name, inputs, outputs, successors, is_dead)
+        if not match.group(5) == '':
+            successors = match.group(5).split(", ")
+        state = CounterstrategyState(state_name, inputs, outputs, successors, [], is_initial, is_dead)
+        states[state.name] = state
 
-        if is_dead:
-            dead_states[state.name] = state
-        else:
-            states[state.name] = state
-
-    return Counterstrategy(states, dead_states, use_influential=True)
+    return Counterstrategy(initial_states, states, use_influential=True)
 
 def compute_unrealizable_core(spectra_file_path):
     cmd = "java -jar {} -i {} -uc".format(PATH_TO_CLI, spectra_file_path)
