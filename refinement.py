@@ -159,6 +159,46 @@ class RefinementNode:
                 specification.append("\t" + asm + ";\n")
             sp.write_file(specification, self.__getTempSpecFileName())
 
+    def __minimizeSpecFile(self):
+        if not os.path.isfile(self.__getTempSpecFileName()):
+            raise Exception("Generate spec file before minimizing")
+        if not self.unreal_core:
+            raise Exception("Compute unrealizable core before minimizing")
+        
+        necessary_sys_variables = set()
+    
+        uc = self.unreal_core
+        uc = [re.sub(r"G\(F\s*\((.*)\)\)", r"\1", x) for x in uc]
+        uc = [re.sub(r"G\((.*)\)", r"\1", x) for x in uc]
+        uc = [re.sub(r"X\((.*)\)", r"\1", x) for x in uc]
+        print("HEREEEEE")
+        for guarantee in uc:
+            guarantee = re.sub(r'G\((.*)\)|X\((.*)\)|G\(F\((.*)\)\)', r'\1', guarantee)
+            variables = re.findall(r'\b\w+\b', guarantee)
+            necessary_sys_variables.update(variables)
+
+        sys_pattern = re.compile(r'sys\s+boolean\s+(\w+);')
+        spec = sp.read_file(self.__getTempSpecFileName())
+        new_spec = []
+        i = 0
+        while i < len(spec):
+            match = sys_pattern.match(spec[i])
+            if match and match.group(1) not in necessary_sys_variables:
+                i += 1
+                continue
+            elif "guarantee" in spec[i]:
+                i += 2
+                continue
+            new_spec.append(spec[i])
+            i += 1
+
+        for gar in sp.spectra_format(self.unreal_core):
+            new_spec.append("guarantee\n\t" + gar + ";\n")
+
+        sp.write_file(new_spec, self.__getTempSpecFileName())
+        
+
+
     def __deleteTempSpecFile(self):
         if os.path.isfile(self.__getTempSpecFileName()):
             os.remove(self.__getTempSpecFileName())
@@ -188,7 +228,6 @@ class RefinementNode:
         self.__generateSpecFile()
         realizability_check_start = timeit.default_timer()
         if self.checkRealizability(self.__getTempSpecFileName()):
-        # if self.checkRealizability(exp.specfile):
             self.is_realizable = True
         else:
             self.is_realizable = False
@@ -260,6 +299,8 @@ class RefinementNode:
                 refinements.append(self.__concatenateAssumption(candidate_ref))
             self.time_refine = timeit.default_timer() - time_refine_start
         elif exp.search_method == "bfs":
+            self.getUnrealizableCore()
+            # self.__minimizeSpecFile()
             self.getCounterstrategy()
             candidate_refs = self.generateAlternativeRefinements()
             time_refine_start = timeit.default_timer()
@@ -323,7 +364,7 @@ class RefinementNode:
         time_generation_method_start = timeit.default_timer()
         refinements = []
         if exp.generation_method == "interpolation":
-            refinements = interpolation.GenerateAlternativeRefinements(str(self.id), self.counterstrategy, exp.initialGR1Units + self.gr1_units, self.getUnrealizableCore(), exp.inputVarsList, exp.outputVarsList)
+            refinements = interpolation.GenerateAlternativeRefinements(str(self.id), self.counterstrategy, exp.initialGR1Units + self.gr1_units, self.unreal_core, exp.inputVarsList, exp.outputVarsList)
         elif exp.generation_method == "multivarbias":
             biases = [varbias.VarBias() for x in range(exp.n_multivarbias)]
             for b in biases:

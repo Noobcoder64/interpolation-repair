@@ -71,20 +71,19 @@ def parse_counterstrategy(text):
         if not match.group(3) == '':
             state.successors = ["S"+i for i in match.group(3).split(", ")]
         states[state.name] = state
-        
+
     return Counterstrategy(states, use_influential=True)
 
-def compute_unrealizable_core(specification):
-    cmd = "java -jar {} -i {} -uc".format(PATH_TO_CLI, specification)
+def compute_unrealizable_core(spectra_file_path):
+    cmd = "java -jar {} -i {} -uc".format(PATH_TO_CLI, spectra_file_path)
     output = run_subprocess(cmd, "\\r\\n")
     core_found = re.compile("at lines <([^>]*)>").search(output)
     if not core_found:
         return None
     
     line_nums = [int(x) for x in core_found.group(1).split(" ") if x != ""]
-    spec = sp.read_file(specification)
-    # spec = sp.format_spec(spec)
-    spec = [re.sub(r'\s*;\n$', '', re.sub(r'\s', '', x)) for x in spec]
+    spec = sp.read_file(spectra_file_path)
+    spec = [re.sub(r'\s', '', x) for x in spec]
     spec = sp.unspectra(spec)
     uc = []
     for line in line_nums:

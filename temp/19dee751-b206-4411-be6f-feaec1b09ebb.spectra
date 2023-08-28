@@ -51,3 +51,7 @@ guarantee
 	alwEv (f3);
 
 
+assumption
+	GF (!((!(f3 & b3 | !b3) & (!(!f1 & b1) | b1) & (!(f2 & b2) | !b2) & !b2 & !b1 & (!(!f2 & b2) | b2) & (!(!f3 & b3) | b3) & !b3 & (!(f1 & b1) | !b1))));
+assumption
+	FALSE;

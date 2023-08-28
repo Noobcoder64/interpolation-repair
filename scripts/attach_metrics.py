@@ -17,7 +17,6 @@ def count_num_variables(refinements):
     refinements = [re.sub(r"X\((.*)\)", r"\1", x) for x in refinements]
     
     for assumption in refinements:
-        assumption = re.sub(r'G\((.*)\)|X\((.*)\)|G\(F\((.*)\)\)', r'\1', assumption)
         variables = re.findall(r'\b\w+\b', assumption)
         total_variables.update(variables)
 

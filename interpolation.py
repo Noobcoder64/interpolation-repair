@@ -191,7 +191,7 @@ def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
 def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars,output_vars):
     # assumptions_uc = []
     # PROBLEM
-    # guarantees_uc = exp.guaranteesList
+    guarantees_uc = exp.guaranteesList
 
     print()
     print("=== COUNTERSTRATEGY ===")
@@ -203,7 +203,12 @@ def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars
 
     print("=== COUNTERRUN ===")
     print(path)
+    print(path.initial_state)
+    print(path.transient_states)
+    print(path.looping_states)
     print()
+
+
 
     assumptions_boolean = list(filter(None,[l2b.gr1LTL2Boolean(x,path) for x in assumptions_uc]))
 
@@ -252,7 +257,7 @@ def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars
             state_components = dict()
             print("Non-state-separable interpolant for " + assum_val_boolean + "\n and guarantees " + guarantees_boolean)
     else:
-        
+        raise Exception("Counterstrategy does not violate unrealizable core")
         if path.is_loop:
             path.unroll()
         else:
