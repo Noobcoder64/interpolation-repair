@@ -147,7 +147,10 @@ def interpolation_spec(spec):
     return spec
 
 def spectra_format(spec):
-    spec = [re.sub(r"G\(F\(([^\)]*)\)", r"GF (\1", line) for line in spec]
+    # spec = [re.sub(r"G\(F\(([^\)]*)\)", r"GF (\1", line) for line in spec]
+    spec = [re.sub(r"G\(F\(([^\)]*)\)", r"alwEv (\1", line) for line in spec]
+    spec = [re.sub(r"GF\s*\(", r"alwEv (", line) for line in spec]
+    spec = [re.sub(r"G\s*\(", r"alw (", line) for line in spec]
     spec = [re.sub(r"X\(([^\)]*)\)", r"next(\1)", line) for line in spec]
     return spec
 

@@ -113,6 +113,7 @@ class Counterstrategy:
             initial_state.add_to_valuation(var)
 
         if len(visited_states)>1:
+            print("HEEEEEEEEEEEEEEEEEREEEEEEEEEEEEEEEEEEEEEEEEEE")
             initial_state.set_successor(visited_states[1])
             transient_states = []
 
@@ -174,7 +175,8 @@ class Counterstrategy:
 
             transient_states = []
 
-            failing_state_name = self.states[initial_state.id_state].successors[0]
+            successors = self.states[initial_state.id_state].successors
+            failing_state_name = random.choice(successors)
             initial_state.set_successor(failing_state_name)
             failing_state = State(failing_state_name)
 
@@ -182,7 +184,27 @@ class Counterstrategy:
                 failing_state.add_to_valuation(var)
             transient_states.append(failing_state)
             
+            successors = self.states[transient_states[-1].id_state].successors
+            while successors != []:
+                
+                failing_state_name = random.choice(successors)
+                failing_state = State(failing_state_name)
+            
+                for var in self.getValuation(self.states[failing_state_name]):
+                    failing_state.add_to_valuation(var)
+                transient_states[-1].set_successor(failing_state_name)
+                transient_states.append(failing_state)
+                
+                successors = self.states[transient_states[-1].id_state].successors
+
             looping_states = None
+
+        print(self.states[initial_state.id_state])
+        for state in transient_states:
+            print(self.states[state.id_state])
+        if looping_states is not None:
+            for state in looping_states:
+                print(self.states[state.id_state])
 
         return Path(initial_state,transient_states,looping_states)
 
