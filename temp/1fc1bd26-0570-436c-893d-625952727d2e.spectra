@@ -1,0 +1,54 @@
+
+module HumanoidLTL_NotRealizable2_884_Humanoid_unrealizable
+
+env boolean obstacle_0;
+
+env boolean noise_0;
+
+env boolean heading_0;
+env boolean heading_1;
+env boolean heading_2;
+
+env boolean button_0;
+
+
+
+
+
+
+
+sys boolean spec_search_0;
+
+sys boolean next_head_0;
+sys boolean next_head_1;
+sys boolean next_head_2;
+
+
+aux boolean eNV_CONSTRAINT_0_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_1_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_2_respondsTo_responded;
+aux boolean pREV_aux_3;
+aux boolean pREV_aux_4;
+aux boolean pREV_aux_5;
+aux boolean pREV_aux_6;
+aux boolean pREV_aux_7;
+
+assumption
+	G (((((!spec_nextMoveMode_0 & !spec_nextMoveMode_1) | (!spec_nextMoveMode_0 & spec_nextMoveMode_1)) & !((((heading_0 <-> next_head_0) | (heading_1 <-> next_head_1) | (heading_2 <-> next_head_2))))) -> !(next(((heading_0 <-> next_head_0) | (heading_1 <-> next_head_1) | (heading_2 <-> next_head_2))))));
+assumption
+	G ((((!spec_nextMoveMode_0 & spec_nextMoveMode_1) & (!obstacle_0)) -> !((next(obstacle_0)))));
+assumption
+	GF ((pREV_aux_3 & (!obstacle_0)));
+assumption
+	GF (eNV_CONSTRAINT_0_respondsTo_responded);
+assumption
+	GF (eNV_CONSTRAINT_1_respondsTo_responded);
+assumption
+	GF (eNV_CONSTRAINT_2_respondsTo_responded);
+
+
+
+guarantee
+	(((!spec_search_0)&(!next_head_0&!next_head_1&!next_head_2)));
+guarantee
+	G(((button_0)->(((next_head_0<->heading_0)|(next_head_1<->heading_1)|(next_head_2<->heading_2)))));

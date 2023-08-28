@@ -147,10 +147,13 @@ guarantee
 
 
 assumption
-	G((hburst1) -> next(!(hburst1)));
+	GF (!(hburst1));
 
 assumption
 	G((hburst0) -> next(!(hburst0)));
+
+assumption
+	G((hburst1) -> next(!(hburst1)));
 
 assumption
 	G((hburst0) -> next(!(hburst1)));

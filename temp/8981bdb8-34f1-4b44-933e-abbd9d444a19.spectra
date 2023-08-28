@@ -1,0 +1,54 @@
+
+module amba_ahb_w_guar_trans_amba_ahb_2
+
+env boolean hready;
+env boolean hbusreq0;
+env boolean hlock0;
+env boolean hbusreq1;
+env boolean hlock1;
+env boolean hburst0;
+env boolean hburst1;
+
+sys boolean hmaster0;
+sys boolean hmastlock;
+sys boolean stateA1_0;
+sys boolean stateA1_1;
+
+
+assumption
+	 ((!hready));
+assumption
+	 ((!hbusreq0));
+assumption
+	 ((!hlock0));
+assumption
+	 ((!hbusreq1));
+assumption
+	 ((!hlock1));
+assumption
+	 ((!hburst0));
+assumption
+	 ((!hburst1));
+assumption
+	G ((hlock0 -> hbusreq0));
+assumption
+	G ((hlock1 -> hbusreq1));
+assumption
+	GF (((!stateA1_0) & (!stateA1_1)));
+assumption
+	GF (hready);
+
+
+
+guarantee
+	((!stateA1_1));
+guarantee
+	G(!(((next(!stateA1_0))&next(hburst0))));
+guarantee
+	G(((((!stateA1_0)&(!stateA1_1))&((!hmastlock)|(hburst0|hburst1)))->((next(!stateA1_0))&(next(!stateA1_1)))));
+guarantee
+	G(((((!stateA1_0)&(!stateA1_1))&((hmastlock&(!hmaster0))&((!hburst0)&(!hburst1))))->(next(stateA1_0)&(next(!stateA1_1)))));
+guarantee
+	G((((stateA1_0&(!stateA1_1))&(!hbusreq0))->((next(!stateA1_0))&(next(!stateA1_1)))));
+guarantee
+	G(((((!stateA1_0)&(!stateA1_1))&((hmastlock&hmaster0)&((!hburst0)&(!hburst1))))->((next(!stateA1_0))&next(stateA1_1))));

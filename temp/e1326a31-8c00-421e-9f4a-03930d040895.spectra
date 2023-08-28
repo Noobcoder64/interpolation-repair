@@ -150,10 +150,13 @@ assumption
 	GF (!(hburst1));
 
 assumption
-	G((hburst0) -> next(!(hburst0)));
+	GF (!(hburst0));
 
 assumption
-	G((hburst0) -> next(!(hburst1)));
+	G((hburst1) -> next(!(hburst0)));
 
 assumption
-	!(!hready);
+	G((!hready) -> next(!(!hready)));
+
+assumption
+	G(!(!hready));

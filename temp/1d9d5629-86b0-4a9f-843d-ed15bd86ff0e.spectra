@@ -1,0 +1,42 @@
+
+module PCarLTL_Unrealizable_V_2_unrealizable0_888_PCar_fixed_unrealizable
+
+env boolean obstacle_0;
+
+env boolean sideSense_0;
+
+env boolean parkResult_0;
+
+
+sys boolean throttle_0;
+sys boolean throttle_1;
+
+
+
+sys boolean spec_policy_0;
+sys boolean spec_policy_1;
+sys boolean spec_policy_2;
+
+
+aux boolean eNV_CONSTRAINT_0_respondsTo_responded;
+aux boolean pREV_aux_1;
+
+assumption
+	G (((!spec_policy_0 & !spec_policy_1 & !spec_policy_2) -> (next(!parkResult_0))));
+assumption
+	 (((sideSense_0) & (!parkResult_0)));
+assumption
+	G (((throttle_0 & !throttle_1) -> (((obstacle_0 <-> next(obstacle_0))) & ((sideSense_0 <-> next(sideSense_0))))));
+assumption
+	GF (eNV_CONSTRAINT_0_respondsTo_responded);
+
+
+
+guarantee
+	((!spec_policy_0&!spec_policy_1&!spec_policy_2));
+guarantee
+	GF ((spec_policy_0&!spec_policy_1&spec_policy_2));
+guarantee
+	G(((((!spec_policy_0&!spec_policy_1&!spec_policy_2)&(sideSense_0))&(!parkResult_0))->(((spec_policy_0<->next(spec_policy_0))&(spec_policy_1<->next(spec_policy_1))&(spec_policy_2<->next(spec_policy_2)))&(!parkCommand_0&parkCommand_1))));
+guarantee
+	G((next(eNV_CONSTRAINT_0_respondsTo_responded)<->((!obstacle_0)|(eNV_CONSTRAINT_0_respondsTo_responded&!((!throttle_0&throttle_1))))));
