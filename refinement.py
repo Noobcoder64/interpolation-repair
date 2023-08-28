@@ -168,7 +168,6 @@ class RefinementNode:
         necessary_sys_variables = set()
     
         constraints = exp.initialGR1Units + self.unreal_core
-        print(constraints)
         constraints = [re.sub(r"G\(F\s*\((.*)\)\)", r"\1", x) for x in constraints]
         constraints = [re.sub(r"G\((.*)\)", r"\1", x) for x in constraints]
         constraints = [re.sub(r"X\((.*)\)", r"\1", x) for x in constraints]
