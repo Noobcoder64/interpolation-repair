@@ -3,7 +3,7 @@
 INPUT_FOLDERS = [
     "inputs/AMBA",
     "inputs/SYNTECH15-UNREAL",
-    # "inputs/SYNTECH15-1UNREAL",
+    "inputs/SYNTECH15-1UNREAL",
     # "inputs/AMBA-ORIGINAL",
     # "inputs/SYNTECH15-UNREAL-ORIGINAL",
     # "inputs/SYNTECH15-1UNREAL-ORIGINAL",
@@ -18,10 +18,10 @@ INPUT_FOLDERS = [
 ALGORITHMS = [
     # "INTERPOLATION-NONINF",
     # "INTERPOLATION-ALLGARS",
-    "INTERPOLATION-MIN",
-    # "GLASS",
-    # "JVTS",
-    # "ALUR",
+    # "INTERPOLATION-MIN",
+    "GLASS",
+    "JVTS",
+    "ALUR",
 ]
 
 # Output parent folder
