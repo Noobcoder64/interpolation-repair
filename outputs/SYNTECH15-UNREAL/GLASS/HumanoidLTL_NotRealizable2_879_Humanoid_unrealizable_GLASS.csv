@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution
-db5af309-6bb6-44a6-8bcc-4f996b21c976,['(heading_0 -> (heading_1 -> (heading_2 -> !button_0)))'],True
+Id,UniqueRefinement,IsSolution,NumVariables,d1,d2,nummaxentropysccs,d3
+db5af309-6bb6-44a6-8bcc-4f996b21c976,['(heading_0 -> (heading_1 -> (heading_2 -> !button_0)))'],True,4,,,,

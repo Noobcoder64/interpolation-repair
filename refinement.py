@@ -167,14 +167,14 @@ class RefinementNode:
         
         necessary_sys_variables = set()
     
-        uc = self.unreal_core
-        uc = [re.sub(r"G\(F\s*\((.*)\)\)", r"\1", x) for x in uc]
-        uc = [re.sub(r"G\((.*)\)", r"\1", x) for x in uc]
-        uc = [re.sub(r"X\((.*)\)", r"\1", x) for x in uc]
+        constraints = exp.initialGR1Units + self.unreal_core
+        print(constraints)
+        constraints = [re.sub(r"G\(F\s*\((.*)\)\)", r"\1", x) for x in constraints]
+        constraints = [re.sub(r"G\((.*)\)", r"\1", x) for x in constraints]
+        constraints = [re.sub(r"X\((.*)\)", r"\1", x) for x in constraints]
 
-        for guarantee in uc:
-            guarantee = re.sub(r'G\((.*)\)|X\((.*)\)|G\(F\((.*)\)\)', r'\1', guarantee)
-            variables = re.findall(r'\b\w+\b', guarantee)
+        for constraint in constraints:
+            variables = re.findall(r'\b\w+\b', constraint)
             necessary_sys_variables.update(variables)
 
         sys_pattern = re.compile(r'sys\s+boolean\s+(\w+);')

@@ -1,4 +1,0 @@
-VAR
-hburst0__S66,hready__S94,hburst0__Sf138,hready__Sf138,hbusreq0__S12,hburst0__S94,hbusreq0__Sf138,hbusreq0__S94,hbusreq0__S66,hburst0__S12,hlock0__S12,hready__S12,hlock0__Sf32,hlock0__Sf138,hready__S66,hburst1__Sf138,hlock0__S66,hburst1__S66,hburst1__S12,hburst0__Sf32,hbusreq0__Sf32,hburst1__Sf32,hburst1__S94,hlock0__S94,hready__Sf32: BOOLEAN
-FORMULA
-(((!hready__S12))) & (((!hbusreq0__S12))) & (((!hburst0__S12))) & (((!hburst1__S12))) & !hburst1__S12 & !hburst0__S12 & !hready__S12 & hlock0__S12 & !hbusreq0__S12 & !hburst1__S66 & hbusreq0__S66 & !hburst0__S66 & !hready__S66 & !hlock0__S66 & !hburst1__S94 & hready__S94 & hbusreq0__S94 & !hburst0__S94 & !hlock0__S94 & !hburst1__Sf138 & !hburst0__Sf138 & !hready__Sf138 & !hbusreq0__Sf138 & !hlock0__Sf138 & !hburst1__Sf32 & !hburst0__Sf32 & !hready__Sf32 & !hbusreq0__Sf32 & !hlock0__Sf32
