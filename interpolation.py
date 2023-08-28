@@ -188,29 +188,10 @@ def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
             os.remove(interpolant_file)
             return "false"
 
-        # print("\n=== INTERPOLANT ===")
-        # print(interpolant)
-
         return interpolant
     
     return None
 
-def check_satisfiability(id, assum_val_boolean, guarantees_boolean):
-    formula_file_path = "temp/formula_" + id
-    formula = assum_val_boolean
-    if guarantees_boolean != []:
-        formula += " & " + " & ".join(guarantees_boolean)
-
-    l2b.writeMathsatFormulaToFile(formula_file_path, formula)
-    
-    mathsat_path = os.path.join(definitions.ROOT_DIR, "MathSAT4/mathsat-4.2.17-linux-x86_64/bin/mathsat")
-
-    cmd = [mathsat_path, "-allsat", formula_file_path]
-    result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-
-    output = result.stdout
-
-    return "unsat" not in output
 
 def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars,output_vars):
     # assumptions_uc = []
@@ -251,10 +232,10 @@ def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars
 
     # guarantees_boolean = minimal_input
 
-    # print("=== UNREALIZABLE CORE ===")
-    # for uc in guarantees_uc:
-    #     print(uc)
-    # print()
+    print("=== UNREALIZABLE CORE ===")
+    for uc in guarantees_uc:
+        print(uc)
+    print()
     
     # print("=== ASSUMPTIONS BOOLEAN ===")
     # print(" & ".join(assumptions_boolean))
@@ -269,6 +250,9 @@ def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars
     print()
 
     interpolant = compute_interpolant(id, assum_val_boolean, guarantees_boolean)
+    print("\n=== INTERPOLANT ===")
+    print(interpolant)
+    print()
 
     state_components = dict()
     # Parse the interpolant file

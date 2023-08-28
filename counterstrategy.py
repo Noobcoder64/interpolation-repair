@@ -47,14 +47,14 @@ class Counterstrategy:
                 next_state1 = state.successors[i]
                 next_state2 = state.successors[j]
 
-                if self.states[next_state1].is_dead or self.states[next_state2].is_dead:
-                    continue
+                # if self.states[next_state1].is_dead or self.states[next_state2].is_dead:
+                #     continue
 
                 if next_state1 == next_state2:
                     continue
 
-                if self.states[next_state1].inputs == self.states[next_state2].inputs:
-                    continue
+                # if self.states[next_state1].inputs == self.states[next_state2].inputs:
+                #     continue
 
                 outputs1 = self.states[next_state1].outputs
                 outputs2 = self.states[next_state2].outputs
@@ -113,7 +113,6 @@ class Counterstrategy:
             initial_state.add_to_valuation(var)
 
         if len(visited_states)>1:
-            print("HEEEEEEEEEEEEEEEEEREEEEEEEEEEEEEEEEEEEEEEEEEE")
             initial_state.set_successor(visited_states[1])
             transient_states = []
 
@@ -199,9 +198,12 @@ class Counterstrategy:
 
             looping_states = None
 
+        print("=== INI ===")
         print(self.states[initial_state.id_state])
+        print("\n=== TRANSIENT ===")
         for state in transient_states:
             print(self.states[state.id_state])
+        print("\n=== LOOPING ===")
         if looping_states is not None:
             for state in looping_states:
                 print(self.states[state.id_state])
