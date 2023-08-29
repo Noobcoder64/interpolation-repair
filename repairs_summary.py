@@ -10,16 +10,18 @@ def create_summary_dataframe(spectra_files, output_folder):
     for spectra_file in spectra_files:
         spec_name = os.path.splitext(spectra_file)[0]
 
+        min_num_variables = 0
+        num_repairs = 0
+
         matching_csv_file = [csv_file for csv_file in os.listdir(output_folder) if spec_name in csv_file and csv_file.endswith(".csv")]
         if matching_csv_file:
             csv_filepath = os.path.join(output_folder, matching_csv_file[0])
+            if os.path.getsize(csv_filepath) <= 0:
+                break
             df = pd.read_csv(csv_filepath, sep=",", index_col=False)
             repaired_df = df[df["IsSolution"] == True]
             num_repairs = len(repaired_df)
             # min_num_variables = repaired_df["NumVariables"].min()
-        else:
-            min_num_variables = 0
-            num_repairs = 0
 
         data = {"Specification": [spec_name], "NumRepairs": [num_repairs], "Repaired": [num_repairs > 0]}
         spec_df = pd.DataFrame(data)
