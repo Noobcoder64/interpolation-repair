@@ -17,8 +17,12 @@ class CounterstrategyState:
         self.successors.append(state_name)
     
     def __str__(self):
-        return f"State: {self.name}\nInputs: {self.inputs}\nOutputs: {self.outputs}\nSuccessors: {', '.join(self.successors)}\nInfluential outputs: {self.influential_outputs}\nInitial: {self.is_initial}\nDead: {self.is_dead}"
-
+        return f"State: {self.name}\n" + \
+                f"Inputs: {self.inputs}\n" + \
+                f"Outputs: {self.outputs}\n" + \
+                f"Influential outputs: {self.influential_outputs}\n" + \
+                f"Initial: {self.is_initial}\n" + \
+                f"Dead: {self.is_dead}"
 
 class Counterstrategy:
 
@@ -95,14 +99,14 @@ class Counterstrategy:
         successors = [state_name for state_name in self.states if self.states[state_name].is_initial and not self.states[state_name].is_dead]
 
         while successors != [] and not looping:
-
+            
             curr_state = random.choice(successors)
 
             if curr_state in visited_states:
                 looping = True
                 loop_startindex = visited_states.index(curr_state)
             else:
-                successors = [state_name for state_name in self.states[curr_state].successors if not self.states[state_name].is_dead]
+                successors = [state_name for state_name in self.states[curr_state].successors if not "Sf" in state_name]
                 visited_states.append(curr_state)
 
         if visited_states == []:
@@ -172,41 +176,48 @@ class Counterstrategy:
 
         else:
 
-            transient_states = []
+            if not looping:
+                transient_states = []
 
-            successors = self.states[initial_state.id_state].successors
-            failing_state_name = random.choice(successors)
-            initial_state.set_successor(failing_state_name)
-            failing_state = State(failing_state_name)
-
-            for var in self.getValuation(self.states[failing_state_name]):
-                failing_state.add_to_valuation(var)
-            transient_states.append(failing_state)
-            
-            successors = self.states[transient_states[-1].id_state].successors
-            while successors != []:
-                
+                successors = self.states[initial_state.id_state].successors
                 failing_state_name = random.choice(successors)
+                initial_state.set_successor(failing_state_name)
                 failing_state = State(failing_state_name)
-            
+
                 for var in self.getValuation(self.states[failing_state_name]):
                     failing_state.add_to_valuation(var)
-                transient_states[-1].set_successor(failing_state_name)
                 transient_states.append(failing_state)
                 
                 successors = self.states[transient_states[-1].id_state].successors
+                while successors != []:
+                    
+                    failing_state_name = random.choice(successors)
+                    failing_state = State(failing_state_name)
+                
+                    for var in self.getValuation(self.states[failing_state_name]):
+                        failing_state.add_to_valuation(var)
+                    transient_states[-1].set_successor(failing_state_name)
+                    transient_states.append(failing_state)
+                    
+                    successors = self.states[transient_states[-1].id_state].successors
 
-            looping_states = None
+                looping_states = None
+            
+            else:
 
-        print("=== INI ===")
-        print(self.states[initial_state.id_state])
-        print("\n=== TRANSIENT ===")
-        for state in transient_states:
-            print(self.states[state.id_state])
-        print("\n=== LOOPING ===")
-        if looping_states is not None:
-            for state in looping_states:
-                print(self.states[state.id_state])
+                path = Path(initial_state, [], [initial_state])
+
+                return path
+
+        # print("=== INI ===")
+        # print(self.states[initial_state.id_state])
+        # print("\n=== TRANSIENT ===")
+        # for state in transient_states:
+        #     print(self.states[state.id_state])
+        # print("\n=== LOOPING ===")
+        # if looping_states is not None:
+        #     for state in looping_states:
+        #         print(self.states[state.id_state])
 
         return Path(initial_state,transient_states,looping_states)
 

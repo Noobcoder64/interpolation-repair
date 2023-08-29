@@ -169,6 +169,8 @@ def getRefinementsFromStateComponents(state_components,path,input_vars):
 def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
     if guarantees_boolean == []:
         return None
+    
+    l2b.writeMathsatFormulaToFile("temp/formula_" + id, assum_val_boolean + " & " + " & ".join(guarantees_boolean))
     l2b.writeMathsatFormulaToFile("temp/counterstrategy_auto_" + id, assum_val_boolean)
     l2b.writeMathsatFormulaToFile("temp/guarantees_auto_" + id, " & ".join(guarantees_boolean))
     
