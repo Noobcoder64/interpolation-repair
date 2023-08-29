@@ -1,29 +1,48 @@
 import os
 import time
 import pandas as pd
-from experiment_config import INPUT_FOLDERS, ALGORITHMS, OUTPUT_PARENT_FOLDER
+from experiment_config import INPUT_FOLDERS, ALGORITHMS, SYSTEMS, OUTPUT_PARENT_FOLDER
 
 SUMMARY_FILENAME = "repairs_summary"
+
+def is_csv_file_empty(file_path):
+    with open(file_path, "r") as file:
+        first_line = file.readline()
+        return len(first_line) == 0
+
+def extract_system(spec_name:str):
+    for system in SYSTEMS:
+        if spec_name.lower().startswith(system.lower()):
+            return system
+    return None
 
 def create_summary_dataframe(spectra_files, output_folder):
     data_frames = []
     for spectra_file in spectra_files:
         spec_name = os.path.splitext(spectra_file)[0]
-
         min_num_variables = 0
+        max_num_variables = 0
         num_repairs = 0
-
         matching_csv_file = [csv_file for csv_file in os.listdir(output_folder) if spec_name in csv_file and csv_file.endswith(".csv")]
         if matching_csv_file:
             csv_filepath = os.path.join(output_folder, matching_csv_file[0])
-            if os.path.getsize(csv_filepath) <= 0:
-                break
-            df = pd.read_csv(csv_filepath, sep=",", index_col=False)
-            repaired_df = df[df["IsSolution"] == True]
-            num_repairs = len(repaired_df)
-            # min_num_variables = repaired_df["NumVariables"].min()
+            if not is_csv_file_empty(csv_filepath):
+                df = pd.read_csv(csv_filepath, sep=",", index_col=False)
+                repaired_df = df[df["IsSolution"] == True]
+                num_repairs = len(repaired_df)
+                # min_num_variables = repaired_df["NumVariables"].min()
+                # max_num_variables = repaired_df["NumVariables"].max()
 
-        data = {"Specification": [spec_name], "NumRepairs": [num_repairs], "Repaired": [num_repairs > 0]}
+        system = extract_system(spec_name)
+
+        data = {
+            "System": [system] if system else ["Unknown"],
+            "Specification": [spec_name],
+            "NumRepairs": [num_repairs],
+            "MinNumVariables": [min_num_variables],
+            "MaxNumVariables": [max_num_variables],
+            "Repaired": [num_repairs > 0]
+        }
         spec_df = pd.DataFrame(data)
         data_frames.append(spec_df)
     summary = pd.concat(data_frames, ignore_index=True)

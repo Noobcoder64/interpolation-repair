@@ -24,6 +24,14 @@ ALGORITHMS = [
     "ALUR",
 ]
 
+SYSTEMS = [
+    "amba",
+    "ColorSort",
+    "Gyro",
+    "Humanoid",
+    "PCar",
+]
+
 # Output parent folder
 OUTPUT_PARENT_FOLDER = "outputs/"
 

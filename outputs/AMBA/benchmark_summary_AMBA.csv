@@ -1,5 +1,5 @@
-Algorithm,NumRepaired,NumSmallRepairs
-INTERPOLATION-MIN,0,0
-GLASS,9,0
-JVTS,0,0
-ALUR,0,0
+Algorithm,System,NumRepaired,NumSmallRepairs
+INTERPOLATION-MIN,amba,0,0
+GLASS,amba,9,0
+JVTS,amba,0,0
+ALUR,amba,0,0

@@ -1,7 +1,7 @@
 import os
 import time
 import pandas as pd
-from experiment_config import INPUT_FOLDERS, ALGORITHMS, OUTPUT_PARENT_FOLDER
+from experiment_config import INPUT_FOLDERS, ALGORITHMS, SYSTEMS, OUTPUT_PARENT_FOLDER
 
 
 SUMMARY_FILENAME = "repairs_summary"
@@ -15,7 +15,7 @@ def summarize(input_folder):
     
     input_folder_name = os.path.basename(input_folder)
      
-    summary_columns = ["Algorithm", "NumRepaired", "NumSmallRepairs"]
+    summary_columns = ["Algorithm", "System", "NumRepaired", "NumSmallRepairs"]
     summary_data = []
     for algorithm in ALGORITHMS:
         output_folder = os.path.join(OUTPUT_PARENT_FOLDER, input_folder_name, algorithm)
@@ -28,11 +28,12 @@ def summarize(input_folder):
 
         df = pd.read_csv(repairs_summary_file)
         repaired_specs = df[df["Repaired"] == True]
-        num_repaired = len(repaired_specs)
-        
-        # num_small_repaired = len(df[(df["MinNumVariables"] <= SMALL_REPAIR_VALUE) & (df["MinNumVariables"] > 0)])
-        num_small_repaired = 0
-        summary_data.append([algorithm, num_repaired, num_small_repaired])
+
+        for system in df["System"].unique():
+            num_repaired = len(repaired_specs[repaired_specs["System"] == system])
+            # num_small_repaired = len(df[(df["MinNumVariables"] <= SMALL_REPAIR_VALUE) & (df["MinNumVariables"] > 0)])
+            num_small_repaired = 0
+            summary_data.append([algorithm, system, num_repaired, num_small_repaired])
 
     benchmark_summary_file = os.path.join(OUTPUT_PARENT_FOLDER, input_folder_name, f"benchmark_summary_{input_folder_name}.csv")
     

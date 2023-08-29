@@ -47,14 +47,14 @@ class Counterstrategy:
                 next_state1 = state.successors[i]
                 next_state2 = state.successors[j]
 
-                # if self.states[next_state1].is_dead or self.states[next_state2].is_dead:
-                #     continue
+                if self.states[next_state1].is_dead or self.states[next_state2].is_dead:
+                    continue
 
                 if next_state1 == next_state2:
                     continue
 
-                # if self.states[next_state1].inputs == self.states[next_state2].inputs:
-                #     continue
+                if self.states[next_state1].inputs == self.states[next_state2].inputs:
+                    continue
 
                 outputs1 = self.states[next_state1].outputs
                 outputs2 = self.states[next_state2].outputs
