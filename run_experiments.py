@@ -32,7 +32,8 @@ def process_folder(input_folder, algorithm):
     
     # Get a list of .spectra files in the input folder
     spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra")]
-    
+    spectra_files = [file for file in spectra_files if not file.startswith("ColorSort")]
+
     # Use ThreadPoolExecutor to process files in parallel
     # with concurrent.futures.ThreadPoolExecutor() as executor:
     for spectra_file in spectra_files:

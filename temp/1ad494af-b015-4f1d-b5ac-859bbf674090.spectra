@@ -1,0 +1,93 @@
+
+module ColorSortLTL2_621_ColorSort_fixed_1
+
+env boolean color_0;
+env boolean color_1;
+env boolean color_2;
+assumption
+	G (!(color_0 & color_1 & !color_2));
+assumption
+	G (!(color_0 & color_1 & color_2));
+
+env boolean detect_0;
+env boolean detect_1;
+env boolean detect_2;
+assumption
+	G (!(detect_0 & detect_1 & !detect_2));
+assumption
+	G (!(detect_0 & detect_1 & detect_2));
+
+env boolean ack_ver_hor_0;
+
+env boolean ack_bot_0;
+
+env boolean atEdge_0;
+
+env boolean num_of_cubes_0;
+
+env boolean haltButton_0;
+
+env boolean speedButton_0;
+
+
+sys boolean verMot_0;
+
+
+
+sys boolean spec_allsleep;
+sys boolean motSpeed_0;
+sys boolean motSpeed_1;
+
+
+
+sys boolean spec_currentColor_0;
+sys boolean spec_currentColor_1;
+sys boolean spec_currentColor_2;
+
+sys boolean spec_stage_0;
+sys boolean spec_stage_1;
+sys boolean spec_stage_2;
+
+sys boolean spec_haltButtonValidPressed;
+sys boolean spec_pausing_0;
+
+
+aux boolean sYS_CONSTRAINT_0_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_1_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_2_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_3_respondsTo_responded;
+aux boolean pREV_aux_4;
+aux boolean pREV_aux_5;
+aux boolean pREV_aux_6;
+aux boolean pREV_aux_7;
+aux boolean pREV_aux_8;
+aux boolean pREV_aux_9;
+aux boolean pREV_aux_10;
+
+assumption
+	GF (!((!color_0 & color_1 & color_2)));
+assumption
+	GF (eNV_CONSTRAINT_1_respondsTo_responded);
+assumption
+	GF (eNV_CONSTRAINT_2_respondsTo_responded);
+assumption
+	GF (eNV_CONSTRAINT_3_respondsTo_responded);
+
+
+
+
+assumption
+	!(num_of_cubes_0 & !color_2 & !ack_ver_hor_0);
+
+assumption
+	!(num_of_cubes_0 & !ack_ver_hor_0 & !color_1);
+guarantee
+	G((((!haltButton_0)&pREV_aux_4)<->(spec_haltButtonValidPressed)));
+guarantee
+	G(((((!spec_haltButtonValidPressed)&(spec_pausing_0))|((spec_haltButtonValidPressed)&(!spec_pausing_0)))->(next(spec_pausing_0))));
+guarantee
+	G((((!spec_pausing_0)|(!ack_ver_hor_0))->((spec_allsleep)&((spec_stage_0<->next(spec_stage_0))&(spec_stage_1<->next(spec_stage_1))&(spec_stage_2<->next(spec_stage_2))))));
+guarantee
+	((((!motSpeed_0&!motSpeed_1)&(!spec_stage_0&!spec_stage_1&!spec_stage_2))&(spec_pausing_0)));
+guarantee
+	G(((((!((!color_0&color_1&color_2))&!((!num_of_cubes_0)))&(!spec_stage_0&!spec_stage_1&!spec_stage_2))&(spec_pausing_0))->(((!verMot_0)&((color_0<->next(spec_currentColor_0))&(color_1<->next(spec_currentColor_1))&(color_2<->next(spec_currentColor_2))))&(next(!spec_stage_0)&next(!spec_stage_1)&next(spec_stage_2)))));

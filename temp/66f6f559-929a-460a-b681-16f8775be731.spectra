@@ -1,0 +1,54 @@
+
+module HumanoidLTL_743_Humanoid_2
+
+env boolean obstacle_0;
+
+env boolean noise_0;
+
+env boolean heading_0;
+
+env boolean button_0;
+
+
+
+
+
+sys boolean spec_nextMoveMode_0;
+sys boolean spec_nextMoveMode_1;
+
+
+sys boolean spec_turnState_0;
+sys boolean spec_turnState_1;
+
+sys boolean spec_nextHead_0;
+
+
+aux boolean sYS_CONSTRAINT_0_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_1_respondsTo_responded;
+aux boolean pREV_aux_2;
+aux boolean pREV_aux_3;
+
+assumption
+	G (((pREV_aux_2 & (obstacle_0)) -> (next(obstacle_0))));
+assumption
+	G (((pREV_aux_3 & (!obstacle_0)) -> !((next(obstacle_0)))));
+assumption
+	G ((((!spec_nextMoveMode_0 & !spec_nextMoveMode_1) | (!spec_nextMoveMode_0 & spec_nextMoveMode_1)) -> ((heading_0 <-> next(heading_0)))));
+assumption
+	GF (eNV_CONSTRAINT_1_respondsTo_responded);
+
+
+
+
+assumption
+	!(!heading_0 & !button_0 & noise_0);
+guarantee
+	((spec_nextHead_0));
+guarantee
+	G(((!button_0)->((spec_nextHead_0<->next(spec_nextHead_0)))));
+guarantee
+	GF (sYS_CONSTRAINT_0_respondsTo_responded);
+guarantee
+	G((next(sYS_CONSTRAINT_0_respondsTo_responded)<->((((heading_0<->spec_nextHead_0)))|(sYS_CONSTRAINT_0_respondsTo_responded&!((noise_0))))));
+guarantee
+	G((next(eNV_CONSTRAINT_1_respondsTo_responded)<->(((!obstacle_0)&(next(!obstacle_0)))|(eNV_CONSTRAINT_1_respondsTo_responded&!((!spec_turnState_0&spec_turnState_1))))));

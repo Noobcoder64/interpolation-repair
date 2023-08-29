@@ -1,0 +1,50 @@
+
+module GyroLTL_390_GyroAspect_2
+
+env boolean distSense_0;
+
+env boolean isReady;
+
+sys boolean balancer_0;
+sys boolean balancer_1;
+sys boolean balancer_2;
+guarantee
+	G (!(balancer_0 & !balancer_1 & balancer_2));
+guarantee
+	G (!(balancer_0 & balancer_1 & !balancer_2));
+guarantee
+	G (!(balancer_0 & balancer_1 & balancer_2));
+
+
+aux boolean eNV_CONSTRAINT_0_respondsTo_responded;
+
+assumption
+	G ((isReady -> next(isReady)));
+assumption
+	 (!(isReady));
+assumption
+	GF (eNV_CONSTRAINT_0_respondsTo_responded);
+
+guarantee
+	 ((!balancer_0 & !balancer_1 & !balancer_2));
+guarantee
+	G ((!(isReady) -> (!balancer_0 & !balancer_1 & !balancer_2)));
+guarantee
+	G ((((distSense_0) & isReady) -> !((!balancer_0 & !balancer_1 & balancer_2))));
+guarantee
+	GF ((!balancer_0 & !balancer_1 & balancer_2));
+guarantee
+	G ((((!distSense_0) & isReady) -> (!balancer_0 & !balancer_1 & balancer_2)));
+guarantee
+	G (((!balancer_0 & !balancer_1 & balancer_2) -> !(((next(balancer_0) & next(!balancer_1) & next(!balancer_2)) | (next(!balancer_0) & next(balancer_1) & next(balancer_2))))));
+guarantee
+	G (((((distSense_0) & (!balancer_0 & !balancer_1 & !balancer_2)) & isReady) -> !((next(!balancer_0) & next(!balancer_1) & next(!balancer_2)))));
+
+guarantee
+	 (eNV_CONSTRAINT_0_respondsTo_responded);
+guarantee
+	G ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((!distSense_0) | (eNV_CONSTRAINT_0_respondsTo_responded & !(!(((!balancer_0 & !balancer_1 & balancer_2) | (!balancer_0 & !balancer_1 & !balancer_2))))))));
+
+
+assumption
+	G(!(!isReady));
