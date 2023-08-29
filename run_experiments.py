@@ -32,7 +32,6 @@ def process_folder(input_folder, algorithm):
     
     # Get a list of .spectra files in the input folder
     spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra")]
-    spectra_files = [file for file in spectra_files if not file.startswith("ColorSort")]
 
     # Use ThreadPoolExecutor to process files in parallel
     # with concurrent.futures.ThreadPoolExecutor() as executor:
@@ -42,7 +41,8 @@ def process_folder(input_folder, algorithm):
         output_file_name = f"{spectra_file_name}_{algorithm}_output.txt"
         output_file = os.path.join(output_folder, output_file_name)
         # executor.submit(process_file, input_file, algorithm, output_folder, output_file)
-        process_file(input_file, algorithm, output_folder, output_file)
+        if not [csv_file for csv_file in os.listdir(output_folder) if spectra_file_name in csv_file and csv_file.endswith(".csv")]:
+            process_file(input_file, algorithm, output_folder, output_file)
 
 total_start_time = time.time()
 
