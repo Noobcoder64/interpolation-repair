@@ -165,7 +165,7 @@ class RefinementNode:
         if not self.unreal_core:
             raise Exception("Compute unrealizable core before minimizing")
         
-        necessary_sys_variables = set()
+        necessary_variables = set()
     
         constraints = exp.initialGR1Units + self.unreal_core
         constraints = [re.sub(r"G\(F\s*\((.*)\)\)", r"\1", x) for x in constraints]
@@ -174,15 +174,15 @@ class RefinementNode:
 
         for constraint in constraints:
             variables = re.findall(r'\b\w+\b', constraint)
-            necessary_sys_variables.update(variables)
+            necessary_variables.update(variables)
 
-        sys_pattern = re.compile(r'sys\s+boolean\s+(\w+);')
+        sys_pattern = re.compile(r'(?:sys|aux)\s+boolean\s+(\w+);')
         spec = sp.read_file(self.__getTempSpecFileName())
         new_spec = []
         i = 0
         while i < len(spec):
             match = sys_pattern.match(spec[i])
-            if match and match.group(1) not in necessary_sys_variables:
+            if match and match.group(1) not in necessary_variables:
                 i += 1
                 continue
             elif "guarantee" in spec[i]:

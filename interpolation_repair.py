@@ -90,7 +90,7 @@ def FifoDuplicateCheckRefinement():
                 else:
                     print("++ VACUOUS SOLUTION")
             except Exception as e:
-                cur_node.writeNotes(str(e))
+                # cur_node.writeNotes(str(e))
                 print(e)
 
             cur_node.saveRefinementData(csv_writer, datafields)

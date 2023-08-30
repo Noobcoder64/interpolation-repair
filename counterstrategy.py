@@ -53,9 +53,6 @@ class Counterstrategy:
                 next_state1 = successors[i]
                 next_state2 = successors[j]
 
-                if self.states[next_state1].is_dead or self.states[next_state2].is_dead:
-                    continue
-
                 if next_state1 == next_state2:
                     continue
 
@@ -139,6 +136,8 @@ class Counterstrategy:
                         new_state.add_to_valuation(var)
 
                     transient_states.append(new_state)
+
+                # self.compute_influentials(self.states[transient_states[-1]])
 
                 # If the path is not looping, it ends in a failing state
                 successors = self.states[transient_states[-1].id_state].successors
