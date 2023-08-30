@@ -18,18 +18,6 @@ class NonIOSeparableException(BaseException):
     pass
 
 
-def var_to_asp(sys, timepoint):
-    vars = re.split(",\s*", sys)
-    output = ""
-    for var in vars:
-        parts = var.split(":")
-        suffix = ""
-        if parts[1] == "false":
-            suffix = "not_"
-        params = [parts[0], str(timepoint), "trace_name"]
-        output += suffix + "holds_at(" + ','.join(params) + ").\n"
-    return output      
-
 def getStateFromLiteral(literal):
     # literal is an su.BoolOperand object
     return str(literal).split("__")[1]
@@ -89,10 +77,7 @@ def extractStateComponents(interpolant):
 
 def projectOtherNode(node,variables):
     projection = str(node)
-    # print("NODE: ", projection)
     varnames = set(re.findall(r"\w+",projection))
-    # print("VARNAMES: ", varnames)
-    # print("VARIABLES: ", variables)
     if all(varname in variables for varname in varnames):
         return projection
     else:
@@ -118,7 +103,6 @@ def projectOntoVars(state_component,variables):
         projection = projectAndNode(parse_tree,variables)
     else:
         projection = projectOtherNode(parse_tree,variables)
-    # print("PROJECTION: ", projection)
     if projection != "":
         return projection
     else:
@@ -169,14 +153,15 @@ def getRefinementsFromStateComponents(state_components,path,input_vars):
 def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
     if guarantees_boolean == []:
         return None
+    
+    # l2b.writeMathsatFormulaToFile("temp/formula_" + id, assum_val_boolean + " & " + " & ".join(guarantees_boolean))
     l2b.writeMathsatFormulaToFile("temp/counterstrategy_auto_" + id, assum_val_boolean)
     l2b.writeMathsatFormulaToFile("temp/guarantees_auto_" + id, " & ".join(guarantees_boolean))
     
     mathsat_path = os.path.join(definitions.ROOT_DIR, "MathSAT4/mathsat-4.2.17-linux-x86_64/bin/mathsat")
     cmd = [mathsat_path, f"-interpolate=temp/INTERP_{id}", f"temp/counterstrategy_auto_{id}", f"temp/guarantees_auto_{id}"]
     result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    output = result.stdout
-    # print(output)
+    # print(result.stdout)
 
     interpolant_file = f"temp/INTERP_{id}.1.msat"
     
@@ -193,7 +178,7 @@ def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
     return None
 
 
-def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars,output_vars):
+def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_vars, output_vars):
     # assumptions_uc = []
     # PROBLEM
     # guarantees_uc = exp.guaranteesList
@@ -221,17 +206,6 @@ def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars
 
     guarantees_boolean = list(filter(None,[l2b.gr1LTL2Boolean(x, path) for x in guarantees_uc]))
 
-    # def test_function(subset):
-    #     interpolant = compute_interpolant(id, assum_val_boolean, subset)
-    #     print("INTERPOLANT:", interpolant)
-    #     return interpolant is None
-        
-    # debugger = dd.DDMin(guarantees_boolean, test_function)
-    # minimal_input = debugger.execute()
-    # print("Minimal input:", minimal_input)
-
-    # guarantees_boolean = minimal_input
-
     print("=== UNREALIZABLE CORE ===")
     for uc in guarantees_uc:
         print(uc)
@@ -240,26 +214,25 @@ def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars
     # print("=== ASSUMPTIONS BOOLEAN ===")
     # print(" & ".join(assumptions_boolean))
     # print()
-    print("=== VALUATIONS BOOLEAN ===")
-    print(valuations_boolean)
-    print()
+    # print("=== VALUATIONS BOOLEAN ===")
+    # print(valuations_boolean)
+    # print()
     # print("=== ASM VAL BOOLEAN ===")
     # print(assum_val_boolean)
-    print("=== GUARANTEES BOOLEAN ===")
-    print(" & ".join(guarantees_boolean))
-    print()
+    # print("=== GUARANTEES BOOLEAN ===")
+    # print("\n".join(guarantees_boolean))
+    # print()
 
     interpolant = compute_interpolant(id, assum_val_boolean, guarantees_boolean)
     print("\n=== INTERPOLANT ===")
     print(interpolant)
     print()
-
+    
     state_components = dict()
     # Parse the interpolant file
     if interpolant is not None:
         if interpolant == "false":
             return ["FALSE"]
-        
         try:
             state_components = extractStateComponents(interpolant)
             print()
@@ -271,85 +244,9 @@ def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars
             state_components = dict()
             print("Non-state-separable interpolant for " + assum_val_boolean + "\n and guarantees " + " & ".join(guarantees_boolean))
     else:
-        raise Exception("Counterstrategy does not violate unrealizable core")
-        if path.is_loop:
-            path.unroll()
-        else:
-            # If no interpolant was produced, the solver returned SAT
-            # Try extending the finite path by one failing state and repeat interpolation on the new path
-            path = c.extendFinitePath(path)
-
-        assumptions_boolean = list(filter(None, [l2b.gr1LTL2Boolean(x, path) for x in assumptions_uc]))
-
-        # Avoid repeating the initial state's valuation twice in the counterrun expression
-        literals_valuation = []
-        for literal in path.initial_state.valuation:
-            if literal not in assumptions_boolean:
-                literals_valuation.append(literal+"__"+path.initial_state.id_state)
-        valuation_components = [" & ".join(literals_valuation)]
-        for state in path.states.values():
-            valuation_components.append(state.get_valuation())
-        valuations_boolean = " & ".join(valuation_components)
-
-        # First term of interpolation
-        if assumptions_boolean != []:
-            assum_val_boolean = " & ".join(assumptions_boolean) + (
-                (" & " + valuations_boolean) if valuations_boolean != "" else "")
-        else:
-            assum_val_boolean = valuations_boolean
-        
-        # Second term of interpolation
-        # filter(None,l) removes empty strings from l
-        guarantees_boolean = " & ".join(filter(None, [l2b.gr1LTL2Boolean(x, path) for x in guarantees_uc]))
-
-        print("=== UNREALIZABLE CORE ===")
-        for uc in guarantees_uc:
-            print(uc)
-        print()
-
-        print("=== ASSUMPTIONS BOOLEAN ===")
-        print(" & ".join(assumptions_boolean))
-        print()
-        print("=== VALUATIONS BOOLEAN ===")
-        print(valuations_boolean)
-        print()
-        # print("=== ASM VAL BOOLEAN ===")
-        # print(assum_val_boolean)
-        print("=== GUARANTEES BOOLEAN ===")
-        print(guarantees_boolean)
-        print()
-
-        l2b.writeMathsatFormulaToFile("temp/counterstrategy_auto_"+id, assum_val_boolean)
-        l2b.writeMathsatFormulaToFile("temp/guarantees_auto_"+id, guarantees_boolean)
-
-        # Use MathSAT 4 to generate the interpolant
-        os.system(f"{definitions.ROOT_DIR}MathSAT4/mathsat-4.2.17-linux-x86_64/bin/mathsat -interpolate=temp/INTERP_{id} temp/counterstrategy_auto_{id} temp/guarantees_auto_{id}")
-
-        interpolant = compute_interpolant(id, assum_val_boolean, guarantees_boolean)
-
-        if interpolant is not None:
-            if interpolant == "false":
-                return ["FALSE"]
-            try:
-                state_components = extractStateComponents(interpolant)
-            except NonStateSeparableException:
-                # If the interpolant is not state separable, just skip this particular counterstrategy.
-                # To think about: is it possible to come up with refinements even in case of a non-state-separable interpolant?
-                state_components = dict()
-                print("Non-state-separable interpolant for " + assum_val_boolean + "\n and guarantees " + guarantees_boolean)
-                print("Interpolant: " + interpolant)
-            print()
-            print("=== INTERPOLANT ===")
-            print(interpolant)
-            state_components = extractStateComponents(interpolant)
-            print()
-            print("=== STATE COMPONENTS ===")
-            print(state_components)
-
-    # else:
-    #     interpolant = ""
-    #     state_components = dict()
-    #     print("No interpolant for " + assum_val_boolean +"\n and guarantees " + guarantees_boolean + "\n on path " + str(path))
+        interpolant = ""
+        state_components = dict()
+        print("No interpolant for " + assum_val_boolean +"\n and guarantees " + " & ".join(guarantees_boolean) + "\n on path " + str(path))
 
     os.remove("temp/counterstrategy_auto_"+id)
     os.remove("temp/guarantees_auto_"+id)
@@ -357,22 +254,10 @@ def GenerateAlternativeRefinements(id, c,assumptions_uc,guarantees_uc,input_vars
         os.remove(f"temp/INTERP_{id}.1.msat")
 
     if state_components != dict():
-        refinements,non_io_separable = getRefinementsFromStateComponents(state_components,path, input_vars)
+        refinements, non_io_separable = getRefinementsFromStateComponents(state_components,path, input_vars)
         print()
         print("=== Refinements === ")
         print(refinements)
         return refinements
     else:
         return []
-
-    # for i in range(5):
-    #     print ("===== Randomly extracted path")
-    #     p = c.extractRandomPath(counterstrategy)
-    #     for s in p.states:
-    #         print("State: "+p.states[s].id_state+" Valuation: "+p.states[s].get_valuation()+" Successor: "+str(p.states[s].successor))
-    #     print("Looping states:")
-    #     for s in p.looping_states:
-    #         print(s.id_state)
-
-if __name__ == "__main__":
-    main()
