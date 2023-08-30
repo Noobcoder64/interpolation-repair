@@ -8,9 +8,12 @@ PATH_TO_CLI = "spectra/spectra-cli.jar"
 
 def run_subprocess(cmd, newline):
     remaining_time = exp.timeout-exp.elapsed_time
-    p = subprocess.run(cmd, stdout=subprocess.PIPE, shell=True, timeout=remaining_time, text=True)
-    output = p.stdout
-    output = '\n'.join(str(output).split(newline))
+    try:
+        p = subprocess.run(cmd, stdout=subprocess.PIPE, shell=True, timeout=remaining_time, text=True)
+        output = p.stdout
+        output = '\n'.join(str(output).split(newline))
+    except:
+        print("Timed out:", cmd)
     return output
 
 def check_realizibility(spectra_file_path):
