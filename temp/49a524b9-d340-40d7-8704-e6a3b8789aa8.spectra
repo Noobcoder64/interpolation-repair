@@ -1,0 +1,127 @@
+
+module HumanoidLTL_741_Humanoid_unrealizable
+
+env boolean obstacle_0;
+
+env boolean noise_0;
+
+env boolean heading_0;
+
+env boolean button_0;
+
+
+sys boolean leftMotor_0;
+sys boolean leftMotor_1;
+sys boolean leftMotor_2;
+guarantee
+	G (!(leftMotor_0 & leftMotor_1 & leftMotor_2));
+
+sys boolean rightMotor_0;
+sys boolean rightMotor_1;
+sys boolean rightMotor_2;
+guarantee
+	G (!(rightMotor_0 & rightMotor_1 & rightMotor_2));
+
+sys boolean headMotor_0;
+sys boolean headMotor_1;
+guarantee
+	G (!(headMotor_0 & headMotor_1));
+
+sys boolean nextMoveMode_0;
+sys boolean nextMoveMode_1;
+
+sys boolean spec_state_0;
+sys boolean spec_state_1;
+
+sys boolean search_0;
+
+sys boolean next_head_0;
+
+
+aux boolean eNV_CONSTRAINT_0_respondsTo_responded;
+aux boolean eNV_CONSTRAINT_1_respondsTo_responded;
+aux boolean pREV_aux_2;
+aux boolean pREV_aux_3;
+aux boolean pREV_aux_4;
+
+assumption
+	G (((((!nextMoveMode_0 & !nextMoveMode_1) | (!nextMoveMode_0 & nextMoveMode_1)) & !((((heading_0 <-> next_head_0))))) -> !(((next_head_0 <-> next(heading_0))))));
+assumption
+	G ((((!nextMoveMode_0 & !nextMoveMode_1) & (obstacle_0)) -> (next(obstacle_0))));
+assumption
+	G ((((!nextMoveMode_0 & nextMoveMode_1) & (!obstacle_0)) -> !((next(obstacle_0)))));
+assumption
+	GF (eNV_CONSTRAINT_0_respondsTo_responded);
+assumption
+	GF (eNV_CONSTRAINT_1_respondsTo_responded);
+
+guarantee
+	 (((!search_0) & (!spec_state_0 & !spec_state_1)));
+guarantee
+	G ((!next_head_0));
+guarantee
+	GF (((!nextMoveMode_0 & !nextMoveMode_1) & (!search_0)));
+guarantee
+	G (((((!spec_state_0 & !spec_state_1) & (!nextMoveMode_0 & !nextMoveMode_1)) & (next(!nextMoveMode_0) & next(nextMoveMode_1))) -> (next(!spec_state_0) & next(spec_state_1))));
+guarantee
+	G (((((!spec_state_0 & spec_state_1) & (!nextMoveMode_0 & nextMoveMode_1)) & (next(!nextMoveMode_0) & next(!nextMoveMode_1))) -> (next(spec_state_0) & next(!spec_state_1))));
+guarantee
+	G (!((((spec_state_0 & !spec_state_1) & (!nextMoveMode_0 & !nextMoveMode_1)) & (next(!nextMoveMode_0) & next(nextMoveMode_1)))));
+guarantee
+	G ((((nextMoveMode_0 & !nextMoveMode_1) | (nextMoveMode_0 & nextMoveMode_1)) -> (next(!spec_state_0) & next(!spec_state_1))));
+guarantee
+	G (((((pREV_aux_2 & (noise_0)) & !((((heading_0 <-> next_head_0))))) & !((button_0))) -> (search_0)));
+guarantee
+	G (((pREV_aux_3 & (((heading_0 <-> next_head_0)))) -> (!search_0)));
+guarantee
+	G (((pREV_aux_3 & !((((heading_0 <-> next_head_0))))) -> (search_0)));
+guarantee
+	G ((((next(obstacle_0)) & !(pREV_aux_4)) -> !((next(!nextMoveMode_0) & next(!nextMoveMode_1)))));
+guarantee
+	G ((((!nextMoveMode_0 & nextMoveMode_1) & (next(!nextMoveMode_0) & next(!nextMoveMode_1))) <-> ((next(!leftMotor_0) & next(!leftMotor_1) & next(!leftMotor_2)) & (next(!rightMotor_0) & next(!rightMotor_1) & next(rightMotor_2)))));
+guarantee
+	G ((((!nextMoveMode_0 & !nextMoveMode_1) & (next(!nextMoveMode_0) & next(nextMoveMode_1))) <-> ((next(!leftMotor_0) & next(!leftMotor_1) & next(leftMotor_2)) & (next(!rightMotor_0) & next(!rightMotor_1) & next(!rightMotor_2)))));
+guarantee
+	G (((next(!nextMoveMode_0) & next(nextMoveMode_1)) -> ((!nextMoveMode_0 & !nextMoveMode_1) | (!nextMoveMode_0 & nextMoveMode_1))));
+guarantee
+	G (((nextMoveMode_0 & !nextMoveMode_1) -> ((next(!leftMotor_0) & next(!leftMotor_1) & next(!leftMotor_2)) & (next(!rightMotor_0) & next(rightMotor_1) & next(rightMotor_2)))));
+guarantee
+	G (((nextMoveMode_0 & nextMoveMode_1) -> ((next(!leftMotor_0) & next(!leftMotor_1) & next(leftMotor_2)) & (next(rightMotor_0) & next(!rightMotor_1) & next(!rightMotor_2)))));
+guarantee
+	G (((nextMoveMode_0 & !nextMoveMode_1) <-> (next(nextMoveMode_0) & next(nextMoveMode_1))));
+guarantee
+	G ((!(((nextMoveMode_0 & !nextMoveMode_1) | (nextMoveMode_0 & nextMoveMode_1))) -> !(((((next(leftMotor_0) & next(!leftMotor_1) & next(!leftMotor_2)) | (next(rightMotor_0) & next(!rightMotor_1) & next(!rightMotor_2))) | (next(!leftMotor_0) & next(leftMotor_1) & next(leftMotor_2))) | (next(!rightMotor_0) & next(rightMotor_1) & next(rightMotor_2))))));
+guarantee
+	G ((((!nextMoveMode_0 & !nextMoveMode_1) & (next(nextMoveMode_0) & next(!nextMoveMode_1))) <-> ((next(leftMotor_0) & next(!leftMotor_1) & next(leftMotor_2)) & (next(rightMotor_0) & next(!rightMotor_1) & next(rightMotor_2)))));
+guarantee
+	G ((((!nextMoveMode_0 & !nextMoveMode_1) & pREV_aux_4) <-> ((next(leftMotor_0) & next(leftMotor_1) & next(!leftMotor_2)) & (next(rightMotor_0) & next(rightMotor_1) & next(!rightMotor_2)))));
+guarantee
+	G (((!nextMoveMode_0 & nextMoveMode_1) -> !((next(nextMoveMode_0) & next(!nextMoveMode_1)))));
+
+guarantee
+	 (eNV_CONSTRAINT_0_respondsTo_responded);
+guarantee
+	G ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((((heading_0 <-> next_head_0))) | (eNV_CONSTRAINT_0_respondsTo_responded & !((search_0))))));
+guarantee
+	 (eNV_CONSTRAINT_1_respondsTo_responded);
+guarantee
+	G ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> (((nextMoveMode_0 & nextMoveMode_1) & (!obstacle_0)) | (eNV_CONSTRAINT_1_respondsTo_responded & !((nextMoveMode_0 & nextMoveMode_1))))));
+guarantee
+	 (!(pREV_aux_2));
+guarantee
+	G ((next(pREV_aux_2) <-> (!search_0)));
+guarantee
+	 (!(pREV_aux_3));
+guarantee
+	G ((next(pREV_aux_3) <-> (search_0)));
+guarantee
+	 (!(pREV_aux_4));
+guarantee
+	G ((next(pREV_aux_4) <-> (nextMoveMode_0 & nextMoveMode_1)));
+
+
+assumption
+	GF (!(!heading_0 & !button_0 & (!(!obstacle_0 & nextMoveMode_1 & !nextMoveMode_0 | !obstacle_0) & !obstacle_0 & eNV_CONSTRAINT_0_respondsTo_responded & eNV_CONSTRAINT_1_respondsTo_responded & !noise_0)));
+
+assumption
+	FALSE;

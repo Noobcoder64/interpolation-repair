@@ -1,0 +1,4 @@
+VAR
+backDistSense_0__S2,backDistSense_0__S33,eNV_CONSTRAINT_0_respondsTo_responded__S33,eNV_CONSTRAINT_1_respondsTo_responded__S33,isReady__S2,isReady__S33,frontDistSense_0__S2,frontDistSense_0__S33: BOOLEAN
+FORMULA
+((!(isReady__S2))) & ((((!frontDistSense_0__S2)&(!backDistSense_0__S2)))) & (((isReady__S33))) & (((isReady__S2->(isReady__S33)))) & (((isReady__S33->(isReady__S33)))) & (((eNV_CONSTRAINT_0_respondsTo_responded__S33))) & (((eNV_CONSTRAINT_1_respondsTo_responded__S33))) & !backDistSense_0__S2 & !frontDistSense_0__S2 & !isReady__S2 & !backDistSense_0__S33 & !frontDistSense_0__S33 & isReady__S33
