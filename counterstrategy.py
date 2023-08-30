@@ -21,6 +21,7 @@ class CounterstrategyState:
                 f"Inputs: {self.inputs}\n" + \
                 f"Outputs: {self.outputs}\n" + \
                 f"Influential outputs: {self.influential_outputs}\n" + \
+                f"Successors: {self.successors}\n" + \
                 f"Initial: {self.is_initial}\n" + \
                 f"Dead: {self.is_dead}"
 
@@ -46,10 +47,11 @@ class Counterstrategy:
         return self.states.get(name)
 
     def compute_influentials(self, state: CounterstrategyState):
-        for i in range(len(state.successors)-1):
-            for j in range(i+1, len(state.successors)):
-                next_state1 = state.successors[i]
-                next_state2 = state.successors[j]
+        successors = [succ for succ in state.successors if "Sf" not in succ]
+        for i in range(len(successors)-1):
+            for j in range(i+1, len(successors)):
+                next_state1 = successors[i]
+                next_state2 = successors[j]
 
                 if self.states[next_state1].is_dead or self.states[next_state2].is_dead:
                     continue
@@ -97,17 +99,21 @@ class Counterstrategy:
         loop_startindex = None
 
         successors = [state_name for state_name in self.states if self.states[state_name].is_initial and not self.states[state_name].is_dead]
-
+        prev_state = None
         while successors != [] and not looping:
             
             curr_state = random.choice(successors)
-
+            
             if curr_state in visited_states:
                 looping = True
                 loop_startindex = visited_states.index(curr_state)
+            elif prev_state and self.states[prev_state].inputs == self.states[curr_state].inputs:
+                looping = True
+                loop_startindex = visited_states.index(prev_state)
             else:
                 successors = [state_name for state_name in self.states[curr_state].successors if not "Sf" in state_name]
                 visited_states.append(curr_state)
+                prev_state = curr_state
 
         if visited_states == []:
             visited_states.append(random.choice([state for state in self.states if self.states[state].is_initial]))
@@ -209,46 +215,15 @@ class Counterstrategy:
 
                 return path
 
-        # print("=== INI ===")
-        # print(self.states[initial_state.id_state])
-        # print("\n=== TRANSIENT ===")
-        # for state in transient_states:
-        #     print(self.states[state.id_state])
-        # print("\n=== LOOPING ===")
-        # if looping_states is not None:
-        #     for state in looping_states:
-        #         print(self.states[state.id_state])
+        print("=== INI ===")
+        print(self.states[initial_state.id_state])
+        print("\n=== TRANSIENT ===")
+        for state in transient_states:
+            print(self.states[state.id_state])
+        print("\n=== LOOPING ===")
+        if looping_states is not None:
+            for state in looping_states:
+                print(self.states[state.id_state])
 
         return Path(initial_state,transient_states,looping_states)
 
-    def extendFinitePath(self, path):
-        """If path does not reach a guarantee violation, extends it with a new state where supposedly the violation
-        occurs. Needed because RATSY sometimes stops finite counterruns some steps before the actual violation"""
-        
-        if path.transient_states[-1].id_state == "Sf":
-            new_state_name = "Sf2"
-        else:
-
-            if (path.transient_states[-1].id_state)[2:] == '':
-                last_id = int((path.transient_states[-1].id_state)[1:])
-            else:
-                last_id = int((path.transient_states[-1].id_state)[2:])
-            new_state_name = "Sf" + str(last_id+1)
-
-        # The new state will have the constant input variables set to the value defined in the counterstrategy.
-        # Since this state does not come from the counterstrategy graph, at this point we are sure there are no
-        # other pieces of input valuation in the previous state
-        
-        input_vars = set(exp.inputVarsList)
-
-        failing_state = State(new_state_name)
-        last_state = path.transient_states[-1].valuation
-        for var in assignments:
-            # if re.sub(r'!', '', var) in input_vars:
-            failing_state.add_to_valuation(var)
-
-        path.states[new_state_name] = failing_state
-        path.transient_states[-1].set_successor(new_state_name)
-        path.transient_states.append(failing_state)
-
-        return path

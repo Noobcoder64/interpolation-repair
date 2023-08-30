@@ -49,6 +49,7 @@ def check_well_separation(spectra_file_path):
 def generate_counterstrategy(spectra_file_path):
     cmd = "java -jar {} -i {} --counter-strategy-jtlv-format".format(PATH_TO_CLI, spectra_file_path)
     output = run_subprocess(cmd, "\\n")
+    print(output)
     if re.search("Result: Specification is unrealizable", output):
         return parse_counterstrategy(output.replace("\\t", ""))
     return None

@@ -16,11 +16,6 @@ sys boolean rightMotor_2;
 guarantee
 	G (!(rightMotor_0 & rightMotor_1 & rightMotor_2));
 
-sys boolean headMotor_0;
-sys boolean headMotor_1;
-guarantee
-	G (!(headMotor_0 & headMotor_1));
-
 sys boolean moveMode_0;
 sys boolean moveMode_1;
 
