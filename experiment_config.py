@@ -15,11 +15,11 @@ INPUT_FOLDERS = [
 ALGORITHMS = [
     # "INTERPOLATION-NONINF",
     # "INTERPOLATION-ALLGARS",
-    "INTERPOLATION-MIN",
-    "INTERPOLATION",
+    # "INTERPOLATION-MIN",
+    # "INTERPOLATION",
     "GLASS",
     "JVTS",
-    "ALUR",
+    # "ALUR",
 ]
 
 SYSTEMS = [
@@ -31,7 +31,8 @@ SYSTEMS = [
 ]
 
 # Output parent folder
-OUTPUT_PARENT_FOLDER = "outputs/"
+# OUTPUT_PARENT_FOLDER = "outputs/"
+OUTPUT_PARENT_FOLDER = "outputs-translation/"
 
 # Set the timeout
 TIMEOUT = 10

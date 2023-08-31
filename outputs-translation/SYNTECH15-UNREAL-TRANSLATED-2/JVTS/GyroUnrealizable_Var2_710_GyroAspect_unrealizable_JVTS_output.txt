@@ -1,0 +1,345 @@
+Using BDD Package: CUDDFactory, Version: CUDD 3.0
+Using BDD Package: CUDDFactory, Version: CUDD 3.0
+0    [main] ERROR xt.validation.ResourceValidatorImpl  - The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+java.util.MissingResourceException: The string resource '_UI_DiagnosticRoot_diagnostic' could not be located
+	at org.eclipse.emf.common.util.DelegatingResourceLocator.delegatedGetString(DelegatingResourceLocator.java:586)
+	at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:450)
+	at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:605)
+	at org.eclipse.emf.common.util.DelegatingResourceLocator.getString(DelegatingResourceLocator.java:597)
+	at org.eclipse.emf.ecore.util.Diagnostician.createDefaultDiagnostic(Diagnostician.java:110)
+	at org.eclipse.emf.ecore.util.Diagnostician.validate(Diagnostician.java:139)
+	at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:147)
+	at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:125)
+	at org.eclipse.xtext.validation.ResourceValidatorImpl.validate(ResourceValidatorImpl.java:91)
+	at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getSpectraModel(SpectraInputProviderNoIDE.java:166)
+	at tau.smlab.syntech.spectragameinput.SpectraInputProviderNoIDE.getGameInput(SpectraInputProviderNoIDE.java:109)
+	at tau.smlab.syntech.Spectra.cli.SpecRepair.executeAlgorithm(SpecRepair.java:71)
+	at tau.smlab.syntech.Spectra.cli.SpecRepair.main(SpecRepair.java:58)
+Executing "inputs-translation/SYNTECH15-UNREAL-TRANSLATED-2/GyroUnrealizable_Var2_710_GyroAspect_unrealizable.spectra".
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 119
+Nodes table size: 1022
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 145
+Nodes table size: 1022
+Checking: 0:1, 1 elements
+Checking: 1:2, 1 elements
+Checking: 0:1, 1 elements
+Checking: 1:2, 1 elements
+Checking: 0:1, 1 elements
+Checking: 1:2, 1 elements
+Checking: 0:2, 2 elements
+Checking: 2:3, 1 elements
+Checking: 0:2, 2 elements
+Checking: 2:3, 1 elements
+Checking: 0:2, 2 elements
+Checking: 2:3, 1 elements
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 6672
+Nodes table size: 12264
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 6672
+Nodes table size: 12264
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 6718
+Nodes table size: 12264
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 6721
+Nodes table size: 12264
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 6721
+Nodes table size: 12264
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 6724
+Nodes table size: 13286
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 6724
+Nodes table size: 13286
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 6724
+Nodes table size: 13286
+GR1GameImplC.checkRealizability: start
+GR1GameImplC.checkRealizability: end
+Nodes num: 6727
+Nodes table size: 13286
+Found 9 repair suggestions
+Number of well-separated suggestions is 6
+Maximum variables in the best repair is 6
+Maximum Node count: 8
+
+Repair #1 [
+
+//Justices//
+asm GF (frontDistSense_0=true -> 
+	(backDistSense_0=false -> 
+		(isReady=true -> 
+			(balancer_0=false -> 
+				(balancer_1=false and balancer_2=true)) and
+			(balancer_0=true -> 
+				(balancer_1=false -> balancer_2=true)))) and
+	(backDistSense_0=true -> 
+		(isReady=true -> 
+			(balancer_0=false -> 
+				(balancer_1=false -> balancer_2=true) and
+				(balancer_1=true -> balancer_2=false)) and
+			(balancer_0=true -> 
+				(balancer_1=false -> balancer_2=true)))));
+
+//Transitions//
+
+//Initial//
+
+]
+
+Repair #2 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=true -> 
+	(next(frontDistSense_0)=true -> 
+		(backDistSense_0=false -> 
+			(isReady=true -> 
+				(next(isReady)=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false and balancer_2=true)) and
+					(balancer_0=true -> 
+						(balancer_1=false -> balancer_2=true))))) and
+		(backDistSense_0=true -> 
+			(isReady=true -> 
+				(next(isReady)=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false -> balancer_2=true) and
+						(balancer_1=true -> balancer_2=false)) and
+					(balancer_0=true -> 
+						(balancer_1=false -> balancer_2=true)))))));
+
+//Initial//
+
+]
+
+Repair #3 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=true -> 
+	(backDistSense_0=false -> 
+		(isReady=true -> 
+			(balancer_0=false -> 
+				(balancer_1=false -> balancer_2=false)) and
+			(balancer_0=true -> 
+				(balancer_1=false and balancer_2=false)))) and
+	(backDistSense_0=true -> 
+		(isReady=true -> 
+			(balancer_0=false -> 
+				(balancer_1=false -> balancer_2=false) and
+				(balancer_1=true -> balancer_2=true)) and
+			(balancer_0=true -> 
+				(balancer_1=false and balancer_2=false)))));
+
+//Initial//
+
+]
+
+Repair #4 [
+
+//Justices//
+asm GF (frontDistSense_0=true -> 
+	(backDistSense_0=false -> 
+		(isReady=true -> 
+			(balancer_0=false -> 
+				(balancer_1=false and balancer_2=true)) and
+			(balancer_0=true -> 
+				(balancer_1=false -> balancer_2=true)))) and
+	(backDistSense_0=true -> 
+		(isReady=true -> 
+			(balancer_0=false -> 
+				(balancer_1=false -> balancer_2=true) and
+				(balancer_1=true -> balancer_2=false)) and
+			(balancer_0=true -> 
+				(balancer_1=false -> balancer_2=true)))));
+
+//Transitions//
+
+//Initial//
+
+]
+
+Repair #5 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=true -> 
+	(next(frontDistSense_0)=false -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> 
+					(next(isReady)=false -> 
+						(balancer_0=false -> 
+							(balancer_1=false and balancer_2=true)) and
+						(balancer_0=true -> 
+							(balancer_1=false -> balancer_2=true)))))) and
+		(backDistSense_0=true -> 
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> 
+					(next(isReady)=false -> 
+						(balancer_0=false -> 
+							(balancer_1=false -> balancer_2=true) and
+							(balancer_1=true -> balancer_2=false)) and
+						(balancer_0=true -> 
+							(balancer_1=false -> balancer_2=true))))))) and
+	(next(frontDistSense_0)=true -> 
+		(backDistSense_0=false -> 
+			(isReady=true -> 
+				(next(isReady)=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false and balancer_2=true)) and
+					(balancer_0=true -> 
+						(balancer_1=false -> balancer_2=true))))) and
+		(backDistSense_0=true -> 
+			(isReady=true -> 
+				(next(isReady)=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false -> balancer_2=true) and
+						(balancer_1=true -> balancer_2=false)) and
+					(balancer_0=true -> 
+						(balancer_1=false -> balancer_2=true)))))));
+
+//Initial//
+
+]
+
+Repair #6 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=false -> 
+	(backDistSense_0=true -> 
+		(isReady=false -> 
+			(balancer_0=false and (balancer_1=false and balancer_2=false))))) and
+(frontDistSense_0=true -> 
+	(backDistSense_0=false -> 
+		(isReady=true -> 
+			(balancer_0=false -> 
+				(balancer_1=false -> balancer_2=false)) and
+			(balancer_0=true -> 
+				(balancer_1=false and balancer_2=false)))) and
+	(backDistSense_0=true -> 
+		(isReady=true -> 
+			(balancer_0=false -> 
+				(balancer_1=false -> balancer_2=false) and
+				(balancer_1=true -> balancer_2=true)) and
+			(balancer_0=true -> 
+				(balancer_1=false and balancer_2=false)))));
+
+//Initial//
+
+]
+
+Repair #7 [
+
+//Justices//
+asm GF (frontDistSense_0=true -> 
+	(backDistSense_0=false -> 
+		(isReady=true -> 
+			(balancer_0=false -> 
+				(balancer_1=false and balancer_2=true)) and
+			(balancer_0=true -> 
+				(balancer_1=false -> balancer_2=true)))) and
+	(backDistSense_0=true -> 
+		(isReady=true -> 
+			(balancer_0=false -> 
+				(balancer_1=false -> balancer_2=true) and
+				(balancer_1=true -> balancer_2=false)) and
+			(balancer_0=true -> 
+				(balancer_1=false -> balancer_2=true)))));
+
+//Transitions//
+
+//Initial//
+
+]
+
+Repair #8 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=true -> 
+	(next(frontDistSense_0)=true -> 
+		(backDistSense_0=false -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false and balancer_2=true)) and
+					(balancer_0=true -> 
+						(balancer_1=false -> balancer_2=true)))) and
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> 
+					(next(isReady)=true -> 
+						(balancer_0=false -> 
+							(balancer_1=false and balancer_2=true)) and
+						(balancer_0=true -> 
+							(balancer_1=false -> balancer_2=true)))))) and
+		(backDistSense_0=true -> 
+			(next(backDistSense_0)=false -> 
+				(isReady=true -> 
+					(balancer_0=false -> 
+						(balancer_1=false -> balancer_2=true) and
+						(balancer_1=true -> balancer_2=false)) and
+					(balancer_0=true -> 
+						(balancer_1=false -> balancer_2=true)))) and
+			(next(backDistSense_0)=true -> 
+				(isReady=true -> 
+					(next(isReady)=true -> 
+						(balancer_0=false -> 
+							(balancer_1=false -> balancer_2=true) and
+							(balancer_1=true -> balancer_2=false)) and
+						(balancer_0=true -> 
+							(balancer_1=false -> balancer_2=true))))))));
+
+//Initial//
+
+]
+
+Repair #9 [
+
+//Justices//
+
+//Transitions//
+asm G (frontDistSense_0=true -> 
+	(backDistSense_0=false -> 
+		(isReady=false -> 
+			(balancer_0=false and (balancer_1=false and balancer_2=false))) and
+		(isReady=true -> 
+			(balancer_0=false -> 
+				(balancer_1=false -> balancer_2=false)) and
+			(balancer_0=true -> 
+				(balancer_1=false and balancer_2=false)))) and
+	(backDistSense_0=true -> 
+		(isReady=true -> 
+			(balancer_0=false -> 
+				(balancer_1=false -> balancer_2=false) and
+				(balancer_1=true -> balancer_2=true)) and
+			(balancer_0=true -> 
+				(balancer_1=false and balancer_2=false)))));
+
+//Initial//
+
+]
+
+runtime of repair operation was 138 in millisecs.
+
