@@ -1,7 +1,6 @@
 import os
 import time
 import subprocess
-import concurrent.futures
 from experiment_config import INPUT_FOLDERS, ALGORITHMS, OUTPUT_PARENT_FOLDER, TIMEOUT
 
 def process_file(input_file, algorithm, output_folder, output_file):

@@ -1,0 +1,86 @@
+module HumanoidLTL_742_Humanoid_unrealizable
+env boolean Obstacle_0;
+sys boolean HeadMotor_0;
+sys boolean HeadMotor_1;
+sys boolean yBoolExpr_2;
+sys boolean yBoolExpr_0;
+sys boolean RightMotor_0;
+sys boolean RightMotor_1;
+sys boolean RightMotor_2;
+sys boolean specState_0;
+sys boolean specState_1;
+sys boolean yBoolExpr_1;
+sys boolean turnState_0;
+sys boolean turnState_1;
+sys boolean LeftMotor_0;
+sys boolean LeftMotor_1;
+sys boolean LeftMotor_2;
+sys boolean nextMoveMode_0;
+sys boolean nextMoveMode_1;
+
+assumption
+	G((yBoolExpr_1 & Obstacle_0) -> next(Obstacle_0));
+assumption
+	G((yBoolExpr_2 & !Obstacle_0) -> next((!Obstacle_0)));
+guarantee
+	!specState_0 & !specState_1;
+guarantee
+	!turnState_0 & !turnState_1;
+guarantee
+	GF (!nextMoveMode_0 & !nextMoveMode_1);
+guarantee
+	G((!specState_0 & !specState_1 & !nextMoveMode_0 & !nextMoveMode_1 & next(!nextMoveMode_0 & nextMoveMode_1)) -> next(!specState_0 & specState_1));
+guarantee
+	G((!specState_0 & specState_1 & !nextMoveMode_0 & nextMoveMode_1 & next(!nextMoveMode_0 & !nextMoveMode_1)) -> next(specState_0 & !specState_1));
+guarantee
+	G(!(specState_0 & !specState_1 & !nextMoveMode_0 & !nextMoveMode_1 & next(!nextMoveMode_0 & nextMoveMode_1)));
+guarantee
+	G((!specState_0 & specState_1 & next(!nextMoveMode_0 & nextMoveMode_1)) -> next(!specState_0 & specState_1));
+guarantee
+	G((specState_0 & !specState_1 & next(!nextMoveMode_0 & !nextMoveMode_1)) -> next(specState_0 & !specState_1));
+guarantee
+	G(nextMoveMode_0 & !nextMoveMode_1 -> next(!specState_0 & !specState_1));
+guarantee
+	G(Obstacle_0 ->(nextMoveMode_0 & !nextMoveMode_1));
+guarantee
+	G((!nextMoveMode_0 & nextMoveMode_1 & next(!nextMoveMode_0 & !nextMoveMode_1)) <-> next(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & RightMotor_2));
+guarantee
+	G((!nextMoveMode_0 & !nextMoveMode_1 & next(!nextMoveMode_0 & nextMoveMode_1)) <-> next(!LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & !RightMotor_0 & !RightMotor_1 & !RightMotor_2));
+guarantee
+	G(next(!nextMoveMode_0 & nextMoveMode_1) ->(!nextMoveMode_0 & !nextMoveMode_1 | !nextMoveMode_0 & nextMoveMode_1));
+guarantee
+	G(!nextMoveMode_0 & nextMoveMode_1 -> next(!nextMoveMode_0 & !nextMoveMode_1 | !nextMoveMode_0 & nextMoveMode_1));
+guarantee
+	G(next(!turnState_0 & !turnState_1) ->(!turnState_0 & !turnState_1 | turnState_0 & turnState_1));
+guarantee
+	G((!turnState_0 & !turnState_1 &(!nextMoveMode_0 & !nextMoveMode_1)) -> next(!turnState_0 & !turnState_1));
+guarantee
+	G((!nextMoveMode_0 & !nextMoveMode_1) <-> next(yBoolExpr_0));
+guarantee
+	G((nextMoveMode_0 & !nextMoveMode_1 & yBoolExpr_0 & !turnState_0 & !turnState_1) -> next(!turnState_0 & turnState_1));
+guarantee
+	G(!turnState_0 & turnState_1 ->(nextMoveMode_0 & !nextMoveMode_1 & next(turnState_0 & !turnState_1)));
+guarantee
+	G((turnState_0 & !turnState_1 & nextMoveMode_0 & !nextMoveMode_1) -> next(!turnState_0 & turnState_1));
+guarantee
+	G((turnState_0 & !turnState_1 & !nextMoveMode_0 & !nextMoveMode_1) -> next(turnState_0 & turnState_1));
+guarantee
+	G((turnState_0 & turnState_1 & !nextMoveMode_0 & !nextMoveMode_1) -> next(!turnState_0 & !turnState_1));
+guarantee
+	G((turnState_0 & turnState_1 & (nextMoveMode_0 | nextMoveMode_1)) -> next(turnState_0 & !turnState_1));
+guarantee
+	G((turnState_0 & !turnState_1 & !Obstacle_0) -> !nextMoveMode_0 & !nextMoveMode_1);
+guarantee
+	G((!turnState_0 & !turnState_1 & next(!turnState_0 & turnState_1)) <->(LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & RightMotor_2));
+guarantee
+	G(next(turnState_0 & !turnState_1) <->(!LeftMotor_0 & !LeftMotor_1 & !LeftMotor_2 & !RightMotor_0 & RightMotor_1 & RightMotor_2));
+guarantee
+	G(turnState_0 & !turnState_1 <->(!LeftMotor_0 & !LeftMotor_1 & LeftMotor_2 & RightMotor_0 & !RightMotor_1 & !RightMotor_2));
+guarantee
+	G((turnState_0 & turnState_1 & !turnState_0 & !turnState_1) <->(LeftMotor_0 & LeftMotor_1 & !LeftMotor_2 & RightMotor_0 & RightMotor_1 & !RightMotor_2));
+guarantee
+	G((!nextMoveMode_0 & !nextMoveMode_1) <-> next(yBoolExpr_1));
+guarantee
+	G((!nextMoveMode_0 & nextMoveMode_1) <-> next(yBoolExpr_2));
+assumption
+	GF (TRUE);
