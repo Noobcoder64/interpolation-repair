@@ -181,12 +181,12 @@ def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
 def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_vars, output_vars):
     # assumptions_uc = []
     # PROBLEM
-    guarantees_uc = exp.guaranteesList
+    # guarantees_uc = exp.guaranteesList
 
-    print()
-    print("=== COUNTERSTRATEGY ===")
-    print(c.num_states)
-    print()
+    # print()
+    # print("=== COUNTERSTRATEGY ===")
+    # print(c)
+    # print()
 
     path = c.extractRandomPath()
     # path.unroll()
