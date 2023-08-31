@@ -1,8 +1,8 @@
 
 # List of input folders
 INPUT_FOLDERS = [
-    # "inputs/AMBA",
-    # "inputs/SYNTECH15-UNREAL",
+    "inputs/AMBA",
+    "inputs/SYNTECH15-UNREAL",
     "inputs/SYNTECH15-1UNREAL",
     # "inputs/AMBA-ORIGINAL",
     # "inputs/SYNTECH15-UNREAL-ORIGINAL",
@@ -18,10 +18,10 @@ INPUT_FOLDERS = [
 ALGORITHMS = [
     # "INTERPOLATION-NONINF",
     # "INTERPOLATION-ALLGARS",
-    "INTERPOLATION-MIN",
-    # "GLASS",
-    # "JVTS",
-    # "ALUR",
+    # "INTERPOLATION-MIN",
+    "GLASS",
+    "JVTS",
+    "ALUR",
 ]
 
 SYSTEMS = [
@@ -33,7 +33,7 @@ SYSTEMS = [
 ]
 
 # Output parent folder
-OUTPUT_PARENT_FOLDER = "outputs/"
+OUTPUT_PARENT_FOLDER = "outputs-1/"
 
 # Set the timeout
 TIMEOUT = 10
