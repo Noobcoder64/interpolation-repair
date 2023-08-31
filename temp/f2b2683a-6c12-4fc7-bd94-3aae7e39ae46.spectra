@@ -1,0 +1,56 @@
+
+module PcarLTL_552_PCar_1
+
+env boolean obstacle_0;
+
+env boolean sideSense_0;
+env boolean sideSense_1;
+assumption
+	G (!(sideSense_0 & sideSense_1));
+
+env boolean parkResult_0;
+
+
+sys boolean throttle_0;
+sys boolean throttle_1;
+
+sys boolean steer_0;
+sys boolean steer_1;
+
+sys boolean parkCommand_0;
+sys boolean parkCommand_1;
+
+sys boolean spec_park;
+sys boolean spec_policy_0;
+sys boolean spec_policy_1;
+
+
+aux boolean eNV_CONSTRAINT_1_respondsTo_responded;
+
+assumption
+	G (((throttle_0 & !throttle_1) -> (((obstacle_0 <-> next(obstacle_0))) & ((sideSense_0 <-> next(sideSense_0)) & (sideSense_1 <-> next(sideSense_1))))));
+assumption
+	G (((!spec_policy_0 & !spec_policy_1) -> (!parkResult_0)));
+assumption
+	 ((!parkResult_0));
+assumption
+	GF (eNV_CONSTRAINT_1_respondsTo_responded);
+
+
+
+
+assumption
+	!(!sideSense_1 & !(sideSense_1 & sideSense_0) & !parkResult_0 & !sideSense_0 & !obstacle_0);
+
+assumption
+	G(!(!obstacle_0 & !sideSense_0 & sideSense_1 & !parkResult_0));
+guarantee
+	(((!spec_policy_0&!spec_policy_1)&!(spec_park)));
+guarantee
+	GF (spec_park);
+guarantee
+	G((next(spec_park)->(next(spec_policy_0)&next(spec_policy_1))));
+guarantee
+	G((((!spec_policy_0&!spec_policy_1)&(sideSense_0&!sideSense_1))->(((next(!spec_policy_0)&next(!spec_policy_1))&(!parkCommand_0&parkCommand_1))&(steer_0&!steer_1))));
+guarantee
+	G((next(eNV_CONSTRAINT_1_respondsTo_responded)<->((!obstacle_0)|(eNV_CONSTRAINT_1_respondsTo_responded&!((!throttle_0&throttle_1))))));

@@ -1,0 +1,78 @@
+
+module HumanoidLTL_460_Humanoid_1
+
+env boolean obstacle_0;
+
+env boolean inputMoveMode_0;
+env boolean inputMoveMode_1;
+
+
+sys boolean leftMotor_0;
+sys boolean leftMotor_1;
+sys boolean leftMotor_2;
+guarantee
+	G (!(leftMotor_0 & leftMotor_1 & leftMotor_2));
+
+sys boolean rightMotor_0;
+sys boolean rightMotor_1;
+sys boolean rightMotor_2;
+guarantee
+	G (!(rightMotor_0 & rightMotor_1 & rightMotor_2));
+
+sys boolean headMotor_0;
+sys boolean headMotor_1;
+guarantee
+	G (!(headMotor_0 & headMotor_1));
+
+sys boolean outputMoveMode_0;
+sys boolean outputMoveMode_1;
+
+
+aux boolean pREV_aux_0;
+aux boolean pREV_aux_1;
+
+
+guarantee
+	G ((((!inputMoveMode_0 & !inputMoveMode_1) & (obstacle_0)) -> (((outputMoveMode_0 & !outputMoveMode_1) & (leftMotor_0 & !leftMotor_1 & leftMotor_2)) & (rightMotor_0 & !rightMotor_1 & rightMotor_2))));
+guarantee
+	G ((((!inputMoveMode_0 & inputMoveMode_1) & (!obstacle_0)) -> (((!outputMoveMode_0 & !outputMoveMode_1) & (!leftMotor_0 & !leftMotor_1 & !leftMotor_2)) & (!rightMotor_0 & !rightMotor_1 & rightMotor_2))));
+guarantee
+	G ((((!inputMoveMode_0 & !inputMoveMode_1) & pREV_aux_0) -> ((leftMotor_0 & leftMotor_1 & !leftMotor_2) & (rightMotor_0 & rightMotor_1 & !rightMotor_2))));
+guarantee
+	G (((((!inputMoveMode_0 & !inputMoveMode_1) & (!obstacle_0)) & pREV_aux_1) -> ((!leftMotor_0 & !leftMotor_1 & !leftMotor_2) & (!rightMotor_0 & !rightMotor_1 & !rightMotor_2))));
+guarantee
+	G (((obstacle_0) -> !((!outputMoveMode_0 & !outputMoveMode_1))));
+guarantee
+	G (((inputMoveMode_0 & !inputMoveMode_1) <-> (outputMoveMode_0 & outputMoveMode_1)));
+guarantee
+	G (((inputMoveMode_0 & !inputMoveMode_1) -> ((!leftMotor_0 & !leftMotor_1 & !leftMotor_2) & (!rightMotor_0 & rightMotor_1 & rightMotor_2))));
+guarantee
+	G (((inputMoveMode_0 & inputMoveMode_1) -> ((!leftMotor_0 & !leftMotor_1 & leftMotor_2) & (rightMotor_0 & !rightMotor_1 & !rightMotor_2))));
+guarantee
+	G ((!(((inputMoveMode_0 & !inputMoveMode_1) | (inputMoveMode_0 & inputMoveMode_1))) -> !((((leftMotor_0 & !leftMotor_1 & !leftMotor_2) | (rightMotor_0 & !rightMotor_1 & !rightMotor_2)) | ((!leftMotor_0 & leftMotor_1 & leftMotor_2) & (!rightMotor_0 & rightMotor_1 & rightMotor_2))))));
+guarantee
+	G ((((inputMoveMode_0 & !inputMoveMode_1) | (inputMoveMode_0 & inputMoveMode_1)) -> (headMotor_0 & !headMotor_1)));
+guarantee
+	G ((((inputMoveMode_0 & inputMoveMode_1) & (!obstacle_0)) -> (!outputMoveMode_0 & !outputMoveMode_1)));
+
+guarantee
+	 (!(pREV_aux_0));
+guarantee
+	G ((next(pREV_aux_0) <-> (inputMoveMode_0 & inputMoveMode_1)));
+guarantee
+	 (!(pREV_aux_1));
+guarantee
+	G ((next(pREV_aux_1) <-> !((inputMoveMode_0 & inputMoveMode_1))));
+
+
+assumption
+	!(!obstacle_0 & inputMoveMode_0 & inputMoveMode_1);
+
+assumption
+	!(inputMoveMode_1 & inputMoveMode_0 & !(inputMoveMode_1 & inputMoveMode_0 & !obstacle_0) & obstacle_0);
+
+assumption
+	G(!(!obstacle_0 & !inputMoveMode_0 & !inputMoveMode_1));
+
+assumption
+	FALSE;
