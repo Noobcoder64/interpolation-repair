@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution
-69c7de60-a04d-4a8d-b457-107e958ca856,['(!color_0 -> (!color_1 -> (!detect_0 -> (ack_ver_0 &  ack_hor_0)) & (detect_0 -> (!detect_1 -> (ack_ver_0 &  ack_hor_0)))) & (color_1 -> (!color_2 -> (!detect_0 -> (ack_ver_0 &  ack_hor_0)) & (detect_0 -> (!detect_1 -> (ack_ver_0 &  ack_hor_0)))) & (color_2 -> (detect_0 &  detect_1)))) & (color_0 -> (!color_1 -> (!detect_0 -> (ack_ver_0 &  ack_hor_0)) & (detect_0 -> (!detect_1 -> (ack_ver_0 &  ack_hor_0)))))'],True

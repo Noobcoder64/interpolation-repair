@@ -1,4 +1,0 @@
-Id,UniqueRefinement,IsSolution
-ecc666c3-2e9c-4ded-a5f6-f904f3d781b9,['G(!frontDistSense_0 -> (!backDistSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> bluetoothCmd_2)))))'],True
-70f2af25-7c0b-406f-b8b3-b9914260692f,['G(!frontDistSense_0 -> (!backDistSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> bluetoothCmd_2)))))'],True
-c05749de-b3b9-4f73-970f-fdb3c7fc81ea,"['G(!frontDistSense_0 -> (!backDistSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> bluetoothCmd_2)))))', 'G(!frontDistSense_0 -> (X(!(frontDistSense_0)) -> (!backDistSense_0 -> (X(!(backDistSense_0)) -> (isReady -> (X(isReady) -> (!bluetoothCmd_0 -> (X(!(bluetoothCmd_0)) -> (!bluetoothCmd_1 -> (X(!(bluetoothCmd_1)) -> (!bluetoothCmd_2 -> X(bluetoothCmd_2))))))))))))']",True

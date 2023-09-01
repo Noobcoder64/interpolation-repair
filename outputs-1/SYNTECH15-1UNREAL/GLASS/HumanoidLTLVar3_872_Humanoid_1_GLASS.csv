@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution
-381d86a2-c671-41b1-af94-ff5fe8ce1d9e,['(obstacle_0 -> (btInput_0 &  (!btInput_1 -> btInput_2)))'],True

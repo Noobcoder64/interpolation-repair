@@ -1,6 +1,0 @@
-Id,UniqueRefinement,IsSolution
-45d03054-350e-4577-8844-c50ee367453d,"['GF isReady', 'G(F(!distSense_0 -> isReady))']",True
-1c589939-019a-4df1-9eeb-528f0a4f872e,"['G(F(distSense_0 -> isReady))', 'G(!distSense_0 -> isReady)']",True
-d82a70f1-62a2-489a-b0fd-0fa01e2a64f5,"['G(distSense_0 -> (X(distSense_0) -> (!isReady -> X(isReady))))', 'G(!distSense_0 -> isReady)']",True
-5ba10ad7-7be9-45c9-aac7-06a3128aa07c,"['GF isReady', 'G(!distSense_0 -> (X(!(distSense_0)) -> (!isReady -> X(isReady))))']",True
-a97b9f85-efff-43e2-9f87-2305bad8a191,"['G(distSense_0 -> isReady)', 'G(!distSense_0 -> (X(!(distSense_0)) -> (!isReady -> X(isReady))))']",True

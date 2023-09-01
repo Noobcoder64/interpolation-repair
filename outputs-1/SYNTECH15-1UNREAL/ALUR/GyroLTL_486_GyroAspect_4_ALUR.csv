@@ -1,3 +1,0 @@
-Id,UniqueRefinement,IsSolution
-8257fd2a-4299-4deb-9b20-8f885f31a056,"['G(distSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> bluetoothCmd_2))))', 'G(!distSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> bluetoothCmd_2))))']",True
-f9d0f68d-de11-4345-885c-1fe48f86ae08,"['G(distSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> bluetoothCmd_2))))', 'G(!distSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> bluetoothCmd_2))))']",True

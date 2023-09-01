@@ -16,7 +16,10 @@ INPUT_FOLDERS = [
 
 # List of algorithms
 ALGORITHMS = [
-    "INTERPOLATION-MIN-INF",
+    # "INTERPOLATION-MIN-INF",
+    # "INTERPOLATION-MIN",
+    # "INTERPOLATION-ALLGARS-INF",
+    "INTERPOLATION-ALLGARS",
     # "GLASS",
     # "JVTS",
     # "ALUR",
@@ -31,7 +34,7 @@ SYSTEMS = [
 ]
 
 # Output parent folder
-OUTPUT_PARENT_FOLDER = "outputs-1/"
+OUTPUT_PARENT_FOLDER = "outputs-interpolation/"
 
 # Set the timeout
 TIMEOUT = 10

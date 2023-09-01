@@ -1,5 +1,0 @@
-Id,UniqueRefinement,IsSolution
-3961db1b-fc1b-4cf7-b1db-aebb4382b2d7,['G(!distSense_0 -> !isReady)'],True
-399ea676-44ed-4c7d-8314-ff0471a8a5af,['G(!distSense_0 -> !isReady)'],True
-f4bf2d82-3434-4bb7-a14c-4c1e1e1ad411,"['G(!distSense_0 -> !isReady)', 'G(!distSense_0 -> (X(!(distSense_0)) -> (isReady -> X(!(isReady)))))']",True
-4cdc7195-9d68-46de-9290-744f24dbb751,"['G(!distSense_0 -> (X(distSense_0) -> (isReady -> X(!(isReady)))))', 'G(!distSense_0 -> (X(!(distSense_0)) -> (isReady -> X(!(isReady)))))']",True
