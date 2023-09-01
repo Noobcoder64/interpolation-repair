@@ -38,7 +38,7 @@ SYSTEMS = [
 
 # Output parent folder
 # OUTPUT_PARENT_FOLDER = "outputs/"
-OUTPUT_PARENT_FOLDER = "outputs-translation/"
+OUTPUT_PARENT_FOLDER = "outputs-format/"
 
 # Set the timeout
 TIMEOUT = 10
