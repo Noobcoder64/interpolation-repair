@@ -51,6 +51,8 @@ def check_well_separation(spectra_file_path):
 
 def generate_counterstrategy(spectra_file_path):
     cmd = "java -jar {} -i {} --counter-strategy-jtlv-format".format(PATH_TO_CLI, spectra_file_path)
+    if exp.minimize_spec:
+        cmd += " -min"
     output = run_subprocess(cmd, "\\n")
     # print(output)
     if re.search("Result: Specification is unrealizable", output):
@@ -79,7 +81,7 @@ def parse_counterstrategy(text):
         state = CounterstrategyState(state_name, inputs, outputs, successors, is_initial, is_dead)
         states[state.name] = state
 
-    return Counterstrategy(states, use_influential=True)
+    return Counterstrategy(states, use_influential=exp.use_influential)
 
 def compute_unrealizable_core(spectra_file_path):
     cmd = "java -jar {} -i {} -uc".format(PATH_TO_CLI, spectra_file_path)

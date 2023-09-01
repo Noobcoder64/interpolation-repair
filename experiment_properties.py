@@ -27,6 +27,15 @@ search_initials = True
 search_invariants = True
 search_fairness = True
 
+# Whether to use all guarantees or unrealizable core
+use_all_gars = False
+
+# Minimize spec
+minimize_spec = True
+
+# Use influential output variables
+use_influential = True
+
 timeout = 600 # 10 minutes
 
 # This is a reference to the original specification file
