@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+fc853244-5081-4802-bdc4-37ac4585ff60,['(obstacle_0 -> (!heading_0 -> heading_1))'],True

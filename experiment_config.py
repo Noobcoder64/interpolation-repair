@@ -17,8 +17,8 @@ INPUT_FOLDERS = [
 # List of algorithms
 ALGORITHMS = [
     # "INTERPOLATION-MIN-INF",
-    # "GLASS",
-    "JVTS",
+    "GLASS",
+    # "JVTS",
     # "ALUR",
 ]
 
@@ -31,7 +31,7 @@ SYSTEMS = [
 ]
 
 # Output parent folder
-OUTPUT_PARENT_FOLDER = "outputs-symbolic/"
+OUTPUT_PARENT_FOLDER = "outputs-symbolic-1/"
 
 # Set the timeout
 TIMEOUT = 10
