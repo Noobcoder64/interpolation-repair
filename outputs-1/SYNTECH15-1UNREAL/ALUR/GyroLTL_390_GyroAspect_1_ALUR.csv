@@ -1,0 +1,9 @@
+Id,UniqueRefinement,IsSolution
+1138bb40-7a19-4caa-b9ba-81f27d16de9c,['G(F(distSense_0 -> !isReady))'],True
+701a4897-56dc-4a3b-9425-01a4a48d80e4,['G(distSense_0 -> !isReady)'],True
+3dbf03ca-d983-4176-8ca2-f4bd9c14111f,['G(distSense_0 -> (isReady -> X(!(isReady))))'],True
+b11c612a-d162-438d-9869-2b3ce77b5064,"['G(F(distSense_0 -> !isReady))', 'G(!distSense_0 -> isReady)']",True
+750691e8-22dd-4131-84f6-bd8ebf5e355d,"['G(distSense_0 -> !isReady)', 'G(!distSense_0 -> isReady)']",True
+f53ce674-2375-445e-9bb1-c76d647eed14,"['G(distSense_0 -> (isReady -> X(!(isReady))))', 'G(!distSense_0 -> isReady)']",True
+e14f4155-5509-4ec1-b501-802e6485334c,"['G(F(distSense_0 -> !isReady))', 'G(!distSense_0 -> (X(distSense_0) -> (!isReady -> X(!(isReady)))))']",True
+a9f15487-37ca-4ba8-a592-3bc4fb586815,"['G(!distSense_0 -> isReady) & (distSense_0 -> !isReady)', 'G(!distSense_0 -> (X(distSense_0) -> (!isReady -> X(!(isReady)))))']",True

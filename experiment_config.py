@@ -19,8 +19,8 @@ ALGORITHMS = [
     # "INTERPOLATION-NONINF",
     # "INTERPOLATION-ALLGARS",
     # "INTERPOLATION-MIN",
-    "GLASS",
-    "JVTS",
+    # "GLASS",
+    # "JVTS",
     "ALUR",
 ]
 

@@ -1,0 +1,4 @@
+Id,UniqueRefinement,IsSolution
+ea5080a8-bc68-4335-b411-1b31b0c71d47,['G(!frontDistSense_0 -> (!backDistSense_0 -> !isReady))'],True
+dc081665-f9a8-44ca-891c-82062e0177ec,['G(!frontDistSense_0 -> (!backDistSense_0 -> !isReady))'],True
+44823dab-7672-413e-9836-a1d2a4a3e4ec,"['G(!frontDistSense_0 -> (!backDistSense_0 -> !isReady))', 'G(!frontDistSense_0 -> (X(!(frontDistSense_0)) -> (!backDistSense_0 -> (X(!(backDistSense_0)) -> (isReady -> X(!(isReady)))))))']",True
