@@ -1,13 +1,19 @@
 
 # List of input folders
 INPUT_FOLDERS = [
+
     # "inputs/AMBA",
     # "inputs/SYNTECH15-UNREAL",
     # "inputs/SYNTECH15-1UNREAL",
 
-    "inputs-translation/SYNTECH15-UNREAL-ORIGINAL",
-    "inputs-translation/SYNTECH15-UNREAL-TRANSLATED-1",
-    "inputs-translation/SYNTECH15-UNREAL-TRANSLATED-2",
+    # "inputs-translation/SYNTECH15-UNREAL-ORIGINAL",
+    # "inputs-translation/SYNTECH15-UNREAL-TRANSLATED-1",
+    # "inputs-translation/SYNTECH15-UNREAL-TRANSLATED-2",
+
+    "inputs-format/SYNTECH15-UNREAL-ORIGINAL-G",
+    "inputs-format/SYNTECH15-UNREAL-ORIGINAL-ALW",
+    "inputs-format/SYNTECH15-UNREAL-TRANSLATED-G",
+    "inputs-format/SYNTECH15-UNREAL-TRANSLATED-ALW",
 
 ]
 
