@@ -4,7 +4,7 @@ import subprocess
 import concurrent.futures
 from experiment_config import INPUT_FOLDERS, ALGORITHMS, OUTPUT_PARENT_FOLDER, TIMEOUT
 
-flags = "-min -inf"
+# flags = "-min -inf"
 # flags = "-min"
 # flags = "-allgars -inf"
 # flags = "-allgars"
