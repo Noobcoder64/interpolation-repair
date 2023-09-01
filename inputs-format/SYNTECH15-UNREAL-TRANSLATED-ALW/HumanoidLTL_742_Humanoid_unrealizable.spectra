@@ -1,0 +1,107 @@
+
+module HumanoidLTL_742_Humanoid_unrealizable
+
+env boolean obstacle_0;
+
+
+sys boolean leftMotor_0;
+sys boolean leftMotor_1;
+sys boolean leftMotor_2;
+guarantee
+	alw (!(leftMotor_0 & leftMotor_1 & leftMotor_2));
+
+sys boolean rightMotor_0;
+sys boolean rightMotor_1;
+sys boolean rightMotor_2;
+guarantee
+	alw (!(rightMotor_0 & rightMotor_1 & rightMotor_2));
+
+sys boolean headMotor_0;
+sys boolean headMotor_1;
+guarantee
+	alw (!(headMotor_0 & headMotor_1));
+
+sys boolean nextMoveMode_0;
+sys boolean nextMoveMode_1;
+guarantee
+	alw (!(nextMoveMode_0 & nextMoveMode_1));
+
+sys boolean specState_0;
+sys boolean specState_1;
+
+sys boolean turnState_0;
+sys boolean turnState_1;
+
+
+aux boolean pREV_aux_0;
+aux boolean pREV_aux_1;
+
+assumption
+	alw (((pREV_aux_0 & (obstacle_0)) -> (next(obstacle_0))));
+assumption
+	alw (((pREV_aux_1 & (!obstacle_0)) -> !((next(obstacle_0)))));
+
+guarantee
+	 ((!specState_0 & !specState_1));
+guarantee
+	 ((!turnState_0 & !turnState_1));
+guarantee
+	alwEv ((!nextMoveMode_0 & !nextMoveMode_1));
+guarantee
+	alw (((((!specState_0 & !specState_1) & (!nextMoveMode_0 & !nextMoveMode_1)) & (next(!nextMoveMode_0) & next(nextMoveMode_1))) -> (next(!specState_0) & next(specState_1))));
+guarantee
+	alw (((((!specState_0 & specState_1) & (!nextMoveMode_0 & nextMoveMode_1)) & (next(!nextMoveMode_0) & next(!nextMoveMode_1))) -> (next(specState_0) & next(!specState_1))));
+guarantee
+	alw (!((((specState_0 & !specState_1) & (!nextMoveMode_0 & !nextMoveMode_1)) & (next(!nextMoveMode_0) & next(nextMoveMode_1)))));
+guarantee
+	alw ((((!specState_0 & specState_1) & (next(!nextMoveMode_0) & next(nextMoveMode_1))) -> (next(!specState_0) & next(specState_1))));
+guarantee
+	alw ((((specState_0 & !specState_1) & (next(!nextMoveMode_0) & next(!nextMoveMode_1))) -> (next(specState_0) & next(!specState_1))));
+guarantee
+	alw (((nextMoveMode_0 & !nextMoveMode_1) -> (next(!specState_0) & next(!specState_1))));
+guarantee
+	alw (((obstacle_0) -> !((!nextMoveMode_0 & !nextMoveMode_1))));
+guarantee
+	alw ((((!nextMoveMode_0 & nextMoveMode_1) & (next(!nextMoveMode_0) & next(!nextMoveMode_1))) <-> ((next(!leftMotor_0) & next(!leftMotor_1) & next(!leftMotor_2)) & (next(!rightMotor_0) & next(!rightMotor_1) & next(rightMotor_2)))));
+guarantee
+	alw ((((!nextMoveMode_0 & !nextMoveMode_1) & (next(!nextMoveMode_0) & next(nextMoveMode_1))) <-> ((next(!leftMotor_0) & next(!leftMotor_1) & next(leftMotor_2)) & (next(!rightMotor_0) & next(!rightMotor_1) & next(!rightMotor_2)))));
+guarantee
+	alw (((next(!nextMoveMode_0) & next(nextMoveMode_1)) -> ((!nextMoveMode_0 & !nextMoveMode_1) | (!nextMoveMode_0 & nextMoveMode_1))));
+guarantee
+	alw (((!nextMoveMode_0 & nextMoveMode_1) -> ((next(!nextMoveMode_0) & next(!nextMoveMode_1)) | (next(!nextMoveMode_0) & next(nextMoveMode_1)))));
+guarantee
+	alw (((next(!turnState_0) & next(!turnState_1)) -> ((!turnState_0 & !turnState_1) | (turnState_0 & turnState_1))));
+guarantee
+	alw ((((!turnState_0 & !turnState_1) & !((nextMoveMode_0 & !nextMoveMode_1))) -> (next(!turnState_0) & next(!turnState_1))));
+guarantee
+	alw (((((nextMoveMode_0 & !nextMoveMode_1) & pREV_aux_0) & (!turnState_0 & !turnState_1)) -> (next(!turnState_0) & next(turnState_1))));
+guarantee
+	alw (((!turnState_0 & turnState_1) -> ((next(turnState_0) & next(!turnState_1)) & (nextMoveMode_0 & !nextMoveMode_1))));
+guarantee
+	alw ((((turnState_0 & !turnState_1) & (nextMoveMode_0 & !nextMoveMode_1)) -> (next(!turnState_0) & next(turnState_1))));
+guarantee
+	alw ((((turnState_0 & !turnState_1) & (!nextMoveMode_0 & !nextMoveMode_1)) -> (next(turnState_0) & next(turnState_1))));
+guarantee
+	alw ((((turnState_0 & turnState_1) & (!nextMoveMode_0 & !nextMoveMode_1)) -> (next(!turnState_0) & next(!turnState_1))));
+guarantee
+	alw ((((turnState_0 & turnState_1) & !((!nextMoveMode_0 & !nextMoveMode_1))) -> (next(turnState_0) & next(!turnState_1))));
+guarantee
+	alw ((((turnState_0 & !turnState_1) & (!obstacle_0)) -> (!nextMoveMode_0 & !nextMoveMode_1)));
+guarantee
+	alw ((((!turnState_0 & !turnState_1) & (next(!turnState_0) & next(turnState_1))) <-> ((leftMotor_0 & !leftMotor_1 & leftMotor_2) & (rightMotor_0 & !rightMotor_1 & rightMotor_2))));
+guarantee
+	alw (((next(turnState_0) & next(!turnState_1)) <-> ((!leftMotor_0 & !leftMotor_1 & !leftMotor_2) & (!rightMotor_0 & rightMotor_1 & rightMotor_2))));
+guarantee
+	alw (((turnState_0 & !turnState_1) <-> ((!leftMotor_0 & !leftMotor_1 & leftMotor_2) & (rightMotor_0 & !rightMotor_1 & !rightMotor_2))));
+guarantee
+	alw ((((turnState_0 & turnState_1) & (!turnState_0 & !turnState_1)) <-> ((leftMotor_0 & leftMotor_1 & !leftMotor_2) & (rightMotor_0 & rightMotor_1 & !rightMotor_2))));
+
+guarantee
+	 (!(pREV_aux_0));
+guarantee
+	alw ((next(pREV_aux_0) <-> (!nextMoveMode_0 & !nextMoveMode_1)));
+guarantee
+	 (!(pREV_aux_1));
+guarantee
+	alw ((next(pREV_aux_1) <-> (!nextMoveMode_0 & nextMoveMode_1)));
+

@@ -4,7 +4,7 @@ INPUT_FOLDERS = [
     # "inputs/AMBA",
     # "inputs/SYNTECH15-UNREAL",
     # "inputs/SYNTECH15-1UNREAL",
-    
+
     "inputs-translation/SYNTECH15-UNREAL-ORIGINAL",
     "inputs-translation/SYNTECH15-UNREAL-TRANSLATED-1",
     "inputs-translation/SYNTECH15-UNREAL-TRANSLATED-2",
@@ -17,7 +17,7 @@ ALGORITHMS = [
     # "INTERPOLATION-ALLGARS",
     # "INTERPOLATION-MIN",
     # "INTERPOLATION",
-    "GLASS",
+    # "GLASS",
     "JVTS",
     # "ALUR",
 ]
