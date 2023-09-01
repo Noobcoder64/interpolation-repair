@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution
-31fd387e-5f55-4d79-a391-6c37f10ccb01,['G(F(!frontDistSense_0 -> (!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2))) & (isReady -> (!balancer_0 -> (!balancer_1 -> !balancer_2)))) & (frontDistSense_0 -> (!backDistSense_0 -> (!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2))) & (isReady -> (!balancer_0 -> balancer_2))) & (backDistSense_0 -> (!balancer_0 -> (!balancer_1 -> balancer_2)))))'],True

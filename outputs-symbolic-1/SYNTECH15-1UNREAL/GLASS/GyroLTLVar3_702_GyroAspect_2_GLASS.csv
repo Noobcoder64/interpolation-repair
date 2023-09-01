@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution
-bad31aa6-0219-4f11-9ef8-8bf0d1241bb1,['G(F(!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2))))'],True

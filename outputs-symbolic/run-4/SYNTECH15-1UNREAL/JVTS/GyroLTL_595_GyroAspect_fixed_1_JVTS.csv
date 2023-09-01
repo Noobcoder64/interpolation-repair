@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+bbbdfd9b-f99c-4766-a489-e01e7100498f,['G(!frontDistSense_0 -> (!backDistSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (!bluetoothCmd_2 -> (!balancer_0 -> (!balancer_1 -> (!balancer_2 -> (!spec_blockedState_0 -> (!spec_blockedState_1 -> (!spec_moveAwayFromFrontObstacleState_0 -> (!spec_moveAwayFromBackObstacleState_0 -> (!spec_forwardingState_0 -> spec_backwardingState_0))))))))))))))'],True
