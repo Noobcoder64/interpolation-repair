@@ -31,7 +31,7 @@ SYSTEMS = [
 ]
 
 # Output parent folder
-OUTPUT_PARENT_FOLDER = "outputs/"
+OUTPUT_PARENT_FOLDER = "outputs-symbolic/"
 
 # Set the timeout
 TIMEOUT = 10
