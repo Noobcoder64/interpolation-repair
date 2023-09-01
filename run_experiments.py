@@ -4,11 +4,16 @@ import subprocess
 import concurrent.futures
 from experiment_config import INPUT_FOLDERS, ALGORITHMS, OUTPUT_PARENT_FOLDER, TIMEOUT
 
+flags = "-min -inf"
+# flags = "-min"
+# flags = "-allgars -inf"
+# flags = "-allgars"
+
 def process_file(input_file, algorithm, output_folder, output_file):
     start_time = time.time()
     
     if "INTERPOLATION" in algorithm:
-        command = f"python interpolation_repair.py -i {input_file} -o {output_folder} -t {TIMEOUT}"
+        command = f"python interpolation_repair.py -i {input_file} -o {output_folder} -t {TIMEOUT} {flags}"
     else:
         command = f"python spec_repair.py -i {input_file} -a {algorithm} -o {output_folder} -t {TIMEOUT}"
 

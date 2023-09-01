@@ -27,6 +27,15 @@ search_initials = True
 search_invariants = True
 search_fairness = True
 
+# Whether to use all guarantees or unrealizable core
+use_all_gars = False
+
+# Minimize spec
+minimize_spec = True
+
+# Use influential output variables
+use_influential = True
+
 timeout = 600 # 10 minutes
 
 # This is a reference to the original specification file
@@ -59,7 +68,15 @@ counterstrategies = []
 start_experiment = timeit.default_timer()
 elapsed_time = 0
 
-def configure(spectra_file, timeout_in=600, output_folder="outputs/", debug=False):
+def configure(
+        spectra_file,
+        timeout_in=600,
+        output_folder="outputs/",
+        use_all_gars_in = False,
+        minimize_spec_in = True,
+        use_influential_in = True,
+        debug=False):
+    
     global specfile
     global datafile
     global checkpointfile
@@ -79,6 +96,10 @@ def configure(spectra_file, timeout_in=600, output_folder="outputs/", debug=Fals
     global varsList
     global initialGR1Units
     global guaranteesList
+
+    global use_all_gars
+    global minimize_spec
+    global use_influential
 
     global timeout
     global start_experiment
@@ -126,6 +147,10 @@ def configure(spectra_file, timeout_in=600, output_folder="outputs/", debug=Fals
         for gar in guaranteesList:
             print(gar)
         print()
+
+    use_all_gars = use_all_gars_in
+    minimize_spec = minimize_spec_in
+    use_influential = use_influential_in
 
     timeout = timeout_in
     start_experiment = timeit.default_timer()
