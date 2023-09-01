@@ -108,9 +108,12 @@ def main():
     parser.add_argument("-i", "--input", required=True, help="Path to the input .spectra file")
     parser.add_argument("-o", "--output", default=os.getcwd(), help="Path to the output folder (default: current directory)")
     parser.add_argument("-t", "--timeout", type=float, default=10, help="Timeout in minutes (default: 10)")
+    parser.add_argument("-allgars", action="store_true", help="Use all guarantees")
+    parser.add_argument("-min", action="store_true", help="Minimize specification")
+    parser.add_argument("-inf", action="store_true", help="Use influential output variables")
 
     args = parser.parse_args()
-    exp.configure(args.input, args.timeout*60, args.output, debug=True)
+    exp.configure(args.input, args.timeout*60, args.output, args.allgars, args.min, args.inf, debug=True)
     FifoDuplicateCheckRefinement()
 
 if __name__=="__main__":
