@@ -154,14 +154,14 @@ def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
     if guarantees_boolean == []:
         return None
     
-    # l2b.writeMathsatFormulaToFile("temp/formula_" + id, assum_val_boolean + " & " + " & ".join(guarantees_boolean))
+    l2b.writeMathsatFormulaToFile("temp/formula_" + id, assum_val_boolean + " & " + " & ".join(guarantees_boolean))
     l2b.writeMathsatFormulaToFile("temp/counterstrategy_auto_" + id, assum_val_boolean)
     l2b.writeMathsatFormulaToFile("temp/guarantees_auto_" + id, " & ".join(guarantees_boolean))
     
     mathsat_path = os.path.join(definitions.ROOT_DIR, "MathSAT4/mathsat-4.2.17-linux-x86_64/bin/mathsat")
     cmd = [mathsat_path, f"-interpolate=temp/INTERP_{id}", f"temp/counterstrategy_auto_{id}", f"temp/guarantees_auto_{id}"]
     result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    # print(result.stdout)
+    print(result.stdout)
 
     interpolant_file = f"temp/INTERP_{id}.1.msat"
     
@@ -183,10 +183,10 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
     # PROBLEM
     # guarantees_uc = exp.guaranteesList
 
-    # print()
-    # print("=== COUNTERSTRATEGY ===")
-    # print(c)
-    # print()
+    print()
+    print("=== COUNTERSTRATEGY ===")
+    print(c)
+    print()
 
     path = c.extractRandomPath()
     # path.unroll()
@@ -212,17 +212,18 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
         print(uc)
     print()
     
-    # print("=== ASSUMPTIONS BOOLEAN ===")
-    # print(" & ".join(assumptions_boolean))
-    # print()
-    # print("=== VALUATIONS BOOLEAN ===")
-    # print(valuations_boolean)
-    # print()
-    # print("=== ASM VAL BOOLEAN ===")
-    # print(assum_val_boolean)
-    # print("=== GUARANTEES BOOLEAN ===")
-    # print("\n".join(guarantees_boolean))
-    # print()
+    print("=== ASSUMPTIONS BOOLEAN ===")
+    print(" & ".join(assumptions_boolean))
+    print()
+    print("=== VALUATIONS BOOLEAN ===")
+    print(valuations_boolean)
+    print()
+    print("=== ASM VAL BOOLEAN ===")
+    print(assum_val_boolean)
+    print()
+    print("=== GUARANTEES BOOLEAN ===")
+    print("\n".join(guarantees_boolean))
+    print()
 
     interpolant = compute_interpolant(id, assum_val_boolean, guarantees_boolean)
     print("\n=== INTERPOLANT ===")

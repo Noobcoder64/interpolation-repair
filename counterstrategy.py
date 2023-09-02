@@ -95,7 +95,7 @@ class Counterstrategy:
         looping = False
         loop_startindex = None
 
-        successors = [state_name for state_name in self.states if self.states[state_name].is_initial and not self.states[state_name].is_dead]
+        successors = [state_name for state_name in self.states if self.states[state_name].is_initial and not "Sf" in state_name]
         prev_state = None
         while successors != [] and not looping:
             
