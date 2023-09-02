@@ -1,0 +1,11 @@
+Id,UniqueRefinement,IsSolution
+138ac510-0e63-4287-b8ab-33c6ae65fe6e,['G(F(distSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 -> balancer_2)))))'],True
+d3d88220-7a0b-47a8-98fb-ad17c0440301,['G(distSense_0 -> (X(distSense_0) -> (isReady -> (X(isReady) -> (!balancer_0 -> (!balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 -> balancer_2))))))'],True
+dbe612be-6706-402c-90a5-c6f4a870c140,['G(distSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 -> !balancer_2)) & (balancer_0 -> (!balancer_1 &  !balancer_2))))'],True
+50c90548-c9e6-4250-89bb-51d105a09007,['G(F(distSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 -> balancer_2)))))'],True
+7f8191fc-a6c4-4d1e-aad8-2fa47e1acd96,['G(distSense_0 -> (X(distSense_0) -> (isReady -> (X(isReady) -> (!balancer_0 -> (!balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 -> balancer_2))))))'],True
+70b9a3a6-0fb1-4e30-9b02-9ed1709c4912,['G(distSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 -> !balancer_2)) & (balancer_0 -> (!balancer_1 &  !balancer_2))))'],True
+e2350924-892e-4f25-bfda-2f4c525eeefb,"['G(distSense_0 -> (X(distSense_0) -> (!isReady -> (X(isReady) -> (!balancer_0 -> (!balancer_1 -> balancer_2))))))', 'G(!distSense_0 -> (X(distSense_0) -> (!isReady -> (X(isReady) -> (!balancer_0 -> (!balancer_1 -> balancer_2)))) & (isReady -> (X(isReady) -> (!balancer_0 -> (!balancer_1 -> !balancer_2))))))']",True
+ea8a41d7-3d36-47fc-b9c8-6396498e6b7b,['G(F(distSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 -> balancer_2)))))'],True
+4cc0d1ea-11a6-4280-b912-6e6bada104e8,['G(distSense_0 -> (isReady -> (X(isReady) -> (!balancer_0 -> (!balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 -> balancer_2)))))'],True
+fc0a1c23-5784-4ab3-987a-f8d6353d2796,['G(!distSense_0 -> (isReady -> (!balancer_0 &  (!balancer_1 &  balancer_2)))) & (distSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 -> !balancer_2)) & (balancer_0 -> (!balancer_1 &  !balancer_2))))'],True

@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+f4e11281-bb35-4ab3-9b54-3f8e844b05ce,"['G(!distSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (!bluetoothCmd_2 -> (!balancerStatus_0 -> (!balancer_0 -> (!balancer_1 -> balancer_2))))))))', 'G(!distSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (bluetoothCmd_2 -> (!balancerStatus_0 -> (!balancer_0 &  (!balancer_1 &  !balancer_2)))))))) & (distSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (!bluetoothCmd_2 -> (!balancerStatus_0 -> (!balancer_0 -> (!balancer_1 -> balancer_2))))))))']",True
