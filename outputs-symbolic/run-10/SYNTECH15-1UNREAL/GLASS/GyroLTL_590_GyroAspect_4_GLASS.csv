@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+fc46d99b-c25c-4ce9-93e1-a9696970048a,['(!distSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> bluetoothCmd_2))))'],True

@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+3669e1c2-d4e7-4788-82ed-d2a806302a63,['(!frontDistSense_0 -> (!backDistSense_0 -> !isReady))'],True

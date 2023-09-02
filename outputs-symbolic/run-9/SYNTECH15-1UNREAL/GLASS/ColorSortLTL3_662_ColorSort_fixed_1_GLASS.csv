@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+3308ac67-e1e4-4e40-84b1-99d43a5c1f49,['(!color_0 -> (!color_1 -> (!detect_0 -> (ack_ver_0 &  ack_hor_0)) & (detect_0 -> (!detect_1 -> (ack_ver_0 &  ack_hor_0)))) & (color_1 -> (!color_2 -> (!detect_0 -> (ack_ver_0 &  ack_hor_0)) & (detect_0 -> (!detect_1 -> (ack_ver_0 &  ack_hor_0)))) & (color_2 -> (detect_0 &  detect_1)))) & (color_0 -> (!color_1 -> (!detect_0 -> (ack_ver_0 &  ack_hor_0)) & (detect_0 -> (!detect_1 -> (ack_ver_0 &  ack_hor_0)))))'],True
