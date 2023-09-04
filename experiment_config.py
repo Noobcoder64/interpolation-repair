@@ -1,8 +1,8 @@
 
 # List of input folders
 INPUT_FOLDERS = [
-    # "inputs/AMBA",
-    # "inputs/SYNTECH15-UNREAL",
+    "inputs/AMBA",
+    "inputs/SYNTECH15-UNREAL",
     "inputs/SYNTECH15-1UNREAL",
     # "inputs/AMBA-ORIGINAL",
     # "inputs/SYNTECH15-UNREAL-ORIGINAL",
@@ -17,7 +17,7 @@ INPUT_FOLDERS = [
 # List of algorithms
 ALGORITHMS = [
     # "INTERPOLATION-MIN-INF",
-    # "INTERPOLATION-MIN",
+    "INTERPOLATION-MIN",
     # "INTERPOLATION-ALLGARS-INF",
     "INTERPOLATION-ALLGARS",
     # "GLASS",
@@ -34,7 +34,7 @@ SYSTEMS = [
 ]
 
 # Output parent folder
-OUTPUT_PARENT_FOLDER = "outputs-interpolation/run-1"
+OUTPUT_PARENT_FOLDER = "outputs-interpolation/"
 
 # Set the timeout
 TIMEOUT = 10

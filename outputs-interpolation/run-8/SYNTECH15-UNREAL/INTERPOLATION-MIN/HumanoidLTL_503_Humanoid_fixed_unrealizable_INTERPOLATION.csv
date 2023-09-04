@@ -1,0 +1,5 @@
+Id,UniqueRefinement,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsWellSeparated,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeWellSeparationCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod
+88ded6e5-0af7-4b27-863f-d8dede7c81ee,[],0.0020886529819108546,0,N/A,1,False,N/A,N/A,False,1.4030511849559844,N/A,N/A,1.2789410420227796,5,4.0681043174117804e-05,0.031101501954253763
+9b42cf05-2b95-4afa-9574-debb162f5297,['G(F(!(!leftMotor_1)))'],4.176912515016738,1,88ded6e5-0af7-4b27-863f-d8dede7c81ee,1,False,N/A,N/A,False,1.3717982129892334,N/A,N/A,1.2458128219586797,9,5.367497215047479e-05,0.029173718998208642
+254e2e2f-287d-432b-921f-86cb0076fa45,"['G(F(!(!leftMotor_1)))', 'G(F(!(!leftMotor_2)))']",8.170189295022283,2,9b42cf05-2b95-4afa-9574-debb162f5297,1,False,N/A,N/A,False,1.2323074319865555,N/A,N/A,1.334194079041481,25,7.153698243200779e-05,0.030876706005074084
+462bc977-f29e-4961-9b2c-2b21e37ee574,"['FALSE', 'G(F(!(!leftMotor_1)))', 'G(F(!(!leftMotor_2)))']",12.100825994974002,3,254e2e2f-287d-432b-921f-86cb0076fa45,0,True,False,N/A,False,1.3204685009550303,1.3673050879733637,N/A,N/A,N/A,N/A,N/A

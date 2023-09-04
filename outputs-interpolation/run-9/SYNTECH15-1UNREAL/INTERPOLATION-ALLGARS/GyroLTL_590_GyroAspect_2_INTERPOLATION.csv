@@ -1,0 +1,5 @@
+Id,UniqueRefinement,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsWellSeparated,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeWellSeparationCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod
+d36b295c-a6f9-4aac-a583-3d89da60fe46,[],0.002010284981224686,0,N/A,3,False,N/A,N/A,False,1.426902754988987,N/A,N/A,1.402358315011952,33,6.479298463091254e-05,0.047992447041906416
+be593cb9-3a9d-4a16-8c6a-8d28ead24838,['G(F(!(!bluetoothCmd_2 & !bluetoothCmd_0 & !balancer_2 & !bluetoothCmd_1)))'],2.888951872999314,1,d36b295c-a6f9-4aac-a583-3d89da60fe46,0,True,True,True,True,1.3836560010095127,1.3952328860177658,1.3736384770018049,N/A,N/A,N/A,N/A
+b9d11447-62ff-476b-8886-e945cb8e9544,['!(!bluetoothCmd_2 & !bluetoothCmd_0 & !bluetoothCmd_1)'],2.8889654140220955,1,d36b295c-a6f9-4aac-a583-3d89da60fe46,0,True,False,N/A,False,1.3956550010479987,1.37078716797987,N/A,N/A,N/A,N/A,N/A
+d02cd61f-d1a8-4317-a79d-32d70a1307aa,['G(!(!bluetoothCmd_2 & !bluetoothCmd_0 & !bluetoothCmd_1))'],2.888972765998915,1,d36b295c-a6f9-4aac-a583-3d89da60fe46,0,True,False,N/A,False,1.4720300900517032,1.4031857129884884,N/A,N/A,N/A,N/A,N/A

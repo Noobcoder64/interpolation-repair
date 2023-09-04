@@ -211,7 +211,7 @@ class Counterstrategy:
             else:
 
                 path = Path(initial_state, [], [initial_state])
-
+                # path.unroll()
                 return path
 
         print("=== INI ===")

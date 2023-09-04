@@ -55,13 +55,14 @@ def save_summary_to_csv(summary, input_folder, algorithm, output_folder):
     print(f"Repairs summary saved to {output_file}")
 
 def summarize_folder(input_folder, algorithm):
-    output_folder = os.path.join(OUTPUT_PARENT_FOLDER, os.path.basename(input_folder), algorithm)
-    os.makedirs(output_folder, exist_ok=True)
+    for i in range(1, 11):
+        output_folder = os.path.join(OUTPUT_PARENT_FOLDER, f"run-{i}", os.path.basename(input_folder), algorithm)
+        os.makedirs(output_folder, exist_ok=True)
 
-    spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra")]
-    summary = create_summary_dataframe(spectra_files, output_folder)
-    
-    save_summary_to_csv(summary, input_folder, algorithm, output_folder)
+        spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra")]
+        summary = create_summary_dataframe(spectra_files, output_folder)
+        
+        save_summary_to_csv(summary, input_folder, algorithm, output_folder)
 
 
 total_start_time = time.time()
