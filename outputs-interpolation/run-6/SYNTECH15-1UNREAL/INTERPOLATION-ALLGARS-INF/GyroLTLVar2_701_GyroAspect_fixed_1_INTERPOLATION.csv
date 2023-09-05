@@ -1,0 +1,6 @@
+Id,UniqueRefinement,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsWellSeparated,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeWellSeparationCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3
+90fa63f6-0fe5-45ba-90bc-05e91199fa13,[],0.0021013819969084,0,,4,False,,,False,1.3712941699996009,,,19.30557786600184,5129.0,8.150999929057434e-05,0.078319725998881,,False,,,,
+4a369616-221b-4acc-9a6c-4fccfbf32159,['G(F(!(!isReady)))'],20.76670982199721,1,90fa63f6-0fe5-45ba-90bc-05e91199fa13,0,True,True,True,True,1.3729367570012982,1.411103529000684,1.4910923190000176,,,,,,False,,,,
+9da60816-3d7a-49ee-b6d8-61b85a8b2b9c,['G((!isReady) -> X(!(!isReady)))'],20.766727700000047,1,90fa63f6-0fe5-45ba-90bc-05e91199fa13,0,True,True,True,True,1.3922634699993068,1.3218667120017926,1.3540666430017154,,,,,,False,,,,
+3a5038f5-d649-4cf3-bec6-c2c4141566eb,['G((!bluetoothCmd_3) -> X(!(!isReady)))'],20.76673566699901,1,90fa63f6-0fe5-45ba-90bc-05e91199fa13,0,True,True,True,True,1.4052205699990736,1.3709682669978065,1.3460177080014546,,,,,,False,,,,
+f44a3800-6f27-46c9-a6ec-6030817bec14,['!(!bluetoothCmd_3)'],20.766742557996626,1,90fa63f6-0fe5-45ba-90bc-05e91199fa13,0,True,False,,False,1.44983092700204,1.3608836700004758,,,,,,,False,,,,

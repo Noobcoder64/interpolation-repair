@@ -20,15 +20,19 @@ def create_summary_dataframe(spectra_files, output_folder):
     data_frames = []
     for spectra_file in spectra_files:
         spec_name = os.path.splitext(spectra_file)[0]
+        nodes_explored = 0
+        num_repairs = 0
         min_num_variables = 0
         max_num_variables = 0
-        num_repairs = 0
         matching_csv_file = [csv_file for csv_file in os.listdir(output_folder) if spec_name in csv_file and csv_file.endswith(".csv")]
         if matching_csv_file:
             csv_filepath = os.path.join(output_folder, matching_csv_file[0])
             if not is_csv_file_empty(csv_filepath):
                 df = pd.read_csv(csv_filepath, sep=",", index_col=False)
-                repaired_df = df[df["IsSolution"] == True]
+                if df.empty:
+                    continue
+                repaired_df = df[(df["IsSolution"] == True) & (df["ContainsAux"] == False) & (df["IsWellSeparated"] == True)]
+                nodes_explored = len(df)
                 num_repairs = len(repaired_df)
                 # min_num_variables = repaired_df["NumVariables"].min()
                 # max_num_variables = repaired_df["NumVariables"].max()
@@ -38,6 +42,7 @@ def create_summary_dataframe(spectra_files, output_folder):
         data = {
             "System": [system] if system else ["Unknown"],
             "Specification": [spec_name],
+            "NodesExplored": [nodes_explored],
             "NumRepairs": [num_repairs],
             "MinNumVariables": [min_num_variables],
             "MaxNumVariables": [max_num_variables],

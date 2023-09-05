@@ -1,0 +1,5 @@
+Id,UniqueRefinement,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsWellSeparated,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeWellSeparationCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3
+4c37fccb-8aaa-4d28-8f46-6650c13d8802,[],0.0099137369979871,0,,2,False,,,False,1.5240660280032898,,,152.68534235800325,3553.0,7.023700163699687e-05,0.0568693090026499,,False,,,,
+58d7b430-140f-46fe-b598-e9a5e38604ec,['G(F(!(!color_2)))'],156.24771290899662,1,4c37fccb-8aaa-4d28-8f46-6650c13d8802,1,False,,,False,1.5597899340064032,,,168.37732728499395,3873.0,8.2354003097862e-05,0.0425365019982564,,False,,,,
+e27c314b-f362-448f-a568-96ce4f47cb35,['G((!color_2) -> X(!(!color_2)))'],156.2477318070014,1,4c37fccb-8aaa-4d28-8f46-6650c13d8802,0,False,,,False,1.5099148900044383,,,135.17045891200542,4178.0,4.81995812151581e-07,0.0468098040000768,,False,,,,
+ed39b3e9-a5f4-4e75-ba96-ce36c3e22c28,"['FALSE', 'G(F(!(!color_2)))']",328.3099477430005,2,58d7b430-140f-46fe-b598-e9a5e38604ec,0,True,False,,False,1.419929827003216,1.3571191350056324,,,,,,,False,,,,
