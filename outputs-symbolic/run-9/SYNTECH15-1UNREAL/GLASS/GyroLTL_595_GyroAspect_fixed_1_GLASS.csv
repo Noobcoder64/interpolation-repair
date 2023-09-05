@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3
+3283622f-c22a-4209-8275-d3e47c14b256,['(!frontDistSense_0 -> (!backDistSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> bluetoothCmd_2)))))'],True,,False,,,,

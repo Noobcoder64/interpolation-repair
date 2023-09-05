@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3
+d5f25833-38f9-4ffa-a7fb-510b79c16d39,['G(!obstacle_0 -> (inputMoveMode_0 -> !inputMoveMode_1))'],True,,False,,,,

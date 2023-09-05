@@ -1,0 +1,11 @@
+Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3
+d00f24dc-aa88-4c2a-bb93-81d3c8dab0c3,['G(F(distSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 -> balancer_2)))))'],True,,False,,,,
+f60422c3-2c67-442c-8e72-ef3b826111dd,['G(distSense_0 -> (X(distSense_0) -> (isReady -> (X(isReady) -> (!balancer_0 -> (!balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 -> balancer_2))))))'],True,,False,,,,
+f72866a3-1ea8-458b-a8af-e813c6d51f20,['G(distSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 -> !balancer_2)) & (balancer_0 -> (!balancer_1 &  !balancer_2))))'],True,,False,,,,
+f9339ff3-dca3-48cd-95ec-1c245b5974d3,['G(F(distSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 -> balancer_2)))))'],True,,False,,,,
+7ad9c34e-fee1-43a1-ac59-b2ba5f6ba1ce,['G(distSense_0 -> (X(distSense_0) -> (isReady -> (X(isReady) -> (!balancer_0 -> (!balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 -> balancer_2))))))'],True,,False,,,,
+a2dc54d6-2e16-439a-b164-6900092d214e,['G(distSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 -> !balancer_2)) & (balancer_0 -> (!balancer_1 &  !balancer_2))))'],True,,False,,,,
+2c0a9d0c-7348-41a4-a177-a3b5c72ca02b,"['G(distSense_0 -> (X(distSense_0) -> (!isReady -> (X(isReady) -> (!balancer_0 -> (!balancer_1 -> balancer_2))))))', 'G(!distSense_0 -> (X(distSense_0) -> (!isReady -> (X(isReady) -> (!balancer_0 -> (!balancer_1 -> balancer_2)))) & (isReady -> (X(isReady) -> (!balancer_0 -> (!balancer_1 -> !balancer_2))))))']",True,,False,,,,
+9c0c01c4-d192-484f-824f-34de04235166,['G(F(distSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 -> balancer_2)))))'],True,,False,,,,
+20a0ce36-86ef-4e56-be66-038156f899ba,['G(distSense_0 -> (isReady -> (X(isReady) -> (!balancer_0 -> (!balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 -> balancer_2)))))'],True,,False,,,,
+f5d4bf28-62db-4f32-a4f2-8b381e6612b9,['G(!distSense_0 -> (isReady -> (!balancer_0 &  (!balancer_1 &  balancer_2)))) & (distSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 -> !balancer_2)) & (balancer_0 -> (!balancer_1 &  !balancer_2))))'],True,,False,,,,

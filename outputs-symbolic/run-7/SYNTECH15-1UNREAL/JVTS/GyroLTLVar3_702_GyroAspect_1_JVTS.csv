@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3
+4b8dcde8-e017-4c63-9781-31216ed0b009,['G(!frontDistSense_0 -> (!backDistSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2)))))'],True,,False,,,,

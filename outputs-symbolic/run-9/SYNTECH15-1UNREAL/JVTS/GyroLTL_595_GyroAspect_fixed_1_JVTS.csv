@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3
+1a7c8ee0-b177-49ed-bc4d-88472a477242,['G(!frontDistSense_0 -> (!backDistSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (!bluetoothCmd_2 -> (!balancer_0 -> (!balancer_1 -> (!balancer_2 -> (!spec_blockedState_0 -> (!spec_blockedState_1 -> (!spec_moveAwayFromFrontObstacleState_0 -> (!spec_moveAwayFromBackObstacleState_0 -> (!spec_forwardingState_0 -> spec_backwardingState_0))))))))))))))'],True,,False,,,,

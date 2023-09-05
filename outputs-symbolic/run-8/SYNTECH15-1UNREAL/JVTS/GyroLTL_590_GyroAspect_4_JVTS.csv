@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3
+6b80ff7f-3c3f-47bc-b2b6-182d46924665,"['G(!distSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (!bluetoothCmd_2 -> (!balancerStatus_0 -> (!balancer_0 -> (!balancer_1 -> balancer_2))))))))', 'G(!distSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (!bluetoothCmd_2 -> (balancerStatus_0 -> (!balancer_0 -> (!balancer_1 -> balancer_2))))))))']",True,,False,,,,

@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3
+c6361cfe-0099-49cf-9f17-6f2bf09816b7,['G(F(!distSense_0 -> (!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2)))) & (distSense_0 -> (!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2))) & (isReady -> (!balancer_0 -> (!balancer_1 &  balancer_2)) & (balancer_0 -> (!balancer_1 -> balancer_2)))))'],True,,False,,,,
