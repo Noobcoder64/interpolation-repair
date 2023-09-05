@@ -31,7 +31,7 @@ def create_summary_dataframe(spectra_files, output_folder):
                 df = pd.read_csv(csv_filepath, sep=",", index_col=False)
                 if df.empty:
                     continue
-                repaired_df = df[(df["IsSolution"] == True) & (df["ContainsAux"] == False) & (df["IsWellSeparated"] == True)]
+                repaired_df = df[(df["IsSolution"] == True) & (df["ContainsAux"] == False)]
                 nodes_explored = len(df)
                 num_repairs = len(repaired_df)
                 # min_num_variables = repaired_df["NumVariables"].min()

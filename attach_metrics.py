@@ -100,7 +100,7 @@ def main():
                     spectra_file_name = os.path.splitext(spectra_file)[0]
                     spectra_file_path = os.path.join(input_folder, spectra_file)
                     
-                    csv_file_name = f"{spectra_file_name}_INTERPOLATION.csv"
+                    csv_file_name = f"{spectra_file_name}_{algorithm}.csv"
                     csv_file_path = os.path.join(output_folder, csv_file_name)
 
                     if not os.path.exists(csv_file_path):
