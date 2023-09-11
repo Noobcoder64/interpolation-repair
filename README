@@ -25,8 +25,19 @@ attach_metrics > repairs_summary > benchmark_summary
 
 These will create csv files with information about the repairs.
 
-repairs_analysis
+repairs_analysis.ipynb and plots.ipynb contain analysis of results. I left all of the analysis in case someone may find the scripts useful in the future.
 
-#
+## inputs
+The inputs folder contains the translated benchmarks used for evaluation
 
-The file interpolation_repair encapsules the main interpolation-based assumptions refinement algortihm
+## outputs folders
+The output folders contain the results based on the type of experiment conducted
+
+## translator
+The translator folder contains the translator used to simplify specifications containing Spectra's advanced language features.
+Execute python translator.py -help to check which arguments are accepted 
+
+## interpolation_repair.py
+
+The file interpolation_repair contains the main algortihm for interpolation-based assumptions refinement.
+Execute python interpolation_repari.py -help to check which arguments are accepted 
