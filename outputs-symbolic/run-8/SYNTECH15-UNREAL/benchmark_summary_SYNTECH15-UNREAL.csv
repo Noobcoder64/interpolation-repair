@@ -1,0 +1,9 @@
+Algorithm,System,NumRepaired,NumSmallRepairs
+GLASS,ColorSort,1,6
+GLASS,Gyro,2,6
+GLASS,Humanoid,8,6
+GLASS,PCar,1,6
+JVTS,ColorSort,0,4
+JVTS,Gyro,2,4
+JVTS,Humanoid,3,4
+JVTS,PCar,1,4

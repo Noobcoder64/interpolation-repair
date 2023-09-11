@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
+01eaf89f-3a1e-4edd-bdfe-1da7dddb2d03,['G(F(!isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (!bluetoothCmd_2 -> (!balancer_0 -> (!balancer_1 -> balancer_2)))))))'],True,7,False,,,,,1.0

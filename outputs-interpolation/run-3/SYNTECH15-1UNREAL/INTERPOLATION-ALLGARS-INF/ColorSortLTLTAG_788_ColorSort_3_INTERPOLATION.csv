@@ -1,0 +1,7 @@
+Id,UniqueRefinement,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsWellSeparated,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeWellSeparationCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
+e7fc3c52-3e14-48c3-b87e-b1bf150256dd,[],0.002135407004971,0,,3,False,,,False,1.3343077339814045,,,15.482930098020006,1665.0,5.52500132471323e-05,0.0545195849845185,,False,,,,,
+3ae74709-bdc8-4041-be77-636a8e940ef9,['!(!color_2)'],16.88438608299475,1,e7fc3c52-3e14-48c3-b87e-b1bf150256dd,0,False,,,False,1.3730055990163237,,,22.28991774300812,2049.0,,,1,False,,,,,1.0
+4266bd30-1f92-421c-9bfe-32987bf27f29,['G(F(!(!color_2)))'],16.884397079003975,1,e7fc3c52-3e14-48c3-b87e-b1bf150256dd,1,False,,,False,1.3346356460242532,,,21.28813447698485,2433.0,7.720501162111759e-05,0.0535771090071648,1,False,,,,,1.0
+43b10c68-716f-4893-93f6-5a983ff0962f,['G(!(!color_2))'],16.884401510003954,1,e7fc3c52-3e14-48c3-b87e-b1bf150256dd,1,False,,,False,1.3798617349821145,,,13.713276069029234,2433.0,7.533602183684707e-05,0.0551349419984035,1,False,,,,,1.0
+c858e741-bef6-460a-aedd-f32bc1995807,"['FALSE', 'G(F(!(!color_2)))']",63.28564523498062,2,4266bd30-1f92-421c-9bfe-32987bf27f29,0,True,False,,False,1.2878888169652782,1.196895666013006,,,,,,2,False,,,,,2.0
+0c287e9b-d1a5-4b72-a77b-cc7e3925fce4,"['FALSE', 'G(!(!color_2))']",78.4441059489618,2,43b10c68-716f-4893-93f6-5a983ff0962f,0,True,False,,False,1.2592822689912282,1.311621579050552,,,,,,2,False,,,,,2.0

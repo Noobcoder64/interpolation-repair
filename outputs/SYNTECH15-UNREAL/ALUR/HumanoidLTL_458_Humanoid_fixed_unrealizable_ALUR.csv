@@ -1,4 +1,0 @@
-Id,UniqueRefinement,IsSolution
-d5fee4a8-936f-4c29-8ff5-013d27614751,['G(!obstacle_0 -> (inputMoveMode_0 -> !inputMoveMode_1))'],True
-383aff67-a79f-40b7-b3dd-01536dca766b,"['G(!obstacle_0 -> (inputMoveMode_0 -> !inputMoveMode_1))', 'G(!obstacle_0 -> (!inputMoveMode_0 -> inputMoveMode_1))']",True
-94e0e96b-00af-48ab-9be7-66703ce66201,"['G(!obstacle_0 -> (inputMoveMode_0 -> !inputMoveMode_1))', 'G(!obstacle_0 -> (X(!(obstacle_0)) -> (inputMoveMode_0 -> (X(!(inputMoveMode_0)) -> (inputMoveMode_1 -> X(inputMoveMode_1))))))']",True

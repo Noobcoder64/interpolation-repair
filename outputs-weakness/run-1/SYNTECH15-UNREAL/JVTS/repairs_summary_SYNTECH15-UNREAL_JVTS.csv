@@ -1,0 +1,15 @@
+System,Specification,NodesExplored,NumRepairs,MinNumVariables,MaxNumVariables,MinNumAssumptions,MaxNumAssumptions,MinWeakness,Repaired
+ColorSort,ColorSortLTL3_689_ColorSort_fixed_unrealizable,0,0,0,0,0,0,,False
+ColorSort,ColorSortLTLUnrealizable1_790_ColorSort_unrealizable,0,0,0,0,0,0,,False
+ColorSort,ColorSortLTLUnrealizable2_791_ColorSort_unrealizable,0,0,0,0,0,0,,False
+Gyro,GyroUnrealizable_Var1_710_GyroAspect_unrealizable,15,15,5,7,0,0,"(0.875, 0.771240625180289, 1.0, -inf)",True
+Gyro,GyroUnrealizable_Var2_710_GyroAspect_unrealizable,9,9,6,7,0,0,"(0.8493173544194138, 0.8359513284507792, 1.0, -inf)",True
+Humanoid,HumanoidLTL_458_Humanoid_fixed_unrealizable,1,1,3,3,0,0,"(0.9851811478505847, 0.9851811478505847, 1.0, -inf)",True
+Humanoid,HumanoidLTL_503_Humanoid_fixed_unrealizable,0,0,0,0,0,0,,False
+Humanoid,HumanoidLTL_531_Humanoid_unrealizable,107,107,9,11,0,0,"(0.954159779710864, 0.954159779710864, 1.0, -inf)",True
+Humanoid,HumanoidLTL_713_Humanoid_unrealizable,0,0,0,0,0,0,,False
+Humanoid,HumanoidLTL_741_Humanoid_unrealizable,0,0,0,0,0,0,,False
+Humanoid,HumanoidLTL_742_Humanoid_unrealizable,3,3,15,15,0,0,"(0.9752208642326295, 0.9752208642326295, 1.0, -inf)",True
+Humanoid,HumanoidLTL_NotRealizable2_879_Humanoid_unrealizable,0,0,0,0,0,0,,False
+Humanoid,HumanoidLTL_NotRealizable2_884_Humanoid_unrealizable,0,0,0,0,0,0,,False
+PCar,PCarLTL_Unrealizable_V_2_unrealizable0_888_PCar_fixed_unrealizable,12,12,13,14,0,0,"(0.9673553200652982, 0.9673553200652982, 1.0, -inf)",True

@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+e3980abd-6359-4c07-baf6-66e78a6f5af5,['G(F(obstacle=CLEAR -> (sideSense=CLEAR -> (throttle=BWD -> steer!=CENTER) & (throttle=STOP -> steer!=CENTER)) & (sideSense=P_O -> (throttle=FWD &  steer=CENTER)) & (sideSense=BLOCKED -> (throttle=FWD &  steer=CENTER))) & (obstacle=BLOCKED -> (sideSense!={} &  (throttle=FWD &  TRUE))) & (obstacle=OBJECT -> (sideSense!={} &  (throttle=FWD &  steer=CENTER))))'],True

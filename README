@@ -1,37 +1,32 @@
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ubuntu/InterpolationRepair/spectra
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ubuntu/interpolation-repair/spectra
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/homes/fa1622/interpolation-repair/spectra
+# Interpolation-Based Assumptions Refinement using Spectra
 
-conda activate py38
+## Installation
 
-Convert "<->"
-Expand next(...)
-Replace " ;" with ";"
+| **Step**                                       | **Command**                                                                      |
+| ---------------------------------------------- | --------------------------------------------------------------------------------- |
+| **Install Conda**                              | [Official Conda Installation Guide](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) |
+| **Create Conda Environments**                  | `conda create -n py38 python=3.8`<br>`conda create -n py27 python=2.7`            |
+| **Activate Python 3.8 Environment** | `conda activate py38`                                                           |
+| **Install Python Spot (v2.11.6)**             | [Spot Installation Guide](https://spot.lre.epita.fr/install.html)<br>`conda install -c conda-forge spot` |
+| **Install Pyparsing (v3.1.1)**                | [Pyparsing on Conda Forge](https://anaconda.org/conda-forge/pyparsing)<br>`conda install -c conda-forge pyparsing` |
+| **Install Numpy (v1.25.2)**                   | [Official Numpy Installation Guide](https://numpy.org/install/)<br>`conda install -c conda-forge numpy` |
+| **Install Pandas**                             | [Pandas Installation Guide](https://pandas.pydata.org/docs/getting_started/install.html)<br>`conda install pandas` |
+| **Install Matplotlib**                         | [Matplotlib Installation Guide](https://matplotlib.org/stable/users/installing/index.html)<br>`conda install matplotlib` |
 
-Install conda
-create conda env py38 and py27 for translator
-py27 for translation
-install packages
+## Spectra
 
-Install python spot 2.11.6
-https://spot.lre.epita.fr/install.html
-https://anaconda.org/conda-forge/spot
-conda install -c conda-forge spot
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/spectra
 
-Install pyparsing 3.1.1
-https://anaconda.org/conda-forge/pyparsing
-conda install -c conda-forge pyparsing
+## Evaluations
 
-Install numpy 1.25.2
-https://numpy.org/install/
-https://anaconda.org/conda-forge/numpy
+Run the scripts in the following order after configuring in experiment_config.py
 
-Install clingo version 5.4.0
-https://github.com/potassco/clingo/releases/
-conda install -c potassco clingo=5.4.0
+attach_metrics > repairs_summary > benchmark_summary
 
-Install pandas
-https://pandas.pydata.org/docs/getting_started/install.html
-conda install pandas
+These will create csv files with information about the repairs.
 
-attach_metrics > repairs_summary > benchmark_summary > analysis
+repairs_analysis
+
+#
+
+The file interpolation_repair encapsules the main interpolation-based assumptions refinement algortihm
