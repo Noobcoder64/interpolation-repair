@@ -1,12 +1,8 @@
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ubuntu/InterpolationRepair/spectra
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ubuntu/interpolation-repair/spectra
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/homes/fa1622/interpolation-repair/spectra
+This repository containes the code for Interpolation-Based Assumptions Refinement using Spectra
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/spectra
 
 conda activate py38
-
-Convert "<->"
-Expand next(...)
-Replace " ;" with ";"
 
 Install conda
 create conda env py38 and py27 for translator
@@ -26,12 +22,15 @@ Install numpy 1.25.2
 https://numpy.org/install/
 https://anaconda.org/conda-forge/numpy
 
-Install clingo version 5.4.0
-https://github.com/potassco/clingo/releases/
-conda install -c potassco clingo=5.4.0
 
 Install pandas
 https://pandas.pydata.org/docs/getting_started/install.html
 conda install pandas
 
+Install matplotlib
+https://matplotlib.org/stable/users/installing/index.html
+conda install matplotlib
+
 attach_metrics > repairs_summary > benchmark_summary > analysis
+
+The file interpolation_repair encapsules the main interpolation-based assumptions refinement algortihm

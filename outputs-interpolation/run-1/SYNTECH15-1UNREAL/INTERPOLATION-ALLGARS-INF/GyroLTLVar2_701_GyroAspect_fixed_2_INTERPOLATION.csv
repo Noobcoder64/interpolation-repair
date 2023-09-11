@@ -1,3 +1,3 @@
-Id,UniqueRefinement,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsWellSeparated,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeWellSeparationCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3
-eaaf2327-eb08-4572-9e3e-14083113c069,[],0.0026993849896825,0,,1,False,,,False,1.309210016974248,,,44.311282644979656,8649.0,0.0001730800140649,0.0865631960332393,,False,,,,
-ac8b1fac-0ba8-474b-abca-69d7899e128e,['FALSE'],45.724380562023725,1,eaaf2327-eb08-4572-9e3e-14083113c069,0,True,False,,False,1.2913817900116555,1.1306330090155825,,,,,,,False,,,,
+Id,UniqueRefinement,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsWellSeparated,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeWellSeparationCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
+eaaf2327-eb08-4572-9e3e-14083113c069,[],0.0026993849896825,0,,1,False,,,False,1.309210016974248,,,44.311282644979656,8649.0,0.0001730800140649,0.0865631960332393,,False,,,,,
+ac8b1fac-0ba8-474b-abca-69d7899e128e,['FALSE'],45.724380562023725,1,eaaf2327-eb08-4572-9e3e-14083113c069,0,True,False,,False,1.2913817900116555,1.1306330090155825,,,,,,1,False,,,,,1.0

@@ -33,8 +33,7 @@ def summarize(input_folder):
 
             for system in df["System"].unique():
                 num_repaired = len(repaired_specs[repaired_specs["System"] == system])
-                # num_small_repaired = len(df[(df["MinNumVariables"] <= SMALL_REPAIR_VALUE) & (df["MinNumVariables"] > 0)])
-                num_small_repaired = 0
+                num_small_repaired = len(df[(df["MinNumVariables"] <= SMALL_REPAIR_VALUE) & (df["MinNumVariables"] > 0)])
                 summary_data.append([algorithm, system, num_repaired, num_small_repaired])
 
         benchmark_summary_file = os.path.join(OUTPUT_PARENT_FOLDER, f"run-{i}", input_folder_name, f"benchmark_summary_{input_folder_name}.csv")

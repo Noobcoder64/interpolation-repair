@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+e0eefd1d-3d1b-48c8-976d-907c1119a4ba,"['G(F(backDistSense=CLEAR -> (!isReady -> (bluetoothCmd=AUTO -> balancer!=STP)) & (isReady -> (bluetoothCmd=AUTO -> balancer=FWD))) & (backDistSense=BLOCKED -> (!isReady -> (bluetoothCmd=AUTO -> balancer!=STP)) & (isReady -> (bluetoothCmd=AUTO -> balancer={FWD, BWD}))))']",True
