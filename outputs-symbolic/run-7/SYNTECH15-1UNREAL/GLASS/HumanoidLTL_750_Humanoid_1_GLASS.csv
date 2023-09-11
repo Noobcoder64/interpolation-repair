@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3
-5d23c165-6049-423e-8cca-79239a081222,['(obstacle_0 -> (!heading_0 -> heading_1))'],True,,False,,,,
+Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
+5d23c165-6049-423e-8cca-79239a081222,['(obstacle_0 -> (!heading_0 -> heading_1))'],True,3,False,,,,,1.0

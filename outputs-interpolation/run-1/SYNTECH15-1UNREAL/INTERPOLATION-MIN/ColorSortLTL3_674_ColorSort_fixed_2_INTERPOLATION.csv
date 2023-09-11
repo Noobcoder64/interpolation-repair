@@ -1,5 +1,5 @@
-Id,UniqueRefinement,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsWellSeparated,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeWellSeparationCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3
-1b8c01e1-f8a2-4890-8730-93c31a24292d,[],0.002186153025832,0,,3,False,,,False,1.372362633002922,,,330.6967985999654,270209.0,5.676399450749159e-05,0.1789501429884694,,False,,,,
-d5a5095e-b3dd-4876-a891-995f01dbe84c,['G(!(ack_hor_0))'],334.39163847401505,1,1b8c01e1-f8a2-4890-8730-93c31a24292d,0,True,False,,False,1.3213790600420907,1.3775463609490544,,,,,,,False,,,,
-c82dcf04-40d6-4f01-bacf-e6adc6c049c7,['!(ack_hor_0)'],334.3916499650222,1,1b8c01e1-f8a2-4890-8730-93c31a24292d,0,True,False,,False,1.4286734420456924,1.3761632189853117,,,,,,,False,,,,
-bc2b8310-fd1c-4c07-9823-d596240ad8e5,['G(F(!(ack_hor_0 & pREV_aux_5)))'],334.39165459002834,1,1b8c01e1-f8a2-4890-8730-93c31a24292d,0,False,,,False,1.3567935870378278,,,,,,,,True,,,,
+Id,UniqueRefinement,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsWellSeparated,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeWellSeparationCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
+1b8c01e1-f8a2-4890-8730-93c31a24292d,[],0.002186153025832,0,,3,False,,,False,1.372362633002922,,,330.6967985999654,270209.0,5.676399450749159e-05,0.1789501429884694,,False,,,,,
+d5a5095e-b3dd-4876-a891-995f01dbe84c,['G(!(ack_hor_0))'],334.39163847401505,1,1b8c01e1-f8a2-4890-8730-93c31a24292d,0,True,False,,False,1.3213790600420907,1.3775463609490544,,,,,,1,False,,,,,1.0
+c82dcf04-40d6-4f01-bacf-e6adc6c049c7,['!(ack_hor_0)'],334.3916499650222,1,1b8c01e1-f8a2-4890-8730-93c31a24292d,0,True,False,,False,1.4286734420456924,1.3761632189853117,,,,,,1,False,,,,,1.0
+bc2b8310-fd1c-4c07-9823-d596240ad8e5,['G(F(!(ack_hor_0 & pREV_aux_5)))'],334.39165459002834,1,1b8c01e1-f8a2-4890-8730-93c31a24292d,0,False,,,False,1.3567935870378278,,,,,,,2,True,,,,,1.0

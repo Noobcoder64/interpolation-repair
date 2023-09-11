@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3
-68f244df-73ec-4e25-ae24-ef7ae4c55ed7,['!obstacle_0'],True,,False,,,,
+Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
+68f244df-73ec-4e25-ae24-ef7ae4c55ed7,['!obstacle_0'],True,1,False,,,,,1.0

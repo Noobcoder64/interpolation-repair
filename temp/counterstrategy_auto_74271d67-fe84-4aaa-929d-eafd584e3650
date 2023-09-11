@@ -1,4 +1,0 @@
-VAR
-eNV_CONSTRAINT_0_respondsTo_responded__S2,isReady__S2,eNV_CONSTRAINT_1_respondsTo_responded__S2,frontDistSense_0__S0,frontDistSense_0__S2,backDistSense_0__S2,backDistSense_0__S0,isReady__S0: BOOLEAN
-FORMULA
-((!(isReady__S0))) & ((((!frontDistSense_0__S0)&(!backDistSense_0__S0)))) & (((isReady__S2))) & (((isReady__S0->(isReady__S2)))) & (((isReady__S2->(isReady__S2)))) & (((eNV_CONSTRAINT_0_respondsTo_responded__S2))) & (((eNV_CONSTRAINT_1_respondsTo_responded__S2))) & !isReady__S0 & !backDistSense_0__S0 & !frontDistSense_0__S0 & isReady__S2 & !backDistSense_0__S2 & !frontDistSense_0__S2

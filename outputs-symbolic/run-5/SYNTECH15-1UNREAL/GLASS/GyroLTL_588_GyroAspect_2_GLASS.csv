@@ -1,2 +1,2 @@
-Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3
-085bb808-bf67-4b6e-a3b4-d4bbac2194be,['G(F(!isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (!bluetoothCmd_2 -> (!balancerStatus_0 -> (!balancer_0 -> (!balancer_1 -> (!balancer_2 -> bluetoothStatus_0)))) & (balancerStatus_0 -> (!balancer_0 -> (!balancer_1 -> (!balancer_2 -> !bluetoothStatus_0)))))))))'],True,,False,,,,
+Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
+085bb808-bf67-4b6e-a3b4-d4bbac2194be,['G(F(!isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> (!bluetoothCmd_2 -> (!balancerStatus_0 -> (!balancer_0 -> (!balancer_1 -> (!balancer_2 -> bluetoothStatus_0)))) & (balancerStatus_0 -> (!balancer_0 -> (!balancer_1 -> (!balancer_2 -> !bluetoothStatus_0)))))))))'],True,9,False,,,,,1.0
