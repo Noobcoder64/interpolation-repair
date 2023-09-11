@@ -1,36 +1,32 @@
-This repository containes the code for Interpolation-Based Assumptions Refinement using Spectra
+# Interpolation-Based Assumptions Refinement using Spectra
+
+## Installation
+
+| **Step**                                       | **Command**                                                                      |
+| ---------------------------------------------- | --------------------------------------------------------------------------------- |
+| **Install Conda**                              | [Official Conda Installation Guide](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) |
+| **Create Conda Environments**                  | `conda create -n py38 python=3.8`<br>`conda create -n py27 python=2.7`            |
+| **Activate Python 3.8 Environment** | `conda activate py38`                                                           |
+| **Install Python Spot (v2.11.6)**             | [Spot Installation Guide](https://spot.lre.epita.fr/install.html)<br>`conda install -c conda-forge spot` |
+| **Install Pyparsing (v3.1.1)**                | [Pyparsing on Conda Forge](https://anaconda.org/conda-forge/pyparsing)<br>`conda install -c conda-forge pyparsing` |
+| **Install Numpy (v1.25.2)**                   | [Official Numpy Installation Guide](https://numpy.org/install/)<br>`conda install -c conda-forge numpy` |
+| **Install Pandas**                             | [Pandas Installation Guide](https://pandas.pydata.org/docs/getting_started/install.html)<br>`conda install pandas` |
+| **Install Matplotlib**                         | [Matplotlib Installation Guide](https://matplotlib.org/stable/users/installing/index.html)<br>`conda install matplotlib` |
+
+## Spectra
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/spectra
 
-conda activate py38
+## Evaluations
 
-Install conda
-create conda env py38 and py27 for translator
-py27 for translation
-install packages
+Run the scripts in the following order after configuring in experiment_config.py
 
-Install python spot 2.11.6
-https://spot.lre.epita.fr/install.html
-https://anaconda.org/conda-forge/spot
-conda install -c conda-forge spot
+attach_metrics > repairs_summary > benchmark_summary
 
-Install pyparsing 3.1.1
-https://anaconda.org/conda-forge/pyparsing
-conda install -c conda-forge pyparsing
+These will create csv files with information about the repairs.
 
-Install numpy 1.25.2
-https://numpy.org/install/
-https://anaconda.org/conda-forge/numpy
+repairs_analysis
 
-
-Install pandas
-https://pandas.pydata.org/docs/getting_started/install.html
-conda install pandas
-
-Install matplotlib
-https://matplotlib.org/stable/users/installing/index.html
-conda install matplotlib
-
-attach_metrics > repairs_summary > benchmark_summary > analysis
+#
 
 The file interpolation_repair encapsules the main interpolation-based assumptions refinement algortihm
