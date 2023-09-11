@@ -209,9 +209,9 @@ class Counterstrategy:
                 looping_states = None
             
             else:
-
+                initial_state.set_successor(initial_state.id_state)
                 path = Path(initial_state, [], [initial_state])
-
+                # path.unroll()
                 return path
 
         print("=== INI ===")

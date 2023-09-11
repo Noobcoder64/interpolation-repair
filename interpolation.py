@@ -154,7 +154,7 @@ def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
     if guarantees_boolean == []:
         return None
     
-    # l2b.writeMathsatFormulaToFile("temp/formula_" + id, assum_val_boolean + " & " + " & ".join(guarantees_boolean))
+    l2b.writeMathsatFormulaToFile("temp/formula_" + id, assum_val_boolean + " & " + " & ".join(guarantees_boolean))
     l2b.writeMathsatFormulaToFile("temp/counterstrategy_auto_" + id, assum_val_boolean)
     l2b.writeMathsatFormulaToFile("temp/guarantees_auto_" + id, " & ".join(guarantees_boolean))
     
@@ -165,17 +165,15 @@ def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
 
     interpolant_file = f"temp/INTERP_{id}.1.msat"
     
+    interpolant = None
     if os.path.isfile(interpolant_file):
         interpolant = l2b.parseInterpolant(interpolant_file)
-        if interpolant == "false":
-            os.remove("temp/counterstrategy_auto_" + id)
-            os.remove("temp/guarantees_auto_" + id)
-            os.remove(interpolant_file)
-            return "false"
 
-        return interpolant
-    
-    return None
+    os.remove("temp/counterstrategy_auto_" + id)
+    os.remove("temp/guarantees_auto_" + id)
+    os.remove(interpolant_file)
+
+    return interpolant
 
 
 def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_vars, output_vars):
@@ -212,17 +210,17 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
         print(uc)
     print()
     
-    # print("=== ASSUMPTIONS BOOLEAN ===")
-    # print(" & ".join(assumptions_boolean))
-    # print()
-    # print("=== VALUATIONS BOOLEAN ===")
-    # print(valuations_boolean)
-    # print()
-    # print("=== ASM VAL BOOLEAN ===")
-    # print(assum_val_boolean)
-    # print("=== GUARANTEES BOOLEAN ===")
-    # print("\n".join(guarantees_boolean))
-    # print()
+    print("=== ASSUMPTIONS BOOLEAN ===")
+    print(" & ".join(assumptions_boolean))
+    print()
+    print("=== VALUATIONS BOOLEAN ===")
+    print(valuations_boolean)
+    print()
+    print("=== ASM VAL BOOLEAN ===")
+    print(assum_val_boolean)
+    print("=== GUARANTEES BOOLEAN ===")
+    print("\n".join(guarantees_boolean))
+    print()
 
     interpolant = compute_interpolant(id, assum_val_boolean, guarantees_boolean)
     print("\n=== INTERPOLANT ===")
@@ -248,11 +246,6 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
         interpolant = ""
         state_components = dict()
         print("No interpolant for " + assum_val_boolean +"\n and guarantees " + " & ".join(guarantees_boolean) + "\n on path " + str(path))
-
-    os.remove("temp/counterstrategy_auto_"+id)
-    os.remove("temp/guarantees_auto_"+id)
-    if os.path.isfile(f"temp/INTERP_{id}.1.msat"):
-        os.remove(f"temp/INTERP_{id}.1.msat")
 
     if state_components != dict():
         refinements, non_io_separable = getRefinementsFromStateComponents(state_components,path, input_vars)

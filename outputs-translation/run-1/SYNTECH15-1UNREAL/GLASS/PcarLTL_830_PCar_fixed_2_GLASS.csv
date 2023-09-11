@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+2a0d227f-abdc-4d43-9fa2-da033f419e69,['G(obstacle=BLOCKED -> (next(obstacle)=CLEAR -> (sideSense=PARALLEL_PARKING -> (next(sideSense)!={} &  (next(parkResult)=PARALLEL -> (next(colorSense)=BLACK -> (throttle=BWD -> (steer=CENTER -> (parkComm& =STOP -> spec_policy!=MEASURING))) & (throttle=STOP -> (steer=CENTER -> (parkComm& =STOP -> spec_policy!=MEASURING))) & (throttle=EXIT_FWD -> (steer=CENTER -> (parkComm& =STOP -> spec_policy!=MEASURING)))))))))'],True

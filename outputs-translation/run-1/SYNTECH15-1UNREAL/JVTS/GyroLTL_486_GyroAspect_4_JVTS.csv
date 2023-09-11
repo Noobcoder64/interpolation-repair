@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+9069173f-d838-4d4e-8d77-cbbf40f8e9f6,"['G(distSense=CLEAR -> (isReady -> (bluetoothCmd=AUTO -> balancer!=STP)))', 'G(distSense=CLEAR -> (isReady -> (bluetoothCmd=NOP -> balancer=STP))) & (distSense=BLOCKED -> (isReady -> (bluetoothCmd=AUTO -> balancer!=STP)))']",True

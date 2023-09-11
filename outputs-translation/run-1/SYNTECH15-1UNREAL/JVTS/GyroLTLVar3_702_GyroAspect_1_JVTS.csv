@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+8f52a9ab-1dc1-41e0-bbb0-bb2f5d616f92,['G(frontDistSense=CLEAR -> (backDistSense=CLEAR -> (isReady -> balancer!=STP)))'],True
