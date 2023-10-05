@@ -10,6 +10,7 @@ import numpy as np
 from io_utils import chainAssumptionUnits
 from io_utils import extractVariablesFromFile
 import tarjan
+from io import BytesIO
 
 class Automaton:
     """Defines the Buchi automaton corresponding to an LTL formula"""
@@ -111,13 +112,13 @@ class Automaton:
         # subprocess.PIPE is needed to pipe the standard output of ltl2tgba to the standard input of this Python script
         command = [ROOT_DIR + "spot/build/bin/ltl2tgba", "-B", "-S", "-D", "-f", ltlFormula]
         
-        p = subprocess.Popen(command,0,None,None,subprocess.PIPE)
-        spot_out = p.stdout
+        try:
+            p = subprocess.run(command,0,None,None,subprocess.PIPE, timeout=20000)
+            spot_out = BytesIO(p.stdout)
 
-        self._convertHOA2Automaton(spot_out)
-
-        p.terminate()
-
+            self._convertHOA2Automaton(spot_out)
+        except subprocess.TimeoutExpired:
+            print("LTL2Buchi timed out.")
 
     def _convertHOA2Automaton(self, hoa_stream):
         """Converts Spot's text description format of a BA into an edge-labelled graph"""

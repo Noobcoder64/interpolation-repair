@@ -1,3 +1,4 @@
+
 import os
 import time
 import subprocess
@@ -36,7 +37,8 @@ def process_folder(input_folder, algorithm):
     os.makedirs(output_folder, exist_ok=True)
     
     # Get a list of .spectra files in the input folder
-    spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra")]
+    spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra") and not file.startswith("ColorSort")]
+    spectra_files.sort()
 
     # Use ThreadPoolExecutor to process files in parallel
     # with concurrent.futures.ThreadPoolExecutor() as executor:

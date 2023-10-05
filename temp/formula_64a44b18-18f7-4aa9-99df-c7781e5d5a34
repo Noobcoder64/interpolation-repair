@@ -1,4 +1,0 @@
-VAR
-req__S1,cl__S1,val__S1,gr__S2,val__S2,req__S2,cl__S2: BOOLEAN
-FORMULA
-(((!req__S2))) & (!(cl__S1)) & !cl__S1 & !req__S1 & !req__S2 & cl__S2 & ((cl__S1->!val__S1)) & ((cl__S2->!val__S2)) & (((gr__S2&val__S2)))

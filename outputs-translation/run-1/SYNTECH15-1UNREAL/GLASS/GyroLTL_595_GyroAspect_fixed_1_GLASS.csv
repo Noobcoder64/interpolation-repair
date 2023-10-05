@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution
+4c332eb2-cfae-462b-9d8a-9b8fa7d76875,['(frontDistSense=CLEAR -> (backDistSense=CLEAR -> (isReady -> bluetoothCmd!=AUTO)))'],True

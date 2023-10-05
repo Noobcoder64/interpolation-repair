@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution
-d70e8aae-c780-47ee-aed4-b6394799d814,['(!frontDistSense_0 -> (!backDistSense_0 -> !isReady))'],True
