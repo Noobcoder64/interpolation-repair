@@ -263,8 +263,6 @@ def removeUnnecessaryParentheses(phi):
     return phi
 
 
-
-
 def main():
     print(parseInitials("a"))
     print(parseInvariants("a & b & G(a) & G(F(c))"))

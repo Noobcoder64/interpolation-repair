@@ -7,14 +7,11 @@ fairness_pattern = re.compile(r"G\(F(\(.*\))\)")
 invariant_pattern = re.compile(r"G(\(.*\))")
 
 def gr1LTL2Boolean(ltlFormula,path):
-    # print("LTL: ", ltlFormula)
-    # print("PATH: ", path)
     fairness_match = fairness_pattern.match(ltlFormula)
     invariant_match = invariant_pattern.match(ltlFormula)
     if fairness_match:
         return fairnessLTL2Boolean(fairness_match.group(1),path)
     elif invariant_match:
-        # print("INVARIANT MATCH") 
         return invariantLTL2Boolean(invariant_match.group(1),path)
     else:
         return initialLTL2Boolean(ltlFormula,path)
@@ -64,16 +61,11 @@ def invariantLTL2Boolean(ltlFormula,path):
     @type path: L{p.Path}
     @return: A string containing the translated invariant
     """
-    # print(path.initial_state)
-    # print(path.transient_states)
-    # print(path.unrolled_states)
-    # print(path.looping_states)
 
     translatedInv = ""
 
     # Returns all the tokens in ltlFormula
     ltlTokens = ltlInvariant.parseString(ltlFormula)
-    # print("LTL TOKENS: ", ltlTokens)
     translatedInv = translatedInv +"("+ _translateInvOnStatePair(ltlTokens,path.initial_state) + ") & "
 
     for state in path.transient_states:
