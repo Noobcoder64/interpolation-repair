@@ -30,7 +30,7 @@ def create_summary_dataframe(spectra_files, output_folder):
         max_num_variables = 0
         min_num_assumptions = 0
         max_num_assumptions = 0
-        min_weakness = None
+        max_weakness = None
         matching_csv_file = [csv_file for csv_file in os.listdir(output_folder) if spec_name in csv_file and csv_file.endswith(".csv")]
         if matching_csv_file:
             csv_filepath = os.path.join(output_folder, matching_csv_file[0])
@@ -43,10 +43,10 @@ def create_summary_dataframe(spectra_files, output_folder):
                 num_repairs = len(repaired_df)
                 min_num_variables = repaired_df["NumVariables"].min()
                 max_num_variables = repaired_df["NumVariables"].max()
-                # min_num_assumptions = repaired_df["NumAssumptions"].min()
-                # max_num_assumptions = repaired_df["NumAssumptions"].max()
+                min_num_assumptions = repaired_df["NumAssumptions"].min()
+                max_num_assumptions = repaired_df["NumAssumptions"].max()
                 repaired_df["Weakness"] = repaired_df.apply(map_to_weakness, axis=1)
-                min_weakness = repaired_df["Weakness"].min()
+                max_weakness = repaired_df["Weakness"].max()
 
         system = extract_system(spec_name)
 
@@ -59,7 +59,7 @@ def create_summary_dataframe(spectra_files, output_folder):
             "MaxNumVariables": [max_num_variables],
             "MinNumAssumptions": [min_num_assumptions],
             "MaxNumAssumptions": [max_num_assumptions],
-            "MinWeakness": [min_weakness],
+            "MaxWeakness": [max_weakness],
             "Repaired": [num_repairs > 0]
         }
         spec_df = pd.DataFrame(data)

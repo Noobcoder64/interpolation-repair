@@ -17,16 +17,13 @@ class State(object):
         return
 
     def get_valuation(self):
-        # print str(self.valuation)
         valuation_with_ids = []
         for bool_literal in self.valuation:
             valuation_with_ids.append(bool_literal + "__" + self.id_state)
         return ' & '.join(valuation_with_ids)
 
     def add_to_valuation(self, bool_literal):
-        # print "Valuation update (before) "+self.id_state+": "+str(self.valuation)
         self.valuation.add(bool_literal)
-        # print "Valuation update (after) "+self.id_state+": "+str(self.valuation)
         return
 
 

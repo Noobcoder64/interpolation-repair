@@ -8,7 +8,6 @@ import syntax_utils as su
 import specification as sp
 import spectra_utils as spectra
 import experiment_properties as exp
-import ddmin as dd
 import subprocess
 
 class NonStateSeparableException(BaseException):
@@ -151,27 +150,31 @@ def getRefinementsFromStateComponents(state_components,path,input_vars):
 
 
 def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
-    if guarantees_boolean == []:
+    if assum_val_boolean ==[] or guarantees_boolean == []:
         return None
     
-    l2b.writeMathsatFormulaToFile("temp/formula_" + id, assum_val_boolean + " & " + " & ".join(guarantees_boolean))
-    l2b.writeMathsatFormulaToFile("temp/counterstrategy_auto_" + id, assum_val_boolean)
-    l2b.writeMathsatFormulaToFile("temp/guarantees_auto_" + id, " & ".join(guarantees_boolean))
+    counterstrategy_file = f"temp/counterstrategy_auto_{id}"
+    guarantees_file = f"temp/guarantees_auto_{id}"
+
+    # l2b.writeMathsatFormulaToFile("temp/formula_" + id, assum_val_boolean + " & " + " & ".join(guarantees_boolean))
+    l2b.writeMathsatFormulaToFile(counterstrategy_file, assum_val_boolean)
+    l2b.writeMathsatFormulaToFile(guarantees_file, " & ".join(guarantees_boolean))
     
+    interpolant_file = f"temp/INTERP_{id}"
+
     mathsat_path = os.path.join(definitions.ROOT_DIR, "MathSAT4/mathsat-4.2.17-linux-x86_64/bin/mathsat")
-    cmd = [mathsat_path, f"-interpolate=temp/INTERP_{id}", f"temp/counterstrategy_auto_{id}", f"temp/guarantees_auto_{id}"]
+    cmd = [mathsat_path, f"-interpolate={interpolant_file}", counterstrategy_file, guarantees_file]
     result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     # print(result.stdout)
+    interpolant_file = interpolant_file + ".1.msat"
 
-    interpolant_file = f"temp/INTERP_{id}.1.msat"
-    
     interpolant = None
     if os.path.isfile(interpolant_file):
         interpolant = l2b.parseInterpolant(interpolant_file)
+        os.remove(interpolant_file)
 
-    os.remove("temp/counterstrategy_auto_" + id)
-    os.remove("temp/guarantees_auto_" + id)
-    os.remove(interpolant_file)
+    os.remove(counterstrategy_file)
+    os.remove(guarantees_file)
 
     return interpolant
 
@@ -205,28 +208,35 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
 
     guarantees_boolean = list(filter(None,[l2b.gr1LTL2Boolean(x, path) for x in guarantees_uc]))
 
-    print("=== UNREALIZABLE CORE ===")
-    for uc in guarantees_uc:
-        print(uc)
-    print()
+    # print("=== UNREALIZABLE CORE ===")
+    # for uc in guarantees_uc:
+    #     print(uc)
+    # print()
     
-    print("=== ASSUMPTIONS BOOLEAN ===")
-    print(" & ".join(assumptions_boolean))
-    print()
+    # print("=== ASSUMPTIONS BOOLEAN ===")
+    # print(" & ".join(assumptions_boolean))
+    # print()
     print("=== VALUATIONS BOOLEAN ===")
     print(valuations_boolean)
     print()
-    print("=== ASM VAL BOOLEAN ===")
-    print(assum_val_boolean)
-    print("=== GUARANTEES BOOLEAN ===")
-    print("\n".join(guarantees_boolean))
-    print()
+    # print("=== ASM VAL BOOLEAN ===")
+    # print(assum_val_boolean)
+    # print("=== GUARANTEES BOOLEAN ===")
+    # print("\n".join(guarantees_boolean))
+    # print()
 
     interpolant = compute_interpolant(id, assum_val_boolean, guarantees_boolean)
     print("\n=== INTERPOLANT ===")
     print(interpolant)
     print()
     
+    # if interpolant is None:
+    #     raise Exception("ERROR: No interpolant")
+    # else:
+    #     print("INTERPOLANT:", interpolant)
+    #     return ["FALSE"]
+    
+
     state_components = dict()
     # Parse the interpolant file
     if interpolant is not None:

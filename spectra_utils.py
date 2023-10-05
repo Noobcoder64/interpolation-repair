@@ -23,8 +23,6 @@ def check_realizibility(spectra_file_path):
         return False
     elif re.search("Result: Specification is realizable", output):
         return True
-    
-    print("Spectra file in wrong format for CLI realizability check.")
     return None
 
 def check_satisfiability(spectra_file_path):
@@ -78,6 +76,7 @@ def parse_counterstrategy(text):
         successors = []
         if not match.group(5) == '':
             successors = match.group(5).split(", ")
+
         state = CounterstrategyState(state_name, inputs, outputs, successors, is_initial, is_dead)
         states[state.name] = state
 
@@ -91,6 +90,7 @@ def compute_unrealizable_core(spectra_file_path):
         return None
     
     line_nums = [int(x) for x in core_found.group(1).split(" ") if x != ""]
+    # print(line_nums)
     spec = sp.read_file(spectra_file_path)
     spec = [re.sub(r'\s', '', x) for x in spec]
     spec = sp.unspectra(spec)
@@ -99,9 +99,8 @@ def compute_unrealizable_core(spectra_file_path):
         uc.append(spec[line])
     return uc
     
-
 def main():
-    specification = "Examples/Protocol.spectra"
+    specification = "SIMPLE/RG.spectra"
     print(check_realizibility(specification))
 
 if __name__ == "__main__":
