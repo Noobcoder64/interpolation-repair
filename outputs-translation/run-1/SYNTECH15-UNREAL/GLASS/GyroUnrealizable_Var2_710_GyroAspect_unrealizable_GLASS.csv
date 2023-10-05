@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution,NumVariables,NumAssumptions,ContainsAux,d1,d2,nummaxentropysccs,d3
+bf3a2307-2a34-4a75-9bde-ec53d410f172,"['G(F(frontDistSense=CLEAR -> (!isReady -> balancer!=STP)) & (frontDistSense=BLOCKED -> (backDistSense=CLEAR -> (!isReady -> balancer!=STP) & (isReady -> balancer=FWD)) & (backDistSense=BLOCKED -> (!isReady -> balancer!=STP) & (isReady -> balancer={FWD, BWD}))))']",True,9.0,1.0,False,,,,

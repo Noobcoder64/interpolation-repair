@@ -24,7 +24,9 @@ def computeWeakness_probe(phi, var_set):
 
     # First get the base of the difference: accepting strongly connected components of the original automaton
     ltlFormula = " & ".join(exp.initialGR1Units)
-    if phi != "":
+    if ltlFormula == "":
+        ltlFormula = phi
+    elif phi != "":
         ltlFormula = ltlFormula + " & " + phi
     automaton = a.Automaton("ltl", ltlFormula=ltlFormula, var_set=var_set)
     d1 = automaton.getEntropy()

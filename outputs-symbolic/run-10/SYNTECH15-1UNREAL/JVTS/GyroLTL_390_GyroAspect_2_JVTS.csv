@@ -1,0 +1,13 @@
+Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
+d3eb73b7-27f3-4263-9282-e735bf83a6fb,['G(F(!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2))))'],True,4,False,,,,,1.0
+5d4abb16-b74d-424c-8b95-71725cd001b0,['G(!isReady -> (X(!(isReady)) -> (!balancer_0 -> (!balancer_1 -> balancer_2))))'],True,4,False,,,,,1.0
+ee4ab110-0844-423c-9fbc-e78065e460b2,['G(!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2)))'],True,4,False,,,,,1.0
+71210379-ba5c-48e9-a38e-2f60d019e809,['G(F(!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2))))'],True,4,False,,,,,1.0
+06b44c2e-89fc-4305-b857-f297b70289ff,['G(!isReady -> (X(!(isReady)) -> (!balancer_0 -> (!balancer_1 -> balancer_2))))'],True,4,False,,,,,1.0
+9592fa2f-3d35-4798-9dad-e77385d0ee7b,['G(!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2)))'],True,4,False,,,,,1.0
+86954aea-16ea-4b6f-b44d-468ee8333814,"['G(F(distSense_0 -> (!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2)))))', 'G(!distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))']",True,5,False,,,,,2.0
+9d3c9609-ae9c-4b65-9e67-26f0c1aa82f2,"['G(!distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))', 'G(distSense_0 -> (X(distSense_0) -> (!isReady -> (X(!(isReady)) -> (!balancer_0 -> (!balancer_1 -> balancer_2))))))']",True,6,False,,,,,2.0
+a2746521-67ae-4ec5-a5d6-03967a47dfa6,"['G(!distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))', 'G(distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))']",True,5,False,,,,,2.0
+3146a314-0b06-4297-bf96-a5aac504f3d9,"['G(F(distSense_0 -> (!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2)))))', 'G(!distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))']",True,5,False,,,,,2.0
+dd6d3b94-5f23-4d1c-8ea5-8e31f9f947d8,"['G(!distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))', 'G(distSense_0 -> (X(distSense_0) -> (!isReady -> (X(!(isReady)) -> (!balancer_0 -> (!balancer_1 -> balancer_2))))))']",True,6,False,,,,,2.0
+2e24cddd-12ea-4f3a-bd90-f903751562bb,"['G(!distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))', 'G(distSense_0 -> (!isReady -> (!balancer_0 &  (!balancer_1 &  !balancer_2))))']",True,5,False,,,,,2.0

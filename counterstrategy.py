@@ -56,9 +56,6 @@ class Counterstrategy:
                 if next_state1 == next_state2:
                     continue
 
-                if self.states[next_state1].inputs == self.states[next_state2].inputs:
-                    continue
-
                 outputs1 = self.states[next_state1].outputs
                 outputs2 = self.states[next_state2].outputs
 
@@ -78,16 +75,17 @@ class Counterstrategy:
             outputs = state.influential_outputs
         else:
             outputs = state.outputs
+        # outputs = []
         for varname in outputs:
             if state.outputs[varname] == 'true':
                 literals.append(varname)
             else:
                 literals.append("!"+varname)
+        print(literals)
         return literals    
 
     def extractRandomPath(self):
         """Extracts randomly a path from the counterstrategy"""
-
 
         # Perform a random walk from the initial state until hitting a failing state (no successors)
         # or completing a loop (which happens when visiting a state already visited in the walk)
@@ -104,9 +102,6 @@ class Counterstrategy:
             if curr_state in visited_states:
                 looping = True
                 loop_startindex = visited_states.index(curr_state)
-            elif prev_state and self.states[prev_state].inputs == self.states[curr_state].inputs:
-                looping = True
-                loop_startindex = visited_states.index(prev_state)
             else:
                 successors = [state_name for state_name in self.states[curr_state].successors if not "Sf" in state_name]
                 visited_states.append(curr_state)
@@ -136,8 +131,6 @@ class Counterstrategy:
                         new_state.add_to_valuation(var)
 
                     transient_states.append(new_state)
-
-                # self.compute_influentials(self.states[transient_states[-1]])
 
                 # If the path is not looping, it ends in a failing state
                 successors = self.states[transient_states[-1].id_state].successors
@@ -209,20 +202,20 @@ class Counterstrategy:
                 looping_states = None
             
             else:
-
+                initial_state.set_successor(initial_state.id_state)
                 path = Path(initial_state, [], [initial_state])
-
+                path.unroll()
                 return path
 
-        print("=== INI ===")
-        print(self.states[initial_state.id_state])
-        print("\n=== TRANSIENT ===")
-        for state in transient_states:
-            print(self.states[state.id_state])
-        print("\n=== LOOPING ===")
-        if looping_states is not None:
-            for state in looping_states:
-                print(self.states[state.id_state])
+        # print("=== INI ===")
+        # print(self.states[initial_state.id_state])
+        # print("\n=== TRANSIENT ===")
+        # for state in transient_states:
+        #     print(self.states[state.id_state])
+        # print("\n=== LOOPING ===")
+        # if looping_states is not None:
+        #     for state in looping_states:
+        #         print(self.states[state.id_state])
 
         return Path(initial_state,transient_states,looping_states)
 

@@ -165,27 +165,29 @@ class RefinementNode:
         if not self.unreal_core:
             raise Exception("Compute unrealizable core before minimizing")
         
-        necessary_variables = set()
+        # necessary_variables = set()
     
-        constraints = exp.initialGR1Units + self.unreal_core
-        constraints = [re.sub(r"G\(F\s*\((.*)\)\)", r"\1", x) for x in constraints]
-        constraints = [re.sub(r"G\((.*)\)", r"\1", x) for x in constraints]
-        constraints = [re.sub(r"X\((.*)\)", r"\1", x) for x in constraints]
+        # constraints = exp.initialGR1Units + self.unreal_core
+        # constraints = [re.sub(r"G\(F\s*\((.*)\)\)", r"\1", x) for x in constraints]
+        # constraints = [re.sub(r"G\((.*)\)", r"\1", x) for x in constraints]
+        # constraints = [re.sub(r"X\((.*)\)", r"\1", x) for x in constraints]
 
-        for constraint in constraints:
-            variables = re.findall(r'\b\w+\b', constraint)
-            necessary_variables.update(variables)
+        # for constraint in constraints:
+        #     variables = re.findall(r'\b\w+\b', constraint)
+        #     necessary_variables.update(variables)
 
-        sys_pattern = re.compile(r'(?:sys|aux)\s+boolean\s+(\w+);')
+        # print(necessary_variables)
+
+        # sys_pattern = re.compile(r'(?:sys|aux)\s+boolean\s+(\w+);')
         spec = sp.read_file(self.__getTempSpecFileName())
         new_spec = []
         i = 0
         while i < len(spec):
-            match = sys_pattern.match(spec[i])
-            if match and match.group(1) not in necessary_variables:
-                i += 1
-                continue
-            elif "guarantee" in spec[i]:
+            # match = sys_pattern.match(spec[i])
+            # if match and match.group(1) not in necessary_variables:
+            #     i += 1
+            #     continue
+            if "guarantee" in spec[i]:
                 i += 2
                 continue
             new_spec.append(spec[i])
@@ -196,8 +198,6 @@ class RefinementNode:
 
         sp.write_file(new_spec, self.__getTempSpecFileName())
         
-
-
     def __deleteTempSpecFile(self):
         if os.path.isfile(self.__getTempSpecFileName()):
             os.remove(self.__getTempSpecFileName())
@@ -254,6 +254,8 @@ class RefinementNode:
 
     def getCounterstrategy(self):
         """Returns a counterstrategy object"""
+        if self.counterstrategy is not None:
+            return self.counterstrategy
         if not self.isRealizable():
             counterstrategy_start = timeit.default_timer()
             self.counterstrategy = spectra.generate_counterstrategy(self.__getTempSpecFileName())

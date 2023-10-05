@@ -1,0 +1,2 @@
+Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
+fe4c6727-fab8-40f5-b864-08b3668b8076,['(!frontDistSense_0 -> (!backDistSense_0 -> !isReady))'],True,3,False,,,,,1.0

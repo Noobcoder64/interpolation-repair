@@ -1,0 +1,11 @@
+Id,UniqueRefinement,IsSolution
+f914b5e4-bd2e-4b46-bdd9-9faa77fe6114,['G(F(distSense=BLOCKED -> (isReady -> balancer=FWD)))'],True
+c8475e91-ed51-45dd-9b51-8cbe7256d7c0,['G(distSense=BLOCKED -> (next(distSense)=BLOCKED -> (isReady -> (X(isReady) -> balancer=FWD))))'],True
+aa6144cd-cbf7-44da-aa4d-2f86cc42f3ae,['G(distSense=BLOCKED -> (isReady -> balancer!=FWD))'],True
+ad272d1a-9460-4857-8864-f6184d49cf9a,['G(F(distSense=BLOCKED -> (isReady -> balancer=FWD)))'],True
+e6cf9b22-962b-411c-b6bc-f4ace1c543e6,['G(distSense=BLOCKED -> (next(distSense)=BLOCKED -> (isReady -> (X(isReady) -> balancer=FWD))))'],True
+a8771dbe-3bd7-4a72-8609-1e61f359eaa4,['G(distSense=BLOCKED -> (isReady -> balancer!=FWD))'],True
+5de9e011-0cd6-48f4-9ef2-9c220fbae35e,"['G(distSense=BLOCKED -> (next(distSense)=BLOCKED -> (!isReady -> (X(isReady) -> balancer!=STP))))', 'G(distSense=CLEAR -> (next(distSense)=BLOCKED -> (!isReady -> (X(isReady) -> balancer!=STP)) & (isReady -> (X(isReady) -> balancer!=FWD))))']",True
+e582b6ac-6440-4926-8a16-70f55dac1351,['G(F(distSense=BLOCKED -> (isReady -> balancer=FWD)))'],True
+d895a61c-510d-4751-8b47-3949fc7caabf,['G(distSense=BLOCKED -> (isReady -> (X(isReady) -> balancer=FWD)))'],True
+fc7877c1-c743-4f97-b8c1-856e94a9ea05,['G(distSense=CLEAR -> (isReady -> balancer=FWD)) & (distSense=BLOCKED -> (isReady -> balancer!=FWD))'],True
