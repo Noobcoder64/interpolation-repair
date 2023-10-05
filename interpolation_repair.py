@@ -65,6 +65,14 @@ def FifoDuplicateCheckRefinement():
         cur_node = refinement_queue.pop()
         nodes += 1
 
+        if cur_node.isRealizable():
+            print(exp.specfile + " IS REALIZABLE")
+        
+        if not cur_node.isWellSeparated():
+            print(exp.specfile + " IS NOT WELL-SEPARATED")
+
+        return
+
         if cur_node.unique_refinement not in explored_refs:
             print("++++ ELAPSED TIME:", exp.elapsed_time)
             print("++++ QUEUE LENGTH:", len(refinement_queue))
@@ -113,7 +121,7 @@ def main():
     parser.add_argument("-inf", action="store_true", help="Use influential output variables")
 
     args = parser.parse_args()
-    exp.configure(args.input, args.timeout*60, args.output, args.allgars, args.min, args.inf, debug=True)
+    exp.configure(args.input, args.timeout*60, args.output, args.allgars, args.min, args.inf, debug=False)
     FifoDuplicateCheckRefinement()
 
 if __name__=="__main__":

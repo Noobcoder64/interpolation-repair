@@ -1,4 +1,4 @@
-System,Specification,NodesExplored,NumRepairs,MinNumVariables,MaxNumVariables,MinNumAssumptions,MaxNumAssumptions,MinWeakness,Repaired
+System,Specification,NodesExplored,NumRepairs,MinNumVariables,MaxNumVariables,MinNumAssumptions,MaxNumAssumptions,MaxWeakness,Repaired
 ColorSort,ColorSortLTL3_689_ColorSort_fixed_unrealizable,1,1,27,27,0,0,"(nan, nan, nan, nan)",True
 ColorSort,ColorSortLTLUnrealizable1_790_ColorSort_unrealizable,0,0,0,0,0,0,,False
 ColorSort,ColorSortLTLUnrealizable2_791_ColorSort_unrealizable,0,0,0,0,0,0,,False
