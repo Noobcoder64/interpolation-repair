@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution
-bbda96a6-f812-49a1-b1f5-c2038a24cca3,"['G(Obstacle=CLEAR -> (next(Obstacle)=BLOCKED -> (InputMoveMode=TURN_LEFT_2 -> (next(InputMoveMode)=FWD -> (LeftMotor=BWD -> (RightMotor=TURN_BWD -> (HeadMotor=STOP -> OutputMoveMode!=FWD))))))) & (Obstacle=BLOCKED -> (next(Obstacle)=BLOCKED -> (InputMoveMode=TURN_LEFT_2 -> (next(InputMoveMode)=FWD -> (LeftMotor=BWD -> (RightMotor=TURN_BWD -> (HeadMotor=STOP -> OutputMoveMode={FWD, TURN_LEFT_2})))))))']",True

@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution
-83fc65a0-de76-4238-99bd-74c4ab42ed6a,['(distSense=CLEAR -> (isReady -> bluetoothCmd!=AUTO))'],True

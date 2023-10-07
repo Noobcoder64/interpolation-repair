@@ -53,7 +53,7 @@ def parseDefinition(t):
     name = t[-2]
     values = []
     if not boolean:
-        for i in range(2,len(t)):
+        for i in range(2, len(t)):
             if t[i] == '}':
                 break
             values.append(t[i])
@@ -101,7 +101,6 @@ def parseComparison(t):
     # - Y(bool_variable_1) = bool_variable_2
     # - same as before with integer values
     # - integer_variable = integer_value
-
     if len(t) == 3:
         # In this case the expression is ["var", "="/"!=", "constant"]
         # or ["var_1", "="/"!=", "var_2"]
@@ -129,18 +128,18 @@ def parseComparison(t):
         # Here both terms are variable names
         # var_1 =/!= var_2
         if var_1.boolean:
-            return var_1.name + " <-> " + ("!" if t[0][1] == "!=" else "") + var_2.name
+            return var_1.name + " <-> " + ("!" if t[1] == "!=" else "") + var_2.name
         else:
             formula_bits = []
             for i in range(var_1.num_bits):
                 formula_bits.append("("
                     + var_1.name + "_" + str(i)
                     + " <-> "
-                    + ("!" if t[0][1] == "!=" else "")
+                    + ("!" if t[1] == "!=" else "")
                     + var_2.name + "_" + str(i)
                     + ")"
                 )
-            if t[0][1] == "=":
+            if t[1] == "=":
                 return " & ".join(formula_bits)
             else:
                 return "(" + " | ".join(formula_bits) + ")"
@@ -228,6 +227,8 @@ comparison_exp.setParseAction(parseComparison)
 
 ###################################### Main ##################################################
 
+TRANSLATE_ENUM = True
+
 input_path = sys.argv[1]
 
 if len(sys.argv) >= 3:
@@ -246,23 +247,24 @@ cmd = "java -jar {} -i {} -o {}".format(PATH_TO_JAR, input_path, output_director
 p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
 p.wait()
 
-new_path = os.path.join(output_directory, filename)
+if TRANSLATE_ENUM:
+    new_path = os.path.join(output_directory, filename)
 
-with open(new_path, "r") as input_file:
-    old_spec = input_file.read()
+    with open(new_path, "r") as input_file:
+        old_spec = input_file.read()
 
-new_spec = definition.transformString(old_spec)
+    new_spec = definition.transformString(old_spec)
 
-with open(new_path, "w") as output_file:
-    output_file.write(new_spec)
+    with open(new_path, "w") as output_file:
+        output_file.write(new_spec)
 
-with open(new_path, "r") as input_file:
-    old_spec = input_file.read()
+    with open(new_path, "r") as input_file:
+        old_spec = input_file.read()
 
-new_spec = comparison_exp.transformString(old_spec)
+    new_spec = comparison_exp.transformString(old_spec)
 
-new_spec = re.sub(r"alwEv\s*\(", r"GF (", new_spec)
-new_spec = re.sub(r"alw\s*\(", r"G (", new_spec)
+    new_spec = re.sub(r"alwEv\s*\(", r"GF (", new_spec)
+    new_spec = re.sub(r"alw\s*\(", r"G (", new_spec)
 
-with open(new_path, "w") as output_file:
-    output_file.write(new_spec)
+    with open(new_path, "w") as output_file:
+        output_file.write(new_spec)

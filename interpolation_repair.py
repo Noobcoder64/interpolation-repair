@@ -65,14 +65,6 @@ def FifoDuplicateCheckRefinement():
         cur_node = refinement_queue.pop()
         nodes += 1
 
-        if cur_node.isRealizable():
-            print(exp.specfile + " IS REALIZABLE")
-        
-        if not cur_node.isWellSeparated():
-            print(exp.specfile + " IS NOT WELL-SEPARATED")
-
-        return
-
         if cur_node.unique_refinement not in explored_refs:
             print("++++ ELAPSED TIME:", exp.elapsed_time)
             print("++++ QUEUE LENGTH:", len(refinement_queue))
