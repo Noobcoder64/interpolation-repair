@@ -1,8 +1,0 @@
-Id,UniqueRefinement,IsSolution
-a90a314c-5f13-49f6-8959-b1ab628f48d3,"['G(distSense=CLEAR -> (!isReady -> balancer=STP)) & (distSense=BLOCKED -> (isReady -> balancer!={STP, FWD}))']",True
-10e19c44-bd04-40a7-a13a-75dba1f3c1f3,"['G(distSense=CLEAR -> (next(distSense)=CLEAR -> (!isReady -> (X(!(isReady)) -> balancer!=STP))) & (next(distSense)=BLOCKED -> (!isReady -> (X(isReady) -> balancer!=STP))))', 'G(distSense=BLOCKED -> (next(distSense)=CLEAR -> (!isReady -> (X(!(isReady)) -> balancer!=STP))) & (next(distSense)=BLOCKED -> (!isReady -> balancer!=STP)))']",True
-35308934-7adb-4e7f-8c6b-b0a84bbe5b49,"['G(F(distSense=CLEAR -> (!isReady -> balancer!=STP)) & (distSense=BLOCKED -> (!isReady -> balancer!=STP) & (isReady -> balancer={STP, FWD})))']",True
-45825eb7-15a4-4ad3-911b-5b1810a9b5ec,"['G(distSense=CLEAR -> (!isReady -> balancer=STP)) & (distSense=BLOCKED -> (!isReady -> balancer=STP) & (isReady -> balancer!={STP, FWD}))']",True
-359b7219-6446-4c03-8e5b-78643b6fa64b,['G(distSense=CLEAR -> (next(distSense)=CLEAR -> (!isReady -> (X(!(isReady)) -> balancer!=STP))) & (next(distSense)=BLOCKED -> (!isReady -> balancer!=STP)))'],True
-2e2d5674-76a5-484f-9868-66963cbdaddd,"['G(F(distSense=CLEAR -> (!isReady -> balancer!=STP)) & (distSense=BLOCKED -> (!isReady -> balancer!=STP) & (isReady -> balancer={STP, FWD})))']",True
-cdc6d9af-907f-41b1-a1c6-5c9016e0dfc1,"['G(distSense=CLEAR -> (!isReady -> balancer=STP)) & (distSense=BLOCKED -> (!isReady -> balancer=STP) & (isReady -> balancer!={STP, FWD}))']",True

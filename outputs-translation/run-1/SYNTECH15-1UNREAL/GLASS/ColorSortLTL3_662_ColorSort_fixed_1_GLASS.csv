@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution
-7610403d-e2f6-4480-8057-3969facf1353,['(color!=BLACK &  (ack_ver=SLEEP &  ack_hor=SLEEP))'],True

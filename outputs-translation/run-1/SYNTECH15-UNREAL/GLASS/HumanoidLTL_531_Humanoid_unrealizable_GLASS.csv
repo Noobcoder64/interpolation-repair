@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution
-1e0a4900-b8b2-4540-b1ef-f1c9e8cd9289,['G(F(LeftMotor=FWD -> (RightMotor=TURN_FWD -> (moveMode=TURN_LEFT_1 -> state=Q3))) & (LeftMotor=BWD -> (RightMotor=TURN_BWD -> (moveMode=TURN_LEFT_2 -> state=Q3))))'],True

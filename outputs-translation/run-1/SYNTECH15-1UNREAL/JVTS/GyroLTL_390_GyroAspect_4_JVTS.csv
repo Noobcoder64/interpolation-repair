@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution
-b68226ce-31d7-4858-bd2b-8acad77681cd,['G(distSense=CLEAR -> (isReady -> balancer!=STP))'],True

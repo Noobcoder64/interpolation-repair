@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution
-7be4936e-7d12-466c-a05e-e905b1b677ad,['G(obstacle=BLOCKED -> (next(obstacle)=CLEAR -> (sideSense=PARALLEL_PARKING -> (next(sideSense)!={} &  (next(parkResult)=PARALLEL -> (next(colorSense)=BLACK -> (comm& =AUTO -> (next(comm& )=AUTO -> (throttle=BWD -> (steer=CENTER -> (parkComm& =STOP -> spec_policy!=MEASURING))) & (throttle=STOP -> (steer=CENTER -> (parkComm& =STOP -> spec_policy!=MEASURING))) & (throttle=EXIT_FWD -> (steer=CENTER -> (parkComm& =STOP -> spec_policy!=MEASURING)))))))))))'],True
