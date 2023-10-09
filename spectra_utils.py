@@ -47,6 +47,17 @@ def check_well_separation(spectra_file_path):
     print("Error checking well-separation.")
     return None
 
+def check_y_sat(spectra_file_path):
+    cmd = "java -jar {} -i {} -y-sat".format(PATH_TO_CLI, spectra_file_path)
+    output = run_subprocess(cmd, "\\r\\n")
+    if re.search("y-sat", output):
+        return True
+    elif re.search("y-unsat", output):
+        return False
+    
+    print("Error checking y-sat.")
+    return None
+
 def generate_counterstrategy(spectra_file_path):
     cmd = "java -jar {} -i {} --counter-strategy-jtlv-format".format(PATH_TO_CLI, spectra_file_path)
     if exp.minimize_spec:

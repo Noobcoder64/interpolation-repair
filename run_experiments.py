@@ -3,18 +3,14 @@ import os
 import time
 import subprocess
 import concurrent.futures
-from experiment_config import INPUT_FOLDERS, ALGORITHMS, OUTPUT_PARENT_FOLDER, TIMEOUT
+from experiment_config import INPUT_FOLDERS, ALGORITHMS, FLAGS, OUTPUT_PARENT_FOLDER, RUN, TIMEOUT
 
-flags = "-min -inf"
-# flags = "-min"
-# flags = "-allgars -inf"
-# flags = "-allgars"
 
 def process_file(input_file, algorithm, output_folder, output_file):
     start_time = time.time()
     
     if "INTERPOLATION" in algorithm:
-        command = f"python interpolation_repair.py -i {input_file} -o {output_folder} -t {TIMEOUT} {flags}"
+        command = f"python interpolation_repair.py -i {input_file} -o {output_folder} -t {TIMEOUT} {FLAGS}"
     else:
         command = f"python spec_repair.py -i {input_file} -a {algorithm} -o {output_folder} -t {TIMEOUT}"
 
@@ -31,16 +27,14 @@ def process_file(input_file, algorithm, output_folder, output_file):
     print(f"Processed {os.path.basename(input_file)} using {algorithm} algorithm in {elapsed_time:.2f} seconds")
 
 
-def process_folder(input_folder, algorithm):
-    # Create an output folder for each combination of input folder and algorithm
-    output_folder = os.path.join(OUTPUT_PARENT_FOLDER, os.path.basename(input_folder), algorithm)
+def process_algorithm(algorithm, input_folder):
+
+    output_folder = os.path.join(OUTPUT_PARENT_FOLDER, algorithm, f"run-{RUN}", os.path.basename(input_folder))
     os.makedirs(output_folder, exist_ok=True)
     
-    # Get a list of .spectra files in the input folder
-    spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra") and not file.startswith("ColorSort")]
+    spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra") and "ColorSort" not in file]
     spectra_files.sort()
 
-    # Use ThreadPoolExecutor to process files in parallel
     # with concurrent.futures.ThreadPoolExecutor() as executor:
     for spectra_file in spectra_files:
         input_file = os.path.join(input_folder, spectra_file)
@@ -53,9 +47,9 @@ def process_folder(input_folder, algorithm):
 
 total_start_time = time.time()
 
-for input_folder in INPUT_FOLDERS:
-    for algorithm in ALGORITHMS:
-        process_folder(input_folder, algorithm)
+for algorithm in ALGORITHMS:
+    for input_folder in INPUT_FOLDERS:
+        process_algorithm(algorithm, input_folder)
 
 total_end_time = time.time()
 total_elapsed_time = total_end_time - total_start_time

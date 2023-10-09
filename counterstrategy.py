@@ -81,7 +81,6 @@ class Counterstrategy:
                 literals.append(varname)
             else:
                 literals.append("!"+varname)
-        print(literals)
         return literals    
 
     def extractRandomPath(self):

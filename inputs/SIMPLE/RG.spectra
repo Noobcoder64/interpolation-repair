@@ -1,4 +1,5 @@
-module RequestGrant
+
+module RG
 
 env boolean req;
 env boolean cl;
@@ -6,10 +7,13 @@ env boolean cl;
 sys boolean gr;
 sys boolean val;
 
+
 assumption
-    GF (!req);
+	GF (!(req));
 
 guarantee
-    G (cl -> !val);
+	G ((cl -> !(val)));
 guarantee
-    GF (gr & val);
+	GF ((gr & val));
+
+

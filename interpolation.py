@@ -184,10 +184,10 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
     # PROBLEM
     # guarantees_uc = exp.guaranteesList
 
-    print()
-    print("=== COUNTERSTRATEGY ===")
-    print(c)
-    print()
+    # print()
+    # print("=== COUNTERSTRATEGY ===")
+    # print(c)
+    # print()
 
     path = c.extractRandomPath()
     # path.unroll()
@@ -216,9 +216,9 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
     # print("=== ASSUMPTIONS BOOLEAN ===")
     # print(" & ".join(assumptions_boolean))
     # print()
-    print("=== VALUATIONS BOOLEAN ===")
-    print(valuations_boolean)
-    print()
+    # print("=== VALUATIONS BOOLEAN ===")
+    # print(valuations_boolean)
+    # print()
     # print("=== ASM VAL BOOLEAN ===")
     # print(assum_val_boolean)
     # print("=== GUARANTEES BOOLEAN ===")
@@ -229,14 +229,7 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
     print("\n=== INTERPOLANT ===")
     print(interpolant)
     print()
-    
-    # if interpolant is None:
-    #     raise Exception("ERROR: No interpolant")
-    # else:
-    #     print("INTERPOLANT:", interpolant)
-    #     return ["FALSE"]
-    
-
+  
     state_components = dict()
     # Parse the interpolant file
     if interpolant is not None:

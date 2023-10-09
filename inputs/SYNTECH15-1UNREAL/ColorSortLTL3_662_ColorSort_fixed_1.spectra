@@ -82,9 +82,9 @@ guarantee
 guarantee
 	G (((!((!color_0 & color_1 & color_2)) & !(spec_dropping)) -> (((!verMot_0) & ((color_0 <-> next(spec_currentColor_0)) & (color_1 <-> next(spec_currentColor_1)) & (color_2 <-> next(spec_currentColor_2)))) & next(spec_dropping))));
 guarantee
-	G (((((((ack_ver_0) & (ack_hor_0)) & (ack_bot_0)) & spec_dropping) | ((pREV_aux_0 & (((ack_ver_0) & (ack_hor_0)) & (!ack_bot_0))) & !((((detect_0 <-> spec_currentColor_0) | (detect_1 <-> spec_currentColor_1) | (detect_2 <-> spec_currentColor_2)))))) -> (!botMot_0 & !botMot_1)));
+	G (((((((ack_ver_0) & (ack_hor_0)) & (ack_bot_0)) & spec_dropping) | ((pREV_aux_0 & (((ack_ver_0) & (ack_hor_0)) & (!ack_bot_0))) & !(((detect_0 <-> spec_currentColor_0) & (detect_1 <-> spec_currentColor_1) & (detect_2 <-> spec_currentColor_2))))) -> (!botMot_0 & !botMot_1)));
 guarantee
-	G (((((spec_dropping & (((ack_ver_0) & (ack_hor_0)) & (!ack_bot_0))) & (((detect_0 <-> spec_currentColor_0) | (detect_1 <-> spec_currentColor_1) | (detect_2 <-> spec_currentColor_2)))) & pREV_aux_0) -> (!horMot_0)));
+	G (((((spec_dropping & (((ack_ver_0) & (ack_hor_0)) & (!ack_bot_0))) & ((detect_0 <-> spec_currentColor_0) & (detect_1 <-> spec_currentColor_1) & (detect_2 <-> spec_currentColor_2))) & pREV_aux_0) -> (!horMot_0)));
 guarantee
 	 (((!motSpeed_0 & !motSpeed_1) & !(spec_dropping)));
 guarantee

@@ -139,10 +139,10 @@ def parseComparison(t):
                     + var_2.name + "_" + str(i)
                     + ")"
                 )
-            if t[1] == "=":
-                return " & ".join(formula_bits)
-            else:
+            if t[1] == "!=":
                 return "(" + " | ".join(formula_bits) + ")"
+            else:
+                return " & ".join(formula_bits)
 
     else:
         # There is some next operator involved
@@ -191,7 +191,7 @@ def parseComparison(t):
                                 + " <-> next("
                                 + ("!" if t[index_comparison_operator] == "!=" else "")
                                 + X_operand + "_" + str(i) + "))")
-        if t[0][index_comparison_operator] == "!=":
+        if t[index_comparison_operator] == "!=":
             return "(" + " | ".join(formula_bits) + ")"
         else:
             return " & ".join(formula_bits)

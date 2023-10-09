@@ -252,6 +252,9 @@ class RefinementNode:
         self.__deleteTempSpecFile()
         return self.is_well_separated
 
+    def isYSat(self):
+        return spectra.check_y_sat(self.__getTempSpecFileName())
+
     def getCounterstrategy(self):
         """Returns a counterstrategy object"""
         if self.counterstrategy is not None:

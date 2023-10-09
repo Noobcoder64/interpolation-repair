@@ -73,7 +73,7 @@ guarantee
 guarantee
 	GF ((leftMotor_0 & leftMotor_1 & leftMotor_2));
 guarantee
-	G (((!button_0) -> ((((spec_OutputMoveMode_0 <-> inputMoveMode_0) | (spec_OutputMoveMode_1 <-> inputMoveMode_1) | (spec_OutputMoveMode_2 <-> inputMoveMode_2))) | !((inputMoveMode_0 & !inputMoveMode_1 & !inputMoveMode_2)))));
+	G (((!button_0) -> (((spec_OutputMoveMode_0 <-> inputMoveMode_0) & (spec_OutputMoveMode_1 <-> inputMoveMode_1) & (spec_OutputMoveMode_2 <-> inputMoveMode_2)) | !((inputMoveMode_0 & !inputMoveMode_1 & !inputMoveMode_2)))));
 guarantee
 	G (((((button_0) & (!inputMoveMode_0 & !inputMoveMode_1 & !inputMoveMode_2)) & (!obstacle_0)) -> (((spec_OutputMoveMode_0 & !spec_OutputMoveMode_1 & !spec_OutputMoveMode_2) & (leftMotor_0 & !leftMotor_1 & leftMotor_2)) & (rightMotor_0 & !rightMotor_1 & rightMotor_2))));
 guarantee
