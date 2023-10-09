@@ -96,9 +96,9 @@ guarantee
 guarantee
 	G (((((!(spec_dropping) & (!starting_pos_0)) & (((ack_ver_0) & (ack_hor_0)) & (ack_bot_0))) & !((!color_0 & !color_1 & color_2))) <-> (!verMot_0)));
 guarantee
-	G ((((spec_dropping & !((((detect_0 <-> spec_currentColor_0) | (detect_1 <-> spec_currentColor_1) | (detect_2 <-> spec_currentColor_2))))) & ((ack_ver_0) & (ack_hor_0))) <-> (!botMot_0 & !botMot_1)));
+	G ((((spec_dropping & !(((detect_0 <-> spec_currentColor_0) & (detect_1 <-> spec_currentColor_1) & (detect_2 <-> spec_currentColor_2)))) & ((ack_ver_0) & (ack_hor_0))) <-> (!botMot_0 & !botMot_1)));
 guarantee
-	G ((((spec_dropping & (((detect_0 <-> spec_currentColor_0) | (detect_1 <-> spec_currentColor_1) | (detect_2 <-> spec_currentColor_2)))) & ((ack_ver_0) & (ack_hor_0))) <-> (!horMot_0)));
+	G ((((spec_dropping & ((detect_0 <-> spec_currentColor_0) & (detect_1 <-> spec_currentColor_1) & (detect_2 <-> spec_currentColor_2))) & ((ack_ver_0) & (ack_hor_0))) <-> (!horMot_0)));
 guarantee
 	G ((((!speedButton_0) & pREV_aux_3) <-> spec_speedButtonValidPressed));
 guarantee
@@ -137,7 +137,7 @@ guarantee
 guarantee
 	 (sYS_CONSTRAINT_0_respondsTo_responded);
 guarantee
-	G ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (((!horMot_0) & (((detect_0 <-> spec_currentColor_0) | (detect_1 <-> spec_currentColor_1) | (detect_2 <-> spec_currentColor_2)))) | (sYS_CONSTRAINT_0_respondsTo_responded & !(!((!color_0 & !color_1 & color_2)))))));
+	G ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (((!horMot_0) & ((detect_0 <-> spec_currentColor_0) & (detect_1 <-> spec_currentColor_1) & (detect_2 <-> spec_currentColor_2))) | (sYS_CONSTRAINT_0_respondsTo_responded & !(!((!color_0 & !color_1 & color_2)))))));
 guarantee
 	 (eNV_CONSTRAINT_1_respondsTo_responded);
 guarantee

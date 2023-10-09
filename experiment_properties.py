@@ -40,7 +40,7 @@ timeout = 600 # 10 minutes
 
 # This is a reference to the original specification file
 specfile = ""
-datafile = os.path.join(output_folder, case_study_name + "_INTERPOLATION" + ".csv")
+datafile = os.path.join(output_folder, case_study_name + "_interpolation" + ".csv")
 checkpointfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_checkpoint.csv")
 satfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_sat.csv")
 weaknessfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_weakness.csv")
@@ -105,9 +105,28 @@ def configure(
     global start_experiment
     global elapsed_time
     
+    use_all_gars = use_all_gars_in
+    minimize_spec = minimize_spec_in
+    use_influential = use_influential_in
+    timeout = timeout_in
+
+    print()
+    print("=== ARGS ===")
+    print("ALL GARS:", use_all_gars)
+    print("MINIMIZE SPEC:", minimize_spec)
+    print("USE INFLUENTIAL:", use_influential)
+    print("TIMEOUT:", timeout)
+    print()
+
     specfile = spectra_file
     case_study_name = os.path.splitext(os.path.basename(specfile))[0]
-    datafile = os.path.join(output_folder, case_study_name + "_INTERPOLATION" + ".csv")
+    args = ''.join([
+        "_all_gars" if use_all_gars else "",
+        "_min" if minimize_spec else "",
+        "_inf" if use_influential else ""
+    ])
+
+    datafile = os.path.join(output_folder, case_study_name + "_interpolation" + args + ".csv")
     checkpointfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_checkpoint.csv")
     satfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_sat.csv")
     weaknessfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_weakness.csv")
@@ -148,10 +167,5 @@ def configure(
             print(gar)
         print()
 
-    use_all_gars = use_all_gars_in
-    minimize_spec = minimize_spec_in
-    use_influential = use_influential_in
-
-    timeout = timeout_in
     start_experiment = timeit.default_timer()
     elapsed_time = 0

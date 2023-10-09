@@ -92,7 +92,7 @@ guarantee
 guarantee
 	G (((spec_nextMoveMode_0 & !spec_nextMoveMode_1) -> (next(!spec_specState_0) & next(!spec_specState_1))));
 guarantee
-	G (((button_0) -> next(((spec_nextHead_0 <-> heading_0)))));
+	G (((button_0) -> next((spec_nextHead_0 <-> heading_0))));
 guarantee
 	G (((!button_0) -> ((spec_nextHead_0 <-> next(spec_nextHead_0)))));
 guarantee
@@ -125,11 +125,11 @@ guarantee
 guarantee
 	 (sYS_CONSTRAINT_0_respondsTo_responded);
 guarantee
-	G ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> ((((heading_0 <-> spec_nextHead_0))) | (sYS_CONSTRAINT_0_respondsTo_responded & !((noise_0))))));
+	G ((next(sYS_CONSTRAINT_0_respondsTo_responded) <-> (((heading_0 <-> spec_nextHead_0)) | (sYS_CONSTRAINT_0_respondsTo_responded & !((noise_0))))));
 guarantee
 	 (eNV_CONSTRAINT_1_respondsTo_responded);
 guarantee
-	G ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> (((((heading_0 <-> spec_nextHead_0))) | !((spec_nextMoveMode_0 & !spec_nextMoveMode_1))) | (eNV_CONSTRAINT_1_respondsTo_responded & !((spec_nextMoveMode_0 & !spec_nextMoveMode_1))))));
+	G ((next(eNV_CONSTRAINT_1_respondsTo_responded) <-> ((((heading_0 <-> spec_nextHead_0)) | !((spec_nextMoveMode_0 & !spec_nextMoveMode_1))) | (eNV_CONSTRAINT_1_respondsTo_responded & !((spec_nextMoveMode_0 & !spec_nextMoveMode_1))))));
 guarantee
 	 (!(pREV_aux_2));
 guarantee

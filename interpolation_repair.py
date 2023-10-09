@@ -65,41 +65,42 @@ def FifoDuplicateCheckRefinement():
         cur_node = refinement_queue.pop()
         nodes += 1
 
-        if cur_node.unique_refinement not in explored_refs:
-            print("++++ ELAPSED TIME:", exp.elapsed_time)
-            print("++++ QUEUE LENGTH:", len(refinement_queue))
-            print("++++ Solutions:", len(solutions))
-            print("++++ Duplicates:", len(duplicate_refs))
-            print("++++ Node number:", nodes)
-            print("++++ Refinement:", cur_node.gr1_units)
-            print("++++ Length:", cur_node.length)
-
-            try:
-                print("++ REALIZABILITY CHECK")
-                if not cur_node.isRealizable():
-                    with concurrent.futures.ThreadPoolExecutor() as executor:
-                        print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
-                        refine_future = executor.submit(cur_node.refine)
-                        remaining_timeout = exp.timeout - exp.elapsed_time
-                        candidate_ref_nodes = refine_future.result(timeout=remaining_timeout)
-                        refinement_queue.extendleft(candidate_ref_nodes)
-                elif cur_node.isSatisfiable():
-                    cur_node.isWellSeparated()
-                    print("++ REALIZABLE REFINEMENT: SAT CHECK")
-                    solutions.append(cur_node.gr1_units)
-                else:
-                    print("++ VACUOUS SOLUTION")
-            except Exception as e:
-                # cur_node.writeNotes(str(e))
-                print(e)
-
-            cur_node.saveRefinementData(csv_writer, datafields)
-            explored_refs.append(cur_node.unique_refinement)
-        else:
+        if cur_node.unique_refinement in explored_refs:
             print("++ DUPLICATE NODE")
             duplicate_refs.append(cur_node.unique_refinement)
+            continue
 
-        exp.elapsed_time = timeit.default_timer() - start_experiment
+        print("++++ ELAPSED TIME:", exp.elapsed_time)
+        print("++++ QUEUE LENGTH:", len(refinement_queue))
+        print("++++ Solutions:", len(solutions))
+        print("++++ Duplicates:", len(duplicate_refs))
+        print("++++ Node number:", nodes)
+        print("++++ Refinement:", cur_node.gr1_units)
+        print("++++ Length:", cur_node.length)
+
+        try:
+            print("++ REALIZABILITY CHECK")
+            if not cur_node.isRealizable():
+                with concurrent.futures.ThreadPoolExecutor() as executor:
+                    print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
+                    refine_future = executor.submit(cur_node.refine)
+                    remaining_timeout = exp.timeout - exp.elapsed_time
+                    candidate_ref_nodes = refine_future.result(timeout=remaining_timeout)
+                    refinement_queue.extendleft(candidate_ref_nodes)
+            elif cur_node.isSatisfiable():
+                cur_node.isWellSeparated()
+                print("++ REALIZABLE REFINEMENT: SAT CHECK")
+                solutions.append(cur_node.gr1_units)
+            else:
+                print("++ VACUOUS SOLUTION")
+        except Exception as e:
+            # cur_node.writeNotes(str(e))
+            print(e)
+
+        cur_node.saveRefinementData(csv_writer, datafields)
+        explored_refs.append(cur_node.unique_refinement)
+
+    exp.elapsed_time = timeit.default_timer() - start_experiment
 
     datafile.close()
 

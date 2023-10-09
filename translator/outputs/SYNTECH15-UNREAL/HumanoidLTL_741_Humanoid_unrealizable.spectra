@@ -45,7 +45,7 @@ aux boolean pREV_aux_3;
 aux boolean pREV_aux_4;
 
 assumption
-	G (((((!nextMoveMode_0 & !nextMoveMode_1) | (!nextMoveMode_0 & nextMoveMode_1)) & !((((heading_0 <-> next_head_0))))) -> !(((next_head_0 <-> next(heading_0))))));
+	G (((((!nextMoveMode_0 & !nextMoveMode_1) | (!nextMoveMode_0 & nextMoveMode_1)) & !(((heading_0 <-> next_head_0)))) -> !(((next_head_0 <-> next(heading_0))))));
 assumption
 	G ((((!nextMoveMode_0 & !nextMoveMode_1) & (obstacle_0)) -> (next(obstacle_0))));
 assumption
@@ -70,11 +70,11 @@ guarantee
 guarantee
 	G ((((nextMoveMode_0 & !nextMoveMode_1) | (nextMoveMode_0 & nextMoveMode_1)) -> (next(!spec_state_0) & next(!spec_state_1))));
 guarantee
-	G (((((pREV_aux_2 & (noise_0)) & !((((heading_0 <-> next_head_0))))) & !((button_0))) -> (search_0)));
+	G (((((pREV_aux_2 & (noise_0)) & !(((heading_0 <-> next_head_0)))) & !((button_0))) -> (search_0)));
 guarantee
-	G (((pREV_aux_3 & (((heading_0 <-> next_head_0)))) -> (!search_0)));
+	G (((pREV_aux_3 & ((heading_0 <-> next_head_0))) -> (!search_0)));
 guarantee
-	G (((pREV_aux_3 & !((((heading_0 <-> next_head_0))))) -> (search_0)));
+	G (((pREV_aux_3 & !(((heading_0 <-> next_head_0)))) -> (search_0)));
 guarantee
 	G ((((next(obstacle_0)) & !(pREV_aux_4)) -> !((next(!nextMoveMode_0) & next(!nextMoveMode_1)))));
 guarantee
@@ -101,7 +101,7 @@ guarantee
 guarantee
 	 (eNV_CONSTRAINT_0_respondsTo_responded);
 guarantee
-	G ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((((heading_0 <-> next_head_0))) | (eNV_CONSTRAINT_0_respondsTo_responded & !((search_0))))));
+	G ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> (((heading_0 <-> next_head_0)) | (eNV_CONSTRAINT_0_respondsTo_responded & !((search_0))))));
 guarantee
 	 (eNV_CONSTRAINT_1_respondsTo_responded);
 guarantee
