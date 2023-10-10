@@ -1,0 +1,273 @@
+python interpolation_repair.py -i inputs/AMBA-2/amba_ahb_w_guar_fairness_amba_ahb_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/AMBA-2 -t 10 -min -inf
+Processed amba_ahb_w_guar_fairness_amba_ahb_1.spectra using INTERPOLATION-MIN-INF algorithm in 46.88 seconds
+python interpolation_repair.py -i inputs/AMBA-2/amba_ahb_w_guar_fairness_amba_ahb_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/AMBA-2 -t 10 -min -inf
+Processed amba_ahb_w_guar_fairness_amba_ahb_2.spectra using INTERPOLATION-MIN-INF algorithm in 601.84 seconds
+python interpolation_repair.py -i inputs/AMBA-2/amba_ahb_w_guar_fairness_amba_ahb_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/AMBA-2 -t 10 -min -inf
+Processed amba_ahb_w_guar_fairness_amba_ahb_3.spectra using INTERPOLATION-MIN-INF algorithm in 610.61 seconds
+python interpolation_repair.py -i inputs/AMBA-2/amba_ahb_w_guar_trans_amba_ahb_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/AMBA-2 -t 10 -min -inf
+Processed amba_ahb_w_guar_trans_amba_ahb_1.spectra using INTERPOLATION-MIN-INF algorithm in 10.69 seconds
+python interpolation_repair.py -i inputs/AMBA-2/amba_ahb_w_guar_trans_amba_ahb_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/AMBA-2 -t 10 -min -inf
+Processed amba_ahb_w_guar_trans_amba_ahb_2.spectra using INTERPOLATION-MIN-INF algorithm in 10.86 seconds
+python interpolation_repair.py -i inputs/AMBA-2/amba_ahb_w_guar_trans_amba_ahb_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/AMBA-2 -t 10 -min -inf
+Processed amba_ahb_w_guar_trans_amba_ahb_3.spectra using INTERPOLATION-MIN-INF algorithm in 13.49 seconds
+python interpolation_repair.py -i inputs/AMBA-2/amba_ahb_wo_ass_fairness_amba_ahb_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/AMBA-2 -t 10 -min -inf
+Processed amba_ahb_wo_ass_fairness_amba_ahb_1.spectra using INTERPOLATION-MIN-INF algorithm in 38.96 seconds
+python interpolation_repair.py -i inputs/AMBA-2/amba_ahb_wo_ass_fairness_amba_ahb_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/AMBA-2 -t 10 -min -inf
+Processed amba_ahb_wo_ass_fairness_amba_ahb_2.spectra using INTERPOLATION-MIN-INF algorithm in 17.70 seconds
+python interpolation_repair.py -i inputs/AMBA-2/amba_ahb_wo_ass_fairness_amba_ahb_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/AMBA-2 -t 10 -min -inf
+Processed amba_ahb_wo_ass_fairness_amba_ahb_3.spectra using INTERPOLATION-MIN-INF algorithm in 607.03 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-UNREAL/ColorSortLTL3_689_ColorSort_fixed_unrealizable.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_689_ColorSort_fixed_unrealizable.spectra using INTERPOLATION-MIN-INF algorithm in 5.71 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-UNREAL/ColorSortLTLUnrealizable1_790_ColorSort_unrealizable.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-UNREAL -t 10 -min -inf
+Processed ColorSortLTLUnrealizable1_790_ColorSort_unrealizable.spectra using INTERPOLATION-MIN-INF algorithm in 602.19 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-UNREAL/ColorSortLTLUnrealizable2_791_ColorSort_unrealizable.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-UNREAL -t 10 -min -inf
+Processed ColorSortLTLUnrealizable2_791_ColorSort_unrealizable.spectra using INTERPOLATION-MIN-INF algorithm in 604.00 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-UNREAL/GyroUnrealizable_Var1_710_GyroAspect_unrealizable.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-UNREAL -t 10 -min -inf
+Processed GyroUnrealizable_Var1_710_GyroAspect_unrealizable.spectra using INTERPOLATION-MIN-INF algorithm in 21.16 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-UNREAL/GyroUnrealizable_Var2_710_GyroAspect_unrealizable.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-UNREAL -t 10 -min -inf
+Processed GyroUnrealizable_Var2_710_GyroAspect_unrealizable.spectra using INTERPOLATION-MIN-INF algorithm in 7.93 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-UNREAL/HumanoidLTL_458_Humanoid_fixed_unrealizable.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-UNREAL -t 10 -min -inf
+Processed HumanoidLTL_458_Humanoid_fixed_unrealizable.spectra using INTERPOLATION-MIN-INF algorithm in 14.78 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-UNREAL/HumanoidLTL_503_Humanoid_fixed_unrealizable.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-UNREAL -t 10 -min -inf
+Processed HumanoidLTL_503_Humanoid_fixed_unrealizable.spectra using INTERPOLATION-MIN-INF algorithm in 600.47 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-UNREAL/HumanoidLTL_531_Humanoid_unrealizable.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-UNREAL -t 10 -min -inf
+Processed HumanoidLTL_531_Humanoid_unrealizable.spectra using INTERPOLATION-MIN-INF algorithm in 122.27 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-UNREAL/HumanoidLTL_713_Humanoid_unrealizable.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-UNREAL -t 10 -min -inf
+Exception in thread "main" net.sf.javabdd.BDDException: ERROR: Cannot prime primed variables: 
+        [27,25,11,45,37,3,39,5,17,15,13,23,21,19,49,53,55,51,1,47,57,29,31,33,35,41,7,43,9]
+        at tau.smlab.syntech.jtlv.Env$JTLVBDDManagerPairing.prime(Env.java:1958)
+        at tau.smlab.syntech.jtlv.Env.prime(Env.java:693)
+        at tau.smlab.syntech.gamemodel.PlayerModule.controlStates(PlayerModule.java:1500)
+        at tau.smlab.syntech.games.rabin.RabinGame.checkRealizability(RabinGame.java:97)
+        at tau.smlab.syntech.Spectra.cli.SpectraCliTool.main(SpectraCliTool.java:349)
+Exception in thread "main" net.sf.javabdd.BDDException: ERROR: Cannot prime primed variables: 
+        [27,25,11,45,37,3,39,5,17,15,13,23,21,19,49,53,55,51,1,47,57,29,31,33,35,41,7,43,9]
+        at tau.smlab.syntech.jtlv.Env$JTLVBDDManagerPairing.prime(Env.java:1958)
+        at tau.smlab.syntech.jtlv.Env.prime(Env.java:693)
+        at tau.smlab.syntech.gamemodel.PlayerModule.controlStates(PlayerModule.java:1500)
+        at tau.smlab.syntech.games.rabin.RabinGame.checkRealizability(RabinGame.java:97)
+        at tau.smlab.syntech.Spectra.cli.SpectraCliTool.main(SpectraCliTool.java:349)
+Processed HumanoidLTL_713_Humanoid_unrealizable.spectra using INTERPOLATION-MIN-INF algorithm in 56.54 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-UNREAL/HumanoidLTL_741_Humanoid_unrealizable.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-UNREAL -t 10 -min -inf
+Processed HumanoidLTL_741_Humanoid_unrealizable.spectra using INTERPOLATION-MIN-INF algorithm in 8.42 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-UNREAL/HumanoidLTL_742_Humanoid_unrealizable.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-UNREAL -t 10 -min -inf
+Processed HumanoidLTL_742_Humanoid_unrealizable.spectra using INTERPOLATION-MIN-INF algorithm in 8.31 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-UNREAL/HumanoidLTL_NotRealizable2_879_Humanoid_unrealizable.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-UNREAL -t 10 -min -inf
+Exception in thread "main" net.sf.javabdd.BDDException: ERROR: Cannot prime primed variables: 
+        [27,25,11,45,37,3,39,5,17,15,13,23,21,19,49,53,55,51,1,47,57,29,31,33,35,41,7,43,9]
+        at tau.smlab.syntech.jtlv.Env$JTLVBDDManagerPairing.prime(Env.java:1958)
+        at tau.smlab.syntech.jtlv.Env.prime(Env.java:693)
+        at tau.smlab.syntech.gamemodel.PlayerModule.controlStates(PlayerModule.java:1500)
+        at tau.smlab.syntech.games.rabin.RabinGame.checkRealizability(RabinGame.java:97)
+        at tau.smlab.syntech.Spectra.cli.SpectraCliTool.main(SpectraCliTool.java:349)
+Exception in thread "main" net.sf.javabdd.BDDException: ERROR: Cannot prime primed variables: 
+        [27,25,11,45,37,3,39,5,17,15,13,23,21,19,49,53,55,51,1,47,57,29,31,33,35,41,7,43,9]
+        at tau.smlab.syntech.jtlv.Env$JTLVBDDManagerPairing.prime(Env.java:1958)
+        at tau.smlab.syntech.jtlv.Env.prime(Env.java:693)
+        at tau.smlab.syntech.gamemodel.PlayerModule.controlStates(PlayerModule.java:1500)
+        at tau.smlab.syntech.games.rabin.RabinGame.checkRealizability(RabinGame.java:97)
+        at tau.smlab.syntech.Spectra.cli.SpectraCliTool.main(SpectraCliTool.java:349)
+Processed HumanoidLTL_NotRealizable2_879_Humanoid_unrealizable.spectra using INTERPOLATION-MIN-INF algorithm in 55.59 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-UNREAL/HumanoidLTL_NotRealizable2_884_Humanoid_unrealizable.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-UNREAL -t 10 -min -inf
+Exception in thread "main" net.sf.javabdd.BDDException: ERROR: Cannot prime primed variables: 
+        [37,3,45,59,47,11,5,39,55,49,1,17,15,21,19,13,23,57,53,51,31,29,25,27,35,33,41,7,43,9]
+        at tau.smlab.syntech.jtlv.Env$JTLVBDDManagerPairing.prime(Env.java:1958)
+        at tau.smlab.syntech.jtlv.Env.prime(Env.java:693)
+        at tau.smlab.syntech.gamemodel.PlayerModule.controlStates(PlayerModule.java:1500)
+        at tau.smlab.syntech.games.rabin.RabinGame.checkRealizability(RabinGame.java:97)
+        at tau.smlab.syntech.Spectra.cli.SpectraCliTool.main(SpectraCliTool.java:349)
+Exception in thread "main" net.sf.javabdd.BDDException: ERROR: Cannot prime primed variables: 
+        [37,3,45,59,47,11,5,39,55,49,1,17,15,21,19,13,23,57,53,51,31,29,25,27,35,33,41,7,43,9]
+        at tau.smlab.syntech.jtlv.Env$JTLVBDDManagerPairing.prime(Env.java:1958)
+        at tau.smlab.syntech.jtlv.Env.prime(Env.java:693)
+        at tau.smlab.syntech.gamemodel.PlayerModule.controlStates(PlayerModule.java:1500)
+        at tau.smlab.syntech.games.rabin.RabinGame.checkRealizability(RabinGame.java:97)
+        at tau.smlab.syntech.Spectra.cli.SpectraCliTool.main(SpectraCliTool.java:349)
+Processed HumanoidLTL_NotRealizable2_884_Humanoid_unrealizable.spectra using INTERPOLATION-MIN-INF algorithm in 56.71 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-UNREAL/PCarLTL_Unrealizable_V_2_unrealizable0_888_PCar_fixed_unrealizable.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-UNREAL -t 10 -min -inf
+Processed PCarLTL_Unrealizable_V_2_unrealizable0_888_PCar_fixed_unrealizable.spectra using INTERPOLATION-MIN-INF algorithm in 9.41 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL2TAG_789_ColorSort_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL2TAG_789_ColorSort_1.spectra using INTERPOLATION-MIN-INF algorithm in 39.38 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL2TAG_789_ColorSort_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL2TAG_789_ColorSort_2.spectra using INTERPOLATION-MIN-INF algorithm in 240.86 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL2TAG_789_ColorSort_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL2TAG_789_ColorSort_3.spectra using INTERPOLATION-MIN-INF algorithm in 31.93 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL2_621_ColorSort_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL2_621_ColorSort_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 603.69 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL2_794_ColorSort_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL2_794_ColorSort_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 603.96 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3TAG_787_ColorSort_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3TAG_787_ColorSort_1.spectra using INTERPOLATION-MIN-INF algorithm in 8.06 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3TAG_787_ColorSort_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3TAG_787_ColorSort_2.spectra using INTERPOLATION-MIN-INF algorithm in 36.50 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3TAG_787_ColorSort_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3TAG_787_ColorSort_3.spectra using INTERPOLATION-MIN-INF algorithm in 5.77 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_621_ColorSort_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_621_ColorSort_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 603.77 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_646_ColorSort_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_646_ColorSort_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 6.29 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_662_ColorSort_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_662_ColorSort_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 600.50 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_674_ColorSort_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_674_ColorSort_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 5.98 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_674_ColorSort_fixed_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_674_ColorSort_fixed_2.spectra using INTERPOLATION-MIN-INF algorithm in 581.76 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_675_ColorSort_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_675_ColorSort_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 515.54 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_675_ColorSort_fixed_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_675_ColorSort_fixed_2.spectra using INTERPOLATION-MIN-INF algorithm in 604.76 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_678_ColorSort_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_678_ColorSort_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 604.76 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_678_ColorSort_fixed_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_678_ColorSort_fixed_2.spectra using INTERPOLATION-MIN-INF algorithm in 606.07 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_679_ColorSort_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_679_ColorSort_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 605.59 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_679_ColorSort_fixed_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_679_ColorSort_fixed_2.spectra using INTERPOLATION-MIN-INF algorithm in 28.42 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_681_ColorSort_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_681_ColorSort_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 605.69 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_681_ColorSort_fixed_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_681_ColorSort_fixed_2.spectra using INTERPOLATION-MIN-INF algorithm in 578.13 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_682_ColorSort_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_682_ColorSort_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 606.81 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_682_ColorSort_fixed_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_682_ColorSort_fixed_2.spectra using INTERPOLATION-MIN-INF algorithm in 605.40 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_682_ColorSort_fixed_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_682_ColorSort_fixed_3.spectra using INTERPOLATION-MIN-INF algorithm in 605.17 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_687_ColorSort_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_687_ColorSort_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 607.88 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_687_ColorSort_fixed_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_687_ColorSort_fixed_2.spectra using INTERPOLATION-MIN-INF algorithm in 606.20 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_687_ColorSort_fixed_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_687_ColorSort_fixed_3.spectra using INTERPOLATION-MIN-INF algorithm in 611.19 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_687_ColorSort_fixed_4.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_687_ColorSort_fixed_4.spectra using INTERPOLATION-MIN-INF algorithm in 611.28 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_688_ColorSort_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_688_ColorSort_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 16.34 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_688_ColorSort_fixed_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_688_ColorSort_fixed_2.spectra using INTERPOLATION-MIN-INF algorithm in 610.74 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_688_ColorSort_fixed_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_688_ColorSort_fixed_3.spectra using INTERPOLATION-MIN-INF algorithm in 611.09 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_688_ColorSort_fixed_4.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_688_ColorSort_fixed_4.spectra using INTERPOLATION-MIN-INF algorithm in 611.49 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_688_ColorSort_fixed_5.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_688_ColorSort_fixed_5.spectra using INTERPOLATION-MIN-INF algorithm in 521.44 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_688_ColorSort_fixed_6.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_688_ColorSort_fixed_6.spectra using INTERPOLATION-MIN-INF algorithm in 613.91 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTL3_688_ColorSort_fixed_7.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTL3_688_ColorSort_fixed_7.spectra using INTERPOLATION-MIN-INF algorithm in 610.27 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTLTAG_788_ColorSort_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTLTAG_788_ColorSort_1.spectra using INTERPOLATION-MIN-INF algorithm in 41.49 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTLTAG_788_ColorSort_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTLTAG_788_ColorSort_2.spectra using INTERPOLATION-MIN-INF algorithm in 479.98 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTLTAG_788_ColorSort_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTLTAG_788_ColorSort_3.spectra using INTERPOLATION-MIN-INF algorithm in 21.94 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTLTAG_792_ColorSort_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTLTAG_792_ColorSort_1.spectra using INTERPOLATION-MIN-INF algorithm in 50.49 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTLTAG_792_ColorSort_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTLTAG_792_ColorSort_2.spectra using INTERPOLATION-MIN-INF algorithm in 609.09 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/ColorSortLTLTAG_792_ColorSort_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed ColorSortLTLTAG_792_ColorSort_3.spectra using INTERPOLATION-MIN-INF algorithm in 26.24 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTLVar2_701_GyroAspect_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTLVar2_701_GyroAspect_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 602.69 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTLVar2_701_GyroAspect_fixed_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTLVar2_701_GyroAspect_fixed_2.spectra using INTERPOLATION-MIN-INF algorithm in 607.73 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTLVar2_701_GyroAspect_fixed_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTLVar2_701_GyroAspect_fixed_3.spectra using INTERPOLATION-MIN-INF algorithm in 804.40 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTLVar3_702_GyroAspect_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTLVar3_702_GyroAspect_1.spectra using INTERPOLATION-MIN-INF algorithm in 19.02 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTLVar3_702_GyroAspect_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTLVar3_702_GyroAspect_2.spectra using INTERPOLATION-MIN-INF algorithm in 23.19 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTLVar3_702_GyroAspect_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTLVar3_702_GyroAspect_3.spectra using INTERPOLATION-MIN-INF algorithm in 363.25 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTLVar3_702_GyroAspect_4.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTLVar3_702_GyroAspect_4.spectra using INTERPOLATION-MIN-INF algorithm in 19.18 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTLVar3_702_GyroAspect_5.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTLVar3_702_GyroAspect_5.spectra using INTERPOLATION-MIN-INF algorithm in 39.10 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_390_GyroAspect_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_390_GyroAspect_1.spectra using INTERPOLATION-MIN-INF algorithm in 7.28 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_390_GyroAspect_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_390_GyroAspect_2.spectra using INTERPOLATION-MIN-INF algorithm in 23.18 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_390_GyroAspect_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_390_GyroAspect_3.spectra using INTERPOLATION-MIN-INF algorithm in 102.22 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_390_GyroAspect_4.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_390_GyroAspect_4.spectra using INTERPOLATION-MIN-INF algorithm in 18.74 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_486_GyroAspect_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_486_GyroAspect_1.spectra using INTERPOLATION-MIN-INF algorithm in 20.70 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_486_GyroAspect_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_486_GyroAspect_2.spectra using INTERPOLATION-MIN-INF algorithm in 23.28 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_486_GyroAspect_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_486_GyroAspect_3.spectra using INTERPOLATION-MIN-INF algorithm in 74.84 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_486_GyroAspect_4.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_486_GyroAspect_4.spectra using INTERPOLATION-MIN-INF algorithm in 21.66 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_588_GyroAspect_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_588_GyroAspect_1.spectra using INTERPOLATION-MIN-INF algorithm in 17.65 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_588_GyroAspect_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_588_GyroAspect_2.spectra using INTERPOLATION-MIN-INF algorithm in 19.22 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_588_GyroAspect_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_588_GyroAspect_3.spectra using INTERPOLATION-MIN-INF algorithm in 190.14 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_588_GyroAspect_4.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_588_GyroAspect_4.spectra using INTERPOLATION-MIN-INF algorithm in 38.31 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_590_GyroAspect_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_590_GyroAspect_1.spectra using INTERPOLATION-MIN-INF algorithm in 46.10 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_590_GyroAspect_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_590_GyroAspect_2.spectra using INTERPOLATION-MIN-INF algorithm in 30.82 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_590_GyroAspect_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_590_GyroAspect_3.spectra using INTERPOLATION-MIN-INF algorithm in 480.19 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_590_GyroAspect_4.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_590_GyroAspect_4.spectra using INTERPOLATION-MIN-INF algorithm in 17.82 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_590_GyroAspect_5.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_590_GyroAspect_5.spectra using INTERPOLATION-MIN-INF algorithm in 26.67 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_595_GyroAspect_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_595_GyroAspect_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 18.46 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_595_GyroAspect_fixed_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_595_GyroAspect_fixed_2.spectra using INTERPOLATION-MIN-INF algorithm in 44.46 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_595_GyroAspect_fixed_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_595_GyroAspect_fixed_3.spectra using INTERPOLATION-MIN-INF algorithm in 559.20 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_595_GyroAspect_fixed_4.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_595_GyroAspect_fixed_4.spectra using INTERPOLATION-MIN-INF algorithm in 58.81 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_637_GyroAspect_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_637_GyroAspect_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 42.47 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_637_GyroAspect_fixed_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_637_GyroAspect_fixed_2.spectra using INTERPOLATION-MIN-INF algorithm in 10.67 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_637_GyroAspect_fixed_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_637_GyroAspect_fixed_3.spectra using INTERPOLATION-MIN-INF algorithm in 85.70 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_700_GyroAspect_fixed_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_700_GyroAspect_fixed_1.spectra using INTERPOLATION-MIN-INF algorithm in 43.47 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_700_GyroAspect_fixed_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_700_GyroAspect_fixed_2.spectra using INTERPOLATION-MIN-INF algorithm in 10.24 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/GyroLTL_700_GyroAspect_fixed_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed GyroLTL_700_GyroAspect_fixed_3.spectra using INTERPOLATION-MIN-INF algorithm in 6.64 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTLVar3_872_Humanoid_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTLVar3_872_Humanoid_1.spectra using INTERPOLATION-MIN-INF algorithm in 18.76 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTLVar3_872_Humanoid_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTLVar3_872_Humanoid_2.spectra using INTERPOLATION-MIN-INF algorithm in 82.30 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTL_460_Humanoid_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTL_460_Humanoid_1.spectra using INTERPOLATION-MIN-INF algorithm in 82.46 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTL_462_Humanoid_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTL_462_Humanoid_1.spectra using INTERPOLATION-MIN-INF algorithm in 142.37 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTL_533_Humanoid_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTL_533_Humanoid_1.spectra using INTERPOLATION-MIN-INF algorithm in 6.76 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTL_533_Humanoid_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTL_533_Humanoid_2.spectra using INTERPOLATION-MIN-INF algorithm in 6.47 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTL_556_Humanoid_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTL_556_Humanoid_1.spectra using INTERPOLATION-MIN-INF algorithm in 24.38 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTL_556_Humanoid_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTL_556_Humanoid_2.spectra using INTERPOLATION-MIN-INF algorithm in 18.76 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTL_743_Humanoid_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTL_743_Humanoid_1.spectra using INTERPOLATION-MIN-INF algorithm in 12.86 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTL_743_Humanoid_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTL_743_Humanoid_2.spectra using INTERPOLATION-MIN-INF algorithm in 347.64 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTL_747_Humanoid_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTL_747_Humanoid_1.spectra using INTERPOLATION-MIN-INF algorithm in 18.51 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTL_747_Humanoid_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTL_747_Humanoid_2.spectra using INTERPOLATION-MIN-INF algorithm in 12.94 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTL_747_Humanoid_3.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTL_747_Humanoid_3.spectra using INTERPOLATION-MIN-INF algorithm in 126.16 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTL_750_Humanoid_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTL_750_Humanoid_1.spectra using INTERPOLATION-MIN-INF algorithm in 19.55 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTL_750_Humanoid_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTL_750_Humanoid_2.spectra using INTERPOLATION-MIN-INF algorithm in 29.20 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTL_776_Humanoid_1.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf
+Processed HumanoidLTL_776_Humanoid_1.spectra using INTERPOLATION-MIN-INF algorithm in 23.30 seconds
+python interpolation_repair.py -i inputs/SYNTECH15-1UNREAL/HumanoidLTL_776_Humanoid_2.spectra -o outputs-interpolation/INTERPOLATION-MIN-INF/run-1/SYNTECH15-1UNREAL -t 10 -min -inf

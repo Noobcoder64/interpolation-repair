@@ -229,7 +229,7 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
     print("\n=== INTERPOLANT ===")
     print(interpolant)
     print()
-  
+
     state_components = dict()
     # Parse the interpolant file
     if interpolant is not None:
