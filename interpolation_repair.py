@@ -9,22 +9,21 @@ import csv
 
 MAX_NODES = 3000 # Max nodes to expand in the experiment
 
-# print("Resetting temp...")
-# temp_folder = 'temp'
-# for temp_file in os.listdir(temp_folder):
-#     temp_file_path = os.path.join(temp_folder, temp_file)
-#     try:
-#         if os.path.isfile(temp_file_path):
-#             os.unlink(temp_file_path)
-#     except Exception as e:
-#         print(e)
-# print("Reset complete!")
+print("Resetting temp...")
+temp_folder = 'temp'
+for temp_file in os.listdir(temp_folder):
+    temp_file_path = os.path.join(temp_folder, temp_file)
+    try:
+        if os.path.isfile(temp_file_path):
+            os.remove(temp_file_path)
+    except Exception as e:
+        print(e)
+print("Reset complete!")
 
 
 def FifoDuplicateCheckRefinement():
     """This implements the refinement strategy that uses model checking against ancestors
     to generate nodes"""
-    start_experiment = exp.start_experiment
 
     solutions = []
     explored_refs = []
@@ -84,8 +83,8 @@ def FifoDuplicateCheckRefinement():
                 with concurrent.futures.ThreadPoolExecutor() as executor:
                     print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
                     refine_future = executor.submit(cur_node.refine)
-                    remaining_timeout = exp.timeout - exp.elapsed_time
-                    candidate_ref_nodes = refine_future.result(timeout=remaining_timeout)
+                    remaining_time = exp.timeout - exp.elapsed_time
+                    candidate_ref_nodes = refine_future.result(timeout=remaining_time)
                     refinement_queue.extendleft(candidate_ref_nodes)
             elif cur_node.isSatisfiable():
                 cur_node.isWellSeparated()
@@ -99,9 +98,8 @@ def FifoDuplicateCheckRefinement():
 
         cur_node.saveRefinementData(csv_writer, datafields)
         explored_refs.append(cur_node.unique_refinement)
-
-    exp.elapsed_time = timeit.default_timer() - start_experiment
-
+        exp.elapsed_time = timeit.default_timer() - exp.start_experiment
+    
     datafile.close()
 
 def main():

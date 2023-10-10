@@ -48,26 +48,27 @@ class Counterstrategy:
 
     def compute_influentials(self, state: CounterstrategyState):
         successors = [succ for succ in state.successors if "Sf" not in succ]
-        for i in range(len(successors)-1):
-            for j in range(i+1, len(successors)):
-                next_state1 = successors[i]
-                next_state2 = successors[j]
 
-                if next_state1 == next_state2:
-                    continue
+        different_out_vars = []
+        for out_var in state.outputs:
+            can_be_1, can_be_0 = False, False
+            for succ in successors:
+                if self.states[succ].outputs[out_var] is True:
+                    can_be_1 = True
+                if self.states[succ].outputs[out_var] is False:
+                    can_be_0 = True
+                if can_be_1 and can_be_0:
+                    different_out_vars.append(out_var)
+                    break
 
-                outputs1 = self.states[next_state1].outputs
-                outputs2 = self.states[next_state2].outputs
-
-                for var in outputs1:
-                    if outputs1[var] != outputs2[var]:
-                        self.states[next_state1].influential_outputs[var] = outputs1[var]
-                        self.states[next_state2].influential_outputs[var] = outputs2[var]
+        for succ in successors:
+            for out_var in different_out_vars:
+                self.states[succ].influential_outputs[out_var] = self.states[succ].outputs[out_var]
 
     def getValuation(self, state):
         literals = []
         for varname in state.inputs:
-            if state.inputs[varname] == 'true':
+            if state.inputs[varname] is True:
                 literals.append(varname)
             else:
                 literals.append("!"+varname)
@@ -77,7 +78,7 @@ class Counterstrategy:
             outputs = state.outputs
         # outputs = []
         for varname in outputs:
-            if state.outputs[varname] == 'true':
+            if state.outputs[varname] is True:
                 literals.append(varname)
             else:
                 literals.append("!"+varname)
