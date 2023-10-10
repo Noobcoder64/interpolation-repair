@@ -84,8 +84,8 @@ def FifoDuplicateCheckRefinement():
                 with concurrent.futures.ThreadPoolExecutor() as executor:
                     print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
                     refine_future = executor.submit(cur_node.refine)
-                    remaining_timeout = exp.timeout - exp.elapsed_time
-                    candidate_ref_nodes = refine_future.result(timeout=remaining_timeout)
+                    remaining_time = exp.timeout - exp.elapsed_time
+                    candidate_ref_nodes = refine_future.result(timeout=remaining_time)
                     refinement_queue.extendleft(candidate_ref_nodes)
             elif cur_node.isSatisfiable():
                 cur_node.isWellSeparated()
@@ -99,8 +99,7 @@ def FifoDuplicateCheckRefinement():
 
         cur_node.saveRefinementData(csv_writer, datafields)
         explored_refs.append(cur_node.unique_refinement)
-
-    exp.elapsed_time = timeit.default_timer() - start_experiment
+        exp.elapsed_time = timeit.default_timer() - start_experiment
 
     datafile.close()
 

@@ -33,8 +33,8 @@ SYSTEMS = [
 ]
 
 # Output parent folder
-OUTPUT_PARENT_FOLDER = "outputs/"
-# OUTPUT_PARENT_FOLDER = "outputs-interpolation/"
+# OUTPUT_PARENT_FOLDER = "outputs/"
+OUTPUT_PARENT_FOLDER = "outputs-interpolation/"
 # OUTPUT_PARENT_FOLDER = "outputs-symbolic/"
 # OUTPUT_PARENT_FOLDER = "outputs-weakness/"
 # OUTPUT_PARENT_FOLDER = "outputs-translation/"
