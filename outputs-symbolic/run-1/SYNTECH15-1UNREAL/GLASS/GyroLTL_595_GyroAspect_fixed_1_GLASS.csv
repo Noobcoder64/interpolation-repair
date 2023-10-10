@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
-b5f7eaa2-caad-48c9-a6a2-edd320f900ff,['(!frontDistSense_0 -> (!backDistSense_0 -> (isReady -> (!bluetoothCmd_0 -> (!bluetoothCmd_1 -> bluetoothCmd_2)))))'],True,6,False,,,,,1.0

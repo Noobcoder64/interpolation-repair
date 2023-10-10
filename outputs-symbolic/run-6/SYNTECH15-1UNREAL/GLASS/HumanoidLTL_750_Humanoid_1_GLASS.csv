@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
-5f970f59-9bdf-4690-9475-2d252e5e178f,['(obstacle_0 -> (!heading_0 -> heading_1))'],True,3,False,,,,,1.0

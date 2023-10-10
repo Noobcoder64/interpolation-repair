@@ -1,0 +1,166 @@
+
+module PCarLTL_V_10_866_PCar_fixed_1
+
+env boolean obstacle_0;
+
+env boolean sideSense_0;
+env boolean sideSense_1;
+env boolean sideSense_2;
+assumption
+	G (!(sideSense_0 & sideSense_1 & !sideSense_2));
+assumption
+	G (!(sideSense_0 & sideSense_1 & sideSense_2));
+
+env boolean parkResult_0;
+
+
+sys boolean throttle_0;
+sys boolean throttle_1;
+sys boolean throttle_2;
+guarantee
+	G (!(throttle_0 & !throttle_1 & throttle_2));
+guarantee
+	G (!(throttle_0 & throttle_1 & !throttle_2));
+guarantee
+	G (!(throttle_0 & throttle_1 & throttle_2));
+
+sys boolean steer_0;
+sys boolean steer_1;
+sys boolean steer_2;
+guarantee
+	G (!(steer_0 & !steer_1 & steer_2));
+guarantee
+	G (!(steer_0 & steer_1 & !steer_2));
+guarantee
+	G (!(steer_0 & steer_1 & steer_2));
+
+sys boolean parkCommand_0;
+sys boolean parkCommand_1;
+guarantee
+	G (!(parkCommand_0 & parkCommand_1));
+
+sys boolean policy_0;
+sys boolean policy_1;
+sys boolean policy_2;
+guarantee
+	G (!(policy_0 & policy_1 & !policy_2));
+guarantee
+	G (!(policy_0 & policy_1 & policy_2));
+
+
+aux boolean eNV_CONSTRAINT_0_respondsTo_responded;
+aux boolean pREV_aux_1;
+aux boolean pREV_aux_2;
+aux boolean pREV_aux_3;
+aux boolean pREV_aux_4;
+aux boolean pREV_aux_5;
+aux boolean pREV_aux_6;
+
+assumption
+	G (((pREV_aux_4 & (!sideSense_0 & !sideSense_1 & sideSense_2)) -> (next(!sideSense_0) & next(!sideSense_1) & next(sideSense_2))));
+assumption
+	G (((!policy_0 & !policy_1 & !policy_2) -> (next(!parkResult_0))));
+assumption
+	GF ((((!policy_0 & !policy_1 & policy_2) & (parkResult_0)) & (!obstacle_0)));
+assumption
+	 (((!sideSense_0 & !sideSense_1 & sideSense_2) & (!parkResult_0)));
+assumption
+	G (((!throttle_0 & throttle_1 & !throttle_2) -> (((obstacle_0 <-> next(obstacle_0))) & ((sideSense_0 <-> next(sideSense_0)) & (sideSense_1 <-> next(sideSense_1)) & (sideSense_2 <-> next(sideSense_2))))));
+assumption
+	GF (eNV_CONSTRAINT_0_respondsTo_responded);
+
+guarantee
+	 ((!policy_0 & !policy_1 & !policy_2));
+guarantee
+	GF ((policy_0 & !policy_1 & policy_2));
+guarantee
+	G (((!policy_0 & !policy_1 & !policy_2) -> (((next(!policy_0) & next(!policy_1) & next(!policy_2)) | (next(!policy_0) & next(!policy_1) & next(policy_2))) | (next(!policy_0) & next(policy_1) & next(!policy_2)))));
+guarantee
+	G (((!policy_0 & !policy_1 & !policy_2) -> (((!throttle_0 & !throttle_1 & !throttle_2) | (!throttle_0 & throttle_1 & !throttle_2)) | (!throttle_0 & !throttle_1 & throttle_2))));
+guarantee
+	G (((!policy_0 & !policy_1 & policy_2) -> (((next(!policy_0) & next(!policy_1) & next(!policy_2)) | (next(!policy_0) & next(!policy_1) & next(policy_2))) | (next(!policy_0) & next(policy_1) & next(!policy_2)))));
+guarantee
+	G (((!policy_0 & !policy_1 & policy_2) -> ((!((!throttle_0 & throttle_1 & throttle_2)) & !((!parkCommand_0 & !parkCommand_1))) & (((!steer_0 & steer_1 & !steer_2) | (steer_0 & !steer_1 & !steer_2)) | (!steer_0 & steer_1 & steer_2)))));
+guarantee
+	G (((!policy_0 & policy_1 & !policy_2) -> (next(!policy_0) & next(policy_1) & next(policy_2))));
+guarantee
+	G (((!policy_0 & policy_1 & policy_2) -> (next(policy_0) & next(!policy_1) & next(!policy_2))));
+guarantee
+	G (((policy_0 & !policy_1 & !policy_2) -> (next(policy_0) & next(!policy_1) & next(policy_2))));
+guarantee
+	G (((policy_0 & !policy_1 & policy_2) -> (next(policy_0) & next(!policy_1) & next(policy_2))));
+guarantee
+	G (((((!obstacle_0) & (!policy_0 & !policy_1 & !policy_2)) & (!parkResult_0)) -> (!throttle_0 & !throttle_1 & !throttle_2)));
+guarantee
+	G ((((obstacle_0) & ((!policy_0 & !policy_1 & !policy_2) | (!policy_0 & !policy_1 & policy_2))) -> (((next(!policy_0) & next(!policy_1) & next(!policy_2)) & !((((!throttle_0 & !throttle_1 & !throttle_2) | (throttle_0 & !throttle_1 & !throttle_2)) | (!throttle_0 & throttle_1 & throttle_2)))) & !(((!steer_0 & steer_1 & steer_2) | (steer_0 & !steer_1 & !steer_2))))));
+guarantee
+	G (((obstacle_0) -> (!parkCommand_0 & parkCommand_1)));
+guarantee
+	G ((((!policy_0 & !policy_1 & !policy_2) & (!parkResult_0)) -> !((!throttle_0 & throttle_1 & !throttle_2))));
+guarantee
+	G (((((!policy_0 & !policy_1 & !policy_2) & (!obstacle_0)) & (!sideSense_0 & !sideSense_1 & !sideSense_2)) -> (steer_0 & !steer_1 & !steer_2)));
+guarantee
+	G (((((!policy_0 & !policy_1 & !policy_2) & (!obstacle_0)) & (!sideSense_0 & sideSense_1 & !sideSense_2)) -> (!steer_0 & steer_1 & steer_2)));
+guarantee
+	G ((((((!policy_0 & !policy_1 & !policy_2) & (!obstacle_0)) & (!sideSense_0 & !sideSense_1 & sideSense_2)) & (pREV_aux_1 & pREV_aux_2)) -> (!steer_0 & steer_1 & !steer_2)));
+guarantee
+	G ((((((!policy_0 & !policy_1 & !policy_2) & (!obstacle_0)) & pREV_aux_3) & (!sideSense_0 & !sideSense_1 & sideSense_2)) -> ((steer_0 & !steer_1 & !steer_2) & (next(!steer_0) & next(steer_1) & next(!steer_2)))));
+guarantee
+	G ((((((!policy_0 & !policy_1 & !policy_2) & (!obstacle_0)) & pREV_aux_4) & (!sideSense_0 & !sideSense_1 & sideSense_2)) -> ((!steer_0 & steer_1 & steer_2) & (next(!steer_0) & next(steer_1) & next(!steer_2)))));
+guarantee
+	G (((((!policy_0 & !policy_1 & policy_2) & (!obstacle_0)) & (!sideSense_0 & sideSense_1 & sideSense_2)) -> (steer_0 & !steer_1 & !steer_2)));
+guarantee
+	G (((((!policy_0 & !policy_1 & policy_2) & (!obstacle_0)) & (sideSense_0 & !sideSense_1 & sideSense_2)) -> (!steer_0 & steer_1 & steer_2)));
+guarantee
+	G (((((!policy_0 & !policy_1 & policy_2) & (!obstacle_0)) & (sideSense_0 & !sideSense_1 & !sideSense_2)) -> (!steer_0 & steer_1 & !steer_2)));
+guarantee
+	G (((((!policy_0 & !policy_1 & !policy_2) & (((!sideSense_0 & !sideSense_1 & !sideSense_2) | (!sideSense_0 & !sideSense_1 & sideSense_2)) | (!sideSense_0 & sideSense_1 & !sideSense_2))) & (!parkResult_0)) -> (((policy_0 <-> next(policy_0)) & (policy_1 <-> next(policy_1)) & (policy_2 <-> next(policy_2))) & (!parkCommand_0 & parkCommand_1))));
+guarantee
+	G (((((!policy_0 & !policy_1 & !policy_2) & !((((!sideSense_0 & !sideSense_1 & !sideSense_2) | (!sideSense_0 & !sideSense_1 & sideSense_2)) | (!sideSense_0 & sideSense_1 & !sideSense_2)))) & (!obstacle_0)) -> ((((next(!policy_0) & next(!policy_1) & next(policy_2)) & (!throttle_0 & !throttle_1 & !throttle_2)) & (!parkCommand_0 & !parkCommand_1)) & (!steer_0 & steer_1 & !steer_2))));
+guarantee
+	G (((((!policy_0 & !policy_1 & policy_2) & (((!sideSense_0 & !sideSense_1 & !sideSense_2) | (!sideSense_0 & !sideSense_1 & sideSense_2)) | (!sideSense_0 & sideSense_1 & !sideSense_2))) & (!parkResult_0)) -> ((next(!policy_0) & next(!policy_1) & next(!policy_2)) & (!parkCommand_0 & parkCommand_1))));
+guarantee
+	G ((((((!policy_0 & !policy_1 & policy_2) & !((((!sideSense_0 & !sideSense_1 & !sideSense_2) | (!sideSense_0 & !sideSense_1 & sideSense_2)) | (!sideSense_0 & sideSense_1 & !sideSense_2)))) & (!obstacle_0)) & (!parkResult_0)) -> ((((policy_0 <-> next(policy_0)) & (policy_1 <-> next(policy_1)) & (policy_2 <-> next(policy_2))) & (!throttle_0 & !throttle_1 & !throttle_2)) & (parkCommand_0 & !parkCommand_1))));
+guarantee
+	G (((((((!policy_0 & !policy_1 & policy_2) & (sideSense_0 & !sideSense_1 & !sideSense_2)) | (((!policy_0 & !policy_1 & !policy_2) & pREV_aux_5) & pREV_aux_6)) & (!obstacle_0)) & (parkResult_0)) -> (((next(!policy_0) & next(policy_1) & next(!policy_2)) & (throttle_0 & !throttle_1 & !throttle_2)) & (!parkCommand_0 & parkCommand_1))));
+guarantee
+	G (((!policy_0 & policy_1 & !policy_2) -> ((((next(!policy_0) & next(policy_1) & next(policy_2)) & (!throttle_0 & throttle_1 & !throttle_2)) & (!steer_0 & steer_1 & !steer_2)) & (!parkCommand_0 & parkCommand_1))));
+guarantee
+	G (((!policy_0 & policy_1 & policy_2) -> ((((next(policy_0) & next(!policy_1) & next(!policy_2)) & (!throttle_0 & throttle_1 & throttle_2)) & (!steer_0 & !steer_1 & !steer_2)) & (!parkCommand_0 & parkCommand_1))));
+guarantee
+	G (((policy_0 & !policy_1 & !policy_2) -> ((((next(policy_0) & next(!policy_1) & next(policy_2)) & (!throttle_0 & throttle_1 & throttle_2)) & (!steer_0 & !steer_1 & steer_2)) & (!parkCommand_0 & parkCommand_1))));
+guarantee
+	G (((policy_0 & !policy_1 & policy_2) -> (((((policy_0 <-> next(policy_0)) & (policy_1 <-> next(policy_1)) & (policy_2 <-> next(policy_2))) & (!throttle_0 & throttle_1 & !throttle_2)) & (!steer_0 & steer_1 & !steer_2)) & (!parkCommand_0 & parkCommand_1))));
+
+guarantee
+	 (eNV_CONSTRAINT_0_respondsTo_responded);
+guarantee
+	G ((next(eNV_CONSTRAINT_0_respondsTo_responded) <-> ((!obstacle_0) | (eNV_CONSTRAINT_0_respondsTo_responded & !((!throttle_0 & !throttle_1 & throttle_2))))));
+guarantee
+	 (!(pREV_aux_1));
+guarantee
+	G ((next(pREV_aux_1) <-> !((!sideSense_0 & !sideSense_1 & !sideSense_2))));
+guarantee
+	 (!(pREV_aux_2));
+guarantee
+	G ((next(pREV_aux_2) <-> !((!sideSense_0 & sideSense_1 & !sideSense_2))));
+guarantee
+	 (!(pREV_aux_3));
+guarantee
+	G ((next(pREV_aux_3) <-> (!sideSense_0 & sideSense_1 & !sideSense_2)));
+guarantee
+	 (!(pREV_aux_4));
+guarantee
+	G ((next(pREV_aux_4) <-> (!sideSense_0 & !sideSense_1 & !sideSense_2)));
+guarantee
+	 (!(pREV_aux_5));
+guarantee
+	G ((next(pREV_aux_5) <-> (sideSense_0 & !sideSense_1 & !sideSense_2)));
+guarantee
+	 (!(pREV_aux_6));
+guarantee
+	G ((next(pREV_aux_6) <-> (!policy_0 & !policy_1 & policy_2)));
+
+
+assumption
+	G((!parkResult_0 & sideSense_1 & !sideSense_0 & !sideSense_2) -> next(!(sideSense_2 & !obstacle_0 & !sideSense_1 & !sideSense_0)));

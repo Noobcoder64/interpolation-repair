@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
-3edde2c5-95b5-46a5-a950-d707e7d4d943,['G(F(!leftMotor_0 -> (!leftMotor_1 -> (!leftMotor_2 -> (!rightMotor_0 -> (rightMotor_1 -> (rightMotor_2 -> (moveMode_0 -> (!moveMode_1 -> (state_0 &  state_1))))))) & (leftMotor_2 -> (rightMotor_0 -> (!rightMotor_1 -> (!rightMotor_2 -> (moveMode_0 -> (moveMode_1 -> (state_0 &  state_1))))))))))'],True,10,False,,,,,1.0

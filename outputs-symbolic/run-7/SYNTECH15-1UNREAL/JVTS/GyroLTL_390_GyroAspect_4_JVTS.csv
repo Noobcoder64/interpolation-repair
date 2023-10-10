@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
-e0cf2188-afa3-4d5e-ae53-af92f325a9f0,['G(!distSense_0 -> (isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2))))'],True,5,False,,,,,1.0

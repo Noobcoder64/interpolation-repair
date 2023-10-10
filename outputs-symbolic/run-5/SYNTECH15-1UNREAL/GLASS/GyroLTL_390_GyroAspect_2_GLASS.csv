@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
-944d3ac6-efcc-462d-82a2-34252e57d5b9,['G(F(!isReady -> (!balancer_0 -> (!balancer_1 -> balancer_2))))'],True,4,False,,,,,1.0

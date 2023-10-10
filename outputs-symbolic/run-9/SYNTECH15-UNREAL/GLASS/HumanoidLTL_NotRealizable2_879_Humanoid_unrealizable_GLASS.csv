@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
-a1c640df-86db-42c7-bdc7-641da12833e1,['(heading_0 -> (heading_1 -> (heading_2 -> !button_0)))'],True,4,False,,,,,1.0

@@ -1,2 +1,0 @@
-Id,UniqueRefinement,IsSolution,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
-19ebfe3c-c437-42a7-a2f3-cc92c21ebcb7,['(obstacle_0 -> (btInput_0 &  (!btInput_1 -> btInput_2)))'],True,4,False,0.957073314528086,0.957073314528086,1.0,-inf,1.0
