@@ -1,18 +1,18 @@
 
 # List of algorithms
 ALGORITHMS = [
-    # "INTERPOLATION-MIN-INF",
+    "INTERPOLATION-MIN-INF",
     # "INTERPOLATION-MIN",
     # "INTERPOLATION-ALLGARS-INF",
     # "INTERPOLATION-ALLGARS",
     # "GLASS",
-    "JVTS",
+    # "JVTS",
 ]
 
 FLAGS = " ".join([
     # "-allgars",
-    # "-min",
-    # "-inf",
+    "-min",
+    "-inf",
 ])
 
 # List of input folders
@@ -43,3 +43,5 @@ RUN = 1
 
 # Set the timeout
 TIMEOUT = 10
+
+REPAIR_LIMIT = 1
