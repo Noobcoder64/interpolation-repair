@@ -39,7 +39,7 @@ OUTPUT_PARENT_FOLDER = "outputs-interpolation/"
 # OUTPUT_PARENT_FOLDER = "outputs-weakness/"
 # OUTPUT_PARENT_FOLDER = "outputs-translation/"
 
-RUN = 1
+RUN = 2
 
 # Set the timeout
 TIMEOUT = 10
