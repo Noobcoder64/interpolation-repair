@@ -33,14 +33,17 @@ def create_csv_from_output(output, csv_output_file):
     
     repairs = repair_pattern.findall(output)
 
+    match = re.search(r"runtime of repair operation was (\d+) in millisecs.", output)
+    runtime = int(match.group(1))
+
     with open(csv_output_file, "w", newline="") as csvfile:
         csv_writer = csv.writer(csvfile, delimiter=",")
-        csv_writer.writerow(["Id", "UniqueRefinement", "IsSolution"])
+        csv_writer.writerow(["Id", "UniqueRefinement", "Runtime", "IsSolution"])
 
         for i, repair in enumerate(repairs, start=1):
             assumptions = asm_pattern.findall(repair)
             assumptions = normalize_assumptions(assumptions)
-            csv_writer.writerow([str(uuid.uuid4()), assumptions, True])
+            csv_writer.writerow([str(uuid.uuid4()), assumptions, runtime, True])
 
     
 def normalize_assumptions(assumptions):
@@ -57,7 +60,7 @@ def normalize_assumptions(assumptions):
 def main():
     parser = argparse.ArgumentParser(description="Run spec_repair.py on a .spectra file.")
     parser.add_argument("-i", "--input", required=True, help="Path to the input .spectra file")
-    parser.add_argument("-a", "--algorithm", required=True, choices=["GLASS", "JVTS", "ALUR"], help="Algorithm (GLASS, JVTS, or ALUR)")
+    parser.add_argument("-a", "--algorithm", required=True, choices=ALGORITHMS, help="Algorithm (GLASS, JVTS, or ALUR)")
     parser.add_argument("-o", "--output", default=os.getcwd(), help="Path to the output folder (default: current directory)")
     parser.add_argument("-t", "--timeout", type=int, help="Timeout in minutes (default: 10)")
 
