@@ -3,6 +3,7 @@ import re
 import specification as sp
 import experiment_properties as exp
 from counterstrategy import CounterstrategyState, Counterstrategy
+import timeit
 
 PATH_TO_CLI = "spectra/spectra-cli.jar"
 
@@ -79,11 +80,13 @@ def parse_counterstrategy(text):
         is_dead = match.group(2) != None
         state_name = match.group(3)
         vars = dict(re.findall(assignment_pattern,  match.group(4)))
-        inputs = {x:vars[x] for x in exp.inputVarsList}
+        inputs = dict()
+        for x in exp.inputVarsList:
+            inputs[x] = True if vars[x] == "true" else False
         outputs = dict()
         for y in exp.outputVarsList:
             if y in vars:
-                outputs[y] = vars[y]
+                outputs[y] = True if vars[y] == "true" else False
         successors = []
         if not match.group(5) == '':
             successors = match.group(5).split(", ")
