@@ -40,7 +40,7 @@ class RefinementNode:
                              # The higher the better
 
         # Stats fields (can be read from/written to a file)
-        self.timestamp = timeit.default_timer() - exp.start_experiment
+        self.timestamp = exp.get_elapsed_time()
         self.timestamp_realizability_check = None
         self.time_counterstrategy = None
         self.counterstrategy_num_states = None
@@ -225,30 +225,20 @@ class RefinementNode:
         if self.is_realizable is not None:
             return self.is_realizable
         self.__generateSpecFile()
-        realizability_check_start = timeit.default_timer()
-        if self.checkRealizability(self.__getTempSpecFileName()):
-            self.is_realizable = True
-        else:
-            self.is_realizable = False
-        self.time_realizability_check = timeit.default_timer() - realizability_check_start
-
-        self.timestamp_realizability_check = timeit.default_timer() - exp.start_experiment
+        self.is_realizable, self.time_realizability_check = self.checkRealizability(self.__getTempSpecFileName())
+        self.timestamp_realizability_check = exp.get_elapsed_time()
         return self.is_realizable
 
     def isSatisfiable(self):
         if self.is_satisfiable is not None:
             return self.is_satisfiable
-        time_satisfiability_check_start = timeit.default_timer()
-        self.is_satisfiable = spectra.check_satisfiability(self.__getTempSpecFileName())
-        self.time_satisfiability_check = timeit.default_timer() - time_satisfiability_check_start
+        self.is_satisfiable, self.time_satisfiability_check = spectra.check_satisfiability(self.__getTempSpecFileName())
         return self.is_satisfiable
     
     def isWellSeparated(self):
         if self.is_well_separated is not None:
             return self.is_well_separated
-        time_well_separation_check_start = timeit.default_timer()
-        self.is_well_separated = spectra.check_well_separation(self.__getTempSpecFileName())
-        self.time_well_separation_check = timeit.default_timer() - time_well_separation_check_start
+        self.is_well_separated, self.time_well_separation_check = spectra.check_well_separation(self.__getTempSpecFileName())
         self.__deleteTempSpecFile()
         return self.is_well_separated
 
@@ -260,10 +250,8 @@ class RefinementNode:
         if self.counterstrategy is not None:
             return self.counterstrategy
         if not self.isRealizable():
-            counterstrategy_start = timeit.default_timer()
-            self.counterstrategy = spectra.generate_counterstrategy(self.__getTempSpecFileName())
+            self.counterstrategy, self.time_counterstrategy = spectra.generate_counterstrategy(self.__getTempSpecFileName())
             self.counterstrategy_num_states = self.counterstrategy.num_states
-            self.time_counterstrategy = timeit.default_timer() - counterstrategy_start
             return self.counterstrategy
         return None
 

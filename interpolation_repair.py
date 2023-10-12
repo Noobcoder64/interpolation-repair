@@ -26,7 +26,6 @@ def timeout_handler(signum, frame):
 signal.signal(signal.SIGALRM, timeout_handler)
 
 def enough_repairs(solutions):
-    print("SDASDSAD", exp.repair_limit)
     return exp.repair_limit > 0 and len(solutions) == exp.repair_limit
 
 def FifoDuplicateCheckRefinement():
@@ -38,6 +37,9 @@ def FifoDuplicateCheckRefinement():
     if initial_spec_node.isRealizable():
         print("Specification is already realizable. No fix required.")
         return
+    
+    initial_spec_node.timestamp = 0
+    initial_spec_node.timestamp_realizability_check = 0
 
     solutions = []
     explored_refs = []
@@ -49,6 +51,7 @@ def FifoDuplicateCheckRefinement():
         "Id",
         "UniqueRefinement",
         "Timestamp",
+        "TimestampRealizabilityCheck",
         "Length",
         "Parent",
         "NumChildren",
@@ -71,12 +74,12 @@ def FifoDuplicateCheckRefinement():
     refinement_queue = deque([initial_spec_node])
 
     nodes = 0
-    exp.elapsed_time = 0
+    exp.reset_start_experiment()
 
     while refinement_queue \
       and not enough_repairs(solutions) \
       and nodes < MAX_NODES \
-      and exp.elapsed_time < exp.timeout:
+      and exp.get_elapsed_time() < exp.timeout:
         
         cur_node = refinement_queue.pop()
         nodes += 1
@@ -118,7 +121,6 @@ def FifoDuplicateCheckRefinement():
 
         cur_node.saveRefinementData(csv_writer, datafields)
         explored_refs.append(cur_node.unique_refinement)
-        exp.elapsed_time = timeit.default_timer() - exp.start_experiment
 
     datafile.close()
     print("++++ FINISHED EXECUTION")
