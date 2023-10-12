@@ -39,6 +39,9 @@ use_influential = True
 timeout = 600 # 10 minutes
 repair_limit = -1
 
+# When using the command line tool, Xtext libraries will have to load on every call, which may affect performance.
+loading_time = 0
+
 # This is a reference to the original specification file
 specfile = ""
 datafile = os.path.join(output_folder, case_study_name + "_interpolation" + ".csv")
@@ -174,3 +177,14 @@ def configure(
 
     start_experiment = timeit.default_timer()
     elapsed_time = 0
+
+def reset_start_experiment():
+    global start_experiment
+    global loading_time
+    start_experiment = timeit.default_timer()
+    loading_time = 0
+
+def get_elapsed_time():
+    global elapsed_time
+    elapsed_time = timeit.default_timer() - start_experiment - loading_time
+    return elapsed_time

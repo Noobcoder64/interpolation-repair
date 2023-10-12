@@ -9,53 +9,72 @@ PATH_TO_CLI = "spectra/spectra-cli.jar"
 
 def run_subprocess(cmd, newline):
     remaining_time = exp.timeout-exp.elapsed_time
+    start_time = timeit.default_timer()
     try:
         p = subprocess.run(cmd, stdout=subprocess.PIPE, shell=True, timeout=remaining_time, text=True)
         output = p.stdout
         output = '\n'.join(str(output).split(newline))
     except:
         print("Timed out:", cmd)
-    return output
+    return output, timeit.default_timer() - start_time
 
 def check_realizibility(spectra_file_path):
     cmd = "java -jar {} -i {}".format(PATH_TO_CLI, spectra_file_path)
-    output = run_subprocess(cmd, "\\r\\n")
+    output, runtime = run_subprocess(cmd, "\\r\\n")
+
+    match = re.search(r"TimeRealizabilityCheck: (\d+) millisecs.", output)
+    actual_runtime = int(match.group(1)) / 1000.0
+    exp.loading_time += runtime - actual_runtime
+
     if re.search("Result: Specification is unrealizable", output):
-        return False
+        return False, actual_runtime
     elif re.search("Result: Specification is realizable", output):
-        return True
-    return None
+        return True, actual_runtime
+    return None, actual_runtime
 
 def check_satisfiability(spectra_file_path):
     cmd = "java -jar {} -i {} -sat".format(PATH_TO_CLI, spectra_file_path)
-    output = run_subprocess(cmd, "\\r\\n")
+    output, runtime = run_subprocess(cmd, "\\r\\n")
+
+    match = re.search(r"Runtime: (\d+) millisecs.", output)
+    actual_runtime = int(match.group(1)) / 1000.0
+    exp.loading_time += runtime - actual_runtime
+
     if re.search("No. The specification is not satisfiable.", output):
-        return False
+        return False, actual_runtime
     elif re.search("Yes. The specification is satisfiable.", output):
-        return True
-    
-    print("Spectra file in wrong format for CLI satisfiability check.")
-    return None
+        return True, actual_runtime
+
+    return None, actual_runtime
 
 def check_well_separation(spectra_file_path):
     cmd = "java -jar {} -i {} --well-separation".format(PATH_TO_CLI, spectra_file_path)
-    output = run_subprocess(cmd, "\\r\\n")
+    output, runtime = run_subprocess(cmd, "\\r\\n")
+
+    match = re.search(r"Runtime: (\d+) millisecs.", output)
+    actual_runtime = int(match.group(1)) / 1000.0
+    exp.loading_time += runtime - actual_runtime
+
     if re.search("non-well-separated", output):
-        return False
+        return False, actual_runtime
     elif re.search("well-separated", output):
-        return True
+        return True, actual_runtime
     
     print("Error checking well-separation.")
-    return None
+    return None, actual_runtime
 
 def check_y_sat(spectra_file_path):
     cmd = "java -jar {} -i {} -y-sat".format(PATH_TO_CLI, spectra_file_path)
-    output = run_subprocess(cmd, "\\r\\n")
+    output, runtime = run_subprocess(cmd, "\\r\\n")
     if re.search("y-sat", output):
         return True
     elif re.search("y-unsat", output):
         return False
     
+    match = re.search(r"Runtime: (\d+) millisecs.", output)
+    actual_runtime = int(match.group(1)) / 1000.0
+    exp.loading_time += runtime - actual_runtime
+
     print("Error checking y-sat.")
     return None
 
@@ -63,11 +82,16 @@ def generate_counterstrategy(spectra_file_path):
     cmd = "java -jar {} -i {} --counter-strategy-jtlv-format".format(PATH_TO_CLI, spectra_file_path)
     if exp.minimize_spec:
         cmd += " -min"
-    output = run_subprocess(cmd, "\\n")
+    output, runtime = run_subprocess(cmd, "\\n")
+
+    match = re.search(r"TimeCounterstrategy: (\d+) millisecs.", output)
+    actual_runtime = int(match.group(1)) / 1000.0
+    exp.loading_time += runtime - actual_runtime
+
     # print(output)
     if re.search("Result: Specification is unrealizable", output):
-        return parse_counterstrategy(output.replace("\\t", ""))
-    return None
+        return parse_counterstrategy(output.replace("\\t", "")), actual_runtime
+    return None, actual_runtime
 
 def parse_counterstrategy(text):
     state_pattern = re.compile(r"(Initial )?(Dead )?State (\w+) <(.*?)>\s+With (?:no )?successors(?: : |.)(.*)(?:\n|$)")
@@ -98,7 +122,12 @@ def parse_counterstrategy(text):
 
 def compute_unrealizable_core(spectra_file_path):
     cmd = "java -jar {} -i {} -uc".format(PATH_TO_CLI, spectra_file_path)
-    output = run_subprocess(cmd, "\\r\\n")
+    output, runtime = run_subprocess(cmd, "\\r\\n")
+    
+    match = re.search(r"TimeUnrealizableCore: (\d+) millisecs.", output)
+    actual_runtime = int(match.group(1)) / 1000.0
+    exp.loading_time += runtime - actual_runtime
+
     core_found = re.compile("at lines <([^>]*)>").search(output)
     if not core_found:
         return None
