@@ -1,27 +1,27 @@
 
 # List of algorithms
 ALGORITHMS = [
-    "INTERPOLATION-MIN-INF",
+    # "INTERPOLATION-MIN-INF",
     # "INTERPOLATION-MIN",
     # "INTERPOLATION-ALLGARS-INF",
     # "INTERPOLATION-ALLGARS",
     # "GLASS",
-    # "JVTS",
+    "JVTS",
 ]
 
 FLAGS = " ".join([
     # "-allgars",
-    "-min",
-    "-inf",
+    # "-min",
+    # "-inf",
 ])
 
 # List of input folders
 INPUT_FOLDERS = [
-    "inputs/SIMPLE",
+    # "inputs/SIMPLE",
     # "inputs/AMBA-1",
-    "inputs/AMBA-2",
+    # "inputs/AMBA-2",
     "inputs/SYNTECH15-UNREAL",
-    "inputs/SYNTECH15-1UNREAL",
+    # "inputs/SYNTECH15-1UNREAL",
 ]
 
 SYSTEMS = [

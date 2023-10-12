@@ -32,7 +32,7 @@ def process_algorithm(algorithm, input_folder):
     output_folder = os.path.join(OUTPUT_PARENT_FOLDER, algorithm, f"run-{RUN}", os.path.basename(input_folder))
     os.makedirs(output_folder, exist_ok=True)
     
-    spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra") and "ColorSort" not in file]
+    spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra")]
     spectra_files.sort()
 
     # with concurrent.futures.ThreadPoolExecutor() as executor:
