@@ -7,7 +7,6 @@ from experiment_config import INPUT_FOLDERS, ALGORITHMS, FLAGS, OUTPUT_PARENT_FO
 
 
 def process_file(input_file, algorithm, output_folder, output_file):
-    start_time = time.time()
     
     if "INTERPOLATION" in algorithm:
         command = f"python interpolation_repair.py -i {input_file} -o {output_folder} -t {TIMEOUT} {FLAGS}"
@@ -15,7 +14,9 @@ def process_file(input_file, algorithm, output_folder, output_file):
         command = f"python spec_repair.py -i {input_file} -a {algorithm} -o {output_folder} -t {TIMEOUT}"
 
     print(command)
-
+    
+    start_time = time.time()
+    
     with open(output_file, "w") as output:
         try:
             subprocess.run(command, shell=True, check=True, stdout=output)

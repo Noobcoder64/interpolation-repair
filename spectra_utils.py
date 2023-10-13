@@ -64,7 +64,7 @@ def generate_counterstrategy(spectra_file_path):
     if exp.minimize_spec:
         cmd += " -min"
     output = run_subprocess(cmd, "\\n")
-    # print(output)
+    print(output)
     if re.search("Result: Specification is unrealizable", output):
         return parse_counterstrategy(output.replace("\\t", ""))
     return None

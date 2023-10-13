@@ -4,8 +4,8 @@ import argparse
 from collections import deque
 import experiment_properties as exp
 from refinement import RefinementNode
-import concurrent.futures
 import csv
+import signal
 
 MAX_NODES = 3000 # Max nodes to expand in the experiment
 
@@ -20,6 +20,10 @@ for temp_file in os.listdir(temp_folder):
         print(e)
 print("Reset complete!")
 
+def timeout_handler(signum, frame):
+    raise TimeoutError("Timeout exceeded")
+
+signal.signal(signal.SIGALRM, timeout_handler)
 
 def FifoDuplicateCheckRefinement():
     """This implements the refinement strategy that uses model checking against ancestors
@@ -80,26 +84,28 @@ def FifoDuplicateCheckRefinement():
         try:
             print("++ REALIZABILITY CHECK")
             if not cur_node.isRealizable():
-                with concurrent.futures.ThreadPoolExecutor() as executor:
-                    print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
-                    refine_future = executor.submit(cur_node.refine)
-                    remaining_time = exp.timeout - exp.elapsed_time
-                    candidate_ref_nodes = refine_future.result(timeout=remaining_time)
-                    refinement_queue.extendleft(candidate_ref_nodes)
+                print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
+                remaining_time = exp.timeout - exp.elapsed_time
+                signal.alarm(int(remaining_time))
+                candidate_ref_nodes = cur_node.refine()
+                refinement_queue.extendleft(candidate_ref_nodes)
             elif cur_node.isSatisfiable():
                 cur_node.isWellSeparated()
                 print("++ REALIZABLE REFINEMENT: SAT CHECK")
                 solutions.append(cur_node.gr1_units)
             else:
                 print("++ VACUOUS SOLUTION")
+        except TimeoutError:
+            print("Refine timed out")
         except Exception as e:
             # cur_node.writeNotes(str(e))
             print(e)
+        finally:
+            signal.alarm(0)
 
         cur_node.saveRefinementData(csv_writer, datafields)
         explored_refs.append(cur_node.unique_refinement)
         exp.elapsed_time = timeit.default_timer() - exp.start_experiment
-    
     datafile.close()
 
 def main():
