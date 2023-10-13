@@ -43,8 +43,11 @@ def compute_unrealizable_core(spectra_file_path):
 
 def generate_counterstrategy(spectra_file_path):
     remaining_time = int(exp.timeout - exp.elapsed_time)
-    output = str(SpectraTool.generateCounterStrategy(spectra_file_path, exp.minimize_spec, 10))
-    # print(output)
+    output = str(SpectraTool.generateCounterStrategy(spectra_file_path, exp.minimize_spec, remaining_time))
+    
+    if "Error" in output:
+        raise Exception(output)
+    
     return parse_counterstrategy(output.replace("\\t", ""))
 
 def parse_counterstrategy(text):
