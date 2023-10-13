@@ -37,6 +37,7 @@ minimize_spec = True
 use_influential = True
 
 timeout = 600 # 10 minutes
+repair_limit = -1
 
 # This is a reference to the original specification file
 specfile = ""
@@ -70,6 +71,7 @@ elapsed_time = 0
 
 def configure(
         spectra_file,
+        repair_limit_in=-1,
         timeout_in=600,
         output_folder="outputs/",
         use_all_gars_in = False,
@@ -102,6 +104,7 @@ def configure(
     global use_influential
 
     global timeout
+    global repair_limit
     global start_experiment
     global elapsed_time
     
@@ -109,6 +112,7 @@ def configure(
     minimize_spec = minimize_spec_in
     use_influential = use_influential_in
     timeout = timeout_in
+    repair_limit = repair_limit_in
 
     print()
     print("=== ARGS ===")
@@ -116,6 +120,7 @@ def configure(
     print("MINIMIZE SPEC:", minimize_spec)
     print("USE INFLUENTIAL:", use_influential)
     print("TIMEOUT:", timeout)
+    print("REPAIR LIMIT:", repair_limit)
     print()
 
     specfile = spectra_file
@@ -169,3 +174,12 @@ def configure(
 
     start_experiment = timeit.default_timer()
     elapsed_time = 0
+
+def reset_start_experiment():
+    global start_experiment
+    start_experiment = timeit.default_timer()
+
+def get_elapsed_time():
+    global elapsed_time
+    elapsed_time = timeit.default_timer() - start_experiment
+    return elapsed_time
