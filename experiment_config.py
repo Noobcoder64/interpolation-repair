@@ -39,7 +39,7 @@ OUTPUT_PARENT_FOLDER = "outputs/"
 # OUTPUT_PARENT_FOLDER = "outputs-weakness/"
 # OUTPUT_PARENT_FOLDER = "outputs-translation/"
 
-RUN = 2
+RUN = 3
 
 # Set the timeout
 TIMEOUT = 10
