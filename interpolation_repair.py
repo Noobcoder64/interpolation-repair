@@ -5,7 +5,6 @@ from collections import deque
 import experiment_properties as exp
 from refinement import RefinementNode
 import csv
-import signal
 import jpype
 
 MAX_NODES = 3000 # Max nodes to expand in the experiment
@@ -20,11 +19,6 @@ for temp_file in os.listdir(temp_folder):
     except Exception as e:
         print(e)
 print("Reset complete!")
-
-def timeout_handler(signum, frame):
-    raise TimeoutError("Timeout exceeded")
-
-signal.signal(signal.SIGALRM, timeout_handler)
 
 def enough_repairs(solutions):
     return exp.repair_limit > 0 and len(solutions) == exp.repair_limit
@@ -102,8 +96,6 @@ def FifoDuplicateCheckRefinement():
             print("++ REALIZABILITY CHECK")
             if not cur_node.isRealizable():
                 print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
-                remaining_time = exp.timeout - exp.elapsed_time
-                signal.alarm(int(remaining_time))
                 candidate_ref_nodes = cur_node.refine()
                 refinement_queue.extendleft(candidate_ref_nodes)
             elif cur_node.isSatisfiable():
@@ -112,13 +104,9 @@ def FifoDuplicateCheckRefinement():
                 solutions.append(cur_node.gr1_units)
             else:
                 print("++ VACUOUS SOLUTION")
-        except TimeoutError:
-            print("Refine timed out")
         except Exception as e:
             # cur_node.writeNotes(str(e))
             print(e)
-        finally:
-            signal.alarm(0)
 
         cur_node.saveRefinementData(csv_writer, datafields)
         explored_refs.append(cur_node.unique_refinement)

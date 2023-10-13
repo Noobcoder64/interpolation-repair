@@ -42,7 +42,8 @@ def compute_unrealizable_core(spectra_file_path):
     return uc
 
 def generate_counterstrategy(spectra_file_path):
-    output = str(SpectraTool.generateCounterStrategy(spectra_file_path, exp.minimize_spec))
+    remaining_time = int(exp.timeout - exp.elapsed_time)
+    output = str(SpectraTool.generateCounterStrategy(spectra_file_path, exp.minimize_spec, 10))
     # print(output)
     return parse_counterstrategy(output.replace("\\t", ""))
 
@@ -72,15 +73,3 @@ def parse_counterstrategy(text):
         states[state.name] = state
 
     return Counterstrategy(states, use_influential=exp.use_influential)
-
-
-# print(check_realizibility("outputs/original.spectra"))
-# print(compute_unrealizable_core("outputs/original.spectra"))
-# print(generate_counterstrategy("outputs/min.spectra"))
-# print(SpectraTool.generateCounterStrategy("inputs/SIMPLE/RG.spectra", True))
-
-def main():
-    specification = "inputs/SIMPLE/RG.spectra"
-
-if __name__ == "__main__":
-    main()
