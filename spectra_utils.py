@@ -8,7 +8,7 @@ import jpype
 import jpype.imports
 from jpype.types import *
 
-jpype.startJVM(classpath=["spectra/lib/*", "spectra/SpectraTool.jar"])
+jpype.startJVM(classpath=["spectra/dependencies/*", "spectra/SpectraTool.jar"])
 
 SpectraTool = jpype.JClass('tau.smlab.syntech.Spectra.cli.SpectraTool')
 print()
@@ -42,7 +42,8 @@ def compute_unrealizable_core(spectra_file_path):
     return uc
 
 def generate_counterstrategy(spectra_file_path):
-    output = str(SpectraTool.generateCounterStrategy(spectra_file_path, exp.minimize_spec))
+    remaining_time = exp.timeout - exp.elapsed_time
+    output = str(SpectraTool.generateCounterStrategy(spectra_file_path, exp.minimize_spec, remaining_time))
     # print(output)
     return parse_counterstrategy(output.replace("\\t", ""))
 
