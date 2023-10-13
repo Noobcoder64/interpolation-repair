@@ -6,6 +6,7 @@ import experiment_properties as exp
 from refinement import RefinementNode
 import csv
 import signal
+import jpype
 
 MAX_NODES = 3000 # Max nodes to expand in the experiment
 
@@ -25,9 +26,21 @@ def timeout_handler(signum, frame):
 
 signal.signal(signal.SIGALRM, timeout_handler)
 
+def enough_repairs(solutions):
+    return exp.repair_limit > 0 and len(solutions) == exp.repair_limit
+
 def FifoDuplicateCheckRefinement():
     """This implements the refinement strategy that uses model checking against ancestors
     to generate nodes"""
+
+    initial_spec_node = RefinementNode()
+
+    if initial_spec_node.isRealizable():
+        print("Specification is already realizable. No fix required.")
+        return
+    
+    initial_spec_node.timestamp = 0
+    initial_spec_node.timestamp_realizability_check = 0
 
     solutions = []
     explored_refs = []
@@ -39,6 +52,7 @@ def FifoDuplicateCheckRefinement():
         "Id",
         "UniqueRefinement",
         "Timestamp",
+        "TimestampRealizabilityCheck",
         "Length",
         "Parent",
         "NumChildren",
@@ -57,14 +71,17 @@ def FifoDuplicateCheckRefinement():
     
     csv_writer.writerow(datafields)
 
-    initial_spec_node = RefinementNode()
-
     # Root of the refinement tree: it contains the initial spec
     refinement_queue = deque([initial_spec_node])
 
     nodes = 0
-    exp.elapsed_time = 0
-    while refinement_queue and nodes < MAX_NODES and exp.elapsed_time < exp.timeout:
+    exp.reset_start_experiment()
+
+    while refinement_queue \
+      and not enough_repairs(solutions) \
+      and nodes < MAX_NODES \
+      and exp.get_elapsed_time() < exp.timeout:
+        
         cur_node = refinement_queue.pop()
         nodes += 1
 
@@ -105,20 +122,24 @@ def FifoDuplicateCheckRefinement():
 
         cur_node.saveRefinementData(csv_writer, datafields)
         explored_refs.append(cur_node.unique_refinement)
-        exp.elapsed_time = timeit.default_timer() - exp.start_experiment
+
     datafile.close()
+    jpype.shutdownJVM()
+    print("++++ FINISHED EXECUTION")
+    print("++++ RUNTIME:", exp.get_elapsed_time())
 
 def main():
     parser = argparse.ArgumentParser(description="Run interpolation_repair.py on .spectra file.")
     parser.add_argument("-i", "--input", required=True, help="Path to the input .spectra file")
     parser.add_argument("-o", "--output", default=os.getcwd(), help="Path to the output folder (default: current directory)")
     parser.add_argument("-t", "--timeout", type=float, default=10, help="Timeout in minutes (default: 10)")
+    parser.add_argument("-rl", "--repair-limit", type=int, default=-1, help="Repair limit (default: -1)")
     parser.add_argument("-allgars", action="store_true", help="Use all guarantees")
     parser.add_argument("-min", action="store_true", help="Minimize specification")
     parser.add_argument("-inf", action="store_true", help="Use influential output variables")
 
     args = parser.parse_args()
-    exp.configure(args.input, args.timeout*60, args.output, args.allgars, args.min, args.inf, debug=False)
+    exp.configure(args.input, args.repair_limit, args.timeout*60, args.output, args.allgars, args.min, args.inf, debug=False)
     FifoDuplicateCheckRefinement()
 
 if __name__=="__main__":

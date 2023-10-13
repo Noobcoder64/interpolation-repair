@@ -2,14 +2,13 @@
 import os
 import time
 import subprocess
-import concurrent.futures
-from experiment_config import INPUT_FOLDERS, ALGORITHMS, FLAGS, OUTPUT_PARENT_FOLDER, RUN, TIMEOUT
+from experiment_config import INPUT_FOLDERS, ALGORITHMS, FLAGS, OUTPUT_PARENT_FOLDER, RUN, TIMEOUT, REPAIR_LIMIT
 
 
 def process_file(input_file, algorithm, output_folder, output_file):
     
     if "INTERPOLATION" in algorithm:
-        command = f"python interpolation_repair.py -i {input_file} -o {output_folder} -t {TIMEOUT} {FLAGS}"
+        command = f"python interpolation_repair.py -i {input_file} -o {output_folder} -t {TIMEOUT} -rl {REPAIR_LIMIT} {FLAGS}"
     else:
         command = f"python spec_repair.py -i {input_file} -a {algorithm} -o {output_folder} -t {TIMEOUT}"
 
@@ -33,16 +32,14 @@ def process_algorithm(algorithm, input_folder):
     output_folder = os.path.join(OUTPUT_PARENT_FOLDER, algorithm, f"run-{RUN}", os.path.basename(input_folder))
     os.makedirs(output_folder, exist_ok=True)
     
-    spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra")]
+    spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra") and "ColorSort" not in file]
     spectra_files.sort()
 
-    # with concurrent.futures.ThreadPoolExecutor() as executor:
     for spectra_file in spectra_files:
         input_file = os.path.join(input_folder, spectra_file)
         spectra_file_name = os.path.splitext(os.path.basename(spectra_file))[0]
         output_file_name = f"{spectra_file_name}_{algorithm}_output.txt"
         output_file = os.path.join(output_folder, output_file_name)
-        # executor.submit(process_file, input_file, algorithm, output_folder, output_file)
         if not [csv_file for csv_file in os.listdir(output_folder) if spectra_file_name in csv_file and csv_file.endswith(".csv")]:
             process_file(input_file, algorithm, output_folder, output_file)
 

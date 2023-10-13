@@ -1,18 +1,18 @@
 
 # List of algorithms
 ALGORITHMS = [
-    # "INTERPOLATION-MIN-INF",
+    "INTERPOLATION-MIN-INF",
     # "INTERPOLATION-MIN",
     # "INTERPOLATION-ALLGARS-INF",
     # "INTERPOLATION-ALLGARS",
-    "GLASS",
+    # "GLASS",
     # "JVTS",
 ]
 
 FLAGS = " ".join([
     # "-allgars",
-    # "-min",
-    # "-inf",
+    "-min",
+    "-inf",
 ])
 
 # List of input folders
@@ -39,7 +39,9 @@ OUTPUT_PARENT_FOLDER = "outputs-symbolic/"
 # OUTPUT_PARENT_FOLDER = "outputs-weakness/"
 # OUTPUT_PARENT_FOLDER = "outputs-translation/"
 
-RUN = 1
+RUN = 4
 
 # Set the timeout
 TIMEOUT = 10
+
+REPAIR_LIMIT = -1

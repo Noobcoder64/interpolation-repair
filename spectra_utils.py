@@ -1,73 +1,50 @@
-import subprocess
 import re
 import specification as sp
 import experiment_properties as exp
 from counterstrategy import CounterstrategyState, Counterstrategy
 import timeit
 
-PATH_TO_CLI = "spectra/spectra-cli.jar"
+import jpype
+import jpype.imports
+from jpype.types import *
 
-def run_subprocess(cmd, newline):
-    remaining_time = exp.timeout-exp.elapsed_time
-    try:
-        p = subprocess.run(cmd, stdout=subprocess.PIPE, shell=True, timeout=remaining_time, text=True)
-        output = p.stdout
-        output = '\n'.join(str(output).split(newline))
-    except:
-        print("Timed out:", cmd)
-    return output
+jpype.startJVM(classpath=["spectra/lib/*", "spectra/SpectraTool.jar"])
+
+SpectraTool = jpype.JClass('tau.smlab.syntech.Spectra.cli.SpectraTool')
+print()
+
 
 def check_realizibility(spectra_file_path):
-    cmd = "java -jar {} -i {}".format(PATH_TO_CLI, spectra_file_path)
-    output = run_subprocess(cmd, "\\r\\n")
-    if re.search("Result: Specification is unrealizable", output):
-        return False
-    elif re.search("Result: Specification is realizable", output):
-        return True
-    return None
+    return SpectraTool.checkRealizability(spectra_file_path)
+
 
 def check_satisfiability(spectra_file_path):
-    cmd = "java -jar {} -i {} -sat".format(PATH_TO_CLI, spectra_file_path)
-    output = run_subprocess(cmd, "\\r\\n")
-    if re.search("No. The specification is not satisfiable.", output):
-        return False
-    elif re.search("Yes. The specification is satisfiable.", output):
-        return True
-    
-    print("Spectra file in wrong format for CLI satisfiability check.")
-    return None
+    return SpectraTool.checkSatisfiability(spectra_file_path)
 
 def check_well_separation(spectra_file_path):
-    cmd = "java -jar {} -i {} --well-separation".format(PATH_TO_CLI, spectra_file_path)
-    output = run_subprocess(cmd, "\\r\\n")
-    if re.search("non-well-separated", output):
-        return False
-    elif re.search("well-separated", output):
-        return True
-    
-    print("Error checking well-separation.")
-    return None
+    return SpectraTool.checkWellSeparation(spectra_file_path)
 
 def check_y_sat(spectra_file_path):
-    cmd = "java -jar {} -i {} -y-sat".format(PATH_TO_CLI, spectra_file_path)
-    output = run_subprocess(cmd, "\\r\\n")
-    if re.search("y-sat", output):
-        return True
-    elif re.search("y-unsat", output):
-        return False
-    
-    print("Error checking y-sat.")
-    return None
+    return SpectraTool.checkYSatisfiability(spectra_file_path)
+
+def compute_unrealizable_core(spectra_file_path):
+    output = str(SpectraTool.computeUnrealizableCore(spectra_file_path))
+    # print(output)
+    core_found = re.compile("< ([^>]*) >").search(output)
+    if not core_found:
+        return None
+    line_nums = [int(x) for x in core_found.group(1).split(" ")]
+    # print(line_nums)
+    spec = sp.read_file(spectra_file_path)
+    uc = [spec[line] for line in line_nums]
+    uc = [re.sub(r'\s', '', x) for x in uc]
+    uc = sp.unspectra(uc)
+    return uc
 
 def generate_counterstrategy(spectra_file_path):
-    cmd = "java -jar {} -i {} --counter-strategy-jtlv-format".format(PATH_TO_CLI, spectra_file_path)
-    if exp.minimize_spec:
-        cmd += " -min"
-    output = run_subprocess(cmd, "\\n")
-    print(output)
-    if re.search("Result: Specification is unrealizable", output):
-        return parse_counterstrategy(output.replace("\\t", ""))
-    return None
+    output = str(SpectraTool.generateCounterStrategy(spectra_file_path, exp.minimize_spec))
+    # print(output)
+    return parse_counterstrategy(output.replace("\\t", ""))
 
 def parse_counterstrategy(text):
     state_pattern = re.compile(r"(Initial )?(Dead )?State (\w+) <(.*?)>\s+With (?:no )?successors(?: : |.)(.*)(?:\n|$)")
@@ -96,26 +73,14 @@ def parse_counterstrategy(text):
 
     return Counterstrategy(states, use_influential=exp.use_influential)
 
-def compute_unrealizable_core(spectra_file_path):
-    cmd = "java -jar {} -i {} -uc".format(PATH_TO_CLI, spectra_file_path)
-    output = run_subprocess(cmd, "\\r\\n")
-    core_found = re.compile("at lines <([^>]*)>").search(output)
-    if not core_found:
-        return None
-    
-    line_nums = [int(x) for x in core_found.group(1).split(" ") if x != ""]
-    # print(line_nums)
-    spec = sp.read_file(spectra_file_path)
-    spec = [re.sub(r'\s', '', x) for x in spec]
-    spec = sp.unspectra(spec)
-    uc = []
-    for line in line_nums:
-        uc.append(spec[line])
-    return uc
-    
+
+# print(check_realizibility("outputs/original.spectra"))
+# print(compute_unrealizable_core("outputs/original.spectra"))
+# print(generate_counterstrategy("outputs/min.spectra"))
+# print(SpectraTool.generateCounterStrategy("inputs/SIMPLE/RG.spectra", True))
+
 def main():
-    specification = "SIMPLE/RG.spectra"
-    print(check_realizibility(specification))
+    specification = "inputs/SIMPLE/RG.spectra"
 
 if __name__ == "__main__":
     main()
