@@ -1,9 +1,8 @@
-# import pydot
 import random
-import experiment_properties as exp
 from path import State, Path
 
 class CounterstrategyState:
+
     def __init__(self, name: str, inputs: dict, outputs: dict, successors=[], is_initial= False, is_dead = False):
         self.name = name
         self.inputs = inputs
@@ -24,6 +23,7 @@ class CounterstrategyState:
                 f"Successors: {self.successors}\n" + \
                 f"Initial: {self.is_initial}\n" + \
                 f"Dead: {self.is_dead}"
+
 
 class Counterstrategy:
 
@@ -76,7 +76,6 @@ class Counterstrategy:
             outputs = state.influential_outputs
         else:
             outputs = state.outputs
-        # outputs = []
         for varname in outputs:
             if state.outputs[varname] is True:
                 literals.append(varname)
@@ -94,7 +93,6 @@ class Counterstrategy:
         loop_startindex = None
 
         successors = [state_name for state_name in self.states if self.states[state_name].is_initial and not "Sf" in state_name]
-        prev_state = None
         while successors != [] and not looping:
             
             curr_state = random.choice(successors)
@@ -105,7 +103,6 @@ class Counterstrategy:
             else:
                 successors = [state_name for state_name in self.states[curr_state].successors if not "Sf" in state_name]
                 visited_states.append(curr_state)
-                prev_state = curr_state
 
         if visited_states == []:
             visited_states.append(random.choice([state for state in self.states if self.states[state].is_initial]))

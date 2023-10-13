@@ -1,0 +1,2 @@
+Id,UniqueRefinement,Runtime,IsSolution
+0d810bfb-4ea4-46fc-a57b-d2759d8eac8d,['(!heading_0 -> (!heading_1 -> (heading_2 -> !button_0)) & (heading_1 -> !button_0)) & (heading_0 -> !button_0)'],22,True
