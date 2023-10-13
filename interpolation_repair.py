@@ -98,27 +98,27 @@ def FifoDuplicateCheckRefinement():
         print("++++ Refinement:", cur_node.gr1_units)
         print("++++ Length:", cur_node.length)
 
-        # try:
-        print("++ REALIZABILITY CHECK")
-        if not cur_node.isRealizable():
-            print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
-            remaining_time = exp.timeout - exp.elapsed_time
-            signal.alarm(int(remaining_time))
-            candidate_ref_nodes = cur_node.refine()
-            refinement_queue.extendleft(candidate_ref_nodes)
-        elif cur_node.isSatisfiable():
-            cur_node.isWellSeparated()
-            print("++ REALIZABLE REFINEMENT: SAT CHECK")
-            solutions.append(cur_node.gr1_units)
-        else:
-            print("++ VACUOUS SOLUTION")
-        # except TimeoutError:
-        #     print("Refine timed out")
-        # except Exception as e:
-        #     # cur_node.writeNotes(str(e))
-        #     print(e)
-        # finally:
-        #     signal.alarm(0)
+        try:
+            print("++ REALIZABILITY CHECK")
+            if not cur_node.isRealizable():
+                print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
+                remaining_time = exp.timeout - exp.elapsed_time
+                signal.alarm(int(remaining_time))
+                candidate_ref_nodes = cur_node.refine()
+                refinement_queue.extendleft(candidate_ref_nodes)
+            elif cur_node.isSatisfiable():
+                cur_node.isWellSeparated()
+                print("++ REALIZABLE REFINEMENT: SAT CHECK")
+                solutions.append(cur_node.gr1_units)
+            else:
+                print("++ VACUOUS SOLUTION")
+        except TimeoutError:
+            print("Refine timed out")
+        except Exception as e:
+            # cur_node.writeNotes(str(e))
+            print(e)
+        finally:
+            signal.alarm(0)
 
         cur_node.saveRefinementData(csv_writer, datafields)
         explored_refs.append(cur_node.unique_refinement)

@@ -39,9 +39,9 @@ OUTPUT_PARENT_FOLDER = "outputs/"
 # OUTPUT_PARENT_FOLDER = "outputs-weakness/"
 # OUTPUT_PARENT_FOLDER = "outputs-translation/"
 
-RUN = 3
+RUN = 4
 
 # Set the timeout
 TIMEOUT = 10
 
-REPAIR_LIMIT = 1
+REPAIR_LIMIT = -1
