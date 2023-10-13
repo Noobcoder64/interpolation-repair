@@ -75,7 +75,6 @@ def FifoDuplicateCheckRefinement():
       and not enough_repairs(solutions) \
       and nodes < MAX_NODES \
       and exp.get_elapsed_time() < exp.timeout:
-        
         cur_node = refinement_queue.pop()
         nodes += 1
 
@@ -113,8 +112,9 @@ def FifoDuplicateCheckRefinement():
 
     datafile.close()
     jpype.shutdownJVM()
+
     print("++++ FINISHED EXECUTION")
-    print("++++ RUNTIME:", exp.get_elapsed_time())
+    print("++++ RUNTIME:", exp.get_elapsed_time(), "seconds")
 
 def main():
     parser = argparse.ArgumentParser(description="Run interpolation_repair.py on .spectra file.")
