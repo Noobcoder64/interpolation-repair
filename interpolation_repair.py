@@ -6,6 +6,7 @@ import experiment_properties as exp
 from refinement import RefinementNode
 import csv
 import signal
+import jpype
 
 MAX_NODES = 3000 # Max nodes to expand in the experiment
 
@@ -97,33 +98,35 @@ def FifoDuplicateCheckRefinement():
         print("++++ Refinement:", cur_node.gr1_units)
         print("++++ Length:", cur_node.length)
 
-        try:
-            print("++ REALIZABILITY CHECK")
-            if not cur_node.isRealizable():
-                print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
-                remaining_time = exp.timeout - exp.elapsed_time
-                signal.alarm(int(remaining_time))
-                candidate_ref_nodes = cur_node.refine()
-                refinement_queue.extendleft(candidate_ref_nodes)
-            elif cur_node.isSatisfiable():
-                cur_node.isWellSeparated()
-                print("++ REALIZABLE REFINEMENT: SAT CHECK")
-                solutions.append(cur_node.gr1_units)
-            else:
-                print("++ VACUOUS SOLUTION")
-        except TimeoutError:
-            print("Refine timed out")
-        except Exception as e:
-            # cur_node.writeNotes(str(e))
-            print(e)
-        finally:
-            signal.alarm(0)
+        # try:
+        print("++ REALIZABILITY CHECK")
+        if not cur_node.isRealizable():
+            print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
+            remaining_time = exp.timeout - exp.elapsed_time
+            signal.alarm(int(remaining_time))
+            candidate_ref_nodes = cur_node.refine()
+            refinement_queue.extendleft(candidate_ref_nodes)
+        elif cur_node.isSatisfiable():
+            cur_node.isWellSeparated()
+            print("++ REALIZABLE REFINEMENT: SAT CHECK")
+            solutions.append(cur_node.gr1_units)
+        else:
+            print("++ VACUOUS SOLUTION")
+        # except TimeoutError:
+        #     print("Refine timed out")
+        # except Exception as e:
+        #     # cur_node.writeNotes(str(e))
+        #     print(e)
+        # finally:
+        #     signal.alarm(0)
 
         cur_node.saveRefinementData(csv_writer, datafields)
         explored_refs.append(cur_node.unique_refinement)
 
     datafile.close()
+    jpype.shutdownJVM()
     print("++++ FINISHED EXECUTION")
+    print("++++ RUNTIME:", exp.get_elapsed_time())
 
 def main():
     parser = argparse.ArgumentParser(description="Run interpolation_repair.py on .spectra file.")

@@ -1,97 +1,50 @@
-import subprocess
 import re
 import specification as sp
 import experiment_properties as exp
 from counterstrategy import CounterstrategyState, Counterstrategy
 import timeit
 
-PATH_TO_CLI = "spectra/spectra-cli.jar"
+import jpype
+import jpype.imports
+from jpype.types import *
 
-def run_subprocess(cmd, newline):
-    remaining_time = exp.timeout-exp.elapsed_time
-    start_time = timeit.default_timer()
-    try:
-        p = subprocess.run(cmd, stdout=subprocess.PIPE, shell=True, timeout=remaining_time, text=True)
-        output = p.stdout
-        output = '\n'.join(str(output).split(newline))
-    except:
-        print("Timed out:", cmd)
-    return output, timeit.default_timer() - start_time
+jpype.startJVM(classpath=["spectra/lib/*", "spectra/SpectraTool.jar"])
+
+SpectraTool = jpype.JClass('tau.smlab.syntech.Spectra.cli.SpectraTool')
+print()
+
 
 def check_realizibility(spectra_file_path):
-    cmd = "java -jar {} -i {}".format(PATH_TO_CLI, spectra_file_path)
-    output, runtime = run_subprocess(cmd, "\\r\\n")
+    return SpectraTool.checkRealizability(spectra_file_path)
 
-    match = re.search(r"TimeRealizabilityCheck: (\d+) millisecs.", output)
-    actual_runtime = int(match.group(1)) / 1000.0
-    exp.loading_time += runtime - actual_runtime
-
-    if re.search("Result: Specification is unrealizable", output):
-        return False, actual_runtime
-    elif re.search("Result: Specification is realizable", output):
-        return True, actual_runtime
-    return None, actual_runtime
 
 def check_satisfiability(spectra_file_path):
-    cmd = "java -jar {} -i {} -sat".format(PATH_TO_CLI, spectra_file_path)
-    output, runtime = run_subprocess(cmd, "\\r\\n")
-
-    match = re.search(r"Runtime: (\d+) millisecs.", output)
-    actual_runtime = int(match.group(1)) / 1000.0
-    exp.loading_time += runtime - actual_runtime
-
-    if re.search("No. The specification is not satisfiable.", output):
-        return False, actual_runtime
-    elif re.search("Yes. The specification is satisfiable.", output):
-        return True, actual_runtime
-
-    return None, actual_runtime
+    return SpectraTool.checkSatisfiability(spectra_file_path)
 
 def check_well_separation(spectra_file_path):
-    cmd = "java -jar {} -i {} --well-separation".format(PATH_TO_CLI, spectra_file_path)
-    output, runtime = run_subprocess(cmd, "\\r\\n")
-
-    match = re.search(r"Runtime: (\d+) millisecs.", output)
-    actual_runtime = int(match.group(1)) / 1000.0
-    exp.loading_time += runtime - actual_runtime
-
-    if re.search("non-well-separated", output):
-        return False, actual_runtime
-    elif re.search("well-separated", output):
-        return True, actual_runtime
-    
-    print("Error checking well-separation.")
-    return None, actual_runtime
+    return SpectraTool.checkWellSeparation(spectra_file_path)
 
 def check_y_sat(spectra_file_path):
-    cmd = "java -jar {} -i {} -y-sat".format(PATH_TO_CLI, spectra_file_path)
-    output, runtime = run_subprocess(cmd, "\\r\\n")
-    if re.search("y-sat", output):
-        return True
-    elif re.search("y-unsat", output):
-        return False
-    
-    match = re.search(r"Runtime: (\d+) millisecs.", output)
-    actual_runtime = int(match.group(1)) / 1000.0
-    exp.loading_time += runtime - actual_runtime
+    return SpectraTool.checkYSatisfiability(spectra_file_path)
 
-    print("Error checking y-sat.")
-    return None
+def compute_unrealizable_core(spectra_file_path):
+    output = str(SpectraTool.computeUnrealizableCore(spectra_file_path))
+    # print(output)
+    core_found = re.compile("< ([^>]*) >").search(output)
+    if not core_found:
+        return None
+    line_nums = [int(x) for x in core_found.group(1).split(" ")]
+    # print(line_nums)
+    spec = sp.read_file(spectra_file_path)
+    uc = [spec[line] for line in line_nums]
+    uc = [re.sub(r'\s', '', x) for x in uc]
+    uc = sp.unspectra(uc)
+    return uc
 
 def generate_counterstrategy(spectra_file_path):
-    cmd = "java -jar {} -i {} --counter-strategy-jtlv-format".format(PATH_TO_CLI, spectra_file_path)
-    if exp.minimize_spec:
-        cmd += " -min"
-    output, runtime = run_subprocess(cmd, "\\n")
-
-    match = re.search(r"TimeCounterstrategy: (\d+) millisecs.", output)
-    actual_runtime = int(match.group(1)) / 1000.0
-    exp.loading_time += runtime - actual_runtime
-
+    output = str(SpectraTool.generateCounterStrategy(spectra_file_path, exp.minimize_spec))
     # print(output)
-    if re.search("Result: Specification is unrealizable", output):
-        return parse_counterstrategy(output.replace("\\t", "")), actual_runtime
-    return None, actual_runtime
+    return parse_counterstrategy(output.replace("\\t", ""))
 
 def parse_counterstrategy(text):
     state_pattern = re.compile(r"(Initial )?(Dead )?State (\w+) <(.*?)>\s+With (?:no )?successors(?: : |.)(.*)(?:\n|$)")
@@ -120,31 +73,14 @@ def parse_counterstrategy(text):
 
     return Counterstrategy(states, use_influential=exp.use_influential)
 
-def compute_unrealizable_core(spectra_file_path):
-    cmd = "java -jar {} -i {} -uc".format(PATH_TO_CLI, spectra_file_path)
-    output, runtime = run_subprocess(cmd, "\\r\\n")
-    
-    match = re.search(r"TimeUnrealizableCore: (\d+) millisecs.", output)
-    actual_runtime = int(match.group(1)) / 1000.0
-    exp.loading_time += runtime - actual_runtime
 
-    core_found = re.compile("at lines <([^>]*)>").search(output)
-    if not core_found:
-        return None
-    
-    line_nums = [int(x) for x in core_found.group(1).split(" ") if x != ""]
-    # print(line_nums)
-    spec = sp.read_file(spectra_file_path)
-    spec = [re.sub(r'\s', '', x) for x in spec]
-    spec = sp.unspectra(spec)
-    uc = []
-    for line in line_nums:
-        uc.append(spec[line])
-    return uc
-    
+# print(check_realizibility("outputs/original.spectra"))
+# print(compute_unrealizable_core("outputs/original.spectra"))
+# print(generate_counterstrategy("outputs/min.spectra"))
+# print(SpectraTool.generateCounterStrategy("inputs/SIMPLE/RG.spectra", True))
+
 def main():
-    specification = "SIMPLE/RG.spectra"
-    print(check_realizibility(specification))
+    specification = "inputs/SIMPLE/RG.spectra"
 
 if __name__ == "__main__":
     main()

@@ -18,6 +18,7 @@ class RefinementNode:
 
     def __init__(self, gr1_units=[], parent_id=None):
         self.id = uuid.uuid4()
+        self.temp_spec_filename = "temp/" + str(self.id) + ".spectra"
 
         self.parent_id = parent_id
         self.num_descendant_refinements = 0
@@ -146,8 +147,11 @@ class RefinementNode:
     #==========================================================================
     # Methods to deal .spectra files
 
+    def __setTempSpecFileName(self, filename):
+        self.temp_spec_filename = filename
+
     def __getTempSpecFileName(self):
-        return "temp/" + str(self.id) + ".spectra"
+        return self.temp_spec_filename
 
     def __generateSpecFile(self):
         if not os.path.isfile(self.__getTempSpecFileName()):
@@ -164,29 +168,13 @@ class RefinementNode:
             raise Exception("Generate spec file before minimizing")
         if not self.unreal_core:
             raise Exception("Compute unrealizable core before minimizing")
-        
-        # necessary_variables = set()
-    
-        # constraints = exp.initialGR1Units + self.unreal_core
-        # constraints = [re.sub(r"G\(F\s*\((.*)\)\)", r"\1", x) for x in constraints]
-        # constraints = [re.sub(r"G\((.*)\)", r"\1", x) for x in constraints]
-        # constraints = [re.sub(r"X\((.*)\)", r"\1", x) for x in constraints]
 
-        # for constraint in constraints:
-        #     variables = re.findall(r'\b\w+\b', constraint)
-        #     necessary_variables.update(variables)
-
-        # print(necessary_variables)
-
-        # sys_pattern = re.compile(r'(?:sys|aux)\s+boolean\s+(\w+);')
         spec = sp.read_file(self.__getTempSpecFileName())
+        self.__deleteTempSpecFile()
+        self.__setTempSpecFileName("temp/" + str(self.id) + "_min.spectra")
         new_spec = []
         i = 0
         while i < len(spec):
-            # match = sys_pattern.match(spec[i])
-            # if match and match.group(1) not in necessary_variables:
-            #     i += 1
-            #     continue
             if "guarantee" in spec[i]:
                 i += 2
                 continue
@@ -197,6 +185,7 @@ class RefinementNode:
             new_spec.append("guarantee\n\t" + gar + ";\n")
 
         sp.write_file(new_spec, self.__getTempSpecFileName())
+        
         
     def __deleteTempSpecFile(self):
         if os.path.isfile(self.__getTempSpecFileName()):
@@ -225,20 +214,26 @@ class RefinementNode:
         if self.is_realizable is not None:
             return self.is_realizable
         self.__generateSpecFile()
-        self.is_realizable, self.time_realizability_check = self.checkRealizability(self.__getTempSpecFileName())
+        realizability_check_start = timeit.default_timer()
+        self.is_realizable = self.checkRealizability(self.__getTempSpecFileName())
+        self.time_realizability_check = timeit.default_timer() - realizability_check_start
         self.timestamp_realizability_check = exp.get_elapsed_time()
         return self.is_realizable
 
     def isSatisfiable(self):
         if self.is_satisfiable is not None:
             return self.is_satisfiable
-        self.is_satisfiable, self.time_satisfiability_check = spectra.check_satisfiability(self.__getTempSpecFileName())
+        time_satisfiability_check_start = timeit.default_timer()
+        self.is_satisfiable = spectra.check_satisfiability(self.__getTempSpecFileName())
+        self.time_satisfiability_check = timeit.default_timer() - time_satisfiability_check_start
         return self.is_satisfiable
     
     def isWellSeparated(self):
         if self.is_well_separated is not None:
             return self.is_well_separated
-        self.is_well_separated, self.time_well_separation_check = spectra.check_well_separation(self.__getTempSpecFileName())
+        time_well_separation_check_start = timeit.default_timer()
+        self.is_well_separated = spectra.check_well_separation(self.__getTempSpecFileName())
+        self.time_well_separation_check = timeit.default_timer() - time_well_separation_check_start
         self.__deleteTempSpecFile()
         return self.is_well_separated
 
@@ -250,7 +245,9 @@ class RefinementNode:
         if self.counterstrategy is not None:
             return self.counterstrategy
         if not self.isRealizable():
-            self.counterstrategy, self.time_counterstrategy = spectra.generate_counterstrategy(self.__getTempSpecFileName())
+            counterstrategy_start = timeit.default_timer()
+            self.counterstrategy = spectra.generate_counterstrategy(self.__getTempSpecFileName())
+            self.time_counterstrategy = timeit.default_timer() - counterstrategy_start
             self.counterstrategy_num_states = self.counterstrategy.num_states
             return self.counterstrategy
         return None
