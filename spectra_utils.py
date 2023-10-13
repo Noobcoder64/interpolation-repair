@@ -8,7 +8,7 @@ import jpype
 import jpype.imports
 from jpype.types import *
 
-jpype.startJVM(classpath=["spectra/lib/*", "spectra/SpectraTool.jar"])
+jpype.startJVM(classpath=["spectra/dependencies/*", "spectra/SpectraTool.jar"])
 
 SpectraTool = jpype.JClass('tau.smlab.syntech.Spectra.cli.SpectraTool')
 print()
