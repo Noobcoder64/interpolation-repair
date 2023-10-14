@@ -41,18 +41,16 @@ repair_limit = -1
 
 # This is a reference to the original specification file
 specfile = ""
-datafile = os.path.join(output_folder, case_study_name + "_interpolation" + ".csv")
+datafile = os.path.join(output_folder, case_study_name + "_interpolation" + "_nodes.csv")
+statsfile = os.path.join(output_folder, case_study_name + "_interpolation" + "_stats.csv")
 checkpointfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_checkpoint.csv")
 satfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_sat.csv")
 weaknessfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_weakness.csv")
 wellsepfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_wellsep.csv")
-statsfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_stats.csv")
 equivclassesfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_equivclasses.csv")
 distancesfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_distances.csv")
 cstimesfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_cstimes.csv")
 uniquesolsfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_uniquesols.csv")
-
-experimentstatsfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_expstats.csv")
 
 if case_study_name != "":
     spec = sp.read_file(specfile)
@@ -91,7 +89,7 @@ def configure(
     global cstimesfile
     global uniquesolsfile
 
-    global experimentstatsfile
+    global statsfile
 
     global inputVarsList
     global outputVarsList
@@ -125,24 +123,18 @@ def configure(
 
     specfile = spectra_file
     case_study_name = os.path.splitext(os.path.basename(specfile))[0]
-    args = ''.join([
-        "_all_gars" if use_all_gars else "",
-        "_min" if minimize_spec else "",
-        "_inf" if use_influential else ""
-    ])
 
-    datafile = os.path.join(output_folder, case_study_name + "_interpolation" + args + ".csv")
+    datafile = os.path.join(output_folder, case_study_name + "_interpolation" + "_nodes.csv")
+    statsfile = os.path.join(output_folder, case_study_name + "_interpolation" + "_stats.csv")
     checkpointfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_checkpoint.csv")
     satfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_sat.csv")
     weaknessfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_weakness.csv")
     wellsepfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_wellsep.csv")
-    statsfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_stats.csv")
     equivclassesfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_equivclasses.csv")
     distancesfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_distances.csv")
     cstimesfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_cstimes.csv")
     uniquesolsfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_uniquesols.csv")
 
-    experimentstatsfile = os.path.join(output_folder, case_study_name + "_" + refinement_method + "_exp" + str(exp_number) + "_expstats.csv")
 
     spec = sp.read_file(specfile)
     spec = sp.interpolation_spec(spec)
