@@ -33,27 +33,35 @@ def FifoDuplicateCheckRefinement():
         print("Specification is already realizable. No fix required.")
         return
     
+    if not initial_spec_node.isYSat():
+        print("Adding assumptions will not fix this specification")
+        return
+
     initial_spec_node.timestamp = 0
     initial_spec_node.timestamp_realizability_check = 0
 
     solutions = []
     explored_refs = []
     duplicate_refs = []
+    time_to_first_repair = None
 
     datafile = open(exp.datafile, "w")
     csv_writer = csv.writer(datafile)
     datafields = [
         "Id",
-        "UniqueRefinement",
+        "Refinement",
+        "ElapsedTime",
         "Timestamp",
         "TimestampRealizabilityCheck",
         "Length",
         "Parent",
         "NumChildren",
+        "IsYSat",
         "IsRealizable",
         "IsSatisfiable",
         "IsWellSeparated",
         "IsSolution",
+        "TimeYSatCheck",
         "TimeRealizabilityCheck",
         "TimeSatisfiabilityCheck",
         "TimeWellSeparationCheck",
@@ -78,11 +86,7 @@ def FifoDuplicateCheckRefinement():
         cur_node = refinement_queue.pop()
         nodes += 1
 
-        if cur_node.unique_refinement in explored_refs:
-            print("++ DUPLICATE NODE")
-            duplicate_refs.append(cur_node.unique_refinement)
-            continue
-
+        print()
         print("++++ ELAPSED TIME:", exp.elapsed_time)
         print("++++ QUEUE LENGTH:", len(refinement_queue))
         print("++++ Solutions:", len(solutions))
@@ -90,6 +94,15 @@ def FifoDuplicateCheckRefinement():
         print("++++ Node number:", nodes)
         print("++++ Refinement:", cur_node.gr1_units)
         print("++++ Length:", cur_node.length)
+
+        print("++ Y-SAT CHECK")
+        if not cur_node.isYSat():
+            continue
+
+        if cur_node.unique_refinement in explored_refs:
+            print("++ DUPLICATE NODE")
+            duplicate_refs.append(cur_node.unique_refinement)
+            continue
 
         try:
             print("++ REALIZABILITY CHECK")
@@ -100,6 +113,8 @@ def FifoDuplicateCheckRefinement():
             elif cur_node.isSatisfiable():
                 cur_node.isWellSeparated()
                 print("++ REALIZABLE REFINEMENT: SAT CHECK")
+                if time_to_first_repair is None:
+                    time_to_first_repair = exp.get_elapsed_time()
                 solutions.append(cur_node.gr1_units)
             else:
                 print("++ VACUOUS SOLUTION")
@@ -110,11 +125,37 @@ def FifoDuplicateCheckRefinement():
         cur_node.saveRefinementData(csv_writer, datafields)
         explored_refs.append(cur_node.unique_refinement)
 
-    datafile.close()
     jpype.shutdownJVM()
+    datafile.close()
 
-    print("++++ FINISHED EXECUTION")
-    print("++++ RUNTIME:", exp.get_elapsed_time(), "seconds")
+    print()
+    print("++++ SAVING SEARCH SUMMARY DATA")
+    statsfile = open(exp.statsfile, "w")
+    csv_writer = csv.writer(statsfile)
+    csv_writer.writerow([
+        "Filename",
+        "NumRepairs",
+        "RepairLimit",
+        "TimeToFirst",
+        "Runtime",
+        "Timeout",
+        "TimedOut",
+        "NodesExplored",
+        "DuplicateNodes",
+    ])
+
+    csv_writer.writerow([
+        exp.specfile,
+        len(solutions),
+        exp.repair_limit,
+        time_to_first_repair,
+        exp.elapsed_time,
+        exp.timeout,
+        exp.elapsed_time > exp.timeout,
+        nodes,
+        len(duplicate_refs),
+    ])
+    statsfile.close()
 
 def main():
     parser = argparse.ArgumentParser(description="Run interpolation_repair.py on .spectra file.")
