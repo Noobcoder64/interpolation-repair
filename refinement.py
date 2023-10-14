@@ -34,6 +34,7 @@ class RefinementNode:
         self.weakness_times_automata = None
         self.weakness_is_automaton_strongly_connected = None
 
+        self.is_y_sat = None
         self.is_realizable = None
         self.is_satisfiable = None
         self.is_well_separated = None
@@ -45,6 +46,7 @@ class RefinementNode:
         self.timestamp_realizability_check = None
         self.time_counterstrategy = None
         self.counterstrategy_num_states = None
+        self.time_y_sat_check = None
         self.time_realizability_check = None
         self.time_satisfiability_check = None
         self.time_well_separation_check = None
@@ -121,9 +123,9 @@ class RefinementNode:
         field_values = []
         fields = [self.__convertCamelToSnakeCase(x) for x in fields]
         for field in fields:
-            if field == "refinement":
-                field_value = self.gr1_units
-            if field == "unique_refinement":
+            if field == "elapsed_time":
+                field_value = exp.get_elapsed_time()
+            elif field == "refinement":
                 field_value = self.unique_refinement
             elif field == "parent":
                 field_value = self.parent_id
@@ -238,8 +240,14 @@ class RefinementNode:
         return self.is_well_separated
 
     def isYSat(self):
-        return spectra.check_y_sat(self.__getTempSpecFileName())
-
+        if self.is_y_sat is not None:
+            return self.is_y_sat
+        self.__generateSpecFile()
+        time_y_sat_check_start = timeit.default_timer()
+        self.is_y_sat = spectra.check_y_sat(self.__getTempSpecFileName())
+        self.time_y_sat_check = timeit.default_timer() - time_y_sat_check_start
+        return self.is_y_sat
+    
     def getCounterstrategy(self):
         """Returns a counterstrategy object"""
         if self.counterstrategy is not None:
