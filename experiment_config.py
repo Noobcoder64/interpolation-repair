@@ -18,7 +18,7 @@ FLAGS = " ".join([
 # List of input folders
 INPUT_FOLDERS = [
     "inputs/SIMPLE",
-    "inputs/AMBA-1",
+    # "inputs/AMBA-1",
     "inputs/AMBA-2",
     "inputs/SYNTECH15-UNREAL",
     "inputs/SYNTECH15-1UNREAL",
