@@ -15,13 +15,16 @@ FLAGS = " ".join([
     "-inf",
 ])
 
+# INPUT_PARENT_FOLDER = "inputs/"
+INPUT_PARENT_FOLDER = "inputs-interpolation/"
+
 # List of input folders
 INPUT_FOLDERS = [
-    "inputs/SIMPLE",
+    "SIMPLE",
     # "inputs/AMBA-1",
-    "inputs/AMBA-2",
-    "inputs/SYNTECH15-UNREAL",
-    "inputs/SYNTECH15-1UNREAL",
+    "AMBA-2",
+    "SYNTECH15-UNREAL",
+    "SYNTECH15-1UNREAL",
 ]
 
 SYSTEMS = [
@@ -39,9 +42,9 @@ OUTPUT_PARENT_FOLDER = "outputs-interpolation/"
 # OUTPUT_PARENT_FOLDER = "outputs-weakness/"
 # OUTPUT_PARENT_FOLDER = "outputs-translation/"
 
-RUN = 3
+RUN = 10
 
 # Set the timeout
 TIMEOUT = 10
 
-REPAIR_LIMIT = -1
+REPAIR_LIMIT = 1

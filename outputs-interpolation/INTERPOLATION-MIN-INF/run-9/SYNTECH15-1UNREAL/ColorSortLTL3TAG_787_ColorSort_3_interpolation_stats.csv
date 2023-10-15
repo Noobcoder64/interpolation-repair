@@ -1,0 +1,2 @@
+Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
+inputs-interpolation/SYNTECH15-1UNREAL/ColorSortLTL3TAG_787_ColorSort_3.spectra,0,1,,1.1503524701111019,600.0,False,1,0
