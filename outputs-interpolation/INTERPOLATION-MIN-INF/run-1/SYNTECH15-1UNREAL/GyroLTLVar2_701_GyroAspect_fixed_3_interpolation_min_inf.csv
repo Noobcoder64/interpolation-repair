@@ -1,3 +1,0 @@
-Id,UniqueRefinement,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsWellSeparated,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeWellSeparationCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod
-1b42198b-1dc5-4d75-91d9-18937fe2395f,[],0.0022255219519138336,0,N/A,11,False,N/A,N/A,False,3.8817294250475243,N/A,N/A,371.03707290499005,3585,0.00010467006359249353,0.2568395540583879
-b0776db6-fb8e-457a-b6ed-8a354877c2b7,['G((balancer_0 & !bluetoothCmd_3) -> X(!(!frontDistSense_0 & !bluetoothCmd_3)))'],379.4608684509294,1,1b42198b-1dc5-4d75-91d9-18937fe2395f,57,False,N/A,N/A,False,3.4288545320741832,N/A,N/A,415.7334396870574,4353,0.0004014940932393074,0.4729169469792396

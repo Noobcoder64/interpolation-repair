@@ -2,7 +2,7 @@
 import os
 import time
 import subprocess
-from experiment_config import INPUT_FOLDERS, ALGORITHMS, FLAGS, OUTPUT_PARENT_FOLDER, RUN, TIMEOUT, REPAIR_LIMIT
+from experiment_config import *
 
 
 def process_file(input_file, algorithm, output_folder, output_file):
@@ -47,7 +47,7 @@ total_start_time = time.time()
 
 for algorithm in ALGORITHMS:
     for input_folder in INPUT_FOLDERS:
-        process_algorithm(algorithm, input_folder)
+        process_algorithm(algorithm, os.path.join(INPUT_PARENT_FOLDER, input_folder))
 
 total_end_time = time.time()
 total_elapsed_time = total_end_time - total_start_time

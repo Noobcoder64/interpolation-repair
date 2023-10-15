@@ -1,6 +1,0 @@
-Id,UniqueRefinement,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsWellSeparated,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeWellSeparationCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod
-d041636e-6768-4359-b1de-b36ac15fec8b,[],0.0021344750421121716,0,N/A,2,False,N/A,N/A,False,3.193301409948617,N/A,N/A,57.41795336804353,4867,6.0570077039301395e-05,0.08478263602592051
-defc40ae-4f49-45fe-8f7e-6df1d758e542,['G((obstacle_0) -> X(!(obstacle_0)))'],64.92067594802938,1,d041636e-6768-4359-b1de-b36ac15fec8b,0,True,True,False,True,4.991147527936846,2.8396347659872845,2.44027434499003,N/A,N/A,N/A,N/A
-c82d82da-7753-475f-aa1a-192245f936b3,['G(F(!(obstacle_0)))'],64.92068877804559,1,d041636e-6768-4359-b1de-b36ac15fec8b,4,False,N/A,N/A,False,2.999765179003589,N/A,N/A,25.512857937952504,2092,5.875295028090477e-05,0.05945982097182423
-416da6d4-76e3-4368-9dcc-c33437c1c092,"['!(!button_0)', 'G(F(!(obstacle_0)))']",112.25651841796935,2,c82d82da-7753-475f-aa1a-192245f936b3,2,False,N/A,N/A,False,2.798601198941469,N/A,N/A,123.78805023396853,8356,4.522991366684437e-05,0.14040281693451107
-28728ca7-1dbb-4de0-a2fa-54797c0dd879,"['G((!button_0) -> X(!(!button_0)))', 'G(F(!(obstacle_0)))']",112.25652900303248,2,c82d82da-7753-475f-aa1a-192245f936b3,0,False,N/A,N/A,False,2.7246903909835964,N/A,N/A,N/A,N/A,N/A,N/A

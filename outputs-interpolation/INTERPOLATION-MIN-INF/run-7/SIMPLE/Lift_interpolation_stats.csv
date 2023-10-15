@@ -1,0 +1,2 @@
+Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
+inputs-interpolation/SIMPLE/Lift.spectra,1,1,0.14472188497893512,0.1448634339030832,600.0,False,2,0
