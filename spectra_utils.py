@@ -2,17 +2,14 @@ import re
 import specification as sp
 import experiment_properties as exp
 from counterstrategy import CounterstrategyState, Counterstrategy
-import timeit
 
 import jpype
 import jpype.imports
 from jpype.types import *
 
 jpype.startJVM(classpath=["spectra/dependencies/*", "spectra/SpectraTool.jar"])
-
 SpectraTool = jpype.JClass('tau.smlab.syntech.Spectra.cli.SpectraTool')
 print()
-
 
 def check_realizibility(spectra_file_path):
     return SpectraTool.checkRealizability(spectra_file_path)

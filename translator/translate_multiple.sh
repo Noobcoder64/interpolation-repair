@@ -18,9 +18,24 @@
 # for filepath in inputs/SYNTECH15-1UNREAL-ORIGINAL/*.spectra
 # do
 #         python translator.py ${filepath} outputs/SYNTECH15-1UNREAL/
-# dones
+# done
 
-for filepath in inputs/SYNTECH15-1UNREAL-ORIGINAL/*.spectra
+for filepath in inputs/addedVarsRG1/*.spectra
 do
-        python Spectra2RATSY.py ${filepath} outputs/SYNTECH15-1UNREAL-RAT/
+        python translator.py ${filepath} outputs/addedVarsRG1/
+done
+
+for filepath in inputs/addedVarsLift/*.spectra
+do
+        python translator.py ${filepath} outputs/addedVarsLift/
+done
+
+for filepath in inputs/addedVarsHumanoid458/*.spectra
+do
+        python translator.py ${filepath} outputs/addedVarsHumanoid458/
+done
+
+for filepath in inputs/addedVarsGyro_Var1/*.spectra
+do
+        python translator.py ${filepath} outputs/addedVarsGyro_Var1/
 done
