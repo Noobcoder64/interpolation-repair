@@ -1,0 +1,27 @@
+// basic alur example
+
+module Alur
+env boolean r;
+env	boolean c;
+
+sys boolean g;
+sys boolean v;
+
+env boolean e1;
+
+gar
+pRespondsToS(r, next(g));
+	
+gar ungrant:
+	G ((c | g) ->next(!g));
+gar cnv:
+	G (c -> !v);
+gar gnv:
+	GF g & v;
+
+pattern pRespondsToS(trigger, response) {
+  var boolean responded;
+  responded;
+  G (next(responded) iff (response or responded and !trigger));
+  GF (responded);
+}

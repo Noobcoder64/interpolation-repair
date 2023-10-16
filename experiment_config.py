@@ -1,5 +1,4 @@
 
-# List of algorithms
 ALGORITHMS = [
     "INTERPOLATION-MIN-INF",
     # "INTERPOLATION-MIN",
@@ -16,15 +15,23 @@ FLAGS = " ".join([
 ])
 
 # INPUT_PARENT_FOLDER = "inputs/"
-INPUT_PARENT_FOLDER = "inputs-interpolation/"
+# INPUT_PARENT_FOLDER = "inputs-interpolation/"
+INPUT_PARENT_FOLDER = "inputs-scalability/"
 
-# List of input folders
+
+# INPUT_FOLDERS = [
+#     "SIMPLE",
+#     # "inputs/AMBA-1",
+#     "AMBA-2",
+#     "SYNTECH15-UNREAL",
+#     "SYNTECH15-1UNREAL",
+# ]
+
 INPUT_FOLDERS = [
-    "SIMPLE",
-    # "inputs/AMBA-1",
-    "AMBA-2",
-    "SYNTECH15-UNREAL",
-    "SYNTECH15-1UNREAL",
+    "addedVarsRG1",
+    # "addedVarsLift",
+    # "addedVarsHumanoid458",
+    # "addedVarsGyro_Var1",
 ]
 
 SYSTEMS = [
@@ -37,14 +44,14 @@ SYSTEMS = [
 
 # Output parent folder
 # OUTPUT_PARENT_FOLDER = "outputs/"
-OUTPUT_PARENT_FOLDER = "outputs-interpolation/"
+# OUTPUT_PARENT_FOLDER = "outputs-interpolation/"
 # OUTPUT_PARENT_FOLDER = "outputs-symbolic/"
+OUTPUT_PARENT_FOLDER = "outputs-scalability/"
 # OUTPUT_PARENT_FOLDER = "outputs-weakness/"
 # OUTPUT_PARENT_FOLDER = "outputs-translation/"
 
-RUN = 10
+RUN = 1
 
-# Set the timeout
 TIMEOUT = 10
 
 REPAIR_LIMIT = 1

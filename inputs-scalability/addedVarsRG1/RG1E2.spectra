@@ -1,0 +1,28 @@
+
+module RG1E2
+
+env boolean r;
+env boolean c;
+env boolean e1;
+env boolean e2;
+
+sys boolean g;
+sys boolean v;
+
+aux boolean sYS_CONSTRAINT_0_pRespondsToS_responded;
+
+
+guarantee
+	G (((c | g) -> !(next(g))));
+guarantee
+	G ((c -> !(v)));
+guarantee
+	GF ((g & v));
+guarantee
+	GF (sYS_CONSTRAINT_0_pRespondsToS_responded);
+
+guarantee
+	 (sYS_CONSTRAINT_0_pRespondsToS_responded);
+guarantee
+	G ((next(sYS_CONSTRAINT_0_pRespondsToS_responded) <-> (next(g) | (sYS_CONSTRAINT_0_pRespondsToS_responded & !(r)))));
+

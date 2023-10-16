@@ -1,0 +1,58 @@
+
+module LiftS5
+
+env boolean b1;
+env boolean b2;
+env boolean b3;
+
+sys boolean f1;
+sys boolean f2;
+sys boolean f3;
+sys boolean s1;
+sys boolean s2;
+sys boolean s3;
+sys boolean s4;
+sys boolean s5;
+
+
+assumption
+	 (((!(b1) & !(b2)) & !(b3)));
+assumption
+	G (((b1 & f1) -> !(next(b1))));
+assumption
+	G (((b2 & f2) -> !(next(b2))));
+assumption
+	G (((b3 & f3) -> !(next(b3))));
+assumption
+	G (((b1 & !(f1)) -> next(b1)));
+assumption
+	G (((b2 & !(f2)) -> next(b2)));
+assumption
+	G (((b3 & !(f3)) -> next(b3)));
+
+guarantee
+	 (((f1 & !(f2)) & !(f3)));
+guarantee
+	G (((!((f1 & f2)) & !((f1 & f3))) & !((f2 & f3))));
+guarantee
+	G ((f1 -> next(f1 | f2)));
+guarantee
+	G ((f2 -> next(f1 | f2 | f3)));
+guarantee
+	G ((f3 -> next(f2 | f3)));
+guarantee
+	G ((((((f1 & next(f2)) | (f2 & next(f3))) | (f2 & next(f1))) | (f3 & next(f2))) -> ((b1 | b2) | b3)));
+guarantee
+	GF ((b1 -> f1));
+guarantee
+	GF ((b2 -> f2));
+guarantee
+	GF ((b3 -> f3));
+guarantee
+	GF (f1);
+guarantee
+	GF (f2);
+guarantee
+	GF (f3);
+
+
