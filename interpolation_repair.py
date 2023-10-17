@@ -1,11 +1,11 @@
+import sys
 import os
-import timeit
 import argparse
 from collections import deque
 import experiment_properties as exp
 from refinement import RefinementNode
 import csv
-import jpype
+import spectra_utils as spectra
 
 MAX_NODES = 3000 # Max nodes to expand in the experiment
 
@@ -78,6 +78,7 @@ def FifoDuplicateCheckRefinement():
 
     nodes = 0
     exp.reset_start_experiment()
+    refine_error = False
 
     while refinement_queue \
       and not enough_repairs(solutions) \
@@ -120,12 +121,13 @@ def FifoDuplicateCheckRefinement():
                 print("++ VACUOUS SOLUTION")
         except Exception as e:
             # cur_node.writeNotes(str(e))
+            refine_error = True
+            print()
             print(e)
 
         cur_node.saveRefinementData(csv_writer, datafields)
         explored_refs.append(cur_node.unique_refinement)
 
-    jpype.shutdownJVM()
     datafile.close()
 
     print()
@@ -149,13 +151,19 @@ def FifoDuplicateCheckRefinement():
         len(solutions),
         exp.repair_limit,
         time_to_first_repair,
-        exp.elapsed_time,
+        exp.get_elapsed_time(),
         exp.timeout,
         exp.elapsed_time > exp.timeout,
         nodes,
         len(duplicate_refs),
     ])
     statsfile.close()
+
+    if refine_error:
+        os._exit(0)
+    
+    spectra.shutdown()
+
 
 def main():
     parser = argparse.ArgumentParser(description="Run interpolation_repair.py on .spectra file.")

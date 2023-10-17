@@ -7,12 +7,15 @@ import jpype
 import jpype.imports
 from jpype.types import *
 
+EXTRA_TIME = 120
+
 jpype.startJVM(classpath=["spectra/dependencies/*", "spectra/SpectraTool.jar"])
 SpectraTool = jpype.JClass('tau.smlab.syntech.Spectra.cli.SpectraTool')
 print()
 
 def check_realizibility(spectra_file_path):
-    return SpectraTool.checkRealizability(spectra_file_path)
+    remaining_time = int(exp.timeout - exp.elapsed_time + EXTRA_TIME)
+    return SpectraTool.checkRealizability(spectra_file_path, remaining_time)
 
 
 def check_satisfiability(spectra_file_path):
@@ -39,12 +42,9 @@ def compute_unrealizable_core(spectra_file_path):
     return uc
 
 def generate_counterstrategy(spectra_file_path):
-    remaining_time = int(exp.timeout - exp.elapsed_time)
+    remaining_time = int(exp.timeout - exp.elapsed_time + EXTRA_TIME)
     output = str(SpectraTool.generateCounterStrategy(spectra_file_path, exp.minimize_spec, remaining_time))
-    
-    if "Error" in output:
-        raise Exception(output)
-    
+    # print(output)
     return parse_counterstrategy(output.replace("\\t", ""))
 
 def parse_counterstrategy(text):
@@ -73,3 +73,7 @@ def parse_counterstrategy(text):
         states[state.name] = state
 
     return Counterstrategy(states, use_influential=exp.use_influential)
+
+def shutdown():
+    SpectraTool.shutdown()
+    jpype.shutdownJVM()

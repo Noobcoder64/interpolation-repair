@@ -1,11 +1,11 @@
 
 ALGORITHMS = [
-    "INTERPOLATION-MIN-INF",
+    # "INTERPOLATION-MIN-INF",
     # "INTERPOLATION-MIN",
     # "INTERPOLATION-ALLGARS-INF",
     # "INTERPOLATION-ALLGARS",
     # "GLASS",
-    # "JVTS",
+    "JVTS",
 ]
 
 FLAGS = " ".join([
