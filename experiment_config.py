@@ -18,12 +18,11 @@ INPUT_PARENT_FOLDER = "inputs/"
 # INPUT_PARENT_FOLDER = "inputs-interpolation/"
 # INPUT_PARENT_FOLDER = "inputs-scalability/"
 
-
 INPUT_FOLDERS = [
     # "SIMPLE",
-    "AMBA-1",
+    # "AMBA-1",
     # "AMBA-2",
-    # "SYNTECH15-UNREAL",
+    "SYNTECH15-UNREAL",
     # "SYNTECH15-1UNREAL",
 ]
 
@@ -50,7 +49,7 @@ OUTPUT_PARENT_FOLDER = "outputs-interpolation/"
 # OUTPUT_PARENT_FOLDER = "outputs-weakness/"
 # OUTPUT_PARENT_FOLDER = "outputs-translation/"
 
-RUN = 2
+RUN = 10
 
 TIMEOUT = 10
 

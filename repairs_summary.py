@@ -98,6 +98,7 @@ def summarize_folder(output_folder):
 
         average_df = summary_df.groupby('Filename')[["NumRepairs", "TimeToFirst", "Runtime", "NodesExplored", "DuplicateNodes"]].mean()
         average_df = average_df.reset_index()
+        average_df["TimeToFirst"] = round(average_df["TimeToFirst"] * 1000)
         average_df.to_csv(os.path.join(output_folder, "average.csv"), index=False)
 
 total_start_time = time.time()
@@ -106,7 +107,8 @@ total_start_time = time.time()
     # for input_folder in INPUT_FOLDERS:
         # summarize_folder(input_folder, algorithm)
 
-summarize_folder("outputs-interpolation/INTERPOLATION-MIN-INF/")
+# summarize_folder("outputs-interpolation/INTERPOLATION-MIN-INF/")
+summarize_folder("outputs-scalability/INTERPOLATION-MIN-INF/")
 
 total_end_time = time.time()
 total_elapsed_time = total_end_time - total_start_time
