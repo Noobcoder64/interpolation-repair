@@ -1,2 +1,0 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored
-inputs/SIMPLE/Lift.spectra,1,-1,0.025,0.025,10,False,1

@@ -1,2 +1,0 @@
-Id,Refinement,ElapsedTime,Depth,IsYSat,IsRealizable,IsSolution
-1c133878-72c2-45a7-b85f-5ecb1f813255,"['G (handle_up=true -> (next(handle_up)=true -> (handle_down=true -> next(handle_down)=false)))']",0.005,0,True,True,True
