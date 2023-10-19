@@ -1,0 +1,2 @@
+Id,Refinement,ElapsedTime,Depth,IsYSat,IsRealizable,IsSolution
+48c9c06b-f4c0-44e7-9c5c-336b8a92cf11,"['GF (c=false -> (g=true and v=true)) and(c=true -> v=true)']",0.004,0,True,True,True

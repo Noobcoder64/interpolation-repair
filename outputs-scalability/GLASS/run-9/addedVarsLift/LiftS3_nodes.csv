@@ -1,0 +1,2 @@
+Id,Refinement,ElapsedTime,Depth,IsYSat,IsRealizable,IsSolution
+aa16c1dc-dc6a-4ddc-8677-ed4781d30eb8,"['GF (b1=false -> (b2=false -> (b3=false -> (f1=false -> (f2=false -> f3=false) and (f2=true -> f3=true))) and (b3=true -> (f1=false -> (f2=false -> f3=false)))))', 'GF (b1=false -> (b2=false -> (b3=false -> (f1=false -> (f2=false -> f3=false)) and (f1=true -> (f2=false -> f3=true)))))']",0.007,0,True,True,True

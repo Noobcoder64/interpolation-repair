@@ -17,7 +17,6 @@ FLAGS = " ".join([
 # INPUT_PARENT_FOLDER = "inputs/"
 # INPUT_PARENT_FOLDER = "inputs-interpolation/"
 INPUT_PARENT_FOLDER = "inputs-scalability/"
-INPUT_PARENT_FOLDER = "inputs-scalability-JVTS/"
 
 
 # INPUT_FOLDERS = [
@@ -29,10 +28,10 @@ INPUT_PARENT_FOLDER = "inputs-scalability-JVTS/"
 # ]
 
 INPUT_FOLDERS = [
-    # "addedVarsRG1",
+    "addedVarsRG1",
     "addedVarsLift",
-    # "addedVarsHumanoid458",
-    # "addedVarsGyro_Var1",
+    "addedVarsHumanoid458",
+    "addedVarsGyro_Var1",
 ]
 
 SYSTEMS = [
@@ -51,7 +50,7 @@ OUTPUT_PARENT_FOLDER = "outputs-scalability/"
 # OUTPUT_PARENT_FOLDER = "outputs-weakness/"
 # OUTPUT_PARENT_FOLDER = "outputs-translation/"
 
-RUN = 1
+RUN = 5
 
 TIMEOUT = 10
 

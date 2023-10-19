@@ -9,16 +9,16 @@ import spectra_utils as spectra
 
 MAX_NODES = 5000 # Max nodes to expand in the experiment
 
-print("Resetting temp...")
-temp_folder = 'temp'
-for temp_file in os.listdir(temp_folder):
-    temp_file_path = os.path.join(temp_folder, temp_file)
-    try:
-        if os.path.isfile(temp_file_path):
-            os.remove(temp_file_path)
-    except Exception as e:
-        print(e)
-print("Reset complete!")
+# print("Resetting temp...")
+# temp_folder = 'temp'
+# for temp_file in os.listdir(temp_folder):
+#     temp_file_path = os.path.join(temp_folder, temp_file)
+#     try:
+#         if os.path.isfile(temp_file_path):
+#             os.remove(temp_file_path)
+#     except Exception as e:
+#         print(e)
+# print("Reset complete!")
 
 def enough_repairs(solutions):
     return exp.repair_limit > 0 and len(solutions) == exp.repair_limit

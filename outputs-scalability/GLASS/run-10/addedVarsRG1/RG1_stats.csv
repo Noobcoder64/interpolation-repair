@@ -1,0 +1,6 @@
+Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored
+<<<<<<<< HEAD:outputs-symbolic/GLASS/run-9/addedVarsRG1/RG1_stats.csv
+inputs-scalability/addedVarsRG1/RG1.spectra,1,1,0.005,0.005,10,False,1
+========
+inputs-scalability/addedVarsRG1/RG1.spectra,1,1,0.007,0.007,10,False,1
+>>>>>>>> d39d6af1fcfec3aa1447d7c9b17e9057d335a861:outputs-scalability/GLASS/run-10/addedVarsRG1/RG1_stats.csv
