@@ -50,7 +50,7 @@ OUTPUT_PARENT_FOLDER = "outputs-scalability/"
 # OUTPUT_PARENT_FOLDER = "outputs-weakness/"
 # OUTPUT_PARENT_FOLDER = "outputs-translation/"
 
-RUN = 5
+RUN = 1
 
 TIMEOUT = 10
 
