@@ -1,0 +1,2 @@
+Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored
+inputs-scalability-JVTS/addedVarsGyro_Var1/GyroUnrealizable_Var1_710_GyroAspect_unrealizableE2.spectra,1,1,3.252,3.252,10,False,125

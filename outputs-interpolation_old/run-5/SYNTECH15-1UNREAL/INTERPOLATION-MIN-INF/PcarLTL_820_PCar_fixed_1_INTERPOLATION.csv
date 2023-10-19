@@ -1,4 +1,0 @@
-Id,UniqueRefinement,Timestamp,Length,Parent,NumChildren,IsRealizable,IsSatisfiable,IsWellSeparated,IsSolution,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeWellSeparationCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod,NumVariables,ContainsAux,d1,d2,nummaxentropysccs,d3,NumAssumptions
-548188b9-e591-4af8-8f01-678aeae1ac2e,[],0.0020949359750375,0,,2,False,,,False,1.3536595399782527,,,1.2239345890120603,3.0,6.476798444055021e-05,0.0459755650081206,,False,,,,,
-0413f2af-1a92-4599-97f8-d84412343df1,['!(!parkResult_0 & !sideSense_0 & !sideSense_1 & sideSense_2)'],4.068161759991199,1,548188b9-e591-4af8-8f01-678aeae1ac2e,0,True,False,,False,1.4016888980113436,1.3653469900018536,,,,,,4,False,,,,,1.0
-051a4bc1-9128-4b56-8b1b-491cc58a0f67,['G(!(!parkResult_0 & !sideSense_0 & !sideSense_1 & sideSense_2))'],4.068176706001395,1,548188b9-e591-4af8-8f01-678aeae1ac2e,0,True,False,,False,1.3852762250171509,1.2493976989935618,,,,,,4,False,,,,,1.0
