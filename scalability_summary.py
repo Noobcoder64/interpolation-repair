@@ -23,12 +23,14 @@ def summarize_folder(output_folder):
 
         summary_df = pd.concat(dfs, ignore_index=True)
         summary_df = summary_df.sort_values(by="Filename")
+        summary_df = summary_df.sort_values(by=["Benchmark", "Filename"])
         summary_df.to_csv(os.path.join(output_folder, "repairs_summary.csv"), index=False)
 
         average_df = summary_df.groupby('Filename')[["NumRepairs", "TimeToFirst", "Runtime", "NodesExplored", "DuplicateNodes"]].mean()
         average_df = average_df.reset_index()
+        average_df['Runs'] = summary_df.groupby('Filename').size().values
         average_df["TimeToFirst"] = round(average_df["TimeToFirst"] * 1000)
-        average_df.to_csv(os.path.join(output_folder, "average.csv"), index=False)
+        average_df.to_csv(os.path.join(output_folder, "repairs_average.csv"), index=False)
 
 total_start_time = time.time()
 

@@ -1,0 +1,6 @@
+Benchmark,Run,Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored
+SIMPLE,1,inputs/SIMPLE/LGS.spectra,1,-1,0.005,0.005,10,False,1
+SIMPLE,1,inputs/SIMPLE/Lift.spectra,1,-1,0.025,0.025,10,False,1
+SIMPLE,1,inputs/SIMPLE/RG.spectra,1,-1,0.009,0.009,10,False,1
+SIMPLE,1,inputs/SIMPLE/RG1.spectra,1,-1,0.008,0.008,10,False,1
+SIMPLE,1,inputs/SIMPLE/RG2.spectra,1,-1,0.006,0.006,10,False,1

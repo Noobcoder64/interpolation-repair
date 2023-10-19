@@ -1,2 +1,2 @@
 Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs-interpolation/AMBA-2/amba_ahb_wo_ass_fairness_amba_ahb_1.spectra,1,1,0.8908896010834724,0.8910313819069415,600.0,False,3,0
+inputs/AMBA-2/amba_ahb_wo_ass_fairness_amba_ahb_1.spectra,3,-1,0.49076879800122697,0.6874916270026006,600.0,False,4,0

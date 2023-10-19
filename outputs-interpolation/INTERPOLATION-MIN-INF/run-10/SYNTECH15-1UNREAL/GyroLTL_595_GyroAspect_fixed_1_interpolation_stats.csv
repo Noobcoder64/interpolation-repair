@@ -1,2 +1,0 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs-interpolation/SYNTECH15-1UNREAL/GyroLTL_595_GyroAspect_fixed_1.spectra,1,1,0.26174176996573806,0.2619402960408479,600.0,False,2,0

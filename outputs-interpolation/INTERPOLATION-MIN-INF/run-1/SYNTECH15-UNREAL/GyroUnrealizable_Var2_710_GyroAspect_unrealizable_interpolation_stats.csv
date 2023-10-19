@@ -1,2 +1,2 @@
 Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs-interpolation/SYNTECH15-UNREAL/GyroUnrealizable_Var2_710_GyroAspect_unrealizable.spectra,1,1,0.22406386816874146,0.22418177616782486,600.0,False,2,0
+inputs/SYNTECH15-UNREAL/GyroUnrealizable_Var2_710_GyroAspect_unrealizable.spectra,0,-1,,0.39269953800248913,600.0,False,3,0
