@@ -1,2 +1,2 @@
 Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs/SIMPLE/Lift.spectra,1,-1,0.15282684800058632,0.15322510399983003,60.0,False,2,0
+inputs/SIMPLE/Lift.spectra,0,-1,,0.00019954900017182808,-60.0,True,0,0
