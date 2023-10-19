@@ -1,2 +1,2 @@
 Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs-interpolation/AMBA-2/amba_ahb_w_guar_trans_amba_ahb_3.spectra,0,1,,1.4920932878740132,600.0,False,3,0
+inputs/AMBA-2/amba_ahb_w_guar_trans_amba_ahb_3.spectra,0,-1,,5.347648363094777,600.0,False,3,0

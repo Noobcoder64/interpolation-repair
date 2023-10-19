@@ -1,0 +1,2 @@
+Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
+inputs/SYNTECH15-UNREAL/ColorSortLTLUnrealizable1_790_ColorSort_unrealizable.spectra,1,-1,454.74850544007495,604.0998004290741,600.0,True,404,0

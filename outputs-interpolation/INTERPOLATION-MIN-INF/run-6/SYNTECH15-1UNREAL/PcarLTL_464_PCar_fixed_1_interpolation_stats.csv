@@ -1,2 +1,0 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs-interpolation/SYNTECH15-1UNREAL/PcarLTL_464_PCar_fixed_1.spectra,1,1,0.22329975222237408,0.2234265881124884,600.0,False,2,0

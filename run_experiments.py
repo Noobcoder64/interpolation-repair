@@ -10,7 +10,7 @@ def process_file(input_file, algorithm, output_folder, output_file):
     if "INTERPOLATION" in algorithm:
         command = f"python interpolation_repair.py -i {input_file} -o {output_folder} -t {TIMEOUT} -rl {REPAIR_LIMIT} {FLAGS}"
     else:
-        command = f"python spec_repair.py -i {input_file} -a {algorithm} -o {output_folder} -t {TIMEOUT}"
+        command = f"java -jar spectra/SpecRepair.jar -i {input_file} -a {algorithm} -o {output_folder} -t {TIMEOUT} -rl {REPAIR_LIMIT}"
 
     print(command)
     

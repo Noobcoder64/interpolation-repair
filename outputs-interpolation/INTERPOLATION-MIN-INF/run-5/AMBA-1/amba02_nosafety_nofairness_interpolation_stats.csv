@@ -1,0 +1,2 @@
+Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
+inputs/AMBA-1/amba02_nosafety_nofairness.spectra,157,-1,0.6141384989023209,603.064063227037,600.0,True,501,1
