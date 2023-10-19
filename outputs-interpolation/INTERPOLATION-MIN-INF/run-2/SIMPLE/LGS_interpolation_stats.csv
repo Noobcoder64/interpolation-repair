@@ -1,2 +1,0 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs-interpolation/SIMPLE/LGS.spectra,1,1,0.1688192281872034,0.16893551615066826,600.0,False,3,0

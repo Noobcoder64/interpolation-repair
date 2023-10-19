@@ -1,2 +1,0 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs/AMBA-1/amba04_noassumptions.spectra,2,-1,3.4207721210550517,3.8412368269637227,600.0,False,5,0

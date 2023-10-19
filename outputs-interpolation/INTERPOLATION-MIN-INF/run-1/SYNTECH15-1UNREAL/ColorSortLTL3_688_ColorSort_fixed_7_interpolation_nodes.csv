@@ -1,2 +1,0 @@
-Id,Refinement,ElapsedTime,Timestamp,TimestampRealizabilityCheck,Length,Parent,NumChildren,IsYSat,IsRealizable,IsSatisfiable,IsWellSeparated,IsSolution,TimeYSatCheck,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeWellSeparationCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod
-89dd4cdc-f8c9-4c68-bcc1-6e64facb0a85,[],277.7090645509961,0,0,0,N/A,0,True,False,N/A,N/A,False,0.05641928099794313,0.4697496359949582,N/A,N/A,N/A,N/A,N/A,N/A
