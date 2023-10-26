@@ -1,2 +1,0 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored
-inputs-scalability/addedVarsLift/LiftE1.spectra,1,1,0.093,0.093,10,False,10

@@ -98,11 +98,13 @@ def FifoDuplicateCheckRefinement():
 
         print("++ Y-SAT CHECK")
         if not cur_node.isYSat():
+            cur_node.deleteTempSpecFile()
             continue
 
         if cur_node.unique_refinement in explored_refs:
             print("++ DUPLICATE NODE")
             duplicate_refs.append(cur_node.unique_refinement)
+            cur_node.deleteTempSpecFile()
             continue
 
         try:
@@ -124,6 +126,8 @@ def FifoDuplicateCheckRefinement():
             refine_error = True
             print()
             print(e)
+            
+        cur_node.deleteTempSpecFile()
 
         cur_node.saveRefinementData(csv_writer, datafields)
         explored_refs.append(cur_node.unique_refinement)

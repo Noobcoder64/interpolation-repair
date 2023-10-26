@@ -1,0 +1,2 @@
+Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
+inputs/SYNTECH15-1UNREAL/PCarLTL_Unrealizable_V_20_882_PCar_fixed_1.spectra,0,-1,,0.1315716910175979,600.0,False,1,0

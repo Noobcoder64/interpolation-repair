@@ -1,6 +1,0 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored
-<<<<<<<< HEAD:outputs-scalability/JVTS/run-1/addedVarsRG1/RG1_stats.csv
-inputs-scalability/addedVarsRG1/RG1.spectra,1,1,0.055,0.055,10,False,9
-========
-inputs-scalability/addedVarsRG1/RG1.spectra,1,1,0.006,0.006,10,False,1
->>>>>>>> d39d6af1fcfec3aa1447d7c9b17e9057d335a861:outputs-scalability/GLASS/run-1/addedVarsRG1/RG1_stats.csv

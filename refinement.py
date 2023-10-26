@@ -172,7 +172,7 @@ class RefinementNode:
             raise Exception("Compute unrealizable core before minimizing")
 
         spec = sp.read_file(self.__getTempSpecFileName())
-        self.__deleteTempSpecFile()
+        self.deleteTempSpecFile()
         self.__setTempSpecFileName("temp/" + str(self.id) + "_min.spectra")
         new_spec = []
         i = 0
@@ -189,7 +189,7 @@ class RefinementNode:
         sp.write_file(new_spec, self.__getTempSpecFileName())
         
         
-    def __deleteTempSpecFile(self):
+    def deleteTempSpecFile(self):
         if os.path.isfile(self.__getTempSpecFileName()):
             os.remove(self.__getTempSpecFileName())
 
@@ -236,7 +236,6 @@ class RefinementNode:
         time_well_separation_check_start = timeit.default_timer()
         self.is_well_separated = spectra.check_well_separation(self.__getTempSpecFileName())
         self.time_well_separation_check = timeit.default_timer() - time_well_separation_check_start
-        self.__deleteTempSpecFile()
         return self.is_well_separated
 
     def isYSat(self):
@@ -284,7 +283,6 @@ class RefinementNode:
                 refinements.append(self.__concatenateAssumption(candidate_ref))
             self.time_refine = timeit.default_timer() - time_refine_start
         self.num_descendant_refinements = len(refinements)
-        self.__deleteTempSpecFile()
         return refinements
 
     def __concatenateAssumption(self, candidate_ref):
