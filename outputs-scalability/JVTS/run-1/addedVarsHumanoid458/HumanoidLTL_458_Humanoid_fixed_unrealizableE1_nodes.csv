@@ -1,4 +1,4 @@
 Id,Refinement,ElapsedTime,Depth,IsYSat,IsRealizable,IsSolution
-9b701d56-a36e-4c5d-82b2-ca6644fcee57,"[]",0.005,0,True,False,False
-8720233a-7942-4839-9c9f-93e6303eeb65,"['G (obstacle_0=false -> (inputMoveMode_0=true -> (inputMoveMode_1=true -> e1=true)))']",0.017,1,True,False,False
-1d9bc2a8-3945-4b9b-a8da-36c9811395b1,"['G (obstacle_0=false -> (inputMoveMode_0=true -> (inputMoveMode_1=true -> e1=true)))', 'G (obstacle_0=false -> (inputMoveMode_0=true -> (inputMoveMode_1=true -> e1=false)))']",0.023,2,True,True,True
+a250eae4-daf4-493b-b474-2e224e9a8d48,"[]",0.004,0,True,False,False
+53bbb55e-42c6-4f59-ab34-aeb351cd980e,"['G (obstacle_0=false -> (inputMoveMode_0=true -> (inputMoveMode_1=true -> e1=true)))']",0.014,1,True,False,False
+f6238905-931a-4fa9-8a5b-ffd7eab0d7e0,"['G (obstacle_0=false -> (inputMoveMode_0=true -> (inputMoveMode_1=true -> e1=true)))', 'G (obstacle_0=false -> (inputMoveMode_0=true -> (inputMoveMode_1=true -> e1=false)))']",0.019,2,True,True,True

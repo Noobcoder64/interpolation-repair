@@ -1,2 +1,2 @@
 Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored
-inputs-scalability-JVTS/addedVarsRG1/RG1S4.spectra,1,1,0.046,0.046,10,False,9
+inputs-scalability-JVTS/addedVarsRG1/RG1S4.spectra,1,1,0.051,0.051,600,False,9

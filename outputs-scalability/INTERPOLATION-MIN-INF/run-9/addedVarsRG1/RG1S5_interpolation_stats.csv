@@ -1,2 +1,2 @@
 Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs-scalability/addedVarsRG1/RG1S5.spectra,1,1,0.18664747988805175,0.18676135479472578,600.0,False,3,0
+inputs-scalability/addedVarsRG1/RG1S5.spectra,1,1,0.432064996988629,0.43675802600046154,600.0,False,4,0

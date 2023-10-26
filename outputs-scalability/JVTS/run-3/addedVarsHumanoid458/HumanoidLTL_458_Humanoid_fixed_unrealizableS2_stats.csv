@@ -1,2 +1,2 @@
 Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored
-inputs-scalability-JVTS/addedVarsHumanoid458/HumanoidLTL_458_Humanoid_fixed_unrealizableS2.spectra,1,1,0.019,0.02,10,False,2
+inputs-scalability-JVTS/addedVarsHumanoid458/HumanoidLTL_458_Humanoid_fixed_unrealizableS2.spectra,1,1,0.02,0.021,600,False,2

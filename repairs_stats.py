@@ -82,6 +82,9 @@ def get_run_number(path):
     match = re.search(r"run-(\d+)", path)
     return int(match.group(1)) if match else None
 
+def get_basename(filename):
+    return os.path.basename(filename)
+
 def summarize_folder(output_folder):
         
         if not os.path.exists(output_folder):
@@ -100,13 +103,15 @@ def summarize_folder(output_folder):
                     dfs.append(df)
 
         summary_df = pd.concat(dfs, ignore_index=True)
+        summary_df["Effectiveness"] = summary_df["NumRepairs"] / summary_df["NodesExplored"]
         summary_df = summary_df.sort_values(by=["Benchmark", "Filename", "Run"])
         summary_df.to_csv(os.path.join(output_folder, "repairs_summary.csv"), index=False)
 
-        average_df = summary_df.groupby('Filename')[["NumRepairs", "TimeToFirst", "Runtime", "NodesExplored"]].mean()
+        average_df = summary_df.groupby('Filename')[["NumRepairs", "TimeToFirst", "Runtime", "NodesExplored", "Effectiveness"]].mean()
         average_df['Runs'] = summary_df.groupby('Filename').size().values
         average_df = average_df.reset_index()
         average_df.insert(0, "Benchmark", average_df['Filename'].apply(get_benchmark_name))
+        average_df["Filename"] = average_df["Filename"].apply(get_basename)
 
         average_df["TimeToFirst"] = round(average_df["TimeToFirst"] * 1000)
         average_df["Runtime"] = round(average_df["Runtime"] * 1000)
@@ -119,11 +124,13 @@ total_start_time = time.time()
     # for input_folder in INPUT_FOLDERS:
         # summarize_folder(input_folder, algorithm)
 
-# summarize_folder("outputs-interpolation/INTERPOLATION-MIN-INF/")
+summarize_folder("outputs-interpolation/INTERPOLATION-MIN-INF/")
 # summarize_folder("outputs-symbolic/GLASS/")
+summarize_folder("outputs-symbolic/JVTS/")
 
 # summarize_folder("outputs-scalability/INTERPOLATION-MIN-INF/")
-summarize_folder("outputs-scalability/GLASS/")
+# summarize_folder("outputs-scalability/GLASS/")
+# summarize_folder("outputs-scalability/JVTS/")
 
 total_end_time = time.time()
 total_elapsed_time = total_end_time - total_start_time
