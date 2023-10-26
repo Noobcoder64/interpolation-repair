@@ -1,2 +1,2 @@
 Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs-scalability/addedVarsGyro_Var1/GyroUnrealizable_Var1_710_GyroAspect_unrealizable.spectra,1,1,0.14521621307358146,0.1453610120806843,600.0,False,2,0
+inputs-scalability/addedVarsGyro_Var1/GyroUnrealizable_Var1_710_GyroAspect_unrealizable.spectra,1,1,0.2133070459967712,0.21683622199634556,600.0,False,2,0

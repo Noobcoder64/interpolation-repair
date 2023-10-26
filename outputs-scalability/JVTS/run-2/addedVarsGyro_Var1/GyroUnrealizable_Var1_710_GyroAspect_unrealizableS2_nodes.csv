@@ -1,6 +1,6 @@
 Id,Refinement,ElapsedTime,Depth,IsYSat,IsRealizable,IsSolution
-103880ef-1326-4abc-b986-457bce184487,"[]",0.008,0,True,False,False
-76c821ca-4e50-4a81-96ab-a0bd7dd1aa16,"['G (frontDistSense_0=false -> (next(frontDistSense_0)=false -> (backDistSense_0=false -> (next(backDistSense_0)=false -> (isReady=false -> (next(isReady)=true -> (balancer_0=false -> (balancer_1=false -> balancer_2=true))))))))']",0.044,1,True,False,False
-64e288d3-41f2-45a3-a758-dcb367ea0a34,"['GF (frontDistSense_0=false -> (backDistSense_0=false -> (isReady=true -> (balancer_0=false -> (balancer_1=false -> balancer_2=false)))))']",0.067,1,True,False,False
-c95a09fa-3828-49d6-b427-066aebbcd5be,"['G (frontDistSense_0=false -> (next(frontDistSense_0)=false -> (backDistSense_0=false -> (next(backDistSense_0)=false -> (isReady=true -> (next(isReady)=true -> (balancer_0=false -> (balancer_1=false -> balancer_2=false))))))))']",0.083,1,True,False,False
-9498529f-9c16-4b37-9b1e-154387205666,"['G (frontDistSense_0=false -> (backDistSense_0=false -> (isReady=true -> (balancer_0=false and (balancer_1=false and balancer_2=true)))))']",0.107,1,True,True,True
+ce9bebd3-e0d6-4413-85b9-3625dc3d3dd8,"[]",0.007,0,True,False,False
+3736981b-5ce0-48db-9976-f3f33fb27185,"['G (frontDistSense_0=false -> (next(frontDistSense_0)=false -> (backDistSense_0=false -> (next(backDistSense_0)=false -> (isReady=false -> (next(isReady)=true -> (balancer_0=false -> (balancer_1=false -> balancer_2=true))))))))']",0.039,1,True,False,False
+c51e1d9d-0a34-44ca-83b7-12b49a39636f,"['GF (frontDistSense_0=false -> (backDistSense_0=false -> (isReady=true -> (balancer_0=false -> (balancer_1=false -> balancer_2=false)))))']",0.065,1,True,False,False
+540ffb3e-5148-485b-aff1-95cd510c80e6,"['G (frontDistSense_0=false -> (next(frontDistSense_0)=false -> (backDistSense_0=false -> (next(backDistSense_0)=false -> (isReady=true -> (next(isReady)=true -> (balancer_0=false -> (balancer_1=false -> balancer_2=false))))))))']",0.082,1,True,False,False
+659c4453-cd31-4bfc-8be2-9c264a727703,"['G (frontDistSense_0=false -> (backDistSense_0=false -> (isReady=true -> (balancer_0=false and (balancer_1=false and balancer_2=true)))))']",0.106,1,True,True,True

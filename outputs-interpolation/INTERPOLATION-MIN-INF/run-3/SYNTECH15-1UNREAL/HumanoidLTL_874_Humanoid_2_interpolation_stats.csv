@@ -1,0 +1,2 @@
+Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
+inputs/SYNTECH15-1UNREAL/HumanoidLTL_874_Humanoid_2.spectra,1,-1,463.25787529116496,463.26647950802,600.0,False,2,0

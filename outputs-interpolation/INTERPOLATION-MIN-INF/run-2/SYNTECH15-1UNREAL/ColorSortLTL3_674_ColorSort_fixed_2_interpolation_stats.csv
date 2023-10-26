@@ -1,2 +1,2 @@
 Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs/SYNTECH15-1UNREAL/ColorSortLTL3_674_ColorSort_fixed_2.spectra,0,-1,,659.4919244170887,600.0,True,1,0
+inputs/SYNTECH15-1UNREAL/ColorSortLTL3_674_ColorSort_fixed_2.spectra,0,-1,,659.4908808709879,600.0,True,1,0

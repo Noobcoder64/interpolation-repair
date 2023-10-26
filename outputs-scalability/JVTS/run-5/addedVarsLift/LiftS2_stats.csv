@@ -1,2 +1,2 @@
 Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored
-inputs-scalability-JVTS/addedVarsLift/LiftS2.spectra,1,1,0.037,0.037,10,False,4
+inputs-scalability-JVTS/addedVarsLift/LiftS2.spectra,1,1,0.052,0.053,600,False,4

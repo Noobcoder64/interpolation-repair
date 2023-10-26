@@ -1,2 +1,2 @@
 Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs-scalability/addedVarsLift/LiftS2.spectra,1,1,0.3738726538140327,0.37404746701940894,600.0,False,7,0
+inputs-scalability/addedVarsLift/LiftS2.spectra,1,1,0.2146062610008812,0.21831935299996985,600.0,False,2,0

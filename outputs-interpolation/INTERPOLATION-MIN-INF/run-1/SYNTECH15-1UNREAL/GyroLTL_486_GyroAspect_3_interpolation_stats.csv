@@ -1,2 +1,2 @@
 Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs-interpolation/SYNTECH15-1UNREAL/GyroLTL_486_GyroAspect_3.spectra,1,1,0.2612372641451657,0.2614322460722178,600.0,False,2,0
+inputs/SYNTECH15-1UNREAL/GyroLTL_486_GyroAspect_3.spectra,21,-1,0.2881186510203406,2.214840754022589,600.0,False,39,0

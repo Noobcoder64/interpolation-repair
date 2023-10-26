@@ -1,0 +1,2 @@
+Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
+inputs/SYNTECH15-1UNREAL/GyroLTL_588_GyroAspect_1.spectra,10,-1,0.1612722200807184,0.7427612619940192,600.0,False,14,0
