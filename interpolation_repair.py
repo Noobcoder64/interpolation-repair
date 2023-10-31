@@ -31,10 +31,12 @@ def FifoDuplicateCheckRefinement():
 
     if initial_spec_node.isRealizable():
         print("Specification is already realizable. No fix required.")
+        spectra.shutdown()
         return
     
     if not initial_spec_node.isYSat():
         print("Adding assumptions will not fix this specification")
+        spectra.shutdown()
         return
 
     initial_spec_node.timestamp = 0

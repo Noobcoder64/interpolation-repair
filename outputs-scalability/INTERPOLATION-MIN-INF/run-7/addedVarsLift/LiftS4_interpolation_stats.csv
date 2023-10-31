@@ -1,0 +1,2 @@
+Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
+inputs-scalability/addedVarsLift/LiftS4.spectra,1,1,0.14385546487756073,0.14735987782478333,600.0,False,2,0

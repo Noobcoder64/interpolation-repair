@@ -10,7 +10,7 @@ def process_file(input_file, algorithm, output_folder, output_file):
     if "INTERPOLATION" in algorithm:
         command = f"python interpolation_repair.py -i {input_file} -o {output_folder} -t {TIMEOUT} -rl {REPAIR_LIMIT} {FLAGS}"
     else:
-        command = f"java -jar spectra/SpecRepair.jar -i {input_file} -a {algorithm} -o {output_folder} -t {TIMEOUT} -rl {REPAIR_LIMIT}"
+        command = f"java -jar spectra/SpecRepair.jar -i {input_file} -a {algorithm} -o {output_folder} -t {TIMEOUT} -rl {REPAIR_LIMIT} {FLAGS}"
 
     print(command)
     
@@ -32,7 +32,11 @@ def process_algorithm(algorithm, input_folder):
     output_folder = os.path.join(OUTPUT_PARENT_FOLDER, algorithm, f"run-{RUN}", os.path.basename(input_folder))
     os.makedirs(output_folder, exist_ok=True)
     
-    spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra")]
+    whitelist = [
+        "PcarLTL_553_PCar_1.spectra",
+    ]
+
+    spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra") and file in whitelist]
     spectra_files.sort()
 
     for spectra_file in spectra_files:

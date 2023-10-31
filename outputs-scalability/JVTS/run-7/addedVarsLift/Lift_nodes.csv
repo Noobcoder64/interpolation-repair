@@ -1,0 +1,5 @@
+Id,Refinement,ElapsedTime,Depth,IsYSat,IsRealizable,IsSolution
+4c68dff1-1ef1-473d-92a6-f4953e99bb36,"[]",0.006,0,True,False,False
+98efe051-a270-4d1e-8173-a5e7b0541c02,"['GF (b1=false -> (b2=false -> (b3=false -> (f1=true -> (f2=false -> f3=true)))))']",0.023,1,True,False,False
+e4723588-3edf-4cda-8b1d-c74c8c0ce46f,"['G (b1=false -> (next(b1)=false -> (b2=false -> (next(b2)=false -> (b3=false -> (next(b3)=false -> (f1=true -> (f2=false -> f3=true))))))))']",0.029,1,True,False,False
+8a0c03a7-22be-4e00-b0d6-af13c05a1019,"['G (b1=false -> (b2=false -> (b3=false -> (f1=true -> (f2=false -> f3=false)))))']",0.036,1,True,True,True

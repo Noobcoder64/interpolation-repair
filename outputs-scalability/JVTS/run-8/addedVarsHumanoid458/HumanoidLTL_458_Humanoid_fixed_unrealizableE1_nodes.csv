@@ -1,0 +1,4 @@
+Id,Refinement,ElapsedTime,Depth,IsYSat,IsRealizable,IsSolution
+6a023e65-8eae-434e-bbb3-0bbcaa71c1cc,"[]",0.005,0,True,False,False
+081b462b-ff16-4357-bf9e-273ab7f4178e,"['G (obstacle_0=false -> (inputMoveMode_0=true -> (inputMoveMode_1=true -> e1=true)))']",0.015,1,True,False,False
+256a2cba-b8fe-4640-8553-527015f8f60e,"['G (obstacle_0=false -> (inputMoveMode_0=true -> (inputMoveMode_1=true -> e1=true)))', 'G (obstacle_0=false -> (inputMoveMode_0=true -> (inputMoveMode_1=true -> e1=false)))']",0.019,2,True,True,True

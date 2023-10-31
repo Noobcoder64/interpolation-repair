@@ -14,6 +14,11 @@ FLAGS = " ".join([
     "-inf",
 ])
 
+# FLAGS = " ".join([
+#     # "-disable-core",
+#     # "-disable-record-asm"
+# ])
+
 INPUT_PARENT_FOLDER = "inputs/"
 # INPUT_PARENT_FOLDER = "inputs-JVTS/"
 # INPUT_PARENT_FOLDER = "inputs-interpolation/"
@@ -52,7 +57,7 @@ OUTPUT_PARENT_FOLDER = "outputs-interpolation/"
 # OUTPUT_PARENT_FOLDER = "outputs-weakness/"
 # OUTPUT_PARENT_FOLDER = "outputs-translation/"
 
-RUN = 10
+RUN = 1
 
 TIMEOUT = 10
 

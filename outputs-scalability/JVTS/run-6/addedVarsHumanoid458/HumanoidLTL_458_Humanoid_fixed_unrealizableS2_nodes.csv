@@ -1,0 +1,3 @@
+Id,Refinement,ElapsedTime,Depth,IsYSat,IsRealizable,IsSolution
+4081d7d8-dd9a-4106-997d-7a4299338976,"[]",0.004,0,True,False,False
+50b741ab-2c5d-485f-a064-572e0892f039,"['G (obstacle_0=false -> (inputMoveMode_0=true -> inputMoveMode_1=false))']",0.016,1,True,True,True

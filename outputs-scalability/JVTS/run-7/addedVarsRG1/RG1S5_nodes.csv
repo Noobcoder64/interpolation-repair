@@ -1,0 +1,10 @@
+Id,Refinement,ElapsedTime,Depth,IsYSat,IsRealizable,IsSolution
+92fb70d5-4c1f-4c34-ba3e-03148e3dca5c,"[]",0.005,0,True,False,False
+3462415b-90f0-4d00-8fd0-d91a85077ea7,"['GF (r=false -> (c=false -> g=true) and (c=true -> v=true))']",0.02,1,True,False,False
+f8dbc077-1996-4e5b-a8ab-9f2e400a4115,"['G (r=false -> (next(r)=false -> (c=false -> (next(c)=true -> g=true)) and (c=true -> (next(c)=true -> v=true))))']",0.025,1,True,False,False
+c722edd6-2206-496b-a325-36fa0cb42320,"['G (r=false -> (c=true -> v=false))']",0.029,1,True,False,False
+f48e641b-a90c-4a32-9147-b58abf6fc072,"['GF (r=false -> (c=false -> g=true) and (c=true -> v=true))', 'G (r=false -> (next(r)=true -> (c=true -> v=true))) and(r=true -> (next(r)=true -> (c=false -> g=true)))']",0.032,2,True,False,False
+e2011069-e6a5-4315-92dd-e3aa97f0af70,"['GF (r=false -> (c=false -> g=true) and (c=true -> v=true))', 'G (r=false -> (c=true -> (next(c)=true -> v=true))) and(r=true -> (c=false -> (next(c)=true -> g=true)))']",0.037,2,True,False,False
+cccb25df-b43e-4a56-91d5-905c4699d2b6,"['GF (r=false -> (c=false -> g=true) and (c=true -> v=true))', 'GF (r=true -> (c=false -> g=true) and (c=true -> v=true))']",0.044,2,True,False,False
+d4bcc410-5ce2-418f-bf5e-e692720265be,"['GF (r=false -> (c=false -> g=true) and (c=true -> v=true))', 'G (r=true -> (c=false -> (next(c)=true -> g=true)) and (c=true -> (next(c)=true -> v=true)))']",0.049,2,True,False,False
+28ecfdb1-98ca-42d3-abc0-d87f5f1b4684,"['G (c=true -> v=false)']",0.053,2,True,True,True
