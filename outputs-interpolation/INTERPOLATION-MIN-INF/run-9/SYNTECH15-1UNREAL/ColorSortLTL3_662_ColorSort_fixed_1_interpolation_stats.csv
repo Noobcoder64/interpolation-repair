@@ -1,2 +1,2 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs/SYNTECH15-1UNREAL/ColorSortLTL3_662_ColorSort_fixed_1.spectra,637,-1,3.2305310319934506,108.69913305499358,600.0,False,1038,7
+Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes,NumInterpolantsComputed,NumNonStateSeparable
+inputs/SYNTECH15-1UNREAL/ColorSortLTL3_662_ColorSort_fixed_1.spectra,667,-1,3.10865632299101,118.66465700899425,600.0,False,1103,7,389,0

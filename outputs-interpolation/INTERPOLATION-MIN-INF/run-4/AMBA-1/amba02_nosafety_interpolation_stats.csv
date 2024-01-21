@@ -1,2 +1,2 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs/AMBA-1/amba02_nosafety.spectra,0,-1,,76.32261090306565,600.0,False,22,0
+Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes,NumInterpolantsComputed,NumNonStateSeparable
+inputs/AMBA-1/amba02_nosafety.spectra,0,-1,,6.565756181997131,600.0,False,2,0,1,0

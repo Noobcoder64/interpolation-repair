@@ -1,1 +1,0 @@
-Id,Refinement,ElapsedTime,Timestamp,TimestampRealizabilityCheck,Length,Parent,NumChildren,IsYSat,IsRealizable,IsSatisfiable,IsWellSeparated,IsSolution,TimeYSatCheck,TimeRealizabilityCheck,TimeSatisfiabilityCheck,TimeWellSeparationCheck,TimeCounterstrategy,CounterstrategyNumStates,TimeRefine,TimeGenerationMethod

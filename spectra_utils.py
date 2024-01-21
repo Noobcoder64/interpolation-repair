@@ -7,7 +7,7 @@ import jpype
 import jpype.imports
 from jpype.types import *
 
-EXTRA_TIME = 120
+EXTRA_TIME = 60
 
 jpype.startJVM(classpath=["spectra/dependencies/*", "spectra/SpectraTool.jar"])
 SpectraTool = jpype.JClass('tau.smlab.syntech.Spectra.cli.SpectraTool')
@@ -16,7 +16,6 @@ print()
 def check_realizibility(spectra_file_path):
     remaining_time = int(exp.timeout - exp.elapsed_time + EXTRA_TIME)
     return SpectraTool.checkRealizability(spectra_file_path, remaining_time)
-
 
 def check_satisfiability(spectra_file_path):
     return SpectraTool.checkSatisfiability(spectra_file_path)

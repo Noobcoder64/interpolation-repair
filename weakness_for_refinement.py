@@ -2,6 +2,8 @@ import experiment_properties as exp
 import automaton as a
 import syntax_utils as su
 import numpy as np
+import nondeterministic_tgba as ndtgba
+from io_utils import extractVariablesFromFormula
 
 # This module computes the weakness measure in another way suitable for assumptions refinement.
 # d1 is the same as normal weakness: Hausdorff dimension of the entire formula.
@@ -134,19 +136,38 @@ class Weakness:
         return str((self.d1, self.d2, self.nummaxentropysccs, self.d3))
 
 
+def compareViaImplication(phi1,phi2,var_set=None):
+    """Returns 0 if phi1 and phi2 do not imply each other, 1 if phi1 -> phi2, -1 if phi2 -> phi1, and 2 if phi1 and phi2
+    are equivalent"""
+    
+    if var_set is None:
+        var_set = extractVariablesFromFormula(phi1 + " & " + phi2)
+
+    tgba_phi1_not_phi2 = ndtgba.NondeterministcTGBA('ltl', ltlFormula=phi1 + " & !(" + phi2 + ")", var_set=var_set)
+    tgba_phi2_not_phi1 = ndtgba.NondeterministcTGBA('ltl', ltlFormula=phi2 + " & !(" + phi1 + ")", var_set=var_set)
+
+    empty_phi1_not_phi2 = tgba_phi1_not_phi2.checkEmptiness()
+    empty_phi2_not_phi1 = tgba_phi2_not_phi1.checkEmptiness()
+    if empty_phi1_not_phi2 and empty_phi2_not_phi1:
+        return 2
+    elif empty_phi2_not_phi1:
+        return -1
+    elif empty_phi1_not_phi2:
+        return 1
+    else:
+        return 0
+
+
 def main():
-#    print compareViaImplication("G((a&b) -> Xc) & a", "G((a&b) -> Xc) & G(F(a&b&c))", ['a', 'b', 'c'])
-#    print compareViaImplication("G((a) -> Xc) & G(F(a&b&c&d))", "G(F(a&b&d))",  ['a', 'b', 'c'])
-
-#    print str(computeWeakness_probe("G(a -> Xc)", ['a','b','c','d']))
-#    print str(computeWeakness_probe("G((a) -> Xc) & G(F(a&b&c&d))", ['a','b','c','d']))
-
-#    print str(computeWeakness_probe(" & ".join([u'G(F( (!hbusreq0) ))', '!(!hready)']), exp.varsList))
-#    print Weakness(0.6000000000000001, 0.6000000000000001, 1, 0.5) > Weakness(0.6, 0.6, 2, 0.5)
-    # print(str(computeWeakness_probe(" & ".join(['G((isReady & !frontDistSense_0) -> X(!(!frontDistSense_0 & isReady)))', 'G(F(!(!balancer_2) & !(balancer_1) & !(balancer_0)))']), exp.varsList)))
+    i1 = compareViaImplication("G((a&b) -> Xc) & a", "G((a&b) -> Xc) & G(F(a&b&c))", ['a', 'b', 'c'])
+    assert(i1 == 0)
+    i2 = compareViaImplication("G((a) -> Xc) & G(F(a&b&c&d))", "G(F(a&b&d))",  ['a', 'b', 'c'])
+    assert(i2 == 1)    
+    i3 = compareViaImplication("G(F(a&b&c))", "G(F(a&b&c))",  ['a', 'b', 'c'])
+    assert(i3 == 2)
 
     # TEST LIFT
-    exp.changeCaseStudy("inputs/Lift.spectra")
+    exp.configure("inputs/SIMPLE/Lift.spectra", show_args=False)
     w1 = computeWeakness_probe(" & ".join(["G((!b1 & !b2 & !b3) -> X(b1 | b2 | b3))"]), exp.varsList)[0]
     w2 = computeWeakness_probe(" & ".join(["G(F(b1 | b2 | b3))"]), exp.varsList)[0]
     w3 = computeWeakness_probe(" & ".join(["G(F(b1))"]), exp.varsList)[0]
@@ -188,14 +209,20 @@ def main():
     # w4 is weaker than w3 (w3 is stronger than w4)
     assert(w4 > w3)
 
-    exp.changeCaseStudy("Examples/GyroUnrealizable_Var1_710_GyroAspect_unrealizable_translated.spectra")
-    refinements = [
-        "G((frontDistSense_0) | (X(frontDistSense_0)) | (((backDistSense_0) | (((X(backDistSense_0)) | (((balancer_0) | (balancer_1) | (balancer_2) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(eNV_CONSTRAINT_1_respondsTo_responded)) | (isReady) | (X((!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(isReady))))) & ((balancer_0) | (balancer_1) | (!(balancer_2)) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (eNV_CONSTRAINT_1_respondsTo_responded) | (!(isReady)) | (X((!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(isReady))))))) & ((X(!(backDistSense_0))) | (((balancer_0) | (balancer_1) | (balancer_2) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(eNV_CONSTRAINT_1_respondsTo_responded)) | (isReady) | (X((!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(eNV_CONSTRAINT_1_respondsTo_responded)) | (!(isReady))))) & ((balancer_0) | (balancer_1) | (!(balancer_2)) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (eNV_CONSTRAINT_1_respondsTo_responded) | (!(isReady)) | (X((!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(eNV_CONSTRAINT_1_respondsTo_responded)) | (!(isReady))))))))) & ((!(backDistSense_0)) | (((balancer_0) | (balancer_1) | (!(balancer_2)) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(eNV_CONSTRAINT_1_respondsTo_responded)) | (!(isReady)) | (X((backDistSense_0) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(isReady))))) & ((balancer_0) | (balancer_1) | (!(balancer_2)) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(eNV_CONSTRAINT_1_respondsTo_responded)) | (!(isReady)) | (X((!(backDistSense_0)) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(eNV_CONSTRAINT_1_respondsTo_responded)) | (!(isReady)))))))))"
-    ]
-    w = computeWeakness_probe(" & ".join(refinements), exp.varsList)[0]
-    print()
-    print("Weakness 1: ", w)
-    print()
+    # exp.configure("inputs/SYNTECH15-UNREAL/GyroUnrealizable_Var1_710_GyroAspect_unrealizable.spectra")
+    # refinements = ["G((frontDistSense_0) | (X(frontDistSense_0)) | (((backDistSense_0) | (((X(backDistSense_0)) | (((balancer_0) | (balancer_1) | (balancer_2) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(eNV_CONSTRAINT_1_respondsTo_responded)) | (isReady) | (X((!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(isReady))))) & ((balancer_0) | (balancer_1) | (!(balancer_2)) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (eNV_CONSTRAINT_1_respondsTo_responded) | (!(isReady)) | (X((!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(isReady))))))) & ((X(!(backDistSense_0))) | (((balancer_0) | (balancer_1) | (balancer_2) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(eNV_CONSTRAINT_1_respondsTo_responded)) | (isReady) | (X((!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(eNV_CONSTRAINT_1_respondsTo_responded)) | (!(isReady))))) & ((balancer_0) | (balancer_1) | (!(balancer_2)) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (eNV_CONSTRAINT_1_respondsTo_responded) | (!(isReady)) | (X((!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(eNV_CONSTRAINT_1_respondsTo_responded)) | (!(isReady))))))))) & ((!(backDistSense_0)) | (((balancer_0) | (balancer_1) | (!(balancer_2)) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(eNV_CONSTRAINT_1_respondsTo_responded)) | (!(isReady)) | (X((backDistSense_0) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(isReady))))) & ((balancer_0) | (balancer_1) | (!(balancer_2)) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(eNV_CONSTRAINT_1_respondsTo_responded)) | (!(isReady)) | (X((!(backDistSense_0)) | (!(eNV_CONSTRAINT_0_respondsTo_responded)) | (!(eNV_CONSTRAINT_1_respondsTo_responded)) | (!(isReady)))))))))"]
+    # w = computeWeakness_probe(" & ".join(refinements), exp.varsList)[0]
+    # print()
+    # print("Weakness: ", w)
+    # print()
+
+    # print str(computeWeakness_probe("G(a -> Xc)", ['a','b','c','d']))
+    # print str(computeWeakness_probe("G((a) -> Xc) & G(F(a&b&c&d))", ['a','b','c','d']))
+
+    # print str(computeWeakness_probe(" & ".join([u'G(F( (!hbusreq0) ))', '!(!hready)']), exp.varsList))
+    # print Weakness(0.6000000000000001, 0.6000000000000001, 1, 0.5) > Weakness(0.6, 0.6, 2, 0.5)
+    # print(str(computeWeakness_probe(" & ".join(['G((isReady & !frontDistSense_0) -> X(!(!frontDistSense_0 & isReady)))', 'G(F(!(!balancer_2) & !(balancer_1) & !(balancer_0)))']), exp.varsList)))
+
 
 if (__name__=='__main__'):
     main()

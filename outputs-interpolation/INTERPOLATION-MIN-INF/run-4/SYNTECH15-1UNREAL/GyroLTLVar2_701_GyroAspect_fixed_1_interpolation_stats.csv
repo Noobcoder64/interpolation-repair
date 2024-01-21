@@ -1,2 +1,2 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs/SYNTECH15-1UNREAL/GyroLTLVar2_701_GyroAspect_fixed_1.spectra,84,-1,4.76495749107562,600.5743569119368,600.0,True,504,0
+Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes,NumInterpolantsComputed,NumNonStateSeparable
+inputs/SYNTECH15-1UNREAL/GyroLTLVar2_701_GyroAspect_fixed_1.spectra,42,-1,6.52374021900323,600.1033841480021,600.0,True,430,0,338,0

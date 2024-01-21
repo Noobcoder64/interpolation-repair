@@ -1,2 +1,2 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes
-inputs-interpolation/SIMPLE/RG1.spectra,1,1,0.42420950112864375,0.4244097189512104,600.0,False,6,0
+Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes,NumInterpolantsComputed,NumNonStateSeparable
+inputs/SIMPLE/RG1.spectra,6,-1,0.3557745909783989,0.6258373709861189,600.0,False,13,1,6,0

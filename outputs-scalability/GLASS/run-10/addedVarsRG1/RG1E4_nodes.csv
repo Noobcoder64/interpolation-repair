@@ -1,6 +1,2 @@
 Id,Refinement,ElapsedTime,Depth,IsYSat,IsRealizable,IsSolution
-<<<<<<<< HEAD:outputs-symbolic/GLASS/run-2/addedVarsRG1/RG1S4_nodes.csv
 cddc9e0b-456d-402d-8a6b-6bdf544cc52f,"['GF (c=false -> (g=true and v=true)) and(c=true -> v=true)']",0.008,0,True,True,True
-========
-f8a811f6-ecae-4b04-8448-1143e77210e1,"['GF (c=false -> (g=true and v=true)) and(c=true -> v=true)']",0.008,0,True,True,True
->>>>>>>> d39d6af1fcfec3aa1447d7c9b17e9057d335a861:outputs-scalability/GLASS/run-10/addedVarsRG1/RG1E4_nodes.csv

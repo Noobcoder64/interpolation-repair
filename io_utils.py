@@ -96,9 +96,11 @@ def extractOutputVariablesFromFile(spec):
     
     return variables
 
+
 # Extract variables as a list from a string formula
 def extractVariablesFromFormula(phi):
-    return [x for x in re.findall("\w+", phi) if x != "G" and x != "F" and x != "X" and x != "U"]
+    exclude = {"G", "F", "GF", "X", "next", "U", "true", "false", "and"}
+    return [x for x in re.findall("\w+", phi) if x not in exclude]
 
 # Chains assumption units from a .rat file into a single assumption
 def chainAssumptionUnits( SpecFile ):

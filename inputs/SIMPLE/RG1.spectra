@@ -24,3 +24,5 @@ guarantee
 guarantee
 	G ((next(sYS_CONSTRAINT_0_pRespondsToS_responded) <-> (next(g) | (sYS_CONSTRAINT_0_pRespondsToS_responded & !(r)))));
 
+assumption
+	GF (!(!v & !(!g)));

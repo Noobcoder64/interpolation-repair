@@ -36,10 +36,10 @@ def interpolation_spec(spec):
     return spec
 
 def spectra_format(spec):
-    spec = [re.sub(r"G\(F\(([^\)]*)\)", r"GF (\1", line) for line in spec]
-    # spec = [re.sub(r"G\(F\(([^\)]*)\)", r"alwEv (\1", line) for line in spec]
-    # spec = [re.sub(r"GF\s*\(", r"alwEv (", line) for line in spec]
-    # spec = [re.sub(r"G\s*\(", r"alw (", line) for line in spec]
+    # spec = [re.sub(r"G\(F(\(.*\))\)", r"GF \1", line) for line in spec]
+    spec = [re.sub(r"G\(F(\(.*\))\)", r"alwEv \1", line) for line in spec]
+    spec = [re.sub(r"GF\s*(\(.*\))", r"alwEv \1", line) for line in spec]
+    spec = [re.sub(r"G\s*(\(.*\))", r"alw \1", line) for line in spec]
     spec = [re.sub(r"X\(([^\)]*)\)", r"next(\1)", line) for line in spec]
     return spec
 
@@ -50,7 +50,9 @@ def unspectra(spec):
     spec = [re.sub(r'(\w+)=true', r'\1', x) for x in spec]
     spec = [re.sub(r'(\w+)=false', r'!\1', x) for x in spec]
     spec = [re.sub(r"next\(([^\)]*)\)", r"X(\1)", line) for line in spec]
+    spec = [re.sub(r'X\(([^\)]*)\)=true', r'X(\1)', x) for x in spec]
+    spec = [re.sub(r'X\(([^\)]*)\)=false', r'X(!\1)', x) for x in spec]
     spec = [re.sub(r"\s*;", "", line) for line in spec]
-
+    spec = [re.sub(r"and", " & ", line) for line in spec]
     return spec
 

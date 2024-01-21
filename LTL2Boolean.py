@@ -10,10 +10,13 @@ def gr1LTL2Boolean(ltlFormula,path):
     fairness_match = fairness_pattern.match(ltlFormula)
     invariant_match = invariant_pattern.match(ltlFormula)
     if fairness_match:
+        print("FAIRNESS")
         return fairnessLTL2Boolean(fairness_match.group(1),path)
     elif invariant_match:
+        print("INVARIANT")
         return invariantLTL2Boolean(invariant_match.group(1),path)
     else:
+        print("INITIAL")
         return initialLTL2Boolean(ltlFormula,path)
 
 def initialLTL2Boolean(ltlFormula,path):
@@ -93,7 +96,7 @@ def _translateInvOnStatePair(ltlTokens,state):
             cur_state_id = state.successor
         elif token == "X" and state.successor is None:
             # In this case the path is finite, and the next state is actually the failing state
-            cur_state_id = state.id_state
+            return "TRUE"
         else:
             ret_string = ret_string + token
             if token == "(" and cur_state_id == state.successor:

@@ -1,6 +1,2 @@
 Id,Refinement,ElapsedTime,Depth,IsYSat,IsRealizable,IsSolution
-<<<<<<<< HEAD:outputs-symbolic/GLASS/run-8/addedVarsLift/Lift_nodes.csv
-f086d0cf-f965-497d-8fd3-140f590ec39d,"['GF (b1=false -> (b2=false -> (b3=false -> (f1=false -> (f2=false -> f3=false) and (f2=true -> f3=true))) and (b3=true -> (f1=false -> (f2=false -> f3=false)))))', 'GF (b1=false -> (b2=false -> (b3=false -> (f1=false -> (f2=false -> f3=false)) and (f1=true -> (f2=false -> f3=true)))))']",0.006,0,True,True,True
-========
 c4648752-f5e3-4152-8082-1c5a17bb8e3c,"['GF (b1=false -> (b2=false -> (b3=false -> (f1=false -> (f2=false -> f3=false) and (f2=true -> f3=true))) and (b3=true -> (f1=false -> (f2=false -> f3=false)))))', 'GF (b1=false -> (b2=false -> (b3=false -> (f1=false -> (f2=false -> f3=false)) and (f1=true -> (f2=false -> f3=true)))))']",0.006,0,True,True,True
->>>>>>>> d39d6af1fcfec3aa1447d7c9b17e9057d335a861:outputs-scalability/GLASS/run-1/addedVarsLift/Lift_nodes.csv

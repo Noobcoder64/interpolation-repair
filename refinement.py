@@ -56,11 +56,17 @@ class RefinementNode:
         self.time_goodness = None
         # Time for generation method (interpolation or multivarbias or other)
         self.time_generation_method = None
-        self.redundant_assumptions_eliminated = None # DELETE
         # Time for computing number of observed counterstrategies eliminated
 
         self.counterstrategy = None
         self.unreal_core = None
+
+        self.interpolant_computed = False
+        self.interpolant_is_false = None
+        self.no_interpolant = None
+        self.non_state_separable = None
+        self.num_state_components = None
+        self.num_non_io_separable = None
         
         # Used to check whether two nodes contain the same refinement
         self.unique_refinement = sorted(self.gr1_units)
@@ -172,7 +178,7 @@ class RefinementNode:
             raise Exception("Compute unrealizable core before minimizing")
 
         spec = sp.read_file(self.__getTempSpecFileName())
-        self.__deleteTempSpecFile()
+        self.deleteTempSpecFile()
         self.__setTempSpecFileName("temp/" + str(self.id) + "_min.spectra")
         new_spec = []
         i = 0
@@ -189,7 +195,7 @@ class RefinementNode:
         sp.write_file(new_spec, self.__getTempSpecFileName())
         
         
-    def __deleteTempSpecFile(self):
+    def deleteTempSpecFile(self):
         if os.path.isfile(self.__getTempSpecFileName()):
             os.remove(self.__getTempSpecFileName())
 
@@ -236,7 +242,6 @@ class RefinementNode:
         time_well_separation_check_start = timeit.default_timer()
         self.is_well_separated = spectra.check_well_separation(self.__getTempSpecFileName())
         self.time_well_separation_check = timeit.default_timer() - time_well_separation_check_start
-        self.__deleteTempSpecFile()
         return self.is_well_separated
 
     def isYSat(self):
@@ -284,7 +289,6 @@ class RefinementNode:
                 refinements.append(self.__concatenateAssumption(candidate_ref))
             self.time_refine = timeit.default_timer() - time_refine_start
         self.num_descendant_refinements = len(refinements)
-        self.__deleteTempSpecFile()
         return refinements
 
     def __concatenateAssumption(self, candidate_ref):
@@ -297,7 +301,7 @@ class RefinementNode:
         refinements = []
         if exp.generation_method == "interpolation":
             guarantees = exp.guaranteesList if exp.use_all_gars else self.unreal_core
-            refinements = interpolation.GenerateAlternativeRefinements(str(self.id), self.counterstrategy, exp.initialGR1Units + self.gr1_units, guarantees, exp.inputVarsList, exp.outputVarsList)
+            refinements = interpolation.GenerateAlternativeRefinements(str(self.id), self.counterstrategy, exp.initialGR1Units + self.gr1_units, guarantees, exp.inputVarsList, exp.outputVarsList, self)
 
         self.time_generation_method = timeit.default_timer() - time_generation_method_start
         return refinements

@@ -7,18 +7,18 @@ from refinement import RefinementNode
 import csv
 import spectra_utils as spectra
 
-MAX_NODES = 3000 # Max nodes to expand in the experiment
+MAX_NODES = 10000 # Max nodes to expand in the experiment
 
-print("Resetting temp...")
-temp_folder = 'temp'
-for temp_file in os.listdir(temp_folder):
-    temp_file_path = os.path.join(temp_folder, temp_file)
-    try:
-        if os.path.isfile(temp_file_path):
-            os.remove(temp_file_path)
-    except Exception as e:
-        print(e)
-print("Reset complete!")
+# print("Resetting temp...")
+# temp_folder = 'temp'
+# for temp_file in os.listdir(temp_folder):
+#     temp_file_path = os.path.join(temp_folder, temp_file)
+#     try:
+#         if os.path.isfile(temp_file_path):
+#             os.remove(temp_file_path)
+#     except Exception as e:
+#         print(e)
+# print("Reset complete!")
 
 def enough_repairs(solutions):
     return exp.repair_limit > 0 and len(solutions) == exp.repair_limit
@@ -46,6 +46,8 @@ def FifoDuplicateCheckRefinement():
     explored_refs = []
     duplicate_refs = []
     time_to_first_repair = None
+    num_interpolants_computed = 0
+    num_non_state_separable = 0
 
     datafile = open(exp.datafile, "w")
     csv_writer = csv.writer(datafile)
@@ -70,7 +72,13 @@ def FifoDuplicateCheckRefinement():
         "TimeCounterstrategy",
         "CounterstrategyNumStates",
         "TimeRefine",
-        "TimeGenerationMethod"
+        "TimeGenerationMethod",
+        "InterpolantComputed",
+        "InterpolantIsFalse",
+        "NonStateSeparable",
+        "NoInterpolant",
+        "NumStateComponents",
+        "NumNonIoSeparable",
     ]
     
     csv_writer.writerow(datafields)
@@ -86,6 +94,8 @@ def FifoDuplicateCheckRefinement():
       and not enough_repairs(solutions) \
       and nodes < MAX_NODES \
       and exp.get_elapsed_time() < exp.timeout:
+        # print([c.gr1_units for c in refinement_queue])
+        
         cur_node = refinement_queue.pop()
         nodes += 1
 
@@ -98,34 +108,39 @@ def FifoDuplicateCheckRefinement():
         print("++++ Refinement:", cur_node.gr1_units)
         print("++++ Length:", cur_node.length)
 
-        print("++ Y-SAT CHECK")
-        if not cur_node.isYSat():
-            continue
-
         if cur_node.unique_refinement in explored_refs:
             print("++ DUPLICATE NODE")
             duplicate_refs.append(cur_node.unique_refinement)
+            cur_node.deleteTempSpecFile()
             continue
 
         try:
-            print("++ REALIZABILITY CHECK")
-            if not cur_node.isRealizable():
-                print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
-                candidate_ref_nodes = cur_node.refine()
-                refinement_queue.extendleft(candidate_ref_nodes)
-            elif cur_node.isSatisfiable():
-                cur_node.isWellSeparated()
-                print("++ REALIZABLE REFINEMENT: SAT CHECK")
-                if time_to_first_repair is None:
-                    time_to_first_repair = exp.get_elapsed_time()
-                solutions.append(cur_node.gr1_units)
-            else:
-                print("++ VACUOUS SOLUTION")
+            print("++ Y-SAT CHECK")
+            if cur_node.isYSat():
+                print("++ REALIZABILITY CHECK")
+                if not cur_node.isRealizable():
+                    print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
+                    candidate_ref_nodes = cur_node.refine()
+                    refinement_queue.extendleft(candidate_ref_nodes)
+                elif cur_node.isSatisfiable():
+                    cur_node.isWellSeparated()
+                    print("++ REALIZABLE REFINEMENT: SAT CHECK")
+                    if time_to_first_repair is None:
+                        time_to_first_repair = exp.get_elapsed_time()
+                    solutions.append(cur_node.gr1_units)
+                else:
+                    print("++ VACUOUS SOLUTION")
         except Exception as e:
             # cur_node.writeNotes(str(e))
             refine_error = True
             print()
             print(e)
+        
+        cur_node.deleteTempSpecFile()
+        if cur_node.interpolant_computed:
+            num_interpolants_computed += 1
+        if cur_node.non_state_separable:
+            num_non_state_separable += 1
 
         cur_node.saveRefinementData(csv_writer, datafields)
         explored_refs.append(cur_node.unique_refinement)
@@ -146,6 +161,8 @@ def FifoDuplicateCheckRefinement():
         "TimedOut",
         "NodesExplored",
         "DuplicateNodes",
+        "NumInterpolantsComputed",
+        "NumNonStateSeparable",
     ])
 
     csv_writer.writerow([
@@ -158,6 +175,8 @@ def FifoDuplicateCheckRefinement():
         exp.elapsed_time > exp.timeout,
         nodes,
         len(duplicate_refs),
+        num_interpolants_computed,
+        num_non_state_separable,
     ])
     statsfile.close()
 

@@ -1,2 +1,0 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored
-inputs-JVTS/SYNTECH15-UNREAL/HumanoidLTL_NotRealizable2_884_Humanoid_unrealizable.spectra,0,-1,-0.001,0.489,600,False,29

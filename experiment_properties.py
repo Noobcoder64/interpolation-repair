@@ -75,7 +75,8 @@ def configure(
         use_all_gars_in = False,
         minimize_spec_in = True,
         use_influential_in = True,
-        debug=False):
+        debug=False,
+        show_args=True):
     
     global specfile
     global datafile
@@ -112,14 +113,15 @@ def configure(
     timeout = timeout_in
     repair_limit = repair_limit_in
 
-    print()
-    print("=== ARGS ===")
-    print("ALL GARS:", use_all_gars)
-    print("MINIMIZE SPEC:", minimize_spec)
-    print("USE INFLUENTIAL:", use_influential)
-    print("TIMEOUT:", timeout)
-    print("REPAIR LIMIT:", repair_limit)
-    print()
+    if show_args:
+        print()
+        print("=== ARGS ===")
+        print("ALL GARS:", use_all_gars)
+        print("MINIMIZE SPEC:", minimize_spec)
+        print("USE INFLUENTIAL:", use_influential)
+        print("TIMEOUT:", timeout)
+        print("REPAIR LIMIT:", repair_limit)
+        print()
 
     specfile = spectra_file
     case_study_name = os.path.splitext(os.path.basename(specfile))[0]
