@@ -1,17 +1,17 @@
 
 ALGORITHMS = [
-    "INTERPOLATION-MIN-INF",
+    # "INTERPOLATION-MIN-INF",
     # "INTERPOLATION-MIN",
     # "INTERPOLATION-ALLGARS-INF",
-    # "INTERPOLATION-ALLGARS",
+    "INTERPOLATION-ALLGARS",
     # "GLASS",
     # "JVTS",
 ]
 
 FLAGS = " ".join([
-    # "-allgars",
-    "-min",
-    "-inf",
+    "-allgars",
+    # "-min",
+    # "-inf",
 ])
 
 # FLAGS = " ".join([
@@ -27,11 +27,11 @@ INPUT_PARENT_FOLDER = "inputs/"
 
 
 INPUT_FOLDERS = [
-    # "SIMPLE",
+    "SIMPLE",
     # "AMBA-1",
     # "AMBA-2",
     # "SYNTECH15-UNREAL",
-    "SYNTECH15-1UNREAL",
+    # "SYNTECH15-1UNREAL",
 ]
 
 # INPUT_FOLDERS = [
@@ -57,8 +57,8 @@ OUTPUT_PARENT_FOLDER = "outputs-interpolation/"
 # OUTPUT_PARENT_FOLDER = "outputs-weakness/"
 # OUTPUT_PARENT_FOLDER = "outputs-translation/"
 
-RUN = 1
+RUN = 10
 
 TIMEOUT = 10
 
-REPAIR_LIMIT = -1
+REPAIR_LIMIT = 1

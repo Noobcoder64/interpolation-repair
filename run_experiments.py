@@ -33,10 +33,18 @@ def process_algorithm(algorithm, input_folder):
     os.makedirs(output_folder, exist_ok=True)
     
     whitelist = [
-        "PcarLTL_553_PCar_1.spectra",
+        # "amba02_nosafety.spectra",
+        # "amba02_nosafety0.spectra",
+        # "amba02_nosafety1.spectra",
+        # "amba04_no_safety.spectra",
+        # "amba04_no_safety_0.spectra",
+        "HumanoidLTL_503_Humanoid_fixed_unrealizable.spectra",
+        # "PcarLTL_552_PCar_1.spectra",
+        # "PcarLTL_553_PCar_1.spectra",
+        # "PcarLTL_830_PCar_fixed_2.spectra",
     ]
 
-    spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra") and file in whitelist]
+    spectra_files = [file for file in os.listdir(input_folder) if file.endswith(".spectra")]
     spectra_files.sort()
 
     for spectra_file in spectra_files:
@@ -44,7 +52,7 @@ def process_algorithm(algorithm, input_folder):
         spectra_file_name = os.path.splitext(os.path.basename(spectra_file))[0]
         output_file_name = f"{spectra_file_name}_{algorithm}_output.txt"
         output_file = os.path.join(output_folder, output_file_name)
-        if not [csv_file for csv_file in os.listdir(output_folder) if spectra_file_name in csv_file and csv_file.endswith(".csv")]:
+        if not [csv_file for csv_file in os.listdir(output_folder) if spectra_file_name in csv_file and csv_file.endswith("stats.csv")]:
             process_file(input_file, algorithm, output_folder, output_file)
 
 total_start_time = time.time()

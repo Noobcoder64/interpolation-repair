@@ -56,11 +56,17 @@ class RefinementNode:
         self.time_goodness = None
         # Time for generation method (interpolation or multivarbias or other)
         self.time_generation_method = None
-        self.redundant_assumptions_eliminated = None # DELETE
         # Time for computing number of observed counterstrategies eliminated
 
         self.counterstrategy = None
         self.unreal_core = None
+
+        self.interpolant_computed = False
+        self.interpolant_is_false = None
+        self.no_interpolant = None
+        self.non_state_separable = None
+        self.num_state_components = None
+        self.num_non_io_separable = None
         
         # Used to check whether two nodes contain the same refinement
         self.unique_refinement = sorted(self.gr1_units)
@@ -295,7 +301,7 @@ class RefinementNode:
         refinements = []
         if exp.generation_method == "interpolation":
             guarantees = exp.guaranteesList if exp.use_all_gars else self.unreal_core
-            refinements = interpolation.GenerateAlternativeRefinements(str(self.id), self.counterstrategy, exp.initialGR1Units + self.gr1_units, guarantees, exp.inputVarsList, exp.outputVarsList)
+            refinements = interpolation.GenerateAlternativeRefinements(str(self.id), self.counterstrategy, exp.initialGR1Units + self.gr1_units, guarantees, exp.inputVarsList, exp.outputVarsList, self)
 
         self.time_generation_method = timeit.default_timer() - time_generation_method_start
         return refinements
