@@ -1,2 +1,2 @@
 Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes,NumInterpolantsComputed,NumNonStateSeparable
-inputs/AMBA-1/amba02_noassumptions.spectra,0,-1,,1.8930939880010555,600.0,False,7,0,5,0
+inputs/AMBA-1/amba02_noassumptions.spectra,0,-1,,0.0854691390413791,600.0,False,1,0,0,0

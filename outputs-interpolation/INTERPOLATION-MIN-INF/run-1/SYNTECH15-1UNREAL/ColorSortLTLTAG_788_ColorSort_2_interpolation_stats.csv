@@ -1,2 +1,2 @@
 Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes,NumInterpolantsComputed,NumNonStateSeparable
-inputs/SYNTECH15-1UNREAL/ColorSortLTLTAG_788_ColorSort_2.spectra,0,-1,,659.2136702880089,600.0,True,1,0,0,0
+inputs/SYNTECH15-1UNREAL/ColorSortLTLTAG_788_ColorSort_2.spectra,2,-1,427.3280972719658,601.6407257890096,600.0,True,103,1,100,3

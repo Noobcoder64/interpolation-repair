@@ -189,6 +189,7 @@ class RefinementNode:
             new_spec.append(spec[i])
             i += 1
 
+        
         for gar in sp.spectra_format(self.unreal_core):
             new_spec.append("guarantee\n\t" + gar + ";\n")
 

@@ -171,18 +171,18 @@ def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
         interpolant = l2b.parseInterpolant(interpolant_file)
         os.remove(interpolant_file)
 
-        os.remove(counterstrategy_file)
-        # os.remove(guarantees_file)
+    os.remove(counterstrategy_file)
+    # os.remove(guarantees_file)
 
     return interpolant
 
 
 def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_vars, output_vars, cur_node):
 
-    # print()
-    # print("=== COUNTERSTRATEGY ===")
-    # print(c)
-    # print()
+    print()
+    print("=== COUNTERSTRATEGY ===")
+    print(c)
+    print()
 
     path = c.extractRandomPath()
     # path.unroll()
@@ -216,18 +216,18 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
     # print()
     # print("=== ASM VAL BOOLEAN ===")
     # print(assum_val_boolean)
-    # print("=== GUARANTEES BOOLEAN ===")
-    # print("\n".join(guarantees_boolean))
-    # print()
+    print("=== GUARANTEES BOOLEAN ===")
+    print("\n".join(guarantees_boolean))
+    print()
 
     # l2b.writeMathsatFormulaToFile(f"temp/asm_{id}", " & ".join(assumptions_boolean))
     # l2b.writeMathsatFormulaToFile(f"temp/val_{id}", valuations_boolean)
 
     interpolant = compute_interpolant(id, assum_val_boolean, guarantees_boolean)
     cur_node.interpolant_computed = True
-    # print("\n=== INTERPOLANT ===")
-    # print(interpolant)
-    # print()
+    print("\n=== INTERPOLANT ===")
+    print(interpolant)
+    print()
 
     state_components = dict()
     # Parse the interpolant file

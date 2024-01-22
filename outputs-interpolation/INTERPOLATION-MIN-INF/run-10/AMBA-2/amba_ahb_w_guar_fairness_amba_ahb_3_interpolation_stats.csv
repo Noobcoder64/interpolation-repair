@@ -1,2 +1,0 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes,NumInterpolantsComputed,NumNonStateSeparable
-inputs/AMBA-2/amba_ahb_w_guar_fairness_amba_ahb_3.spectra,1,-1,282.70631337095983,600.1560522059444,600.0,True,117,0,86,0

@@ -204,16 +204,16 @@ class Counterstrategy:
                 path.unroll()
                 return path
 
-        print()
-        print("=== INI ===")
-        print(self.states[initial_state.id_state])
-        print("\n=== TRANSIENT ===")
-        for state in transient_states:
-            print(self.states[state.id_state])
-        print("\n=== LOOPING ===")
-        if looping_states is not None:
-            for state in looping_states:
-                print(self.states[state.id_state])
+        # print()
+        # print("=== INI ===")
+        # print(self.states[initial_state.id_state])
+        # print("\n=== TRANSIENT ===")
+        # for state in transient_states:
+        #     print(self.states[state.id_state])
+        # print("\n=== LOOPING ===")
+        # if looping_states is not None:
+        #     for state in looping_states:
+        #         print(self.states[state.id_state])
 
         return Path(initial_state,transient_states,looping_states)
 

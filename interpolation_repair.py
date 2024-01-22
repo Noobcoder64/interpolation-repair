@@ -136,7 +136,7 @@ def FifoDuplicateCheckRefinement():
             print()
             print(e)
         
-        cur_node.deleteTempSpecFile()
+        # cur_node.deleteTempSpecFile()
         if cur_node.interpolant_computed:
             num_interpolants_computed += 1
         if cur_node.non_state_separable:

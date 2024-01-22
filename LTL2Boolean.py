@@ -10,13 +10,10 @@ def gr1LTL2Boolean(ltlFormula,path):
     fairness_match = fairness_pattern.match(ltlFormula)
     invariant_match = invariant_pattern.match(ltlFormula)
     if fairness_match:
-        print("FAIRNESS")
         return fairnessLTL2Boolean(fairness_match.group(1),path)
     elif invariant_match:
-        print("INVARIANT")
         return invariantLTL2Boolean(invariant_match.group(1),path)
     else:
-        print("INITIAL")
         return initialLTL2Boolean(ltlFormula,path)
 
 def initialLTL2Boolean(ltlFormula,path):

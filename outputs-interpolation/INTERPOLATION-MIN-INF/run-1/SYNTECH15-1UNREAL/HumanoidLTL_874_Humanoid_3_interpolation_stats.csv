@@ -1,2 +1,2 @@
 Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes,NumInterpolantsComputed,NumNonStateSeparable
-inputs/SYNTECH15-1UNREAL/HumanoidLTL_874_Humanoid_3.spectra,0,-1,,660.8897408639968,600.0,True,5,0,4,1
+inputs/SYNTECH15-1UNREAL/HumanoidLTL_874_Humanoid_3.spectra,1,-1,111.49414923891891,111.49827990692575,600.0,False,3,0,2,0

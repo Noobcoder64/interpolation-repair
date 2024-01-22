@@ -32,8 +32,8 @@ def compute_unrealizable_core(spectra_file_path):
     core_found = re.compile("< ([^>]*) >").search(output)
     if not core_found:
         return None
-    line_nums = [int(x) for x in core_found.group(1).split(" ")]
-    # print(line_nums)
+    line_nums = list(set([int(x) for x in core_found.group(1).split(" ")]))
+    print(line_nums)
     spec = sp.read_file(spectra_file_path)
     uc = [spec[line] for line in line_nums]
     uc = [re.sub(r'\s', '', x) for x in uc]

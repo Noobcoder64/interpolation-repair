@@ -53,6 +53,6 @@ def unspectra(spec):
     spec = [re.sub(r'X\(([^\)]*)\)=true', r'X(\1)', x) for x in spec]
     spec = [re.sub(r'X\(([^\)]*)\)=false', r'X(!\1)', x) for x in spec]
     spec = [re.sub(r"\s*;", "", line) for line in spec]
-    spec = [re.sub(r"and", " & ", line) for line in spec]
+    # spec = [re.sub(r"and", " & ", line) for line in spec]
     return spec
 
