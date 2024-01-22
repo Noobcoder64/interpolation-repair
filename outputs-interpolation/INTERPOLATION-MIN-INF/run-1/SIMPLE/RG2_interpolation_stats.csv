@@ -1,2 +1,0 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes,NumInterpolantsComputed,NumNonStateSeparable
-inputs/SIMPLE/RG2.spectra,4,-1,0.45230411097873,0.6739608339266852,600.0,False,10,0,6,0

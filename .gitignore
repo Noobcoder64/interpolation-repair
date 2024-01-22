@@ -27,7 +27,7 @@ share/python-wheels/
 MANIFEST
 spot/
 outputs*/
-!outputs-interpolation/INTERPOLATION-MIN-INF/
+# !outputs-interpolation/INTERPOLATION-MIN-INF/
 temp*/
 
 # PyInstaller

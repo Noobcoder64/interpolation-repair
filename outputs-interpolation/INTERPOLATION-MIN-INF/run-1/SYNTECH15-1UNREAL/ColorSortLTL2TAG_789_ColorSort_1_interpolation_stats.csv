@@ -1,2 +1,0 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes,NumInterpolantsComputed,NumNonStateSeparable
-inputs/SYNTECH15-1UNREAL/ColorSortLTL2TAG_789_ColorSort_1.spectra,0,-1,,216.38866338599473,600.0,False,5,0,5,0

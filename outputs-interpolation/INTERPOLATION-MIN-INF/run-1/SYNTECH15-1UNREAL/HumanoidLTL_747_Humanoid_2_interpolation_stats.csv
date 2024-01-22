@@ -1,2 +1,0 @@
-Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes,NumInterpolantsComputed,NumNonStateSeparable
-inputs/SYNTECH15-1UNREAL/HumanoidLTL_747_Humanoid_2.spectra,1,-1,0.4989349179668352,0.502458062954247,600.0,False,2,0,1,0

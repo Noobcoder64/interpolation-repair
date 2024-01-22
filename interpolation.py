@@ -144,7 +144,7 @@ def getRefinementsFromStateComponents(state_components,path,input_vars):
                 looping_state_components.append(state_components[looping_state.id_state])
             refinements.append("G(F(!("+ ") & !(".join(list(set(looping_state_components))) +")))")
 
-    return list(set(refinements)),non_io_separable_state_components
+    return list(set(refinements)), non_io_separable_state_components
 
 
 def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
@@ -172,7 +172,7 @@ def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
         os.remove(interpolant_file)
 
     os.remove(counterstrategy_file)
-    # os.remove(guarantees_file)
+    os.remove(guarantees_file)
 
     return interpolant
 
@@ -235,6 +235,8 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
         if interpolant == "false":
             cur_node.interpolant_is_false = True
             return ["FALSE"]
+        elif interpolant == "true":
+            return ["TRUE"]
         try:
             state_components = extractStateComponents(interpolant)
             # print()
