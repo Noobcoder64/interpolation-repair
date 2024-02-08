@@ -1,0 +1,2 @@
+Filename,NumRepairs,RepairLimit,TimeToFirst,Runtime,Timeout,TimedOut,NodesExplored,DuplicateNodes,NumInterpolantsComputed,NumNonStateSeparable
+inputs/SYNTECH15-UNREAL/HumanoidLTL_713_Humanoid_unrealizable.spectra,7,-1,1.2613493550015846,1.9255885090024094,600.0,False,15,0,7,0
