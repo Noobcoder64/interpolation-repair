@@ -35,12 +35,16 @@ def interpolation_spec(spec):
     spec = [re.sub(";", "", line) for line in spec]
     return spec
 
+USE_ALW = False
+
 def spectra_format(spec):
-    # spec = [re.sub(r"G\(F(\(.*\))\)", r"GF \1", line) for line in spec]
-    spec = [re.sub(r"G\(F(\(.*\))\)", r"alwEv \1", line) for line in spec]
-    spec = [re.sub(r"GF\s*(\(.*\))", r"alwEv \1", line) for line in spec]
-    spec = [re.sub(r"G\s*(\(.*\))", r"alw \1", line) for line in spec]
-    spec = [re.sub(r"X\(([^\)]*)\)", r"next(\1)", line) for line in spec]
+    spec = [re.sub(r"G\(F(\(.*\))\)", r"GF \1", line) for line in spec]
+    spec = [re.sub(r"X\(", r"next(", line) for line in spec]
+    if USE_ALW:
+        spec = [re.sub(r"G\(F(\(.*\))\)", r"alwEv \1", line) for line in spec]
+        spec = [re.sub(r"GF\s*(\(.*\))", r"alwEv \1", line) for line in spec]
+        spec = [re.sub(r"G\s*(\(.*\))", r"alw \1", line) for line in spec]
+        # spec = [re.sub(r"G\s*(\(.*\))", r"alw \1", line) if not "next(" in line else line for line in spec]
     return spec
 
 def unspectra(spec):

@@ -26,17 +26,33 @@ def check_well_separation(spectra_file_path):
 def check_y_sat(spectra_file_path):
     return SpectraTool.checkYSatisfiability(spectra_file_path)
 
+fairness_pattern = re.compile(r"(GF|alwEv)\s*\(")
+invariant_pattern = re.compile(r"(G|alw)\s*\(")
+
 def compute_unrealizable_core(spectra_file_path):
     output = str(SpectraTool.computeUnrealizableCore(spectra_file_path))
     # print(output)
     core_found = re.compile("< ([^>]*) >").search(output)
     if not core_found:
         return None
-    line_nums = list(set([int(x) for x in core_found.group(1).split(" ")]))
-    # print(line_nums)
     spec = sp.read_file(spectra_file_path)
+    spec = [re.sub(r'\s', '', line) for line in spec]
+
+    line_nums = []
+
+    for i in range(len(spec)):
+        if "guarantee" in spec[i] \
+        and not fairness_pattern.match(spec[i+1]) \
+        and not invariant_pattern.match(spec[i+1]):
+            line_nums.append(i+1)
+    
+
+    line_nums = line_nums + [int(x) for x in core_found.group(1).split(" ")]
+    line_nums = list(set(line_nums))
+    # line_nums = [54, 56, 58, 67, 71]
+    # print("LINE NUMS: ", line_nums)
+
     uc = [spec[line] for line in line_nums]
-    uc = [re.sub(r'\s', '', x) for x in uc]
     uc = sp.unspectra(uc)
     return uc
 

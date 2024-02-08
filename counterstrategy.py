@@ -96,6 +96,7 @@ class Counterstrategy:
         while successors != [] and not looping:
             
             curr_state = random.choice(successors)
+            # curr_state = successors[0]
             
             if curr_state in visited_states:
                 looping = True
@@ -202,7 +203,7 @@ class Counterstrategy:
                 initial_state.set_successor(initial_state.id_state)
                 path = Path(initial_state, [], [initial_state])
                 # Path unroll makes interpolant true for some reason
-                # path.unroll() 
+                # path.unroll()
                 return path
 
         # print()

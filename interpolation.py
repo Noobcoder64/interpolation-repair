@@ -160,8 +160,8 @@ def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
     
     interpolant_file = f"temp/INTERP_{id}"
 
-    mathsat_path = os.path.join(definitions.ROOT_DIR, "MathSAT4/mathsat-4.2.17-linux-x86_64/bin/mathsat")
-    cmd = [mathsat_path, f"-interpolate={interpolant_file}", counterstrategy_file, guarantees_file]
+    MATHSAT_PATH = os.path.join(definitions.ROOT_DIR, "MathSAT4/mathsat-4.2.17-linux-x86_64/bin/mathsat")
+    cmd = [MATHSAT_PATH, f"-interpolate={interpolant_file}", counterstrategy_file, guarantees_file]
     result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     # print(result.stdout)
     interpolant_file = interpolant_file + ".1.msat"
@@ -179,10 +179,10 @@ def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
 
 def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_vars, output_vars, cur_node):
 
-    print()
-    print("=== COUNTERSTRATEGY ===")
-    print(c)
-    print()
+    # print()
+    # print("=== COUNTERSTRATEGY ===")
+    # print(c)
+    # print()
 
     path = c.extractRandomPath()
     # path.unroll()
@@ -216,9 +216,9 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
     # print()
     # print("=== ASM VAL BOOLEAN ===")
     # print(assum_val_boolean)
-    print("=== GUARANTEES BOOLEAN ===")
-    print("\n".join(guarantees_boolean))
-    print()
+    # print("=== GUARANTEES BOOLEAN ===")
+    # print("\n".join(guarantees_boolean))
+    # print()
 
     # l2b.writeMathsatFormulaToFile(f"temp/asm_{id}", " & ".join(assumptions_boolean))
     # l2b.writeMathsatFormulaToFile(f"temp/val_{id}", valuations_boolean)
@@ -235,8 +235,7 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
         if interpolant == "false":
             cur_node.interpolant_is_false = True
             return ["FALSE"]
-        elif interpolant == "true":
-            return ["TRUE"]
+            
         try:
             state_components = extractStateComponents(interpolant)
             # print()

@@ -6,6 +6,7 @@ import experiment_properties as exp
 from refinement import RefinementNode
 import csv
 import spectra_utils as spectra
+import random
 
 MAX_NODES = 10000 # Max nodes to expand in the experiment
 
@@ -79,6 +80,7 @@ def FifoDuplicateCheckRefinement():
         "NoInterpolant",
         "NumStateComponents",
         "NumNonIoSeparable",
+        # "Notes",
     ]
     
     csv_writer.writerow(datafields)
@@ -116,6 +118,7 @@ def FifoDuplicateCheckRefinement():
 
         try:
             print("++ Y-SAT CHECK")
+            # print(cur_node.isSatisfiable())
             if cur_node.isYSat():
                 print("++ REALIZABILITY CHECK")
                 if not cur_node.isRealizable():
@@ -131,12 +134,13 @@ def FifoDuplicateCheckRefinement():
                 else:
                     print("++ VACUOUS SOLUTION")
         except Exception as e:
-            # cur_node.writeNotes(str(e))
+            cur_node.notes = str(e)
             refine_error = True
             print()
-            print(e)
+            print("ERROR:", e)
         
-        # cur_node.deleteTempSpecFile()
+        cur_node.deleteTempSpecFile()
+        
         if cur_node.interpolant_computed:
             num_interpolants_computed += 1
         if cur_node.non_state_separable:
@@ -144,6 +148,8 @@ def FifoDuplicateCheckRefinement():
 
         cur_node.saveRefinementData(csv_writer, datafields)
         explored_refs.append(cur_node.unique_refinement)
+
+        # break
 
     datafile.close()
 
@@ -198,6 +204,7 @@ def main():
 
     args = parser.parse_args()
     exp.configure(args.input, args.repair_limit, args.timeout*60, args.output, args.allgars, args.min, args.inf, debug=False)
+    random.shuffle(exp.guaranteesList)
     FifoDuplicateCheckRefinement()
 
 if __name__=="__main__":

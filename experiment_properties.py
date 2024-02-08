@@ -30,10 +30,10 @@ search_fairness = True
 # Whether to use all guarantees or unrealizable core
 use_all_gars = False
 
-# Minimize spec
+# Whether to minimize the specification
 minimize_spec = True
 
-# Use influential output variables
+# Whether to only use influential output variables
 use_influential = True
 
 timeout = 600 # 10 minutes

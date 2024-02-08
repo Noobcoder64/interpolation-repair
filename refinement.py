@@ -71,6 +71,8 @@ class RefinementNode:
         # Used to check whether two nodes contain the same refinement
         self.unique_refinement = sorted(self.gr1_units)
 
+        self.notes = ""
+
     # Methods to load node data from experiment file
     __re_first_cap = re.compile('(.)([A-Z][a-z]+)')
     __re_all_cap = re.compile('([a-z0-9])([A-Z])')
@@ -150,6 +152,7 @@ class RefinementNode:
                 field_values.append(str(field_value))
             else:
                 field_values.append("N/A")
+
         csv_writer.writerow(field_values)
 
     #==========================================================================
@@ -189,12 +192,10 @@ class RefinementNode:
             new_spec.append(spec[i])
             i += 1
 
-        
         for gar in sp.spectra_format(self.unreal_core):
             new_spec.append("guarantee\n\t" + gar + ";\n")
 
         sp.write_file(new_spec, self.__getTempSpecFileName())
-        
         
     def deleteTempSpecFile(self):
         if os.path.isfile(self.__getTempSpecFileName()):
