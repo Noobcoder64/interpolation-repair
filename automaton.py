@@ -7,8 +7,6 @@ from definitions import ROOT_DIR
 import dd
 
 import numpy as np
-from io_utils import chainAssumptionUnits
-from io_utils import extractVariablesFromFile
 import tarjan
 from io import BytesIO
 
@@ -450,73 +448,3 @@ class IntersectionAutomaton(Automaton):
                 if accepting_aut_1 and accepting_aut_2:
                     self.accepting_sccs_indices.append(i)
         return self.accepting_sccs_indices
-
-
-
-def automatonFromRatFile( SpecFile ):
-    formula = chainAssumptionUnits(SpecFile)
-    print(extractVariablesFromFile(SpecFile))
-    return Automaton("ltl",ltlFormula=formula,var_set=extractVariablesFromFile(SpecFile))
-
-def main():
-    #a = Automaton("ltl",ltlFormula="G(!(state2_0 & state2_1) & (state2_1 -> X(state2_1))) & G(F(state1_0))",var_set=["state1_0","state1_1","state2_0","state2_1","state3_0","state3_1","fork1_0","fork1_1","fork2_0","fork2_1","fork3_0","fork3_1"])
-    a = automatonFromRatFile("/home/dgc14/WeakestAssumptions/Weakness/tests/amba02.rat")
-    print ("a.numstates: " + str(a.numstates))
-    print ("a.edges: " + str(a.edges))
-    print ("a.init_states: " + str(a.init_states))
-    print ("a.accepting_states: " + str(a.accepting_states))
-    print ("a.var_set" + str(a.var_set))
-    print ("a.constrained_var_set" + str(a.constrained_var_set))
-    print ("a._getEdgeMultiplicity(a.edges[0][1]): " + str(a._getEdgeMultiplicity(a.edges[0][1])))
-    print ("a.getAdjacencyList: " + str(a.getAdjacencyList()))
-    print ("a.getAdjacencyMatrix: "+str(a.getAdjacencyMatrix()))
-    print ("a.getHausdorffDimension: "+str(a.getHausdorffDimension()))
-    print ("a.getSCCs: " + str(a.getSCCs()) + " len: " + str(len(a.getSCCs())))
-    print ("a.getEntropy: " + str(a.getEntropy()))
-
-    b = Automaton("buchi_hoa", hoa_file="../../Examples/DiningPhilosophersBuchiHOA.txt")
-    # a = automatonFromRatFile("/home/dgc14/WeakestAssumptions/Weakness/tests/amba08.rat")
-    print ("b.numstates: " + str(b.numstates))
-    print ("b.edges: " + str(b.edges))
-    print ("b.init_states: " + str(b.init_states))
-    print ("b.accepting_states: " + str(b.accepting_states))
-    print ("b.var_set" + str(b.var_set))
-    print ("b.constrained_var_set" + str(b.constrained_var_set))
-    print ("b._getEdgeMultiplicity(a.edges[0][1]): " + str(b._getEdgeMultiplicity(b.edges[0][1])))
-    print ("b.getAdjacencyList: " + str(b.getAdjacencyList()))
-    print ("b.getAdjacencyMatrix: " + str(b.getAdjacencyMatrix()))
-    print ("b.getHausdorffDimension: " + str(b.getHausdorffDimension()))
-    print ("b.getSCCs: " + str(b.getSCCs()) + " len: " + str(len(b.getSCCs())))
-    print ("b.getEntropy: " + str(b.getEntropy()))
-
-    c = IntersectionAutomaton(a,b)
-    print ("c.numstates: " + str(c.numstates))
-    print ("c.edges: " + str(c.edges))
-    print ("c.init_states: " + str(c.init_states))
-    print ("c.accepting_states: " + str(c.accepting_states))
-    print ("c.var_set" + str(c.var_set))
-    print ("c.constrained_var_set" + str(c.constrained_var_set))
-    print ("c._getEdgeMultiplicity(a.edges[0][1]): " + str(c._getEdgeMultiplicity(c.edges[0][1])))
-    print ("c.getAdjacencyList: " + str(c.getAdjacencyList()))
-    print ("c.getAdjacencyMatrix: " + str(c.getAdjacencyMatrix()))
-    print ("c.getHausdorffDimension: " + str(c.getHausdorffDimension()))
-    print ("c.getSCCs: " + str(c.getSCCs()) + " len: " + str(len(c.getSCCs())))
-    print ("c.getEntropy: " + str(c.getEntropy()))
-
-    d = b.getSubgraph([1, 2, 5])
-    print ("d.numstates: " + str(d.numstates))
-    print ("d.edges: " + str(d.edges))
-    print ("d.init_states: " + str(d.init_states))
-    print ("d.accepting_states: " + str(d.accepting_states))
-    print ("d.var_set" + str(d.var_set))
-    print ("d.constrained_var_set" + str(d.constrained_var_set))
-    print ("d._getEdgeMultiplicity(d.edges[0][1]): " + str(d._getEdgeMultiplicity(d.edges[0][1])))
-    print ("d.getAdjacencyList: " + str(d.getAdjacencyList()))
-    print ("d.getAdjacencyMatrix: "+str(d.getAdjacencyMatrix()))
-    print ("d.getHausdorffDimension: "+str(d.getHausdorffDimension()))
-    print ("d.getSCCs: " + str(d.getSCCs()) + " len: " + str(len(d.getSCCs())))
-    print ("d.getEntropy: " + str(d.getEntropy()))
-
-
-if(__name__=="__main__"):
-    main()

@@ -3,11 +3,8 @@ import interpolation
 # import alur, varbias
 import timeit
 import uuid, re, os, ast
-from counterstrategy import Counterstrategy
 # import ref_utils.ratsy_utils as r
-import io_utils as io
 # import model_checking as mc
-from collections import deque
 # from Weakness.src.weakness import computeD1_probe, computeD2_probe, Weakness
 import numpy as np
 import spectra_utils as spectra
@@ -56,6 +53,7 @@ class RefinementNode:
         self.time_goodness = None
         # Time for generation method (interpolation or multivarbias or other)
         self.time_generation_method = None
+        self.time_interpolation = None
         # Time for computing number of observed counterstrategies eliminated
 
         self.counterstrategy = None

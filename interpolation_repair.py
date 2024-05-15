@@ -74,6 +74,7 @@ def FifoDuplicateCheckRefinement():
         "CounterstrategyNumStates",
         "TimeRefine",
         "TimeGenerationMethod",
+        "TimeInterpolation",
         "InterpolantComputed",
         "InterpolantIsFalse",
         "NonStateSeparable",
@@ -204,7 +205,6 @@ def main():
 
     args = parser.parse_args()
     exp.configure(args.input, args.repair_limit, args.timeout*60, args.output, args.allgars, args.min, args.inf, debug=False)
-    random.shuffle(exp.guaranteesList)
     FifoDuplicateCheckRefinement()
 
 if __name__=="__main__":
