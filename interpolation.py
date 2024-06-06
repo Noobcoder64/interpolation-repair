@@ -203,22 +203,22 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
 
     guarantees_boolean = list(filter(None,[l2b.gr1LTL2Boolean(x, path) for x in guarantees_uc]))
 
-    print("=== UNREALIZABLE CORE ===")
-    for uc in guarantees_uc:
-        print(uc)
-    print()
+    # print("=== UNREALIZABLE CORE ===")
+    # for uc in guarantees_uc:
+    #     print(uc)
+    # print()
     
-    print("=== ASSUMPTIONS BOOLEAN ===")
-    print(" &\n\n".join(assumptions_boolean))
-    print()
+    # print("=== ASSUMPTIONS BOOLEAN ===")
+    # print(" &\n\n".join(assumptions_boolean))
+    # print()
     # print("=== VALUATIONS BOOLEAN ===")
     # print(valuations_boolean)
     # print()
     # print("=== ASM VAL BOOLEAN ===")
     # print(assum_val_boolean)
-    print("=== GUARANTEES BOOLEAN ===")
-    print("\n".join(guarantees_boolean))
-    print()
+    # print("=== GUARANTEES BOOLEAN ===")
+    # print("\n".join(guarantees_boolean))
+    # print()
 
     # l2b.writeMathsatFormulaToFile(f"temp/asm_{id}", " & ".join(assumptions_boolean))
     # l2b.writeMathsatFormulaToFile(f"temp/val_{id}", valuations_boolean)
