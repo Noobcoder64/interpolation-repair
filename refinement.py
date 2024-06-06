@@ -60,6 +60,7 @@ class RefinementNode:
         self.unreal_core = None
 
         self.interpolant_computed = False
+        self.interpolant = None
         self.interpolant_is_false = None
         self.no_interpolant = None
         self.non_state_separable = None

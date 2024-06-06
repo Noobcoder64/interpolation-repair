@@ -81,6 +81,7 @@ def FifoDuplicateCheckRefinement():
         "NoInterpolant",
         "NumStateComponents",
         "NumNonIoSeparable",
+        "Interpolant"
         # "Notes",
     ]
     

@@ -5,7 +5,6 @@ import subprocess
 import timeit
 from definitions import ROOT_DIR
 import dd
-
 import numpy as np
 import tarjan
 from io import BytesIO

@@ -227,6 +227,7 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
     interpolant = compute_interpolant(id, assum_val_boolean, guarantees_boolean)
     cur_node.time_interpolation = timeit.default_timer() - time_interpolation_start
     cur_node.interpolant_computed = True
+    cur_node.interpolant = interpolant
     print("\n=== INTERPOLANT ===")
     print(interpolant)
     print()
