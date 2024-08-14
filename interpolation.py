@@ -199,9 +199,9 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
     else:
         assum_val_boolean = valuations_boolean
 
-    # random.shuffle(guarantees_uc)
-
     guarantees_boolean = list(filter(None,[l2b.gr1LTL2Boolean(x, path) for x in guarantees_uc]))
+
+    # random.shuffle(guarantees_boolean)
 
     # print("=== UNREALIZABLE CORE ===")
     # for uc in guarantees_uc:

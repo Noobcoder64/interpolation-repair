@@ -64,7 +64,7 @@ if case_study_name != "":
 
 counterstrategies = []
 
-start_experiment = timeit.default_timer()
+start_time = timeit.default_timer()
 elapsed_time = 0
 
 def configure(
@@ -104,7 +104,7 @@ def configure(
 
     global timeout
     global repair_limit
-    global start_experiment
+    global start_time
     global elapsed_time
     
     use_all_gars = use_all_gars_in
@@ -166,14 +166,14 @@ def configure(
             print(gar)
         print()
 
-    start_experiment = timeit.default_timer()
+    start_time = timeit.default_timer()
     elapsed_time = 0
 
-def reset_start_experiment():
-    global start_experiment
-    start_experiment = timeit.default_timer()
+def reset_start_time():
+    global start_time
+    start_time = timeit.default_timer()
 
 def get_elapsed_time():
     global elapsed_time
-    elapsed_time = timeit.default_timer() - start_experiment
+    elapsed_time = timeit.default_timer() - start_time
     return elapsed_time

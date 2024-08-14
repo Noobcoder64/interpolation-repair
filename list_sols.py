@@ -27,7 +27,10 @@ def containts_aux_variables(refinements):
 # output_folder = "outputs-interpolation/INTERPOLATION-MIN/"
 # output_folder = "outputs-interpolation/INTERPOLATION-ALLGARS-INF/"
 # output_folder = "outputs-interpolation/INTERPOLATION-ALLGARS/"
-output_folder = "outputs-symbolic/JVTS/"
+# output_folder = "outputs-symbolic/JVTS/"
+
+output_folder = "outputs-interpolation-new/INTERPOLATION-MIN-INF/"
+
 
 for root, dirs, files in os.walk(output_folder):
 
@@ -69,16 +72,14 @@ for root, dirs, files in os.walk(output_folder):
         unique_nodes_file = file.replace("nodes", "uniquenodes")  
         unique_nodes_df.to_csv(os.path.join(root, unique_nodes_file), index=False)
 
-        # sols_df = nodes_df[nodes_df["IsSolution"] == True].copy()
-        # sols_df["ContainsAux"] = sols_df["Refinement"].apply(containts_aux_variables)
-        # sols_df = sols_df[sols_df["ContainsAux"] == False]
+        sols_df = nodes_df[nodes_df["IsSolution"] == True].copy()
+        sols_df["ContainsAux"] = sols_df["Refinement"].apply(containts_aux_variables)
+        sols_df = sols_df[sols_df["ContainsAux"] == False]
+        sols_file = file.replace("nodes", "sols")
+        sols_df.to_csv(os.path.join(root, sols_file), index=False)
 
-        # sols_file = file.replace("nodes", "sols")
-        # sols_df.to_csv(os.path.join(root, sols_file), index=False)
-
-        # unique_sols_df = unique_nodes_df[unique_nodes_df["IsSolution"] == True].copy()
-        # unique_sols_df["ContainsAux"] = unique_sols_df["Refinement"].apply(containts_aux_variables)
-        # unique_sols_df = unique_sols_df[sols_df["ContainsAux"] == False]
-
-        # unique_sols_file = file.replace("nodes", "uniquesols")        
-        # unique_sols_df.to_csv(os.path.join(root, unique_sols_file), index=False)
+        unique_sols_df = unique_nodes_df[unique_nodes_df["IsSolution"] == True].copy()
+        unique_sols_df["ContainsAux"] = unique_sols_df["Refinement"].apply(containts_aux_variables)
+        unique_sols_df = unique_sols_df[unique_sols_df["ContainsAux"] == False]
+        unique_sols_file = file.replace("nodes", "uniquesols")        
+        unique_sols_df.to_csv(os.path.join(root, unique_sols_file), index=False)

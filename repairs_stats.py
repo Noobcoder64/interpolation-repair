@@ -4,7 +4,6 @@ import ast
 import time
 import pandas as pd
 from experiment_config import *
-from specification import unspectra
 from io_utils import extractVariablesFromFormula
 
 
@@ -75,17 +74,33 @@ def summarize_folder(output_folder):
 
                 print(root + "/" + file)
 
+                # Read 'stats' file
                 stats_df = pd.read_csv(os.path.join(root, file), sep=",", index_col=False)
 
+                # Add Benchmark column
                 stats_df.insert(0, "Benchmark", stats_df['Filename'].apply(get_benchmark_name))
                 
+                # Add Run column
                 stats_df.insert(1, "Run", run)
 
+                # Read 'nodes' file
                 nodes_file = file.replace("stats", "nodes")
                 nodes_df = pd.read_csv(os.path.join(root, nodes_file), sep=",", index_col=False)
                 # nodes_df['Refinement'] = nodes_df['Refinement'].apply(safe_literal_eval)
                 # nodes_df["ContainsFalse"] = nodes_df["Refinement"].apply(contains_false)
 
+                #
+                if "GLASS" in root:
+                    nodes_df["Refinement"] = nodes_df["Refinement"].apply(safe_literal_eval)
+                    nodes_df["NumAssumptions"] = nodes_df["Refinement"].apply(lambda ref: len(ref) if ref else 0)
+                    stats_df["MinNumAssumptions"] = nodes_df["NumAssumptions"].min()
+                    nodes_df["NumVariables"] = nodes_df["Refinement"].apply(count_num_variables)
+                    stats_df["MinNumVariables"] = nodes_df["NumVariables"].min()
+
+                    dfs.append(stats_df)
+                    continue
+
+                # Read 'uniquenodes' file
                 unique_nodes_file = file.replace("stats", "uniquenodes")
                 if os.path.exists(os.path.join(root, unique_nodes_file)):
                     unique_nodes_df = pd.read_csv(os.path.join(root, unique_nodes_file), sep=",", index_col=False)
@@ -93,17 +108,19 @@ def summarize_folder(output_folder):
                 else:
                     stats_df["UniqueNodesExplored"] = stats_df["NodesExplored"]
 
+                # Read 'sols' file
                 sols_file = file.replace("stats", "sols")
                 sols_df = pd.read_csv(os.path.join(root, sols_file), sep=",", index_col=False)
 
+                # Read 'uniquesols' file
                 unique_sols_file = file.replace("stats", "uniquesols")
                 unique_sols_df = pd.read_csv(os.path.join(root, unique_sols_file), sep=",", index_col=False)
 
                 stats_df["NumRepairs"] = len(sols_df)
                 stats_df["UniqueSols"] = len(unique_sols_df)
 
-                stats_df["Effectiveness"] = stats_df["NumRepairs"] / stats_df["NodesExplored"]
-                stats_df["UniqueEffectiveness"] = stats_df["UniqueSols"] / stats_df["UniqueNodesExplored"]
+                stats_df["Effectiveness"] = stats_df["NumRepairs"] / (stats_df["NodesExplored"] - 1)
+                stats_df["UniqueEffectiveness"] = stats_df["UniqueSols"] / (stats_df["UniqueNodesExplored"] - 1)
 
                 if not sols_df.empty:
                     first_row_sols = sols_df.iloc[0]
@@ -122,52 +139,28 @@ def summarize_folder(output_folder):
 
                 stats_df["NumYUnsat"] = len(nodes_df[nodes_df["IsYSat"] == False])
 
-                # sols_df['Refinement'] = sols_df['Refinement'].apply(safe_literal_eval)
-                # sols_df["NumVariables"] = sols_df['Refinement'].apply(count_num_variables)
-                # stats_df["MinNumVariables"] = sols_df["NumVariables"].min()
+                sols_df['Refinement'] = sols_df['Refinement'].apply(safe_literal_eval)
+                sols_df["NumVariables"] = sols_df['Refinement'].apply(count_num_variables)
+                stats_df["MinNumVariables"] = sols_df["NumVariables"].min()
 
                 # Uncomment if interpolation
                 
                 # stats_df["NumYUnsatNoFalse"] = len(nodes_df[(nodes_df["IsYSat"] == False) & (nodes_df["ContainsFalse"] == False)])
                 
-                stats_df["NumFullyNonIOSeparable"] = len(nodes_df[nodes_df["NumNonIoSeparable"] > nodes_df["NumStateComponents"]])
+                # stats_df["NumFullyNonIOSeparable"] = len(nodes_df[nodes_df["NumNonIoSeparable"] > nodes_df["NumStateComponents"]])
                 
-                stats_df["TotalTimeCounterstrategy"] = nodes_df["TimeCounterstrategy"].sum()
-                stats_df["TotalTimeCounterstrategyComputed"] = nodes_df["TimeCounterstrategy"].sum()
-                last_counterstrategy_time = stats_df["Runtime"].iloc[-1] - nodes_df["TimestampRealizabilityCheck"].iloc[-1]
-                stats_df.loc[stats_df["TimedOut"], "TotalTimeCounterstrategyComputed"] += last_counterstrategy_time
+                # stats_df["TotalTimeCounterstrategy"] = nodes_df["TimeCounterstrategy"].sum()
+                # stats_df["TotalTimeCounterstrategyComputed"] = nodes_df["TimeCounterstrategy"].sum()
+                # last_counterstrategy_time = stats_df["Runtime"].iloc[-1] - nodes_df["TimestampRealizabilityCheck"].iloc[-1]
+                # stats_df.loc[stats_df["TimedOut"], "TotalTimeCounterstrategyComputed"] += last_counterstrategy_time
 
-                stats_df["TotalTimeGenerationMethod"] = nodes_df["TimeGenerationMethod"].sum()
+                # stats_df["TotalTimeGenerationMethod"] = nodes_df["TimeGenerationMethod"].sum()
 
                 dfs.append(stats_df)
 
         summary_df = pd.concat(dfs, ignore_index=True)
         summary_df = summary_df.sort_values(by=["Benchmark", "Filename", "Run"])
         summary_df.to_csv(os.path.join(output_folder, "repairs_summary.csv"), index=False)
-
-        # columns = [
-        #     "NumRepairs",
-        #     "UniqueSols",
-        #     "TimeToFirst",
-        #     "Runtime",
-        #     "NodesExplored",
-        #     "UniqueNodesExplored",
-        #     "Effectiveness",
-        #     "UniqueEffectiveness",
-        #     "NodesToFirst",
-        #     "DepthToFirst",
-        #     "RefsPerDepth",
-        #     "NumYUnsat",
-
-        #     # Uncomment if interpolation
-        #     # "NumYUnsatNoFalse",
-        #     # "NumInterpolantsComputed",
-        #     # "NumNonStateSeparable",
-        #     # "NumFullyNonIOSeparable",
-        #     # "TotalTimeCounterstrategy",
-        #     # "TotalTimeCounterstrategyComputed",
-        #     # "TotalTimeGenerationMethod",
-        # ]
 
         exclude_columns = [
             "Benchmark",
@@ -181,7 +174,7 @@ def summarize_folder(output_folder):
 
         average_df = summary_df.groupby('Filename')[include_columns].mean()
         average_df['Runs'] = summary_df.groupby('Filename').size().values
-        # average_df['MinNumVariables'] = summary_df.groupby('Filename')['MinNumVariables'].min()
+        average_df['MinNumVariables'] = summary_df.groupby('Filename')['MinNumVariables'].min()
         average_df = average_df.reset_index()
         average_df.insert(0, "Benchmark", average_df['Filename'].apply(get_benchmark_name))
         average_df["Filename"] = average_df["Filename"].apply(get_basename)
@@ -195,12 +188,12 @@ def summarize_folder(output_folder):
 
 total_start_time = time.time()
 
-summarize_folder("outputs-interpolation/INTERPOLATION-MIN-INF/")
+# summarize_folder("outputs-interpolation/INTERPOLATION-MIN-INF/")
 # summarize_folder("outputs-interpolation/INTERPOLATION-MIN/")
 # summarize_folder("outputs-interpolation/INTERPOLATION-ALLGARS-INF/")
 # summarize_folder("outputs-interpolation/INTERPOLATION-ALLGARS/")
 # summarize_folder("outputs-symbolic/GLASS/")
-# summarize_folder("outputs-symbolic/JVTS/")
+summarize_folder("outputs-symbolic/JVTS/")
 
 # summarize_folder("outputs-scalability/INTERPOLATION-MIN-INF/")
 # summarize_folder("outputs-scalability/GLASS/")

@@ -91,7 +91,7 @@ def FifoDuplicateCheckRefinement():
     refinement_queue = deque([initial_spec_node])
 
     nodes = 0
-    exp.reset_start_experiment()
+    exp.reset_start_time()
     refine_error = False
 
     while refinement_queue \
@@ -141,7 +141,7 @@ def FifoDuplicateCheckRefinement():
             print()
             print("ERROR:", e)
         
-        cur_node.deleteTempSpecFile()
+        # cur_node.deleteTempSpecFile()
         
         if cur_node.interpolant_computed:
             num_interpolants_computed += 1

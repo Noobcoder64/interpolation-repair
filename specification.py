@@ -35,6 +35,7 @@ def interpolation_spec(spec):
     spec = [re.sub(";", "", line) for line in spec]
     return spec
 
+# USE_ALW = True
 USE_ALW = False
 
 def spectra_format(spec):

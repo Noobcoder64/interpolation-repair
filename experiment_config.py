@@ -1,23 +1,23 @@
 
 ALGORITHMS = [
-    "INTERPOLATION-MIN-INF",
+    # "INTERPOLATION-MIN-INF",
     # "INTERPOLATION-MIN",
     # "INTERPOLATION-ALLGARS-INF",
     # "INTERPOLATION-ALLGARS",
     # "GLASS",
-    # "JVTS",
+    "JVTS",
 ]
 
 FLAGS = " ".join([
     # "-allgars",
-    "-min",
-    "-inf",
+    # "-min",
+    # "-inf",
 ])
 
-# FLAGS = " ".join([
-#     # "-disable-core",
-#     # "-disable-record-asm"
-# ])
+FLAGS = " ".join([
+    # "-disable-core",
+    # "-disable-record-asm"
+])
 
 INPUT_PARENT_FOLDER = "inputs/"
 # INPUT_PARENT_FOLDER = "inputs-JVTS/"
@@ -27,8 +27,8 @@ INPUT_PARENT_FOLDER = "inputs/"
 
 
 INPUT_FOLDERS = [
-    "SIMPLE",
-    # "AMBA-1",
+    # "SIMPLE",
+    "AMBA-1",
     # "AMBA-2",
     # "SYNTECH15-UNREAL",
     # "SYNTECH15-1UNREAL",
@@ -50,14 +50,14 @@ SYSTEMS = [
 ]
 
 # Output parent folder
-# OUTPUT_PARENT_FOLDER = "outputs/"
-OUTPUT_PARENT_FOLDER = "outputs-interpolation/"
+OUTPUT_PARENT_FOLDER = "outputs/"
+# OUTPUT_PARENT_FOLDER = "outputs-interpolation/"
 # OUTPUT_PARENT_FOLDER = "outputs-symbolic/"
 # OUTPUT_PARENT_FOLDER = "outputs-scalability/"
 # OUTPUT_PARENT_FOLDER = "outputs-weakness/"
 # OUTPUT_PARENT_FOLDER = "outputs-translation/"
 
-RUN = 2
+RUN = 1
 
 TIMEOUT = 10
 
