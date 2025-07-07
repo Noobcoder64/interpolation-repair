@@ -20,6 +20,7 @@ import spot
 import specification as sp
 import shutil
 import logging
+import statistics
 
 logging.basicConfig(level=logging.INFO)
 
@@ -29,6 +30,8 @@ varpattern = re.compile(r"\b(?!TRUE|FALSE)\w+")
 
 def get_distinct_vars(formula):
     """Returns the set of all distinct variables appearing in formula"""
+    if isinstance(formula, list):
+        formula = " ".join(formula)
     varset = set(varpattern.findall(formula))
     varset.discard("X")
     varset.discard("G")
@@ -38,41 +41,13 @@ def get_distinct_vars(formula):
     varset.discard("alwEv")
     return varset
 
-def create_node_record(cur_node: RefinementNode, elapsed_time, queue_size, depth, time_node, error):
-    return {
-        "node_id": cur_node.id,
-        "parent_node_id": cur_node.parent_id,
-        "elapsed_time": elapsed_time,
-        "queue_size": queue_size,
-        "depth": depth,
-        "length": len(cur_node.gr1_units),
-        "num_vars": len(get_distinct_vars(" ".join(cur_node.gr1_units))),
-        "is_y_sat": cur_node.isYSat(),
-        "is_satisfiable": cur_node.isSatisfiable(),
-        "is_realizable": cur_node.isRealizable(),
-        "is_well_separated": cur_node.isWellSeparated(),
-        "unreal_core_size": len(cur_node.unreal_core) if cur_node.unreal_core else None,
-        "cs_num_states": len(cur_node.counterstrategy.states) if cur_node.counterstrategy else None,
-        "is_interpolant_state_separable": cur_node.is_interpolant_state_separable,
-        "num_state_components": cur_node.num_state_components,
-        "num_non_io_separable_state_components": cur_node.num_non_io_separable_state_components,
-        "is_interpolant_fully_separable": cur_node.is_interpolant_fully_separable,
-        "num_refs_generated": cur_node.num_refs_generated,
-        "time_y_sat_check": cur_node.time_y_sat_check,
-        "time_realizability_check": cur_node.time_realizability_check,
-        "time_satisfiability_check": cur_node.time_satisfiability_check,
-        "time_well_separation_check": cur_node.time_well_separation_check,
-        "time_unreal_core": cur_node.time_unreal_core,
-        "time_counterstrategy": cur_node.time_counterstrategy,
-        "time_interpolation": cur_node.time_interpolation,
-        "time_generation": cur_node.time_generation,
-        "time_refine": cur_node.time_refine,
-        "time_repair_core": cur_node.time_repair_core,
-        "time_node": time_node,
-        "refinement": cur_node.gr1_units,
-        "interpolant": cur_node.interpolant,
-        "error": error,
-    }
+def implies(phi, psi):
+    # Build the negation of (phi implies psi), i.e., phi ∧ ¬psi
+    implication_neg = spot.formula(f"({phi}) & !({psi})")
+    # Build the automaton from this formula
+    aut = spot.translate(implication_neg)
+    # If the language is empty, phi implies psi
+    return aut.is_empty()
 
 class InterpolationRepair:
     def __init__(
@@ -100,6 +75,8 @@ class InterpolationRepair:
         self.time_to_first_repair = None
         self.length_first_repair = None
         self.vars_first_repair = None
+        self.non_redundant_repairs = None
+        self.runtime = None
 
     def run(self):
         self._counterstrategy_guided_refinement()
@@ -207,7 +184,7 @@ class InterpolationRepair:
                 self._log(1, error)
 
             # self._record_node()
-            node_record = create_node_record(
+            self._record_node(
                 cur_node,
                 elapsed_time * 1000,
                 len(refinement_queue),
@@ -215,8 +192,9 @@ class InterpolationRepair:
                 time.perf_counter() - time_node_start,
                 error
             )
-            self.node_records.append(node_record)
         
+        self.runtime = time.perf_counter() - start_time
+
         return self
 
     def _create_refined_spec(self, node: RefinementNode):
@@ -232,13 +210,50 @@ class InterpolationRepair:
         node.set_spec(refined_spec)
         self._log(2, f"Refined specification saved to: {refined_spec_path}")
 
-    def _record_first_repair(self, repair, depth, num_iterations, time):
+    def _record_node(self, node: RefinementNode, time, queue_size, depth, time_node, error):
+        node_record =  {
+            "node_id": node.id,
+            "parent_node_id": node.parent_id,
+            "elapsed_time": time,
+            "queue_size": queue_size,
+            "depth": depth,
+            "length": len(node.gr1_units),
+            "num_vars": len(get_distinct_vars(" ".join(node.gr1_units))),
+            "is_y_sat": node.isYSat(),
+            "is_satisfiable": node.isSatisfiable(),
+            "is_realizable": node.isRealizable(),
+            "is_well_separated": node.isWellSeparated(),
+            "unreal_core_size": len(node.unreal_core) if node.unreal_core else None,
+            "cs_num_states": len(node.counterstrategy.states) if node.counterstrategy else None,
+            "is_interpolant_state_separable": node.is_interpolant_state_separable,
+            "num_state_components": node.num_state_components,
+            "num_non_io_separable_state_components": node.num_non_io_separable_state_components,
+            "is_interpolant_fully_separable": node.is_interpolant_fully_separable,
+            "num_refs_generated": node.num_refs_generated,
+            "time_y_sat_check": node.time_y_sat_check,
+            "time_realizability_check": node.time_realizability_check,
+            "time_satisfiability_check": node.time_satisfiability_check,
+            "time_well_separation_check": node.time_well_separation_check,
+            "time_unreal_core": node.time_unreal_core,
+            "time_counterstrategy": node.time_counterstrategy,
+            "time_interpolation": node.time_interpolation,
+            "time_generation": node.time_generation,
+            "time_refine": node.time_refine,
+            "time_repair_core": node.time_repair_core,
+            "time_node": time_node,
+            "refinement": node.gr1_units,
+            "interpolant": node.interpolant,
+            "error": error,
+        }
+        self.node_records.append(node_record)
+
+    def _record_first_repair(self, repair, num_iterations, depth, time):
         self.first_repair = repair
         self.nodes_to_first_repair = num_iterations
         self.depth_to_first_repair = depth
         self.time_to_first_repair = time
         self.length_first_repair = len(repair)
-        self.vars_first_repair = len(get_distinct_vars(" ".join(repair)))
+        self.vars_first_repair = len(get_distinct_vars(repair))
 
     def _log_summary(self):
         self._log(1, "\n=== Refinement Summary ===")
@@ -252,21 +267,100 @@ class InterpolationRepair:
         self._log(1, "==========================\n")
 
     def _compute_non_redundant_repairs(self):
-        pass
+        self._log(1, "Computing non-redundant repairs...")
+        self.non_redundant_repairs = []
+        for sol in [" & ".join(sp.unspectra(sol)) for sol in self.solutions]:
+            if any(implies(sol, repair) for repair in self.non_redundant_repairs):
+                continue
+            self.non_redundant_repairs = [repair for repair in self.non_redundant_repairs if not implies(repair, sol)]
+            self.non_redundant_repairs.append(sol)
+        self._log(1, f"Found {len(self.non_redundant_repairs)} non-redundant repair(s) out of {len(self.solutions)} total repairs")
 
     def _save_nodes_csv(self):
-        pass
+        self._log(1, "Saving node data to CSV...")
+        nodes_df = pd.DataFrame(self.node_records)
+        nodes_csv_path = f"{self.output_dir}/{Path(self.initial_spec.file_path).stem}_interpolation_nodes.csv"
+        nodes_df.to_csv(nodes_csv_path, index=False)
+        self._log(1, f"Node data successfully saved at: {nodes_csv_path}\n")
 
     def _save_stats_csv(self):
-        pass
+        self._log(1, "Saving search summary data")
 
-def implies(phi, psi):
-    # Build the negation of (phi implies psi), i.e., phi ∧ ¬psi
-    implication_neg = spot.formula(f"({phi}) & !({psi})")
-    # Build the automaton from this formula
-    aut = spot.translate(implication_neg)
-    # If the language is empty, phi implies psi
-    return aut.is_empty()
+        nodes_df = pd.DataFrame(self.node_records)
+        stats_csv_path = f"{self.output_dir}/{Path(self.initial_spec.file_path).stem}_interpolation_stats.csv"
+
+        num_nodes_explored = len(nodes_df)
+
+        stats_record = {
+            "file_path": self.initial_spec.file_path,
+            "timeout": self.timeout,
+            "repair_limit": self.repair_limit,
+
+            "num_repairs": len(self.solutions),
+            "num_non_redundant_repairs": len(self.non_redundant_repairs),
+            "num_nodes_explored": num_nodes_explored,
+            "effectiveness": (len(self.non_redundant_repairs) / (num_nodes_explored - 1)) if num_nodes_explored > 1 else 0,
+            "num_y_unsat": (nodes_df["is_y_sat"] == False).sum(),
+            "max_depth": nodes_df["depth"].max(),
+            "num_not_state_separable": (nodes_df["is_interpolant_state_separable"] == False).sum(),
+            "num_not_fully_separable": (nodes_df["is_interpolant_fully_separable"] == False).sum(),
+            "num_errors": nodes_df["error"].notnull().sum(),
+
+            "nodes_to_first_repair": self.nodes_to_first_repair,
+            "depth_to_first_repair": self.depth_to_first_repair,
+            "time_to_first_repair": self.time_to_first_repair,
+            "length_first_repair": self.length_first_repair,
+            "vars_first_repair": self.vars_first_repair,
+        }
+
+        repair_lengths = [len(r) for r in self.non_redundant_repairs]
+        repair_vars_counts = [len(get_distinct_vars(r)) for r in self.non_redundant_repairs]
+
+        stats_record.update({
+            "min_repair_length": min(repair_lengths) if repair_lengths else None,
+            "avg_repair_length": statistics.mean(repair_lengths) if repair_lengths else None,
+            "max_repair_length": max(repair_lengths) if repair_lengths else None,
+
+            "min_repair_vars": min(repair_vars_counts) if repair_vars_counts else None,
+            "avg_repair_vars": statistics.mean(repair_vars_counts) if repair_vars_counts else None,
+            "max_repair_vars": max(repair_vars_counts) if repair_vars_counts else None,
+        })
+
+        num_fields = [
+            "unreal_core_size",
+            "cs_num_states",
+            # interpolant_size
+            "num_state_components",
+            "num_non_io_separable_state_components",
+            "num_refs_generated"
+        ]
+
+        for metric in num_fields:
+            stats_record[f"min_{metric}"] = nodes_df[metric].min()
+            stats_record[f"avg_{metric}"] = nodes_df[metric].mean()
+            stats_record[f"max_{metric}"] = nodes_df[metric].max()
+
+        time_fields = [
+            "time_y_sat_check", "time_realizability_check", "time_satisfiability_check",
+            "time_well_separation_check",  "time_unreal_core", "time_counterstrategy", "time_interpolation",
+            "time_generation", "time_refine", "time_repair_core", "time_node"
+        ]
+
+        for field in time_fields:
+            stats_record[f"avg_{field}"] = nodes_df[field].mean()
+
+        stats_record["runtime"] = self.runtime
+
+        for field in time_fields:
+            stats_record[f"total_{field}"] = nodes_df[field].sum()
+
+        for field in time_fields:
+            stats_record[f"pct_{field}"] = 100 * stats_record[f"total_{field}"] / self.runtime
+
+        df = pd.DataFrame([stats_record])
+        df.to_csv(stats_csv_path, index=False)
+        self._log(1, "Stats saved to:", stats_csv_path)
+
 
 def main():
     parser = argparse.ArgumentParser(description="Run interpolation_repair.py on a .spectra file.")
@@ -316,152 +410,15 @@ def main():
         print("Adding assumptions will NOT fix this specification.\n")
         return
 
-    start_time = time.perf_counter()
     ir = InterpolationRepair(
         initial_spec,
         output_dir=args.output,
         timeout=args.timeout,
         repair_limit=args.repair_limit,
-        verbose=1,
+        verbose=2,
     )
     ir.run()
-    runtime = time.perf_counter() - start_time
 
-    # print()
-    # print("Saving node data to CSV...")
-    # nodes_df = pd.DataFrame(result["node_records"])
-    # nodes_csv_path = f"{args.output}/{Path(args.input).stem}_interpolation_nodes.csv"
-    # nodes_df.to_csv(nodes_csv_path, index=False)
-    # print(f"Node data successfully saved at: {nodes_csv_path}\n")
-
-    # num_repairs = len(result["solutions"])
-
-    # print("Computing non-redundant repairs...")
-    # non_redundant_repairs = []
-    # for sol in [" & ".join(sp.unspectra(sol)) for sol in result["solutions"]]:
-    #     if any(implies(sol, repair) for repair in non_redundant_repairs):
-    #         continue
-    #     non_redundant_repairs = [repair for repair in non_redundant_repairs if not implies(repair, sol)]
-    #     non_redundant_repairs.append(sol)
-
-    # print(f"Found {len(non_redundant_repairs)} non-redundant repairs out of {num_repairs} total repairs")
-
-    # print()
-    # print("Saving search summary data")
-
-    # stats_csv_path = f"{args.output}/{Path(args.input).stem}_interpolation_stats.csv"
-
-    # num_nodes_explored = len(nodes_df)
-
-    # stats_record = {
-    #     "file_path": initial_spec.name,
-    #     "timeout": args.timeout,
-    #     "repair_limit": args.repair_limit,
-
-    #     "num_repairs": num_repairs,
-    #     "num_non_redundant_repairs": len(non_redundant_repairs),
-    #     "num_nodes_explored": num_nodes_explored,
-    #     "effectiveness": (len(non_redundant_repairs) / (num_nodes_explored - 1)) if num_nodes_explored > 1 else 0,
-    #     "num_y_unsat": (~nodes_df["is_y_sat"]).sum(),
-    #     "max_depth": nodes_df["depth"].max(),
-    #     # num_interpolants_computed
-    #     # num_not_state_separable
-    #     # num_not_fully_separable
-    #     # num_errors
-
-    #     "nodes_to_first_repair": result["nodes_to_first_repair"],
-    #     "depth_to_first_repair": result["depth_to_first_repair"],
-    #     "time_to_first_repair": result["time_to_first_repair"],
-    #     "length_first_repair": result["length_first_repair"],
-    #     "vars_first_repair": result["vars_first_repair"],
-
-    #     # Incorrect
-    #     # Non reduntant repairs
-    #     "min_repair_length": nodes_df["length"].min(),
-    #     "avg_repair_length": nodes_df["length"].mean(),
-    #     "max_repair_length": nodes_df["length"].max(),
-
-    #     "min_repair_vars": nodes_df["num_vars"].min(),
-    #     "avg_repair_vars": nodes_df["num_vars"].mean(),
-    #     "max_repair_vars": nodes_df["num_vars"].max(),
-
-    #     # unreal core size
-
-    #     "min_cs_num_states": nodes_df["cs_num_states"].min(),
-    #     "avg_cs_num_states": nodes_df["cs_num_states"].mean(),
-    #     "max_cs_num_states": nodes_df["cs_num_states"].max(),
-
-    #     # interpolant size
-
-    #     # num state components
-
-    #     # num non io separable state components
-
-    #     "min_num_refs_generated": nodes_df["num_refs_generated"].min(),
-    #     "avg_num_refs_generated": nodes_df["num_refs_generated"].mean(),
-    #     "max_num_refs_generated": nodes_df["num_refs_generated"].max(),
-    # }
-
-
-
-    # time_fields = [
-    #     "time_y_sat_check", "time_realizability_check", "time_satisfiability_check",
-    #     "time_well_separation_check",  "time_unreal_core", "time_counterstrategy", "time_interpolation",
-    #     "time_generation", "time_refine", "time_repair_core", "time_node"
-    # ]
-
-    # for field in time_fields:
-    #     stats_record[f"avg_{field}"] = nodes_df[field].mean()
-
-    # stats_record["runtime"] = runtime
-
-    # for field in time_fields:
-    #     stats_record[f"total_{field}"] = nodes_df[field].sum()
-
-    # for field in time_fields:
-    #     stats_record[f"pct_{field}"] = 100 * stats_record[f"total_{field}"] / runtime
-
-    # # Fields
-    # avg_fields = [
-    #     "elapsed_time", "queue_size", "length",
-    #     "unreal_core_size", "cs_num_states",
-    #     "num_state_components", "num_non_io_separable_state_components",
-    #     "num_refs_generated",
-    # ]
-
-    # bool_sum_fields = [
-    #     "is_y_sat", "is_satisfiable", "is_realizable", "is_well_separated",
-    #     "is_interpolant_state_separable", "is_interpolant_fully_separable"
-    # ]
-
-    # # Aggregate
-    # for field in avg_fields:
-    #     summary_stats[f"avg_{field}"] = nodes_df[field].mean()
-
-    # for field in bool_sum_fields:
-    #     summary_stats[f"sum_{field}"] = nodes_df[field].sum()
-
-
-
-    # # Filter rows where interpolant was computed
-    # interpolant_rows = nodes_df[nodes_df["interpolant"].notnull()]
-
-    # # Count total computed
-    # summary_stats["num_interpolants_computed"] = len(interpolant_rows)
-
-    # state_sep_bool = interpolant_rows["is_interpolant_state_separable"].apply(lambda x: False if x is None else x).astype(bool)
-    # fully_sep_bool = interpolant_rows["is_interpolant_fully_separable"].apply(lambda x: False if x is None else x).astype(bool)
-
-    # summary_stats["num_not_state_separable"] = (~state_sep_bool).sum()
-    # summary_stats["num_not_fully_separable"] = (~fully_sep_bool).sum()
-
-    # summary_stats["num_errors"] = nodes_df["error"].notnull().sum()
-
-    # df = pd.DataFrame([stats_record])
-    # df.to_csv(stats_csv_path, index=False)
-    # print("Stats saved to:", stats_csv_path)
-
-    # return and print solutions
 
 if __name__=="__main__":
     main()
