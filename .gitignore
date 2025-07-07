@@ -29,6 +29,7 @@ spot/
 outputs*/
 !outputs-interpolation/INTERPOLATION-MIN-INF/
 temp*/
+mlruns
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

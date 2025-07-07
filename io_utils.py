@@ -38,6 +38,7 @@ def extractVariablesFromFormula(phi):
     exclude = {"G", "F", "GF", "X", "next", "U", "true", "false", "and"}
     return [x for x in re.findall("\w+", phi) if x not in exclude]
 
+# UNUSED
 # Replaces '&&' with '&', '||' with '|'
 def normalizeFormulaSyntax( formula ):
     formula = formula.replace('&&','&')

@@ -1,0 +1,32 @@
+
+module arbiter
+
+env boolean a;
+env boolean r1;
+env boolean r2;
+
+sys boolean g1;
+sys boolean g2;
+
+aux boolean sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0;
+
+aux boolean sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0;
+
+
+
+guarantee
+	G ((!(a) -> (!(g1) & !(g2))));
+guarantee
+	GF ((!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0));
+guarantee
+	GF ((!sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0));
+
+guarantee
+	 ((!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0));
+guarantee
+	G (((((((!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0) & (!(r1) | (r1 & g1))) & (next(!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0))) | (((!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0) & (r1 & !(g1))) & (next(sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0)))) | (((sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0) & g1) & (next(!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0)))) | (((sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0) & !(g1)) & (next(sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0)))));
+guarantee
+	 ((!sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0));
+guarantee
+	G (((((((!sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0) & (!(r2) | (r2 & g2))) & (next(!sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0))) | (((!sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0) & (r2 & !(g2))) & (next(sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0)))) | (((sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0) & g2) & (next(!sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0)))) | (((sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0) & !(g2)) & (next(sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0)))));
+

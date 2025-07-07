@@ -1,38 +1,31 @@
 
-class State(object):
-    def __init__(self, id_state):
-        """
-        Constructor.
-        """
+class State:
 
+    def __init__(self, id_state, valuation=None, successor=None):
         self.id_state = id_state
-        self.valuation = set()
-
-        #: The successor's id
-        #: @type string
-        self.successor = None
+        self.valuation = set(valuation) if valuation else set()
+        self.successor = successor
 
     def set_successor(self, id_state):
+        """Set the successor state ID."""
         self.successor = id_state
-        return
 
     def get_valuation(self):
-        valuation_with_ids = []
-        for bool_literal in self.valuation:
-            valuation_with_ids.append(bool_literal + "__" + self.id_state)
-        return ' & '.join(valuation_with_ids)
+        """Return a string of valuations formatted as 'literal__stateID' joined by ' & '."""
+        return " & ".join(f"{lit}__{self.id_state}" for lit in self.valuation)
 
     def add_to_valuation(self, bool_literal):
+        """Add a boolean literal to the valuation set."""
         self.valuation.add(bool_literal)
-        return
 
+    def __str__(self):
+        return f"{self.id_state} -> {self.successor} | {{{', '.join(self.valuation)}}}"
 
-"""This is a rewriting of the Path class, much simpler than previous version since it does not read the path from a file"""
 class Path:
     def __init__(self, initial_state, transient_states, looping_states=None):
         #: List of all the states
         #: @type: L{State dict}
-        self.states = dict()
+        self.states = {}
 
         #: Initial state of the graph
         #: @type: L{State}
@@ -53,6 +46,7 @@ class Path:
         self.unrolling_degree = 0
 
         self.states[self.initial_state.id_state] = self.initial_state
+        
         for state in self.transient_states:
             self.states[state.id_state] = state
 
@@ -68,17 +62,14 @@ class Path:
             valuation = valuation + s.get_valuation()
         return valuation
 
-    def save(self,file):
-        file.write(str(self))
-
     # Unrolls the path by one more degree
     def unroll(self):
         if self.is_loop:
             # Increase the unrolling degree
-            self.unrolling_degree = self.unrolling_degree+1
+            self.unrolling_degree += 1
             # Fit the first unrolled state in the path by changing the previous state's
             # successor
-            unrolled_state = State(self.looping_states[0].id_state+"_"+str(self.unrolling_degree))
+            unrolled_state = State(self.looping_states[0].id_state + "_" + str(self.unrolling_degree))
             if self.unrolling_degree == 1:
                 if len(self.transient_states) >= 1:
                     self.transient_states[-1].set_successor(unrolled_state.id_state)

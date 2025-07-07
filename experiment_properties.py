@@ -15,6 +15,7 @@ n_multivarbias = 5
 goodness_measure = ""
 goodness_update_required = False
 search_method = "bfs"
+# search_method = "multi-core-bfs"
 refinement_method = generation_method + ("-" + search_method if search_method != "" else "") + ("-" + goodness_measure if goodness_measure != "" else "")
 exp_number = "tacas20_duplicatecheck"
 limit_fairness = -1 # Max fairness conditions allowed in the experiment. -1 if unlimited

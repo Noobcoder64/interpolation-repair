@@ -16,6 +16,7 @@
 ## Spectra
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/spectra
+full  path to spectra inside this repo
 
 ## Evaluations
 
@@ -41,3 +42,15 @@ Execute python translator.py -help to check which arguments are accepted
 
 The file interpolation_repair contains the main algortihm for interpolation-based assumptions refinement.
 Execute python interpolation_repari.py -help to check which arguments are accepted 
+
+## Commands
+
+pytest tests/test_pcar.py -vv -s
+
+MathSAT4/mathsat-4.2.17-linux-x86_64/bin/mathsat -solve temp/
+
+python translator/spec_translator.py tests/specifications/MinePump.spectra tests/specifications/
+
+mlflow ui --backend-store-uri sqlite:///mlruns/mlruns.db
+
+python -m cProfile -o profile_output.prof interpolation_repair.py -i specifications/SYNTECH15-UNREAL/PCarLTL_Unrealizable_V_2_unrealizable0_888_PCar_fixed_unrealizable.spectra -o outputs -t 600 -rl -1

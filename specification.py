@@ -36,10 +36,13 @@ def interpolation_spec(spec):
     return spec
 
 # USE_ALW = True
-USE_ALW = False
+USE_ALW = True
 
 def spectra_format(spec):
-    spec = [re.sub(r"G\(F(\(.*\))\)", r"GF \1", line) for line in spec]
+    # spec = [re.sub(r"G\(F(\(.*\))\)", r"GF \1", line) for line in spec]
+    spec = [re.sub(r"G\(F(\(.*\))\)", r"alwEv \1", line) for line in spec]
+    # spec = [re.sub(r"G(\(.*\))", r"G \1", line) for line in spec]
+    spec = [re.sub(r"G(\(.*\))", r"alw \1", line) for line in spec]
     spec = [re.sub(r"X\(", r"next(", line) for line in spec]
     if USE_ALW:
         spec = [re.sub(r"G\(F(\(.*\))\)", r"alwEv \1", line) for line in spec]
@@ -57,6 +60,8 @@ def unspectra(spec):
     spec = [re.sub(r"next\(([^\)]*)\)", r"X(\1)", line) for line in spec]
     spec = [re.sub(r'X\(([^\)]*)\)=true', r'X(\1)', x) for x in spec]
     spec = [re.sub(r'X\(([^\)]*)\)=false', r'X(!\1)', x) for x in spec]
+    spec = [re.sub(r'\band\b', ' & ', x) for x in spec]
+    
     spec = [re.sub(r"\s*;", "", line) for line in spec]
     # spec = [re.sub(r"and", " & ", line) for line in spec]
     return spec

@@ -1,0 +1,15 @@
+spec MinePump
+
+env boolean h;
+env boolean m;
+
+sys boolean p;
+
+assumption
+	G ((PREV(p) & p) -> next(!h));
+
+guarantee
+	G (h -> next(p));
+
+guarantee
+	G (m -> next(!p));

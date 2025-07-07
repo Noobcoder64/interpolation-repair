@@ -4,8 +4,12 @@ import os
 import definitions
 import syntax_utils as su
 import subprocess
-import timeit
+import time
 import random
+import specification as sp
+from counterstrategy import Counterstrategy
+from typing import Tuple, List, Dict, Any
+import mathsat_utils as msu
 
 class NonStateSeparableException(BaseException):
     pass
@@ -69,7 +73,7 @@ def extractStateComponents(interpolant):
     else:
         state_components[getStateFromLiteral(parse_tree)] = str(parse_tree)
     # Remove state references from literals (they are useless by now)
-    return {state: removeStateReferences(component) for state,component in state_components.items()}
+    return {state: removeStateReferences(component) for state, component in state_components.items()}
 
 def projectOtherNode(node,variables):
     projection = str(node)
@@ -104,21 +108,24 @@ def projectOntoVars(state_component,variables):
     else:
         raise NonIOSeparableException
 
-def getRefinementsFromStateComponents(state_components,path,input_vars):
+def contains_aux_vars(assumption):
+    return "aux" in assumption or "CONSTRAINT" in assumption
+
+def getRefinementsFromStateComponents(state_components, path, input_vars):
     refinements = []
     non_io_separable_state_components = 0
     # First refinement: negation of initial condition
     if path.initial_state.id_state in state_components:
         try:
-            refinements.append("!("+projectOntoVars(state_components[path.initial_state.id_state],input_vars)+")")
+            refinements.append("!(" + projectOntoVars(state_components[path.initial_state.id_state], input_vars) + ")")
         except NonIOSeparableException:
             print("Initial state component not I/O-separable")
-            non_io_separable_state_components = non_io_separable_state_components + 1
+            non_io_separable_state_components += 1
     # For each pair of consecutive states, extract an invariant
     for state in path.states:
         if path.states[state].successor is not None and state in state_components and path.states[state].successor in state_components:
             try:
-                refinements.append("G(("+state_components[state]+") -> X(!("+projectOntoVars(state_components[path.states[state].successor],input_vars)+")))")
+                refinements.append("G((" + state_components[state] + ") -> X(!(" + projectOntoVars(state_components[path.states[state].successor], input_vars) + ")))")
             except NonIOSeparableException:
                 # If next state component is not IO-separable, the current state component may be anyway
                 try:
@@ -126,13 +133,27 @@ def getRefinementsFromStateComponents(state_components,path,input_vars):
                 except NonIOSeparableException:
                     # Increase the number of non-IO-separable components here, since if I did before, when the non-separable
                     # component is the next one, this would be counted twice
-                    non_io_separable_state_components = non_io_separable_state_components + 1
-                    print("State "+path.states[state].successor+" component not I/O-separable")
+                    non_io_separable_state_components += 1
+                    print("State " + path.states[state].successor + " component not I/O-separable")
+        # elif path.states[state].successor is not None and state not in state_components and path.states[state].successor in state_components:
+        #     try:
+        #         refinements.append("G((" + " & ".join(path.states[state].valuation) + ") -> X(!(" + projectOntoVars(state_components[path.states[state].successor], input_vars) + ")))")
+        #     except NonIOSeparableException:
+        #         # If next state component is not IO-separable, the current state component may be anyway
+        #         try:
+        #             refinements.append("G(!(" + projectOntoVars(state_components[state], input_vars) + "))")
+        #         except NonIOSeparableException:
+        #             # Increase the number of non-IO-separable components here, since if I did before, when the non-separable
+        #             # component is the next one, this would be counted twice
+        #             non_io_separable_state_components += 1
+        #             print("State " + path.states[state].successor + " component not I/O-separable")
         elif (path.states[state].successor is None or path.states[state].successor not in state_components) and state in state_components:
             try:
-                refinements.append("G(!(" + projectOntoVars(state_components[state],input_vars) + "))")
+                # Need next?
+                refinements.append("G(!(" + projectOntoVars(state_components[state], input_vars) + "))")
+                # refinements.append("G(!X(" + projectOntoVars(state_components[state],input_vars) + "))")
             except NonIOSeparableException:
-                non_io_separable_state_components = non_io_separable_state_components + 1
+                non_io_separable_state_components += 1
                 print("State " + state + " component not I/O-separable")
     # Fairness condition: if each and every looping state has a state component, then extract a fairness condition from it
     # This applies only when path is looping
@@ -141,9 +162,19 @@ def getRefinementsFromStateComponents(state_components,path,input_vars):
             looping_state_components = []
             for looping_state in path.looping_states:
                 looping_state_components.append(state_components[looping_state.id_state])
-            refinements.append("G(F(!("+ ") & !(".join(list(set(looping_state_components))) +")))")
+            refinements.append("G(F(!(" + ") & !(".join(list(set(looping_state_components))) +")))")
+        if path.unrolled_states and all(path.unrolled_states[i].id_state in state_components for i in range(len(path.unrolled_states))):
+            # If the path is unrolled, then the unrolled states are also looping states
+            unrolled_state_components = []
+            for unrolled_state in path.unrolled_states:
+                unrolled_state_components.append(state_components[unrolled_state.id_state])
+            refinements.append("G(F(!(" + ") & !(".join(list(set(unrolled_state_components))) +")))")
 
-    return list(set(refinements)), non_io_separable_state_components
+    # Filter out refinements with aux variables
+    refinements = [asm for asm in refinements if not contains_aux_vars(asm)]
+
+    return sorted(list(set(refinements))), non_io_separable_state_components
+    # return sorted(list(set(refinements)), reverse=True), non_io_separable_state_components
 
 
 def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
@@ -153,7 +184,6 @@ def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
     counterstrategy_file = f"temp/counterstrategy_auto_{id}"
     guarantees_file = f"temp/guarantees_auto_{id}"
 
-    # l2b.writeMathsatFormulaToFile("temp/formula_" + id, assum_val_boolean + " & " + " & ".join(guarantees_boolean))
     l2b.writeMathsatFormulaToFile(counterstrategy_file, assum_val_boolean)
     l2b.writeMathsatFormulaToFile(guarantees_file, " & ".join(guarantees_boolean))
     
@@ -170,27 +200,39 @@ def compute_interpolant(id, assum_val_boolean, guarantees_boolean):
         interpolant = l2b.parseInterpolant(interpolant_file)
         os.remove(interpolant_file)
 
-    os.remove(counterstrategy_file)
-    os.remove(guarantees_file)
+    # os.remove(counterstrategy_file)
+    # os.remove(guarantees_file)
     return interpolant
 
 
-def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_vars, output_vars, cur_node):
+def generateRefinements(
+        counterstrategy: Counterstrategy,
+        assumptions: List[str],
+        guarantees: List[str],
+        input_vars: List[str]
+    ) -> Tuple[List[str], Dict[str, Any]]:
 
-    # print()
-    # print("=== COUNTERSTRATEGY ===")
-    # print(c)
-    # print()
+    metrics = {
+        "path_length": 0,
+        "path_is_looping": False,
+        "interpolant": None,
+        "time_interpolation": None,
+        "is_interpolant_state_separable": False,
+        "num_state_components": 0,
+        "num_non_io_separable_state_components": 0,
+        "is_interpolant_fully_separable": False,
+    }
 
-    path = c.extractRandomPath()
-    # path.unroll()
+    path = counterstrategy.extract_random_path()
+    path.unroll()
 
-    print()
-    print("=== COUNTERRUN ===")
-    print(path)
-    print()
+    metrics["path_length"] = len(path.states)
+    metrics["path_is_looping"] = path.is_loop
 
-    assumptions_boolean = list(filter(None,[l2b.gr1LTL2Boolean(x,path) for x in assumptions_uc]))
+    assumptions = [re.sub(r"\s", "", line) for line in sp.unspectra(assumptions)]
+    guarantees = [re.sub(r"\s", "", line) for line in sp.unspectra(guarantees)]
+
+    assumptions_boolean = list(filter(None,[l2b.gr1LTL2Boolean(asm, path) for asm in assumptions]))
 
     valuations_boolean = path.get_valuation()
 
@@ -199,70 +241,43 @@ def GenerateAlternativeRefinements(id, c, assumptions_uc, guarantees_uc, input_v
     else:
         assum_val_boolean = valuations_boolean
 
-    guarantees_boolean = list(filter(None,[l2b.gr1LTL2Boolean(x, path) for x in guarantees_uc]))
+    guarantees_boolean = list(filter(None,[l2b.gr1LTL2Boolean(gar, path) for gar in guarantees]))
 
-    # random.shuffle(guarantees_boolean)
+    if not msu.is_satisfiable(" & ".join(guarantees_boolean)):
+        raise AssertionError("The conjunction of guarantees is not satisfiable.")
 
-    # print("=== UNREALIZABLE CORE ===")
-    # for uc in guarantees_uc:
-    #     print(uc)
-    # print()
-    
-    # print("=== ASSUMPTIONS BOOLEAN ===")
-    # print(" &\n\n".join(assumptions_boolean))
-    # print()
-    # print("=== VALUATIONS BOOLEAN ===")
-    # print(valuations_boolean)
-    # print()
-    # print("=== ASM VAL BOOLEAN ===")
-    # print(assum_val_boolean)
-    # print("=== GUARANTEES BOOLEAN ===")
-    # print("\n".join(guarantees_boolean))
-    # print()
+    time_interpolation_start = time.perf_counter()
+    interpolant = compute_interpolant(id, valuations_boolean, guarantees_boolean)
+    metrics["time_interpolation"] = time.perf_counter() - time_interpolation_start
+    metrics["interpolant"] = interpolant
 
-    # l2b.writeMathsatFormulaToFile(f"temp/asm_{id}", " & ".join(assumptions_boolean))
-    # l2b.writeMathsatFormulaToFile(f"temp/val_{id}", valuations_boolean)
+    if interpolant is None:
+        print("[x] No interpolant for " + assum_val_boolean +"\n and guarantees " + " & ".join(guarantees_boolean) + "\n on path " + str(path))
+        return [], metrics
 
-    time_interpolation_start = timeit.default_timer()
-    interpolant = compute_interpolant(id, assum_val_boolean, guarantees_boolean)
-    cur_node.time_interpolation = timeit.default_timer() - time_interpolation_start
-    cur_node.interpolant_computed = True
-    cur_node.interpolant = interpolant
-    print("\n=== INTERPOLANT ===")
-    print(interpolant)
-    print()
+    if interpolant == "false" or interpolant == "true":
+        return ["FALSE"], metrics
 
     state_components = dict()
-    # Parse the interpolant file
-    if interpolant is not None:
-        if interpolant == "false":
-            cur_node.interpolant_is_false = True
-            return ["FALSE"]
-            
-        try:
-            state_components = extractStateComponents(interpolant)
-            # print()
-            # print("=== STATE COMPONENTS ===")
-            # print(state_components)
-        except NonStateSeparableException:
-            # If the interpolant is not state separable, just skip this particular counterstrategy.
-            # To think about: is it possible to come up with refinements even in case of a non-state-separable interpolant?
-            state_components = dict()
-            print("Non-state-separable interpolant for " + assum_val_boolean + "\n and guarantees " + " & ".join(guarantees_boolean))
-            cur_node.non_state_separable = True
-    else:
-        interpolant = ""
-        state_components = dict()
-        print("No interpolant for " + assum_val_boolean +"\n and guarantees " + " & ".join(guarantees_boolean) + "\n on path " + str(path))
-        cur_node.no_interpolant = True
+    
+    try:
+        state_components = extractStateComponents(interpolant)
 
-    if state_components != dict():
-        refinements, non_io_separable = getRefinementsFromStateComponents(state_components,path, input_vars)
-        cur_node.num_state_components = len(state_components)
-        cur_node.num_non_io_separable = non_io_separable
-        # print()
-        # print("=== Refinements === ")
-        # print(refinements)
-        return refinements
-    else:
-        return []
+        metrics["is_interpolant_state_separable"] = len(state_components) > 0
+        metrics["num_state_components"] = len(state_components)
+
+    except NonStateSeparableException:
+        # If the interpolant is not state separable, just skip this particular counterstrategy.
+        # To think about: is it possible to come up with refinements even in case of a non-state-separable interpolant?
+        print("[x] Non-state-separable interpolant for " + assum_val_boolean + "\n and guarantees " + " & ".join(guarantees_boolean))
+    
+    if state_components == dict():
+        return [], metrics
+
+    refinements, num_non_io_separable_state_components = getRefinementsFromStateComponents(state_components, path, input_vars)
+
+    metrics["num_non_io_separable_state_components"] = num_non_io_separable_state_components
+    if num_non_io_separable_state_components == 0:
+        metrics["is_interpolant_fully_separable"] = True
+
+    return refinements, metrics

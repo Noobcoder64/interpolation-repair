@@ -1,0 +1,44 @@
+State: S0
+Initial: True
+Dead: False
+Inputs: {'handle_up': False, 'handle_down': False}
+Outputs: {}
+Influential outputs: {}
+Successors: ['S1']
+
+
+State: S1
+Initial: False
+Dead: False
+Inputs: {'handle_up': False, 'handle_down': True}
+Outputs: {}
+Influential outputs: {}
+Successors: ['S2']
+
+
+State: S2
+Initial: False
+Dead: False
+Inputs: {'handle_up': True, 'handle_down': False}
+Outputs: {}
+Influential outputs: {}
+Successors: ['Sf3']
+
+
+State: Sf3
+Initial: False
+Dead: True
+Inputs: {'handle_up': True, 'handle_down': True}
+Outputs: {}
+Influential outputs: {}
+Successors: ['Sf4']
+
+
+State: Sf4
+Initial: False
+Dead: True
+Inputs: {'handle_up': True, 'handle_down': True}
+Outputs: {}
+Influential outputs: {}
+Successors: []
+

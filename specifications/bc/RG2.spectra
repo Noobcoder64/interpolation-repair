@@ -1,0 +1,22 @@
+
+module RG2
+
+env boolean req;
+env boolean cancel;
+
+sys boolean grant;
+
+aux boolean sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0;
+
+
+
+guarantee
+	G (((cancel | grant) -> !(next(grant))));
+guarantee
+	GF ((!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0));
+
+guarantee
+	 ((!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0));
+guarantee
+	G (((((((!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0) & (!(req) | (req & next(grant)))) & (next(!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0))) | (((!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0) & (req & !(next(grant)))) & (next(sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0)))) | (((sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0) & next(grant)) & (next(!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0)))) | (((sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0) & !(next(grant))) & (next(sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0)))));
+

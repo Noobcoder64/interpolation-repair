@@ -85,7 +85,7 @@ def summarize_folder(output_folder):
 
                 # Read 'nodes' file
                 nodes_file = file.replace("stats", "nodes")
-                nodes_df = pd.read_csv(os.path.join(root, nodes_file), sep=",", index_col=False)
+                nodes_df = pd.read_csv(os.path.join(root, nodes_file), sep=",", index_col=False, on_bad_lines='skip')
                 # nodes_df['Refinement'] = nodes_df['Refinement'].apply(safe_literal_eval)
                 # nodes_df["ContainsFalse"] = nodes_df["Refinement"].apply(contains_false)
 
@@ -100,6 +100,8 @@ def summarize_folder(output_folder):
                     dfs.append(stats_df)
                     continue
 
+                stats_df["NodesExplored"] = len(nodes_df)
+
                 # Read 'uniquenodes' file
                 unique_nodes_file = file.replace("stats", "uniquenodes")
                 if os.path.exists(os.path.join(root, unique_nodes_file)):
@@ -107,6 +109,12 @@ def summarize_folder(output_folder):
                     stats_df["UniqueNodesExplored"] = len(unique_nodes_df)
                 else:
                     stats_df["UniqueNodesExplored"] = stats_df["NodesExplored"]
+
+                print(stats_df["NodesExplored"])
+                print(len(nodes_df))
+
+                if (stats_df["NodesExplored"] < stats_df["UniqueNodesExplored"]).any():
+                    raise ValueError("NodesExplored < UniqueNodesExplored for some rows")
 
                 # Read 'sols' file
                 sols_file = file.replace("stats", "sols")

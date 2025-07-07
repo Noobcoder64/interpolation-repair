@@ -1,0 +1,39 @@
+
+module simple_arbiter_v2
+
+env boolean r_0;
+env boolean r_1;
+
+sys boolean g_0;
+sys boolean g_1;
+
+aux boolean sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0;
+
+aux boolean sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0;
+
+aux boolean sYS_CONSTRAINT_2_S_responds_to_P_globally_state_0;
+
+
+
+guarantee
+	G ((!(g_0) | !(g_1)));
+guarantee
+	GF ((!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0));
+guarantee
+	GF ((!sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0));
+guarantee
+	GF ((!sYS_CONSTRAINT_2_S_responds_to_P_globally_state_0));
+
+guarantee
+	 ((!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0));
+guarantee
+	G (((((((!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0) & (!(r_0) | (r_0 & g_0))) & (next(!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0))) | (((!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0) & (r_0 & !(g_0))) & (next(sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0)))) | (((sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0) & g_0) & (next(!sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0)))) | (((sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0) & !(g_0)) & (next(sYS_CONSTRAINT_0_S_responds_to_P_globally_state_0)))));
+guarantee
+	 ((!sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0));
+guarantee
+	G (((((((!sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0) & (!(r_1) | (r_1 & g_1))) & (next(!sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0))) | (((!sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0) & (r_1 & !(g_1))) & (next(sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0)))) | (((sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0) & g_1) & (next(!sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0)))) | (((sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0) & !(g_1)) & (next(sYS_CONSTRAINT_1_S_responds_to_P_globally_state_0)))));
+guarantee
+	 ((!sYS_CONSTRAINT_2_S_responds_to_P_globally_state_0));
+guarantee
+	G (((((((!sYS_CONSTRAINT_2_S_responds_to_P_globally_state_0) & (!((r_0 & next(r_1))) | ((r_0 & next(r_1)) & (g_0 & g_1)))) & (next(!sYS_CONSTRAINT_2_S_responds_to_P_globally_state_0))) | (((!sYS_CONSTRAINT_2_S_responds_to_P_globally_state_0) & ((r_0 & next(r_1)) & !((g_0 & g_1)))) & (next(sYS_CONSTRAINT_2_S_responds_to_P_globally_state_0)))) | (((sYS_CONSTRAINT_2_S_responds_to_P_globally_state_0) & (g_0 & g_1)) & (next(!sYS_CONSTRAINT_2_S_responds_to_P_globally_state_0)))) | (((sYS_CONSTRAINT_2_S_responds_to_P_globally_state_0) & !((g_0 & g_1))) & (next(sYS_CONSTRAINT_2_S_responds_to_P_globally_state_0)))));
+

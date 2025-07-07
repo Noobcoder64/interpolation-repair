@@ -3,210 +3,465 @@ import os
 import argparse
 from collections import deque
 import experiment_properties as exp
+# from gr1_specification import GR1Specification
+from spectra_specification import SpectraSpecification
+from config import InitialSpec, RepairConfig, OutputWriter
 from refinement import RefinementNode
 import csv
 import spectra_utils as spectra
 import random
+from typing import List, Dict, Any
+from nodes_csv_writer import NodesCSVWriter, ParamsMetricsCSVWriter
+import time
+import pandas as pd
+from pathlib import Path
+import re
+import spot
+import specification as sp
+import shutil
+import logging
 
-MAX_NODES = 10000 # Max nodes to expand in the experiment
+logging.basicConfig(level=logging.INFO)
 
-# print("Resetting temp...")
-# temp_folder = 'temp'
-# for temp_file in os.listdir(temp_folder):
-#     temp_file_path = os.path.join(temp_folder, temp_file)
-#     try:
-#         if os.path.isfile(temp_file_path):
-#             os.remove(temp_file_path)
-#     except Exception as e:
-#         print(e)
-# print("Reset complete!")
+TEMP_DIR = "temp"
 
-def enough_repairs(solutions):
-    return exp.repair_limit > 0 and len(solutions) == exp.repair_limit
+varpattern = re.compile(r"\b(?!TRUE|FALSE)\w+")
 
-def FifoDuplicateCheckRefinement():
-    """This implements the refinement strategy that uses model checking against ancestors
-    to generate nodes"""
+def get_distinct_vars(formula):
+    """Returns the set of all distinct variables appearing in formula"""
+    varset = set(varpattern.findall(formula))
+    varset.discard("X")
+    varset.discard("G")
+    varset.discard("F")
+    varset.discard("next")
+    varset.discard("alw")
+    varset.discard("alwEv")
+    return varset
 
-    initial_spec_node = RefinementNode()
+def create_node_record(cur_node: RefinementNode, elapsed_time, queue_size, depth, time_node, error):
+    return {
+        "node_id": cur_node.id,
+        "parent_node_id": cur_node.parent_id,
+        "elapsed_time": elapsed_time,
+        "queue_size": queue_size,
+        "depth": depth,
+        "length": len(cur_node.gr1_units),
+        "num_vars": len(get_distinct_vars(" ".join(cur_node.gr1_units))),
+        "is_y_sat": cur_node.isYSat(),
+        "is_satisfiable": cur_node.isSatisfiable(),
+        "is_realizable": cur_node.isRealizable(),
+        "is_well_separated": cur_node.isWellSeparated(),
+        "unreal_core_size": len(cur_node.unreal_core) if cur_node.unreal_core else None,
+        "cs_num_states": len(cur_node.counterstrategy.states) if cur_node.counterstrategy else None,
+        "is_interpolant_state_separable": cur_node.is_interpolant_state_separable,
+        "num_state_components": cur_node.num_state_components,
+        "num_non_io_separable_state_components": cur_node.num_non_io_separable_state_components,
+        "is_interpolant_fully_separable": cur_node.is_interpolant_fully_separable,
+        "num_refs_generated": cur_node.num_refs_generated,
+        "time_y_sat_check": cur_node.time_y_sat_check,
+        "time_realizability_check": cur_node.time_realizability_check,
+        "time_satisfiability_check": cur_node.time_satisfiability_check,
+        "time_well_separation_check": cur_node.time_well_separation_check,
+        "time_unreal_core": cur_node.time_unreal_core,
+        "time_counterstrategy": cur_node.time_counterstrategy,
+        "time_interpolation": cur_node.time_interpolation,
+        "time_generation": cur_node.time_generation,
+        "time_refine": cur_node.time_refine,
+        "time_repair_core": cur_node.time_repair_core,
+        "time_node": time_node,
+        "refinement": cur_node.gr1_units,
+        "interpolant": cur_node.interpolant,
+        "error": error,
+    }
 
-    if initial_spec_node.isRealizable():
-        print("Specification is already realizable. No fix required.")
-        spectra.shutdown()
-        return
-    
-    if not initial_spec_node.isYSat():
-        print("Adding assumptions will not fix this specification")
-        spectra.shutdown()
-        return
+class InterpolationRepair:
+    def __init__(
+            self,
+            initial_spec: SpectraSpecification,
+            output_dir: str = "outputs",
+            timeout: int = 600,
+            repair_limit: int = -1,
+            temp_dir: str = "temp",
+            verbose: int = 0,
+    ):
+        self.initial_spec = initial_spec
+        self.output_dir = output_dir
+        self.timeout = timeout
+        self.repair_limit = repair_limit
+        self.temp_dir = temp_dir
+        self.verbose = verbose
 
-    initial_spec_node.timestamp = 0
-    initial_spec_node.timestamp_realizability_check = 0
+        # Results placeholders
+        self.node_records = []
+        self.solutions = []
+        self.first_repair = None
+        self.nodes_to_first_repair = None
+        self.depth_to_first_repair = None
+        self.time_to_first_repair = None
+        self.length_first_repair = None
+        self.vars_first_repair = None
 
-    solutions = []
-    explored_refs = []
-    duplicate_refs = []
-    time_to_first_repair = None
-    num_interpolants_computed = 0
-    num_non_state_separable = 0
+    def run(self):
+        self._counterstrategy_guided_refinement()
+        self._compute_non_redundant_repairs()
+        self._log_summary()
+        self._save_nodes_csv()
+        self._save_stats_csv()
 
-    datafile = open(exp.datafile, "w")
-    csv_writer = csv.writer(datafile)
-    datafields = [
-        "Id",
-        "Refinement",
-        "ElapsedTime",
-        "Timestamp",
-        "TimestampRealizabilityCheck",
-        "Length",
-        "Parent",
-        "NumChildren",
-        "IsYSat",
-        "IsRealizable",
-        "IsSatisfiable",
-        "IsWellSeparated",
-        "IsSolution",
-        "TimeYSatCheck",
-        "TimeRealizabilityCheck",
-        "TimeSatisfiabilityCheck",
-        "TimeWellSeparationCheck",
-        "TimeCounterstrategy",
-        "CounterstrategyNumStates",
-        "TimeRefine",
-        "TimeGenerationMethod",
-        "TimeInterpolation",
-        "InterpolantComputed",
-        "InterpolantIsFalse",
-        "NonStateSeparable",
-        "NoInterpolant",
-        "NumStateComponents",
-        "NumNonIoSeparable",
-        "Interpolant"
-        # "Notes",
-    ]
-    
-    csv_writer.writerow(datafields)
+    def _log(self, level, message, *args, **kwargs):
+        if self.verbose >= level:
+            print(message, *args, **kwargs)
 
-    # Root of the refinement tree: it contains the initial spec
-    refinement_queue = deque([initial_spec_node])
+    def _counterstrategy_guided_refinement(self):
+        self._log(1, "\nStarting Counterstrategy Guided Refinement")
+        self._log(1, "------------------------------------------")
+        self._log(1, f"Repairing specification : {self.initial_spec.file_path}")
+        self._log(1, f"Timeout                 : {self.timeout} seconds")
+        self._log(1, f"Repair Limit            : {self.repair_limit if self.repair_limit > 0 else 'No Limit'}\n")
 
-    nodes = 0
-    exp.reset_start_time()
-    refine_error = False
+        start_time = time.perf_counter()
+        initial_node = RefinementNode()
+        refinement_queue = deque([initial_node])
+        num_iterations = 0
 
-    while refinement_queue \
-      and not enough_repairs(solutions) \
-      and nodes < MAX_NODES \
-      and exp.get_elapsed_time() < exp.timeout:
-        # print([c.gr1_units for c in refinement_queue])
-        
-        cur_node = refinement_queue.pop()
-        nodes += 1
+        while refinement_queue \
+            and not (self.repair_limit > 0 \
+            and len(self.solutions) == self.repair_limit):
 
-        print()
-        print("++++ ELAPSED TIME:", exp.elapsed_time)
-        print("++++ QUEUE LENGTH:", len(refinement_queue))
-        print("++++ Solutions:", len(solutions))
-        print("++++ Duplicates:", len(duplicate_refs))
-        print("++++ Node number:", nodes)
-        print("++++ Refinement:", cur_node.gr1_units)
-        print("++++ Length:", cur_node.length)
+            elapsed_time = time.perf_counter() - start_time
+            if elapsed_time >= self.timeout:
+                self._log(1, f"Timeout reached: {elapsed_time:.2f}s >= {self.timeout}s")
+                break
 
-        if cur_node.unique_refinement in explored_refs:
-            print("++ DUPLICATE NODE")
-            duplicate_refs.append(cur_node.unique_refinement)
-            cur_node.deleteTempSpecFile()
-            continue
+            time_node_start = time.perf_counter()
+            num_iterations += 1
 
-        try:
-            print("++ Y-SAT CHECK")
-            # print(cur_node.isSatisfiable())
-            if cur_node.isYSat():
-                print("++ REALIZABILITY CHECK")
-                if not cur_node.isRealizable():
-                    print("++ COUNTERSTRATEGY COMPUTATION - REFINEMENT GENERATION")
-                    candidate_ref_nodes = cur_node.refine()
-                    refinement_queue.extendleft(candidate_ref_nodes)
-                elif cur_node.isSatisfiable():
-                    cur_node.isWellSeparated()
-                    print("++ REALIZABLE REFINEMENT: SAT CHECK")
-                    if time_to_first_repair is None:
-                        time_to_first_repair = exp.get_elapsed_time()
-                    solutions.append(cur_node.gr1_units)
+            cur_node = refinement_queue.pop()
+            depth = len(cur_node.gr1_units)
+            error = None
+
+            self._log(2, f"\nIteration #{num_iterations}")
+            self._log(2, "----------------------------")
+            self._log(2, f"Elapsed Time        : {elapsed_time * 1000:.0f} ms")
+            self._log(2, f"Queue Size          : {len(refinement_queue)}")
+            self._log(2, f"Depth               : {depth}")
+            self._log(2, f"Processing Node ID  : {cur_node.id}")
+            self._log(2, f"Current Refinement  : {cur_node.gr1_units}\n")
+            
+            self._create_refined_spec(cur_node)
+
+            try:
+                remaining_time = int(self.timeout - elapsed_time)
+
+                if cur_node.isYSat():
+                    self._log(2, "Specification is y-satisfiable")
+
+                    if not cur_node.isRealizable(timeout=remaining_time):
+                        self._log(2, "Specification is unrealizable")
+
+                        self._log(2, "Computing unrealizable core...", end='', flush=True)
+                        cur_node.getUnrealizableCore()
+                        self._log(2, " done")
+
+                        cur_node.minimiseSpec()
+                        core_spec_path = f"{self.temp_dir}/{cur_node.id}_core.spectra"
+                        cur_node.spec.to_file(core_spec_path, use_alw=True)
+                        self._log(2, f"Minimised specification saved to: {core_spec_path}")
+
+                        self._log(2, "Computing counterstrategy...", end='', flush=True)
+                        cur_node.getCounterstrategy(timeout=remaining_time)
+                        self._log(2, " done")
+
+                        candidate_ref_nodes = cur_node.generateRefinedNodes()
+                        self._log(2, f"Generated {len(candidate_ref_nodes)} candidate refinements")
+
+                        refinement_queue.extendleft(candidate_ref_nodes)
+
+                    else:
+                        self._log(2, "Specification is realizable")
+                        cur_node.isSatisfiable()
+                        cur_node.isWellSeparated()
+
+                        before_repair_core = len(cur_node.gr1_units)
+                        cur_node.getRepairCore()
+                        # Store in node?
+                        num_redundant_assumptions = before_repair_core - len(cur_node.gr1_units)
+                        self._log(2, f"Found {num_redundant_assumptions} redundant assumptions with repair core")
+
+                        if self.first_repair is None:
+                            self._log(1, "\n*** FIRST REPAIR FOUND ***\n")
+                            self._record_first_repair(
+                                cur_node.gr1_units,
+                                num_iterations,
+                                depth,
+                                time.perf_counter() - start_time,
+                            )
+
+                        self.solutions.append(cur_node.gr1_units)
+
                 else:
-                    print("++ VACUOUS SOLUTION")
-        except Exception as e:
-            cur_node.notes = str(e)
-            refine_error = True
-            print()
-            print("ERROR:", e)
+                    self._log(2, "Specification is NOT y-satisfiable")
+
+            except Exception as e:
+                error = f"{type(e).__name__}: {e}"
+                self._log(1, error)
+
+            # self._record_node()
+            node_record = create_node_record(
+                cur_node,
+                elapsed_time * 1000,
+                len(refinement_queue),
+                depth,
+                time.perf_counter() - time_node_start,
+                error
+            )
+            self.node_records.append(node_record)
         
-        # cur_node.deleteTempSpecFile()
-        
-        if cur_node.interpolant_computed:
-            num_interpolants_computed += 1
-        if cur_node.non_state_separable:
-            num_non_state_separable += 1
+        return self
 
-        cur_node.saveRefinementData(csv_writer, datafields)
-        explored_refs.append(cur_node.unique_refinement)
+    def _create_refined_spec(self, node: RefinementNode):
+        refined_spec = SpectraSpecification(
+            name=self.initial_spec.name,
+            inputs=self.initial_spec.inputs,
+            outputs=self.initial_spec.outputs,
+            assumptions=self.initial_spec.assumptions + node.gr1_units,
+            guarantees=self.initial_spec.guarantees,
+        )
+        refined_spec_path = f"{self.temp_dir}/{node.id}.spectra"
+        refined_spec.to_file(refined_spec_path)
+        node.set_spec(refined_spec)
+        self._log(2, f"Refined specification saved to: {refined_spec_path}")
 
-        # break
+    def _record_first_repair(self, repair, depth, num_iterations, time):
+        self.first_repair = repair
+        self.nodes_to_first_repair = num_iterations
+        self.depth_to_first_repair = depth
+        self.time_to_first_repair = time
+        self.length_first_repair = len(repair)
+        self.vars_first_repair = len(get_distinct_vars(" ".join(repair)))
 
-    datafile.close()
+    def _log_summary(self):
+        self._log(1, "\n=== Refinement Summary ===")
+        self._log(1, f"Total repairs found       : {len(self.solutions)}")
+        self._log(1, f"Nodes explored            : {len(self.node_records)}")
+        # self._log(1, f"Time elapsed              : {self.runtime:.2f} seconds")
+        if self.first_repair:
+            self._log(1, f"Time to first repair      : {self.time_to_first_repair:.2f} seconds")
+        else:
+            self._log(1, "No repairs found.")
+        self._log(1, "==========================\n")
 
-    print()
-    print("++++ SAVING SEARCH SUMMARY DATA")
-    statsfile = open(exp.statsfile, "w")
-    csv_writer = csv.writer(statsfile)
-    csv_writer.writerow([
-        "Filename",
-        "NumRepairs",
-        "RepairLimit",
-        "TimeToFirst",
-        "Runtime",
-        "Timeout",
-        "TimedOut",
-        "NodesExplored",
-        "DuplicateNodes",
-        "NumInterpolantsComputed",
-        "NumNonStateSeparable",
-    ])
+    def _compute_non_redundant_repairs(self):
+        pass
 
-    csv_writer.writerow([
-        exp.specfile,
-        len(solutions),
-        exp.repair_limit,
-        time_to_first_repair,
-        exp.get_elapsed_time(),
-        exp.timeout,
-        exp.elapsed_time > exp.timeout,
-        nodes,
-        len(duplicate_refs),
-        num_interpolants_computed,
-        num_non_state_separable,
-    ])
-    statsfile.close()
+    def _save_nodes_csv(self):
+        pass
 
-    if refine_error:
-        os._exit(0)
-    
-    spectra.shutdown()
+    def _save_stats_csv(self):
+        pass
 
+def implies(phi, psi):
+    # Build the negation of (phi implies psi), i.e., phi ∧ ¬psi
+    implication_neg = spot.formula(f"({phi}) & !({psi})")
+    # Build the automaton from this formula
+    aut = spot.translate(implication_neg)
+    # If the language is empty, phi implies psi
+    return aut.is_empty()
 
 def main():
-    parser = argparse.ArgumentParser(description="Run interpolation_repair.py on .spectra file.")
+    parser = argparse.ArgumentParser(description="Run interpolation_repair.py on a .spectra file.")
     parser.add_argument("-i", "--input", required=True, help="Path to the input .spectra file")
     parser.add_argument("-o", "--output", default=os.getcwd(), help="Path to the output folder (default: current directory)")
-    parser.add_argument("-t", "--timeout", type=float, default=10, help="Timeout in minutes (default: 10)")
+    parser.add_argument("-t", "--timeout", type=int, default=600, help="Timeout in seconds (default: 600 seconds)")
     parser.add_argument("-rl", "--repair-limit", type=int, default=-1, help="Repair limit (default: -1)")
+    # TODO: Find better flag names
     parser.add_argument("-allgars", action="store_true", help="Use all guarantees")
     parser.add_argument("-min", action="store_true", help="Minimize specification")
     parser.add_argument("-inf", action="store_true", help="Use influential output variables")
 
+    if os.path.exists(TEMP_DIR):
+        print(f"Clearing existing temp folder: {TEMP_DIR}")
+        shutil.rmtree(TEMP_DIR)
+    os.makedirs(TEMP_DIR)
+    print(f"Created temp folder: {TEMP_DIR}")
+    print()
+
     args = parser.parse_args()
-    exp.configure(args.input, args.repair_limit, args.timeout*60, args.output, args.allgars, args.min, args.inf, debug=False)
-    FifoDuplicateCheckRefinement()
+
+    input_file_path = Path(args.input)
+
+    print(f"Reading initial specification from: {input_file_path}...")
+    initial_spec = SpectraSpecification.from_file(input_file_path)
+
+    temp_path = Path("temp") / input_file_path.name
+    initial_spec.to_file(str(temp_path))
+    print(f"Initial specification copied to: {temp_path}")
+
+    print()
+    print("Specification summary")
+    print("---------------------")
+    print(f"Name        : {initial_spec.name}")
+    print(f"Inputs      : {len(initial_spec.inputs)}")
+    print(f"Outputs     : {len(initial_spec.outputs)}")
+    print(f"Assumptions : {len(initial_spec.assumptions)}")
+    print(f"Guarantees  : {len(initial_spec.guarantees)}")
+    print(f"Lines       : {len(initial_spec.lines)}")
+    print()
+
+    if initial_spec.is_realizable(args.timeout):
+        print("Specification is already realizable. No repair needed.\n")
+        return
+    
+    if not initial_spec.is_y_sat():
+        print("Adding assumptions will NOT fix this specification.\n")
+        return
+
+    start_time = time.perf_counter()
+    ir = InterpolationRepair(
+        initial_spec,
+        output_dir=args.output,
+        timeout=args.timeout,
+        repair_limit=args.repair_limit,
+        verbose=1,
+    )
+    ir.run()
+    runtime = time.perf_counter() - start_time
+
+    # print()
+    # print("Saving node data to CSV...")
+    # nodes_df = pd.DataFrame(result["node_records"])
+    # nodes_csv_path = f"{args.output}/{Path(args.input).stem}_interpolation_nodes.csv"
+    # nodes_df.to_csv(nodes_csv_path, index=False)
+    # print(f"Node data successfully saved at: {nodes_csv_path}\n")
+
+    # num_repairs = len(result["solutions"])
+
+    # print("Computing non-redundant repairs...")
+    # non_redundant_repairs = []
+    # for sol in [" & ".join(sp.unspectra(sol)) for sol in result["solutions"]]:
+    #     if any(implies(sol, repair) for repair in non_redundant_repairs):
+    #         continue
+    #     non_redundant_repairs = [repair for repair in non_redundant_repairs if not implies(repair, sol)]
+    #     non_redundant_repairs.append(sol)
+
+    # print(f"Found {len(non_redundant_repairs)} non-redundant repairs out of {num_repairs} total repairs")
+
+    # print()
+    # print("Saving search summary data")
+
+    # stats_csv_path = f"{args.output}/{Path(args.input).stem}_interpolation_stats.csv"
+
+    # num_nodes_explored = len(nodes_df)
+
+    # stats_record = {
+    #     "file_path": initial_spec.name,
+    #     "timeout": args.timeout,
+    #     "repair_limit": args.repair_limit,
+
+    #     "num_repairs": num_repairs,
+    #     "num_non_redundant_repairs": len(non_redundant_repairs),
+    #     "num_nodes_explored": num_nodes_explored,
+    #     "effectiveness": (len(non_redundant_repairs) / (num_nodes_explored - 1)) if num_nodes_explored > 1 else 0,
+    #     "num_y_unsat": (~nodes_df["is_y_sat"]).sum(),
+    #     "max_depth": nodes_df["depth"].max(),
+    #     # num_interpolants_computed
+    #     # num_not_state_separable
+    #     # num_not_fully_separable
+    #     # num_errors
+
+    #     "nodes_to_first_repair": result["nodes_to_first_repair"],
+    #     "depth_to_first_repair": result["depth_to_first_repair"],
+    #     "time_to_first_repair": result["time_to_first_repair"],
+    #     "length_first_repair": result["length_first_repair"],
+    #     "vars_first_repair": result["vars_first_repair"],
+
+    #     # Incorrect
+    #     # Non reduntant repairs
+    #     "min_repair_length": nodes_df["length"].min(),
+    #     "avg_repair_length": nodes_df["length"].mean(),
+    #     "max_repair_length": nodes_df["length"].max(),
+
+    #     "min_repair_vars": nodes_df["num_vars"].min(),
+    #     "avg_repair_vars": nodes_df["num_vars"].mean(),
+    #     "max_repair_vars": nodes_df["num_vars"].max(),
+
+    #     # unreal core size
+
+    #     "min_cs_num_states": nodes_df["cs_num_states"].min(),
+    #     "avg_cs_num_states": nodes_df["cs_num_states"].mean(),
+    #     "max_cs_num_states": nodes_df["cs_num_states"].max(),
+
+    #     # interpolant size
+
+    #     # num state components
+
+    #     # num non io separable state components
+
+    #     "min_num_refs_generated": nodes_df["num_refs_generated"].min(),
+    #     "avg_num_refs_generated": nodes_df["num_refs_generated"].mean(),
+    #     "max_num_refs_generated": nodes_df["num_refs_generated"].max(),
+    # }
+
+
+
+    # time_fields = [
+    #     "time_y_sat_check", "time_realizability_check", "time_satisfiability_check",
+    #     "time_well_separation_check",  "time_unreal_core", "time_counterstrategy", "time_interpolation",
+    #     "time_generation", "time_refine", "time_repair_core", "time_node"
+    # ]
+
+    # for field in time_fields:
+    #     stats_record[f"avg_{field}"] = nodes_df[field].mean()
+
+    # stats_record["runtime"] = runtime
+
+    # for field in time_fields:
+    #     stats_record[f"total_{field}"] = nodes_df[field].sum()
+
+    # for field in time_fields:
+    #     stats_record[f"pct_{field}"] = 100 * stats_record[f"total_{field}"] / runtime
+
+    # # Fields
+    # avg_fields = [
+    #     "elapsed_time", "queue_size", "length",
+    #     "unreal_core_size", "cs_num_states",
+    #     "num_state_components", "num_non_io_separable_state_components",
+    #     "num_refs_generated",
+    # ]
+
+    # bool_sum_fields = [
+    #     "is_y_sat", "is_satisfiable", "is_realizable", "is_well_separated",
+    #     "is_interpolant_state_separable", "is_interpolant_fully_separable"
+    # ]
+
+    # # Aggregate
+    # for field in avg_fields:
+    #     summary_stats[f"avg_{field}"] = nodes_df[field].mean()
+
+    # for field in bool_sum_fields:
+    #     summary_stats[f"sum_{field}"] = nodes_df[field].sum()
+
+
+
+    # # Filter rows where interpolant was computed
+    # interpolant_rows = nodes_df[nodes_df["interpolant"].notnull()]
+
+    # # Count total computed
+    # summary_stats["num_interpolants_computed"] = len(interpolant_rows)
+
+    # state_sep_bool = interpolant_rows["is_interpolant_state_separable"].apply(lambda x: False if x is None else x).astype(bool)
+    # fully_sep_bool = interpolant_rows["is_interpolant_fully_separable"].apply(lambda x: False if x is None else x).astype(bool)
+
+    # summary_stats["num_not_state_separable"] = (~state_sep_bool).sum()
+    # summary_stats["num_not_fully_separable"] = (~fully_sep_bool).sum()
+
+    # summary_stats["num_errors"] = nodes_df["error"].notnull().sum()
+
+    # df = pd.DataFrame([stats_record])
+    # df.to_csv(stats_csv_path, index=False)
+    # print("Stats saved to:", stats_csv_path)
+
+    # return and print solutions
 
 if __name__=="__main__":
     main()

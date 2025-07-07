@@ -3,92 +3,103 @@ import specification as sp
 import experiment_properties as exp
 from counterstrategy import CounterstrategyState, Counterstrategy
 
+import threading
+import os
+
 import jpype
 import jpype.imports
-from jpype.types import *
+
+import atexit
 
 EXTRA_TIME = 60
 
-jpype.startJVM(classpath=["spectra/dependencies/*", "spectra/SpectraTool.jar"])
+jpype.startJVM(classpath=["spectra/dependencies/*", "spectra/spectra-tool.jar"])
 SpectraTool = jpype.JClass('tau.smlab.syntech.Spectra.cli.SpectraTool')
+
+import java.util
+from java.util import ArrayList
+from java.lang import Integer
+
 print()
 
-def check_realizibility(spectra_file_path):
-    remaining_time = int(exp.timeout - exp.elapsed_time + EXTRA_TIME)
-    return SpectraTool.checkRealizability(spectra_file_path, remaining_time)
+def check_realizability(spec_file_path, timeout):
+    return SpectraTool.checkRealizability(spec_file_path, timeout)
 
-def check_satisfiability(spectra_file_path):
-    return SpectraTool.checkSatisfiability(spectra_file_path)
+def check_satisfiability(spec_file_path):
+    return SpectraTool.checkSatisfiability(spec_file_path)
 
-def check_well_separation(spectra_file_path):
-    return SpectraTool.checkWellSeparation(spectra_file_path)
+def check_well_separation(spec_file_path):
+    return SpectraTool.checkWellSeparation(spec_file_path)
 
-def check_y_sat(spectra_file_path):
-    return SpectraTool.checkYSatisfiability(spectra_file_path)
+def check_y_sat(spec_file_path):
+    return SpectraTool.checkYSatisfiability(spec_file_path)
 
-fairness_pattern = re.compile(r"(GF|alwEv)\s*\(")
-invariant_pattern = re.compile(r"(G|alw)\s*\(")
+def compute_unrealizable_core(spec_file_path):
+    output = str(SpectraTool.computeUnrealizableCore(spec_file_path))
 
-def compute_unrealizable_core(spectra_file_path):
-    output = str(SpectraTool.computeUnrealizableCore(spectra_file_path))
-    # print(output)
-    core_found = re.compile("< ([^>]*) >").search(output)
+    # Extract the core line numbers from the output
+    core_found = re.compile(r"< ([^>]*) >").search(output)
     if not core_found:
         return None
-    spec = sp.read_file(spectra_file_path)
-    spec = [re.sub(r'\s', '', line) for line in spec]
 
-    line_nums = []
-
-    for i in range(len(spec)):
-        if "guarantee" in spec[i] \
-        and not fairness_pattern.match(spec[i+1]) \
-        and not invariant_pattern.match(spec[i+1]):
-            line_nums.append(i+1)
-    
-
-    line_nums = line_nums + [int(x) for x in core_found.group(1).split(" ")]
+    # Parse the line numbers from the core
+    line_nums = [int(x) for x in core_found.group(1).split(" ")]
     line_nums = list(set(line_nums))
-    # line_nums = [54, 56, 58, 67, 71]
-    # print("LINE NUMS: ", line_nums)
+    line_nums.sort()
 
-    uc = [spec[line] for line in line_nums]
-    uc = sp.unspectra(uc)
-    return uc
+    return line_nums
 
-def generate_counterstrategy(spectra_file_path):
-    remaining_time = int(exp.timeout - exp.elapsed_time + EXTRA_TIME)
-    output = str(SpectraTool.generateCounterStrategy(spectra_file_path, exp.minimize_spec, remaining_time))
-    # print(output)
-    return parse_counterstrategy(output.replace("\\t", ""))
+def compute_assumptions_core(spec_file_path):
+    output = str(SpectraTool.computeAssumptionsCore(spec_file_path))
+    match = re.search(r"<\s*([^>]*)\s*>", output)
+    if not match:
+        return None
 
-def parse_counterstrategy(text):
-    state_pattern = re.compile(r"(Initial )?(Dead )?State (\w+) <(.*?)>\s+With (?:no )?successors(?: : |.)(.*)(?:\n|$)")
-    assignment_pattern = re.compile(r"(\w+):(\w+)")
+    try:
+        line_nums = sorted(set(int(x) for x in match.group(1).split()))
+    except ValueError:
+        return None
 
-    state_matches = re.finditer(state_pattern, text)
-    states = dict()
-    for match in state_matches:
-        is_initial = match.group(1) != None
-        is_dead = match.group(2) != None
-        state_name = match.group(3)
-        vars = dict(re.findall(assignment_pattern,  match.group(4)))
-        inputs = dict()
-        for x in exp.inputVarsList:
-            inputs[x] = True if vars[x] == "true" else False
-        outputs = dict()
-        for y in exp.outputVarsList:
-            if y in vars:
-                outputs[y] = True if vars[y] == "true" else False
-        successors = []
-        if not match.group(5) == '':
-            successors = match.group(5).split(", ")
+    return line_nums
 
-        state = CounterstrategyState(state_name, inputs, outputs, successors, is_initial, is_dead)
-        states[state.name] = state
+class CounterstrategyTimeoutException(Exception):
+    pass
 
-    return Counterstrategy(states, use_influential=exp.use_influential)
+def compute_counterstrategy(spec_file_path, min_sys_vars, timeout):
+    try:
+        return str(SpectraTool.computeCounterstrategy(spec_file_path, min_sys_vars, timeout))
+    except java.util.concurrent.TimeoutException as e:
+        # If Java throws a timeout, raise your Python timeout exception
+        raise CounterstrategyTimeoutException("Counterstrategy computation timed out")
+
+# def compute_repair_core(spec_file_path, repair_lines):
+#     output = str(SpectraTool.computeRepairCore(spec_file_path, ArrayList(list(map(Integer, repair_lines)))))
+#     match = re.search(r"<\s*([^>]*)\s*>", output)
+#     if not match:
+#         return None
+
+#     try:
+#         line_nums = sorted(set(int(x) for x in match.group(1).split()))
+#     except ValueError:
+#         return None
+
+#     return line_nums
 
 def shutdown():
-    SpectraTool.shutdown()
+    def force_exit():
+        print("Shutdown taking too long, forcing exit.")
+        os._exit(1)
+    
+    print("Shutting down SpectraTool...")
+    timer = threading.Timer(10, force_exit)
+    timer.start()
+    
+    SpectraTool.shutdownNow()
     jpype.shutdownJVM()
+    
+    print("JVM shutdown initiated...")
+    timer.cancel()
+    print("JVM shutdown complete.")
+
+atexit.register(shutdown)
+

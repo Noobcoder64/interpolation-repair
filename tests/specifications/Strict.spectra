@@ -1,0 +1,10 @@
+module Test
+                                    
+env boolean x;
+sys boolean y;
+                                    
+assumption G(next(x));
+assumption GF(x <-> y);
+                                    
+guarantee G(next(x) <-> next(y));
+guarantee GF(!y);

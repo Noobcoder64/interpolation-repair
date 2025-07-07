@@ -460,9 +460,6 @@ program = Keyword("module") + identifier \
 
 program.ignore(comment)
 
-
-# TODO: Spectra2Spectra
-
 ###################################### Tests ##################################################
 import sys,traceback
 try:

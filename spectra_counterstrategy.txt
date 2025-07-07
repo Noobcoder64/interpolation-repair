@@ -1,0 +1,11 @@
+Found 1 unrealizable core system variables.
+At line 6 variable g.
+extract strategy - Start
+
+extract strategy - End
+Initial State S0 <r:false, c:false, g:false>
+	With successors : S0, S1
+Initial State S1 <r:false, c:false, g:true>
+	With successors : S2
+State S2 <r:false, c:true, g:false>
+	With successors : S2

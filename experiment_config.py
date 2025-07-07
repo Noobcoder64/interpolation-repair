@@ -27,8 +27,8 @@ INPUT_PARENT_FOLDER = "inputs/"
 
 
 INPUT_FOLDERS = [
-    # "SIMPLE",
-    "AMBA-1",
+    "SIMPLE",
+    # "AMBA-1",
     # "AMBA-2",
     # "SYNTECH15-UNREAL",
     # "SYNTECH15-1UNREAL",
